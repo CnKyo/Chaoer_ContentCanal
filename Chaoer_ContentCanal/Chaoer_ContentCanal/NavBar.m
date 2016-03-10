@@ -61,7 +61,7 @@
     mLine.hidden = NO;
     mLine.frame = CGRectMake(0, DEVICE_NavBar_Height-0.5, DEVICE_Width, 0.5);
     mLine.backgroundColor = [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1];
-    [self addSubview:mLine];
+//    [self addSubview:mLine];
     
     self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -120,7 +120,7 @@
     [self.leftBtn setTitle:@"返回" forState:0];
     self.leftBtn.imageEdgeInsets  = UIEdgeInsetsMake(0, 0, 0, 20);
     self.leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 30);
-
+    [self.leftBtn setTitleColor:[UIColor whiteColor] forState:0];
     [self addSubview:self.leftBtn];
     
     [self.rightBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -129,7 +129,7 @@
     [self.leftBtn addTarget:self action:@selector(leftBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
    // self.title.text = self.title;
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textColor = Nav_TitleColor;
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     [self addSubview:self.titleLabel];

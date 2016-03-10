@@ -202,7 +202,7 @@
         offsetY = DEVICE_NavBar_Height;
         self.navBar =  [[NavBar alloc]init];
         self.navBar.NavDelegate = self;
-        self.navBar.backgroundColor = Nav_Color;
+        self.navBar.backgroundColor = M_CO;
         [self.view addSubview: self.navBar ];
     }
     contentH  -= offsetY;

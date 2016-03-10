@@ -43,6 +43,7 @@
 		16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FBBC901BE748EE00D2C917 /* UILabel+myLabel.m */; };
 		16FBBC951BE75D5D00D2C917 /* ordergoodscell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FBBC931BE75D5D00D2C917 /* ordergoodscell.m */; };
 		16FBBC961BE75D5D00D2C917 /* ordergoodscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FBBC941BE75D5D00D2C917 /* ordergoodscell.xib */; };
+		311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 311DA4F11C91BEBE003D50A4 /* mPersonRightView.xib */; };
 		31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28A1C9121AE006C553D /* mLoginView.m */; };
 		31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE28C1C9121B9006C553D /* mLoginView.xib */; };
 		31BBE2901C913EF3006C553D /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28F1C913EF3006C553D /* homeViewController.m */; };
@@ -52,6 +53,8 @@
 		31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE29A1C9142C9006C553D /* homeTableViewCell.xib */; };
 		31BBE29F1C914788006C553D /* mCustomHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE29E1C914788006C553D /* mCustomHomeView.m */; };
 		31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE2A01C91479A006C553D /* mCustomHomeView.xib */; };
+		31BBE2A41C916119006C553D /* mPersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE2A31C916119006C553D /* mPersonView.m */; };
+		31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE2A51C91612F006C553D /* mPersonView.xib */; };
 		740089521B38F22A00618BA0 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 740089491B38F22A00618BA0 /* BaseVC.m */; };
 		740089531B38F22A00618BA0 /* NavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400894B1B38F22A00618BA0 /* NavBar.m */; };
 		740089541B38F22A00618BA0 /* NavC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400894D1B38F22A00618BA0 /* NavC.m */; };
@@ -386,6 +389,7 @@
 		16FBBC921BE75D5D00D2C917 /* ordergoodscell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ordergoodscell.h; sourceTree = "<group>"; };
 		16FBBC931BE75D5D00D2C917 /* ordergoodscell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ordergoodscell.m; sourceTree = "<group>"; };
 		16FBBC941BE75D5D00D2C917 /* ordergoodscell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ordergoodscell.xib; sourceTree = "<group>"; };
+		311DA4F11C91BEBE003D50A4 /* mPersonRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPersonRightView.xib; sourceTree = "<group>"; };
 		31BBE2891C9121AE006C553D /* mLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mLoginView.h; sourceTree = "<group>"; };
 		31BBE28A1C9121AE006C553D /* mLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mLoginView.m; sourceTree = "<group>"; };
 		31BBE28C1C9121B9006C553D /* mLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mLoginView.xib; sourceTree = "<group>"; };
@@ -401,6 +405,9 @@
 		31BBE29D1C914788006C553D /* mCustomHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCustomHomeView.h; sourceTree = "<group>"; };
 		31BBE29E1C914788006C553D /* mCustomHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCustomHomeView.m; sourceTree = "<group>"; };
 		31BBE2A01C91479A006C553D /* mCustomHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCustomHomeView.xib; sourceTree = "<group>"; };
+		31BBE2A21C916119006C553D /* mPersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPersonView.h; sourceTree = "<group>"; };
+		31BBE2A31C916119006C553D /* mPersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPersonView.m; sourceTree = "<group>"; };
+		31BBE2A51C91612F006C553D /* mPersonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPersonView.xib; sourceTree = "<group>"; };
 		740089481B38F22A00618BA0 /* BaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVC.h; sourceTree = "<group>"; };
 		740089491B38F22A00618BA0 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		7400894A1B38F22A00618BA0 /* NavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBar.h; sourceTree = "<group>"; };
@@ -1178,6 +1185,10 @@
 		742739D11B7D97A800EE58B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31BBE2A21C916119006C553D /* mPersonView.h */,
+				31BBE2A31C916119006C553D /* mPersonView.m */,
+				31BBE2A51C91612F006C553D /* mPersonView.xib */,
+				311DA4F11C91BEBE003D50A4 /* mPersonRightView.xib */,
 				74F5FC391B53A6E800307EED /* mMyDeatailView.h */,
 				74F5FC3A1B53A6E800307EED /* mMyDeatailView.m */,
 				74F1058C1BF044DB00035DFB /* myEditView.xib */,
@@ -1747,7 +1758,7 @@
 			children = (
 				B2D225D41BE1B1A500E0BF03 /* DianPu */,
 				74D292CB1B96CC2100A57977 /* date */,
-				749BEA641B32B32700BABCA6 /* more */,
+				749BEA641B32B32700BABCA6 /* person */,
 				749BEA631B32B31E00BABCA6 /* myMessage */,
 				749BEA621B32B31300BABCA6 /* home */,
 			);
@@ -1782,14 +1793,14 @@
 			name = myMessage;
 			sourceTree = "<group>";
 		};
-		749BEA641B32B32700BABCA6 /* more */ = {
+		749BEA641B32B32700BABCA6 /* person */ = {
 			isa = PBXGroup;
 			children = (
 				742739D21B7D97AB00EE58B1 /* controller */,
 				742739D11B7D97A800EE58B1 /* View */,
 				74F5FC411B53AE2B00307EED /* customAlertview */,
 			);
-			name = more;
+			name = person;
 			sourceTree = "<group>";
 		};
 		74BCE14F1B3A6058008F515A /* RSKImageCropper */ = {
@@ -2141,6 +2152,7 @@
 				B23996571BE222EB00349C71 /* PingJiaCell.xib in Resources */,
 				7400897A1B38F6F000618BA0 /* QMapKit.bundle in Resources */,
 				B2CF987B1BEAEBBD003BB896 /* editDianpuViewController.xib in Resources */,
+				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
 				749BEA0A1B32779800BABCA6 /* MBProgressHUD.bundle in Resources */,
 				741B8D9F1B326EFA002104A0 /* LaunchScreen.xib in Resources */,
 				B29F03761BE30E080050267C /* PingjiaSectionView.xib in Resources */,
@@ -2186,6 +2198,7 @@
 				74C52C401BF0C981003B4B11 /* messageView.xib in Resources */,
 				B2CEC23A1BE9983A0050DB8F /* SellerDetaillVC.xib in Resources */,
 				74C0782A1BEB537600B217F0 /* peisongView.xib in Resources */,
+				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,
 				160833021C03A3B800083AC0 /* topsearch.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
 				7470E1521B9C07B800ECEC69 /* leavVC.xib in Resources */,
@@ -2362,6 +2375,7 @@
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
 				7487DC1B1B4E17F000C40220 /* NSArray+MASAdditions.m in Sources */,
+				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				7400896F1B38F2C300618BA0 /* AFHTTPRequestOperationManager.m in Sources */,
 				749BE9751B32754000BABCA6 /* NSString+CheckEmpty.m in Sources */,
 				749BEA0B1B32779800BABCA6 /* MBProgressHUD.m in Sources */,
