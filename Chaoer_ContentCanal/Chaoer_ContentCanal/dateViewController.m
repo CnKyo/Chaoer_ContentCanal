@@ -7,13 +7,10 @@
 //
 
 #import "dateViewController.h"
-#import "wkOrderCell.h"
-#import "wkOrderDetailViewController.h"
 #import <MapKit/MapKit.h>
 #import "searchView.h"
 #import "searchAndDateViewController.h"
 #import "orderDetail.h"
-#import "orderCellNew.h"
 
 @interface dateViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,FDCalendarDelegate,UISearchBarDelegate>
 
@@ -291,55 +288,6 @@
 {
     return 1;
 }
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 70;
-//}
-//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    mTopView = [UIView new];
-//    mTopView.backgroundColor = [UIColor colorWithRed:0.929 green:0.929 blue:0.929 alpha:1];
-//
-//    NSString    *ing = [NSString stringWithFormat:@"进行中(%d)",Model.mIngCount];
-//    NSString    *finish = [NSString stringWithFormat:@"已完成(%d)",Model.mFinishCount];
-//    NSString    *cancel = [NSString stringWithFormat:@"已取消(%d)",Model.mCancelCount];
-//    
-//    PPiFlatSegmentedControl *segmented2=[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(10, 20 , DEVICE_Width-20, 35) items:@[@{@"text":ing},@{@"text":finish},@{@"text":cancel}]iconPosition:IconPositionRight andSelectionBlock:^(NSUInteger segmentIndex) {
-//        if (segmentIndex ==0) {
-//            
-//            NSLog(@"left");
-//            mType = 2;
-//        }
-//        if (segmentIndex == 1) {
-//            
-//            NSLog(@"mid");
-//            mType = 3;
-//        }
-//        if (segmentIndex == 2)
-//            
-//        {
-//            NSLog(@"right");
-//            mType = 4;
-//        }
-//        
-//        [self.tableView headerBeginRefreshing];
-//        
-//        [self.tableView reloadData];
-//
-//    }];
-//    segmented2.color=[UIColor whiteColor];
-//    segmented2.borderWidth=0.5;
-//    segmented2.borderColor=[UIColor colorWithRed:0.702 green:0.702 blue:0.702 alpha:1];
-//    segmented2.selectedColor=[UIColor colorWithRed:1.000 green:0.184 blue:0.314 alpha:1];
-//    segmented2.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-//                                NSForegroundColorAttributeName:[UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:1]};
-//    segmented2.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-//                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
-//    [mTopView addSubview:segmented2];
-//    return mTopView;
-//    
-//}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -353,17 +301,17 @@
 
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *reuseCellId = @"cell";
-    
-    orderCellNew *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
-    cell.model = self.tempArray[indexPath.row];
-    
-    return cell;
-
-}
+//-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSString *reuseCellId = @"cell";
+//    
+//    orderCellNew *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+//    
+//    cell.model = self.tempArray[indexPath.row];
+//    
+//    return cell;
+//
+//}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

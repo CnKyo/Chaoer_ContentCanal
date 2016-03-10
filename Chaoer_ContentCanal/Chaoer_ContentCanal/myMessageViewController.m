@@ -11,7 +11,6 @@
 #import "msgDetailView.h"
 #import "WebVC.h"
 
-#import "wkOrderDetailViewController.h"
 #import "orderDetail.h"
 
 @interface myMessageViewController ()<UITableViewDataSource,UITableViewDelegate>

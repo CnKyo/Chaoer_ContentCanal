@@ -117,7 +117,10 @@
    // [self.backBtn setTitle:@"<" forState:UIControlStateNormal];
   //  [self.leftBtn setTitle:@"返回" forState:UIControlStateNormal];
     [self.leftBtn setImage:[UIImage imageNamed:@"nav_leftbtn"] forState:UIControlStateNormal];
-    self.leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 50);
+    [self.leftBtn setTitle:@"返回" forState:0];
+    self.leftBtn.imageEdgeInsets  = UIEdgeInsetsMake(0, 0, 0, 20);
+    self.leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 30);
+
     [self addSubview:self.leftBtn];
     
     [self.rightBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];

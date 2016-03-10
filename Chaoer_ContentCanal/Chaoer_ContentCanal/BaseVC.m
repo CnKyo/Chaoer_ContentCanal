@@ -181,6 +181,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = M_BGCO;
     self.automaticallyAdjustsScrollViewInsets = NO;
+
     
     if ( [self.Title isEmpty] )
     {

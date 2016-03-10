@@ -7,8 +7,6 @@
 //
 
 #import "searchAndDateViewController.h"
-#import "wkOrderCell.h"
-#import "orderCellNew.h"
 #import "orderDetail.h"
 
 @interface searchAndDateViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -114,23 +112,23 @@
     return 141;
     
 }
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    NSString *reuseCellId = @"cell";
-    
-    orderCellNew *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    if (!cell)
-    {
-        cell = [[orderCellNew alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
-    
-    cell.model = self.tempArray[indexPath.row];
-    return cell;
-    
-}
+//-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    NSString *reuseCellId = @"cell";
+//    
+//    orderCellNew *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+//    if (!cell)
+//    {
+//        cell = [[orderCellNew alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
+//    
+//    
+//    cell.model = self.tempArray[indexPath.row];
+//    return cell;
+//    
+//}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

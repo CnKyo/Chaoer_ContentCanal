@@ -12,7 +12,6 @@
 #import "MJPhoto.h"
 #import "PingJiaHeadView.h"
 #import "PingjiaSectionView.h"
-#import "wkOrderDetailViewController.h"
 #import "ReplyView.h"
 #import "UIImage+RTTint.h"
 #import "orderDetail.h"

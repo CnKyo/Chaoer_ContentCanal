@@ -10,28 +10,11 @@
 
 @interface ViewController : BaseVC
 
-///登录按钮
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-///联系客服按钮
-@property (weak, nonatomic) IBOutlet UIButton *connectionBtn;
-///获取验证码按钮
-@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
-///免责声明按钮
-@property (weak, nonatomic) IBOutlet UIButton *mianzeBtn;
-///手机号背景view
-@property (weak, nonatomic) IBOutlet UIView *phoneView;
-///验证码背景view
-@property (weak, nonatomic) IBOutlet UIView *codeView;
-
-///手机号码输入框
-@property (weak, nonatomic) IBOutlet UITextField *phoneTx;
-///验证码输入框
-@property (weak, nonatomic) IBOutlet UITextField *codeTx;
-
 
 @property (nonatomic,strong)    UIViewController* tagVC;
 
 @property (nonatomic,strong)    UIViewController* quikTagVC;
+
 
 @end
 
