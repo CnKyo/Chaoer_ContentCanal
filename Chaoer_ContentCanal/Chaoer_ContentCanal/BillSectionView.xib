@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="OcJ-K4-7XE" customClass="BillSectionView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aju-av-Qoy" userLabel="line">
+                    <rect key="frame" x="0.0" y="54" width="320" height="1"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Hke-Xv-Yxh"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnd-yp-KhT">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="54"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="liU-aD-gPe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="全部">
+                        <color key="titleColor" red="1" green="0.1843137255" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGH-6y-Lel">
+                    <rect key="frame" x="88" y="0.0" width="80" height="55"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="收入">
+                        <color key="titleColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsH-57-xBS">
+                    <rect key="frame" x="168" y="0.0" width="80" height="55"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="提现">
+                        <color key="titleColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48L-6z-QBB">
+                    <rect key="frame" x="248" y="0.0" width="80" height="55"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="充值">
+                        <color key="titleColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nGH-6y-Lel" firstAttribute="top" secondItem="OcJ-K4-7XE" secondAttribute="top" id="01a-y5-rtk"/>
+                <constraint firstItem="nGH-6y-Lel" firstAttribute="leading" secondItem="Vnd-yp-KhT" secondAttribute="trailing" constant="8" id="65A-sL-osf"/>
+                <constraint firstItem="PsH-57-xBS" firstAttribute="width" secondItem="nGH-6y-Lel" secondAttribute="width" id="6HJ-dF-iV4"/>
+                <constraint firstAttribute="bottom" secondItem="48L-6z-QBB" secondAttribute="bottom" id="Cr2-nM-Pkw"/>
+                <constraint firstAttribute="trailing" secondItem="aju-av-Qoy" secondAttribute="trailing" id="KEi-jn-diP"/>
+                <constraint firstAttribute="bottom" secondItem="aju-av-Qoy" secondAttribute="bottom" id="KmO-UX-L9y"/>
+                <constraint firstItem="PsH-57-xBS" firstAttribute="leading" secondItem="nGH-6y-Lel" secondAttribute="trailing" id="Lgz-Cz-Ggb"/>
+                <constraint firstItem="48L-6z-QBB" firstAttribute="width" secondItem="Vnd-yp-KhT" secondAttribute="width" id="Nvj-5E-iLI"/>
+                <constraint firstItem="Vnd-yp-KhT" firstAttribute="leading" secondItem="OcJ-K4-7XE" secondAttribute="leading" id="OWf-hZ-beN"/>
+                <constraint firstItem="Vnd-yp-KhT" firstAttribute="top" secondItem="OcJ-K4-7XE" secondAttribute="top" id="QCU-Fg-mHs"/>
+                <constraint firstItem="PsH-57-xBS" firstAttribute="top" secondItem="OcJ-K4-7XE" secondAttribute="top" id="SeH-Es-5vE"/>
+                <constraint firstItem="48L-6z-QBB" firstAttribute="top" secondItem="OcJ-K4-7XE" secondAttribute="top" id="XRm-mF-SdX"/>
+                <constraint firstItem="aju-av-Qoy" firstAttribute="leading" secondItem="OcJ-K4-7XE" secondAttribute="leading" id="XUA-YA-Red"/>
+                <constraint firstItem="Vnd-yp-KhT" firstAttribute="width" secondItem="OcJ-K4-7XE" secondAttribute="width" multiplier="0.25" id="YgT-Lr-W88"/>
+                <constraint firstItem="nGH-6y-Lel" firstAttribute="width" secondItem="Vnd-yp-KhT" secondAttribute="width" id="elR-a1-gMs"/>
+                <constraint firstAttribute="bottom" secondItem="nGH-6y-Lel" secondAttribute="bottom" id="tNT-we-68P"/>
+                <constraint firstAttribute="bottom" secondItem="PsH-57-xBS" secondAttribute="bottom" id="tQF-Eo-aoh"/>
+                <constraint firstItem="48L-6z-QBB" firstAttribute="leading" secondItem="PsH-57-xBS" secondAttribute="trailing" id="ttJ-nD-zVs"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="123" y="267.5"/>
+        </view>
+    </objects>
+</document>

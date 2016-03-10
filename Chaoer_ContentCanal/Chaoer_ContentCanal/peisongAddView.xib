@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yQc-mF-78s" customClass="peisongView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WxD-W3-pqw">
+                    <rect key="frame" x="15" y="1" width="305" height="1"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="0hn-EK-TkT"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxc-rN-NQt">
+                    <rect key="frame" x="94" y="15" width="70" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="bb8-JM-SuY"/>
+                        <constraint firstAttribute="height" constant="30" id="sd2-Cv-tTl"/>
+                    </constraints>
+                    <state key="normal" title="00:00" backgroundImage="hourBtn_normal">
+                        <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MND-Zz-802">
+                    <rect key="frame" x="172" y="19" width="7" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="7" id="4HU-So-Bwe"/>
+                        <constraint firstAttribute="height" constant="21" id="fIC-g7-HCo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b90-Cl-dg0">
+                    <rect key="frame" x="187" y="15" width="70" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="mvf-y9-5cM"/>
+                        <constraint firstAttribute="width" constant="70" id="wS2-2p-npT"/>
+                    </constraints>
+                    <state key="normal" title="24:00" backgroundImage="hourBtn_normal">
+                        <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pR-NK-oaH">
+                    <rect key="frame" x="278" y="19" width="20" height="20"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="0.1764705882" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="67g-Yc-Yd0"/>
+                        <constraint firstAttribute="height" constant="20" id="L7A-9g-rIY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <inset key="contentEdgeInsets" minX="2" minY="-4" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="-">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MND-Zz-802" firstAttribute="leading" secondItem="Jxc-rN-NQt" secondAttribute="trailing" constant="8" id="4H3-Fw-fRt"/>
+                <constraint firstItem="WxD-W3-pqw" firstAttribute="top" secondItem="yQc-mF-78s" secondAttribute="top" constant="1" id="6j7-uY-lnU"/>
+                <constraint firstItem="Jxc-rN-NQt" firstAttribute="leading" secondItem="yQc-mF-78s" secondAttribute="leading" constant="94" id="EaH-hK-c4P"/>
+                <constraint firstItem="WxD-W3-pqw" firstAttribute="leading" secondItem="yQc-mF-78s" secondAttribute="leading" constant="15" id="GGG-wm-Cge"/>
+                <constraint firstItem="b90-Cl-dg0" firstAttribute="leading" secondItem="MND-Zz-802" secondAttribute="trailing" constant="8" id="Hj7-SH-JYn"/>
+                <constraint firstAttribute="trailing" secondItem="WxD-W3-pqw" secondAttribute="trailing" id="KRt-Us-aRw"/>
+                <constraint firstAttribute="trailing" secondItem="1pR-NK-oaH" secondAttribute="trailing" constant="22" id="MtO-IM-8Ch"/>
+                <constraint firstItem="MND-Zz-802" firstAttribute="top" secondItem="yQc-mF-78s" secondAttribute="top" constant="19" id="ZLG-bb-NZs"/>
+                <constraint firstItem="Jxc-rN-NQt" firstAttribute="top" secondItem="yQc-mF-78s" secondAttribute="top" constant="15" id="Zr2-Xo-g4t"/>
+                <constraint firstItem="b90-Cl-dg0" firstAttribute="top" secondItem="yQc-mF-78s" secondAttribute="top" constant="15" id="uL5-fI-vqz"/>
+                <constraint firstItem="1pR-NK-oaH" firstAttribute="top" secondItem="yQc-mF-78s" secondAttribute="top" constant="19" id="yF0-Hm-yzn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mFirstTimeBtn" destination="Jxc-rN-NQt" id="XUi-Ur-2i3"/>
+                <outlet property="mJianBtn" destination="1pR-NK-oaH" id="u80-ri-3ft"/>
+                <outlet property="mSeconTimeBtn" destination="b90-Cl-dg0" id="fRn-fk-Nty"/>
+            </connections>
+            <point key="canvasLocation" x="225" y="276"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="hourBtn_normal" width="123" height="73"/>
+    </resources>
+</document>
