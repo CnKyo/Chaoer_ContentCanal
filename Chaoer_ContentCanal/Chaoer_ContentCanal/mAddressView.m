@@ -1,0 +1,39 @@
+//
+//  mAddressView.m
+//  Chaoer_ContentCanal
+//
+//  Created by 王钶 on 16/3/11.
+//  Copyright © 2016年 zongyoutec.com. All rights reserved.
+//
+
+#import "mAddressView.h"
+
+@implementation mAddressView
+
++ (mAddressView *)shareView{
+
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mAddressView" owner:self options:nil] objectAtIndex:0];
+    return view;
+}
+
++ (mAddressView *)sharePayView{
+    
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mTopUpView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mLogo.layer.masksToBounds = YES;
+    view.mLogo.layer.cornerRadius = view.mLogo.mwidth/2;
+    
+    return view;
+}
++ (mAddressView *)shareUsrInfo{
+    
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mUserInfoView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mUserImg.layer.masksToBounds = YES;
+    view.mUserImg.layer.cornerRadius = view.mUserImg.mwidth/2;
+    
+    return view;
+}
+
+
+@end

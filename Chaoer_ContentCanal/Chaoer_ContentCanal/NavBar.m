@@ -123,6 +123,8 @@
     [self.leftBtn setTitleColor:[UIColor whiteColor] forState:0];
     [self addSubview:self.leftBtn];
     
+    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [self.rightBtn setTitleColor:[UIColor whiteColor] forState:0];
     [self.rightBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [self addSubview:self.rightBtn];
         [self.rightBtn addTarget:self action:@selector(rightbtnTouched:) forControlEvents:UIControlEventTouchUpInside];

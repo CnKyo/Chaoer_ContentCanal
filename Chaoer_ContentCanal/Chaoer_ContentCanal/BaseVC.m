@@ -179,7 +179,7 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = M_BGCO;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     

@@ -61,4 +61,7 @@
 #import "FDCalendar.h"
 #import "HZQDatePickerView.h"
 
+#import "mAddressView.h"
+#import "mBalanceViewController.h"
+
 #endif

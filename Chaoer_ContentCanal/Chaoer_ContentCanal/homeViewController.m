@@ -15,6 +15,8 @@
 #import "homeTableViewCell.h"
 
 #import "mCustomHomeView.h"
+
+#import "payViewController.h"
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -80,18 +82,20 @@
     bgkView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     [mHeaderView addSubview:bgkView];
     
+    NSArray *marr = @[@"快捷缴费",@"物业保修",@"社区生活",@"便民服务",@"邻里交流",@"投诉建议"];
     
     float x = 0;
     float y = bgkView.mbottom;
 
     float btnWidth = DEVICE_Width/3;
     
-    for (int i = 0; i<5; i++) {
+    for (int i = 0; i<marr.count; i++) {
         
         UIButton    *btn = [UIButton new];
         btn.frame = CGRectMake(x, y, btnWidth, 110);
         [btn setImage:[UIImage imageNamed:@"79"] forState:0];
-        [btn setTitle:@"what" forState:0];
+        [btn setTitle:marr[i] forState:0];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
         btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
@@ -116,14 +120,27 @@
     }
     
     CGRect  mRect = mHeaderView.frame;
-    mRect.size.height = y+110;
+    mRect.size.height = y;
     mHeaderView.frame = mRect;
     
     [mTableView setTableHeaderView:mHeaderView];
     
 }
+#pragma mark----按钮的点击事件
 - (void)mCusBtnAction:(UIButton *)sender{
     NSLog(@"第%ld个",(long)sender.tag);
+    
+    switch (sender.tag) {
+        case 0:
+        {
+            payViewController   *ppp = [[payViewController alloc] initWithNibName:@"payViewController" bundle:nil];
+            [self pushViewController:ppp];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 - (void)loadScrollerView{
     

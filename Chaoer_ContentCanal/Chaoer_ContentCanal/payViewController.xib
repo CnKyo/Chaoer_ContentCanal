@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="payViewController">
+            <connections>
+                <outlet property="mCanalBtn" destination="KE9-9J-sh8" id="yfJ-T5-MCc"/>
+                <outlet property="mParkBtn" destination="Uf5-J1-k4S" id="Fic-Ky-dpD"/>
+                <outlet property="mThreeBtn" destination="X7I-rv-xcz" id="BZz-mi-hQm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEX-Ww-NK0">
+                    <rect key="frame" x="0.0" y="104" width="320" height="464"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE9-9J-sh8">
+                    <rect key="frame" x="60" y="190" width="200" height="95"/>
+                    <color key="backgroundColor" red="0.87450980389999999" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="Ydi-9s-LRb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="物管费">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mCanalAction:" destination="-1" eventType="touchUpInside" id="N68-0D-fO3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7I-rv-xcz">
+                    <rect key="frame" x="60" y="288" width="200" height="95"/>
+                    <color key="backgroundColor" red="0.87450980389999999" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="cwo-hJ-5Ry"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="水、电、煤气费">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mThreeAction:" destination="-1" eventType="touchUpInside" id="rod-dS-t8S"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uf5-J1-k4S">
+                    <rect key="frame" x="60" y="386" width="200" height="95"/>
+                    <color key="backgroundColor" red="0.87450980389999999" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="z3H-HY-3TS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="停车费">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mParkAction:" destination="-1" eventType="touchUpInside" id="UcM-j5-mlw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="X7I-rv-xcz" firstAttribute="top" secondItem="KE9-9J-sh8" secondAttribute="bottom" constant="3" id="8oE-Yf-3V5"/>
+                <constraint firstItem="Uf5-J1-k4S" firstAttribute="top" secondItem="X7I-rv-xcz" secondAttribute="bottom" constant="3" id="AhI-VH-AJa"/>
+                <constraint firstItem="DEX-Ww-NK0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="ELQ-Xi-XdD"/>
+                <constraint firstItem="X7I-rv-xcz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="IbD-Jz-WPa"/>
+                <constraint firstAttribute="trailing" secondItem="DEX-Ww-NK0" secondAttribute="trailing" id="JVk-4e-d4o"/>
+                <constraint firstItem="KE9-9J-sh8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="LMJ-vB-o9N"/>
+                <constraint firstItem="KE9-9J-sh8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="190" id="Ysf-G5-1pm"/>
+                <constraint firstAttribute="trailing" secondItem="X7I-rv-xcz" secondAttribute="trailing" constant="60" id="ZVH-hr-s2A"/>
+                <constraint firstAttribute="trailing" secondItem="Uf5-J1-k4S" secondAttribute="trailing" constant="60" id="cr0-l2-SBO"/>
+                <constraint firstAttribute="bottom" secondItem="DEX-Ww-NK0" secondAttribute="bottom" id="fuw-mX-byN"/>
+                <constraint firstAttribute="trailing" secondItem="KE9-9J-sh8" secondAttribute="trailing" constant="60" id="htL-jj-Snd"/>
+                <constraint firstItem="DEX-Ww-NK0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lib-kq-3vB"/>
+                <constraint firstItem="Uf5-J1-k4S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="vW4-r8-b3K"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="291" y="67"/>
+        </view>
+    </objects>
+</document>

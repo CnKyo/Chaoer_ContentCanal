@@ -79,6 +79,8 @@
         [btn setImage:[UIImage imageNamed:@"meassage"] forState:0];
         [btn setTitle:@"what" forState:0];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+
         [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
         btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
         btn.titleEdgeInsets = UIEdgeInsetsMake(90, -50, 20, 0);

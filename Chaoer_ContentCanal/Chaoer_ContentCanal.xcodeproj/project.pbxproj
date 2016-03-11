@@ -44,6 +44,21 @@
 		16FBBC951BE75D5D00D2C917 /* ordergoodscell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FBBC931BE75D5D00D2C917 /* ordergoodscell.m */; };
 		16FBBC961BE75D5D00D2C917 /* ordergoodscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FBBC941BE75D5D00D2C917 /* ordergoodscell.xib */; };
 		311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 311DA4F11C91BEBE003D50A4 /* mPersonRightView.xib */; };
+		3123CC091C9261DA00C3B928 /* payViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC071C9261DA00C3B928 /* payViewController.m */; };
+		3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC081C9261DA00C3B928 /* payViewController.xib */; };
+		3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC0C1C92740900C3B928 /* mAddressView.m */; };
+		3123CC101C92743500C3B928 /* mAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC0F1C92743500C3B928 /* mAddressView.xib */; };
+		3123CC181C92961F00C3B928 /* canPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC171C92961F00C3B928 /* canPayView.m */; };
+		3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC191C92962E00C3B928 /* canPayView.xib */; };
+		3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC1E1C92990000C3B928 /* canalViewController.m */; };
+		3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC251C929ECB00C3B928 /* wpgViewController.m */; };
+		3123CC2A1C929F4300C3B928 /* wpgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC281C929F4300C3B928 /* wpgTableViewCell.m */; };
+		3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC291C929F4300C3B928 /* wpgTableViewCell.xib */; };
+		3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC2C1C92A51100C3B928 /* mBalanceView.xib */; };
+		3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC2E1C92A87A00C3B928 /* mTopUpView.xib */; };
+		3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC361C92B04A00C3B928 /* mBalanceViewController.m */; };
+		3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC371C92B04A00C3B928 /* mBalanceViewController.xib */; };
+		3123CC3B1C92B4B100C3B928 /* mUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC3A1C92B4B100C3B928 /* mUserInfoView.xib */; };
 		31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28A1C9121AE006C553D /* mLoginView.m */; };
 		31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE28C1C9121B9006C553D /* mLoginView.xib */; };
 		31BBE2901C913EF3006C553D /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28F1C913EF3006C553D /* homeViewController.m */; };
@@ -390,6 +405,28 @@
 		16FBBC931BE75D5D00D2C917 /* ordergoodscell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ordergoodscell.m; sourceTree = "<group>"; };
 		16FBBC941BE75D5D00D2C917 /* ordergoodscell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ordergoodscell.xib; sourceTree = "<group>"; };
 		311DA4F11C91BEBE003D50A4 /* mPersonRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPersonRightView.xib; sourceTree = "<group>"; };
+		3123CC061C9261DA00C3B928 /* payViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payViewController.h; sourceTree = "<group>"; };
+		3123CC071C9261DA00C3B928 /* payViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = payViewController.m; sourceTree = "<group>"; };
+		3123CC081C9261DA00C3B928 /* payViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = payViewController.xib; sourceTree = "<group>"; };
+		3123CC0B1C92740900C3B928 /* mAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mAddressView.h; sourceTree = "<group>"; };
+		3123CC0C1C92740900C3B928 /* mAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mAddressView.m; sourceTree = "<group>"; };
+		3123CC0F1C92743500C3B928 /* mAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mAddressView.xib; sourceTree = "<group>"; };
+		3123CC161C92961F00C3B928 /* canPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = canPayView.h; sourceTree = "<group>"; };
+		3123CC171C92961F00C3B928 /* canPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = canPayView.m; sourceTree = "<group>"; };
+		3123CC191C92962E00C3B928 /* canPayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = canPayView.xib; sourceTree = "<group>"; };
+		3123CC1D1C92990000C3B928 /* canalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = canalViewController.h; sourceTree = "<group>"; };
+		3123CC1E1C92990000C3B928 /* canalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = canalViewController.m; sourceTree = "<group>"; };
+		3123CC241C929ECB00C3B928 /* wpgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpgViewController.h; sourceTree = "<group>"; };
+		3123CC251C929ECB00C3B928 /* wpgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpgViewController.m; sourceTree = "<group>"; };
+		3123CC271C929F4300C3B928 /* wpgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpgTableViewCell.h; sourceTree = "<group>"; };
+		3123CC281C929F4300C3B928 /* wpgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpgTableViewCell.m; sourceTree = "<group>"; };
+		3123CC291C929F4300C3B928 /* wpgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wpgTableViewCell.xib; sourceTree = "<group>"; };
+		3123CC2C1C92A51100C3B928 /* mBalanceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBalanceView.xib; sourceTree = "<group>"; };
+		3123CC2E1C92A87A00C3B928 /* mTopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpView.xib; sourceTree = "<group>"; };
+		3123CC351C92B04A00C3B928 /* mBalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBalanceViewController.h; sourceTree = "<group>"; };
+		3123CC361C92B04A00C3B928 /* mBalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBalanceViewController.m; sourceTree = "<group>"; };
+		3123CC371C92B04A00C3B928 /* mBalanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBalanceViewController.xib; sourceTree = "<group>"; };
+		3123CC3A1C92B4B100C3B928 /* mUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mUserInfoView.xib; sourceTree = "<group>"; };
 		31BBE2891C9121AE006C553D /* mLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mLoginView.h; sourceTree = "<group>"; };
 		31BBE28A1C9121AE006C553D /* mLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mLoginView.m; sourceTree = "<group>"; };
 		31BBE28C1C9121B9006C553D /* mLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mLoginView.xib; sourceTree = "<group>"; };
@@ -983,6 +1020,46 @@
 			name = DY;
 			sourceTree = "<group>";
 		};
+		3123CC0E1C92742200C3B928 /* general */ = {
+			isa = PBXGroup;
+			children = (
+				3123CC0B1C92740900C3B928 /* mAddressView.h */,
+				3123CC0C1C92740900C3B928 /* mAddressView.m */,
+				3123CC0F1C92743500C3B928 /* mAddressView.xib */,
+				3123CC2E1C92A87A00C3B928 /* mTopUpView.xib */,
+				3123CC3A1C92B4B100C3B928 /* mUserInfoView.xib */,
+				3123CC351C92B04A00C3B928 /* mBalanceViewController.h */,
+				3123CC361C92B04A00C3B928 /* mBalanceViewController.m */,
+				3123CC371C92B04A00C3B928 /* mBalanceViewController.xib */,
+			);
+			name = general;
+			sourceTree = "<group>";
+		};
+		3123CC221C929E7700C3B928 /* canal */ = {
+			isa = PBXGroup;
+			children = (
+				3123CC1D1C92990000C3B928 /* canalViewController.h */,
+				3123CC1E1C92990000C3B928 /* canalViewController.m */,
+				3123CC161C92961F00C3B928 /* canPayView.h */,
+				3123CC171C92961F00C3B928 /* canPayView.m */,
+				3123CC191C92962E00C3B928 /* canPayView.xib */,
+				3123CC2C1C92A51100C3B928 /* mBalanceView.xib */,
+			);
+			name = canal;
+			sourceTree = "<group>";
+		};
+		3123CC231C929E8300C3B928 /* wpg */ = {
+			isa = PBXGroup;
+			children = (
+				3123CC241C929ECB00C3B928 /* wpgViewController.h */,
+				3123CC251C929ECB00C3B928 /* wpgViewController.m */,
+				3123CC271C929F4300C3B928 /* wpgTableViewCell.h */,
+				3123CC281C929F4300C3B928 /* wpgTableViewCell.m */,
+				3123CC291C929F4300C3B928 /* wpgTableViewCell.xib */,
+			);
+			name = wpg;
+			sourceTree = "<group>";
+		};
 		31BBE2971C91417C006C553D /* DCPicScroller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1356,6 +1433,11 @@
 			children = (
 				31BBE28E1C913EF3006C553D /* homeViewController.h */,
 				31BBE28F1C913EF3006C553D /* homeViewController.m */,
+				3123CC061C9261DA00C3B928 /* payViewController.h */,
+				3123CC071C9261DA00C3B928 /* payViewController.m */,
+				3123CC081C9261DA00C3B928 /* payViewController.xib */,
+				3123CC231C929E8300C3B928 /* wpg */,
+				3123CC221C929E7700C3B928 /* canal */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1756,6 +1838,7 @@
 		749BEA611B32B26200BABCA6 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				3123CC0E1C92742200C3B928 /* general */,
 				B2D225D41BE1B1A500E0BF03 /* DianPu */,
 				74D292CB1B96CC2100A57977 /* date */,
 				749BEA641B32B32700BABCA6 /* person */,
@@ -2127,6 +2210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74C0782C1BEB549100B217F0 /* peisongAddView.xib in Resources */,
+				3123CC3B1C92B4B100C3B928 /* mUserInfoView.xib in Resources */,
 				740089851B39077900618BA0 /* messageTableViewCell.xib in Resources */,
 				74599E5E1B95AB8D00678F0A /* tongjiCell.xib in Resources */,
 				749BE9AC1B32758100BABCA6 /* SVProgressHUD.bundle in Resources */,
@@ -2141,7 +2225,9 @@
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
 				B23996521BE221CF00349C71 /* PingJiaHeadView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
+				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
 				749529AC1BF72DBE00E934D0 /* music1.caf in Resources */,
+				3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */,
 				741B8D9A1B326EFA002104A0 /* Main.storyboard in Resources */,
 				B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */,
 				B2CC1B1E1BE8AA67009A558F /* AddGoodsVC.xib in Resources */,
@@ -2175,6 +2261,7 @@
 				31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
+				3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */,
 				74DE206C1BCE527E003C03E7 /* changePhoneViewController.xib in Resources */,
 				B2D225EE1BE2025E00E0BF03 /* ServiceHeadView.xib in Resources */,
 				B2CF98761BEAEB79003BB896 /* AddServiceVC.xib in Resources */,
@@ -2183,12 +2270,16 @@
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
 				74C89A151BA018AB0010D38F /* dateCell.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
+				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				16279CB41C3D0DAD00B9A850 /* PayView.xib in Resources */,
 				B22B91E31BE33E0400A3043E /* BillCell.xib in Resources */,
 				16279CC51C3D13B400B9A850 /* read_me.txt in Resources */,
 				B2CEE1281C0379D200FC159C /* MapCell.xib in Resources */,
 				B29F03811BE321AC0050267C /* BillHeadView.xib in Resources */,
 				B22B91F71BE3721F00A3043E /* AddServiceTypeVC.xib in Resources */,
+				3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */,
+				3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */,
+				3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */,
 				7470E14D1B9C07B800ECEC69 /* leaveCell.xib in Resources */,
 				7470E1531B9C07B800ECEC69 /* pickVC.xib in Resources */,
 				74DDE8F81BAC0D33004878D1 /* setupView.xib in Resources */,
@@ -2230,6 +2321,7 @@
 				B22B91E21BE33E0400A3043E /* BillCell.m in Sources */,
 				749BE9691B3272E700BABCA6 /* UIScrollView+MJExtension.m in Sources */,
 				B23996561BE222EB00349C71 /* PingJiaCell.m in Sources */,
+				3123CC181C92961F00C3B928 /* canPayView.m in Sources */,
 				740089741B38F2C300618BA0 /* AFURLRequestSerialization.m in Sources */,
 				16A987B91C0397F100D55C4A /* APIClient.m in Sources */,
 				74DE206B1BCE527E003C03E7 /* changePhoneViewController.m in Sources */,
@@ -2245,6 +2337,7 @@
 				7470E1501B9C07B800ECEC69 /* leaveViewController.m in Sources */,
 				749BE9DB1B32775D00BABCA6 /* CTAssetsPickerController.m in Sources */,
 				31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */,
+				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				7459E07B1B439B9D0045ED95 /* msgDetailView.m in Sources */,
@@ -2259,6 +2352,7 @@
 				7487DC161B4E17F000C40220 /* MASConstraint.m in Sources */,
 				7470E1511B9C07B800ECEC69 /* leavVC.m in Sources */,
 				B2CF98691BEAE7A9003BB896 /* FDCalendar.m in Sources */,
+				3123CC2A1C929F4300C3B928 /* wpgTableViewCell.m in Sources */,
 				B2D48CA41BEC53FF00482EB8 /* UIImage+RTTint.m in Sources */,
 				749BE99B1B32756800BABCA6 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				740089531B38F22A00618BA0 /* NavBar.m in Sources */,
@@ -2266,6 +2360,7 @@
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
 				740089551B38F22A00618BA0 /* TabBar.m in Sources */,
+				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				B2D2BBD31C1A78D9008A0404 /* BankManagerVC.m in Sources */,
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
 				749BEA401B3277AA00BABCA6 /* SDWebImageDecoder.m in Sources */,
@@ -2284,6 +2379,7 @@
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
 				742FB8FB1B5CDEA3005A1AFA /* WPAttributedStyleAction.m in Sources */,
 				746907E21BABEC6600A4589A /* moreCell.m in Sources */,
+				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
 				74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */,
@@ -2374,6 +2470,7 @@
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
+				3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */,
 				7487DC1B1B4E17F000C40220 /* NSArray+MASAdditions.m in Sources */,
 				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				7400896F1B38F2C300618BA0 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -2419,6 +2516,7 @@
 				749BE9E11B32776B00BABCA6 /* CunsomLabel.m in Sources */,
 				74BCE15B1B3A6058008F515A /* RSKTouchView.m in Sources */,
 				B2D225DA1BE1C16400E0BF03 /* ShopDetailVC.m in Sources */,
+				3123CC091C9261DA00C3B928 /* payViewController.m in Sources */,
 				740089721B38F2C300618BA0 /* AFSecurityPolicy.m in Sources */,
 				B29F037F1BE321930050267C /* BillHeadView.m in Sources */,
 				740089711B38F2C300618BA0 /* AFNetworkReachabilityManager.m in Sources */,
