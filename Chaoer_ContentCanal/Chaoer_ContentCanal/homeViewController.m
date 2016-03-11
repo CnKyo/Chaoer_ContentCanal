@@ -15,8 +15,9 @@
 #import "homeTableViewCell.h"
 
 #import "mCustomHomeView.h"
-
+#import "mFixViewController.h"
 #import "payViewController.h"
+
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -78,7 +79,7 @@
     [self loadScrollerView];
 
     UIView  *bgkView = [UIView new];
-    bgkView.frame = CGRectMake(0, mScrollerView.mbottom, DEVICE_Width, 15);
+    bgkView.frame = CGRectMake(0, mScrollerView.mbottom, DEVICE_Width, 10);
     bgkView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     [mHeaderView addSubview:bgkView];
     
@@ -134,6 +135,12 @@
         case 0:
         {
             payViewController   *ppp = [[payViewController alloc] initWithNibName:@"payViewController" bundle:nil];
+            [self pushViewController:ppp];
+        }
+            break;
+        case 1:
+        {
+            mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
             [self pushViewController:ppp];
         }
             break;
@@ -217,7 +224,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 101;
     
 }
 

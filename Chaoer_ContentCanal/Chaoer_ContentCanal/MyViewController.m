@@ -103,7 +103,7 @@
         
     }
     
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, y+110);
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, y);
     
 }
 - (void)mCusBtnAction:(UIButton *)sender{

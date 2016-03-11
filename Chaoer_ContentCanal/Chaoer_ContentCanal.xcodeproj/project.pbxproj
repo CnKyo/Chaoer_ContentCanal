@@ -59,6 +59,10 @@
 		3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC361C92B04A00C3B928 /* mBalanceViewController.m */; };
 		3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC371C92B04A00C3B928 /* mBalanceViewController.xib */; };
 		3123CC3B1C92B4B100C3B928 /* mUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC3A1C92B4B100C3B928 /* mUserInfoView.xib */; };
+		3123CC421C92CA3500C3B928 /* mFixView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC411C92CA3500C3B928 /* mFixView.m */; };
+		3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC431C92CA4600C3B928 /* mFixView.xib */; };
+		3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC461C92CFCD00C3B928 /* mFixViewController.m */; };
+		3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC471C92CFCD00C3B928 /* mFixViewController.xib */; };
 		31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28A1C9121AE006C553D /* mLoginView.m */; };
 		31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE28C1C9121B9006C553D /* mLoginView.xib */; };
 		31BBE2901C913EF3006C553D /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28F1C913EF3006C553D /* homeViewController.m */; };
@@ -427,6 +431,12 @@
 		3123CC361C92B04A00C3B928 /* mBalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBalanceViewController.m; sourceTree = "<group>"; };
 		3123CC371C92B04A00C3B928 /* mBalanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBalanceViewController.xib; sourceTree = "<group>"; };
 		3123CC3A1C92B4B100C3B928 /* mUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mUserInfoView.xib; sourceTree = "<group>"; };
+		3123CC401C92CA3500C3B928 /* mFixView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixView.h; sourceTree = "<group>"; };
+		3123CC411C92CA3500C3B928 /* mFixView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixView.m; sourceTree = "<group>"; };
+		3123CC431C92CA4600C3B928 /* mFixView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixView.xib; sourceTree = "<group>"; };
+		3123CC451C92CFCD00C3B928 /* mFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixViewController.h; sourceTree = "<group>"; };
+		3123CC461C92CFCD00C3B928 /* mFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixViewController.m; sourceTree = "<group>"; };
+		3123CC471C92CFCD00C3B928 /* mFixViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixViewController.xib; sourceTree = "<group>"; };
 		31BBE2891C9121AE006C553D /* mLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mLoginView.h; sourceTree = "<group>"; };
 		31BBE28A1C9121AE006C553D /* mLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mLoginView.m; sourceTree = "<group>"; };
 		31BBE28C1C9121B9006C553D /* mLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mLoginView.xib; sourceTree = "<group>"; };
@@ -1035,7 +1045,7 @@
 			name = general;
 			sourceTree = "<group>";
 		};
-		3123CC221C929E7700C3B928 /* canal */ = {
+		3123CC221C929E7700C3B928 /* 物管费 */ = {
 			isa = PBXGroup;
 			children = (
 				3123CC1D1C92990000C3B928 /* canalViewController.h */,
@@ -1045,10 +1055,10 @@
 				3123CC191C92962E00C3B928 /* canPayView.xib */,
 				3123CC2C1C92A51100C3B928 /* mBalanceView.xib */,
 			);
-			name = canal;
+			name = "物管费";
 			sourceTree = "<group>";
 		};
-		3123CC231C929E8300C3B928 /* wpg */ = {
+		3123CC231C929E8300C3B928 /* 水电气 */ = {
 			isa = PBXGroup;
 			children = (
 				3123CC241C929ECB00C3B928 /* wpgViewController.h */,
@@ -1057,7 +1067,20 @@
 				3123CC281C929F4300C3B928 /* wpgTableViewCell.m */,
 				3123CC291C929F4300C3B928 /* wpgTableViewCell.xib */,
 			);
-			name = wpg;
+			name = "水电气";
+			sourceTree = "<group>";
+		};
+		3123CC3C1C92C8E000C3B928 /* 物业报修 */ = {
+			isa = PBXGroup;
+			children = (
+				3123CC401C92CA3500C3B928 /* mFixView.h */,
+				3123CC411C92CA3500C3B928 /* mFixView.m */,
+				3123CC431C92CA4600C3B928 /* mFixView.xib */,
+				3123CC451C92CFCD00C3B928 /* mFixViewController.h */,
+				3123CC461C92CFCD00C3B928 /* mFixViewController.m */,
+				3123CC471C92CFCD00C3B928 /* mFixViewController.xib */,
+			);
+			name = "物业报修";
 			sourceTree = "<group>";
 		};
 		31BBE2971C91417C006C553D /* DCPicScroller */ = {
@@ -1436,8 +1459,9 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
-				3123CC231C929E8300C3B928 /* wpg */,
-				3123CC221C929E7700C3B928 /* canal */,
+				3123CC3C1C92C8E000C3B928 /* 物业报修 */,
+				3123CC231C929E8300C3B928 /* 水电气 */,
+				3123CC221C929E7700C3B928 /* 物管费 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2252,6 +2276,7 @@
 				74DDE8F61BAC05AA004878D1 /* myMoneyHeader.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				B22B91E81BE3411100A3043E /* BillSectionView.xib in Resources */,
+				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
 				741C85151BABFA0B00CEFD18 /* headerView.xib in Resources */,
 				749BE9641B3272E700BABCA6 /* MJRefresh.bundle in Resources */,
 				16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */,
@@ -2265,6 +2290,7 @@
 				74DE206C1BCE527E003C03E7 /* changePhoneViewController.xib in Resources */,
 				B2D225EE1BE2025E00E0BF03 /* ServiceHeadView.xib in Resources */,
 				B2CF98761BEAEB79003BB896 /* AddServiceVC.xib in Resources */,
+				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				B2D2BBD81C1AB360008A0404 /* AddBankInfo.xib in Resources */,
 				74D292E11B96D7CC00A57977 /* DatingCell.xib in Resources */,
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
@@ -2345,6 +2371,7 @@
 				B2CF986C1BEAE7E9003BB896 /* FDCalendarItem.m in Sources */,
 				742FB9031B5CDEB3005A1AFA /* NSMutableString+TagReplace.m in Sources */,
 				749BEA111B32779800BABCA6 /* MJPhotoToolbar.m in Sources */,
+				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
 				749BEA3C1B3277AA00BABCA6 /* NSData+GIF.m in Sources */,
 				B2CF98811BEB36AA003BB896 /* MyTempButton.m in Sources */,
 				749BEA491B3277AA00BABCA6 /* UIImage+WebP.m in Sources */,
@@ -2378,6 +2405,7 @@
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
 				742FB8FB1B5CDEA3005A1AFA /* WPAttributedStyleAction.m in Sources */,
+				3123CC421C92CA3500C3B928 /* mFixView.m in Sources */,
 				746907E21BABEC6600A4589A /* moreCell.m in Sources */,
 				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
