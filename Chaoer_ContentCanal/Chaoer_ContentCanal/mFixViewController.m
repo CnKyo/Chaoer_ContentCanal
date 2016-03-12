@@ -10,6 +10,8 @@
 
 #import "mFixView.h"
 
+
+#import "takeFixViewController.h"
 @interface mFixViewController ()
 
 @end
@@ -66,13 +68,27 @@
     
     mView = [mFixView shareView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
+    [mView.mYuyueBtn addTarget:self action:@selector(mTakeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mPayBtn addTarget:self action:@selector(mPayAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
     
     
 }
+- (void)mTakeAction:(UIButton *)sender{
+    takeFixViewController *ttt = [takeFixViewController new];
+    ttt.mTitle = @"预约报修";
+    [self pushViewController:ttt];
+}
 
+- (void)mPayAction:(UIButton *)sender{
+    takeFixViewController *ttt = [takeFixViewController new];
+    ttt.mTitle = @"付款报修";
+    [self pushViewController:ttt];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -64,4 +64,8 @@
 #import "mAddressView.h"
 #import "mBalanceViewController.h"
 
+#import "WKSegmentControl.h"
+
+#import "mGoodsDetailViewController.h"
+
 #endif

@@ -35,5 +35,22 @@
     return view;
 }
 
++ (mAddressView *)shareShopCar{
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mShopCarView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mBadge.layer.masksToBounds = YES;
+    view.mBadge.layer.cornerRadius = view.mBadge.mwidth/2;
+    
+    return view;
+}
 
++ (mAddressView *)sharepayDetailView{
+
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mOrderComform" owner:self options:nil] objectAtIndex:0];
+    return view;
+}
++ (mAddressView *)shareGoodsDetailView{
+    mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mGoodsDetailView" owner:self options:nil] objectAtIndex:0];
+    return view;
+}
 @end

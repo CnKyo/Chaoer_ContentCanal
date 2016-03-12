@@ -17,7 +17,7 @@
 #import "mCustomHomeView.h"
 #import "mFixViewController.h"
 #import "payViewController.h"
-
+#import "communityViewController.h"
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -144,7 +144,12 @@
             [self pushViewController:ppp];
         }
             break;
-            
+        case 2:
+        {
+            communityViewController   *ppp = [communityViewController new];
+            [self pushViewController:ppp];
+        }
+            break;
         default:
             break;
     }
