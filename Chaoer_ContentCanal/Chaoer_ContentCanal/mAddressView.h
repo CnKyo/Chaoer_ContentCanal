@@ -184,6 +184,19 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mSalseNum;
 /**
+ *  商品详情数量
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mGoodsDetailNum;
+/**
+ *  商品详情添加按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mGoodsDetailAddbtn;
+/**
+ *  商品详情减按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mGoodsDetailDelBtn;
+
+/**
  *  初始化商品详情方法
  *
  *  @return view

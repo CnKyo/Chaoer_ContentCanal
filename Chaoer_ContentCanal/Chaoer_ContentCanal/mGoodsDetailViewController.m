@@ -8,12 +8,21 @@
 
 #import "mGoodsDetailViewController.h"
 
+
+#import "mAddressView.h"
+
 @interface mGoodsDetailViewController ()
 
 @end
 
 @implementation mGoodsDetailViewController
+{
 
+    UIScrollView *mScrollerView;
+    
+    mAddressView *mBottomView;
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -22,7 +31,21 @@
     self.hiddenlll = YES;
     self.Title = self.mPageName = _mTitle;
 }
+- (void)initView{
 
+    mScrollerView = [UIScrollView new];
+    mScrollerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:mScrollerView];
+    
+    mBottomView = [mAddressView shareGoodsDetailView];
+    
+    [mScrollerView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).offset (0);
+    }];
+
+
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
