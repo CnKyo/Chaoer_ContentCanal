@@ -13,6 +13,11 @@
 + (mAddressView *)shareView{
 
     mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mAddressView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mLine.layer.masksToBounds = YES;
+    view.mLine.layer.borderColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.91 alpha:1].CGColor;
+    view.mLine.layer.borderWidth = 0.5;
+    
     return view;
 }
 

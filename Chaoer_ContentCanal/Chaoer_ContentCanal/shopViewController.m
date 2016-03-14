@@ -128,7 +128,12 @@
         reuseCellId = @"lcell";
         mShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.backgroundColor = [UIColor colorWithRed:0.953 green:0.937 blue:0.933 alpha:1];
+        UIImageView *imgV = [[UIImageView alloc] initWithFrame:cell.bounds];
+        imgV.image = [UIImage imageNamed:@"mLeftCellBgk"];
+        cell.selectedBackgroundView = imgV;
+
         return cell;
     }else{
         reuseCellId = @"rcell";
@@ -144,7 +149,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableVie];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -16,6 +16,7 @@
 #import "mSuperMarketViewController.h"
 
 #import "shopViewController.h"
+#import "washAndSendViewController.h"
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -70,17 +71,10 @@
     mTopView.frame  =CGRectMake(0, 0, DEVICE_Width, 50);
     [mHeaderView addSubview:mTopView];
     
-    UIView *vvv = [UIView new];
-    vvv.frame = CGRectMake(0, mTopView.mbottom, DEVICE_Width, 10);
-    vvv.layer.masksToBounds = YES;
-    vvv.layer.borderColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.88 alpha:1].CGColor;
-    vvv.layer.borderWidth = 1;
-    [mHeaderView addSubview:vvv];
-    
     NSArray *marr = @[@"超市快递",@"水果生鲜",@"美食速递",@"招募合伙人",@"饮水配送",@"衣服洗涤"];
     
     float x = 0;
-    float y = vvv.mbottom;
+    float y = mTopView.mbottom;
     
     float btnWidth = DEVICE_Width/3;
     
@@ -135,7 +129,20 @@
             [self pushViewController:mmm];
         }
             break;
-            
+        case 4:
+        {
+            washAndSendViewController *www = [[washAndSendViewController alloc] initWithNibName:@"washAndSendViewController" bundle:nil];
+            www.mTitle = @"送水";
+            [self pushViewController:www];
+        }
+            break;
+        case 5:
+        {
+            washAndSendViewController *www = [[washAndSendViewController alloc] initWithNibName:@"washAndSendViewController" bundle:nil];
+            www.mTitle = @"洗衣";
+            [self pushViewController:www];
+        }
+            break;
         default:
             break;
     }

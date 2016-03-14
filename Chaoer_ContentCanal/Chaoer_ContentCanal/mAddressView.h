@@ -14,6 +14,7 @@
  *  地址
  */
 @property (strong, nonatomic) IBOutlet UILabel *mAddress;
+@property (strong, nonatomic) IBOutlet UIView *mLine;
 
 /**
  *  初始化通用地址方法
