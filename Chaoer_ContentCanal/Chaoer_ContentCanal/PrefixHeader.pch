@@ -67,5 +67,6 @@
 #import "WKSegmentControl.h"
 
 #import "mGoodsDetailViewController.h"
+#import "CircleLHQView.h"
 
 #endif

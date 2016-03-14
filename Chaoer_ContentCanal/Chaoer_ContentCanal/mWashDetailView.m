@@ -17,5 +17,9 @@
     // Drawing code
 }
 */
-
++ (mWashDetailView *)shareView{
+    mWashDetailView *view = [[[NSBundle mainBundle] loadNibNamed:@"mWashDetailView" owner:self options:nil] objectAtIndex:0];
+    
+    return view;
+}
 @end

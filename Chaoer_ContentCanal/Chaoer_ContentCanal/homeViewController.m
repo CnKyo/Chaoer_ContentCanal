@@ -18,6 +18,7 @@
 #import "mFixViewController.h"
 #import "payViewController.h"
 #import "communityViewController.h"
+#import "serviceViewController.h"
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -148,6 +149,12 @@
         {
             communityViewController   *ppp = [communityViewController new];
             [self pushViewController:ppp];
+        }
+            break;
+        case 3:
+        {
+            serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
+            [self pushViewController:sss];
         }
             break;
         default:

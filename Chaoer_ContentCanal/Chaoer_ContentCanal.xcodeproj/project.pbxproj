@@ -75,6 +75,13 @@
 		31B990231C969780002E34A5 /* washDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990221C969780002E34A5 /* washDetailViewController.m */; };
 		31B990261C969791002E34A5 /* mWashDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990251C969791002E34A5 /* mWashDetailView.m */; };
 		31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990271C96979F002E34A5 /* mWashDetailView.xib */; };
+		31B9902E1C96A4BD002E34A5 /* CircleLHQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9902D1C96A4BD002E34A5 /* CircleLHQView.m */; };
+		31B990331C96A535002E34A5 /* serviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990311C96A535002E34A5 /* serviceViewController.m */; };
+		31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990321C96A535002E34A5 /* serviceViewController.xib */; };
+		31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990361C96AD6D002E34A5 /* mServiceAddressView.m */; };
+		31B990391C96AD75002E34A5 /* mServiceAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990381C96AD75002E34A5 /* mServiceAddressView.xib */; };
+		31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9903C1C96B369002E34A5 /* phoneUpTopViewController.m */; };
+		31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B9903D1C96B369002E34A5 /* phoneUpTopViewController.xib */; };
 		31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28A1C9121AE006C553D /* mLoginView.m */; };
 		31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE28C1C9121B9006C553D /* mLoginView.xib */; };
 		31BBE2901C913EF3006C553D /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE28F1C913EF3006C553D /* homeViewController.m */; };
@@ -483,6 +490,17 @@
 		31B990241C969791002E34A5 /* mWashDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mWashDetailView.h; sourceTree = "<group>"; };
 		31B990251C969791002E34A5 /* mWashDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mWashDetailView.m; sourceTree = "<group>"; };
 		31B990271C96979F002E34A5 /* mWashDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mWashDetailView.xib; sourceTree = "<group>"; };
+		31B9902C1C96A4BD002E34A5 /* CircleLHQView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleLHQView.h; sourceTree = "<group>"; };
+		31B9902D1C96A4BD002E34A5 /* CircleLHQView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleLHQView.m; sourceTree = "<group>"; };
+		31B990301C96A535002E34A5 /* serviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serviceViewController.h; sourceTree = "<group>"; };
+		31B990311C96A535002E34A5 /* serviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serviceViewController.m; sourceTree = "<group>"; };
+		31B990321C96A535002E34A5 /* serviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = serviceViewController.xib; sourceTree = "<group>"; };
+		31B990351C96AD6D002E34A5 /* mServiceAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceAddressView.h; sourceTree = "<group>"; };
+		31B990361C96AD6D002E34A5 /* mServiceAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceAddressView.m; sourceTree = "<group>"; };
+		31B990381C96AD75002E34A5 /* mServiceAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceAddressView.xib; sourceTree = "<group>"; };
+		31B9903B1C96B369002E34A5 /* phoneUpTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phoneUpTopViewController.h; sourceTree = "<group>"; };
+		31B9903C1C96B369002E34A5 /* phoneUpTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = phoneUpTopViewController.m; sourceTree = "<group>"; };
+		31B9903D1C96B369002E34A5 /* phoneUpTopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = phoneUpTopViewController.xib; sourceTree = "<group>"; };
 		31BBE2891C9121AE006C553D /* mLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mLoginView.h; sourceTree = "<group>"; };
 		31BBE28A1C9121AE006C553D /* mLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mLoginView.m; sourceTree = "<group>"; };
 		31BBE28C1C9121B9006C553D /* mLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mLoginView.xib; sourceTree = "<group>"; };
@@ -1193,6 +1211,39 @@
 			name = "洗衣送水";
 			sourceTree = "<group>";
 		};
+		31B9902B1C96A4AB002E34A5 /* circleView */ = {
+			isa = PBXGroup;
+			children = (
+				31B9902C1C96A4BD002E34A5 /* CircleLHQView.h */,
+				31B9902D1C96A4BD002E34A5 /* CircleLHQView.m */,
+			);
+			name = circleView;
+			sourceTree = "<group>";
+		};
+		31B9902F1C96A4EF002E34A5 /* 便民服务 */ = {
+			isa = PBXGroup;
+			children = (
+				31B990301C96A535002E34A5 /* serviceViewController.h */,
+				31B990311C96A535002E34A5 /* serviceViewController.m */,
+				31B990321C96A535002E34A5 /* serviceViewController.xib */,
+				31B990351C96AD6D002E34A5 /* mServiceAddressView.h */,
+				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
+				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
+				31B9903A1C96B34A002E34A5 /* 手机充值 */,
+			);
+			name = "便民服务";
+			sourceTree = "<group>";
+		};
+		31B9903A1C96B34A002E34A5 /* 手机充值 */ = {
+			isa = PBXGroup;
+			children = (
+				31B9903B1C96B369002E34A5 /* phoneUpTopViewController.h */,
+				31B9903C1C96B369002E34A5 /* phoneUpTopViewController.m */,
+				31B9903D1C96B369002E34A5 /* phoneUpTopViewController.xib */,
+			);
+			name = "手机充值";
+			sourceTree = "<group>";
+		};
 		31BBE2971C91417C006C553D /* DCPicScroller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1617,6 +1668,7 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
+				31B9902F1C96A4EF002E34A5 /* 便民服务 */,
 				31EEB3161C93B2EF00B61A86 /* 社区 */,
 				3123CC3C1C92C8E000C3B928 /* 物业报修 */,
 				3123CC231C929E8300C3B928 /* 水电气 */,
@@ -1812,6 +1864,7 @@
 		749BE9CB1B3276D600BABCA6 /* openResource */ = {
 			isa = PBXGroup;
 			children = (
+				31B9902B1C96A4AB002E34A5 /* circleView */,
 				31EEB3151C93AC8600B61A86 /* segment */,
 				31BBE2971C91417C006C553D /* DCPicScroller */,
 				16279CBF1C3D13B400B9A850 /* WeChatSDK_1.5 */,
@@ -2396,6 +2449,7 @@
 				74C0782C1BEB549100B217F0 /* peisongAddView.xib in Resources */,
 				3123CC3B1C92B4B100C3B928 /* mUserInfoView.xib in Resources */,
 				740089851B39077900618BA0 /* messageTableViewCell.xib in Resources */,
+				31B990391C96AD75002E34A5 /* mServiceAddressView.xib in Resources */,
 				74599E5E1B95AB8D00678F0A /* tongjiCell.xib in Resources */,
 				749BE9AC1B32758100BABCA6 /* SVProgressHUD.bundle in Resources */,
 				B2CEE1191C03782500FC159C /* city.txt in Resources */,
@@ -2439,6 +2493,7 @@
 				746BFC231BAFDA0C006AAEA6 /* changeNameViewController.xib in Resources */,
 				74DDE8F61BAC05AA004878D1 /* myMoneyHeader.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
+				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				B22B91E81BE3411100A3043E /* BillSectionView.xib in Resources */,
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
 				31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */,
@@ -2485,6 +2540,7 @@
 				B22B91ED1BE34A0500A3043E /* WithDrawVC.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
 				74C52C401BF0C981003B4B11 /* messageView.xib in Resources */,
+				31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */,
 				B2CEC23A1BE9983A0050DB8F /* SellerDetaillVC.xib in Resources */,
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				74C0782A1BEB537600B217F0 /* peisongView.xib in Resources */,
@@ -2590,6 +2646,7 @@
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
 				74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
+				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
 				740089751B38F2C300618BA0 /* AFURLResponseSerialization.m in Sources */,
 				749BE9671B3272E700BABCA6 /* MJRefreshFooterView.m in Sources */,
 				74D292E61B96D7E300A57977 /* DatingCell.m in Sources */,
@@ -2649,6 +2706,7 @@
 				B29F03741BE30DF30050267C /* PingjiaSectionView.m in Sources */,
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,
+				31B990331C96A535002E34A5 /* serviceViewController.m in Sources */,
 				749BEA481B3277AA00BABCA6 /* UIImage+MultiFormat.m in Sources */,
 				746F8ACD1BEC330900C87992 /* HZQDatePickerView.m in Sources */,
 				B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */,
@@ -2681,6 +2739,7 @@
 				740089731B38F2C300618BA0 /* AFURLConnectionOperation.m in Sources */,
 				16A987BC1C0397F100D55C4A /* NSObject+myobj.m in Sources */,
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
+				31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */,
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
 				3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */,
@@ -2692,6 +2751,7 @@
 				74D292E91B96DA7A00A57977 /* moreView.m in Sources */,
 				749BEA421B3277AA00BABCA6 /* SDWebImageDownloaderOperation.m in Sources */,
 				B29F037B1BE320EF0050267C /* BillVC.m in Sources */,
+				31B9902E1C96A4BD002E34A5 /* CircleLHQView.m in Sources */,
 				746709501BE1F6480096B169 /* UILabel+HYBAttributedCategory.m in Sources */,
 				B2CEE1161C0374E700FC159C /* ChoseAreaVC.m in Sources */,
 				749BE9981B32756800BABCA6 /* IQUIView+Hierarchy.m in Sources */,

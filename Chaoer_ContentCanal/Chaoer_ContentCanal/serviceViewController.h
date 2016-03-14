@@ -1,14 +1,13 @@
 //
-//  mWashDetailView.h
+//  serviceViewController.h
 //  Chaoer_ContentCanal
 //
 //  Created by 王钶 on 16/3/14.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface mWashDetailView : UIView
+@interface serviceViewController : BaseVC
 
-+ (mWashDetailView *)shareView;
 @end
