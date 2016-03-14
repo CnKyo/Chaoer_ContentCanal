@@ -20,6 +20,8 @@
 
     UIScrollView *mScrollerView;
     
+    mAddressView *mGoodsDetailView;
+    
     mAddressView *mBottomView;
 
 }
@@ -30,20 +32,43 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.Title = self.mPageName = _mTitle;
+    self.view.backgroundColor = [UIColor colorWithRed:0.19 green:0.19 blue:0.19 alpha:1];
+    [self initView];
 }
 - (void)initView{
 
     mScrollerView = [UIScrollView new];
     mScrollerView.backgroundColor = [UIColor whiteColor];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114);
     [self.view addSubview:mScrollerView];
     
-    mBottomView = [mAddressView shareGoodsDetailView];
+
     
-    [mScrollerView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset (0);
-    }];
+    NSString *str = @"你实在是忘记了  就打电话 13648384838你实在是忘记了  就打电话 13648384838你实在是忘记了  就打电话 13648384838你实在是忘记了  就打电话 13648384838";
+    
 
+    
+    mGoodsDetailView = [mAddressView shareGoodsDetailView];
+    mGoodsDetailView.mGoodsBrief.text = str;
+    CGFloat mBH = [Util labelText:str fontSize:15 labelWidth:mGoodsDetailView.mGoodsBrief.mwidth];
+    
+    CGFloat mTH = 440-18+mBH;
+    
+    if (mTH <= 440) {
+        mTH = 440;
+    }
+    
+    mGoodsDetailView.frame = CGRectMake(0, 0, mScrollerView.mwidth, mTH);
+    [mScrollerView addSubview:mGoodsDetailView];
+    
 
+    
+    mBottomView = [mAddressView shareShopCar];
+    mBottomView.frame = CGRectMake(0, DEVICE_Height-50, self.view.bounds.size.width, 50);
+    [self.view addSubview:mBottomView];
+    
+
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, mTH);
 
 }
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,8 @@
 
 
 #import "mSuperMarketViewController.h"
+
+#import "shopViewController.h"
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -160,7 +162,7 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    return 50;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *vvv = [UIView new];
@@ -172,7 +174,7 @@
     
     UILabel *lll = [UILabel new];
     lll.text = @"附近商家";
-    lll.frame = CGRectMake(20, 10, 200, 20);
+    lll.frame = CGRectMake(20,15, 200, 20);
     lll.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
     lll.textAlignment = NSTextAlignmentLeft;
     lll.font = [UIFont systemFontOfSize:15];
@@ -208,7 +210,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    shopViewController *sss = [[shopViewController alloc] initWithNibName:@"shopViewController" bundle:nil];
+    sss.mTitle = @"沃尔玛";
+    [self pushViewController:sss];
     
 }
 
