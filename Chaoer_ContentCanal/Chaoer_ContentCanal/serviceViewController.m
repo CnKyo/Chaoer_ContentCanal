@@ -58,6 +58,12 @@
     NSLog(@"%ld被点击了",(long)index);
     
     switch (index) {
+        case 2:
+        {
+            mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
+            [self pushViewController:ppp];
+        }
+            break;
         case 4:
         {
             phoneUpTopViewController *ppp = [[phoneUpTopViewController alloc] initWithNibName:@"phoneUpTopViewController" bundle:nil];

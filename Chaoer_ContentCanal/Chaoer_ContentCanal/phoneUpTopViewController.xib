@@ -35,7 +35,7 @@
                                 <constraint firstAttribute="height" constant="21" id="z7L-2r-j5g"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80180495689655173" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="132232323232" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vaE-vX-bBT">
@@ -43,6 +43,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="0Hf-mc-jzO"/>
                             </constraints>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -60,7 +61,7 @@
                                 <constraint firstAttribute="height" constant="21" id="eHc-jl-5cz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80180495689999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToO-aY-OAY">
@@ -74,7 +75,7 @@
                                 </label>
                                 <button opaque="NO" tag="30" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-uM-F7X">
                                     <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal" backgroundImage="weekBtn_selected">
+                                    <state key="normal">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
@@ -86,7 +87,7 @@
                             <subviews>
                                 <button opaque="NO" tag="50" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBD-AC-Ch5">
                                     <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal" backgroundImage="weekBtn_selected">
+                                    <state key="normal">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
@@ -108,7 +109,7 @@
                             <subviews>
                                 <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-i0-qMX">
                                     <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal" backgroundImage="weekBtn_selected">
+                                    <state key="normal">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
@@ -135,7 +136,7 @@
                                 <constraint firstAttribute="width" constant="97" id="q4x-Fs-Ney"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80180495689999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥333" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4p-1f-dbn">
@@ -145,7 +146,7 @@
                                 <constraint firstAttribute="width" constant="138" id="sxU-8Y-D1G"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80180495689999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -227,6 +228,5 @@
     </objects>
     <resources>
         <image name="mBaseBgkImg" width="640" height="1136"/>
-        <image name="weekBtn_selected" width="55" height="55"/>
     </resources>
 </document>

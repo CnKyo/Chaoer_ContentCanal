@@ -35,6 +35,15 @@
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.83 alpha:1].CGColor;
     
     
+    [self.mThirty setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
+    [self.mThirty setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+    
+    [self.mFifty setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
+    [self.mFifty setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+    
+    [self.mHundred setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
+    [self.mHundred setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+    
     [self.mThirty addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mFifty addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mHundred addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -44,11 +53,53 @@
     
 }
 - (void)mBtnAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        [mTT addObject:NumberWithInt(sender.tag)];
-    }else{
-        [mTT removeObject:NumberWithInt(sender.tag)];
+    [mTT removeAllObjects];
+    switch (sender.tag) {
+        case 30:
+        {
+            if (sender.selected == NO) {
+                self.mThirty.selected = YES;
+                self.mFifty.selected = NO;
+                self.mHundred.selected = NO;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+
+            }
+        }
+            break;
+        case 50:
+        {
+            if (sender.selected == NO) {
+                self.mThirty.selected = NO;
+                self.mFifty.selected = YES;
+                self.mHundred.selected = NO;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                
+            }
+        }
+            break;
+        case 100:
+        {
+            if (sender.selected == NO) {
+                self.mThirty.selected = NO;
+                self.mFifty.selected = NO;
+                self.mHundred.selected = YES;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                
+            }
+            
+        }
+            break;
+        default:
+            break;
     }
 }
 - (void)mGoPayAction:(UIButton *)sender{

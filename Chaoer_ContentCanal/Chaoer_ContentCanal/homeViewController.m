@@ -19,6 +19,7 @@
 #import "payViewController.h"
 #import "communityViewController.h"
 #import "serviceViewController.h"
+#import "mFeedBackViewController.h"
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -154,6 +155,12 @@
         case 3:
         {
             serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
+            [self pushViewController:sss];
+        }
+            break;
+        case 5:
+        {
+            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
             [self pushViewController:sss];
         }
             break;

@@ -68,6 +68,31 @@
 		3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC431C92CA4600C3B928 /* mFixView.xib */; };
 		3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123CC461C92CFCD00C3B928 /* mFixViewController.m */; };
 		3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123CC471C92CFCD00C3B928 /* mFixViewController.xib */; };
+		3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */; };
+		3135F80D1C97BB4500EF9569 /* mUserTopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */; };
+		3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */; };
+		3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8111C97BD2600EF9569 /* mFeedBackViewController.xib */; };
+		3135F8171C97D5EE00EF9569 /* mCodeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8151C97D5EE00EF9569 /* mCodeNameViewController.m */; };
+		3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8161C97D5EE00EF9569 /* mCodeNameViewController.xib */; };
+		3135F81D1C97D96800EF9569 /* mUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F81B1C97D96800EF9569 /* mUserInfoViewController.m */; };
+		3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F81C1C97D96800EF9569 /* mUserInfoViewController.xib */; };
+		3135F8231C97E29800EF9569 /* editMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8211C97E29800EF9569 /* editMessageViewController.m */; };
+		3135F8241C97E29800EF9569 /* editMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8221C97E29800EF9569 /* editMessageViewController.xib */; };
+		3135F82D1C97EB7300EF9569 /* activityCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F82B1C97EB7300EF9569 /* activityCenterViewController.m */; };
+		3135F82E1C97EB7300EF9569 /* activityCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F82C1C97EB7300EF9569 /* activityCenterViewController.xib */; };
+		3135F8351C97FA3800EF9569 /* zhongchouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8331C97FA3800EF9569 /* zhongchouViewController.m */; };
+		3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8341C97FA3800EF9569 /* zhongchouViewController.xib */; };
+		3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F83A1C97FCE500EF9569 /* DVSwitch.m */; };
+		3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F83D1C9801D700EF9569 /* myRedBagViewController.m */; };
+		3135F8401C9801D700EF9569 /* myRedBagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F83E1C9801D700EF9569 /* myRedBagViewController.xib */; };
+		3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8421C9803B100EF9569 /* redBagTableViewCell.m */; };
+		3135F8451C9803B100EF9569 /* redBagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8431C9803B100EF9569 /* redBagTableViewCell.xib */; };
+		3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8471C9807DD00EF9569 /* mRedBagHeader.m */; };
+		3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8491C9807EC00EF9569 /* mRedBagHeader.xib */; };
+		3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F84D1C980A2B00EF9569 /* myOrderViewController.m */; };
+		3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F84E1C980A2B00EF9569 /* myOrderViewController.xib */; };
+		3135F8541C980B3C00EF9569 /* myOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */; };
+		3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */; };
 		31B9901A1C9686E7002E34A5 /* washAndSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990181C9686E7002E34A5 /* washAndSendViewController.m */; };
 		31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990191C9686E7002E34A5 /* washAndSendViewController.xib */; };
 		31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9901D1C968971002E34A5 /* wAndSTableViewCell.m */; };
@@ -479,6 +504,44 @@
 		3123CC451C92CFCD00C3B928 /* mFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixViewController.h; sourceTree = "<group>"; };
 		3123CC461C92CFCD00C3B928 /* mFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixViewController.m; sourceTree = "<group>"; };
 		3123CC471C92CFCD00C3B928 /* mFixViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixViewController.xib; sourceTree = "<group>"; };
+		3135F8091C97BB4500EF9569 /* mUserTopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mUserTopupViewController.h; sourceTree = "<group>"; };
+		3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mUserTopupViewController.m; sourceTree = "<group>"; };
+		3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mUserTopupViewController.xib; sourceTree = "<group>"; };
+		3135F80F1C97BD2500EF9569 /* mFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedBackViewController.h; sourceTree = "<group>"; };
+		3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedBackViewController.m; sourceTree = "<group>"; };
+		3135F8111C97BD2600EF9569 /* mFeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedBackViewController.xib; sourceTree = "<group>"; };
+		3135F8141C97D5EE00EF9569 /* mCodeNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCodeNameViewController.h; sourceTree = "<group>"; };
+		3135F8151C97D5EE00EF9569 /* mCodeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCodeNameViewController.m; sourceTree = "<group>"; };
+		3135F8161C97D5EE00EF9569 /* mCodeNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCodeNameViewController.xib; sourceTree = "<group>"; };
+		3135F81A1C97D96800EF9569 /* mUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mUserInfoViewController.h; sourceTree = "<group>"; };
+		3135F81B1C97D96800EF9569 /* mUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mUserInfoViewController.m; sourceTree = "<group>"; };
+		3135F81C1C97D96800EF9569 /* mUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mUserInfoViewController.xib; sourceTree = "<group>"; };
+		3135F8201C97E29800EF9569 /* editMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editMessageViewController.h; sourceTree = "<group>"; };
+		3135F8211C97E29800EF9569 /* editMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editMessageViewController.m; sourceTree = "<group>"; };
+		3135F8221C97E29800EF9569 /* editMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editMessageViewController.xib; sourceTree = "<group>"; };
+		3135F82A1C97EB7300EF9569 /* activityCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = activityCenterViewController.h; sourceTree = "<group>"; };
+		3135F82B1C97EB7300EF9569 /* activityCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = activityCenterViewController.m; sourceTree = "<group>"; };
+		3135F82C1C97EB7300EF9569 /* activityCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = activityCenterViewController.xib; sourceTree = "<group>"; };
+		3135F8321C97FA3800EF9569 /* zhongchouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhongchouViewController.h; sourceTree = "<group>"; };
+		3135F8331C97FA3800EF9569 /* zhongchouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhongchouViewController.m; sourceTree = "<group>"; };
+		3135F8341C97FA3800EF9569 /* zhongchouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = zhongchouViewController.xib; sourceTree = "<group>"; };
+		3135F8391C97FCE500EF9569 /* DVSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSwitch.h; sourceTree = "<group>"; };
+		3135F83A1C97FCE500EF9569 /* DVSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSwitch.m; sourceTree = "<group>"; };
+		3135F83C1C9801D700EF9569 /* myRedBagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myRedBagViewController.h; sourceTree = "<group>"; };
+		3135F83D1C9801D700EF9569 /* myRedBagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myRedBagViewController.m; sourceTree = "<group>"; };
+		3135F83E1C9801D700EF9569 /* myRedBagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myRedBagViewController.xib; sourceTree = "<group>"; };
+		3135F8411C9803B100EF9569 /* redBagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redBagTableViewCell.h; sourceTree = "<group>"; };
+		3135F8421C9803B100EF9569 /* redBagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = redBagTableViewCell.m; sourceTree = "<group>"; };
+		3135F8431C9803B100EF9569 /* redBagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = redBagTableViewCell.xib; sourceTree = "<group>"; };
+		3135F8461C9807DD00EF9569 /* mRedBagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mRedBagHeader.h; sourceTree = "<group>"; };
+		3135F8471C9807DD00EF9569 /* mRedBagHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mRedBagHeader.m; sourceTree = "<group>"; };
+		3135F8491C9807EC00EF9569 /* mRedBagHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mRedBagHeader.xib; sourceTree = "<group>"; };
+		3135F84C1C980A2B00EF9569 /* myOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myOrderViewController.h; sourceTree = "<group>"; };
+		3135F84D1C980A2B00EF9569 /* myOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myOrderViewController.m; sourceTree = "<group>"; };
+		3135F84E1C980A2B00EF9569 /* myOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderViewController.xib; sourceTree = "<group>"; };
+		3135F8511C980B3C00EF9569 /* myOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myOrderTableViewCell.h; sourceTree = "<group>"; };
+		3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myOrderTableViewCell.m; sourceTree = "<group>"; };
+		3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderTableViewCell.xib; sourceTree = "<group>"; };
 		31B990171C9686E7002E34A5 /* washAndSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = washAndSendViewController.h; sourceTree = "<group>"; };
 		31B990181C9686E7002E34A5 /* washAndSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = washAndSendViewController.m; sourceTree = "<group>"; };
 		31B990191C9686E7002E34A5 /* washAndSendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = washAndSendViewController.xib; sourceTree = "<group>"; };
@@ -1193,6 +1256,93 @@
 			name = "物业报修";
 			sourceTree = "<group>";
 		};
+		3135F8081C97BB2A00EF9569 /* 帐户充值 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F8091C97BB4500EF9569 /* mUserTopupViewController.h */,
+				3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */,
+				3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */,
+			);
+			name = "帐户充值";
+			sourceTree = "<group>";
+		};
+		3135F80E1C97BCDE00EF9569 /* 投诉建议 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F80F1C97BD2500EF9569 /* mFeedBackViewController.h */,
+				3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */,
+				3135F8111C97BD2600EF9569 /* mFeedBackViewController.xib */,
+			);
+			name = "投诉建议";
+			sourceTree = "<group>";
+		};
+		3135F8191C97D60E00EF9569 /* 实名认证 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F8141C97D5EE00EF9569 /* mCodeNameViewController.h */,
+				3135F8151C97D5EE00EF9569 /* mCodeNameViewController.m */,
+				3135F8161C97D5EE00EF9569 /* mCodeNameViewController.xib */,
+				3135F81A1C97D96800EF9569 /* mUserInfoViewController.h */,
+				3135F81B1C97D96800EF9569 /* mUserInfoViewController.m */,
+				3135F81C1C97D96800EF9569 /* mUserInfoViewController.xib */,
+				3135F8201C97E29800EF9569 /* editMessageViewController.h */,
+				3135F8211C97E29800EF9569 /* editMessageViewController.m */,
+				3135F8221C97E29800EF9569 /* editMessageViewController.xib */,
+			);
+			name = "实名认证";
+			sourceTree = "<group>";
+		};
+		3135F8291C97EB5600EF9569 /* 活动中心 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F82A1C97EB7300EF9569 /* activityCenterViewController.h */,
+				3135F82B1C97EB7300EF9569 /* activityCenterViewController.m */,
+				3135F82C1C97EB7300EF9569 /* activityCenterViewController.xib */,
+				3135F8321C97FA3800EF9569 /* zhongchouViewController.h */,
+				3135F8331C97FA3800EF9569 /* zhongchouViewController.m */,
+				3135F8341C97FA3800EF9569 /* zhongchouViewController.xib */,
+			);
+			name = "活动中心";
+			sourceTree = "<group>";
+		};
+		3135F8371C97FB2E00EF9569 /* 我的红包 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F83C1C9801D700EF9569 /* myRedBagViewController.h */,
+				3135F83D1C9801D700EF9569 /* myRedBagViewController.m */,
+				3135F83E1C9801D700EF9569 /* myRedBagViewController.xib */,
+				3135F8411C9803B100EF9569 /* redBagTableViewCell.h */,
+				3135F8421C9803B100EF9569 /* redBagTableViewCell.m */,
+				3135F8431C9803B100EF9569 /* redBagTableViewCell.xib */,
+				3135F8461C9807DD00EF9569 /* mRedBagHeader.h */,
+				3135F8471C9807DD00EF9569 /* mRedBagHeader.m */,
+				3135F8491C9807EC00EF9569 /* mRedBagHeader.xib */,
+			);
+			name = "我的红包";
+			sourceTree = "<group>";
+		};
+		3135F8381C97FCD500EF9569 /* DVSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				3135F8391C97FCE500EF9569 /* DVSwitch.h */,
+				3135F83A1C97FCE500EF9569 /* DVSwitch.m */,
+			);
+			name = DVSwitch;
+			sourceTree = "<group>";
+		};
+		3135F84B1C980A0E00EF9569 /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F84C1C980A2B00EF9569 /* myOrderViewController.h */,
+				3135F84D1C980A2B00EF9569 /* myOrderViewController.m */,
+				3135F84E1C980A2B00EF9569 /* myOrderViewController.xib */,
+				3135F8511C980B3C00EF9569 /* myOrderTableViewCell.h */,
+				3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */,
+				3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */,
+			);
+			name = "我的订单";
+			sourceTree = "<group>";
+		};
 		31B990161C968528002E34A5 /* 洗衣送水 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1229,6 +1379,7 @@
 				31B990351C96AD6D002E34A5 /* mServiceAddressView.h */,
 				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
 				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
+				3135F8081C97BB2A00EF9569 /* 帐户充值 */,
 				31B9903A1C96B34A002E34A5 /* 手机充值 */,
 			);
 			name = "便民服务";
@@ -1668,6 +1819,7 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
+				3135F80E1C97BCDE00EF9569 /* 投诉建议 */,
 				31B9902F1C96A4EF002E34A5 /* 便民服务 */,
 				31EEB3161C93B2EF00B61A86 /* 社区 */,
 				3123CC3C1C92C8E000C3B928 /* 物业报修 */,
@@ -1864,6 +2016,7 @@
 		749BE9CB1B3276D600BABCA6 /* openResource */ = {
 			isa = PBXGroup;
 			children = (
+				3135F8381C97FCD500EF9569 /* DVSwitch */,
 				31B9902B1C96A4AB002E34A5 /* circleView */,
 				31EEB3151C93AC8600B61A86 /* segment */,
 				31BBE2971C91417C006C553D /* DCPicScroller */,
@@ -2078,7 +2231,7 @@
 				3123CC0E1C92742200C3B928 /* general */,
 				B2D225D41BE1B1A500E0BF03 /* DianPu */,
 				74D292CB1B96CC2100A57977 /* date */,
-				749BEA641B32B32700BABCA6 /* person */,
+				749BEA641B32B32700BABCA6 /* 个人中心 */,
 				749BEA631B32B31E00BABCA6 /* myMessage */,
 				749BEA621B32B31300BABCA6 /* home */,
 			);
@@ -2113,14 +2266,18 @@
 			name = myMessage;
 			sourceTree = "<group>";
 		};
-		749BEA641B32B32700BABCA6 /* person */ = {
+		749BEA641B32B32700BABCA6 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				3135F84B1C980A0E00EF9569 /* 我的订单 */,
+				3135F8371C97FB2E00EF9569 /* 我的红包 */,
+				3135F8291C97EB5600EF9569 /* 活动中心 */,
+				3135F8191C97D60E00EF9569 /* 实名认证 */,
 				742739D21B7D97AB00EE58B1 /* controller */,
 				742739D11B7D97A800EE58B1 /* View */,
 				74F5FC411B53AE2B00307EED /* customAlertview */,
 			);
-			name = person;
+			name = "个人中心";
 			sourceTree = "<group>";
 		};
 		74BCE14F1B3A6058008F515A /* RSKImageCropper */ = {
@@ -2461,11 +2618,14 @@
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
 				746907E31BABEC6600A4589A /* moreCell.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
+				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				B23996521BE221CF00349C71 /* PingJiaHeadView.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
+				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
 				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
+				3135F8401C9801D700EF9569 /* myRedBagViewController.xib in Resources */,
 				31EEB3241C93BF8700B61A86 /* mSuperMarketTableViewCell.xib in Resources */,
 				749529AC1BF72DBE00E934D0 /* music1.caf in Resources */,
 				3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */,
@@ -2487,11 +2647,13 @@
 				31EEB32D1C93F73200B61A86 /* mOrderComform.xib in Resources */,
 				16279CB01C3D0A6D00B9A850 /* CZVC.xib in Resources */,
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
+				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
 				B2CEC2531BEA0A300050DB8F /* AddGoodsView.xib in Resources */,
 				746907E81BABEFCB00A4589A /* footView.xib in Resources */,
 				31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */,
 				746BFC231BAFDA0C006AAEA6 /* changeNameViewController.xib in Resources */,
 				74DDE8F61BAC05AA004878D1 /* myMoneyHeader.xib in Resources */,
+				3135F8241C97E29800EF9569 /* editMessageViewController.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				B22B91E81BE3411100A3043E /* BillSectionView.xib in Resources */,
@@ -2503,9 +2665,12 @@
 				3122890F1C9662EA009C315F /* mLeftTableViewCell.xib in Resources */,
 				748A3E6C1BB2C7200066B976 /* monthCellView.xib in Resources */,
 				31EEB32F1C94135700B61A86 /* mGoodsDetailView.xib in Resources */,
+				3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */,
 				744BEA791BE34A7C0094EB96 /* searchView.xib in Resources */,
 				74599E5C1B95AB8D00678F0A /* monthCell.xib in Resources */,
 				31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */,
+				3135F80D1C97BB4500EF9569 /* mUserTopupViewController.xib in Resources */,
+				3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
@@ -2526,6 +2691,7 @@
 				16279CB41C3D0DAD00B9A850 /* PayView.xib in Resources */,
 				31EEB3291C93C86F00B61A86 /* mShopCarView.xib in Resources */,
 				B22B91E31BE33E0400A3043E /* BillCell.xib in Resources */,
+				3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */,
 				16279CC51C3D13B400B9A850 /* read_me.txt in Resources */,
 				B2CEE1281C0379D200FC159C /* MapCell.xib in Resources */,
 				B29F03811BE321AC0050267C /* BillHeadView.xib in Resources */,
@@ -2537,10 +2703,13 @@
 				7470E1531B9C07B800ECEC69 /* pickVC.xib in Resources */,
 				74DDE8F81BAC0D33004878D1 /* setupView.xib in Resources */,
 				B29382B41BE748F7005BDF41 /* RecordCell.xib in Resources */,
+				3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */,
 				B22B91ED1BE34A0500A3043E /* WithDrawVC.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
+				3135F8451C9803B100EF9569 /* redBagTableViewCell.xib in Resources */,
 				74C52C401BF0C981003B4B11 /* messageView.xib in Resources */,
 				31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */,
+				3135F82E1C97EB7300EF9569 /* activityCenterViewController.xib in Resources */,
 				B2CEC23A1BE9983A0050DB8F /* SellerDetaillVC.xib in Resources */,
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				74C0782A1BEB537600B217F0 /* peisongView.xib in Resources */,
@@ -2605,6 +2774,7 @@
 				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
 				31EEB31D1C93B6E700B61A86 /* communityTableViewCell.m in Sources */,
 				749BEA3C1B3277AA00BABCA6 /* NSData+GIF.m in Sources */,
+				3135F8351C97FA3800EF9569 /* zhongchouViewController.m in Sources */,
 				B2CF98811BEB36AA003BB896 /* MyTempButton.m in Sources */,
 				749BEA491B3277AA00BABCA6 /* UIImage+WebP.m in Sources */,
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
@@ -2638,12 +2808,14 @@
 				B2D225D71BE1B22500E0BF03 /* ShopVC.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
+				3135F8231C97E29800EF9569 /* editMessageViewController.m in Sources */,
 				742FB8FB1B5CDEA3005A1AFA /* WPAttributedStyleAction.m in Sources */,
 				3123CC421C92CA3500C3B928 /* mFixView.m in Sources */,
 				746907E21BABEC6600A4589A /* moreCell.m in Sources */,
 				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
+				3135F8171C97D5EE00EF9569 /* mCodeNameViewController.m in Sources */,
 				74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
 				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
@@ -2664,6 +2836,7 @@
 				7400896D1B38F2C300618BA0 /* AFAppDotNetAPIClient.m in Sources */,
 				B2D225E31BE1F96B00E0BF03 /* ServiceDetailVC.m in Sources */,
 				749BEA3F1B3277AA00BABCA6 /* SDWebImageCompat.m in Sources */,
+				3135F82D1C97EB7300EF9569 /* activityCenterViewController.m in Sources */,
 				749BEA3E1B3277AA00BABCA6 /* SDImageCache.m in Sources */,
 				B29382B71BE75E12005BDF41 /* searchAndDateViewController.m in Sources */,
 				74599E5F1B95AB8D00678F0A /* tongjiViewController.m in Sources */,
@@ -2676,6 +2849,7 @@
 				B2CEC2391BE9983A0050DB8F /* SellerDetaillVC.m in Sources */,
 				16E9CADA1BAC00BC00C48B8A /* DYUIImageView.m in Sources */,
 				744BEA741BE33CFB0094EB96 /* feedbackViewController.m in Sources */,
+				3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */,
 				749BEA4C1B3277AA00BABCA6 /* UIImageView+WebCache.m in Sources */,
 				749BEA461B3277AA00BABCA6 /* UIButton+WebCache.m in Sources */,
 				B2CC1B1D1BE8AA67009A558F /* AddGoodsVC.m in Sources */,
@@ -2706,6 +2880,7 @@
 				B29F03741BE30DF30050267C /* PingjiaSectionView.m in Sources */,
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,
+				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,
 				31B990331C96A535002E34A5 /* serviceViewController.m in Sources */,
 				749BEA481B3277AA00BABCA6 /* UIImage+MultiFormat.m in Sources */,
 				746F8ACD1BEC330900C87992 /* HZQDatePickerView.m in Sources */,
@@ -2740,6 +2915,8 @@
 				16A987BC1C0397F100D55C4A /* NSObject+myobj.m in Sources */,
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
 				31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */,
+				3135F8541C980B3C00EF9569 /* myOrderTableViewCell.m in Sources */,
+				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
 				3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */,
@@ -2759,11 +2936,13 @@
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,
 				742739CE1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.m in Sources */,
+				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
 				74B486A71BE88F200023E839 /* PPiFlatSegmentedControl.m in Sources */,
 				B2CEC24F1BE9F9130050DB8F /* AddGoodsView.m in Sources */,
 				16E9CAD61BAC00BC00C48B8A /* DYLineView.m in Sources */,
 				31EEB3231C93BF8700B61A86 /* mSuperMarketTableViewCell.m in Sources */,
 				749BEA4D1B3277AA00BABCA6 /* UIView+WebCacheOperation.m in Sources */,
+				3135F81D1C97D96800EF9569 /* mUserInfoViewController.m in Sources */,
 				74B486AA1BE88F310023E839 /* UIButton+PPiAwesome.m in Sources */,
 				749BE9661B3272E700BABCA6 /* MJRefreshConst.m in Sources */,
 				31BBE29F1C914788006C553D /* mCustomHomeView.m in Sources */,
@@ -2777,6 +2956,7 @@
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				74B486A11BE88EA30023E839 /* UIFont+FontAwesome.m in Sources */,
+				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,
 				31BBE2901C913EF3006C553D /* homeViewController.m in Sources */,
 				749BE9DD1B32775D00BABCA6 /* NSDate+TimeInterval.m in Sources */,
 				B2D5C1AA1BE30083000A811B /* PingJiaVC.m in Sources */,
@@ -2784,6 +2964,7 @@
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				16279CAF1C3D0A6D00B9A850 /* CZVC.m in Sources */,
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,
+				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				749BEA121B32779800BABCA6 /* MJPhotoView.m in Sources */,
 				B22B91F61BE3721F00A3043E /* AddServiceTypeVC.m in Sources */,
@@ -2795,6 +2976,7 @@
 				31EEB3271C93BF9E00B61A86 /* mSuperMarketViewController.m in Sources */,
 				B29F037F1BE321930050267C /* BillHeadView.m in Sources */,
 				3122890E1C9662EA009C315F /* mShopTableViewCell.m in Sources */,
+				3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */,
 				740089711B38F2C300618BA0 /* AFNetworkReachabilityManager.m in Sources */,
 				740089841B39077900618BA0 /* messageTableViewCell.m in Sources */,
 				741B8D911B326EFA002104A0 /* main.m in Sources */,

@@ -69,4 +69,6 @@
 #import "mGoodsDetailViewController.h"
 #import "CircleLHQView.h"
 
+
+#import "DVSwitch.h"
 #endif

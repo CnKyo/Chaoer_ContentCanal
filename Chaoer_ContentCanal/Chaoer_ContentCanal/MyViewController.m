@@ -10,6 +10,12 @@
 
 #import "mPersonView.h"
 
+
+#import "mCodeNameViewController.h"
+
+#import "activityCenterViewController.h"
+#import "myRedBagViewController.h"
+#import "myOrderViewController.h"
 @interface MyViewController ()
 
 @end
@@ -72,18 +78,20 @@
     
     float btnWidth = DEVICE_Width/3;
     
-    for (int i = 0; i<15; i++) {
+    NSArray *mRR = @[@"实名认证",@"活动中心",@"我的红包",@"出租房",@"我的订单",@"设置"];
+    
+    for (int i = 0; i<mRR.count; i++) {
         
         UIButton    *btn = [UIButton new];
         btn.frame = CGRectMake(x, y, btnWidth, 110);
         [btn setImage:[UIImage imageNamed:@"meassage"] forState:0];
-        [btn setTitle:@"what" forState:0];
+        [btn setTitle:mRR[i] forState:0];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
 
         [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
         btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, -50, 20, 0);
+        btn.titleEdgeInsets = UIEdgeInsetsMake(90, -75, 20, 0);
         
         [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
@@ -106,8 +114,43 @@
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, y);
     
 }
+#pragma mark----按钮点击事件
 - (void)mCusBtnAction:(UIButton *)sender{
     NSLog(@"第%ld个",(long)sender.tag);
+    
+    switch (sender.tag) {
+        case 0:
+        {
+            mCodeNameViewController *mmm = [[mCodeNameViewController alloc] initWithNibName:@"mCodeNameViewController" bundle:nil];
+            [self pushViewController:mmm];
+        
+        }
+            break;
+        case 1:
+        {
+            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
+            [self pushViewController:mmm];
+            
+        }
+            break;
+        case 2:
+        {
+            myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
+            [self pushViewController:mmm];
+            
+        }
+            break;
+            
+        case 4:
+        {
+            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
+            [self pushViewController:mmm];
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
