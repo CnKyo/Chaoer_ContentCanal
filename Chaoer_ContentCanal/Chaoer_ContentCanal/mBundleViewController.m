@@ -1,28 +1,39 @@
 //
-//  activityCenterViewController.m
+//  mBundleViewController.m
 //  Chaoer_ContentCanal
 //
-//  Created by 王钶 on 16/3/15.
+//  Created by 王钶 on 16/3/16.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "activityCenterViewController.h"
+#import "mBundleViewController.h"
 
-#import "zhongchouViewController.h"
-
-@interface activityCenterViewController ()
+@interface mBundleViewController ()
 
 @end
 
-@implementation activityCenterViewController
+@implementation mBundleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.Title = self.mPageName = @"活动中心";
+    
+    self.Title = self.mPageName = @"帐号绑定";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
+    
+    self.mBgkView.layer.masksToBounds = YES;
+    self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.88 green:0.87 blue:0.89 alpha:1].CGColor;
+    self.mBgkView.layer.borderWidth = 1;
+    
+    
+//    
+//    [self.mTecentBtn setTitle:@"未绑定" forState:UIControlStateNormal];
+//    [self.mWechatbtn setTitle:@"未绑定" forState:UIControlStateNormal];
+//    [self.mSinaBtn setTitle:@"未绑定" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,19 +50,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)mChoujiang:(id)sender {
-}
-
-- (IBAction)mZongchou:(id)sender {
-    
-    zhongchouViewController *zzz = [[zhongchouViewController alloc] initWithNibName:@"zhongchouViewController" bundle:nil];
-    [self pushViewController:zzz];
-    
-}
-
-- (IBAction)mGongyi:(id)sender {
-}
-
 
 @end

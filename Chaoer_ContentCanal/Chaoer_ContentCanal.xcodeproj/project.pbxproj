@@ -93,6 +93,14 @@
 		3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F84E1C980A2B00EF9569 /* myOrderViewController.xib */; };
 		3135F8541C980B3C00EF9569 /* myOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */; };
 		3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */; };
+		313D76AC1C98ED5D004D5679 /* mSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76AA1C98ED5D004D5679 /* mSetupViewController.m */; };
+		313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76AB1C98ED5D004D5679 /* mSetupViewController.xib */; };
+		313D76B21C98F03E004D5679 /* mBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76B01C98F03E004D5679 /* mBundleViewController.m */; };
+		313D76B31C98F03E004D5679 /* mBundleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76B11C98F03E004D5679 /* mBundleViewController.xib */; };
+		313D76B71C98FB5A004D5679 /* mZhongchouView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76B61C98FB5A004D5679 /* mZhongchouView.m */; };
+		313D76B91C98FB68004D5679 /* mZhongchouView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76B81C98FB68004D5679 /* mZhongchouView.xib */; };
+		313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */; };
+		313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */; };
 		31B9901A1C9686E7002E34A5 /* washAndSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990181C9686E7002E34A5 /* washAndSendViewController.m */; };
 		31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990191C9686E7002E34A5 /* washAndSendViewController.xib */; };
 		31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9901D1C968971002E34A5 /* wAndSTableViewCell.m */; };
@@ -542,6 +550,17 @@
 		3135F8511C980B3C00EF9569 /* myOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myOrderTableViewCell.h; sourceTree = "<group>"; };
 		3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myOrderTableViewCell.m; sourceTree = "<group>"; };
 		3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderTableViewCell.xib; sourceTree = "<group>"; };
+		313D76A91C98ED5D004D5679 /* mSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mSetupViewController.h; sourceTree = "<group>"; };
+		313D76AA1C98ED5D004D5679 /* mSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mSetupViewController.m; sourceTree = "<group>"; };
+		313D76AB1C98ED5D004D5679 /* mSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSetupViewController.xib; sourceTree = "<group>"; };
+		313D76AF1C98F03E004D5679 /* mBundleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBundleViewController.h; sourceTree = "<group>"; };
+		313D76B01C98F03E004D5679 /* mBundleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBundleViewController.m; sourceTree = "<group>"; };
+		313D76B11C98F03E004D5679 /* mBundleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBundleViewController.xib; sourceTree = "<group>"; };
+		313D76B51C98FB5A004D5679 /* mZhongchouView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mZhongchouView.h; sourceTree = "<group>"; };
+		313D76B61C98FB5A004D5679 /* mZhongchouView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mZhongchouView.m; sourceTree = "<group>"; };
+		313D76B81C98FB68004D5679 /* mZhongchouView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouView.xib; sourceTree = "<group>"; };
+		313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouBottomView.xib; sourceTree = "<group>"; };
+		313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouSubViewView.xib; sourceTree = "<group>"; };
 		31B990171C9686E7002E34A5 /* washAndSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = washAndSendViewController.h; sourceTree = "<group>"; };
 		31B990181C9686E7002E34A5 /* washAndSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = washAndSendViewController.m; sourceTree = "<group>"; };
 		31B990191C9686E7002E34A5 /* washAndSendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = washAndSendViewController.xib; sourceTree = "<group>"; };
@@ -1295,12 +1314,10 @@
 		3135F8291C97EB5600EF9569 /* 活动中心 */ = {
 			isa = PBXGroup;
 			children = (
+				313D76B41C98F4A9004D5679 /* 众筹活动 */,
 				3135F82A1C97EB7300EF9569 /* activityCenterViewController.h */,
 				3135F82B1C97EB7300EF9569 /* activityCenterViewController.m */,
 				3135F82C1C97EB7300EF9569 /* activityCenterViewController.xib */,
-				3135F8321C97FA3800EF9569 /* zhongchouViewController.h */,
-				3135F8331C97FA3800EF9569 /* zhongchouViewController.m */,
-				3135F8341C97FA3800EF9569 /* zhongchouViewController.xib */,
 			);
 			name = "活动中心";
 			sourceTree = "<group>";
@@ -1341,6 +1358,42 @@
 				3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */,
 			);
 			name = "我的订单";
+			sourceTree = "<group>";
+		};
+		313D76A81C98ED49004D5679 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				313D76A91C98ED5D004D5679 /* mSetupViewController.h */,
+				313D76AA1C98ED5D004D5679 /* mSetupViewController.m */,
+				313D76AB1C98ED5D004D5679 /* mSetupViewController.xib */,
+				313D76AE1C98F029004D5679 /* 帐号绑定 */,
+			);
+			name = "设置";
+			sourceTree = "<group>";
+		};
+		313D76AE1C98F029004D5679 /* 帐号绑定 */ = {
+			isa = PBXGroup;
+			children = (
+				313D76AF1C98F03E004D5679 /* mBundleViewController.h */,
+				313D76B01C98F03E004D5679 /* mBundleViewController.m */,
+				313D76B11C98F03E004D5679 /* mBundleViewController.xib */,
+			);
+			name = "帐号绑定";
+			sourceTree = "<group>";
+		};
+		313D76B41C98F4A9004D5679 /* 众筹活动 */ = {
+			isa = PBXGroup;
+			children = (
+				3135F8321C97FA3800EF9569 /* zhongchouViewController.h */,
+				3135F8331C97FA3800EF9569 /* zhongchouViewController.m */,
+				3135F8341C97FA3800EF9569 /* zhongchouViewController.xib */,
+				313D76B51C98FB5A004D5679 /* mZhongchouView.h */,
+				313D76B61C98FB5A004D5679 /* mZhongchouView.m */,
+				313D76B81C98FB68004D5679 /* mZhongchouView.xib */,
+				313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */,
+				313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */,
+			);
+			name = "众筹活动";
 			sourceTree = "<group>";
 		};
 		31B990161C968528002E34A5 /* 洗衣送水 */ = {
@@ -2269,6 +2322,7 @@
 		749BEA641B32B32700BABCA6 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				313D76A81C98ED49004D5679 /* 设置 */,
 				3135F84B1C980A0E00EF9569 /* 我的订单 */,
 				3135F8371C97FB2E00EF9569 /* 我的红包 */,
 				3135F8291C97EB5600EF9569 /* 活动中心 */,
@@ -2622,6 +2676,7 @@
 				B23996521BE221CF00349C71 /* PingJiaHeadView.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
+				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
 				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
 				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
@@ -2649,6 +2704,7 @@
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
 				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
 				B2CEC2531BEA0A300050DB8F /* AddGoodsView.xib in Resources */,
+				313D76B31C98F03E004D5679 /* mBundleViewController.xib in Resources */,
 				746907E81BABEFCB00A4589A /* footView.xib in Resources */,
 				31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */,
 				746BFC231BAFDA0C006AAEA6 /* changeNameViewController.xib in Resources */,
@@ -2680,11 +2736,13 @@
 				312289111C96638B009C315F /* mRightShopTableCell.xib in Resources */,
 				B2D225EE1BE2025E00E0BF03 /* ServiceHeadView.xib in Resources */,
 				B2CF98761BEAEB79003BB896 /* AddServiceVC.xib in Resources */,
+				313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				B2D2BBD81C1AB360008A0404 /* AddBankInfo.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				74D292E11B96D7CC00A57977 /* DatingCell.xib in Resources */,
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
+				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
 				74C89A151BA018AB0010D38F /* dateCell.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
@@ -2709,6 +2767,7 @@
 				3135F8451C9803B100EF9569 /* redBagTableViewCell.xib in Resources */,
 				74C52C401BF0C981003B4B11 /* messageView.xib in Resources */,
 				31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */,
+				313D76B91C98FB68004D5679 /* mZhongchouView.xib in Resources */,
 				3135F82E1C97EB7300EF9569 /* activityCenterViewController.xib in Resources */,
 				B2CEC23A1BE9983A0050DB8F /* SellerDetaillVC.xib in Resources */,
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
@@ -2772,6 +2831,7 @@
 				742FB9031B5CDEB3005A1AFA /* NSMutableString+TagReplace.m in Sources */,
 				749BEA111B32779800BABCA6 /* MJPhotoToolbar.m in Sources */,
 				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
+				313D76B21C98F03E004D5679 /* mBundleViewController.m in Sources */,
 				31EEB31D1C93B6E700B61A86 /* communityTableViewCell.m in Sources */,
 				749BEA3C1B3277AA00BABCA6 /* NSData+GIF.m in Sources */,
 				3135F8351C97FA3800EF9569 /* zhongchouViewController.m in Sources */,
@@ -2854,6 +2914,7 @@
 				749BEA461B3277AA00BABCA6 /* UIButton+WebCache.m in Sources */,
 				B2CC1B1D1BE8AA67009A558F /* AddGoodsVC.m in Sources */,
 				B2CEE1271C0379D200FC159C /* MapCell.m in Sources */,
+				313D76AC1C98ED5D004D5679 /* mSetupViewController.m in Sources */,
 				74C078241BEB516D00B217F0 /* peisongTimeViewController.m in Sources */,
 				749BEA0E1B32779800BABCA6 /* MJPhotoBrowser.m in Sources */,
 				B22B91F11BE3588300A3043E /* AddServiceVC.m in Sources */,
@@ -2968,6 +3029,7 @@
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				749BEA121B32779800BABCA6 /* MJPhotoView.m in Sources */,
 				B22B91F61BE3721F00A3043E /* AddServiceTypeVC.m in Sources */,
+				313D76B71C98FB5A004D5679 /* mZhongchouView.m in Sources */,
 				749BE9E11B32776B00BABCA6 /* CunsomLabel.m in Sources */,
 				74BCE15B1B3A6058008F515A /* RSKTouchView.m in Sources */,
 				B2D225DA1BE1C16400E0BF03 /* ShopDetailVC.m in Sources */,

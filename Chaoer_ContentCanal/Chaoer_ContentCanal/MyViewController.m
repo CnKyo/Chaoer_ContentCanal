@@ -16,6 +16,7 @@
 #import "activityCenterViewController.h"
 #import "myRedBagViewController.h"
 #import "myOrderViewController.h"
+#import "mSetupViewController.h"
 @interface MyViewController ()
 
 @end
@@ -144,6 +145,13 @@
         case 4:
         {
             myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
+            [self pushViewController:mmm];
+            
+        }
+            break;
+        case 5:
+        {
+            mSetupViewController *mmm = [[mSetupViewController alloc] initWithNibName:@"mSetupViewController" bundle:nil];
             [self pushViewController:mmm];
             
         }

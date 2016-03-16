@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mZhongchouView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="273"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="众筹活动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZL-9f-dPX">
+                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NAJ-G8-Oon">
+                    <rect key="frame" x="10" y="37" width="300" height="236"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="236" id="qp7-9r-oeO"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="众筹总资金：10000000¥" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVl-sW-JQk">
+                    <rect key="frame" x="16" y="37" width="284" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="zmL-BO-bkF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jp-3t-NDo">
+                    <rect key="frame" x="10" y="66" width="300" height="207"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="207" id="8Td-CN-Cwy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="1jp-3t-NDo" secondAttribute="trailing" constant="10" id="0Is-xh-cAY"/>
+                <constraint firstAttribute="trailing" secondItem="NAJ-G8-Oon" secondAttribute="trailing" constant="10" id="1td-pc-qmr"/>
+                <constraint firstItem="NAJ-G8-Oon" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="5gf-OU-jfZ"/>
+                <constraint firstItem="1jp-3t-NDo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="653-Br-9ah"/>
+                <constraint firstItem="FZL-9f-dPX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ASr-04-E3U"/>
+                <constraint firstItem="HVl-sW-JQk" firstAttribute="top" secondItem="FZL-9f-dPX" secondAttribute="bottom" constant="8" id="Cff-zy-wft"/>
+                <constraint firstAttribute="trailing" secondItem="FZL-9f-dPX" secondAttribute="trailing" constant="8" id="NHb-Sf-fPT"/>
+                <constraint firstItem="FZL-9f-dPX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RM9-TO-xXD"/>
+                <constraint firstItem="1jp-3t-NDo" firstAttribute="top" secondItem="HVl-sW-JQk" secondAttribute="bottom" constant="8" id="jJK-Pa-Uuz"/>
+                <constraint firstAttribute="trailing" secondItem="HVl-sW-JQk" secondAttribute="trailing" constant="20" id="kyS-3h-enQ"/>
+                <constraint firstItem="NAJ-G8-Oon" firstAttribute="top" secondItem="FZL-9f-dPX" secondAttribute="bottom" constant="8" id="ohs-Fm-U0a"/>
+                <constraint firstItem="HVl-sW-JQk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="vei-yg-xbz"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mActivityName" destination="FZL-9f-dPX" id="d1e-aF-9Pd"/>
+                <outlet property="mActivityPrice" destination="HVl-sW-JQk" id="DT5-mS-g6K"/>
+                <outlet property="mBgkImg" destination="NAJ-G8-Oon" id="PXs-Pv-4SE"/>
+                <outlet property="mMainView" destination="1jp-3t-NDo" id="VS2-jd-hg0"/>
+            </connections>
+            <point key="canvasLocation" x="128" y="41.5"/>
+        </view>
+    </objects>
+</document>
