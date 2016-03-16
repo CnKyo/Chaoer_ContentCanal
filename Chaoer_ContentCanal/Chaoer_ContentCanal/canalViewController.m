@@ -47,7 +47,7 @@
     self.Title = self.mPageName = _mTitel;
     self.hiddenTabBar = YES;
     self.hiddenlll = YES;
-    
+    self.hiddenRightBtn = YES;
     self.rightBtnTitle = @"纪录查询";
     CGRect  mrr = self.navBar.rightBtn.frame;
     mrr.size.width = 100;
@@ -67,7 +67,7 @@
     
     mCanView = [canPayView shareView];
     mCanView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
-    
+    mCanView.mWillBalance.text = [NSString stringWithFormat:@"本月应%@  50¥",_mTitel];
     mCanView.mMoneyTx.delegate = mCanView.mNumTx.delegate = mCanView.mNameTx.delegate = self;
     
     [mCanView.mTopup addTarget:self action:@selector(mTopupAction:) forControlEvents:UIControlEventTouchUpInside];

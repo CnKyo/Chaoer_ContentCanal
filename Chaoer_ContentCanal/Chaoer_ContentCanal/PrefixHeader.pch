@@ -71,4 +71,7 @@
 
 
 #import "DVSwitch.h"
+#import "InputText.h"
+#import "JVFloatLabeledTextView.h"
+#import "JVFloatLabeledTextField.h"
 #endif

@@ -1,28 +1,36 @@
 //
-//  activityCenterViewController.m
+//  mTouzhiViewController.m
 //  Chaoer_ContentCanal
 //
-//  Created by 王钶 on 16/3/15.
+//  Created by 王钶 on 16/3/16.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "activityCenterViewController.h"
+#import "mTouzhiViewController.h"
 
-#import "zhongchouViewController.h"
-#import "mPublicWalerViewController.h"
-@interface activityCenterViewController ()
+@interface mTouzhiViewController ()<UITextFieldDelegate>
 
 @end
 
-@implementation activityCenterViewController
+@implementation mTouzhiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.Title = self.mPageName = @"活动中心";
+    self.Title = self.mPageName = @"众筹活动";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.95 alpha:1];
+    
+    self.mMainView.layer.masksToBounds = YES;
+    self.mMainView.layer.borderColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.87 alpha:1].CGColor;
+    self.mMainView.layer.borderWidth = 0.5;
+    
+    self.mNameTx.delegate = self.mMoneyTx.delegate = self;
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,21 +47,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)mChoujiang:(id)sender {
-}
-
-- (IBAction)mZongchou:(id)sender {
-    
-    zhongchouViewController *zzz = [[zhongchouViewController alloc] initWithNibName:@"zhongchouViewController" bundle:nil];
-    [self pushViewController:zzz];
-    
-}
-
-- (IBAction)mGongyi:(id)sender {
-    mPublicWalerViewController *zzz = [[mPublicWalerViewController alloc] initWithNibName:@"mPublicWalerViewController" bundle:nil];
-    [self pushViewController:zzz];
-}
-
 
 @end

@@ -117,7 +117,51 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79r-4Z-dKo">
                             <rect key="frame" x="30" y="113" width="282" height="45"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSS-0w-y9G">
+                                    <rect key="frame" x="0.0" y="5" width="60" height="30"/>
+                                    <color key="backgroundColor" red="0.87843137250000003" green="0.38823529410000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="银行卡">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRP-wA-Mfm">
+                                    <rect key="frame" x="222" y="5" width="60" height="30"/>
+                                    <color key="backgroundColor" red="0.87843137250000003" green="0.38823529410000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="银行卡">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZw-hC-QTL">
+                                    <rect key="frame" x="111" y="5" width="60" height="30"/>
+                                    <color key="backgroundColor" red="0.87843137250000003" green="0.38823529410000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="7c5-Wi-ovk"/>
+                                        <constraint firstAttribute="height" constant="30" id="zfS-vb-p2i"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="银行卡">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="RZw-hC-QTL" firstAttribute="leading" secondItem="PSS-0w-y9G" secondAttribute="trailing" constant="51" id="0zb-CZ-eSv"/>
+                                <constraint firstItem="PRP-wA-Mfm" firstAttribute="height" secondItem="RZw-hC-QTL" secondAttribute="height" id="1ex-5b-7oJ"/>
+                                <constraint firstItem="RZw-hC-QTL" firstAttribute="top" secondItem="79r-4Z-dKo" secondAttribute="top" constant="5" id="HdB-wM-Hfd"/>
+                                <constraint firstItem="PRP-wA-Mfm" firstAttribute="width" secondItem="RZw-hC-QTL" secondAttribute="width" id="JD8-mx-3qV"/>
+                                <constraint firstItem="RZw-hC-QTL" firstAttribute="centerX" secondItem="79r-4Z-dKo" secondAttribute="centerX" id="MmG-fr-O42"/>
+                                <constraint firstItem="PSS-0w-y9G" firstAttribute="width" secondItem="RZw-hC-QTL" secondAttribute="width" id="U2P-8g-WUE"/>
+                                <constraint firstItem="PSS-0w-y9G" firstAttribute="leading" secondItem="79r-4Z-dKo" secondAttribute="leading" id="ZKr-ij-iOr"/>
+                                <constraint firstItem="PSS-0w-y9G" firstAttribute="top" secondItem="79r-4Z-dKo" secondAttribute="top" constant="5" id="c4y-ho-mJf"/>
+                                <constraint firstAttribute="trailing" secondItem="PRP-wA-Mfm" secondAttribute="trailing" id="pgp-iG-lcH"/>
+                                <constraint firstItem="PSS-0w-y9G" firstAttribute="height" secondItem="RZw-hC-QTL" secondAttribute="height" id="vAi-Zc-XvA"/>
+                                <constraint firstItem="PRP-wA-Mfm" firstAttribute="leading" secondItem="RZw-hC-QTL" secondAttribute="trailing" constant="51" id="xd3-dH-t42"/>
+                                <constraint firstItem="PRP-wA-Mfm" firstAttribute="top" secondItem="79r-4Z-dKo" secondAttribute="top" constant="5" id="yOH-mu-U5U"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2n-pp-FJN">
                             <rect key="frame" x="30" y="175" width="282" height="1"/>

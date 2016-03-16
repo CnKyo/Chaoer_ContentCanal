@@ -101,6 +101,17 @@
 		313D76B91C98FB68004D5679 /* mZhongchouView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76B81C98FB68004D5679 /* mZhongchouView.xib */; };
 		313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */; };
 		313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */; };
+		313D76C31C9929AD004D5679 /* mTouzhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76C11C9929AD004D5679 /* mTouzhiViewController.m */; };
+		313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76C21C9929AD004D5679 /* mTouzhiViewController.xib */; };
+		313D76C81C9930A8004D5679 /* InputText.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76C71C9930A8004D5679 /* InputText.m */; };
+		313D76CD1C9933BE004D5679 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76CA1C9933BE004D5679 /* JVFloatLabeledTextField.m */; };
+		313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76CC1C9933BE004D5679 /* JVFloatLabeledTextView.m */; };
+		313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76D91C994446004D5679 /* mPublicWlerTableViewCell.m */; };
+		313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76DA1C994446004D5679 /* mPublicWlerTableViewCell.xib */; };
+		313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76DE1C994740004D5679 /* mPublicWalerViewController.m */; };
+		313D76E11C994740004D5679 /* mPublicWalerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76DF1C994740004D5679 /* mPublicWalerViewController.xib */; };
+		313D76E51C99507D004D5679 /* mJoinActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76E31C99507D004D5679 /* mJoinActivityViewController.m */; };
+		313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */; };
 		31B9901A1C9686E7002E34A5 /* washAndSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990181C9686E7002E34A5 /* washAndSendViewController.m */; };
 		31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990191C9686E7002E34A5 /* washAndSendViewController.xib */; };
 		31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9901D1C968971002E34A5 /* wAndSTableViewCell.m */; };
@@ -561,6 +572,24 @@
 		313D76B81C98FB68004D5679 /* mZhongchouView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouView.xib; sourceTree = "<group>"; };
 		313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouBottomView.xib; sourceTree = "<group>"; };
 		313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mZhongchouSubViewView.xib; sourceTree = "<group>"; };
+		313D76C01C9929AD004D5679 /* mTouzhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTouzhiViewController.h; sourceTree = "<group>"; };
+		313D76C11C9929AD004D5679 /* mTouzhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTouzhiViewController.m; sourceTree = "<group>"; };
+		313D76C21C9929AD004D5679 /* mTouzhiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTouzhiViewController.xib; sourceTree = "<group>"; };
+		313D76C61C9930A8004D5679 /* InputText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputText.h; sourceTree = "<group>"; };
+		313D76C71C9930A8004D5679 /* InputText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputText.m; sourceTree = "<group>"; };
+		313D76C91C9933BE004D5679 /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
+		313D76CA1C9933BE004D5679 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
+		313D76CB1C9933BE004D5679 /* JVFloatLabeledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextView.h; sourceTree = "<group>"; };
+		313D76CC1C9933BE004D5679 /* JVFloatLabeledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextView.m; sourceTree = "<group>"; };
+		313D76D81C994446004D5679 /* mPublicWlerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPublicWlerTableViewCell.h; sourceTree = "<group>"; };
+		313D76D91C994446004D5679 /* mPublicWlerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPublicWlerTableViewCell.m; sourceTree = "<group>"; };
+		313D76DA1C994446004D5679 /* mPublicWlerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPublicWlerTableViewCell.xib; sourceTree = "<group>"; };
+		313D76DD1C994740004D5679 /* mPublicWalerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPublicWalerViewController.h; sourceTree = "<group>"; };
+		313D76DE1C994740004D5679 /* mPublicWalerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPublicWalerViewController.m; sourceTree = "<group>"; };
+		313D76DF1C994740004D5679 /* mPublicWalerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPublicWalerViewController.xib; sourceTree = "<group>"; };
+		313D76E21C99507D004D5679 /* mJoinActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mJoinActivityViewController.h; sourceTree = "<group>"; };
+		313D76E31C99507D004D5679 /* mJoinActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mJoinActivityViewController.m; sourceTree = "<group>"; };
+		313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mJoinActivityViewController.xib; sourceTree = "<group>"; };
 		31B990171C9686E7002E34A5 /* washAndSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = washAndSendViewController.h; sourceTree = "<group>"; };
 		31B990181C9686E7002E34A5 /* washAndSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = washAndSendViewController.m; sourceTree = "<group>"; };
 		31B990191C9686E7002E34A5 /* washAndSendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = washAndSendViewController.xib; sourceTree = "<group>"; };
@@ -1314,6 +1343,7 @@
 		3135F8291C97EB5600EF9569 /* 活动中心 */ = {
 			isa = PBXGroup;
 			children = (
+				313D76CF1C9938E5004D5679 /* 公益活动 */,
 				313D76B41C98F4A9004D5679 /* 众筹活动 */,
 				3135F82A1C97EB7300EF9569 /* activityCenterViewController.h */,
 				3135F82B1C97EB7300EF9569 /* activityCenterViewController.m */,
@@ -1392,8 +1422,49 @@
 				313D76B81C98FB68004D5679 /* mZhongchouView.xib */,
 				313D76BC1C98FE3D004D5679 /* mZhongchouBottomView.xib */,
 				313D76BE1C9901CE004D5679 /* mZhongchouSubViewView.xib */,
+				313D76C01C9929AD004D5679 /* mTouzhiViewController.h */,
+				313D76C11C9929AD004D5679 /* mTouzhiViewController.m */,
+				313D76C21C9929AD004D5679 /* mTouzhiViewController.xib */,
 			);
 			name = "众筹活动";
+			sourceTree = "<group>";
+		};
+		313D76C51C993082004D5679 /* InputText */ = {
+			isa = PBXGroup;
+			children = (
+				313D76C91C9933BE004D5679 /* JVFloatLabeledTextField.h */,
+				313D76CA1C9933BE004D5679 /* JVFloatLabeledTextField.m */,
+				313D76CB1C9933BE004D5679 /* JVFloatLabeledTextView.h */,
+				313D76CC1C9933BE004D5679 /* JVFloatLabeledTextView.m */,
+				313D76C61C9930A8004D5679 /* InputText.h */,
+				313D76C71C9930A8004D5679 /* InputText.m */,
+			);
+			name = InputText;
+			sourceTree = "<group>";
+		};
+		313D76CF1C9938E5004D5679 /* 公益活动 */ = {
+			isa = PBXGroup;
+			children = (
+				313D76DD1C994740004D5679 /* mPublicWalerViewController.h */,
+				313D76DE1C994740004D5679 /* mPublicWalerViewController.m */,
+				313D76DF1C994740004D5679 /* mPublicWalerViewController.xib */,
+				313D76D81C994446004D5679 /* mPublicWlerTableViewCell.h */,
+				313D76D91C994446004D5679 /* mPublicWlerTableViewCell.m */,
+				313D76DA1C994446004D5679 /* mPublicWlerTableViewCell.xib */,
+				313D76E21C99507D004D5679 /* mJoinActivityViewController.h */,
+				313D76E31C99507D004D5679 /* mJoinActivityViewController.m */,
+				313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */,
+			);
+			name = "公益活动";
+			sourceTree = "<group>";
+		};
+		313D76E71C9958B2004D5679 /* 快捷缴费 */ = {
+			isa = PBXGroup;
+			children = (
+				3123CC231C929E8300C3B928 /* 水电气 */,
+				3123CC221C929E7700C3B928 /* 物管费 */,
+			);
+			name = "快捷缴费";
 			sourceTree = "<group>";
 		};
 		31B990161C968528002E34A5 /* 洗衣送水 */ = {
@@ -1872,12 +1943,11 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
+				313D76E71C9958B2004D5679 /* 快捷缴费 */,
 				3135F80E1C97BCDE00EF9569 /* 投诉建议 */,
 				31B9902F1C96A4EF002E34A5 /* 便民服务 */,
 				31EEB3161C93B2EF00B61A86 /* 社区 */,
 				3123CC3C1C92C8E000C3B928 /* 物业报修 */,
-				3123CC231C929E8300C3B928 /* 水电气 */,
-				3123CC221C929E7700C3B928 /* 物管费 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2069,6 +2139,7 @@
 		749BE9CB1B3276D600BABCA6 /* openResource */ = {
 			isa = PBXGroup;
 			children = (
+				313D76C51C993082004D5679 /* InputText */,
 				3135F8381C97FCD500EF9569 /* DVSwitch */,
 				31B9902B1C96A4AB002E34A5 /* circleView */,
 				31EEB3151C93AC8600B61A86 /* segment */,
@@ -2286,12 +2357,12 @@
 				74D292CB1B96CC2100A57977 /* date */,
 				749BEA641B32B32700BABCA6 /* 个人中心 */,
 				749BEA631B32B31E00BABCA6 /* myMessage */,
-				749BEA621B32B31300BABCA6 /* home */,
+				749BEA621B32B31300BABCA6 /* 首页 */,
 			);
 			name = mainVC;
 			sourceTree = "<group>";
 		};
-		749BEA621B32B31300BABCA6 /* home */ = {
+		749BEA621B32B31300BABCA6 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
 				748255501B74693200A81E4F /* Controller */,
@@ -2307,7 +2378,7 @@
 				16B3CE0C1C22BFF50085E47B /* ZWSideIconBt.h */,
 				16B3CE0D1C22BFF50085E47B /* ZWSideIconBt.m */,
 			);
-			name = home;
+			name = "首页";
 			sourceTree = "<group>";
 		};
 		749BEA631B32B31E00BABCA6 /* myMessage */ = {
@@ -2675,6 +2746,7 @@
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				B23996521BE221CF00349C71 /* PingJiaHeadView.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
+				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
@@ -2685,6 +2757,7 @@
 				749529AC1BF72DBE00E934D0 /* music1.caf in Resources */,
 				3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */,
 				741B8D9A1B326EFA002104A0 /* Main.storyboard in Resources */,
+				313D76E11C994740004D5679 /* mPublicWalerViewController.xib in Resources */,
 				B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */,
 				B2CC1B1E1BE8AA67009A558F /* AddGoodsVC.xib in Resources */,
 				16FBBC8E1BE7057300D2C917 /* orderDetail.xib in Resources */,
@@ -2744,8 +2817,10 @@
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
 				74C89A151BA018AB0010D38F /* dateCell.xib in Resources */,
+				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
+				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
 				16279CB41C3D0DAD00B9A850 /* PayView.xib in Resources */,
 				31EEB3291C93C86F00B61A86 /* mShopCarView.xib in Resources */,
 				B22B91E31BE33E0400A3043E /* BillCell.xib in Resources */,
@@ -2801,6 +2876,7 @@
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
 				B2CF987E1BEAEBE1003BB896 /* yingyeTimeViewController.m in Sources */,
 				B2D2BBDC1C1ADB46008A0404 /* BankCell.m in Sources */,
+				313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */,
 				B29382B31BE748F7005BDF41 /* RecordCell.m in Sources */,
 				B22B91E21BE33E0400A3043E /* BillCell.m in Sources */,
 				749BE9691B3272E700BABCA6 /* UIScrollView+MJExtension.m in Sources */,
@@ -2824,6 +2900,7 @@
 				31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */,
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
+				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				7459E07B1B439B9D0045ED95 /* msgDetailView.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -2854,6 +2931,7 @@
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
 				749BEA401B3277AA00BABCA6 /* SDWebImageDecoder.m in Sources */,
 				31BBE2961C914174006C553D /* DCWebImageManager.m in Sources */,
+				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				16279CB51C3D0DAD00B9A850 /* PayView.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
 				B2D225E01BE1EFC100E0BF03 /* DetailCell.m in Sources */,
@@ -2861,6 +2939,7 @@
 				31EEB3141C93AC8000B61A86 /* WKSegmentControl.m in Sources */,
 				742FB9041B5CDEB3005A1AFA /* NSString+WPAttributedMarkup.m in Sources */,
 				749BE96B1B3272E700BABCA6 /* UIView+MJExtension.m in Sources */,
+				313D76C31C9929AD004D5679 /* mTouzhiViewController.m in Sources */,
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
 				7445C0931B33A39000F330EA /* UIViewExt.m in Sources */,
 				B2D225DD1BE1C70800E0BF03 /* ServiceManageVC.m in Sources */,
@@ -2906,6 +2985,7 @@
 				B29382AF1BE7471F005BDF41 /* BillRecordVC.m in Sources */,
 				749BEA101B32779800BABCA6 /* MJPhotoProgressView.m in Sources */,
 				160833001C039EEF00083AC0 /* fix_searchInMap.m in Sources */,
+				313D76CD1C9933BE004D5679 /* JVFloatLabeledTextField.m in Sources */,
 				B2CEC2391BE9983A0050DB8F /* SellerDetaillVC.m in Sources */,
 				16E9CADA1BAC00BC00C48B8A /* DYUIImageView.m in Sources */,
 				744BEA741BE33CFB0094EB96 /* feedbackViewController.m in Sources */,
@@ -2977,6 +3057,7 @@
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
 				31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */,
 				3135F8541C980B3C00EF9569 /* myOrderTableViewCell.m in Sources */,
+				313D76C81C9930A8004D5679 /* InputText.m in Sources */,
 				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
@@ -2985,6 +3066,7 @@
 				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				7400896F1B38F2C300618BA0 /* AFHTTPRequestOperationManager.m in Sources */,
 				749BE9751B32754000BABCA6 /* NSString+CheckEmpty.m in Sources */,
+				313D76E51C99507D004D5679 /* mJoinActivityViewController.m in Sources */,
 				749BEA0B1B32779800BABCA6 /* MBProgressHUD.m in Sources */,
 				74D292E91B96DA7A00A57977 /* moreView.m in Sources */,
 				749BEA421B3277AA00BABCA6 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3200,7 +3282,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanwe.community.business;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7efb4ada-1501-4526-980e-c3f2aa26329d";
 			};
 			name = Debug;
 		};
@@ -3238,7 +3320,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanwe.community.business;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7efb4ada-1501-4526-980e-c3f2aa26329d";
 			};
 			name = Release;
 		};

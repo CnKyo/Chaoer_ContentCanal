@@ -10,6 +10,9 @@
 
 @interface canalViewController : BaseVC
 
+
+@property (nonatomic,assign) int mType;
+
 @property (nonatomic,strong) NSString *mTitel;
 
 @end

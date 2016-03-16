@@ -9,6 +9,7 @@
 #import "zhongchouViewController.h"
 #import "mZhongchouView.h"
 
+#import "mTouzhiViewController.h"
 @interface zhongchouViewController ()
 
 @end
@@ -52,46 +53,46 @@
 
 
 - (void)initView{
-//
-//    mainScrollerView = [UIScrollView new];
-//    mainScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
-//    [self.view addSubview:mainScrollerView];
-    
-    
+
     mTopView = [mZhongchouView shareTopView];
-//    mTopView.backgroundColor = [UIColor redColor];
     mTopView.frame = CGRectMake(0, 64,self.view.bounds.size.width, 500);
     [self.view addSubview:mTopView];
-    
-    mBottomView = [mZhongchouView shareBottomView];
-//    mBottomView.backgroundColor = [UIColor redColor];
-    mBottomView.frame = CGRectMake(0, 337, self.view.bounds.size.width, 130);
-    [self.view addSubview:mBottomView];
-    
-//    mainScrollerView.contentSize = CGSizeMake(DEVICE_Width, 500);
-    
-    
-    
+
     
     mSubScrollerView = [UIScrollView new];
-    mSubScrollerView.frame = CGRectMake(0, 0, mTopView.mMainView.mwidth, mTopView.mMainView.mheight);
+    mSubScrollerView.frame = CGRectMake(10, 0, DEVICE_Width-20, mTopView.mMainView.mheight);
+    mSubScrollerView.showsVerticalScrollIndicator = NO;
+    mSubScrollerView.showsHorizontalScrollIndicator = NO;
     [mTopView.mMainView addSubview:mSubScrollerView];
     
-    CGFloat width = mTopView.mMainView.mwidth/3;
+    CGFloat width = (DEVICE_Width-20)/3;
     float x = 0;
     float y = 0;
-    for (int i = 0; i<8; i ++) {
+    for (int i = 0; i<80; i ++) {
         mSubView = [mZhongchouView shareSubView];
-        mSubView.frame = CGRectMake(x,y, width, 90);
+        mSubView.frame = CGRectMake(x,y, width-5, 90);
         [mSubScrollerView addSubview:mSubView];
         x += width;
-        if (x>=mTopView.mMainView.mwidth) {
+        if (x>=DEVICE_Width-width) {
             x=0;
             y+=100;
         }
     }
-    mSubScrollerView.contentSize = CGSizeMake(mTopView.mMainView.mwidth, y+100);
+    mSubScrollerView.contentSize = CGSizeMake(mTopView.mMainView.mwidth-20, y+100);
     
+    
+    mBottomView = [mZhongchouView shareBottomView];
+//    mBottomView.backgroundColor = [UIColor redColor];
+    mBottomView.frame = CGRectMake(0, 337, self.view.bounds.size.width, 500);
+    [mBottomView.mActivityBtn addTarget:self action:@selector(mJoinAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mBottomView];
+    
+}
+#pragma mark----众筹活动按钮
+- (void)mJoinAction:(UIButton *)sender{
+
+    mTouzhiViewController *mmm = [[mTouzhiViewController alloc] initWithNibName:@"mTouzhiViewController" bundle:nil];
+    [self pushViewController:mmm];
     
 }
 - (void)didReceiveMemoryWarning {

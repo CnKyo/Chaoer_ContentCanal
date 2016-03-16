@@ -18,7 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NAJ-G8-Oon">
-                    <rect key="frame" x="10" y="37" width="300" height="236"/>
+                    <rect key="frame" x="5" y="37" width="310" height="236"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="236" id="qp7-9r-oeO"/>
                     </constraints>
@@ -33,19 +33,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jp-3t-NDo">
-                    <rect key="frame" x="10" y="66" width="300" height="207"/>
+                    <rect key="frame" x="5" y="66" width="310" height="207"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="207" id="8Td-CN-Cwy"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="1jp-3t-NDo" secondAttribute="trailing" constant="10" id="0Is-xh-cAY"/>
-                <constraint firstAttribute="trailing" secondItem="NAJ-G8-Oon" secondAttribute="trailing" constant="10" id="1td-pc-qmr"/>
-                <constraint firstItem="NAJ-G8-Oon" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="5gf-OU-jfZ"/>
-                <constraint firstItem="1jp-3t-NDo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="653-Br-9ah"/>
+                <constraint firstAttribute="trailing" secondItem="1jp-3t-NDo" secondAttribute="trailing" constant="5" id="0Is-xh-cAY"/>
+                <constraint firstAttribute="trailing" secondItem="NAJ-G8-Oon" secondAttribute="trailing" constant="5" id="1td-pc-qmr"/>
+                <constraint firstItem="NAJ-G8-Oon" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="5gf-OU-jfZ"/>
+                <constraint firstItem="1jp-3t-NDo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="653-Br-9ah"/>
                 <constraint firstItem="FZL-9f-dPX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ASr-04-E3U"/>
                 <constraint firstItem="HVl-sW-JQk" firstAttribute="top" secondItem="FZL-9f-dPX" secondAttribute="bottom" constant="8" id="Cff-zy-wft"/>
                 <constraint firstAttribute="trailing" secondItem="FZL-9f-dPX" secondAttribute="trailing" constant="8" id="NHb-Sf-fPT"/>

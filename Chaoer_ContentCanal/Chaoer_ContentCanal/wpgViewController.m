@@ -11,6 +11,9 @@
 #import "wpgTableViewCell.h"
 
 #import "canPayView.h"
+
+
+#import "canalViewController.h"
 @interface wpgViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -29,7 +32,7 @@
     self.Title = self.mPageName = @"缴费-水电气费";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-
+    self.hiddenRightBtn = YES;
     self.rightBtnTitle = @"纪录查询";
     CGRect  mrr = self.navBar.rightBtn.frame;
     mrr.size.width = 100;
@@ -113,6 +116,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *mTT = nil;
+    
+    if (indexPath.row == 0) {
+        mTT = @"缴费-电费";
+    }if (indexPath.row == 1) {
+        mTT = @"缴费-水费";
+    }if(indexPath.row == 2){
+        mTT = @"缴费-燃气费";
+    }
+    canalViewController *ccc= [canalViewController new];
+    
+    ccc.mTitel= mTT;
+    [self pushViewController:ccc];
     
     
 }
