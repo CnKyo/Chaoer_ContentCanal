@@ -112,6 +112,16 @@
 		313D76E11C994740004D5679 /* mPublicWalerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76DF1C994740004D5679 /* mPublicWalerViewController.xib */; };
 		313D76E51C99507D004D5679 /* mJoinActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D76E31C99507D004D5679 /* mJoinActivityViewController.m */; };
 		313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */; };
+		3154427E1C9A40EB0047E52A /* mFeedManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */; };
+		3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */; };
+		315442831C9A4A720047E52A /* mFeedCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315442811C9A4A720047E52A /* mFeedCompanyViewController.m */; };
+		315442841C9A4A720047E52A /* mFeedCompanyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 315442821C9A4A720047E52A /* mFeedCompanyViewController.xib */; };
+		315442881C9A54800047E52A /* mFeedPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315442861C9A54800047E52A /* mFeedPersonViewController.m */; };
+		315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 315442871C9A54800047E52A /* mFeedPersonViewController.xib */; };
+		3154428C1C9A8B7A0047E52A /* dataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3154428B1C9A8B7A0047E52A /* dataModel.m */; };
+		315442901C9A93810047E52A /* HTTPrequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3154428F1C9A93810047E52A /* HTTPrequest.m */; };
+		315442941C9A9E010047E52A /* registViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315442921C9A9E010047E52A /* registViewController.m */; };
+		315442951C9A9E010047E52A /* registViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 315442931C9A9E010047E52A /* registViewController.xib */; };
 		31B9901A1C9686E7002E34A5 /* washAndSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B990181C9686E7002E34A5 /* washAndSendViewController.m */; };
 		31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31B990191C9686E7002E34A5 /* washAndSendViewController.xib */; };
 		31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B9901D1C968971002E34A5 /* wAndSTableViewCell.m */; };
@@ -590,6 +600,22 @@
 		313D76E21C99507D004D5679 /* mJoinActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mJoinActivityViewController.h; sourceTree = "<group>"; };
 		313D76E31C99507D004D5679 /* mJoinActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mJoinActivityViewController.m; sourceTree = "<group>"; };
 		313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mJoinActivityViewController.xib; sourceTree = "<group>"; };
+		3154427B1C9A40EB0047E52A /* mFeedManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedManageViewController.h; sourceTree = "<group>"; };
+		3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedManageViewController.m; sourceTree = "<group>"; };
+		3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedManageViewController.xib; sourceTree = "<group>"; };
+		315442801C9A4A720047E52A /* mFeedCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedCompanyViewController.h; sourceTree = "<group>"; };
+		315442811C9A4A720047E52A /* mFeedCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedCompanyViewController.m; sourceTree = "<group>"; };
+		315442821C9A4A720047E52A /* mFeedCompanyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedCompanyViewController.xib; sourceTree = "<group>"; };
+		315442851C9A54800047E52A /* mFeedPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedPersonViewController.h; sourceTree = "<group>"; };
+		315442861C9A54800047E52A /* mFeedPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedPersonViewController.m; sourceTree = "<group>"; };
+		315442871C9A54800047E52A /* mFeedPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedPersonViewController.xib; sourceTree = "<group>"; };
+		3154428A1C9A8B7A0047E52A /* dataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataModel.h; sourceTree = "<group>"; };
+		3154428B1C9A8B7A0047E52A /* dataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataModel.m; sourceTree = "<group>"; };
+		3154428E1C9A93810047E52A /* HTTPrequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPrequest.h; sourceTree = "<group>"; };
+		3154428F1C9A93810047E52A /* HTTPrequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPrequest.m; sourceTree = "<group>"; };
+		315442911C9A9E010047E52A /* registViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registViewController.h; sourceTree = "<group>"; };
+		315442921C9A9E010047E52A /* registViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registViewController.m; sourceTree = "<group>"; };
+		315442931C9A9E010047E52A /* registViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registViewController.xib; sourceTree = "<group>"; };
 		31B990171C9686E7002E34A5 /* washAndSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = washAndSendViewController.h; sourceTree = "<group>"; };
 		31B990181C9686E7002E34A5 /* washAndSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = washAndSendViewController.m; sourceTree = "<group>"; };
 		31B990191C9686E7002E34A5 /* washAndSendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = washAndSendViewController.xib; sourceTree = "<group>"; };
@@ -1320,6 +1346,15 @@
 				3135F80F1C97BD2500EF9569 /* mFeedBackViewController.h */,
 				3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */,
 				3135F8111C97BD2600EF9569 /* mFeedBackViewController.xib */,
+				3154427B1C9A40EB0047E52A /* mFeedManageViewController.h */,
+				3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */,
+				3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */,
+				315442801C9A4A720047E52A /* mFeedCompanyViewController.h */,
+				315442811C9A4A720047E52A /* mFeedCompanyViewController.m */,
+				315442821C9A4A720047E52A /* mFeedCompanyViewController.xib */,
+				315442851C9A54800047E52A /* mFeedPersonViewController.h */,
+				315442861C9A54800047E52A /* mFeedPersonViewController.m */,
+				315442871C9A54800047E52A /* mFeedPersonViewController.xib */,
 			);
 			name = "投诉建议";
 			sourceTree = "<group>";
@@ -1465,6 +1500,17 @@
 				3123CC221C929E7700C3B928 /* 物管费 */,
 			);
 			name = "快捷缴费";
+			sourceTree = "<group>";
+		};
+		3154428D1C9A932C0047E52A /* HTTPDATA */ = {
+			isa = PBXGroup;
+			children = (
+				3154428A1C9A8B7A0047E52A /* dataModel.h */,
+				3154428B1C9A8B7A0047E52A /* dataModel.m */,
+				3154428E1C9A93810047E52A /* HTTPrequest.h */,
+				3154428F1C9A93810047E52A /* HTTPrequest.m */,
+			);
+			name = HTTPDATA;
 			sourceTree = "<group>";
 		};
 		31B990161C968528002E34A5 /* 洗衣送水 */ = {
@@ -1667,6 +1713,9 @@
 				31BBE2891C9121AE006C553D /* mLoginView.h */,
 				31BBE28A1C9121AE006C553D /* mLoginView.m */,
 				31BBE28C1C9121B9006C553D /* mLoginView.xib */,
+				315442911C9A9E010047E52A /* registViewController.h */,
+				315442921C9A9E010047E52A /* registViewController.m */,
+				315442931C9A9E010047E52A /* registViewController.xib */,
 				741B8D981B326EFA002104A0 /* Main.storyboard */,
 				749529A11BF72BF800E934D0 /* music */,
 				749BE9CB1B3276D600BABCA6 /* openResource */,
@@ -2333,6 +2382,7 @@
 		749BEA4E1B3277DA00BABCA6 /* EXT */ = {
 			isa = PBXGroup;
 			children = (
+				3154428D1C9A932C0047E52A /* HTTPDATA */,
 				16A987B41C0397F100D55C4A /* APIClient.m */,
 				16A987B51C0397F100D55C4A /* CBCUtil.m */,
 				16A987B61C0397F100D55C4A /* dateModel.m */,
@@ -2764,6 +2814,8 @@
 				746F8ACE1BEC330900C87992 /* HZQDatePickerView.xib in Resources */,
 				B2CEE1171C0374E700FC159C /* ChoseAreaVC.xib in Resources */,
 				B2D2BBDD1C1ADB46008A0404 /* BankCell.xib in Resources */,
+				315442841C9A4A720047E52A /* mFeedCompanyViewController.xib in Resources */,
+				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,
 				B23996571BE222EB00349C71 /* PingJiaCell.xib in Resources */,
 				7400897A1B38F6F000618BA0 /* QMapKit.bundle in Resources */,
 				B2CF987B1BEAEBBD003BB896 /* editDianpuViewController.xib in Resources */,
@@ -2811,7 +2863,9 @@
 				B2CF98761BEAEB79003BB896 /* AddServiceVC.xib in Resources */,
 				313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
+				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				B2D2BBD81C1AB360008A0404 /* AddBankInfo.xib in Resources */,
+				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				74D292E11B96D7CC00A57977 /* DatingCell.xib in Resources */,
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
@@ -2917,20 +2971,24 @@
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
 				7487DC161B4E17F000C40220 /* MASConstraint.m in Sources */,
 				7470E1511B9C07B800ECEC69 /* leavVC.m in Sources */,
+				3154427E1C9A40EB0047E52A /* mFeedManageViewController.m in Sources */,
 				B2CF98691BEAE7A9003BB896 /* FDCalendar.m in Sources */,
 				3123CC2A1C929F4300C3B928 /* wpgTableViewCell.m in Sources */,
 				B2D48CA41BEC53FF00482EB8 /* UIImage+RTTint.m in Sources */,
 				749BE99B1B32756800BABCA6 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				740089531B38F22A00618BA0 /* NavBar.m in Sources */,
 				749BEA3D1B3277AA00BABCA6 /* NSData+ImageContentType.m in Sources */,
+				3154428C1C9A8B7A0047E52A /* dataModel.m in Sources */,
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
+				315442941C9A9E010047E52A /* registViewController.m in Sources */,
 				740089551B38F22A00618BA0 /* TabBar.m in Sources */,
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				B2D2BBD31C1A78D9008A0404 /* BankManagerVC.m in Sources */,
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
 				749BEA401B3277AA00BABCA6 /* SDWebImageDecoder.m in Sources */,
 				31BBE2961C914174006C553D /* DCWebImageManager.m in Sources */,
+				315442901C9A93810047E52A /* HTTPrequest.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				16279CB51C3D0DAD00B9A850 /* PayView.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
@@ -3030,6 +3088,7 @@
 				749BE9E51B32777F00BABCA6 /* MMLocationManager.m in Sources */,
 				16A987BD1C0397F100D55C4A /* Util.m in Sources */,
 				B22B91E61BE340FF00A3043E /* BillSectionView.m in Sources */,
+				315442881C9A54800047E52A /* mFeedPersonViewController.m in Sources */,
 				749BE99C1B32756800BABCA6 /* IQSegmentedNextPrevious.m in Sources */,
 				749BE9D41B32772000BABCA6 /* GTMBase64.m in Sources */,
 				B22B91EC1BE34A0500A3043E /* WithDrawVC.m in Sources */,
@@ -3090,6 +3149,7 @@
 				749BE9661B3272E700BABCA6 /* MJRefreshConst.m in Sources */,
 				31BBE29F1C914788006C553D /* mCustomHomeView.m in Sources */,
 				74F5FC401B53AB0800307EED /* mMyDetailViewController.m in Sources */,
+				315442831C9A4A720047E52A /* mFeedCompanyViewController.m in Sources */,
 				B2CF98841BEB3ADB003BB896 /* ReplyView.m in Sources */,
 				740089521B38F22A00618BA0 /* BaseVC.m in Sources */,
 				7470E14F1B9C07B800ECEC69 /* leaveTableViewController.m in Sources */,

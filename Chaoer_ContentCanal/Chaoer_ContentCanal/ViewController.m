@@ -16,6 +16,9 @@
 #import "MyViewController.h"
 
 #import "mLoginView.h"
+
+#import "registViewController.h"
+
 @interface ViewController ()<UITextFieldDelegate>
 
 @end
@@ -87,6 +90,9 @@
     
     [mLoginV.loginBtn addTarget:self action:@selector(mLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    [mLoginV.mRegistBtn addTarget:self action:@selector(registAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mLoginV.mForgetBtn addTarget:self action:@selector(forgetAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     [mScrollerView addSubview:mLoginV];
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
     
@@ -97,6 +103,19 @@
     
     
 }
+#pragma mark----忘记密码
+- (void)forgetAction:(UIButton *)sender{
+    registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
+    rrr.mType = 2;
+    [self pushViewController:rrr];
+}
+#pragma mark----注册
+- (void)registAction:(UIButton *)sender{
+    registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
+    rrr.mType = 1;
+    [self pushViewController:rrr];
+}
+#pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
     MLLog(@"登录");
     if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
@@ -117,15 +136,13 @@
     
     
     [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
-    [SUser loginWithPhone:mLoginV.phoneTx.text psw:mLoginV.codeTx.text block:^(SResBase *resb, SUser *user) {
-        if( resb.msuccess )
-        {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+    
+    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mUserInfo *mUser, mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self loginOk];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
     }];
 

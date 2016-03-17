@@ -69,7 +69,7 @@
 #import "mGoodsDetailViewController.h"
 #import "CircleLHQView.h"
 
-
+#import "dataModel.h"
 #import "DVSwitch.h"
 #import "InputText.h"
 #import "JVFloatLabeledTextView.h"

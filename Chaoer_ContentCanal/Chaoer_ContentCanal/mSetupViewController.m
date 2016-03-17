@@ -52,6 +52,27 @@
     
 }
 - (IBAction)mLogout:(id)sender {
+        [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:10];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        [SUser logout];
+        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+        [self.mLogout setTitle:@"登录" forState:UIControlStateNormal];
+        [self gotoLoginVC];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
 }
 
 @end

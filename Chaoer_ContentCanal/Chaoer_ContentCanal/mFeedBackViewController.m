@@ -8,6 +8,10 @@
 
 #import "mFeedBackViewController.h"
 
+#import "mFeedManageViewController.h"
+#import "mFeedCompanyViewController.h"
+
+#import "mFeedPersonViewController.h"
 @interface mFeedBackViewController ()
 
 @end
@@ -27,11 +31,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark----投诉个人
 - (IBAction)mPerson:(id)sender {
+    
+    mFeedPersonViewController *mmm = [[mFeedPersonViewController alloc] initWithNibName:@"mFeedPersonViewController" bundle:nil];
+    [self pushViewController:mmm];
+    
 }
+#pragma mark----投诉物管
 - (IBAction)mCanal:(id)sender {
+    
+    mFeedManageViewController *mmm = [[mFeedManageViewController alloc] initWithNibName:@"mFeedManageViewController" bundle:nil];
+    [self pushViewController:mmm];
+    
 }
+#pragma mark----投诉公司
 - (IBAction)mCompany:(id)sender {
+    
+    mFeedCompanyViewController *mmm = [[mFeedCompanyViewController alloc] initWithNibName:@"mFeedCompanyViewController" bundle:nil];
+    [self pushViewController:mmm];
 }
 
 /*

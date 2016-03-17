@@ -16,6 +16,9 @@
     view.mLogoImg.layer.masksToBounds = YES;
     view.mLogoImg.layer.cornerRadius = view.mLogoImg.mwidth/2;
     
+    
+    [view.loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_selected"] forState:UIControlStateSelected];
+    [view.loginBtn setBackgroundImage:[UIImage imageNamed:@"btn_unselected"] forState:UIControlStateNormal];
     return view;
 }
 

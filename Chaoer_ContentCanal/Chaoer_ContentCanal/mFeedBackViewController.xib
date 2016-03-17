@@ -28,7 +28,9 @@
                         <constraint firstAttribute="width" constant="200" id="ZrL-k6-ai3"/>
                         <constraint firstAttribute="height" constant="50" id="xSW-VJ-hcl"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="投诉居民">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="mPerson:" destination="-1" eventType="touchUpInside" id="bpM-Av-ahd"/>
                     </connections>
@@ -36,7 +38,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqE-5I-r8G">
                     <rect key="frame" x="60" y="240" width="200" height="50"/>
                     <color key="backgroundColor" red="0.24313725489999999" green="0.74509803919999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="投诉物管">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="mCanal:" destination="-1" eventType="touchUpInside" id="hdR-L4-L7L"/>
                     </connections>
@@ -44,7 +48,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6b7-d5-3JM">
                     <rect key="frame" x="60" y="340" width="200" height="50"/>
                     <color key="backgroundColor" red="0.24313725489999999" green="0.74509803919999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="对公司的建议">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="mCompany:" destination="-1" eventType="touchUpInside" id="WN9-Wj-41W"/>
                     </connections>

@@ -16,7 +16,7 @@
     view.mTopup.layer.masksToBounds = YES;
     view.mTopup.layer.cornerRadius = 5;
     view.mTopup.layer.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1].CGColor;
-    view.mTopup.layer.borderWidth = 1;
+    view.mTopup.layer.borderWidth = 0.5;
     view.mBalanceBtn.layer.masksToBounds = YES;
     view.mBalanceBtn.layer.cornerRadius = 6;
     
@@ -27,10 +27,10 @@
 + (canPayView *)shareHeaderView{
     canPayView *view = [[[NSBundle mainBundle] loadNibNamed:@"mBalanceView" owner:self options:nil] objectAtIndex:0];
 
-    view.mTopup.layer.masksToBounds = YES;
-    view.mTopup.layer.cornerRadius = 5;
-    view.mTopup.layer.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1].CGColor;
-    view.mTopup.layer.borderWidth = 1;
+    view.mChongzhi.layer.masksToBounds = YES;
+    view.mChongzhi.layer.cornerRadius = 5;
+    view.mChongzhi.layer.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1].CGColor;
+    view.mChongzhi.layer.borderWidth = 0.5;
     
     return view;
     
