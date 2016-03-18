@@ -85,24 +85,52 @@
     bgkView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     [mHeaderView addSubview:bgkView];
     
+    
+    UIImage *imag1 = [UIImage imageNamed:@"home_staff"];
+    UIImage *imag2 = [UIImage imageNamed:@"home_fix"];
+
+    UIImage *imag3 = [UIImage imageNamed:@"home_community"];
+
+    UIImage *imag4 = [UIImage imageNamed:@"home_service"];
+
+    UIImage *imag5 = [UIImage imageNamed:@"home_conversition"];
+
+    UIImage *imag6 = [UIImage imageNamed:@"home_feedback"];
+
+    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
+    
     NSArray *marr = @[@"快捷缴费",@"物业保修",@"社区生活",@"便民服务",@"邻里交流",@"投诉建议"];
     
     float x = 0;
-    float y = bgkView.mbottom;
+    float y = bgkView.mbottom+10;
 
     float btnWidth = DEVICE_Width/3;
     
     for (int i = 0; i<marr.count; i++) {
+//
+//        mGeneralSubView *mSubView = [mGeneralSubView shareView];
+//        mSubView.frame = CGRectMake(x, y, btnWidth, 110);
+//        mSubView.mImg.image =imgArr[i];
+//        [mSubView.mName setText:marr[i]];
+//        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//        mSubView.mBtn.tag = i;
+//        [mHeaderView addSubview:mSubView];
         
         UIButton    *btn = [UIButton new];
         btn.frame = CGRectMake(x, y, btnWidth, 110);
-        [btn setImage:[UIImage imageNamed:@"79"] forState:0];
+        [btn setImage:imgArr[i] forState:0];
         [btn setTitle:marr[i] forState:0];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
         btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, -50, 20, 0);
+        float left;
+        if (DEVICE_Width<=320) {
+            left = -60;
+        }else{
+            left = -80;
+        };
+        btn.titleEdgeInsets = UIEdgeInsetsMake(90, left, 20, 0);
 
         [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
@@ -112,7 +140,7 @@
         
         [mHeaderView addSubview:btn];
         
-        x += btnWidth;
+        x += btnWidth+10;
         
         if (x >= DEVICE_Width) {
             x = 0;

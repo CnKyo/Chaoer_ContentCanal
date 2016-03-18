@@ -43,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="uaR-y3-mN9"/>
+                    <tabBarItem key="tabBarItem" title="" image="home_unselected" selectedImage="home_selected" id="uaR-y3-mN9"/>
                     <navigationItem key="navigationItem" title="首页" id="BGb-NP-Qhr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -55,7 +55,7 @@
         <scene sceneID="JZZ-s3-O3l">
             <objects>
                 <navigationController id="94W-V2-ig3" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="ordermng_normal" selectedImage="ordermng_selected" id="F7z-eX-lmQ"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="home_unselected" selectedImage="home_selected" id="F7z-eX-lmQ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vth-MJ-GGd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -429,7 +429,7 @@
         <scene sceneID="EBs-7f-ABj">
             <objects>
                 <navigationController id="5fB-JT-LjI" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" image="my_unselected" selectedImage="my_selected" id="1Mq-tE-3a2"/>
+                    <tabBarItem key="tabBarItem" title="个人中心" image="personcenter_unselected" selectedImage="personcenter_selected" id="1Mq-tE-3a2"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vo7-Ha-f8q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1068,7 +1068,7 @@
         <scene sceneID="KVF-jP-wiB">
             <objects>
                 <navigationController id="0VO-Tv-vPt" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="关于我们" image="7" selectedImage="order_selected" id="hOy-qh-dRJ"/>
+                    <tabBarItem key="tabBarItem" title="关于我们" image="aboutus_unselected" selectedImage="aboutus_selected" id="hOy-qh-dRJ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqZ-Un-A9C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1082,10 +1082,10 @@
             </objects>
             <point key="canvasLocation" x="932" y="780"/>
         </scene>
-        <!--Wk Order Table View-->
+        <!--Aboutus View Controller-->
         <scene sceneID="xg6-xd-DjJ">
             <objects>
-                <viewController storyboardIdentifier="wkOrderT" id="9TH-NI-Ocm" customClass="wkOrderTableView" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wkOrderT" id="9TH-NI-Ocm" customClass="aboutusViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Vr-Zp-mL1"/>
                         <viewControllerLayoutGuide type="bottom" id="lxY-zX-742"/>
@@ -3366,9 +3366,10 @@
         <image name="1.png" width="128" height="128"/>
         <image name="17-1" width="191" height="88"/>
         <image name="3-1" width="574" height="88"/>
-        <image name="7" width="50" height="50"/>
         <image name="72" width="160" height="160"/>
         <image name="82-5" width="22" height="22"/>
+        <image name="aboutus_selected" width="47" height="47"/>
+        <image name="aboutus_unselected" width="47" height="47"/>
         <image name="dp_defaultImg" width="64" height="64"/>
         <image name="dp_del" width="21" height="21"/>
         <image name="dp_dpdz" width="38" height="38"/>
@@ -3381,18 +3382,17 @@
         <image name="dp_spgl" width="38" height="38"/>
         <image name="dp_xiajia" width="21" height="21"/>
         <image name="greenBtn" width="574" height="88"/>
+        <image name="home_selected" width="47" height="47"/>
+        <image name="home_unselected" width="47" height="47"/>
         <image name="img_def" width="331" height="341"/>
         <image name="item_2" width="25" height="25"/>
         <image name="item_2_select" width="25" height="25"/>
         <image name="jiantou1" width="15" height="26"/>
         <image name="jiantou1.png" width="16" height="26"/>
         <image name="msg" width="27" height="27"/>
-        <image name="my_selected" width="50" height="50"/>
-        <image name="my_unselected" width="50" height="50"/>
-        <image name="order_selected" width="50" height="50"/>
-        <image name="ordermng_normal" width="50" height="50"/>
-        <image name="ordermng_selected" width="50" height="50"/>
         <image name="passwd" width="26" height="32"/>
+        <image name="personcenter_selected" width="42" height="49"/>
+        <image name="personcenter_unselected" width="42" height="49"/>
         <image name="phone" width="26" height="32"/>
     </resources>
 </document>

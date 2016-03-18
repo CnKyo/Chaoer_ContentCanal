@@ -16,7 +16,8 @@
 
 @implementation serviceViewController
 {
-    mServiceAddressView *mTopView;
+    mServiceAddressView *mView;
+    UIScrollView *mScrollerView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,34 +26,51 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.Title = self.mPageName = @"便民服务";
+    
     [self initView];
     
 }
 - (void)initView{
-    
+
     UIImageView *iii = [UIImageView new];
-    iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
     iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
+    iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
     [self.view addSubview:iii];
     
-    mTopView = [mServiceAddressView shareView];
-
-    [self.view addSubview:mTopView];
-    [mTopView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(@0);
-        make.top.equalTo(self.view).offset(@64);
-        make.height.offset(@55);
-    }];
-        
-    CircleLHQView *LHQView = [[CircleLHQView alloc] initWithFrame:CGRectMake(10, 130, DEVICE_Width-20, 300) andImage:nil];
-    [LHQView addSubViewWithSubView:nil andTitle:@[@"提现",@"买票",@"帐号充值",@"敬请期待",@"手机充值"] andSize:CGSizeMake(60, 60) andcenterImage:nil];
-    LHQView.delegate = self;
-    [self.view addSubview:LHQView];
+    mScrollerView = [UIScrollView new];
+    mScrollerView.backgroundColor = [UIColor clearColor];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
+    [self.view addSubview:mScrollerView];
     
-    LHQView.clickSomeOne=^(NSInteger index){
 
-    };
     
+    mView = [mServiceAddressView shareView];
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, mScrollerView.mheight);
+    [mScrollerView addSubview:mView];
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+//
+//    CircleLHQView *LHQView = [[CircleLHQView alloc] initWithFrame:CGRectMake(10, 130, DEVICE_Width-20, 300) andImage:nil];
+//    [LHQView addSubViewWithSubView:nil andTitle:@[@"提现",@"买票",@"帐号充值",@"敬请期待",@"手机充值"] andSize:CGSizeMake(60, 60) andcenterImage:nil];
+//    LHQView.delegate = self;
+//    [self.view addSubview:LHQView];
+//    
+//    LHQView.clickSomeOne=^(NSInteger index){
+//
+//    };
+    
+    [mView.mBtn1 addTarget:self action:@selector(btn1Action:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mBtn3 addTarget:self action:@selector(btn3Action:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    
+}
+- (void)btn1Action:(UIButton *)sender{
+    mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
+    [self pushViewController:ppp];
+}
+- (void)btn3Action:(UIButton *)sender{
+    phoneUpTopViewController *ppp = [[phoneUpTopViewController alloc] initWithNibName:@"phoneUpTopViewController" bundle:nil];
+    [self pushViewController:ppp];
 }
 - (void)didSelectedBtnIndex:(NSInteger)index{
     NSLog(@"%ld被点击了",(long)index);

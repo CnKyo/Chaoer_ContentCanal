@@ -63,7 +63,7 @@
 - (void)initHeaderView{
 
     mHeaderView = [UIView new];
-    mHeaderView.frame = CGRectZero;
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
     mHeaderView.backgroundColor = [UIColor whiteColor];
     
     
@@ -71,6 +71,19 @@
     mTopView.frame  =CGRectMake(0, 0, DEVICE_Width, 50);
     [mHeaderView addSubview:mTopView];
     
+    
+    UIImage *imag1 = [UIImage imageNamed:@"supermarket"];
+    UIImage *imag2 = [UIImage imageNamed:@"fruit"];
+    
+    UIImage *imag3 = [UIImage imageNamed:@"eat"];
+    
+    UIImage *imag4 = [UIImage imageNamed:@"join"];
+    
+    UIImage *imag5 = [UIImage imageNamed:@"water"];
+    
+    UIImage *imag6 = [UIImage imageNamed:@"wash"];
+    
+    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
     NSArray *marr = @[@"超市快递",@"水果生鲜",@"美食速递",@"招募合伙人",@"饮水配送",@"衣服洗涤"];
     
     float x = 0;
@@ -80,17 +93,24 @@
     
     for (int i = 0; i<marr.count; i++) {
         
+        
+        
         UIButton    *btn = [UIButton new];
         btn.frame = CGRectMake(x, y, btnWidth, 110);
         btn.backgroundColor = [UIColor whiteColor];
-        [btn setImage:[UIImage imageNamed:@"79"] forState:0];
+        [btn setImage:imgArr[i] forState:0];
         [btn setTitle:marr[i] forState:0];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
         btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, -50, 20, 0);
-        
+        float left;
+        if (DEVICE_Width<=320) {
+            left = -60;
+        }else{
+            left = -60;
+        };
+        btn.titleEdgeInsets = UIEdgeInsetsMake(90, left, 20, 0);
         [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
         [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
         
@@ -99,7 +119,7 @@
         
         [mHeaderView addSubview:btn];
         
-        x += btnWidth;
+        x += btnWidth+10;
         
         if (x >= DEVICE_Width) {
             x = 0;

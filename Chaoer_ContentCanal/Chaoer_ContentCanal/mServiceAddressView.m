@@ -19,9 +19,9 @@
 */
 + (mServiceAddressView *)shareView{
     mServiceAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mServiceAddressView" owner:self options:nil] objectAtIndex:0];
-    view.layer.masksToBounds = YES;
-    view.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
-    view.layer.borderWidth = 1;
+//    view.layer.masksToBounds = YES;
+//    view.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
+//    view.layer.borderWidth = 1;
     return view;
 }
 @end

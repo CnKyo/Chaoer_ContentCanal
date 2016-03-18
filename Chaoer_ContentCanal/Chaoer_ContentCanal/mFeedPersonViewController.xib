@@ -59,9 +59,7 @@
                                 <constraint firstAttribute="height" constant="21" id="d2V-BF-E1T"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="contentEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="215" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="请选择小区" image="jiantou">
+                            <state key="normal" title="请选择小区" image="three_gray">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -85,9 +83,7 @@
                                 <constraint firstAttribute="height" constant="21" id="q90-DO-eck"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="contentEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="215" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="请选择楼栋号" image="jiantou">
+                            <state key="normal" title="请选择楼栋号" image="three_gray">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -111,9 +107,7 @@
                                 <constraint firstAttribute="height" constant="21" id="3he-VI-xXB"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="contentEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="215" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="请选择门牌号" image="jiantou">
+                            <state key="normal" title="请选择门牌号" image="three_gray">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -127,15 +121,6 @@
                                 <constraint firstAttribute="height" constant="1" id="o99-lp-OKv"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉的原因是:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-FS-Jvx">
-                            <rect key="frame" x="20" y="139" width="280" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="181-AS-CxQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-tp-dzf" customClass="IQTextView">
                             <rect key="frame" x="10" y="168" width="290" height="90"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,6 +136,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" id="aer-fU-fY2"/>
                             </constraints>
+                            <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="Z2a-DK-3en"/>
                                 <outlet property="delegate" destination="-1" id="UZP-yr-e8l"/>
@@ -162,6 +148,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" id="2GU-cn-y9b"/>
                             </constraints>
+                            <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="gmf-8O-vux"/>
                                 <outlet property="delegate" destination="-1" id="bV2-YF-5hB"/>
@@ -173,11 +160,21 @@
                             <constraints>
                                 <constraint firstAttribute="height" id="5sA-ya-bDc"/>
                             </constraints>
+                            <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="sbC-7x-FWn"/>
                                 <outlet property="delegate" destination="-1" id="tTW-Ck-3lV"/>
                             </connections>
                         </tableView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉的原因是:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-FS-Jvx">
+                            <rect key="frame" x="20" y="139" width="280" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="181-AS-CxQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -223,12 +220,12 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vo-s9-UD8">
                     <rect key="frame" x="60" y="375" width="200" height="45"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="5bX-pQ-T2j"/>
                         <constraint firstAttribute="width" constant="200" id="HEl-sB-LjV"/>
                     </constraints>
-                    <state key="normal" title="提交">
+                    <state key="normal" title="提交" backgroundImage="feed_unselected">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -253,7 +250,8 @@
         </view>
     </objects>
     <resources>
-        <image name="jiantou" width="16" height="26"/>
+        <image name="feed_unselected" width="412" height="106"/>
         <image name="mBaseBgkImg" width="640" height="1136"/>
+        <image name="three_gray" width="16" height="13"/>
     </resources>
 </document>

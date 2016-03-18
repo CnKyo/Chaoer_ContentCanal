@@ -27,14 +27,14 @@
                         <constraint firstAttribute="width" constant="30" id="Nu5-Ml-3T9"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="X">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="X" backgroundImage="close">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gdt-eW-TiX">
                     <rect key="frame" x="0.0" y="50" width="320" height="50"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oHy-aX-sCf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local_point" translatesAutoresizingMaskIntoConstraints="NO" id="oHy-aX-sCf">
                             <rect key="frame" x="20" y="13" width="20" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="6ub-4I-7jr"/>
@@ -242,6 +242,8 @@
         </view>
     </objects>
     <resources>
+        <image name="close" width="24" height="24"/>
         <image name="jiantou" width="16" height="26"/>
+        <image name="local_point" width="26" height="34"/>
     </resources>
 </document>

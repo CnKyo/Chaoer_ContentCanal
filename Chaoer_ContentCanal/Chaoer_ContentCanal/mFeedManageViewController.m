@@ -48,7 +48,6 @@
     self.mBgtkView.layer.masksToBounds = YES;
     self.mBgtkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
     self.mBgtkView.layer.borderWidth = 1;
-    [self initTap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,15 +56,9 @@
 
     
 }
-- (void)initTap{
+- (IBAction)okAction:(id)sender {
+}
 
-    UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mTapAction)];
-    [self.view addGestureRecognizer:ttt];
-}
-- (void)mTapAction{
-    [self.mReason resignFirstResponder];
-    [self.mName resignFirstResponder];
-}
 /*
 #pragma mark - Navigation
 

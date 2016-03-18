@@ -22,20 +22,14 @@
  *  身份
  */
 @property (strong, nonatomic) IBOutlet UILabel *mJob;
-/**
- *  积分view
- */
-@property (strong, nonatomic) IBOutlet UIView *mScoreView;
+
 
 /**
  *  积分
  */
 @property (strong, nonatomic) IBOutlet UILabel *mScore;
 
-/**
- *  等级view
- */
-@property (strong, nonatomic) IBOutlet UIView *mLevelView;
+
 
 /**
  *  等级

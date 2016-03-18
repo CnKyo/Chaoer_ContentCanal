@@ -28,6 +28,10 @@
     view.mLogo.layer.masksToBounds = YES;
     view.mLogo.layer.cornerRadius = view.mLogo.mwidth/2;
     
+
+    
+    
+    
     return view;
 }
 + (mAddressView *)shareUsrInfo{

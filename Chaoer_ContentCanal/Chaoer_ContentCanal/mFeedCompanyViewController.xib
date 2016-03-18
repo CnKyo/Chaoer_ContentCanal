@@ -21,9 +21,9 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8h-r4-3Tr">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="79" width="320" height="489"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMV-sZ-mOb">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_company_bgk" translatesAutoresizingMaskIntoConstraints="NO" id="BMV-sZ-mOb">
                             <rect key="frame" x="15" y="0.0" width="290" height="340"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="340" id="Erk-1r-nqW"/>
@@ -48,13 +48,13 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxA-04-0k5">
                             <rect key="frame" x="60" y="360" width="200" height="45"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="4Eh-qg-T1C"/>
                                 <constraint firstAttribute="height" constant="45" id="azi-Bn-f2t"/>
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="发送">
+                            <state key="normal" title="发送" backgroundImage="feed_unselected">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
@@ -95,7 +95,7 @@
                 <constraint firstAttribute="trailing" secondItem="6Wl-ok-8QZ" secondAttribute="trailing" id="ZT7-Mn-x5N"/>
                 <constraint firstAttribute="bottom" secondItem="6Wl-ok-8QZ" secondAttribute="bottom" id="Zyb-93-JaQ"/>
                 <constraint firstAttribute="trailing" secondItem="x8h-r4-3Tr" secondAttribute="trailing" id="q2r-OH-lmi"/>
-                <constraint firstItem="x8h-r4-3Tr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ueP-u9-LGp"/>
+                <constraint firstItem="x8h-r4-3Tr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="ueP-u9-LGp"/>
                 <constraint firstItem="6Wl-ok-8QZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vle-zd-FTh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -103,6 +103,8 @@
         </view>
     </objects>
     <resources>
+        <image name="feed_company_bgk" width="596" height="742"/>
+        <image name="feed_unselected" width="412" height="106"/>
         <image name="mBaseBgkImg" width="640" height="1136"/>
     </resources>
 </document>

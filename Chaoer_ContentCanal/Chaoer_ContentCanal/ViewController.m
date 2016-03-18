@@ -33,6 +33,8 @@
     UIScrollView    *mScrollerView;
     
     mLoginView  *mLoginV;
+    
+    mCustomAlertView *mAlertView;
 
 }
 
@@ -71,8 +73,10 @@
     self.hiddenRightBtn = YES;
     self.navBar.rightBtn.frame = CGRectMake(DEVICE_Width-100, 20, 120, 44);
     self.rightBtnTitle = @"密码登录";
+    
     [self initView];
     
+    [self initAlertView];
 
 }
 - (void)initView{
@@ -138,6 +142,7 @@
     [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
     
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mUserInfo *mUser, mBaseData *resb) {
+        [SVProgressHUD dismiss];
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self loginOk];
@@ -313,6 +318,51 @@
         return @[@"replash-1.png",@"replash.png"];
     }
     
+}
+
+
+
+
+
+
+
+
+
+- (void)initAlertView{
+    mAlertView = [mCustomAlertView shareView];
+    mAlertView.alpha = 0;
+
+    mAlertView.frame = self.view.bounds;
+    mAlertView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.75];
+    [self.view addSubview:mAlertView];
+    
+}
+
+- (void)showSucsess:(NSString *)message{
+    
+    [UIView animateWithDuration:1 animations:^{
+        mAlertView.alpha = 1;
+        mAlertView.mStatusImg.image = [UIImage imageNamed:@"finish"];
+        mAlertView.mContent.text = message;
+    } completion:^(BOOL finished) {
+        mAlertView.alpha = 1;
+    }];
+}
+
+- (void)showError:(NSString *)message{
+
+    [UIView animateWithDuration:1 animations:^{
+        mAlertView.alpha = 1;
+        mAlertView.mStatusImg.image = [UIImage imageNamed:@"error"];
+        mAlertView.mContent.text = message;
+    } completion:^(BOOL finished) {
+        mAlertView.alpha = 1;
+    }];
+}
+- (void)dismissAlertView{
+    [UIView animateWithDuration:0.2 animations:^{
+        mAlertView.alpha = 0;
+    }];
 }
 
 @end

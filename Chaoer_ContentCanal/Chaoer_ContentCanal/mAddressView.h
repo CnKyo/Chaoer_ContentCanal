@@ -43,15 +43,23 @@
  */
 @property (strong, nonatomic) IBOutlet UITextField *mMoneyTx;
 
-/**
- *  支付方式
- */
-@property (strong, nonatomic) IBOutlet UITextField *mPayType;
 
 /**
  *  支付方式view
  */
 @property (strong, nonatomic) IBOutlet UIView *mPayTypeView;
+/**
+ *  银行卡
+ */
+@property (strong, nonatomic) IBOutlet UIButton *bankBtn;
+/**
+ *  微信
+ */
+@property (strong, nonatomic) IBOutlet UIButton *wechatBtn;
+/**
+ *  支付宝
+ */
+@property (strong, nonatomic) IBOutlet UIButton *alipayBtn;
 
 /**
  *  支付按钮

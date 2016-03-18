@@ -75,10 +75,25 @@
                         <constraint firstItem="ACy-fk-JPu" firstAttribute="top" secondItem="dSg-cC-IlE" secondAttribute="bottom" constant="8" id="vPF-hT-Eah"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgU-SO-P1f">
+                    <rect key="frame" x="60" y="279" width="200" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="3ML-bI-1Hc"/>
+                        <constraint firstAttribute="width" constant="200" id="8eK-pV-qPd"/>
+                    </constraints>
+                    <state key="normal" title="确定" backgroundImage="feed_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="okAction:" destination="-1" eventType="touchUpInside" id="VOP-3w-d6E"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="SgU-SO-P1f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0DM-hU-w2K"/>
                 <constraint firstItem="SRh-4h-xz7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7Mm-19-rVA"/>
+                <constraint firstItem="SgU-SO-P1f" firstAttribute="top" secondItem="FJS-Da-W6D" secondAttribute="bottom" constant="20" id="IpF-M7-0iq"/>
                 <constraint firstItem="FJS-Da-W6D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Rid-Bl-k0o"/>
                 <constraint firstAttribute="trailing" secondItem="SRh-4h-xz7" secondAttribute="trailing" id="Y11-Vx-3yw"/>
                 <constraint firstItem="SRh-4h-xz7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="acY-Dp-uos"/>
@@ -91,6 +106,7 @@
         </view>
     </objects>
     <resources>
+        <image name="feed_unselected" width="412" height="106"/>
         <image name="mBaseBgkImg" width="640" height="1136"/>
     </resources>
 </document>

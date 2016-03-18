@@ -19,11 +19,6 @@
     view.mHeaderBtn.layer.borderColor = M_CO.CGColor;
     view.mHeaderBtn.layer.borderWidth = 10;
     
-    
-    view.mScoreView.layer.masksToBounds = view.mLevelView.layer.masksToBounds = YES;
-    view.mScoreView.layer.borderColor = view.mLevelView.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
-    view.mScoreView.layer.borderWidth = view.mLevelView.layer.borderWidth = 0.5f;
-    
     return view;
     
 }

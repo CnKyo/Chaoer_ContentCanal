@@ -13,14 +13,14 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVb-v7-tvh">
                     <rect key="frame" x="15" y="13" width="30" height="30"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="9W3-ri-shj"/>
                         <constraint firstAttribute="height" constant="30" id="jhu-rf-8gH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
+                    <state key="normal" backgroundImage="shopcar">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -106,4 +106,7 @@
             <point key="canvasLocation" x="196" y="312"/>
         </view>
     </objects>
+    <resources>
+        <image name="shopcar" width="46" height="46"/>
+    </resources>
 </document>

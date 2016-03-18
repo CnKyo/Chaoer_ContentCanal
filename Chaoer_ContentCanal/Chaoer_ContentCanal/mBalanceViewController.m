@@ -18,6 +18,9 @@
     
     mAddressView *mView;
     
+    NSMutableArray *mTT;
+
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -46,7 +49,8 @@
     self.hiddenTabBar = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
-    
+    mTT = [NSMutableArray new];
+
     [self initView];
 }
 - (void)initView{
@@ -65,7 +69,64 @@
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
     
     
-    
+    [mView.bankBtn addTarget:self action:@selector(bankAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.alipayBtn addTarget:self action:@selector(bankAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [mView.wechatBtn addTarget:self action:@selector(bankAction:) forControlEvents:UIControlEventTouchUpInside];
+
+}
+#pragma mark----银行卡
+- (void)bankAction:(UIButton *)sender{
+    [mTT removeAllObjects];
+    switch (sender.tag) {
+        case 1:
+        {
+            if (sender.selected == NO) {
+                mView.bankBtn.selected = YES;
+                mView.alipayBtn.selected = NO;
+                mView.wechatBtn.selected = NO;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                
+            }
+        }
+            break;
+        case 2:
+        {
+            if (sender.selected == NO) {
+                mView.bankBtn.selected = NO;
+                mView.alipayBtn.selected = YES;
+                mView.wechatBtn.selected = NO;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                
+            }
+        }
+            break;
+        case 3:
+        {
+            if (sender.selected == NO) {
+                mView.bankBtn.selected = NO;
+                mView.alipayBtn.selected = NO;
+                mView.wechatBtn.selected = YES;
+                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+            }else{
+                sender.selected = NO;
+                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                
+            }
+            
+        }
+            break;
+        default:
+            break;
+    }
+
+
 }
 
 

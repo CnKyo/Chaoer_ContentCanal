@@ -7,6 +7,7 @@
 //
 
 #import "mFeedPersonViewController.h"
+#import "MHActionSheet.h"
 
 @interface mFeedPersonViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -63,19 +64,58 @@
 #pragma mark----小区
 - (IBAction)mValiigeAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    [self showValigeView:sender.selected];
+//    [self showValigeView:sender.selected];
+    if (sender.selected) {
+        MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
+        actionSheet.cancleTitle = @"取消选择";
+        
+        [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+            NSString *text = [NSString stringWithFormat:@"第%ld行,%@",index, title];
+            [sender setTitle:text forState:UIControlStateSelected];
+            
+        }];
 
+    }else{
+        sender.selected = NO;
+    }
+ 
 }
 #pragma mark----楼栋
 - (IBAction)mBuildAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    [self showBuildView:sender.selected];
+//    [self showBuildView:sender.selected];
+    if (sender.selected) {
+        MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择楼栋" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
+        actionSheet.cancleTitle = @"取消选择";
+        
+        [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+            NSString *text = [NSString stringWithFormat:@"第%ld行,%@",index, title];
+            [sender setTitle:text forState:UIControlStateSelected];
+            
+        }];
+        
+    }else{
+        sender.selected = NO;
+    }
 
 }
 #pragma mark----门牌号
 - (IBAction)mDoorAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    [self showDoorNumView:sender.selected];
+//    [self showDoorNumView:sender.selected];
+    if (sender.selected) {
+        MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择门牌号" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
+        actionSheet.cancleTitle = @"取消选择";
+        
+        [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+            NSString *text = [NSString stringWithFormat:@"第%ld行,%@",index, title];
+            [sender setTitle:text forState:UIControlStateSelected];
+            
+        }];
+        
+    }else{
+        sender.selected = NO;
+    }
 }
 
 

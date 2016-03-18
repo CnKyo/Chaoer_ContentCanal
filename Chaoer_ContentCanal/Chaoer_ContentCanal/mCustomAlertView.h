@@ -9,15 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @interface mCustomAlertView : UIView
-///背景
-@property (weak, nonatomic) IBOutlet UIView *mBgkView;
 
-///拨打按钮
-@property (weak, nonatomic) IBOutlet UIButton *mCallBtn;
-
-///取消按钮
-@property (weak, nonatomic) IBOutlet UIButton *mCancelBtn;
-
+/**
+ *  状态图表
+ */
+@property (strong, nonatomic) IBOutlet UIImageView *mStatusImg;
+/**
+ *  提示内容
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mContent;
+/**
+ *  按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mBtn;
+/**
+ *  初始化方法
+ *
+ *  @return view
+ */
 + (mCustomAlertView *)shareView;
 
 @end

@@ -83,7 +83,7 @@
     
     mBottomView = [mZhongchouView shareBottomView];
 //    mBottomView.backgroundColor = [UIColor redColor];
-    mBottomView.frame = CGRectMake(0, 337, self.view.bounds.size.width, 500);
+    mBottomView.frame = CGRectMake(0, 350, self.view.bounds.size.width, 500);
     [mBottomView.mActivityBtn addTarget:self action:@selector(mJoinAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mBottomView];
     

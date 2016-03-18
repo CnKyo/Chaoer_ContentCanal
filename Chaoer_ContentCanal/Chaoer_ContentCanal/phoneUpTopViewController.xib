@@ -198,12 +198,12 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oW-PP-ow8">
                     <rect key="frame" x="60" y="339" width="200" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="5fz-9w-RxD"/>
                         <constraint firstAttribute="height" constant="50" id="Yj4-PD-sVY"/>
                     </constraints>
-                    <state key="normal" title="立即充值">
+                    <state key="normal" title="立即充值" backgroundImage="search_selected">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -228,5 +228,6 @@
     </objects>
     <resources>
         <image name="mBaseBgkImg" width="640" height="1136"/>
+        <image name="search_selected" width="283" height="103"/>
     </resources>
 </document>

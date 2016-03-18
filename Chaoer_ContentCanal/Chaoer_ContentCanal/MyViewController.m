@@ -79,28 +79,31 @@
     
     float btnWidth = DEVICE_Width/3;
     
-    NSArray *mRR = @[@"实名认证",@"活动中心",@"我的红包",@"出租房",@"我的订单",@"设置"];
+    UIImage *imag1 = [UIImage imageNamed:@"code"];
+    UIImage *imag2 = [UIImage imageNamed:@"activity"];
+    
+    UIImage *imag3 = [UIImage imageNamed:@"redbag"];
+    
+    UIImage *imag4 = [UIImage imageNamed:@"rent"];
+    
+    UIImage *imag5 = [UIImage imageNamed:@"order-2"];
+    
+    UIImage *imag6 = [UIImage imageNamed:@"setup-2"];
+    
+    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
+    
+    NSArray *mRR = @[@"实名认证",@"活动中心",@"我的红包",@"出租房",@"我的订单",@"设 置 "];
     
     for (int i = 0; i<mRR.count; i++) {
         
-        UIButton    *btn = [UIButton new];
-        btn.frame = CGRectMake(x, y, btnWidth, 110);
-        [btn setImage:[UIImage imageNamed:@"meassage"] forState:0];
-        [btn setTitle:mRR[i] forState:0];
-        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-
-        [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
-        btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, -75, 20, 0);
+        mGeneralSubView *mSubView = [mGeneralSubView shareView];
+        mSubView.frame = CGRectMake(x, y, btnWidth, 110);
+        mSubView.mImg.image =imgArr[i];
+        [mSubView.mName setText:mRR[i]];
+        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        mSubView.mBtn.tag = i;
+        [mScrollerView addSubview:mSubView];
         
-        [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
-        
-        btn.tag = i;
-        [btn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [mScrollerView addSubview:btn];
         
         x += btnWidth;
         

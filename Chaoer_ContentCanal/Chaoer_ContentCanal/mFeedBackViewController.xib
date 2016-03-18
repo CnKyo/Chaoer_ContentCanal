@@ -18,41 +18,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mBaseBgkImg" translatesAutoresizingMaskIntoConstraints="NO" id="meZ-n9-R9s">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_bgk" translatesAutoresizingMaskIntoConstraints="NO" id="meZ-n9-R9s">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxM-CY-FGd">
                     <rect key="frame" x="60" y="140" width="200" height="50"/>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.74509803919999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="ZrL-k6-ai3"/>
                         <constraint firstAttribute="height" constant="50" id="xSW-VJ-hcl"/>
                     </constraints>
-                    <state key="normal" title="投诉居民">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="投诉居民" backgroundImage="feed_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="feed_selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="mPerson:" destination="-1" eventType="touchUpInside" id="bpM-Av-ahd"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqE-5I-r8G">
-                    <rect key="frame" x="60" y="240" width="200" height="50"/>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.74509803919999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="投诉物管">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="mCanal:" destination="-1" eventType="touchUpInside" id="hdR-L4-L7L"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6b7-d5-3JM">
                     <rect key="frame" x="60" y="340" width="200" height="50"/>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.74509803919999995" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="对公司的建议">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="对公司的建议" backgroundImage="feed_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="feed_selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="mCompany:" destination="-1" eventType="touchUpInside" id="WN9-Wj-41W"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqE-5I-r8G">
+                    <rect key="frame" x="60" y="240" width="200" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="投诉物管" backgroundImage="feed_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="feed_selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="mCanal:" destination="-1" eventType="touchUpInside" id="hdR-L4-L7L"/>
                     </connections>
                 </button>
             </subviews>
@@ -78,6 +87,8 @@
         </view>
     </objects>
     <resources>
-        <image name="mBaseBgkImg" width="640" height="1136"/>
+        <image name="feed_bgk" width="640" height="1008"/>
+        <image name="feed_selected" width="412" height="108"/>
+        <image name="feed_unselected" width="412" height="106"/>
     </resources>
 </document>
