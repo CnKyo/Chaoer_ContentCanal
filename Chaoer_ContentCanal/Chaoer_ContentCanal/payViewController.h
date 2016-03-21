@@ -22,5 +22,20 @@
  */
 @property (strong, nonatomic) IBOutlet UIButton *mParkBtn;
 
+/**
+ *  物管待缴
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mCanalBagdge;
+/**
+ *  水电气代缴
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mThreeBadge;
+/**
+ *  停车费待缴
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mParkBadge;
+
+
+
 
 @end

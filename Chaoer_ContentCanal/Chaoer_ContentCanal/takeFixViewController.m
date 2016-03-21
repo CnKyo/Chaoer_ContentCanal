@@ -26,16 +26,28 @@
     self.Title = self.mPageName = _mTitle;
     
 //    self.view.backgroundColor = [UIColor whiteColor];
-    [self initHeader];
+//    [self initHeader];
     [self initView];
     // Do any additional setup after loading the view.
 }
 - (void)initView{
 
+    DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"预约报修", @"付款报修"]];
+    secondSwitch.frame = CGRectMake(0, 64, DEVICE_Width, 35);
+    secondSwitch.backgroundColor = [UIColor whiteColor];
+    secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
+    secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];
+    secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
+    secondSwitch.cornerRadius = 0;
+    [secondSwitch setPressedHandler:^(NSUInteger index) {
+        NSLog(@"点击了%lu",(unsigned long)index);
+        [mTableView reloadData];
+    }];
+    [self.view addSubview:secondSwitch];
     
     mTableView = [UITableView new];
     mTableView.backgroundColor = [UIColor whiteColor];
-    mTableView.frame = CGRectMake(0, 124, DEVICE_Width, DEVICE_Height);
+    mTableView.frame = CGRectMake(0, secondSwitch.mbottom, DEVICE_Width, DEVICE_Height);
     mTableView.delegate = self;
     mTableView.dataSource = self;
     mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -46,20 +58,20 @@
     [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
 }
-- (void)initHeader{
-
-    UIView *vvv = [UIView new];
-    vvv.frame = CGRectMake(0, 64, DEVICE_Width, 10);
-    vvv.backgroundColor = M_CO;
-    [self.view addSubview:vvv];
-    
-    mHeaderView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 74, DEVICE_Width, 50) andTitleWithBtn:@[@"预约报修",@"付款报修"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_CO andUndeLineColor:nil andBtnTitleFont:[UIFont fontWithName:@".Helvetica Neue Interface" size:16.0f] andInterval:0 delegate:self andIsHiddenLine:YES];
-    [self.view addSubview:mHeaderView];
-    
-}
-- (void)WKDidSelectedIndex:(NSInteger)mIndex{
-    NSLog(@"第%d个",mIndex);
-}
+//- (void)initHeader{
+//
+//    UIView *vvv = [UIView new];
+//    vvv.frame = CGRectMake(0, 64, DEVICE_Width, 10);
+//    vvv.backgroundColor = M_CO;
+//    [self.view addSubview:vvv];
+//    
+//    mHeaderView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 74, DEVICE_Width, 50) andTitleWithBtn:@[@"预约报修",@"付款报修"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_CO andUndeLineColor:nil andBtnTitleFont:[UIFont fontWithName:@".Helvetica Neue Interface" size:16.0f] andInterval:0 delegate:self andIsHiddenLine:YES];
+//    [self.view addSubview:mHeaderView];
+//    
+//}
+//- (void)WKDidSelectedIndex:(NSInteger)mIndex{
+//    NSLog(@"第%ld个",(long)mIndex);
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,8 +99,14 @@
 {
     NSString *reuseCellId = @"cell";
     
-    mFixTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+//    mFixTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+//    if (cell == nil) {
+       mFixTableViewCell *cell = [[mFixTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId];
+    cell.mHeader.image = [UIImage imageNamed:@"1"];
+    cell.mNameLb.text = @"dasdasdasdsada";
+    cell.mPhoneLb.text = @"sddsaddasdas";
+        
+//    }
     
     return cell;
     
@@ -103,4 +121,12 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView reloadData];
+    
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"编辑";
+}
 @end

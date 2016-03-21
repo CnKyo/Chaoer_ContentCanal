@@ -16,10 +16,8 @@
     
     
     
-    view.mYuyueBtn.layer.masksToBounds = view.mPayBtn.layer.masksToBounds = YES;
-    view.mYuyueBtn.layer.cornerRadius = view.mPayBtn.layer.cornerRadius = 5;
-    view.mYuyueBtn.layer.borderColor = view.mPayBtn.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
-    view.mYuyueBtn.layer.borderWidth = view.mPayBtn.layer.borderWidth = 1;
+    view.mHomeBtn.layer.masksToBounds = view.mCleanBtn.layer.masksToBounds = view.mPipeBtn.layer.masksToBounds= view.mResultBtn.layer.masksToBounds = YES;
+    view.mHomeBtn.layer.cornerRadius = view.mCleanBtn.layer.cornerRadius = view.mPipeBtn.layer.cornerRadius = view.mResultBtn.layer.cornerRadius = 5;
     
     
     return view;

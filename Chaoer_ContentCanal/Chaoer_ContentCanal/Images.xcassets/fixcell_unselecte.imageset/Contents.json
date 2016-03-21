@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "01缴费功能_停车费-点击效果.png",
+      "filename" : "fixcell_unselecte.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "01缴费功能_停车费-点击效果-1.png",
+      "filename" : "fixcell_unselecte-1.png",
       "scale" : "2x"
     },
     {

@@ -24,4 +24,21 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mPhone;
 
+
+
+/**
+ *  图片
+ */
+@property (strong ,nonatomic) UIImageView *mHeader;
+/**
+ *  姓名
+ */
+@property (strong ,nonatomic) UILabel *mNameLb;
+/**
+ *  电话
+ */
+@property (strong ,nonatomic) UILabel *mPhoneLb;
+
+
+
 @end

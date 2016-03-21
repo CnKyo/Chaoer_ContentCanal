@@ -79,4 +79,6 @@
 
 
 #import "mGeneralSubView.h"
+
+#import "ZJAlertListView.h"
 #endif

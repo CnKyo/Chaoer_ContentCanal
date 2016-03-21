@@ -18,6 +18,12 @@
 {
     mAddressView *mAdView;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.mCanalBtn.selected = NO;
+    self.mParkBtn.selected = NO;
+    self.mThreeBtn.selected = NO;
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
 
@@ -28,8 +34,11 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     
+    self.mCanalBagdge.layer.masksToBounds = self.mThreeBadge.layer.masksToBounds = self.mParkBadge.layer.masksToBounds = YES;
+    self.mCanalBagdge.layer.cornerRadius = self.mThreeBadge.layer.cornerRadius = self.mParkBadge.layer.cornerRadius = self.mThreeBadge.mwidth/2;
+  
     [self initView];
-    
+    [self loadHidden];
 }
 
 - (void)initView{
@@ -44,6 +53,11 @@
     }];
 }
 
+- (void)loadHidden{
+    self.mCanalBagdge.hidden = YES;
+    self.mThreeBadge.hidden = NO;
+    self.mParkBadge.hidden = YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,10 +68,14 @@
  *  @param sender
  */
 - (IBAction)mCanalAction:(id)sender {
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
     canalViewController *ccc= [canalViewController new];
     
     ccc.mTitel= @"缴费－物管费";
     [self pushViewController:ccc];
+ 
+
     
 }
 /**
@@ -66,6 +84,8 @@
  *  @param sender
  */
 - (IBAction)mThreeAction:(id)sender {
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
     wpgViewController *www = [wpgViewController new];
     [self pushViewController:www];
 }
@@ -75,6 +95,8 @@
  *  @param sender
  */
 - (IBAction)mParkAction:(id)sender {
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
     canalViewController *ccc= [canalViewController new];
     ccc.mTitel= @"缴费－停车费";
 

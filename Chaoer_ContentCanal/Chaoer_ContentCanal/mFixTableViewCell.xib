@@ -31,6 +31,12 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="mLogo" destination="hYs-Ps-zjp" id="jWH-HS-t9I"/>
+                <outlet property="mName" destination="hq9-qh-k6W" id="nuZ-gI-qb1"/>
+                <outlet property="mPhone" destination="2FI-YA-ImS" id="Dmd-gf-1Ia"/>
+            </connections>
+            <point key="canvasLocation" x="227" y="239"/>
         </tableViewCell>
     </objects>
 </document>
