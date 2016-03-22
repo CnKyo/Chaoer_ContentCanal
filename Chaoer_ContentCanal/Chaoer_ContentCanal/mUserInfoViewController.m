@@ -9,12 +9,17 @@
 #import "mUserInfoViewController.h"
 
 #import "editMessageViewController.h"
-@interface mUserInfoViewController ()<UIActionSheetDelegate>
+#import "RSKImageCropper.h"
+
+@interface mUserInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
 
 @end
 
 @implementation mUserInfoViewController
+{
+    UIImage *tempImage;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -29,6 +34,9 @@
     self.mbgkView1.layer.borderColor = self.mBgkView2.layer.borderColor = [UIColor colorWithRed:0.84 green:0.84 blue:0.86 alpha:1].CGColor;
     self.mbgkView1.layer.borderWidth = self.mBgkView2.layer.borderWidth = 0.5;
     
+    
+    self.mHeaderImg.layer.masksToBounds = YES;
+    self.mHeaderImg.layer.cornerRadius = self.mHeaderImg.mwidth/2;
     
 }
 
@@ -52,6 +60,9 @@
  *  @param sender <#sender description#>
  */
 - (IBAction)mHeader:(id)sender {
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册中选择", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
 }
 /**
  *  姓名
@@ -64,6 +75,11 @@
     eee.mTitel = @"昵称";
     eee.mPlaceholder = @"请输入昵称";
     eee.mtext = @"好的名字能让别人记住你。";
+    eee.block = ^(NSString *content){
+        
+        self.mName.text = content;;
+    };
+
     [self pushViewController:eee];
     
     
@@ -106,13 +122,21 @@
 }
 #pragma mark - IBActionSheet/UIActionSheet Delegate Method
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"选择了第 %ld个", (long)buttonIndex);
-    if (buttonIndex == 0) {
-        self.mSex.text = @"男";
+    if (actionSheet.tag == 1001) {
+        if ( buttonIndex != 2 ) {
+            
+            [self startImagePickerVCwithButtonIndex:buttonIndex];
+        }
     }else{
-        self.mSex.text = @"女";
-        
+        NSLog(@"选择了第 %ld个", (long)buttonIndex);
+        if (buttonIndex == 0) {
+            self.mSex.text = @"男";
+        }else{
+            self.mSex.text = @"女";
+            
+        }
     }
+
 }
 
 /**
@@ -126,9 +150,97 @@
     eee.mTitel = @"个性签名";
     eee.mPlaceholder = @"请输入个性签名";
     eee.mtext = @"好的签名能让别人记住你。";
+    eee.block = ^(NSString *content){
+        
+        self.mDetail.text = content;;
+    };
     [self pushViewController:eee];
 }
 
+
+- (void)startImagePickerVCwithButtonIndex:(NSInteger )buttonIndex
+{
+    int type;
+    
+    
+    if (buttonIndex == 0) {
+        type = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing =NO;
+        
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+        
+    }
+    else if(buttonIndex == 1){
+        type = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:NULL];
+        
+        
+    }
+    
+    
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)imagePickerController didFinishPickingMediaWithInfo:(id)info
+{
+    
+    UIImage* tempimage1 = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self gotCropIt:tempimage1];
+    
+    [imagePickerController dismissViewControllerAnimated:YES completion:^() {
+        
+    }];
+    
+}
+-(void)gotCropIt:(UIImage*)photo
+{
+    RSKImageCropViewController *imageCropVC = nil;
+    
+    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    [self.navigationController pushViewController:imageCropVC animated:YES];
+    
+}
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+{
+    return   CGRectMake(self.view.center.x-self.mHeaderImg.frame.size.width/2, self.view.center.y-self.mHeaderImg.frame.size.height/2, self.mHeaderImg.frame.size.width, self.mHeaderImg.frame.size.height);
+    
+}
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+{
+    return [UIBezierPath bezierPathWithRect:CGRectMake(self.view.center.x-self.mHeaderImg.frame.size.width/2, self.view.center.y-self.mHeaderImg.frame.size.height/2, self.mHeaderImg.frame.size.width, self.mHeaderImg.frame.size.height)];
+    
+}
+- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    
+    self.mHeaderImg.image = tempImage;
+    
+    
+}
 
 
 @end

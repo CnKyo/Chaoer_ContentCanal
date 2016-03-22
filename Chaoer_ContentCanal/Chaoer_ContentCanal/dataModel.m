@@ -119,6 +119,9 @@ bool g_bined = NO;
     
 }
 
++ (BOOL)isNeedLogin{
+    return [mUserInfo backNowUser] == nil;
+}
 - (BOOL)isVaildUser{
     return self.mUserId != 0;
 }

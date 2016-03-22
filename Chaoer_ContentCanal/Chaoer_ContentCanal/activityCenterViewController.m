@@ -15,7 +15,12 @@
 @end
 
 @implementation activityCenterViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.mZongchou.selected = NO;
+    self.mGongyi.selected = NO;
+    self.mChoujiang.selected = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -41,16 +46,21 @@
 */
 
 - (IBAction)mChoujiang:(id)sender {
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
 }
 
 - (IBAction)mZongchou:(id)sender {
-    
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
     zhongchouViewController *zzz = [[zhongchouViewController alloc] initWithNibName:@"zhongchouViewController" bundle:nil];
     [self pushViewController:zzz];
     
 }
 
 - (IBAction)mGongyi:(id)sender {
+    UIButton *bbb = sender;
+    bbb.selected = !bbb.selected;
     mPublicWalerViewController *zzz = [[mPublicWalerViewController alloc] initWithNibName:@"mPublicWalerViewController" bundle:nil];
     [self pushViewController:zzz];
 }

@@ -38,7 +38,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)rightBtnTouched:(id)sender{
+    
+    self.block(self.mTx.text);
+    [self leftBtnTouched:nil];
+}
 /*
 #pragma mark - Navigation
 

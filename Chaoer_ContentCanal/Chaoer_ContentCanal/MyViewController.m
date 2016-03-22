@@ -17,7 +17,10 @@
 #import "myRedBagViewController.h"
 #import "myOrderViewController.h"
 #import "mSetupViewController.h"
-@interface MyViewController ()
+#import "RSKImageCropper.h"
+
+@interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
+
 
 @end
 
@@ -28,13 +31,19 @@
     mPersonView *mHeaderView;
     
     mPersonView *mRightView;
+    
+    UIImage *tempImage;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
     
-    
+//    if ([mUserInfo isNeedLogin]) {
+//        [self gotoLoginVC];
+//    }
+   
 }
 
 - (void)viewDidLoad {

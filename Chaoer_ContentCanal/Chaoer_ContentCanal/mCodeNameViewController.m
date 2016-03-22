@@ -9,13 +9,16 @@
 #import "mCodeNameViewController.h"
 
 #import "mUserInfoViewController.h"
-
+#import "hasCodeViewController.h"
+#import "needCodeViewController.h"
 @interface mCodeNameViewController ()
 
 @end
 
 @implementation mCodeNameViewController
-
+{
+    BOOL isCode;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -23,7 +26,7 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    
+    isCode = NO;
     self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
 
     
@@ -37,11 +40,21 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)mCode:(id)sender {
+
+    if (isCode) {
+        hasCodeViewController *hhh = [hasCodeViewController new];
+        [self pushViewController:hhh];
+    }else{
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+
+        [self pushViewController:nnn];
+    }
 }
 - (IBAction)mInfo:(id)sender {
     
     mUserInfoViewController *mmm = [[mUserInfoViewController alloc] initWithNibName:@"mUserInfoViewController" bundle:nil];
     [self pushViewController:mmm];
+
     
     
 }

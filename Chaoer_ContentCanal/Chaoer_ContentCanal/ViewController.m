@@ -121,25 +121,26 @@
 }
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
+    [self loginOk];
     MLLog(@"登录");
-    if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
-        [self showErrorStatus:@"手机号码不能为空"];
-        [mLoginV.phoneTx becomeFirstResponder];
-        return;
-    }
-    if (![Util isMobileNumber:mLoginV.phoneTx.text]) {
-        [self showErrorStatus:@"请输入合法的手机号码"];
-        return;
-    }
-    if (mLoginV.codeTx.text == nil || [mLoginV.codeTx.text isEqualToString:@""]) {
-        [self showErrorStatus:@"密码不能为空"];
-        [mLoginV.codeTx becomeFirstResponder];
-        
-        return;
-    }
-    
-    
-    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
+//    if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
+//        [self showErrorStatus:@"手机号码不能为空"];
+//        [mLoginV.phoneTx becomeFirstResponder];
+//        return;
+//    }
+//    if (![Util isMobileNumber:mLoginV.phoneTx.text]) {
+//        [self showErrorStatus:@"请输入合法的手机号码"];
+//        return;
+//    }
+//    if (mLoginV.codeTx.text == nil || [mLoginV.codeTx.text isEqualToString:@""]) {
+//        [self showErrorStatus:@"密码不能为空"];
+//        [mLoginV.codeTx becomeFirstResponder];
+//        
+//        return;
+//    }
+//    
+//    
+//    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
     
 
 
@@ -303,11 +304,11 @@
 {
     if( DeviceIsiPhone() )
     {
-        return @[@"replash-1.png",@"replash.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash-1.png",@"replash-1.png"];
     }
     else
     {
-        return @[@"replash-1.png",@"replash.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash-1.png",@"replash-1.png"];
     }
     
 }

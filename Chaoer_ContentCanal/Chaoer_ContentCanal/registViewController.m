@@ -85,5 +85,35 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)btnAction:(UIButton *)sender {
+    switch (sender.tag) {
+        case 1:
+        {
+            if (sender.selected == NO) {
+                self.mMasterBtn.selected = YES;
+                self.mVisiterBtn.selected = NO;
+            }else{
+                sender.selected = NO;
+                
+            }
+        }
+            break;
+        case 2:
+        {
+            if (sender.selected == NO) {
+                self.mMasterBtn.selected = NO;
+                self.mVisiterBtn.selected = YES;
+            }else{
+                sender.selected = NO;
+                
+            }
+        }
+            break;
+   
+        default:
+            break;
+    }
+
+}
 
 @end

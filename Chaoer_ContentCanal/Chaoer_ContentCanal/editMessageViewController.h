@@ -32,6 +32,7 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mStatus;
 
+@property (nonatomic,strong) void(^block)(NSString *block);
 
 
 @end
