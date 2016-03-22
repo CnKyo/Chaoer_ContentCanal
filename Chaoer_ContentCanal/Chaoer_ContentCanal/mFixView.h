@@ -33,7 +33,7 @@
 /**
  *  服务时间
  */
-@property (strong, nonatomic) IBOutlet UILabel *mTime;
+@property (strong, nonatomic) IBOutlet UIButton *mTimeBtn;
 
 /**
  *  需要选择的view

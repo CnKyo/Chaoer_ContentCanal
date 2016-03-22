@@ -261,23 +261,23 @@
     float   llllllat =  mapView.centerCoordinate.latitude;
     float   llllllng =  mapView.centerCoordinate.longitude;
     
-    [SAppInfo getPointAddressBubyer:mapView.centerCoordinate.longitude lat:mapView.centerCoordinate.latitude block:^(NSString *address, NSString *city, NSString *err) {
-        
-        if( err )
-        {
-            [SVProgressHUD showErrorWithStatus:err];
-        }
-        else
-        {
-            [SVProgressHUD dismiss];
-            _txtf.text= address;
-            
-            _userselect.coordinate  = CLLocationCoordinate2DMake( llllllat,llllllng);
-            _userselect.title       = @"定位地址";
-            _userselect.subtitle    = address;
-            
-        }
-    }];
+//    [SAppInfo getPointAddressBubyer:mapView.centerCoordinate.longitude lat:mapView.centerCoordinate.latitude block:^(NSString *address, NSString *city, NSString *err) {
+//        
+//        if( err )
+//        {
+//            [SVProgressHUD showErrorWithStatus:err];
+//        }
+//        else
+//        {
+//            [SVProgressHUD dismiss];
+//            _txtf.text= address;
+//            
+//            _userselect.coordinate  = CLLocationCoordinate2DMake( llllllat,llllllng);
+//            _userselect.title       = @"定位地址";
+//            _userselect.subtitle    = address;
+//            
+//        }
+//    }];
     
 }
 
@@ -404,43 +404,43 @@
 }
 -(void)searchKeywords_V2:(NSString*)key
 {
-    NSString* cc = [SAppInfo shareClient].mCityNow;
-    if( cc == nil )
-        cc = @"";
-    
-    NSString* requrl = [NSString stringWithFormat:@"http://apis.map.qq.com/ws/place/v1/suggestion/?keyword=%@&key=%@&region=%@",[Util URLEnCode:key],QQMAPKEY,[Util URLEnCode:cc]];
-    
-    
-    [SVProgressHUD showWithStatus:@"加载中..." maskType:SVProgressHUDMaskTypeClear];
-    [[APIClient sharedClient]GET:requrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSArray* tmpall = [responseObject objectForKey:@"data"];
-        if( tmpall.count > 0 )
-        {
-            [SVProgressHUD dismiss];
-            NSDictionary* oneobjj = tmpall.firstObject;
-            float llllllat = [[[oneobjj objectForKey:@"location"] objectForKey:@"lat"] floatValue];
-            float llllllng = [[[oneobjj objectForKey:@"location"] objectForKey:@"lng"] floatValue];
-            NSString*    aaaaaaadress = [oneobjj objectForKey:@"address"];
-            _userselect.coordinate  = CLLocationCoordinate2DMake( llllllat,llllllng);
-            _userselect.title       = @"定位地址";
-            _userselect.subtitle    = aaaaaaadress;
-            
-            _txtf.text = aaaaaaadress;
-            [_viewmapq setCenterCoordinate:_userselect.coordinate zoomLevel:15.0f animated:YES];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:@"没有搜到到数据"];
-            _alldata = nil;
-         }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        MLLog(@"search poi err:%@",error);
-        [SVProgressHUD showErrorWithStatus:@"检索结果为空"];
-        
-     }];
+//    NSString* cc = [SAppInfo shareClient].mCityNow;
+//    if( cc == nil )
+//        cc = @"";
+//    
+//    NSString* requrl = [NSString stringWithFormat:@"http://apis.map.qq.com/ws/place/v1/suggestion/?keyword=%@&key=%@&region=%@",[Util URLEnCode:key],QQMAPKEY,[Util URLEnCode:cc]];
+//    
+//    
+//    [SVProgressHUD showWithStatus:@"加载中..." maskType:SVProgressHUDMaskTypeClear];
+//    [[APIClient sharedClient]GET:requrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSArray* tmpall = [responseObject objectForKey:@"data"];
+//        if( tmpall.count > 0 )
+//        {
+//            [SVProgressHUD dismiss];
+//            NSDictionary* oneobjj = tmpall.firstObject;
+//            float llllllat = [[[oneobjj objectForKey:@"location"] objectForKey:@"lat"] floatValue];
+//            float llllllng = [[[oneobjj objectForKey:@"location"] objectForKey:@"lng"] floatValue];
+//            NSString*    aaaaaaadress = [oneobjj objectForKey:@"address"];
+//            _userselect.coordinate  = CLLocationCoordinate2DMake( llllllat,llllllng);
+//            _userselect.title       = @"定位地址";
+//            _userselect.subtitle    = aaaaaaadress;
+//            
+//            _txtf.text = aaaaaaadress;
+//            [_viewmapq setCenterCoordinate:_userselect.coordinate zoomLevel:15.0f animated:YES];
+//        }
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:@"没有搜到到数据"];
+//            _alldata = nil;
+//         }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        MLLog(@"search poi err:%@",error);
+//        [SVProgressHUD showErrorWithStatus:@"检索结果为空"];
+//        
+//     }];
     
 }
 -(void)searchKeywords:(NSString*)key
@@ -465,35 +465,35 @@
     }
     _poitableview.hidden = NO;
     
-    NSString* cc = [SAppInfo shareClient].mCityNow;
-    if( cc == nil )
-        cc = @"";
-    
-    NSString* encodedString = [_searchkey stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString* requrl = [NSString stringWithFormat:@"http://apis.map.qq.com/ws/place/v1/suggestion/?keyword=%@&key=%@&region=%@",_searchkey,QQMAPKEY,cc];
-    
-    requrl = [requrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [[APIClient sharedClient]GET:requrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-       
-        NSArray* tmpall = [responseObject objectForKey:@"data"];
-        if( tmpall.count > 0 )
-        {
-            _alldata = tmpall;
-            [_poitableview reloadData];
-        }
-        else
-        {
-            _alldata = nil;
-            [_poitableview reloadData];
-        }
-        bdoing = NO;
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        MLLog(@"search poi err:%@",error);
-        [SVProgressHUD showErrorWithStatus:@"检索结果为空"];
-        bdoing  = NO;
-    }];
+//    NSString* cc = [SAppInfo shareClient].mCityNow;
+//    if( cc == nil )
+//        cc = @"";
+//    
+//    NSString* encodedString = [_searchkey stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString* requrl = [NSString stringWithFormat:@"http://apis.map.qq.com/ws/place/v1/suggestion/?keyword=%@&key=%@&region=%@",_searchkey,QQMAPKEY,cc];
+//    
+//    requrl = [requrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    [[APIClient sharedClient]GET:requrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//       
+//        NSArray* tmpall = [responseObject objectForKey:@"data"];
+//        if( tmpall.count > 0 )
+//        {
+//            _alldata = tmpall;
+//            [_poitableview reloadData];
+//        }
+//        else
+//        {
+//            _alldata = nil;
+//            [_poitableview reloadData];
+//        }
+//        bdoing = NO;
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        MLLog(@"search poi err:%@",error);
+//        [SVProgressHUD showErrorWithStatus:@"检索结果为空"];
+//        bdoing  = NO;
+//    }];
 }
 
 

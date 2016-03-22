@@ -18,9 +18,9 @@
 }
 */
 
-- (void)setRate:(SOrderRateInfo *)rate{
-
-    _rate = rate;
-}
+//- (void)setRate:(SOrderRateInfo *)rate{
+//
+//    _rate = rate;
+//}
 
 @end

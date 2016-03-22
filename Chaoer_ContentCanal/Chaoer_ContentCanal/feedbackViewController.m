@@ -71,18 +71,18 @@
     }
     else{
         [self showWithStatus:@"正在提交..."];
-        
-        [SAppInfo feedback:self.txView.text block:^(SResBase *resb) {
-            if (!resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                
-            }
-            else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                [self dismiss];
-                [self popViewController];
-            }
-        }];
+//        
+//        [SAppInfo feedback:self.txView.text block:^(SResBase *resb) {
+//            if (!resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                
+//            }
+//            else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                [self dismiss];
+//                [self popViewController];
+//            }
+//        }];
         
     }
     

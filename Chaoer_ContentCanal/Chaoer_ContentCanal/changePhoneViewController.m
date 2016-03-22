@@ -77,26 +77,26 @@
     
     [SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
     
-    [SUser sendSM:self.mPhoneTx.text block:^(SResBase *resb) {
-        
-        if( resb.msuccess )
-        {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            [self timeCount];
-
-            [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
-        }
-        
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            self.mCodeBtn.userInteractionEnabled = YES;
-            [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
-            
-        }
-        
-        
-    }];
+//    [SUser sendSM:self.mPhoneTx.text block:^(SResBase *resb) {
+//        
+//        if( resb.msuccess )
+//        {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            [self timeCount];
+//
+//            [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
+//        }
+//        
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            self.mCodeBtn.userInteractionEnabled = YES;
+//            [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
+//            
+//        }
+//        
+//        
+//    }];
     
 }
 
@@ -128,16 +128,16 @@
 #pragma mark----确定
 - (void)okAction:(UIButton *)sender{
 
-    [SUser changePhone:self.mPhoneTx.text andOldphone:[SUser currentUser].mPhone andCode:self.mCodeTx.text block:^(SResBase *resb) {
-        
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            [self popViewController_2];
-            
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [SUser changePhone:self.mPhoneTx.text andOldphone:[SUser currentUser].mPhone andCode:self.mCodeTx.text block:^(SResBase *resb) {
+//        
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            [self popViewController_2];
+//            
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 
 }
 

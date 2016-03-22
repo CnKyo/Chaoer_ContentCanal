@@ -141,15 +141,7 @@
     
     [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mUserInfo *mUser, mBaseData *resb) {
-        [SVProgressHUD dismiss];
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            [self loginOk];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+
 
 }
 #pragma  mark -----键盘消失
@@ -177,7 +169,7 @@
     MLLog(@"免责");
     WebVC* vc = [[WebVC alloc]init];
     vc.mName = @"免责声明";
-    vc.mUrl = [GInfo shareClient].mProtocolUrl;
+//    vc.mUrl = [GInfo shareClient].mProtocolUrl;
     [self pushViewController:vc];
 }
 #pragma mark----登录成功跳转

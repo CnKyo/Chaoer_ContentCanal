@@ -196,19 +196,19 @@
     
     MLLog(@"最后组装的数据时：%@--%@",weekArr,hourArr);
     
-    [_mShop updateBusinessTime:weekArr andHourArr:hourArr block:^(SResBase *info) {
-        if (info.msuccess) {
-            if (_itblock) {
-                _itblock(_mShop);
-            }
-            
-
-            [self popViewController];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [_mShop updateBusinessTime:weekArr andHourArr:hourArr block:^(SResBase *info) {
+//        if (info.msuccess) {
+//            if (_itblock) {
+//                _itblock(_mShop);
+//            }
+//            
+//
+//            [self popViewController];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
 
 }
 - (void)didReceiveMemoryWarning {

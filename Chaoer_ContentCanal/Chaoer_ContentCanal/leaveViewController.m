@@ -95,20 +95,20 @@
     }
     
     [SVProgressHUD showWithStatus:@"操作中..." maskType:SVProgressHUDMaskTypeClear];
-    [[SUser currentUser] leaveReq:[Util mTimeToInt:_startime] endtime:[Util mTimeToInt:_enttime] text:_lll.mTxView.text block:^(SResBase *resb) {
-        
-        if( resb.msuccess )
-        {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-//            [self popViewController];
-            [self rightBtnTouched:nil];
-            
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus: resb.mmsg];
-        }
-    }];
+//    [[SUser currentUser] leaveReq:[Util mTimeToInt:_startime] endtime:[Util mTimeToInt:_enttime] text:_lll.mTxView.text block:^(SResBase *resb) {
+//        
+//        if( resb.msuccess )
+//        {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+////            [self popViewController];
+//            [self rightBtnTouched:nil];
+//            
+//        }
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus: resb.mmsg];
+//        }
+//    }];
 
 }
 - (void)loadPickView{

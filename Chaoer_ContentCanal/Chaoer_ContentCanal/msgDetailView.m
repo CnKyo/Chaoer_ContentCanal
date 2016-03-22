@@ -37,9 +37,9 @@
     
     mDetailView = [messageView shareView];
     mDetailView.backgroundColor = [UIColor whiteColor];
-    mDetailView.mTitiel.text = _Smsg.mTitle;
-    mDetailView.mtime.text = _Smsg.mCreateTime;
-    mDetailView.mcontent.text = _Smsg.mContent;
+//    mDetailView.mTitiel.text = _Smsg.mTitle;
+//    mDetailView.mtime.text = _Smsg.mCreateTime;
+//    mDetailView.mcontent.text = _Smsg.mContent;
     [sss addSubview:mDetailView];
     
     

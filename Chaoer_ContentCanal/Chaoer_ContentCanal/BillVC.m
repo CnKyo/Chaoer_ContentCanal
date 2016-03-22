@@ -62,7 +62,7 @@
     
     headView = [BillHeadView shareView];
     [self.tableView setTableHeaderView:headView];
-     headView.mMoney.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
+//     headView.mMoney.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
     [headView.mButton addTarget:self action:@selector(TiXianClick:) forControlEvents:UIControlEventTouchUpInside];
     [headView.mczBt addTarget:self action:@selector(CZClick:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -99,19 +99,19 @@
 
 - (void)getShop{
 
-    [SShop getShopInfo:^(SResBase *info, SShop *retobj) {
-        
-        if (info.msuccess) {
-            [SVProgressHUD dismiss];
-            
-            _mShop = retobj;
-             headView.mMoney.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
-            
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [SShop getShopInfo:^(SResBase *info, SShop *retobj) {
+//        
+//        if (info.msuccess) {
+//            [SVProgressHUD dismiss];
+//            
+//            _mShop = retobj;
+//             headView.mMoney.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
+//            
+//        }else{
+//            
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
 }
 
 - (void)CZClick:(UIButton *)sender
@@ -127,40 +127,40 @@
     
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeClear];
     
-    [[SUser currentUser] getBankInfo:^(SResBase *resb, SWithDrawInfo *retobj) {
-        
-        if (resb.msuccess) {
-            
-            [SVProgressHUD dismiss];
-            
-            if (!retobj || retobj == nil) {
-                UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有添加银行卡" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                
-                [alt show];
-                
-                return;
-            }else{
-            
-                WithDrawVC *withDraw = [[WithDrawVC alloc] initWithNibName:@"WithDrawVC" bundle:nil];
-                withDraw.mShop = _mShop;
-                withDraw.mDrawInfo = retobj;
-                
-                withDraw.itblock = ^(BOOL flags){
-                
-                    if (flags) {
-                        [self getShop];
-                        
-                        flag = YES;
-                    }
-                };
-                [self pushViewController:withDraw];
-            }
-            
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [[SUser currentUser] getBankInfo:^(SResBase *resb, SWithDrawInfo *retobj) {
+//        
+//        if (resb.msuccess) {
+//            
+//            [SVProgressHUD dismiss];
+//            
+//            if (!retobj || retobj == nil) {
+//                UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有添加银行卡" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                
+//                [alt show];
+//                
+//                return;
+//            }else{
+//            
+//                WithDrawVC *withDraw = [[WithDrawVC alloc] initWithNibName:@"WithDrawVC" bundle:nil];
+//                withDraw.mShop = _mShop;
+//                withDraw.mDrawInfo = retobj;
+//                
+//                withDraw.itblock = ^(BOOL flags){
+//                
+//                    if (flags) {
+//                        [self getShop];
+//                        
+//                        flag = YES;
+//                    }
+//                };
+//                [self pushViewController:withDraw];
+//            }
+//            
+//        }else{
+//            
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 
 
    
@@ -195,31 +195,31 @@
 - (void)headerBeganRefresh{
     
     self.page=1;
-    [_mShop searchBill:self.page type:1 status:nowSelect block:^(SResBase *info, NSArray *bill) {
-        
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (info.msuccess) {
-            
-            [tempDic setObject:bill forKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-            
-            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        }
-        else{
-            [self addEmptyViewWithImg:nil];
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-        
-        if(bill.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [_mShop searchBill:self.page type:1 status:nowSelect block:^(SResBase *info, NSArray *bill) {
+//        
+//        [self headerEndRefresh];
+//        [self.tempArray removeAllObjects];
+//        if (info.msuccess) {
+//            
+//            [tempDic setObject:bill forKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//            
+//            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+//        }
+//        else{
+//            [self addEmptyViewWithImg:nil];
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//        
+//        if(bill.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
     
     
 }
@@ -227,37 +227,37 @@
 -(void)footetBeganRefresh
 {
     self.page++;
-    [_mShop searchBill:self.page type:1 status:nowSelect block:^(SResBase *info, NSArray *bill) {
-        [self footetEndRefresh];
-        
-        if (info.msuccess) {
-            
-            NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-            
-            [arry addObjectsFromArray:bill];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-        
-         NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-        if( arry.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        
-        if (bill.count == 0) {
-            [SVProgressHUD showSuccessWithStatus:@"暂无新数据"];
-        }
-        
-        [self.tableView reloadData];
-    }];
-    
-    
+//    [_mShop searchBill:self.page type:1 status:nowSelect block:^(SResBase *info, NSArray *bill) {
+//        [self footetEndRefresh];
+//        
+//        if (info.msuccess) {
+//            
+//            NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//            
+//            [arry addObjectsFromArray:bill];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//        
+//         NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//        if( arry.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        
+//        if (bill.count == 0) {
+//            [SVProgressHUD showSuccessWithStatus:@"暂无新数据"];
+//        }
+//        
+//        [self.tableView reloadData];
+//    }];
+//    
+//    
     
 }
 
@@ -302,26 +302,26 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    
-    SShopBill *bill = [arry objectAtIndex:indexPath.row];
-    
-    cell.mTime.text = bill.mCreateTime;
-    cell.mRemark.text =[NSString stringWithFormat: @"备注：%@",bill.mRemark];
-    cell.mPrice.text = bill.mMoney;
-    if (bill.mStatus == 0){
-        cell.mState.text = @"待审核";
-        cell.mPrice.textColor = M_CO;
-        cell.mState.textColor = COLOR(220, 162, 95);
-    }else if (bill.mStatus == 1){
-        cell.mState.text = @"成功";
-        cell.mPrice.textColor = COLOR(34, 190, 82);
-        cell.mState.textColor = COLOR(34, 190, 82);
-    }
-    else if (bill.mStatus == 2){
-        cell.mState.text = @"拒绝";
-        cell.mPrice.textColor = M_CO;
-        cell.mState.textColor = COLOR(220, 162, 95);
-    }
+//    
+//    SShopBill *bill = [arry objectAtIndex:indexPath.row];
+//    
+//    cell.mTime.text = bill.mCreateTime;
+//    cell.mRemark.text =[NSString stringWithFormat: @"备注：%@",bill.mRemark];
+//    cell.mPrice.text = bill.mMoney;
+//    if (bill.mStatus == 0){
+//        cell.mState.text = @"待审核";
+//        cell.mPrice.textColor = M_CO;
+//        cell.mState.textColor = COLOR(220, 162, 95);
+//    }else if (bill.mStatus == 1){
+//        cell.mState.text = @"成功";
+//        cell.mPrice.textColor = COLOR(34, 190, 82);
+//        cell.mState.textColor = COLOR(34, 190, 82);
+//    }
+//    else if (bill.mStatus == 2){
+//        cell.mState.text = @"拒绝";
+//        cell.mPrice.textColor = M_CO;
+//        cell.mState.textColor = COLOR(220, 162, 95);
+//    }
     
     
     return cell;

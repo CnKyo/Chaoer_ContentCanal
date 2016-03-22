@@ -61,10 +61,10 @@
     
     if( buttonIndex == 1)
     {
-        [SUser logout];
-        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-        [self.mLogout setTitle:@"登录" forState:UIControlStateNormal];
-        [self gotoLoginVC];
+//        [SUser logout];
+//        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+//        [self.mLogout setTitle:@"登录" forState:UIControlStateNormal];
+//        [self gotoLoginVC];
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

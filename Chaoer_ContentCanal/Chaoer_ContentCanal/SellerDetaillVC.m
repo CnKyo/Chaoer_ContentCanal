@@ -29,11 +29,11 @@
         _mServiceTimeHeight.constant = 0;
         
         NSString *string = @"";
-        for (SNorms *s in _mGoods.mNorms) {
-            string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",s.mName]];
-        }
-        _mGuige.text = string;
-        _mTypeName.text = @"商品详情";
+//        for (SNorms *s in _mGoods.mNorms) {
+//            string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",s.mName]];
+//        }
+//        _mGuige.text = string;
+//        _mTypeName.text = @"商品详情";
         
     }else{
     
@@ -41,11 +41,11 @@
         _mTypeName.text = @"服务详情";
     }
     
-    if (_mGoods.mImgs.count >0) {
-        _mImg.image = [_mGoods.mImgs objectAtIndex:0];
-    }
-    _mName.text = _mGoods.mName;
-    _mPrice.text = [NSString stringWithFormat:@"¥%.2f",_mGoods.mPrice];
+//    if (_mGoods.mImgs.count >0) {
+//        _mImg.image = [_mGoods.mImgs objectAtIndex:0];
+//    }
+//    _mName.text = _mGoods.mName;
+//    _mPrice.text = [NSString stringWithFormat:@"¥%.2f",_mGoods.mPrice];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _mDianpu.text = [defaults objectForKey:@"shopname"];
@@ -58,8 +58,8 @@
     
     _mServiceTime.text = [Util getTimeStringNoYear:[Util dateWithInt:time]];
     
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    _mRemark.attributedText = attrStr;
+//    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//    _mRemark.attributedText = attrStr;
 
 }
 

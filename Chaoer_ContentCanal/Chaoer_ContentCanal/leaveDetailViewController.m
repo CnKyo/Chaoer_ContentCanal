@@ -42,7 +42,7 @@
     UILabel *ttt = [[UILabel alloc]initWithFrame:CGRectMake(sll.mright+5, sll.origin.y, 233, 18)];
     ttt.textColor = [UIColor colorWithRed:0.212 green:0.212 blue:0.212 alpha:1];
     ttt.font = [UIFont systemFontOfSize:15];
-    ttt.text = [Util startTimeStr:self.ssl.mStartTimeStr andEndTime:self.ssl.mEndTimeStr];
+//    ttt.text = [Util startTimeStr:self.ssl.mStartTimeStr andEndTime:self.ssl.mEndTimeStr];
 
     [FFF addSubview:ttt];
 
@@ -61,7 +61,7 @@
     rrr.numberOfLines = 0;
     rrr.textColor = [UIColor colorWithRed:0.596 green:0.584 blue:0.604 alpha:1];
     rrr.font = [UIFont systemFontOfSize:15];
-    rrr.text = self.ssl.mText;
+//    rrr.text = self.ssl.mText;
 
     [FFF addSubview:rrr];
     
@@ -97,9 +97,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)Caction:(UIButton *)sender{
-    MLLog(@"%@",[GInfo shareClient].mServiceTel);
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",[GInfo shareClient].mServiceTel];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//    MLLog(@"%@",[GInfo shareClient].mServiceTel);
+//    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",[GInfo shareClient].mServiceTel];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 /*
 #pragma mark - Navigation

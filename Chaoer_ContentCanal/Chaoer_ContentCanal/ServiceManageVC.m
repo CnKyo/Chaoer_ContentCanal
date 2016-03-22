@@ -133,14 +133,14 @@
     [self.tempArray insertObject:object atIndex:toRow];
     
     NSMutableArray *arry = NSMutableArray.new;
-    for(STrade *trade in self.tempArray){
-    
-        [arry addObject:@(trade.mId)];
-    }
-    
-    [SGoodsCate updateSort:arry block:^(SResBase *resb) {
-        
-    }];
+//    for(STrade *trade in self.tempArray){
+//    
+//        [arry addObject:@(trade.mId)];
+//    }
+//    
+//    [SGoodsCate updateSort:arry block:^(SResBase *resb) {
+//        
+//    }];
 }
 
 //- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -155,20 +155,20 @@
     if(editingStyle==UITableViewCellEditingStyleDelete)
     {
         
-        SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
-        
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [cate delThis:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD dismiss];
-                [self.tempArray removeObjectAtIndex:indexPath.row];
-                // Delete the row from the data source.
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }else{
-            
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
+//        SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
+//        
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [cate delThis:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD dismiss];
+//                [self.tempArray removeObjectAtIndex:indexPath.row];
+//                // Delete the row from the data source.
+//                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            }else{
+//            
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
         
     }
 }
@@ -177,29 +177,29 @@
 #pragma mark ----顶部刷新数据
 - (void)headerBeganRefresh{
 
-    [SGoodsCate getGoodCates:_type block:^(SResBase *resb, NSArray *all) {
-        
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (resb.msuccess) {
-            
-            [self.tempArray removeAllObjects];
-            [self.tempArray addObjectsFromArray:all];
-        }
-        else{
-            [self addEmptyViewWithImg:nil];
-        }
-        
-        if(all.count == 0 || all == nil)
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [SGoodsCate getGoodCates:_type block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self headerEndRefresh];
+//        [self.tempArray removeAllObjects];
+//        if (resb.msuccess) {
+//            
+//            [self.tempArray removeAllObjects];
+//            [self.tempArray addObjectsFromArray:all];
+//        }
+//        else{
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        
+//        if(all.count == 0 || all == nil)
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
 }
 
 
@@ -221,14 +221,14 @@
        cell.mEditBT.hidden = YES;
     }
     
-    SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
-    cell.mTitle.text = cate.mName;
-    
-    if(_type == 1)
-        cell.mDetail.text = [NSString stringWithFormat:@"%d个商品",cate.mGoodsNum];
-    else
-       cell.mDetail.text = [NSString stringWithFormat:@"%d个服务",cate.mGoodsNum];
-    
+//    SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
+//    cell.mTitle.text = cate.mName;
+//    
+//    if(_type == 1)
+//        cell.mDetail.text = [NSString stringWithFormat:@"%d个商品",cate.mGoodsNum];
+//    else
+//       cell.mDetail.text = [NSString stringWithFormat:@"%d个服务",cate.mGoodsNum];
+//    
     return cell;
     
     
@@ -238,21 +238,21 @@
 
     int index = (int)sender.tag;
     
-    SGoodsCate *cate = [self.tempArray objectAtIndex:index];
-    AddServiceTypeVC *addtype = [[AddServiceTypeVC alloc] initWithNibName:@"AddServiceTypeVC" bundle:nil];
-    addtype.block = ^(BOOL flag){
-        
-        if (flag) {
-            
-            [self.tableView headerBeginRefreshing];
-        }
-        
-    };
-
-    addtype.mCate = cate;
-    addtype.type = _type;
-    [self pushViewController:addtype];
-    
+//    SGoodsCate *cate = [self.tempArray objectAtIndex:index];
+//    AddServiceTypeVC *addtype = [[AddServiceTypeVC alloc] initWithNibName:@"AddServiceTypeVC" bundle:nil];
+//    addtype.block = ^(BOOL flag){
+//        
+//        if (flag) {
+//            
+//            [self.tableView headerBeginRefreshing];
+//        }
+//        
+//    };
+//
+//    addtype.mCate = cate;
+//    addtype.type = _type;
+//    [self pushViewController:addtype];
+//    
     
 }
 
@@ -277,12 +277,12 @@
     UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     ServiceDetailVC *viewController = [storyboard instantiateViewControllerWithIdentifier:@"ServiceDetailVC"];
-    
-    SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
-    viewController.mCate = cate;
-    viewController.type = _type;
-    
-    [self pushViewController:viewController];
+//    
+//    SGoodsCate *cate = [self.tempArray objectAtIndex:indexPath.row];
+//    viewController.mCate = cate;
+//    viewController.type = _type;
+//    
+//    [self pushViewController:viewController];
 }
 
 

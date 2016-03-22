@@ -62,70 +62,70 @@
     y = 0;
     normViewAry = [[NSMutableArray alloc] initWithCapacity:0];
     
-    if (_mGoods) {
-        
-        _mPaizhao.hidden = YES;
-        _mPzText.hidden = YES;
-        
-        if(_mSelect == 1){
-            _mTopLB.hidden = YES;
-            _mLeftText.text = @"下架";
-            _mLeftImg.image = [UIImage imageNamed:@"dp_xiajia"];
-        }else{
-            _mLeftText.text = @"上架";
-            _mLeftImg.image = [UIImage imageNamed:@"dp_shangjia"];
-        }
-        
-        if (_mGoods.mImgs.count > 0) {
-            [_mBgImg sd_setImageWithURL:[NSURL URLWithString:[_mGoods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
-        }
-        _mGoodsName.text = _mGoods.mName;
-        _mPrice.text = [NSString stringWithFormat:@"%.2f",_mGoods.mPrice];
-        _mNum.text = [NSString stringWithFormat:@"%d",_mGoods.mStock];
-        
-        htmlContent = _mGoods.mBrief;
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        _mRemark.attributedText = attrStr;
-        
-        //tempImage = _mBgImg.image;
-        
-        
-        if(_mGoods.mNorms.count > 0){
-            
-            _mPriceView.hidden = YES;
-            
-            normNum = (int)_mGoods.mNorms.count;
-            y = 156*normNum;
-        
-            for (int i = 0 ; i < _mGoods.mNorms.count ; i++) {
-                
-                SNorms *norm = [_mGoods.mNorms objectAtIndex:i];
-                AddGoodsView *goodsV = [AddGoodsView shareView];
-                CGRect rect = goodsV.frame;
-                rect.origin.y = i*156;
-                rect.size.width = DEVICE_Width;
-                goodsV.frame = rect;
-                [_mMiddleView addSubview:goodsV];
-                goodsV.mNormId = norm.mId;
-                goodsV.mNorm.text = norm.mName;
-                goodsV.mPrice.text = [NSString stringWithFormat:@"%.2f",norm.mPrice];
-                goodsV.mNum.text = [NSString stringWithFormat:@"%d",norm.mStock];
-                [goodsV.mDelBT addTarget:self action:@selector(DelClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                [normViewAry addObject:goodsV];
-               
-            }
-            _mMiddleViewHeight.constant = 156*normNum;
-        }
-        
-        
-    }else{
-        
-        _mLeftView.hidden = YES;
-        _mRightView.hidden = YES;
-        _mTopLB.hidden = YES;
-        _mBottomLB.hidden = YES;
-    }
+//    if (_mGoods) {
+//        
+//        _mPaizhao.hidden = YES;
+//        _mPzText.hidden = YES;
+//        
+//        if(_mSelect == 1){
+//            _mTopLB.hidden = YES;
+//            _mLeftText.text = @"下架";
+//            _mLeftImg.image = [UIImage imageNamed:@"dp_xiajia"];
+//        }else{
+//            _mLeftText.text = @"上架";
+//            _mLeftImg.image = [UIImage imageNamed:@"dp_shangjia"];
+//        }
+//        
+//        if (_mGoods.mImgs.count > 0) {
+//            [_mBgImg sd_setImageWithURL:[NSURL URLWithString:[_mGoods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
+//        }
+//        _mGoodsName.text = _mGoods.mName;
+//        _mPrice.text = [NSString stringWithFormat:@"%.2f",_mGoods.mPrice];
+//        _mNum.text = [NSString stringWithFormat:@"%d",_mGoods.mStock];
+//        
+//        htmlContent = _mGoods.mBrief;
+//        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//        _mRemark.attributedText = attrStr;
+//        
+//        //tempImage = _mBgImg.image;
+//        
+//        
+//        if(_mGoods.mNorms.count > 0){
+//            
+//            _mPriceView.hidden = YES;
+//            
+//            normNum = (int)_mGoods.mNorms.count;
+//            y = 156*normNum;
+//        
+//            for (int i = 0 ; i < _mGoods.mNorms.count ; i++) {
+//                
+//                SNorms *norm = [_mGoods.mNorms objectAtIndex:i];
+//                AddGoodsView *goodsV = [AddGoodsView shareView];
+//                CGRect rect = goodsV.frame;
+//                rect.origin.y = i*156;
+//                rect.size.width = DEVICE_Width;
+//                goodsV.frame = rect;
+//                [_mMiddleView addSubview:goodsV];
+//                goodsV.mNormId = norm.mId;
+//                goodsV.mNorm.text = norm.mName;
+//                goodsV.mPrice.text = [NSString stringWithFormat:@"%.2f",norm.mPrice];
+//                goodsV.mNum.text = [NSString stringWithFormat:@"%d",norm.mStock];
+//                [goodsV.mDelBT addTarget:self action:@selector(DelClick:) forControlEvents:UIControlEventTouchUpInside];
+//                
+//                [normViewAry addObject:goodsV];
+//               
+//            }
+//            _mMiddleViewHeight.constant = 156*normNum;
+//        }
+//        
+//        
+//    }else{
+//        
+//        _mLeftView.hidden = YES;
+//        _mRightView.hidden = YES;
+//        _mTopLB.hidden = YES;
+//        _mBottomLB.hidden = YES;
+//    }
 
 }
 
@@ -182,68 +182,68 @@
    
     
     
-    if ( self.mGoods == nil && tempImage == nil ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择图片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-        return;
-    }
-    
-    SGoods *mGoods = [[SGoods alloc] init];
-    mGoods.mName = _mGoodsName.text;
-   
-    NSMutableArray *imgAry = NSMutableArray.new;
-    
-    if( tempImage )
-    {
-        [imgAry addObject:tempImage];
-        mGoods.mImgs = imgAry;
-    }
-    else
-        mGoods.mImgs = _mGoods.mImgs;
-    
-    mGoods.mBrief = htmlContent;
-    mGoods.mTradeId = _mCate.mId;
-    
-    NSMutableArray *norms = [[NSMutableArray alloc] init];
-    
-    if(normViewAry.count > 0){
-    
-        for (AddGoodsView *ag in normViewAry) {
-            
-            SNorms *norm = [[SNorms alloc] init];
-            norm.mName = ag.mNorm.text;
-            norm.mPrice = [ag.mPrice.text floatValue];
-            norm.mStock = [ag.mNum.text intValue];
-            norm.mId = ag.mNormId;
-            
-            [norms addObject:norm];
-        }
-        
-        mGoods.mNorms = norms;
-    
-    }else{
-        mGoods.mPrice = [_mPrice.text floatValue];
-        mGoods.mStock = [_mNum.text intValue];
-    }
-    
-    mGoods.mId = _mGoods.mId;
-    
-    [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-    [mGoods addThis:^(SResBase *resb) {
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            
-            if (_block) {
-                _block(YES);
-            }
-            [self popViewController];
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    if ( self.mGoods == nil && tempImage == nil ) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择图片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//        
+//        return;
+//    }
+//    
+//    SGoods *mGoods = [[SGoods alloc] init];
+//    mGoods.mName = _mGoodsName.text;
+//   
+//    NSMutableArray *imgAry = NSMutableArray.new;
+//    
+//    if( tempImage )
+//    {
+//        [imgAry addObject:tempImage];
+//        mGoods.mImgs = imgAry;
+//    }
+//    else
+//        mGoods.mImgs = _mGoods.mImgs;
+//    
+//    mGoods.mBrief = htmlContent;
+//    mGoods.mTradeId = _mCate.mId;
+//    
+//    NSMutableArray *norms = [[NSMutableArray alloc] init];
+//    
+//    if(normViewAry.count > 0){
+//    
+//        for (AddGoodsView *ag in normViewAry) {
+//            
+//            SNorms *norm = [[SNorms alloc] init];
+//            norm.mName = ag.mNorm.text;
+//            norm.mPrice = [ag.mPrice.text floatValue];
+//            norm.mStock = [ag.mNum.text intValue];
+//            norm.mId = ag.mNormId;
+//            
+//            [norms addObject:norm];
+//        }
+//        
+//        mGoods.mNorms = norms;
+//    
+//    }else{
+//        mGoods.mPrice = [_mPrice.text floatValue];
+//        mGoods.mStock = [_mNum.text intValue];
+//    }
+//    
+//    mGoods.mId = _mGoods.mId;
+//    
+//    [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//    [mGoods addThis:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            
+//            if (_block) {
+//                _block(YES);
+//            }
+//            [self popViewController];
+//        }else{
+//            
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 }
 
 
@@ -267,7 +267,7 @@
     
     WebVC *w = [WebVC new];
     w.mName = @"商品描述";
-    w.mUrl = [NSString stringWithFormat:@"%@/goods.detail?token=%@&userId=%d&id=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId,_mGoods.mId];
+//    w.mUrl = [NSString stringWithFormat:@"%@/goods.detail?token=%@&userId=%d&id=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId,_mGoods.mId];
     
     w.itgoodsblock = ^(NSString *content){
     
@@ -337,110 +337,110 @@
 }
 
 - (IBAction)mBottomClick:(id)sender {
-    
-    SGoods *mGoods = [[SGoods alloc] init];
-    
-    mGoods.mName = _mGoodsName.text;
-    mGoods.mBrief = _mRemark.text;
-    
-    
-    NSMutableArray *norms = [[NSMutableArray alloc] init];
-    
-    if(normViewAry.count > 0){
-        
-        for (AddGoodsView *ag in normViewAry) {
-            
-            SNorms *norm = [[SNorms alloc] init];
-            norm.mName = ag.mNorm.text;
-            norm.mPrice = [ag.mPrice.text floatValue];
-            norm.mStock = [ag.mNum.text intValue];
-            
-            [norms addObject:norm];
-        }
-        
-        AddGoodsView *v = [normViewAry objectAtIndex:0];
-        
-        mGoods.mNorms = norms;
-        mGoods.mPrice = [v.mPrice.text floatValue];
-        
-    }else{
-        mGoods.mPrice = [_mPrice.text floatValue];
-        mGoods.mStock = [_mNum.text intValue];
-    }
-    
-    UIButton *button = (UIButton *)sender;
-    if (button.tag == 11) {
-        
-        
-        NSMutableArray *imgAry = NSMutableArray.new;
-        
-        if (_mBgImg.image) {
-            [imgAry addObject:_mBgImg.image];
-            mGoods.mImgs = imgAry;
-        }
-        
-        mGoods.mBrief = htmlContent;
-        SellerDetaillVC *sellerDetaill = [[SellerDetaillVC alloc] initWithNibName:@"SellerDetaillVC" bundle:nil];
-        
-        sellerDetaill.mGoods = mGoods;
-        sellerDetaill.mType = 1;
-        [self pushViewController:sellerDetaill];
-        
-        return;
-    }
-    
-    NSMutableArray *selectArry = [[NSMutableArray alloc] initWithObjects:@(_mGoods.mId), nil];
-    if (button.tag == 10) {
-        
-        if (_mSelect == 1) {
-            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-            [SGoods getOff:selectArry block:^(SResBase *resb) {
-                if (resb.msuccess) {
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    
-                    if (_block) {
-                        _block(YES);
-                    }
-                    [self popViewController];
-                }else{
-                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                }
-            }];
-        }else{
-            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-            [SGoods getOn:selectArry block:^(SResBase *resb) {
-                if (resb.msuccess) {
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    if (_block) {
-                        _block(YES);
-                    }
-                    [self popViewController];
-                }else{
-                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                }
-            }];
-            
-        }
-        
-        return;
-    }
-    
-    if (button.tag == 12) {
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [SGoods delSome:selectArry block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                
-                if (_block) {
-                    _block(YES);
-                }
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-    }
+//    
+//    SGoods *mGoods = [[SGoods alloc] init];
+//    
+//    mGoods.mName = _mGoodsName.text;
+//    mGoods.mBrief = _mRemark.text;
+//    
+//    
+//    NSMutableArray *norms = [[NSMutableArray alloc] init];
+//    
+//    if(normViewAry.count > 0){
+//        
+//        for (AddGoodsView *ag in normViewAry) {
+//            
+//            SNorms *norm = [[SNorms alloc] init];
+//            norm.mName = ag.mNorm.text;
+//            norm.mPrice = [ag.mPrice.text floatValue];
+//            norm.mStock = [ag.mNum.text intValue];
+//            
+//            [norms addObject:norm];
+//        }
+//        
+//        AddGoodsView *v = [normViewAry objectAtIndex:0];
+//        
+//        mGoods.mNorms = norms;
+//        mGoods.mPrice = [v.mPrice.text floatValue];
+//        
+//    }else{
+//        mGoods.mPrice = [_mPrice.text floatValue];
+//        mGoods.mStock = [_mNum.text intValue];
+//    }
+//    
+//    UIButton *button = (UIButton *)sender;
+//    if (button.tag == 11) {
+//        
+//        
+//        NSMutableArray *imgAry = NSMutableArray.new;
+//        
+//        if (_mBgImg.image) {
+//            [imgAry addObject:_mBgImg.image];
+//            mGoods.mImgs = imgAry;
+//        }
+//        
+//        mGoods.mBrief = htmlContent;
+//        SellerDetaillVC *sellerDetaill = [[SellerDetaillVC alloc] initWithNibName:@"SellerDetaillVC" bundle:nil];
+//        
+//        sellerDetaill.mGoods = mGoods;
+//        sellerDetaill.mType = 1;
+//        [self pushViewController:sellerDetaill];
+//        
+//        return;
+//    }
+//    
+//    NSMutableArray *selectArry = [[NSMutableArray alloc] initWithObjects:@(_mGoods.mId), nil];
+//    if (button.tag == 10) {
+//        
+//        if (_mSelect == 1) {
+//            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//            [SGoods getOff:selectArry block:^(SResBase *resb) {
+//                if (resb.msuccess) {
+//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                    
+//                    if (_block) {
+//                        _block(YES);
+//                    }
+//                    [self popViewController];
+//                }else{
+//                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                }
+//            }];
+//        }else{
+//            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//            [SGoods getOn:selectArry block:^(SResBase *resb) {
+//                if (resb.msuccess) {
+//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                    if (_block) {
+//                        _block(YES);
+//                    }
+//                    [self popViewController];
+//                }else{
+//                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                }
+//            }];
+//            
+//        }
+//        
+//        return;
+//    }
+//    
+//    if (button.tag == 12) {
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [SGoods delSome:selectArry block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                
+//                if (_block) {
+//                    _block(YES);
+//                }
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//    }
 
 }
 

@@ -10,8 +10,8 @@
 
 @interface AddBankInfo : BaseVC
 
-@property (nonatomic,strong) SShop *mShopInfo;
-@property (nonatomic,strong) SWithDrawInfo *mDraw;
+//@property (nonatomic,strong) SShop *mShopInfo;
+//@property (nonatomic,strong) SWithDrawInfo *mDraw;
 @property (weak, nonatomic) IBOutlet UITextField *mName;
 @property (weak, nonatomic) IBOutlet UITextField *mBankname;
 @property (weak, nonatomic) IBOutlet UITextField *mBankNo;

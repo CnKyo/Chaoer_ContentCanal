@@ -36,10 +36,10 @@
 {
     [super viewWillAppear:animated];
     
-    if ([SUser isNeedLogin]) {
-        [self gotoLoginVC];
-        return;
-    }
+//    if ([SUser isNeedLogin]) {
+//        [self gotoLoginVC];
+//        return;
+//    }
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -83,29 +83,29 @@
 - (void)headerBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在获取数据..." maskType:SVProgressHUDMaskTypeClear];
     self.page = 1;
-    [[SUser currentUser] getMyMsg:self.page block:^(SResBase *resb, NSArray *all) {
-        
-        [self headerEndRefresh];
-        
-        [self.tempArray removeAllObjects];
-        if (resb.msuccess) {
-            [self.tempArray addObjectsFromArray:all];
-            MLLog(@"获取到的数据:%@",self.tempArray);
-            [SVProgressHUD dismiss];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        if( self.tempArray.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [[SUser currentUser] getMyMsg:self.page block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self headerEndRefresh];
+//        
+//        [self.tempArray removeAllObjects];
+//        if (resb.msuccess) {
+//            [self.tempArray addObjectsFromArray:all];
+//            MLLog(@"获取到的数据:%@",self.tempArray);
+//            [SVProgressHUD dismiss];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        if( self.tempArray.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
     
     
 }
@@ -114,28 +114,28 @@
 {
     [SVProgressHUD showWithStatus:@"正在获取数据..." maskType:SVProgressHUDMaskTypeClear];
     self.page ++;
-    [[SUser currentUser] getMyMsg:self.page block:^(SResBase *resb, NSArray *all) {
-        [self footetEndRefresh];
-        if (resb.msuccess) {
-            
-            [self.tempArray addObjectsFromArray:all];
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if( self.tempArray.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-    }];
+//    [[SUser currentUser] getMyMsg:self.page block:^(SResBase *resb, NSArray *all) {
+//        [self footetEndRefresh];
+//        if (resb.msuccess) {
+//            
+//            [self.tempArray addObjectsFromArray:all];
+//            [self.tableView reloadData];
+//            [SVProgressHUD dismiss];
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if( self.tempArray.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//    }];
     
 }
 
@@ -169,40 +169,40 @@
     
     
     cell.accessoryType = UITableViewCellAccessoryNone;
-    SMessageInfo *Smsg = self.tempArray[indexPath.row];
-    
-    
-    NSArray *timeArr = [Smsg.mCreateTime componentsSeparatedByString:@" "];
-    
-    cell.msgTitleLb.text = Smsg.mTitle;
-    cell.msgContentLb.text = Smsg.mContent;
-    cell.timeLb.text = [timeArr objectAtIndex:0];
-    
-    UIImage *ptai = [UIImage imageNamed:@"platform"];
-    UIImage *sjia = [UIImage imageNamed:@"merchants"];
-    
-    cell.mMsgType.image = Smsg.mType == 1 ? ptai:sjia;
-
-    if (Smsg.mStatus == 0) {
-        MLLog(@"~~~~~:%d",Smsg.mStatus);
-        cell.mPoint.hidden = NO;
-        
-    }
-    if(Smsg.mStatus == 1){
-        MLLog(@"~~~~~:%d",Smsg.mStatus);
-        cell.mPoint.hidden = YES;
-        
-    }
-    
-    cell.selectedBtn.tag = indexPath.row;
-    
-    if (Smsg.mChecked) {
-        [cell.selectedBtn setImage:[UIImage imageNamed:@"22"] forState:UIControlStateNormal];
-    }else{
-        [cell.selectedBtn setImage:[UIImage imageNamed:@"22-1"] forState:UIControlStateNormal];
-    }
-    
-    [cell.selectedBtn addTarget:self action:@selector(checkClick:) forControlEvents:UIControlEventTouchUpInside];
+//    SMessageInfo *Smsg = self.tempArray[indexPath.row];
+//    
+//    
+//    NSArray *timeArr = [Smsg.mCreateTime componentsSeparatedByString:@" "];
+//    
+//    cell.msgTitleLb.text = Smsg.mTitle;
+//    cell.msgContentLb.text = Smsg.mContent;
+//    cell.timeLb.text = [timeArr objectAtIndex:0];
+//    
+//    UIImage *ptai = [UIImage imageNamed:@"platform"];
+//    UIImage *sjia = [UIImage imageNamed:@"merchants"];
+//    
+//    cell.mMsgType.image = Smsg.mType == 1 ? ptai:sjia;
+//
+//    if (Smsg.mStatus == 0) {
+//        MLLog(@"~~~~~:%d",Smsg.mStatus);
+//        cell.mPoint.hidden = NO;
+//        
+//    }
+//    if(Smsg.mStatus == 1){
+//        MLLog(@"~~~~~:%d",Smsg.mStatus);
+//        cell.mPoint.hidden = YES;
+//        
+//    }
+//    
+//    cell.selectedBtn.tag = indexPath.row;
+//    
+//    if (Smsg.mChecked) {
+//        [cell.selectedBtn setImage:[UIImage imageNamed:@"22"] forState:UIControlStateNormal];
+//    }else{
+//        [cell.selectedBtn setImage:[UIImage imageNamed:@"22-1"] forState:UIControlStateNormal];
+//    }
+//    
+//    [cell.selectedBtn addTarget:self action:@selector(checkClick:) forControlEvents:UIControlEventTouchUpInside];
     
     
 
@@ -213,15 +213,15 @@
 
 - (void)checkClick:(UIButton *)sender{
 
-    SMessageInfo *Smsg = self.tempArray[sender.tag];
-    Smsg.mChecked = !Smsg.mChecked;
-    
-    messageTableViewCell *cell = (messageTableViewCell*)[sender findSuperViewWithClass:[messageTableViewCell class]];
-    NSIndexPath *indexpath = [self.tableView indexPathForCell:cell];
-    
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
+//    SMessageInfo *Smsg = self.tempArray[sender.tag];
+//    Smsg.mChecked = !Smsg.mChecked;
+//    
+//    messageTableViewCell *cell = (messageTableViewCell*)[sender findSuperViewWithClass:[messageTableViewCell class]];
+//    NSIndexPath *indexpath = [self.tableView indexPathForCell:cell];
+//    
+//    [self.tableView beginUpdates];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView endUpdates];
 }
 
 
@@ -229,124 +229,124 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SMessageInfo *Smsg = self.tempArray[indexPath.row];
-    
-    [SMessageInfo readSomeMsg:@[ [NSNumber numberWithInt: Smsg.mId] ] block:^(SResBase *retobj) {
-        
-        if (retobj.msuccess) {
-            Smsg.mStatus = 1;
-            [self.tableView beginUpdates];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
-            if (Smsg.mType == 1)
-            {///状态为1，打开新界面，展示消息详情
-                UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                msgDetailView *mmm =[secondStroyBoard instantiateViewControllerWithIdentifier:@"msgD"];
-                mmm.Smsg = Smsg;
-                mmm.mTitleStr = Smsg.mTitle;
-                [self.navigationController pushViewController:mmm animated:YES];
-                
-            }
-            if (Smsg.mType == 3)
-            {///3为订单消息,args为订单id???
+//    SMessageInfo *Smsg = self.tempArray[indexPath.row];
+//    
+//    [SMessageInfo readSomeMsg:@[ [NSNumber numberWithInt: Smsg.mId] ] block:^(SResBase *retobj) {
+//        
+//        if (retobj.msuccess) {
+//            Smsg.mStatus = 1;
+//            [self.tableView beginUpdates];
+//            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            [self.tableView endUpdates];
+//            if (Smsg.mType == 1)
+//            {///状态为1，打开新界面，展示消息详情
+//                UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                msgDetailView *mmm =[secondStroyBoard instantiateViewControllerWithIdentifier:@"msgD"];
+//                mmm.Smsg = Smsg;
+//                mmm.mTitleStr = Smsg.mTitle;
+//                [self.navigationController pushViewController:mmm animated:YES];
+//                
+//            }
+//            if (Smsg.mType == 3)
+//            {///3为订单消息,args为订单id???
 //                UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //                wkOrderDetailViewController *o =[secondStroyBoard instantiateViewControllerWithIdentifier:@"wkd"];
 //                o.wkorder = SOrder.new;
 //                o.wkorder.mId = [Smsg.mArgs intValue];
 //                [self.navigationController pushViewController:o animated:YES];
                 
-                orderDetail* vc = [[orderDetail alloc]initWithNibName:@"orderDetail" bundle:nil];
-                vc.mtagOrder = SOrder.new;
-                vc.mtagOrder.mId = [Smsg.mArgs intValue];
-                [self pushViewController:vc];
-
-                
-            }if(Smsg.mType == 2)
-            {///状态为2，打开html界面
-                WebVC *webView = [[WebVC alloc]init];
-                webView.mName = @"消息详情";
-                webView.mUrl = Smsg.mArgs;
-                [self pushViewController:webView];
-            }
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
-        }
-        
-    }];
-    
+//                orderDetail* vc = [[orderDetail alloc]initWithNibName:@"orderDetail" bundle:nil];
+//                vc.mtagOrder = SOrder.new;
+//                vc.mtagOrder.mId = [Smsg.mArgs intValue];
+//                [self pushViewController:vc];
+//
+//                
+//            }if(Smsg.mType == 2)
+//            {///状态为2，打开html界面
+//                WebVC *webView = [[WebVC alloc]init];
+//                webView.mName = @"消息详情";
+//                webView.mUrl = Smsg.mArgs;
+//                [self pushViewController:webView];
+//            }
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
+//        }
+//        
+//    }];
+//    
 
 }
 
 #pragma mark-----全部设为已读
 - (void)rightBtnTouched:(id)sender{
     
-    NSMutableArray *arr = [[NSMutableArray alloc]init];
-    
-    for (SMessageInfo *sm in self.tempArray) {
-        
-        if( sm.mChecked )
-            [arr addObject:[NSNumber numberWithInt:sm.mId]];
-    }
-    
-    if( arr.count == 0 )
-    {
-        [SVProgressHUD showErrorWithStatus:@"请至少选中一条消息"];
-        return;
-    }
-    
-    
-    [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
-    
-    [SMessageInfo delMessages:arr block:^(SResBase *retobj) {
-        
-        if (retobj.msuccess) {
-            
-            NSMutableArray * tt  = NSMutableArray.new;
-            for ( SMessageInfo* one in self.tempArray ) {
-                if( !one.mChecked )
-                    [tt addObject:one];
-            }
-            self.tempArray = tt;
-            [self.tableView reloadData];
-            [SVProgressHUD showSuccessWithStatus:retobj.mmsg];
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
-        }
-    }];
-
-   
-    [mTableView reloadData];
+//    NSMutableArray *arr = [[NSMutableArray alloc]init];
+//    
+//    for (SMessageInfo *sm in self.tempArray) {
+//        
+//        if( sm.mChecked )
+//            [arr addObject:[NSNumber numberWithInt:sm.mId]];
+//    }
+//    
+//    if( arr.count == 0 )
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"请至少选中一条消息"];
+//        return;
+//    }
+//    
+//    
+//    [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
+//    
+//    [SMessageInfo delMessages:arr block:^(SResBase *retobj) {
+//        
+//        if (retobj.msuccess) {
+//            
+//            NSMutableArray * tt  = NSMutableArray.new;
+//            for ( SMessageInfo* one in self.tempArray ) {
+//                if( !one.mChecked )
+//                    [tt addObject:one];
+//            }
+//            self.tempArray = tt;
+//            [self.tableView reloadData];
+//            [SVProgressHUD showSuccessWithStatus:retobj.mmsg];
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
+//        }
+//    }];
+//
+//   
+//    [mTableView reloadData];
     
 }
 
 #pragma mark 列表删除操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    SMessageInfo *Smsg = self.tempArray[indexPath.row];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc]init];
-    
-    [arr addObject:[NSNumber numberWithInt:Smsg.mId]];
-    
-    [SMessageInfo delMessages:arr block:^(SResBase *retobj) {
-        
-        if (retobj.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:retobj.mmsg];
-            
-            [self.tempArray removeObjectAtIndex:indexPath.row];
-            [tableView beginUpdates];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView endUpdates];
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
-        }
-    }];
+//    SMessageInfo *Smsg = self.tempArray[indexPath.row];
+//    
+//    NSMutableArray *arr = [[NSMutableArray alloc]init];
+//    
+//    [arr addObject:[NSNumber numberWithInt:Smsg.mId]];
+//    
+//    [SMessageInfo delMessages:arr block:^(SResBase *retobj) {
+//        
+//        if (retobj.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:retobj.mmsg];
+//            
+//            [self.tempArray removeObjectAtIndex:indexPath.row];
+//            [tableView beginUpdates];
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            [tableView endUpdates];
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:retobj.mmsg];
+//        }
+//    }];
 
 
     

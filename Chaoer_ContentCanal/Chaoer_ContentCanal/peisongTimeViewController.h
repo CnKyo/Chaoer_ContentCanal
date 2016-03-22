@@ -10,7 +10,7 @@
 
 @interface peisongTimeViewController : BaseVC
 
-@property (strong,nonatomic) SShop   *mShop;
+//@property (strong,nonatomic) SShop   *mShop;
 
 @property (nonatomic,strong) void(^itblock)(NSDictionary *mBackDic);
 

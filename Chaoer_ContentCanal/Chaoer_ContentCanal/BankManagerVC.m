@@ -48,9 +48,9 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-    AddBankInfo *bankInfo = [[AddBankInfo alloc] initWithNibName:@"AddBankInfo" bundle:nil];
-    bankInfo.mShopInfo = _mShop;
-    [self pushViewController:bankInfo];
+//    AddBankInfo *bankInfo = [[AddBankInfo alloc] initWithNibName:@"AddBankInfo" bundle:nil];
+//    bankInfo.mShopInfo = _mShop;
+//    [self pushViewController:bankInfo];
 }
 
 
@@ -61,37 +61,37 @@
     
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeClear];
     
-    [SWithDrawInfo GetBankInfo:^(SResBase *resb, SWithDrawInfo *retobj) {
-        
-        [self.tableView headerEndRefreshing];
-        
-        if (resb.msuccess) {
-            
-            [SVProgressHUD dismiss];
-            
-            if (!retobj || retobj == nil) {
-                
-                [self addEmptyView:nil];
-                
-                self.hiddenRightBtn = NO;
-                self.rightBtnTitle = @"添加";
-                
-                return;
-            }else{
-                
-                self.rightBtnTitle = nil;
-                self.hiddenRightBtn = YES;
-                self.tempArray = [NSMutableArray arrayWithObject:retobj];
-                
-                [self removeEmptyView];
-                [self.tableView reloadData];
-            }
-            
-        }else{
-            [self addEmptyView:nil];
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [SWithDrawInfo GetBankInfo:^(SResBase *resb, SWithDrawInfo *retobj) {
+//        
+//        [self.tableView headerEndRefreshing];
+//        
+//        if (resb.msuccess) {
+//            
+//            [SVProgressHUD dismiss];
+//            
+//            if (!retobj || retobj == nil) {
+//                
+//                [self addEmptyView:nil];
+//                
+//                self.hiddenRightBtn = NO;
+//                self.rightBtnTitle = @"添加";
+//                
+//                return;
+//            }else{
+//                
+//                self.rightBtnTitle = nil;
+//                self.hiddenRightBtn = YES;
+//                self.tempArray = [NSMutableArray arrayWithObject:retobj];
+//                
+//                [self removeEmptyView];
+//                [self.tableView reloadData];
+//            }
+//            
+//        }else{
+//            [self addEmptyView:nil];
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 
 }
 
@@ -130,10 +130,10 @@
     BankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    SWithDrawInfo *draw = [self.tempArray objectAtIndex:indexPath.row];
-    
-    cell.mName.text = [NSString stringWithFormat:@"%@\t%@",draw.mName,draw.mBank];
-    cell.mNo.text = draw.mBankNo;
+//    SWithDrawInfo *draw = [self.tempArray objectAtIndex:indexPath.row];
+//    
+//    cell.mName.text = [NSString stringWithFormat:@"%@\t%@",draw.mName,draw.mBank];
+//    cell.mNo.text = draw.mBankNo;
     
     return cell;
     
@@ -150,26 +150,26 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if(editingStyle==UITableViewCellEditingStyleDelete){
-    
-        SWithDrawInfo *draw = [self.tempArray objectAtIndex:indexPath.row];
-        
-        [SVProgressHUD showWithStatus:@"删除中.." maskType:SVProgressHUDMaskTypeClear];
-        [draw DeleteBankInfo:^(SResBase *resb) {
-          
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-                
-                [self.tempArray removeAllObjects];
-                [self.tableView reloadData];
-                [self addEmptyView:nil];
-                self.hiddenRightBtn = NO;
-                self.rightBtnTitle = @"添加";
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-    }
+//    if(editingStyle==UITableViewCellEditingStyleDelete){
+//    
+//        SWithDrawInfo *draw = [self.tempArray objectAtIndex:indexPath.row];
+//        
+//        [SVProgressHUD showWithStatus:@"删除中.." maskType:SVProgressHUDMaskTypeClear];
+//        [draw DeleteBankInfo:^(SResBase *resb) {
+//          
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+//                
+//                [self.tempArray removeAllObjects];
+//                [self.tableView reloadData];
+//                [self addEmptyView:nil];
+//                self.hiddenRightBtn = NO;
+//                self.rightBtnTitle = @"添加";
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//    }
 }
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

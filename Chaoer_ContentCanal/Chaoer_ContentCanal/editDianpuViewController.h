@@ -30,7 +30,7 @@
 
 @property (strong,nonatomic) NSString   *mContentStr;
 
-@property (strong,nonatomic) SShop   *mShop;
+//@property (strong,nonatomic) SShop   *mShop;
 ///1为店铺名称 2为店铺公告 3为联系电话 4为店铺介绍
 @property (assign,nonatomic) int   mType;
 

@@ -163,7 +163,7 @@
     NSDictionary *mStyle = @{@"Action":[WPAttributedStyleAction styledActionWithAction:^{
         WebVC* vc = [[WebVC alloc]init];
         vc.mName = @"免责声明";
-        vc.mUrl = [GInfo shareClient].mProtocolUrl;
+//        vc.mUrl = [GInfo shareClient].mProtocolUrl;
         [self pushViewController:vc];
     }],@"color": M_CO};
     NSString *ssss = @"点击“登录”，即表示您同意";
@@ -274,16 +274,16 @@
     }
 
     [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
-    [SUser loginWithPhone:mPhoneTx.text psw:mPwdTx.text block:^(SResBase *resb, SUser *user) {
-        if ( resb.msuccess ) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            [self loginOk];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-
-        }
-    }];
+//    [SUser loginWithPhone:mPhoneTx.text psw:mPwdTx.text block:^(SResBase *resb, SUser *user) {
+//        if ( resb.msuccess ) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            [self loginOk];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//
+//        }
+//    }];
     
     
 }

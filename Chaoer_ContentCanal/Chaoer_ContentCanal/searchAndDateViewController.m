@@ -64,29 +64,29 @@
     
     self.page=1;
     
-    [[SUser currentUser] getMyOrders:self.page status:0 date:_dateStr keywords:_searchStr block:^(SResBase *resb,SOrderPack *retobj) {
-        
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (resb.msuccess) {
-            
-            [self.tempArray addObjectsFromArray:retobj.mOrders];
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if( self.tempArray.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [[SUser currentUser] getMyOrders:self.page status:0 date:_dateStr keywords:_searchStr block:^(SResBase *resb,SOrderPack *retobj) {
+//        
+//        [self headerEndRefresh];
+//        [self.tempArray removeAllObjects];
+//        if (resb.msuccess) {
+//            
+//            [self.tempArray addObjectsFromArray:retobj.mOrders];
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if( self.tempArray.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
     
     
 }

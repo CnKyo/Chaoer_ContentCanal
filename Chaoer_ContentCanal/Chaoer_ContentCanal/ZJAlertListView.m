@@ -73,6 +73,8 @@ static ZJAlertListViewBlock _block;
     
     CGRect tableFrame = CGRectMake(0, ZJCustomButtonHeight, xWidth, self.bounds.size.height - 2 * ZJCustomButtonHeight);
     _mainAlertListView = [[UITableView alloc] initWithFrame:tableFrame style:UITableViewStylePlain];
+    _mainAlertListView.separatorStyle = UITableViewCellSelectionStyleNone;
+
     self.mainAlertListView.dataSource = self;
     self.mainAlertListView.delegate = self;
     [self addSubview:self.mainAlertListView];

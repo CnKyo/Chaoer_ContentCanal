@@ -16,8 +16,8 @@
 @property (nonatomic,strong) NSArray *mHour;
 
 
-@property (nonatomic,strong) SShop *mShop;
-
-@property (nonatomic,strong) void(^itblock)(SShop *mShop);
+//@property (nonatomic,strong) SShop *mShop;
+//
+//@property (nonatomic,strong) void(^itblock)(SShop *mShop);
 
 @end

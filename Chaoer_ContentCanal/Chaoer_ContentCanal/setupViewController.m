@@ -58,15 +58,15 @@
     mFootView = [footView shareView];
     mFootView.frame = CGRectMake(0, mView.mbottom, DEVICE_Width, 75);
     [mFootView.mLoginBtn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
-    if ([SUser isNeedLogin]) {
-        
-        [mFootView.mLoginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    }
-    else{
-        
-        [mFootView.mLoginBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-        
-    }
+//    if ([SUser isNeedLogin]) {
+//        
+//        [mFootView.mLoginBtn setTitle:@"登录" forState:UIControlStateNormal];
+//    }
+//    else{
+//        
+//        [mFootView.mLoginBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+//        
+//    }
     [self.view addSubview:mFootView];
     
     // Do any additional setup after loading the view.
@@ -81,7 +81,7 @@
         
         [defaults synchronize];
         
-        [SUser relTokenWithPush];
+//        [SUser relTokenWithPush];
         
     }else{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -90,7 +90,7 @@
         
         [defaults synchronize];
         
-        [SUser clearTokenWithPush];
+//        [SUser clearTokenWithPush];
     }
     
 }
@@ -104,7 +104,7 @@
     
     if( buttonIndex == 1)
     {
-        [SUser logout];
+//        [SUser logout];
         [SVProgressHUD showSuccessWithStatus:@"退出成功"];
         [mFootView.mLoginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [self gotoLoginVC];
@@ -122,8 +122,8 @@
 - (void)aboutUs:(UIButton *)sender{
     WebVC *w = [WebVC new];
     w.mName = @"关于我们";
-    w.mUrl = [GInfo shareClient].mAboutUrl;
-    MLLog(@"关于我们：%@",[GInfo shareClient].mAboutUrl);
+//    w.mUrl = [GInfo shareClient].mAboutUrl;
+//    MLLog(@"关于我们：%@",[GInfo shareClient].mAboutUrl);
     [self pushViewController:w];
 }
 #pragma mark----意见反馈

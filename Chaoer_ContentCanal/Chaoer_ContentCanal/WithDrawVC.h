@@ -13,8 +13,8 @@
 
 @property (nonatomic,strong) void(^itblock)(BOOL flag);
 
-@property (nonatomic,strong) SShop *mShop;
-@property (nonatomic,strong) SWithDrawInfo *mDrawInfo;
+//@property (nonatomic,strong) SShop *mShop;
+//@property (nonatomic,strong) SWithDrawInfo *mDrawInfo;
 @property (weak, nonatomic) IBOutlet UILabel *mPrice;
 @property (weak, nonatomic) IBOutlet UITextField *mPriceTF;
 

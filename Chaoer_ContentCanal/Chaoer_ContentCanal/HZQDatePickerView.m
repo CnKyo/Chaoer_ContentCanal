@@ -37,7 +37,7 @@
     /** 确定 */
     self.sureBtn.layer.cornerRadius = 3;
     self.sureBtn.layer.borderWidth = 1;
-    self.sureBtn.layer.borderColor = [[UIColor colorWithRed:0.976 green:0.031 blue:0.231 alpha:1] CGColor];
+    self.sureBtn.layer.borderColor = [M_CO CGColor];
     self.sureBtn.layer.masksToBounds = YES;
     
     /** 取消按钮 */
@@ -51,9 +51,7 @@
 {
     NSDate *selected = [self.datePickerView date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm"];
-    
-
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *currentOlderOneDateStr = [dateFormatter stringFromDate:selected];
     return currentOlderOneDateStr;
 }

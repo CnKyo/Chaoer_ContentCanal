@@ -11,7 +11,7 @@
 @interface AddServiceTypeVC ()<UITableViewDataSource,UITableViewDelegate>{
 
     BOOL open;
-    STrade *selectTrade;
+//    STrade *selectTrade;
 }
 
 @end
@@ -59,50 +59,50 @@
     
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeClear];
     
-    [SSeller getTradeList:^(SResBase *resb, NSArray *all) {
-        
-        if (resb.msuccess) {
-            [SVProgressHUD dismiss];
-            [self.tempArray removeAllObjects];
-            
-            [self.tempArray addObjectsFromArray:all];
-            
-            if (open) {
-                _mTableViewHeight.constant = 45*all.count;
-                _mTableView.contentSize = CGSizeMake(DEVICE_Width, 45*all.count);
-            }else{
-                _mTableViewHeight.constant = 0;
-            }
-            
-            
-            if (all.count>0) {
-                
-                
-                if (!_mCate) {
-                    STrade *tarde = [all objectAtIndex:0];
-                    selectTrade = tarde;
-                    _mType.text = tarde.mName;
-                }
-                
-            }
-            
-            [_mTableView reloadData];
-            
-        }else{
-            _mTableViewHeight.constant = 0;
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
-    
-    
-    if (_mCate) {
-        _mType.text = _mCate.mTrade.mName;
-        _mTypeName.text = _mCate.mName;
-       
-        selectTrade = _mCate.mTrade;
-    }
-    
-    
+//    [SSeller getTradeList:^(SResBase *resb, NSArray *all) {
+//        
+//        if (resb.msuccess) {
+//            [SVProgressHUD dismiss];
+//            [self.tempArray removeAllObjects];
+//            
+//            [self.tempArray addObjectsFromArray:all];
+//            
+//            if (open) {
+//                _mTableViewHeight.constant = 45*all.count;
+//                _mTableView.contentSize = CGSizeMake(DEVICE_Width, 45*all.count);
+//            }else{
+//                _mTableViewHeight.constant = 0;
+//            }
+//            
+//            
+//            if (all.count>0) {
+//                
+//                
+//                if (!_mCate) {
+//                    STrade *tarde = [all objectAtIndex:0];
+//                    selectTrade = tarde;
+//                    _mType.text = tarde.mName;
+//                }
+//                
+//            }
+//            
+//            [_mTableView reloadData];
+//            
+//        }else{
+//            _mTableViewHeight.constant = 0;
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
+//    
+//    
+//    if (_mCate) {
+//        _mType.text = _mCate.mTrade.mName;
+//        _mTypeName.text = _mCate.mName;
+//       
+//        selectTrade = _mCate.mTrade;
+//    }
+//    
+//    
     
 }
 
@@ -115,35 +115,35 @@
     }
     [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
     
-    if (_mCate) {
-        [_mCate changeName:_mTypeName.text tradeId:selectTrade.mId type:_type block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                
-                if (_block) {
-                    _block(YES);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-        return;
-
-    }
-    [SGoodsCate addOne:_mTypeName.text tradeid:selectTrade.mId type:_type block:^(SResBase *resb) {
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            
-            if (_block) {
-                _block(YES);
-            }
-            [self popViewController];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    if (_mCate) {
+//        [_mCate changeName:_mTypeName.text tradeId:selectTrade.mId type:_type block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                
+//                if (_block) {
+//                    _block(YES);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//        return;
+//
+//    }
+//    [SGoodsCate addOne:_mTypeName.text tradeid:selectTrade.mId type:_type block:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            
+//            if (_block) {
+//                _block(YES);
+//            }
+//            [self popViewController];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 }
 
 #pragma mark -- tableviewDelegate
@@ -178,19 +178,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mycell"];
     }
     
-    STrade *tarde = [self.tempArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = tarde.mName;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.textColor = COLOR(71, 72, 73);
+//    STrade *tarde = [self.tempArray objectAtIndex:indexPath.row];
+//    cell.textLabel.text = tarde.mName;
+//    cell.textLabel.font = [UIFont systemFontOfSize:15];
+//    cell.textLabel.textColor = COLOR(71, 72, 73);
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    STrade *tarde = [self.tempArray objectAtIndex:indexPath.row];
-    _mType.text = tarde.mName;
-    selectTrade = tarde;
+//    STrade *tarde = [self.tempArray objectAtIndex:indexPath.row];
+//    _mType.text = tarde.mName;
+//    selectTrade = tarde;
     _mTableViewHeight.constant = 0;
     open = NO;
 }

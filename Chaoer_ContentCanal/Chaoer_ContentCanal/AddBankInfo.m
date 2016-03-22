@@ -51,18 +51,18 @@
     NSRange range = {3,4};
     
     
-    NSString *string = [[SUser currentUser].mPhone stringByReplacingCharactersInRange:range withString:@"****"];
-
-    _mDetailText.text = [NSString stringWithFormat:@"验证码发送至你绑定的手机号%@",string];
-    _mName.text = _mShopInfo.mContacts;
-//    _mName.text = @"赵三";
-    _mName.enabled = NO;
-    if (_mDraw) {
-        
-        _mBankname.text = _mDraw.mBank;
-        _mBankNo.text = _mDraw.mBankNo;
-        
-    }
+//    NSString *string = [[SUser currentUser].mPhone stringByReplacingCharactersInRange:range withString:@"****"];
+//
+//    _mDetailText.text = [NSString stringWithFormat:@"验证码发送至你绑定的手机号%@",string];
+//    _mName.text = _mShopInfo.mContacts;
+////    _mName.text = @"赵三";
+//    _mName.enabled = NO;
+//    if (_mDraw) {
+//        
+//        _mBankname.text = _mDraw.mBank;
+//        _mBankNo.text = _mDraw.mBankNo;
+//        
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,20 +82,20 @@
 
 - (IBAction)mGetCodeClick:(id)sender {
 
-    [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
-        if (resb.msuccess) {
-            [self timeCount];
-            [sender setBackgroundImage:[UIImage imageNamed:@"huibutton"] forState:0];
-            
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            _mCodeBT.userInteractionEnabled = YES;
-            [sender setBackgroundImage:[UIImage imageNamed:@"17-1"] forState:0];
-            
-        }
-    }];
+//    [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            [self timeCount];
+//            [sender setBackgroundImage:[UIImage imageNamed:@"huibutton"] forState:0];
+//            
+//        }
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            _mCodeBT.userInteractionEnabled = YES;
+//            [sender setBackgroundImage:[UIImage imageNamed:@"17-1"] forState:0];
+//            
+//        }
+//    }];
 }
 
 - (void)timeCount{//倒计时函数
@@ -141,34 +141,34 @@
         return;
     }
     
-    if (_mDraw) {
-        
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [_mDraw EditBank:_mBankname.text bankNo:_mBankNo.text mobile:[SUser currentUser].mPhone name:_mName.text verifyCode:_mCode.text block:^(SResBase *resb, SWithDrawInfo *draw) {
-            
-            if (resb.msuccess) {
-                [SVProgressHUD dismiss];
-                [self popViewController];
-            }else{
-                
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-            
-        }];
-        
-        return;
-    }
-    
-    [SWithDrawInfo AddBank:_mBankname.text bankNo:_mBankNo.text mobile:[SUser currentUser].mPhone name:_mName.text verifyCode:_mCode.text block:^(SResBase *resb, SWithDrawInfo *draw) {
-        
-        if (resb.msuccess) {
-            [self popViewController];
-        }else{
-        
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-    }];
+//    if (_mDraw) {
+//        
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [_mDraw EditBank:_mBankname.text bankNo:_mBankNo.text mobile:[SUser currentUser].mPhone name:_mName.text verifyCode:_mCode.text block:^(SResBase *resb, SWithDrawInfo *draw) {
+//            
+//            if (resb.msuccess) {
+//                [SVProgressHUD dismiss];
+//                [self popViewController];
+//            }else{
+//                
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//            
+//        }];
+//        
+//        return;
+//    }
+//    
+//    [SWithDrawInfo AddBank:_mBankname.text bankNo:_mBankNo.text mobile:[SUser currentUser].mPhone name:_mName.text verifyCode:_mCode.text block:^(SResBase *resb, SWithDrawInfo *draw) {
+//        
+//        if (resb.msuccess) {
+//            [self popViewController];
+//        }else{
+//        
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//    }];
     
 }
 @end

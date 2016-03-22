@@ -67,7 +67,7 @@
         self.mPageName = self.Title = @"修改密码";
         self.wkV1.hidden = YES;
         self.mPhoneLb.hidden = NO;
-        self.mPhoneLb.text = [NSString stringWithFormat:@"当前手机号：%@",[SUser currentUser].mPhone];
+//        self.mPhoneLb.text = [NSString stringWithFormat:@"当前手机号：%@",[SUser currentUser].mPhone];
         [self.wkLoginBtn setTitle:@"确定修改" forState:0];
     }else{
         self.wkV1.hidden = NO;
@@ -132,8 +132,8 @@
     }
     
     NSDictionary *mStyle1 = @{@"Action":[WPAttributedStyleAction styledActionWithAction:^{
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",[GInfo shareClient].mServiceTel];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",[GInfo shareClient].mServiceTel];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         MLLog(@"打电话");
     }],@"color": M_CO,@"xiahuaxian":@[M_CO,@{NSUnderlineStyleAttributeName : @(kCTUnderlineStyleSingle|kCTUnderlinePatternSolid)}]};
     
@@ -142,7 +142,7 @@
     wkFCode.font = [UIFont systemFontOfSize:14];
     wkFCode.numberOfLines = 0;
     wkFCode.textColor = M_TextColor;
-    wkFCode.attributedText = [[NSString stringWithFormat:@"%@<Action> %@</Action>",@"无法获得验证码，请联系客服",[GInfo shareClient].mServiceTel] attributedStringWithStyleBook:mStyle1];
+//    wkFCode.attributedText = [[NSString stringWithFormat:@"%@<Action> %@</Action>",@"无法获得验证码，请联系客服",[GInfo shareClient].mServiceTel] attributedStringWithStyleBook:mStyle1];
     [self.view addSubview:wkFCode];
     
     [wkFCode makeConstraints:^(MASConstraintMaker *make) {
@@ -173,17 +173,17 @@
             [self.wkCodeTx becomeFirstResponder];
             return;
         }
-        [SUser reSetPswWithPhone:[SUser currentUser].mPhone newpsw:_wkNewPWD.text smcode:_wkCodeTx.text block:^(SResBase *resb, SUser *user) {
-            if( resb.msuccess )
-            {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self popToRootViewController];
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
+//        [SUser reSetPswWithPhone:[SUser currentUser].mPhone newpsw:_wkNewPWD.text smcode:_wkCodeTx.text block:^(SResBase *resb, SUser *user) {
+//            if( resb.msuccess )
+//            {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self popToRootViewController];
+//            }
+//            else
+//            {
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
 
     }else{
         if (![Util isMobileNumber:self.wkPhoneTX.text]) {
@@ -201,18 +201,18 @@
 //            [self.wkCodeTx becomeFirstResponder];
 //            return;
 //        }
-        
-        [SUser reSetPswWithPhone:_wkPhoneTX.text newpsw:_wkNewPWD.text smcode:_wkCodeTx.text block:^(SResBase *resb, SUser *user) {
-            if( resb.msuccess )
-            {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self popToRootViewController];
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
+//        
+//        [SUser reSetPswWithPhone:_wkPhoneTX.text newpsw:_wkNewPWD.text smcode:_wkCodeTx.text block:^(SResBase *resb, SUser *user) {
+//            if( resb.msuccess )
+//            {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self popToRootViewController];
+//            }
+//            else
+//            {
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
         
     }
     
@@ -232,25 +232,25 @@
         _codeBtn.userInteractionEnabled = NO;
         
         
-        [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
-            
-            if( resb.msuccess )
-            {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self timeCount];
-                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
-            }
-            
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                _codeBtn.userInteractionEnabled = YES;
-                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
-                
-            }
-            
-            
-        }];
+//        [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
+//            
+//            if( resb.msuccess )
+//            {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self timeCount];
+//                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
+//            }
+//            
+//            else
+//            {
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                _codeBtn.userInteractionEnabled = YES;
+//                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
+//                
+//            }
+//            
+//            
+//        }];
 
         
     }else{
@@ -262,26 +262,26 @@
         _codeBtn.userInteractionEnabled = NO;
         
         
-        [SUser sendSM:_wkPhoneTX.text block:^(SResBase *resb) {
-            
-            if( resb.msuccess )
-            {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self timeCount];
-                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
-            }
-            
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                _codeBtn.userInteractionEnabled = YES;
-                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
-                
-            }
-            
-            
-        }];
-
+//        [SUser sendSM:_wkPhoneTX.text block:^(SResBase *resb) {
+//            
+//            if( resb.msuccess )
+//            {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self timeCount];
+//                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
+//            }
+//            
+//            else
+//            {
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                _codeBtn.userInteractionEnabled = YES;
+//                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
+//                
+//            }
+//            
+//            
+//        }];
+//
     }
 
     

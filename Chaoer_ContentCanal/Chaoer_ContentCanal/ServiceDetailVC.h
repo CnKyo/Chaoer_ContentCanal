@@ -10,7 +10,7 @@
 
 @interface ServiceDetailVC : BaseVC
 
-@property (nonatomic,strong) SGoodsCate *mCate;
+//@property (nonatomic,strong) SGoodsCate *mCate;
 @property (nonatomic,assign) int type;
 
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;

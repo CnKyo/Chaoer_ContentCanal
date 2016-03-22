@@ -30,7 +30,7 @@
     UIView *replyBgView;
     ReplyView *replyView;
     
-    SOrderRateInfo *tempRate;
+//    SOrderRateInfo *tempRate;
     
 }
 
@@ -178,38 +178,38 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     
    
-    [SSeller getEvaList:self.page type:nowSelect block:^(SResBase *info,SEvaPack* evapack) {
-        
-        
-        [self.tableView headerEndRefreshing];
-        if( info.msuccess )
-        {
-            [SVProgressHUD dismiss];
-            NSString *key2 = [NSString stringWithFormat:@"nowselectdata%d",nowSelect];
-            
-            [tempDic setObject:evapack.mEva forKey:key2];
-            
-            if (evapack.mEva.count==0) {
-                [self addEmptyViewWithImg:nil];
-            }else
-            {
-                [self removeEmptyView];
-            }
-            
-            headView.mFen.text = [NSString stringWithFormat:@"%.1f",evapack.mScore];
-            [self setXingXing:evapack.mScore];
-            [sectionView.mAllBT setTitle:[NSString stringWithFormat:@"未回复(%d)",evapack.mUnReply] forState:UIControlStateNormal];
-            [sectionView.mNoReplyBT setTitle:[NSString stringWithFormat:@"已回复(%d)",evapack.mReply] forState:UIControlStateNormal];
-            
-            [self.tableView reloadData];
-        }
-        else
-        {
-            [self addEmptyViewWithImg:nil];
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-        
-    }];
+//    [SSeller getEvaList:self.page type:nowSelect block:^(SResBase *info,SEvaPack* evapack) {
+//        
+//        
+//        [self.tableView headerEndRefreshing];
+//        if( info.msuccess )
+//        {
+//            [SVProgressHUD dismiss];
+//            NSString *key2 = [NSString stringWithFormat:@"nowselectdata%d",nowSelect];
+//            
+//            [tempDic setObject:evapack.mEva forKey:key2];
+//            
+//            if (evapack.mEva.count==0) {
+//                [self addEmptyViewWithImg:nil];
+//            }else
+//            {
+//                [self removeEmptyView];
+//            }
+//            
+//            headView.mFen.text = [NSString stringWithFormat:@"%.1f",evapack.mScore];
+//            [self setXingXing:evapack.mScore];
+//            [sectionView.mAllBT setTitle:[NSString stringWithFormat:@"未回复(%d)",evapack.mUnReply] forState:UIControlStateNormal];
+//            [sectionView.mNoReplyBT setTitle:[NSString stringWithFormat:@"已回复(%d)",evapack.mReply] forState:UIControlStateNormal];
+//            
+//            [self.tableView reloadData];
+//        }
+//        else
+//        {
+//            [self addEmptyViewWithImg:nil];
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//        
+//    }];
     
 }
 -(void)footetBeganRefresh
@@ -217,50 +217,50 @@
     self.page++;
     
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-    [SSeller getEvaList:self.page type:nowSelect block:^(SResBase *info,SEvaPack* evapack){
-        
-        
-        [self.tableView footerEndRefreshing];
-        if( info.msuccess )
-        {
-            [SVProgressHUD dismiss];
-            NSString *key2 = [NSString stringWithFormat:@"nowselectdata%d",nowSelect];
-            
-            NSArray *arr2 = [tempDic objectForKey:key2];
-            
-            if (evapack.mEva.count!=0) {
-                [self removeEmptyView];
-                
-                
-                NSMutableArray *array = [NSMutableArray array];
-                if (arr2) {
-                    [array addObjectsFromArray:arr2];
-                }
-                [array addObjectsFromArray:evapack.mEva];
-                [tempDic setObject:array forKey:key2];
-            }else
-            {
-                if(!evapack.mEva||evapack.mEva.count==0)
-                {
-                    [SVProgressHUD showSuccessWithStatus:@"暂无数据"];
-                }
-                else
-                    [SVProgressHUD showSuccessWithStatus:@"暂无新数据"];
-                //   [self addEmptyView:@"暂无数据"];
-                
-            }
-            
-            [self.tableView reloadData];
-            headView.mFen.text = [NSString stringWithFormat:@"%.1f",evapack.mScore];
-            [self setXingXing:evapack.mScore];
-            [sectionView.mAllBT setTitle:[NSString stringWithFormat:@"未回复(%d)",evapack.mUnReply] forState:UIControlStateNormal];
-            [sectionView.mNoReplyBT setTitle:[NSString stringWithFormat:@"已回复(%d)",evapack.mReply] forState:UIControlStateNormal];
-            
-        }else
-        {
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [SSeller getEvaList:self.page type:nowSelect block:^(SResBase *info,SEvaPack* evapack){
+//        
+//        
+//        [self.tableView footerEndRefreshing];
+//        if( info.msuccess )
+//        {
+//            [SVProgressHUD dismiss];
+//            NSString *key2 = [NSString stringWithFormat:@"nowselectdata%d",nowSelect];
+//            
+//            NSArray *arr2 = [tempDic objectForKey:key2];
+//            
+//            if (evapack.mEva.count!=0) {
+//                [self removeEmptyView];
+//                
+//                
+//                NSMutableArray *array = [NSMutableArray array];
+//                if (arr2) {
+//                    [array addObjectsFromArray:arr2];
+//                }
+//                [array addObjectsFromArray:evapack.mEva];
+//                [tempDic setObject:array forKey:key2];
+//            }else
+//            {
+//                if(!evapack.mEva||evapack.mEva.count==0)
+//                {
+//                    [SVProgressHUD showSuccessWithStatus:@"暂无数据"];
+//                }
+//                else
+//                    [SVProgressHUD showSuccessWithStatus:@"暂无新数据"];
+//                //   [self addEmptyView:@"暂无数据"];
+//                
+//            }
+//            
+//            [self.tableView reloadData];
+//            headView.mFen.text = [NSString stringWithFormat:@"%.1f",evapack.mScore];
+//            [self setXingXing:evapack.mScore];
+//            [sectionView.mAllBT setTitle:[NSString stringWithFormat:@"未回复(%d)",evapack.mUnReply] forState:UIControlStateNormal];
+//            [sectionView.mNoReplyBT setTitle:[NSString stringWithFormat:@"已回复(%d)",evapack.mReply] forState:UIControlStateNormal];
+//            
+//        }else
+//        {
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
 }
 
 #pragma mark -- tableviewDelegate
@@ -313,9 +313,9 @@
     NSString *key2 = [NSString stringWithFormat:@"nowselectdata%d",nowSelect];
     NSArray *arr = [tempDic objectForKey:key2];
     
-    SOrderRateInfo *rate = [arr objectAtIndex:indexPath.row];
-    
-    [self initPingJiaCell:cell andRate:rate];
+//    SOrderRateInfo *rate = [arr objectAtIndex:indexPath.row];
+//    
+//    [self initPingJiaCell:cell andRate:rate];
     
     
     
@@ -325,74 +325,74 @@
 }
 
 char* g_asskey = "g_asskey";
-- (void)initPingJiaCell:(PingJiaCell *)cell andRate:(SOrderRateInfo *)rate{
-    
-    cell.mName.text = rate.mUserName;
-    cell.mTime.text = rate.mCreateTime;
-    cell.mStarImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"xing_%d",rate.mStar]];
-    cell.mContent.text = rate.mContent;
-    cell.mReply.text = [NSString stringWithFormat:@"回复：%@",rate.mReply];
-    
-    if (rate.mReply == nil || [rate.mReply isEqualToString:@""]) {
-        cell.mReplyView.hidden = YES;
-        cell.mReplyBT.hidden = NO;
-    }else{
-        cell.mReplyView.hidden = NO;
-        cell.mReplyBT.hidden = YES;
-    }
-    cell.mOrderBT.rate = rate;
-    cell.mReplyBT.rate = rate;
-    [cell.mOrderBT addTarget:self action:@selector(goOrderClick:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.mReplyBT addTarget:self action:@selector(goReplyClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    if( rate.mImages.count > 0 )
-    {
-        cell.mImgBgView.hidden = NO;
-        if (rate.mImages.count>4) {
-            cell.mImgViewHeight.constant = 110;
-        }else{
-            cell.mImgViewHeight.constant = 40;
-        }
-        
-        for ( int  j = 0 ; j < 8; j++) {
-            
-            UIImageView * oneimg = (UIImageView *)[cell.mImgBgView viewWithTag:j+1];
-            oneimg.image = nil;
-            
-            if (j < rate.mImages.count) {
-                
-                NSString* oneurl = rate.mImages[j];
-                
-                [oneimg sd_setImageWithURL:[NSURL URLWithString:oneurl] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
-                
-                if( !oneimg.userInteractionEnabled )
-                {
-                    oneimg.userInteractionEnabled  = YES;
-                    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageClick:)];
-                    [oneimg addGestureRecognizer:tap];
-                }
-                
-                objc_setAssociatedObject(oneimg, g_asskey, nil, OBJC_ASSOCIATION_ASSIGN);
-                objc_setAssociatedObject(oneimg, g_asskey, rate, OBJC_ASSOCIATION_ASSIGN);
-            }
-            
-        }
-        
-    }else{
-        
-        cell.mImgViewHeight.constant = 0;
-        cell.mImgBgView.hidden = YES;
-    }
-    
-}
+//- (void)initPingJiaCell:(PingJiaCell *)cell andRate:(SOrderRateInfo *)rate{
+//    
+//    cell.mName.text = rate.mUserName;
+//    cell.mTime.text = rate.mCreateTime;
+//    cell.mStarImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"xing_%d",rate.mStar]];
+//    cell.mContent.text = rate.mContent;
+//    cell.mReply.text = [NSString stringWithFormat:@"回复：%@",rate.mReply];
+//    
+//    if (rate.mReply == nil || [rate.mReply isEqualToString:@""]) {
+//        cell.mReplyView.hidden = YES;
+//        cell.mReplyBT.hidden = NO;
+//    }else{
+//        cell.mReplyView.hidden = NO;
+//        cell.mReplyBT.hidden = YES;
+//    }
+//    cell.mOrderBT.rate = rate;
+//    cell.mReplyBT.rate = rate;
+//    [cell.mOrderBT addTarget:self action:@selector(goOrderClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.mReplyBT addTarget:self action:@selector(goReplyClick:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//    if( rate.mImages.count > 0 )
+//    {
+//        cell.mImgBgView.hidden = NO;
+//        if (rate.mImages.count>4) {
+//            cell.mImgViewHeight.constant = 110;
+//        }else{
+//            cell.mImgViewHeight.constant = 40;
+//        }
+//        
+//        for ( int  j = 0 ; j < 8; j++) {
+//            
+//            UIImageView * oneimg = (UIImageView *)[cell.mImgBgView viewWithTag:j+1];
+//            oneimg.image = nil;
+//            
+//            if (j < rate.mImages.count) {
+//                
+//                NSString* oneurl = rate.mImages[j];
+//                
+//                [oneimg sd_setImageWithURL:[NSURL URLWithString:oneurl] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
+//                
+//                if( !oneimg.userInteractionEnabled )
+//                {
+//                    oneimg.userInteractionEnabled  = YES;
+//                    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageClick:)];
+//                    [oneimg addGestureRecognizer:tap];
+//                }
+//                
+//                objc_setAssociatedObject(oneimg, g_asskey, nil, OBJC_ASSOCIATION_ASSIGN);
+//                objc_setAssociatedObject(oneimg, g_asskey, rate, OBJC_ASSOCIATION_ASSIGN);
+//            }
+//            
+//        }
+//        
+//    }else{
+//        
+//        cell.mImgViewHeight.constant = 0;
+//        cell.mImgBgView.hidden = YES;
+//    }
+//    
+//}
 
 - (void)goOrderClick:(MyTempButton *)sender{
 
     orderDetail *order = [[orderDetail alloc] initWithNibName:@"orderDetail" bundle:nil];
-    SOrder *s = [[SOrder alloc] init];
-    s.mId = sender.rate.mOrderId;
-    order.mtagOrder = s;
+//    SOrder *s = [[SOrder alloc] init];
+//    s.mId = sender.rate.mOrderId;
+//    order.mtagOrder = s;
     [self pushViewController:order];
 }
 
@@ -408,7 +408,7 @@ char* g_asskey = "g_asskey";
         
     }];
     
-    tempRate = sender.rate;
+//    tempRate = sender.rate;
     
 }
 
@@ -432,26 +432,26 @@ char* g_asskey = "g_asskey";
     }
     
     [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-    
-    [tempRate replayThis:replyView.mReply.text block:^(SResBase *resb) {
-        
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:@"回复成功"];
-            
-            replyView.mReply.text = @"";
-            replyBgView.frame = CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height);
-            [UIView animateWithDuration:0.2 animations:^{
-                CGRect rect2 = replyView.frame;
-                rect2.origin.y = DEVICE_Height;
-                replyView.frame = rect2;
-                
-                [self.tableView headerBeginRefreshing];
-            }];
-            
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    
+//    [tempRate replayThis:replyView.mReply.text block:^(SResBase *resb) {
+//        
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:@"回复成功"];
+//            
+//            replyView.mReply.text = @"";
+//            replyBgView.frame = CGRectMake(0, DEVICE_Height, DEVICE_Width, DEVICE_Height);
+//            [UIView animateWithDuration:0.2 animations:^{
+//                CGRect rect2 = replyView.frame;
+//                rect2.origin.y = DEVICE_Height;
+//                replyView.frame = rect2;
+//                
+//                [self.tableView headerBeginRefreshing];
+//            }];
+//            
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 
 }
 
@@ -459,21 +459,21 @@ char* g_asskey = "g_asskey";
 {
     UIImageView* tagv = (UIImageView*)sender.view;
     
-    SOrderRateInfo *rate = objc_getAssociatedObject(tagv, g_asskey);
+//    SOrderRateInfo *rate = objc_getAssociatedObject(tagv, g_asskey);
     NSMutableArray* allimgs = NSMutableArray.new;
-    for ( NSString* url in rate.mImages )
-    {
-        MJPhoto* onemj = [[MJPhoto alloc]init];
-        onemj.url = [NSURL URLWithString:url ];
-        onemj.srcImageView = tagv;
-        [allimgs addObject: onemj];
-    }
-    
-    MJPhotoBrowser* browser = [[MJPhotoBrowser alloc]init];
-    browser.currentPhotoIndex = tagv.tag-1;
-    browser.photos  = allimgs;
-    [browser show];
-    
+//    for ( NSString* url in rate.mImages )
+//    {
+//        MJPhoto* onemj = [[MJPhoto alloc]init];
+//        onemj.url = [NSURL URLWithString:url ];
+//        onemj.srcImageView = tagv;
+//        [allimgs addObject: onemj];
+//    }
+//    
+//    MJPhotoBrowser* browser = [[MJPhotoBrowser alloc]init];
+//    browser.currentPhotoIndex = tagv.tag-1;
+//    browser.photos  = allimgs;
+//    [browser show];
+//    
 }
 
 

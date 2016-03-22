@@ -10,7 +10,7 @@
 
 @interface SellerDetaillVC : BaseVC
 
-@property (nonatomic,strong) SGoods *mGoods;
+//@property (nonatomic,strong) SGoods *mGoods;
 @property (nonatomic,assign) int     mType;
 @property (weak, nonatomic) IBOutlet UIImageView *mImg;
 @property (weak, nonatomic) IBOutlet UILabel *mName;

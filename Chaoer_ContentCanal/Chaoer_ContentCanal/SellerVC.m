@@ -46,11 +46,11 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-    for (SPeople *p in self.tempArray) {
-        if (p.mIsCheck) {
-            [arry addObject:p];
-        }
-    }
+//    for (SPeople *p in self.tempArray) {
+//        if (p.mIsCheck) {
+//            [arry addObject:p];
+//        }
+//    }
     
     if (_block) {
         _block(arry);
@@ -63,27 +63,27 @@
 
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeClear];
     
-    [SPeople getPeoples:2 block:^(SResBase *resb, NSArray *all) {
-        [self.tableView headerEndRefreshing];
-        if (resb.msuccess) {
-            [SVProgressHUD dismiss];
-            
-            self.tempArray = [[NSMutableArray alloc] initWithArray:all];
-            
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if(all.count == 0 || !all)
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [SPeople getPeoples:2 block:^(SResBase *resb, NSArray *all) {
+//        [self.tableView headerEndRefreshing];
+//        if (resb.msuccess) {
+//            [SVProgressHUD dismiss];
+//            
+//            self.tempArray = [[NSMutableArray alloc] initWithArray:all];
+//            
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if(all.count == 0 || !all)
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
 }
 
 #pragma mark -- tableviewDelegate
@@ -120,22 +120,22 @@
     cell.tintColor = M_CO;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    SPeople *people = [self.tempArray objectAtIndex:indexPath.row];
-
-    cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    cell.textLabel.text = people.mName;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.textColor = COLOR(71, 72, 73);
-    cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-    cell.detailTextLabel.text = people.mMobile;
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    cell.detailTextLabel.textColor = COLOR(71, 72, 73);
-    
-    if (people.mIsCheck) {
-         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }else{
-         cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+//    SPeople *people = [self.tempArray objectAtIndex:indexPath.row];
+//
+//    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+//    cell.textLabel.text = people.mName;
+//    cell.textLabel.font = [UIFont systemFontOfSize:15];
+//    cell.textLabel.textColor = COLOR(71, 72, 73);
+//    cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+//    cell.detailTextLabel.text = people.mMobile;
+//    cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+//    cell.detailTextLabel.textColor = COLOR(71, 72, 73);
+//    
+//    if (people.mIsCheck) {
+//         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }else{
+//         cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
     
     return cell;
 }
@@ -144,11 +144,11 @@
     
 //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    SPeople *people = [self.tempArray objectAtIndex:indexPath.row];
-    
-    people.mIsCheck = !people.mIsCheck;
-    
-    [self.tableView reloadData];
+//    SPeople *people = [self.tempArray objectAtIndex:indexPath.row];
+//    
+//    people.mIsCheck = !people.mIsCheck;
+//    
+//    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

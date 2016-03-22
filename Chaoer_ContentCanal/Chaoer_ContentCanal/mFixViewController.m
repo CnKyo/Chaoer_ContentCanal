@@ -14,7 +14,10 @@
 #import "takeFixViewController.h"
 
 #import "fixTableViewCell.h"
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource>
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate>{
+    HZQDatePickerView *_pikerView;
+
+}
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
@@ -30,6 +33,8 @@
     ZJAlertListView *mPipeA;
     
     NSMutableArray  *mArr;
+    
+    NSString    *mType;
 
     
 }
@@ -81,10 +86,13 @@
     
     mView = [mFixView shareView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
+
     [mView.mHomeBtn addTarget:self action:@selector(mHomeAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mCleanBtn addTarget:self action:@selector(mCleanAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mPipeBtn addTarget:self action:@selector(mPipeAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mResultBtn addTarget:self action:@selector(mResetAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mTimeBtn addTarget:self action:@selector(mTimeAction:) forControlEvents:UIControlEventTouchUpInside];
+
 
     mView.mHiddenView.alpha = 0;
     [mScrollerView addSubview:mView];
@@ -94,13 +102,46 @@
     
     
 }
+#pragma mark----时间选择
+- (void)mTimeAction:(UIButton *)sender{
+    [self setupDateView:DateTypeOfStart];
+
+}
+- (void)setupDateView:(DateType)type {
+    
+    _pikerView = [HZQDatePickerView instanceDatePickerView];
+    _pikerView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height + 20);
+    [_pikerView setBackgroundColor:[UIColor clearColor]];
+    _pikerView.delegate = self;
+    _pikerView.type = type;
+    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
+    [self.view addSubview:_pikerView];
+    
+}
+- (void)getSelectDate:(NSString *)date type:(DateType)type {
+    NSLog(@"%d - %@", type, date);
+    
+    switch (type) {
+        case DateTypeOfStart:
+            [mView.mTimeBtn setTitle:[NSString stringWithFormat:@"选择时间:%@", date] forState:0];
+            
+            break;
+
+            
+        default:
+            break;
+    }
+}
+#pragma mark----重新选择
 - (void)mResetAction:(UIButton *)sender{
     mView.mHiddenView.alpha = 0;
     mView.mSelectedView.alpha = 1;
 }
+#pragma mark----家电
 - (void)mHomeAction:(UIButton *)sender{
-    mHomeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 250, 300)];
-    mHomeA.titleLabel.text = @"-请选择-";
+    mType = sender.titleLabel.text;
+    mHomeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
+    mHomeA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
     mHomeA.datasource = self;
     mHomeA.delegate = self;
     //点击确定的时候，调用它去做点事情
@@ -117,10 +158,12 @@
     }];
     [mHomeA show];
 }
-
+#pragma mark----清洁
 - (void)mCleanAction:(UIButton *)sender{
-    mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 250, 300)];
-    mCleanA.titleLabel.text = @"-请选择-";
+        mType = sender.titleLabel.text;
+    mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
+
+    mCleanA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
     mCleanA.datasource = self;
     mCleanA.delegate = self;
     //点击确定的时候，调用它去做点事情
@@ -138,10 +181,11 @@
     }];
     [mCleanA show];
 }
-
+#pragma mark----管道
 - (void)mPipeAction:(UIButton *)sender{
-    mPipeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 250, 300)];
-    mPipeA.titleLabel.text = @"-请选择-";
+        mType = sender.titleLabel.text;
+    mPipeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
+    mPipeA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
     mPipeA.datasource = self;
     mPipeA.delegate = self;
     //点击确定的时候，调用它去做点事情
@@ -197,19 +241,43 @@
     if (nil == cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        /**
+         *  cell选择样式为无
+         */
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        /**
+         *  自定义cell背景
+         */
+        UIImageView *iii = [UIImageView new];
+        iii.frame = CGRectMake(0,5, 180, 45);
+        iii.image = [UIImage imageNamed:@"fixcell_bgk"];
+        [cell.contentView addSubview:iii];
+        
     }
     if ( self.selectedIndexPath && NSOrderedSame == [self.selectedIndexPath compare:indexPath])
     {
-
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
+        /**
+         *  自定义cell选择样式－选中
+         */
+        UIImageView *iii = [UIImageView new];
+        iii.frame = CGRectMake(230, 25, 10, 10);
+        iii.image = [UIImage imageNamed:@"fixcell_selected"];
+        [cell.contentView addSubview:iii];
+        cell.accessoryView = iii;
     }
     else
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        /**
+         *  自定义cell选择样式－未选中
+         */
+        UIImageView *iii = [UIImageView new];
+        iii.frame = CGRectMake(230, 25, 10, 10);
+        iii.image = [UIImage imageNamed:@"fixcell_unselecte"];
+        [cell.contentView addSubview:iii];
+        cell.accessoryView = iii;
 
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"-James---%ld---", (long)indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"-%@---%ld---", mType,(long)indexPath.row];
     return cell;
 }
 
@@ -218,20 +286,31 @@
     
     UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
     cell.tintColor = M_CO;
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    UIImageView *iii = [UIImageView new];
+    iii.frame = CGRectMake(230, 25, 10, 10);
+    iii.image = [UIImage imageNamed:@"fixcell_unselecte"];
+    [cell.contentView addSubview:iii];
+    cell.accessoryView = iii;
+//    cell.accessoryType = UITableViewCellAccessoryNone;
     NSLog(@"didDeselectRowAtIndexPath:%ld", (long)indexPath.row);
 }
 
 - (void)alertListTableView:(ZJAlertListView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     [mArr removeAllObjects];
     self.selectedIndexPath = indexPath;
     UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
     cell.tintColor = M_CO;
     cell.selected = !cell.selected;
     if (cell.selected) {
-
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.backgroundColor = [UIColor whiteColor];
+        UIImageView *iii = [UIImageView new];
+        iii.frame = CGRectMake(230, 25, 10, 10);
+        iii.image = [UIImage imageNamed:@"fixcell_selected"];
+        [cell.contentView addSubview:iii];
+        cell.accessoryView = iii;
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [mArr addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
         NSLog(@"选择了第:%ld行", (long)indexPath.row);
         NSLog(@"一共有%@",mArr);

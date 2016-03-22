@@ -65,12 +65,12 @@
 - (void)initView{
     
     mm = [mMyDeatailView shareView];
-    [mm.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[SUser currentUser].mHeadImgURL] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
-    MLLog(@"头像地址：%@",[SUser currentUser].mHeadImgURL);
+//    [mm.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[SUser currentUser].mHeadImgURL] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
+//    MLLog(@"头像地址：%@",[SUser currentUser].mHeadImgURL);
     
-    [mm.mHeaderBtn addTarget:self action:@selector(headBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [mm.mNameBtn setTitle:[SUser currentUser].mUserName forState:0];
-    [mm.mPhoneBtn setTitle:[SUser currentUser].mPhone forState:0];
+//    [mm.mHeaderBtn addTarget:self action:@selector(headBtnTouched:) forControlEvents:UIControlEventTouchUpInside];
+//    [mm.mNameBtn setTitle:[SUser currentUser].mUserName forState:0];
+//    [mm.mPhoneBtn setTitle:[SUser currentUser].mPhone forState:0];
     
     [mm.mPhoneBtn addTarget:self action:@selector(changePhone:) forControlEvents:UIControlEventTouchUpInside];
     [mm.mPwdBtn addTarget:self action:@selector(changePwd:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,10 +87,10 @@
 }
 -(void)updateInfo
 {
-    
-    [mm.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[SUser currentUser].mHeadImgURL] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
-    [mm.mNameBtn setTitle:[SUser currentUser].mUserName forState:0];
-    [mm.mPhoneBtn setTitle:[SUser currentUser].mPhone forState:0];
+//    
+//    [mm.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[SUser currentUser].mHeadImgURL] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
+//    [mm.mNameBtn setTitle:[SUser currentUser].mUserName forState:0];
+//    [mm.mPhoneBtn setTitle:[SUser currentUser].mPhone forState:0];
     
 }
 - (void)changePhone:(UIButton *)sender{
@@ -116,7 +116,7 @@
 }
 
 - (void)okBtnTouched:(UIButton *)sender{
-    SUser *user = [SUser currentUser];
+//    SUser *user = [SUser currentUser];
     if ( ![self isEdit]) {
         [SVProgressHUD showErrorWithStatus:@"没有任何数据修改"];
         return;
@@ -220,14 +220,14 @@
     
     tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
     
-    [[SUser currentUser] updateUserInfo:nil HeadImg:tempImage Brief:nil block:^(SResBase *resb) {
-        if (resb.msuccess) {
-            mm.mHeaderImg.image = tempImage;
-
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [[SUser currentUser] updateUserInfo:nil HeadImg:tempImage Brief:nil block:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            mm.mHeaderImg.image = tempImage;
+//
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
     
     
 }

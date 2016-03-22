@@ -42,10 +42,10 @@
         MLLog(@"erro!!!!");
         [self showErrorStatus:@"运行错误：日期错误!!!!"];
     }
-    if ([SUser isNeedLogin]) {
-        [self gotoLoginVC];
-        return;
-    }
+//    if ([SUser isNeedLogin]) {
+//        [self gotoLoginVC];
+//        return;
+//    }
     [self.navBar.rightBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     self.navBar.rightBtn.frame = CGRectMake(DEVICE_Width-80, self.navBar.leftBtn.origin.y, 100, self.navBar.leftBtn.mheight);
     [self initView];
@@ -82,55 +82,55 @@
 - (void)headerBeganRefresh{
     
     self.page = 1;
-    [SStatisic getStatisic:_myeaer month:_month page:self.page block:^(SResBase *resb, NSArray *all) {
-        
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        
-        if (resb.msuccess) {
-            [self.tempArray addObjectsFromArray:all];
-            [self.tableView reloadData];
-            MLLog(@"取出来的统计数据是:%@",self.tempArray);
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if (self.tempArray.count == 0) {
-            [self addEmptyViewWithImg:nil];
-        }
-        else{
-            [self removeEmptyView];
-        }
-        
-        [self.tableView reloadData];
-    }];
+//    [SStatisic getStatisic:_myeaer month:_month page:self.page block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self headerEndRefresh];
+//        [self.tempArray removeAllObjects];
+//        
+//        if (resb.msuccess) {
+//            [self.tempArray addObjectsFromArray:all];
+//            [self.tableView reloadData];
+//            MLLog(@"取出来的统计数据是:%@",self.tempArray);
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if (self.tempArray.count == 0) {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else{
+//            [self removeEmptyView];
+//        }
+//        
+//        [self.tableView reloadData];
+//    }];
 }
 -(void)footetBeganRefresh
 {
     self.page ++;
     
-    [SStatisic getStatisic:_myeaer month:_month page:self.page block:^(SResBase *resb, NSArray *all) {
-        
-        [self footetEndRefresh];
-        if (resb.msuccess) {
-            
-            [self.tempArray addObjectsFromArray:all];
-            [self.tableView reloadData];
-            
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if (self.tempArray.count == 0) {
-            [self addEmptyViewWithImg:nil];
-        }
-        else{
-            [self removeEmptyView];
-        }
-    }];
+//    [SStatisic getStatisic:_myeaer month:_month page:self.page block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self footetEndRefresh];
+//        if (resb.msuccess) {
+//            
+//            [self.tempArray addObjectsFromArray:all];
+//            [self.tableView reloadData];
+//            
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if (self.tempArray.count == 0) {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else{
+//            [self removeEmptyView];
+//        }
+//    }];
 }
 
 #pragma mark ----列表代理方法
@@ -146,30 +146,30 @@
     {
         Rcell = @"O_cell";
     }
-    SStatisic* obj = self.tempArray[indexPath.row];
+//    SStatisic* obj = self.tempArray[indexPath.row];
     
     
     tongjiCell *cell = (tongjiCell *)[tableView dequeueReusableCellWithIdentifier:Rcell];
     
-    if ( _month == -1 ) {
-        cell.mYear.text = [NSString stringWithFormat:@"%d年",obj.mYear];
-        cell.mMonth.text = [NSString stringWithFormat:@"%d月",obj.mMonth];
-        cell.mDealNum.text = [NSString stringWithFormat:@"成交%d笔",obj.mNum];
-        cell.mTotlePrice.text = [NSString stringWithFormat:@"¥%.02f元",obj.mTotal];
-        
-    }
-    else
-    {
-        [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:obj.mImgURL] placeholderImage:[UIImage imageNamed:@"ic_default"]];
-        cell.mOrderid.text = [NSString stringWithFormat:@"订单编号：%@",obj.mOrderSn];
-        cell.mTime.text = obj.mTimeStr;
-        cell.mTotlePrice.text = [NSString stringWithFormat:@"¥%.02f元",obj.mMoney];
-        
-        
-    }
-    cell.mHeaderImg.layer.masksToBounds = YES;
-    cell.mHeaderImg.layer.cornerRadius = 3;
-    cell.accessoryType = UITableViewCellAccessoryNone;
+//    if ( _month == -1 ) {
+//        cell.mYear.text = [NSString stringWithFormat:@"%d年",obj.mYear];
+//        cell.mMonth.text = [NSString stringWithFormat:@"%d月",obj.mMonth];
+//        cell.mDealNum.text = [NSString stringWithFormat:@"成交%d笔",obj.mNum];
+//        cell.mTotlePrice.text = [NSString stringWithFormat:@"¥%.02f元",obj.mTotal];
+//        
+//    }
+//    else
+//    {
+//        [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:obj.mImgURL] placeholderImage:[UIImage imageNamed:@"ic_default"]];
+//        cell.mOrderid.text = [NSString stringWithFormat:@"订单编号：%@",obj.mOrderSn];
+//        cell.mTime.text = obj.mTimeStr;
+//        cell.mTotlePrice.text = [NSString stringWithFormat:@"¥%.02f元",obj.mMoney];
+//        
+//        
+//    }
+//    cell.mHeaderImg.layer.masksToBounds = YES;
+//    cell.mHeaderImg.layer.cornerRadius = 3;
+//    cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
     
@@ -202,17 +202,17 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SStatisic* obj = self.tempArray[indexPath.row];
-    
+//    SStatisic* obj = self.tempArray[indexPath.row];
+//    
     if( _month == -1 )
         
     {
 
         UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
         tongjiViewController *ttt =[secondStroyBoard instantiateViewControllerWithIdentifier:@"tongji"];
-        ttt.month = obj.mMonth;
-        ttt.myeaer = obj.mYear;
-
+//        ttt.month = obj.mMonth;
+//        ttt.myeaer = obj.mYear;
+//
         [self.navigationController pushViewController:ttt animated:YES];
         
     }

@@ -40,7 +40,7 @@
     
     BOOL        _bmodifstarttime;
     
-    SOrderPack  *Model;
+//    SOrderPack  *Model;
     
     UIView  *CalendarVC;
 
@@ -52,13 +52,13 @@
 
     [super viewWillAppear:animated];
     
-    if( [SUser isNeedLogin] )
-    {
-        [self gotoLoginVC];
-        return;
-    }else{
-        
-    }
+//    if( [SUser isNeedLogin] )
+//    {
+//        [self gotoLoginVC];
+//        return;
+//    }else{
+//        
+//    }
     
     [self.tableView headerBeginRefreshing];
 
@@ -156,52 +156,52 @@
 }
 - (void)loadTopView{
 
-    [[SUser currentUser] getMyOrders:self.page status:mType date:nil keywords:nil block:^(SResBase *resb,SOrderPack *retobj) {
-        
-        if (resb.msuccess) {
-            
-            
-            NSString    *ing = [NSString stringWithFormat:@"进行中(%d)",retobj.mIngCount];
-            NSString    *finish = [NSString stringWithFormat:@"全部(%d)",retobj.mCount];
-            
-            if( segmented2 == nil )
-            {
-                segmented2 =[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(10, 20 , DEVICE_Width-20, 35) items:@[@{@"text":ing},@{@"text":finish}]iconPosition:IconPositionRight andSelectionBlock:^(NSUInteger segmentIndex) {
-                    if (segmentIndex ==0) {
-                        
-                        NSLog(@"left");
-                        mType = 1;
-                        [self headerBeganRefresh];
-                        
-                    }
-                    if (segmentIndex == 1) {
-                        
-                        NSLog(@"mid");
-                        mType = 0;
-                        [self headerBeganRefresh];
-                        
-                    }
-                }];
-                segmented2.color=[UIColor whiteColor];
-                segmented2.borderWidth=0.5;
-                segmented2.borderColor=[UIColor colorWithRed:0.702 green:0.702 blue:0.702 alpha:1];
-                segmented2.selectedColor=[UIColor colorWithRed:1.000 green:0.184 blue:0.314 alpha:1];
-                segmented2.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                            NSForegroundColorAttributeName:[UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:1]};
-                segmented2.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                                    NSForegroundColorAttributeName:[UIColor whiteColor]};
-                [mTopView addSubview:segmented2];
-            }
-            else
-            {
-                [segmented2 setTitle:ing forSegmentAtIndex:0];
-                [segmented2 setTitle:finish forSegmentAtIndex:1];
-            }
-        }
-        else{
-        }
-        
-    }];
+//    [[SUser currentUser] getMyOrders:self.page status:mType date:nil keywords:nil block:^(SResBase *resb,SOrderPack *retobj) {
+//        
+//        if (resb.msuccess) {
+//            
+//            
+//            NSString    *ing = [NSString stringWithFormat:@"进行中(%d)",retobj.mIngCount];
+//            NSString    *finish = [NSString stringWithFormat:@"全部(%d)",retobj.mCount];
+//            
+//            if( segmented2 == nil )
+//            {
+//                segmented2 =[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(10, 20 , DEVICE_Width-20, 35) items:@[@{@"text":ing},@{@"text":finish}]iconPosition:IconPositionRight andSelectionBlock:^(NSUInteger segmentIndex) {
+//                    if (segmentIndex ==0) {
+//                        
+//                        NSLog(@"left");
+//                        mType = 1;
+//                        [self headerBeganRefresh];
+//                        
+//                    }
+//                    if (segmentIndex == 1) {
+//                        
+//                        NSLog(@"mid");
+//                        mType = 0;
+//                        [self headerBeganRefresh];
+//                        
+//                    }
+//                }];
+//                segmented2.color=[UIColor whiteColor];
+//                segmented2.borderWidth=0.5;
+//                segmented2.borderColor=[UIColor colorWithRed:0.702 green:0.702 blue:0.702 alpha:1];
+//                segmented2.selectedColor=[UIColor colorWithRed:1.000 green:0.184 blue:0.314 alpha:1];
+//                segmented2.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
+//                                            NSForegroundColorAttributeName:[UIColor colorWithRed:0.290 green:0.290 blue:0.290 alpha:1]};
+//                segmented2.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
+//                                                    NSForegroundColorAttributeName:[UIColor whiteColor]};
+//                [mTopView addSubview:segmented2];
+//            }
+//            else
+//            {
+//                [segmented2 setTitle:ing forSegmentAtIndex:0];
+//                [segmented2 setTitle:finish forSegmentAtIndex:1];
+//            }
+//        }
+//        else{
+//        }
+//        
+//    }];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -215,37 +215,37 @@
     self.page=1;
   
     
-    [[SUser currentUser] getMyOrders:self.page status:mType date:nil keywords:nil block:^(SResBase *resb,SOrderPack *retobj) {
-        
-        [self headerEndRefresh];
-        
-        NSString    *ing = [NSString stringWithFormat:@"进行中(%d)",retobj.mIngCount];
-        NSString    *finish = [NSString stringWithFormat:@"全部(%d)",retobj.mCount];
-        
-        [segmented2 setTitle:ing forSegmentAtIndex:0];
-        [segmented2 setTitle:finish forSegmentAtIndex:1];
-        
-        
-        [self.tempArray removeAllObjects];
-        if (resb.msuccess) {
-            Model = retobj;
-            [self.tempArray addObjectsFromArray:retobj.mOrders];
-            [self.tableView reloadData];
-
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if( self.tempArray.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-    }];
+//    [[SUser currentUser] getMyOrders:self.page status:mType date:nil keywords:nil block:^(SResBase *resb,SOrderPack *retobj) {
+//        
+//        [self headerEndRefresh];
+//        
+//        NSString    *ing = [NSString stringWithFormat:@"进行中(%d)",retobj.mIngCount];
+//        NSString    *finish = [NSString stringWithFormat:@"全部(%d)",retobj.mCount];
+//        
+//        [segmented2 setTitle:ing forSegmentAtIndex:0];
+//        [segmented2 setTitle:finish forSegmentAtIndex:1];
+//        
+//        
+//        [self.tempArray removeAllObjects];
+//        if (resb.msuccess) {
+//            Model = retobj;
+//            [self.tempArray addObjectsFromArray:retobj.mOrders];
+//            [self.tableView reloadData];
+//
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if( self.tempArray.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//    }];
 
     
     
@@ -257,28 +257,28 @@
 
     self.page ++;
     
-    [[SUser currentUser] getMyOrders:self.page status:mType  date:nil keywords:nil block:^(SResBase *resb, SOrderPack *retobj) {
-        [self footetEndRefresh];
-        if (resb.msuccess) {
-            Model = retobj;
-
-            [self.tempArray addObjectsFromArray:retobj.mOrders];
-            [self.tableView reloadData];
-
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if( self.tempArray.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-    }];
+//    [[SUser currentUser] getMyOrders:self.page status:mType  date:nil keywords:nil block:^(SResBase *resb, SOrderPack *retobj) {
+//        [self footetEndRefresh];
+//        if (resb.msuccess) {
+//            Model = retobj;
+//
+//            [self.tempArray addObjectsFromArray:retobj.mOrders];
+//            [self.tableView reloadData];
+//
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if( self.tempArray.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//    }];
     
     
 }

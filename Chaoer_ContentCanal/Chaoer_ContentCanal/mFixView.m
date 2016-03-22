@@ -14,7 +14,9 @@
 
     mFixView *view = [[[NSBundle mainBundle] loadNibNamed:@"mFixView" owner:self options:nil] objectAtIndex:0];
     
-    
+    view.mTxView.placeholder = @"请输入你的描述！";
+    [view.mTxView setHolderToTop];
+
     
     view.mHomeBtn.layer.masksToBounds = view.mCleanBtn.layer.masksToBounds = view.mPipeBtn.layer.masksToBounds= view.mResultBtn.layer.masksToBounds = YES;
     view.mHomeBtn.layer.cornerRadius = view.mCleanBtn.layer.cornerRadius = view.mPipeBtn.layer.cornerRadius = view.mResultBtn.layer.cornerRadius = 5;

@@ -45,7 +45,7 @@
     [self.navBar.rightBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     self.navBar.rightBtn.frame = CGRectMake(DEVICE_Width-80, self.navBar.leftBtn.origin.y, 100, self.navBar.leftBtn.mheight);
     _mTiXian.layer.cornerRadius = 5;
-    _mPrice.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
+//    _mPrice.text = [NSString stringWithFormat:@"¥%.2f",_mShop.mBalance];
     
     [self loadData];
 }
@@ -62,19 +62,19 @@
 - (void)rightBtnTouched:(id)sender{
 
     BillRecordVC *record = [[BillRecordVC alloc] init];
-    record.mShop = _mShop;
+//    record.mShop = _mShop;
     [self pushViewController:record];
 }
 
 - (void)loadData{
     
-    _mBank.text = _mDrawInfo.mBankName;
-    _mName.text = _mDrawInfo.mName;
-    _mNum.text = _mDrawInfo.mBankNo;
-    
-    
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mDrawInfo.mNotice dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    _mRemark.attributedText = attrStr;
+//    _mBank.text = _mDrawInfo.mBankName;
+//    _mName.text = _mDrawInfo.mName;
+//    _mNum.text = _mDrawInfo.mBankNo;
+//    
+//    
+//    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mDrawInfo.mNotice dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//    _mRemark.attributedText = attrStr;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,16 +94,16 @@
 
 - (IBAction)AllClick:(id)sender {
     
-    if(_mShop.mBalance<=0){
-    
-        UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有可提现金额" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alt show];
-        
-        return;
-
-    }
-    _mPriceTF.text = [NSString stringWithFormat:@"%.2f",_mShop.mBalance];
+//    if(_mShop.mBalance<=0){
+//    
+//        UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有可提现金额" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alt show];
+//        
+//        return;
+//
+//    }
+//    _mPriceTF.text = [NSString stringWithFormat:@"%.2f",_mShop.mBalance];
 //    [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
 //    [[SUser currentUser] getWithDraw:_mShop.mBalance block:^(SResBase *resb) {
 //        
@@ -131,27 +131,27 @@
     
     }
     
-    if (![Util checkNum:_mPriceTF.text] || [_mPriceTF.text floatValue]<=0 || [_mPriceTF.text floatValue]>_mShop.mBalance) {
-        UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入的提现金额有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alt show];
-        
-        return;
-    }
+//    if (![Util checkNum:_mPriceTF.text] || [_mPriceTF.text floatValue]<=0 || [_mPriceTF.text floatValue]>_mShop.mBalance) {
+//        UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入的提现金额有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alt show];
+//        
+//        return;
+//    }
     
     [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-    [[SUser currentUser] getWithDraw:[_mPriceTF.text floatValue] block:^(SResBase *resb) {
-        
-        if (resb.msuccess) {
-            
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            [self popViewController];
-            
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [[SUser currentUser] getWithDraw:[_mPriceTF.text floatValue] block:^(SResBase *resb) {
+//        
+//        if (resb.msuccess) {
+//            
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            [self popViewController];
+//            
+//        }else{
+//            
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 
     
 }

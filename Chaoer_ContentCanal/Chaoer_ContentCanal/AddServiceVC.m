@@ -59,54 +59,54 @@
     self.rightBtnTitle = @"完成";
 
     
-    if (_mGoods) {
-        
-        _mPaiZhao.hidden = YES;
-        _mPzText.hidden = YES;
-        
-        if(_mSelect == 1){
-            _mTopLB.hidden = YES;
-            _mShangjia.text = @"下架";
-            _mLeftImg.image = [UIImage imageNamed:@"dp_xiajia"];
-        }else{
-            _mShangjia.text = @"上架";
-            _mLeftImg.image = [UIImage imageNamed:@"dp_shangjia"];
-        }
-        
-        if (_mGoods.mImgs.count > 0) {
-            [_mBgImg sd_setImageWithURL:[NSURL URLWithString:[_mGoods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
-        }
-        _mServiceName.text = _mGoods.mName;
-        _mPrice.text = [NSString stringWithFormat:@"%.2f",_mGoods.mPrice];
-        _mMinTime.text = [NSString stringWithFormat:@"%d",_mGoods.mDuration];
-        
-        if (_mGoods.mStaff.count>0) {
-            
-            NSString *string = @"";
-            for (SPeople *people in _mGoods.mStaff) {
-                string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",people.mName]];
-            }
-            
-            _mSellerName.text = string;
-        }
-        
-//        _mRemark.text = _mGoods.mBrief;
-        htmlContent = _mGoods.mBrief;
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        _mRemark.attributedText = attrStr;
-        
-        
-        myPeople = [[NSMutableArray alloc] initWithArray:_mGoods.mStaff];
-        //tempImage = _mBgImg.image;
-       
-        
-    }else{
-    
-        _mXjView.hidden = YES;
-        _mDelView.hidden = YES;
-        _mTopLB.hidden = YES;
-        _mBottomLB.hidden = YES;
-    }
+//    if (_mGoods) {
+//        
+//        _mPaiZhao.hidden = YES;
+//        _mPzText.hidden = YES;
+//        
+//        if(_mSelect == 1){
+//            _mTopLB.hidden = YES;
+//            _mShangjia.text = @"下架";
+//            _mLeftImg.image = [UIImage imageNamed:@"dp_xiajia"];
+//        }else{
+//            _mShangjia.text = @"上架";
+//            _mLeftImg.image = [UIImage imageNamed:@"dp_shangjia"];
+//        }
+//        
+//        if (_mGoods.mImgs.count > 0) {
+//            [_mBgImg sd_setImageWithURL:[NSURL URLWithString:[_mGoods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
+//        }
+//        _mServiceName.text = _mGoods.mName;
+//        _mPrice.text = [NSString stringWithFormat:@"%.2f",_mGoods.mPrice];
+//        _mMinTime.text = [NSString stringWithFormat:@"%d",_mGoods.mDuration];
+//        
+//        if (_mGoods.mStaff.count>0) {
+//            
+//            NSString *string = @"";
+//            for (SPeople *people in _mGoods.mStaff) {
+//                string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",people.mName]];
+//            }
+//            
+//            _mSellerName.text = string;
+//        }
+//        
+////        _mRemark.text = _mGoods.mBrief;
+//        htmlContent = _mGoods.mBrief;
+//        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[_mGoods.mBrief dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//        _mRemark.attributedText = attrStr;
+//        
+//        
+//        myPeople = [[NSMutableArray alloc] initWithArray:_mGoods.mStaff];
+//        //tempImage = _mBgImg.image;
+//       
+//        
+//    }else{
+//    
+//        _mXjView.hidden = YES;
+//        _mDelView.hidden = YES;
+//        _mTopLB.hidden = YES;
+//        _mBottomLB.hidden = YES;
+//    }
 }
 
 - (void)rightBtnTouched:(id)sender{
@@ -135,54 +135,54 @@
         return;
     }
     
-    if ( self.mGoods == nil &&  tempImage == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择图片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-        return;
-    }
-
-    SGoods *mGoods = [[SGoods alloc] init];
-    NSMutableArray *imgAry = NSMutableArray.new;
-    if( tempImage )
-    {
-        [imgAry addObject:tempImage];
-        mGoods.mImgs = imgAry;
-    }
-    else
-        mGoods.mImgs = _mGoods.mImgs;
-    
-    mGoods.mName = _mServiceName.text;
-    mGoods.mPrice = [_mPrice.text floatValue];
-    mGoods.mDuration = [_mMinTime.text intValue];
-    
-    NSMutableArray *arry = NSMutableArray.new;
-    for (SPeople *p in myPeople) {
-        [arry addObject:@(p.mId)];
-    }
-    mGoods.mStaff = arry;
-    mGoods.mBrief = htmlContent;
-    mGoods.mTradeId = _mCate.mId;
-    if (_mGoods) {
-        mGoods.mId = _mGoods.mId;
-    }
+//    if ( self.mGoods == nil &&  tempImage == nil) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择图片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//        
+//        return;
+//    }
+//
+//    SGoods *mGoods = [[SGoods alloc] init];
+//    NSMutableArray *imgAry = NSMutableArray.new;
+//    if( tempImage )
+//    {
+//        [imgAry addObject:tempImage];
+//        mGoods.mImgs = imgAry;
+//    }
+//    else
+//        mGoods.mImgs = _mGoods.mImgs;
+//    
+//    mGoods.mName = _mServiceName.text;
+//    mGoods.mPrice = [_mPrice.text floatValue];
+//    mGoods.mDuration = [_mMinTime.text intValue];
+//    
+//    NSMutableArray *arry = NSMutableArray.new;
+//    for (SPeople *p in myPeople) {
+//        [arry addObject:@(p.mId)];
+//    }
+//    mGoods.mStaff = arry;
+//    mGoods.mBrief = htmlContent;
+//    mGoods.mTradeId = _mCate.mId;
+//    if (_mGoods) {
+//        mGoods.mId = _mGoods.mId;
+//    }
     
     
     [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-    [mGoods addThis:^(SResBase *resb) {
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            
-            if (_block) {
-                _block(YES);
-            }
-            [self popViewController];
-        }else{
-        
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [mGoods addThis:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            
+//            if (_block) {
+//                _block(YES);
+//            }
+//            [self popViewController];
+//        }else{
+//        
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -299,7 +299,7 @@
     
     WebVC *w = [WebVC new];
     w.mName = @"商品描述";
-    w.mUrl = [NSString stringWithFormat:@"%@/goods.detail?token=%@&userId=%d&id=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId,_mGoods.mId];
+//    w.mUrl = [NSString stringWithFormat:@"%@/goods.detail?token=%@&userId=%d&id=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId,_mGoods.mId];
     
     w.itgoodsblock = ^(NSString *content){
         
@@ -320,111 +320,111 @@
 
 - (IBAction)mBottomClick:(id)sender {
     
-    SGoods *mGoods = [[SGoods alloc] init];
+//    SGoods *mGoods = [[SGoods alloc] init];
+//    
+//    mGoods.mName = _mServiceName.text;
+//    mGoods.mPrice = [_mPrice.text floatValue];
+//    mGoods.mDuration = [_mMinTime.text intValue];
+//    
+//    NSMutableArray *arry = NSMutableArray.new;
+//    for (SPeople *p in myPeople) {
+//        [arry addObject:@(p.mId)];
+//    }
+//    mGoods.mStaff = arry;
+//    mGoods.mBrief = _mRemark.text;
+//    
+//    UIButton *button = (UIButton *)sender;
+//    if (button.tag == 11) {
+//        
+//        
+//        NSMutableArray *imgAry = NSMutableArray.new;
+//        
+//        if (_mBgImg.image) {
+//            [imgAry addObject:_mBgImg.image];
+//            mGoods.mImgs = imgAry;
+//        }
+//
+//        mGoods.mImgs = imgAry;
+//        SellerDetaillVC *sellerDetaill = [[SellerDetaillVC alloc] initWithNibName:@"SellerDetaillVC" bundle:nil];
+//        
+//        sellerDetaill.mGoods = mGoods;
+//        sellerDetaill.mType = 2;
+//        [self pushViewController:sellerDetaill];
+//        
+//        return;
+//    }
     
-    mGoods.mName = _mServiceName.text;
-    mGoods.mPrice = [_mPrice.text floatValue];
-    mGoods.mDuration = [_mMinTime.text intValue];
-    
-    NSMutableArray *arry = NSMutableArray.new;
-    for (SPeople *p in myPeople) {
-        [arry addObject:@(p.mId)];
-    }
-    mGoods.mStaff = arry;
-    mGoods.mBrief = _mRemark.text;
-    
-    UIButton *button = (UIButton *)sender;
-    if (button.tag == 11) {
-        
-        
-        NSMutableArray *imgAry = NSMutableArray.new;
-        
-        if (_mBgImg.image) {
-            [imgAry addObject:_mBgImg.image];
-            mGoods.mImgs = imgAry;
-        }
-
-        mGoods.mImgs = imgAry;
-        SellerDetaillVC *sellerDetaill = [[SellerDetaillVC alloc] initWithNibName:@"SellerDetaillVC" bundle:nil];
-        
-        sellerDetaill.mGoods = mGoods;
-        sellerDetaill.mType = 2;
-        [self pushViewController:sellerDetaill];
-        
-        return;
-    }
-    
-     NSMutableArray *selectArry = [[NSMutableArray alloc] initWithObjects:@(_mGoods.mId), nil];
-    if (button.tag == 10) {
-        
-        if (_mSelect == 1) {
-            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-            [SGoods getOff:selectArry block:^(SResBase *resb) {
-                if (resb.msuccess) {
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    
-                    if (_block) {
-                        _block(YES);
-                    }
-                    [self popViewController];
-                }else{
-                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                }
-            }];
-        }else{
-            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-            [SGoods getOn:selectArry block:^(SResBase *resb) {
-                if (resb.msuccess) {
-                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                    if (_block) {
-                        _block(YES);
-                    }
-                     [self popViewController];
-                }else{
-                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
-                }
-            }];
-            
-        }
-        
-        return;
-    }
-    
-    if (button.tag == 12) {
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [SGoods delSome:selectArry block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
-                
-                if (_block) {
-                    _block(YES);
-                }
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-    }
-    
+//     NSMutableArray *selectArry = [[NSMutableArray alloc] initWithObjects:@(_mGoods.mId), nil];
+//    if (button.tag == 10) {
+//        
+//        if (_mSelect == 1) {
+//            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//            [SGoods getOff:selectArry block:^(SResBase *resb) {
+//                if (resb.msuccess) {
+//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                    
+//                    if (_block) {
+//                        _block(YES);
+//                    }
+//                    [self popViewController];
+//                }else{
+//                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                }
+//            }];
+//        }else{
+//            [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//            [SGoods getOn:selectArry block:^(SResBase *resb) {
+//                if (resb.msuccess) {
+//                    [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                    if (_block) {
+//                        _block(YES);
+//                    }
+//                     [self popViewController];
+//                }else{
+//                    [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//                }
+//            }];
+//            
+//        }
+//        
+//        return;
+//    }
+//    
+//    if (button.tag == 12) {
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [SGoods delSome:selectArry block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [SVProgressHUD showSuccessWithStatus:@"操作成功"];
+//                
+//                if (_block) {
+//                    _block(YES);
+//                }
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//    }
+//    
 }
 
 - (IBAction)GoSellerClick:(id)sender {
     
-    SellerVC *seller = [[SellerVC alloc] init];
-    seller.block = ^(NSArray *peoples){
-        if (peoples.count >0) {
-            
-            NSString *string = @"";
-            for (SPeople *people in peoples) {
-                string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",people.mName]];
-            }
-            
-            _mSellerName.text = string;
-            myPeople = [[NSMutableArray alloc] initWithArray:peoples];
-        }
-    };
-    
-    [self pushViewController:seller];
+//    SellerVC *seller = [[SellerVC alloc] init];
+//    seller.block = ^(NSArray *peoples){
+//        if (peoples.count >0) {
+//            
+//            NSString *string = @"";
+//            for (SPeople *people in peoples) {
+//                string = [string stringByAppendingString:[NSString stringWithFormat:@" %@",people.mName]];
+//            }
+//            
+//            _mSellerName.text = string;
+//            myPeople = [[NSMutableArray alloc] initWithArray:peoples];
+//        }
+//    };
+//    
+//    [self pushViewController:seller];
 }
 @end

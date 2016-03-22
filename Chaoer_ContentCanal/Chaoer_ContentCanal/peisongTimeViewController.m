@@ -239,16 +239,16 @@
     [dic setObject:mStartArr forKey:@"stimes"];
     [dic setObject:mEndArr forKey:@"etimes"];
     
-    [_mShop updateDeliveryTimes:dic block:^(SResBase *info) {
-        if (info.msuccess) {
-            if (_itblock) {
-                _itblock(dic);
-            }
-            [self popViewController];
-        }else{
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [_mShop updateDeliveryTimes:dic block:^(SResBase *info) {
+//        if (info.msuccess) {
+//            if (_itblock) {
+//                _itblock(dic);
+//            }
+//            [self popViewController];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
     
 
 }

@@ -23,15 +23,15 @@
 //    [self getData];
 }
 - (void)getData{
-    [[SUser currentUser] getMsgStatus:^(SResBase *resb, BOOL bhavenew) {
-        if (resb.msuccess) {
-            [self setBadgeValue:@"1" atTabIndex:1];
-            MLLog(@"%@",resb.mmsg);
-        }
-        else{
-        
-        }
-    }];
+//    [[SUser currentUser] getMsgStatus:^(SResBase *resb, BOOL bhavenew) {
+//        if (resb.msuccess) {
+//            [self setBadgeValue:@"1" atTabIndex:1];
+//            MLLog(@"%@",resb.mmsg);
+//        }
+//        else{
+//        
+//        }
+//    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

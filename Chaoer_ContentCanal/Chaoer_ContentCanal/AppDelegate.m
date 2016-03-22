@@ -62,19 +62,19 @@
     
     [APService setupWithOption:launchOptions];
     
-    [SUser relTokenWithPush];
-    
-    
-    [GInfo getGInfo:^(SResBase *resb, GInfo *gInfo) {
-        
-        if (resb.msuccess) {
-            
-        }
-        else{
-        
-        }
-        
-    }];
+//    [SUser relTokenWithPush];
+//    
+//    
+//    [GInfo getGInfo:^(SResBase *resb, GInfo *gInfo) {
+//        
+//        if (resb.msuccess) {
+//            
+//        }
+//        else{
+//        
+//        }
+//        
+//    }];
     
     
     [self dealFuncTab];
@@ -113,31 +113,31 @@
         NSString *strMsg    =   [NSString stringWithFormat:@"errcode:%d errmsg:%@ payinfo:%@", resp.errCode,resp.errStr,((PayResp*)resp).returnKey];
         MLLog(@"payresp:%@",strMsg);
         
-        SResBase* retobj = SResBase.new;
-        if( resp.errCode == -1 )
-        {//
-            retobj.msuccess = NO;
-            retobj.mmsg = @"支付出现异常";
-        }
-        else if( resp.errCode == -2 )
-        {
-            retobj.msuccess = NO;
-            retobj.mmsg = @"用户取消了支付";
-        }
-        else
-        {
-            retobj.msuccess = YES;
-            retobj.mmsg = @"支付成功";
-        }
-        
-        if( [SAppInfo shareClient].mPayBlock )
-        {
-            [SAppInfo shareClient].mPayBlock(retobj);
-        }
-        else
-        {
-            MLLog(@"may be err no block to back");
-        }
+//        SResBase* retobj = SResBase.new;
+//        if( resp.errCode == -1 )
+//        {//
+//            retobj.msuccess = NO;
+//            retobj.mmsg = @"支付出现异常";
+//        }
+//        else if( resp.errCode == -2 )
+//        {
+//            retobj.msuccess = NO;
+//            retobj.mmsg = @"用户取消了支付";
+//        }
+//        else
+//        {
+//            retobj.msuccess = YES;
+//            retobj.mmsg = @"支付成功";
+//        }
+//        
+//        if( [SAppInfo shareClient].mPayBlock )
+//        {
+//            [SAppInfo shareClient].mPayBlock(retobj);
+//        }
+//        else
+//        {
+//            MLLog(@"may be err no block to back");
+//        }
     }
     else
     {
@@ -183,7 +183,7 @@
     }
     
     
-    [SUser logout];
+//    [SUser logout];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
@@ -219,35 +219,35 @@
 }
 -(void)dealPush:(NSDictionary*)userinof bopenwith:(BOOL)bopenwith
 {
-    SMessageInfo* pushobj = [[SMessageInfo alloc]initWithAPN:userinof];
+//    SMessageInfo* pushobj = [[SMessageInfo alloc]initWithAPN:userinof];
     
     if( !bopenwith )
     {//当前用户正在APP内部,,
         myalert *alertVC = [[myalert alloc]initWithTitle:@"提示" message:@"有新的消息是否查看?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
-        alertVC.obj = pushobj;
+//        alertVC.obj = pushobj;
         [alertVC show];
     }
     else
     {
         
-        if( pushobj.mType == 1 )
-        {
-            myMessageViewController* vc = [[myMessageViewController alloc]init];
-            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
-        }
-        else if( pushobj.mType == 2 )
-        {
-            WebVC* vc = [[WebVC alloc]init];
-            vc.mName = @"详情";
-            vc.mUrl = pushobj.mArgs;
-        }
-        else if( pushobj.mType == 3 )
-        {
-            orderDetail* vc = [[orderDetail alloc]initWithNibName:@"orderDetail" bundle:nil];
-            vc.mtagOrder = SOrder.new;
-            vc.mtagOrder.mId = [pushobj.mArgs intValue];
-            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
-        }
+//        if( pushobj.mType == 1 )
+//        {
+//            myMessageViewController* vc = [[myMessageViewController alloc]init];
+//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
+//        }
+//        else if( pushobj.mType == 2 )
+//        {
+//            WebVC* vc = [[WebVC alloc]init];
+//            vc.mName = @"详情";
+//            vc.mUrl = pushobj.mArgs;
+//        }
+//        else if( pushobj.mType == 3 )
+//        {
+//            orderDetail* vc = [[orderDetail alloc]initWithNibName:@"orderDetail" bundle:nil];
+//            vc.mtagOrder = SOrder.new;
+//            vc.mtagOrder.mId = [pushobj.mArgs intValue];
+//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
+//        }
     }
 }
 
@@ -258,62 +258,62 @@
     NSLog(@"tag:%@ alias%@ irescod:%d",tags,alias,iResCode);
     if( iResCode == 6002 )
     {
-        [SUser  relTokenWithPush];
+//        [SUser  relTokenWithPush];
     }
     
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
         
-        SMessageInfo* pushobj = ((myalert *)alertView).obj;
+//        SMessageInfo* pushobj = ((myalert *)alertView).obj;
         
-        if( pushobj.mType == 1 )
-        {
-            myMessageViewController* vc = [[myMessageViewController alloc]init];
-            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
-        }
-        else if( pushobj.mType == 2 )
-        {
-            WebVC* vc = [[WebVC alloc]init];
-            vc.mName = @"详情";
-            vc.mUrl = pushobj.mArgs;
-        }
-        else if( pushobj.mType == 3 )
-        {
-            
-            orderDetail *order = [[orderDetail alloc] initWithNibName:@"orderDetail" bundle:nil];
-            SOrder *s = [[SOrder alloc] init];
-            s.mId = [pushobj.mArgs intValue];
-            order.mtagOrder = s;
-            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:order animated:YES];
-        }
-        
+//        if( pushobj.mType == 1 )
+//        {
+//            myMessageViewController* vc = [[myMessageViewController alloc]init];
+//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
+//        }
+//        else if( pushobj.mType == 2 )
+//        {
+//            WebVC* vc = [[WebVC alloc]init];
+//            vc.mName = @"详情";
+//            vc.mUrl = pushobj.mArgs;
+//        }
+//        else if( pushobj.mType == 3 )
+//        {
+//            
+//            orderDetail *order = [[orderDetail alloc] initWithNibName:@"orderDetail" bundle:nil];
+//            SOrder *s = [[SOrder alloc] init];
+//            s.mId = [pushobj.mArgs intValue];
+//            order.mtagOrder = s;
+//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:order animated:YES];
+//        }
+//        
     }
 }
 
 -(void)dealFuncTab
 {
     
-    UITabBarController* rootvc = (UITabBarController*)self.window.rootViewController;
-    if( ![SUser currentUser].isSeller )
-    {
-        NSMutableArray* a = [NSMutableArray arrayWithArray: rootvc.viewControllers];
-        if( a.count == 4 )
-        {
-            _theshop = [a objectAtIndex:2];
-            [a removeObjectAtIndex:2];
-            [rootvc setViewControllers:a animated:YES];
-        }
-    }
-    else
-    {
-        NSMutableArray* a = [NSMutableArray arrayWithArray: rootvc.viewControllers];
-        if( a.count == 2 )
-        {
-            [a insertObject:_theshop atIndex:3];
-            [rootvc setViewControllers:a animated:YES];
-        }
-    }
+//    UITabBarController* rootvc = (UITabBarController*)self.window.rootViewController;
+//    if( ![SUser currentUser].isSeller )
+//    {
+//        NSMutableArray* a = [NSMutableArray arrayWithArray: rootvc.viewControllers];
+//        if( a.count == 4 )
+//        {
+//            _theshop = [a objectAtIndex:2];
+//            [a removeObjectAtIndex:2];
+//            [rootvc setViewControllers:a animated:YES];
+//        }
+//    }
+//    else
+//    {
+//        NSMutableArray* a = [NSMutableArray arrayWithArray: rootvc.viewControllers];
+//        if( a.count == 2 )
+//        {
+//            [a insertObject:_theshop atIndex:3];
+//            [rootvc setViewControllers:a animated:YES];
+//        }
+//    }
     
 }
 

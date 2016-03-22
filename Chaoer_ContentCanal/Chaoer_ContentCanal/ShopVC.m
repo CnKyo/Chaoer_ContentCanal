@@ -14,7 +14,7 @@
 
 @interface ShopVC (){
 
-    SShop *shop;
+//    SShop *shop;
 }
 
 @end
@@ -38,28 +38,28 @@
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeClear];
     
     
-    [SShop getShopInfo:^(SResBase *info, SShop *retobj) {
-        
-        if (info.msuccess) {
-            [SVProgressHUD dismiss];
-            
-            shop = retobj;
-            
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:retobj.mName forKey:@"shopname"];
-            [defaults synchronize];
-            
-            self.mShopName = retobj.mName;
-            _mYue.text = [NSString stringWithFormat:@"¥%.2f",retobj.mBalance];
-            _mNum.text = [NSString stringWithFormat:@"%d",retobj.mOrderNum];
-            _mPrice.text = [NSString stringWithFormat:@"¥%.2f",retobj.mTurnover];
-            
-            
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [SShop getShopInfo:^(SResBase *info, SShop *retobj) {
+//        
+//        if (info.msuccess) {
+//            [SVProgressHUD dismiss];
+//            
+//            shop = retobj;
+//            
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            [defaults setObject:retobj.mName forKey:@"shopname"];
+//            [defaults synchronize];
+//            
+//            self.mShopName = retobj.mName;
+//            _mYue.text = [NSString stringWithFormat:@"¥%.2f",retobj.mBalance];
+//            _mNum.text = [NSString stringWithFormat:@"%d",retobj.mOrderNum];
+//            _mPrice.text = [NSString stringWithFormat:@"¥%.2f",retobj.mTurnover];
+//            
+//            
+//        }else{
+//            
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
     
 
 }
@@ -83,7 +83,7 @@
     
     WebVC *w = [WebVC new];
     w.mName = @"经营分析";
-    w.mUrl = [NSString stringWithFormat:@"%@/order.statistics?token=%@&userId=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId];
+//    w.mUrl = [NSString stringWithFormat:@"%@/order.statistics?token=%@&userId=%d",[APIClient APiWithUrl:@"api" andOtherUrl:nil],[APIClient getmToken],[SUser currentUser].mUserId];
     MLLog(@"经营分析：%@",w.mUrl);
     [self pushViewController:w];
 }
@@ -97,7 +97,7 @@
             [self getData];
         }
     };
-    bill.mShop = shop;
+//    bill.mShop = shop;
     [self pushViewController:bill];
 }
 

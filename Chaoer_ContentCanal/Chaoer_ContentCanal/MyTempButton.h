@@ -10,6 +10,6 @@
 
 @interface MyTempButton : UIButton
 
-@property (nonatomic,strong) SOrderRateInfo *rate;
+//@property (nonatomic,strong) SOrderRateInfo *rate;
 
 @end

@@ -10,7 +10,7 @@
 
 @interface BillVC : BaseVC
 
-@property (nonatomic,strong) SShop *mShop;
+//@property (nonatomic,strong) SShop *mShop;
 
 @property (nonatomic,strong) void(^itblock)(BOOL flag);
 

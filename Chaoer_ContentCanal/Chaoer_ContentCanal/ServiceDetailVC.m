@@ -63,7 +63,7 @@
     
     self.hiddenTabBar = YES;
     [super viewDidLoad];
-    self.Title = self.mPageName = _mCate.mName;
+//    self.Title = self.mPageName = _mCate.mName;
     
     self.rightBtnTitle = @"添加服务";
     key = @"";
@@ -169,29 +169,29 @@
     
     if (_type == 1) {//商品
        
-        AddGoodsVC *addGoods = [[AddGoodsVC alloc] initWithNibName:@"AddGoodsVC" bundle:nil];
-        addGoods.mCate = _mCate;
-        addGoods.block = ^(BOOL flag){
-            if (flag) {
-                [self.tableView headerBeginRefreshing];
-            }
-        };
-
-        
-        [self pushViewController:addGoods];
-        
+//        AddGoodsVC *addGoods = [[AddGoodsVC alloc] initWithNibName:@"AddGoodsVC" bundle:nil];
+//        addGoods.mCate = _mCate;
+//        addGoods.block = ^(BOOL flag){
+//            if (flag) {
+//                [self.tableView headerBeginRefreshing];
+//            }
+//        };
+//
+//        
+//        [self pushViewController:addGoods];
+//        
         return;
     }
     
     if (_type == 2) {//服务
-        AddServiceVC *addservice = [[AddServiceVC alloc] initWithNibName:@"AddServiceVC" bundle:nil];
-        addservice.mCate = _mCate;
-        addservice.block = ^(BOOL flag){
-            if (flag) {
-                [self.tableView headerBeginRefreshing];
-            }
-        };
-        [self pushViewController:addservice];
+//        AddServiceVC *addservice = [[AddServiceVC alloc] initWithNibName:@"AddServiceVC" bundle:nil];
+//        addservice.mCate = _mCate;
+//        addservice.block = ^(BOOL flag){
+//            if (flag) {
+//                [self.tableView headerBeginRefreshing];
+//            }
+//        };
+//        [self pushViewController:addservice];
         
     }
 
@@ -234,16 +234,16 @@
 
     sender.selected = !sender.selected;
     
-    NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    for (SGoods *g in arry) {
-        
-        if (sender.selected) {
-            g.mIsCheck = YES;
-        }else{
-            g.mIsCheck = NO;
-        }
-        
-    }
+//    NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//    for (SGoods *g in arry) {
+//        
+//        if (sender.selected) {
+//            g.mIsCheck = YES;
+//        }else{
+//            g.mIsCheck = NO;
+//        }
+//        
+//    }
     
     [self.tableView reloadData];
 }
@@ -251,10 +251,10 @@
 - (void)CheckClick2:(UIButton *)sender{
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    SGoods *goods = [arry objectAtIndex:sender.tag];
-    
-    goods.mIsCheck = !goods.mIsCheck;
-    sender.selected = !sender.selected;
+//    SGoods *goods = [arry objectAtIndex:sender.tag];
+//    
+//    goods.mIsCheck = !goods.mIsCheck;
+//    sender.selected = !sender.selected;
     
 
 }
@@ -291,61 +291,61 @@
     self.page=1;
     
   
-    [_mCate getGoodsList:nowSelect keywords:key page:self.page block:^(SResBase *resb, NSArray *all) {
-        
-        [self headerEndRefresh];
-        [tempDic removeAllObjects];
-        
-        if (resb.msuccess) {
-            
-            [tempDic setObject:all forKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-        }
-        else{
-            [self addEmptyViewWithImg:nil];
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if(all.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
-    
+//    [_mCate getGoodsList:nowSelect keywords:key page:self.page block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self headerEndRefresh];
+//        [tempDic removeAllObjects];
+//        
+//        if (resb.msuccess) {
+//            
+//            [tempDic setObject:all forKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//        }
+//        else{
+//            [self addEmptyViewWithImg:nil];
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if(all.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
+//    
     
 }
 #pragma mark----地步刷新
 -(void)footetBeganRefresh
 {
     self.page++;
-    [_mCate getGoodsList:nowSelect keywords:key page:self.page block:^(SResBase *resb, NSArray *all)  {
-        [self footetEndRefresh];
-        if (resb.msuccess) {
-            
-            NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-            
-            [arry addObjectsFromArray:all];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-        if( arry.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-    }];
-    
-    [self.tableView reloadData];
+//    [_mCate getGoodsList:nowSelect keywords:key page:self.page block:^(SResBase *resb, NSArray *all)  {
+//        [self footetEndRefresh];
+//        if (resb.msuccess) {
+//            
+//            NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//            
+//            [arry addObjectsFromArray:all];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
+//        if( arry.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//    }];
+//    
+//    [self.tableView reloadData];
     
 }
 
@@ -403,23 +403,23 @@
     if(editingStyle==UITableViewCellEditingStyleDelete)
     {
         NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-        SGoods *goods = [arry objectAtIndex:indexPath.row];
-        
-        NSArray *ary = [[NSArray alloc] initWithObjects:@(goods.mId), nil];
-        
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [SGoods delSome:ary block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD dismiss];
-                
-                [arry removeObjectAtIndex:indexPath.row];
-                // Delete the row from the data source.
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
+//        SGoods *goods = [arry objectAtIndex:indexPath.row];
+//        
+//        NSArray *ary = [[NSArray alloc] initWithObjects:@(goods.mId), nil];
+//        
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [SGoods delSome:ary block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD dismiss];
+//                
+//                [arry removeObjectAtIndex:indexPath.row];
+//                // Delete the row from the data source.
+//                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
         
        
         
@@ -468,20 +468,20 @@
     
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    SGoods *goods = [arry objectAtIndex:indexPath.row];
-    cell.mName.text = goods.mName;
-    cell.mPrice.text =  [NSString stringWithFormat:@"¥%.2f",goods.mPrice];
-    cell.mNum.text = [NSString stringWithFormat:@"销量：%d",goods.mSaleCount];
-    
-    if (goods.mImgs.count>0) {
-        [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[goods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
-    }
-    
-    if (goods.mIsCheck) {
-        cell.mCheck.selected = YES;
-    }else{
-        cell.mCheck.selected = NO;
-    }
+//    SGoods *goods = [arry objectAtIndex:indexPath.row];
+//    cell.mName.text = goods.mName;
+//    cell.mPrice.text =  [NSString stringWithFormat:@"¥%.2f",goods.mPrice];
+//    cell.mNum.text = [NSString stringWithFormat:@"销量：%d",goods.mSaleCount];
+//    
+//    if (goods.mImgs.count>0) {
+//        [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[goods.mImgs objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"img_def"]];
+//    }
+//    
+//    if (goods.mIsCheck) {
+//        cell.mCheck.selected = YES;
+//    }else{
+//        cell.mCheck.selected = NO;
+//    }
     
     return cell;
     
@@ -493,40 +493,40 @@
     int index = (int)sender.tag;
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    SGoods *goods = [arry objectAtIndex:index];
-   
-    
-    if (_type == 1) {
-        AddGoodsVC *addservice = [[AddGoodsVC alloc] initWithNibName:@"AddGoodsVC" bundle:nil];
-        addservice.mGoods = goods;
-        addservice.mCate = _mCate;
-        addservice.mSelect = nowSelect;
-        addservice.block = ^(BOOL flag){
-            if (flag) {
-                [self.tableView headerBeginRefreshing];
-            }
-        };
-        
-        [self pushViewController:addservice];
-        
-        return;
-    }
-    
-    if (_type == 2) {
-        AddServiceVC *addservice = [[AddServiceVC alloc] initWithNibName:@"AddServiceVC" bundle:nil];
-        addservice.mGoods = goods;
-        addservice.mCate = _mCate;
-        addservice.mSelect = nowSelect;
-        addservice.block = ^(BOOL flag){
-            if (flag) {
-                [self.tableView headerBeginRefreshing];
-            }
-        };
-     
-        [self pushViewController:addservice];
-        
-        return;
-    }
+//    SGoods *goods = [arry objectAtIndex:index];
+//   
+//    
+//    if (_type == 1) {
+//        AddGoodsVC *addservice = [[AddGoodsVC alloc] initWithNibName:@"AddGoodsVC" bundle:nil];
+//        addservice.mGoods = goods;
+//        addservice.mCate = _mCate;
+//        addservice.mSelect = nowSelect;
+//        addservice.block = ^(BOOL flag){
+//            if (flag) {
+//                [self.tableView headerBeginRefreshing];
+//            }
+//        };
+//        
+//        [self pushViewController:addservice];
+//        
+//        return;
+//    }
+//    
+//    if (_type == 2) {
+//        AddServiceVC *addservice = [[AddServiceVC alloc] initWithNibName:@"AddServiceVC" bundle:nil];
+//        addservice.mGoods = goods;
+//        addservice.mCate = _mCate;
+//        addservice.mSelect = nowSelect;
+//        addservice.block = ^(BOOL flag){
+//            if (flag) {
+//                [self.tableView headerBeginRefreshing];
+//            }
+//        };
+//     
+//        [self pushViewController:addservice];
+//        
+//        return;
+//    }
     
     
 
@@ -584,47 +584,47 @@
 - (IBAction)mXiaJiaClick:(id)sender {
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    [selectArry removeAllObjects];
-    for (SGoods *g in arry) {
-        
-        if (g.mIsCheck) {
-            [selectArry addObject:@(g.mId)];
-        }
-    }
-    
-    if(selectArry.count<=0){
-    
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的选择为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-        return;
-    }
-    
-    if (nowSelect == 1) {
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [SGoods getOff:selectArry block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self.tableView headerBeginRefreshing];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-    }else{
-        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-        [SGoods getOn:selectArry block:^(SResBase *resb) {
-            if (resb.msuccess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-                [self.tableView headerBeginRefreshing];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-        
-    }
-    
-    
+//    [selectArry removeAllObjects];
+//    for (SGoods *g in arry) {
+//        
+//        if (g.mIsCheck) {
+//            [selectArry addObject:@(g.mId)];
+//        }
+//    }
+//    
+//    if(selectArry.count<=0){
+//    
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的选择为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//        
+//        return;
+//    }
+//    
+//    if (nowSelect == 1) {
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [SGoods getOff:selectArry block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self.tableView headerBeginRefreshing];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//    }else{
+//        [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//        [SGoods getOn:selectArry block:^(SResBase *resb) {
+//            if (resb.msuccess) {
+//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//                [self.tableView headerBeginRefreshing];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//        
+//    }
+//    
+//    
     
     
     
@@ -633,31 +633,31 @@
 - (IBAction)mDeletClick:(id)sender {
     
     NSMutableArray *arry = [tempDic objectForKey:[NSString stringWithFormat:@"select%d",nowSelect]];
-    [selectArry removeAllObjects];
-    for (SGoods *g in arry) {
-        
-        if (g.mIsCheck) {
-            [selectArry addObject:@(g.mId)];
-        }
-    }
-    
-    if(selectArry.count<=0){
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的选择为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-        return;
-    }
-    
-    [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
-    [SGoods delSome:selectArry block:^(SResBase *resb) {
-        if (resb.msuccess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            [self.tableView headerBeginRefreshing];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-    }];
+//    [selectArry removeAllObjects];
+//    for (SGoods *g in arry) {
+//        
+//        if (g.mIsCheck) {
+//            [selectArry addObject:@(g.mId)];
+//        }
+//    }
+//    
+//    if(selectArry.count<=0){
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的选择为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//        
+//        return;
+//    }
+//    
+//    [SVProgressHUD showWithStatus:@"操作中.." maskType:SVProgressHUDMaskTypeClear];
+//    [SGoods delSome:selectArry block:^(SResBase *resb) {
+//        if (resb.msuccess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            [self.tableView headerBeginRefreshing];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//    }];
 }
 @end

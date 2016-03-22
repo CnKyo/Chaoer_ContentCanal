@@ -22,7 +22,7 @@
     
     int page;
     
-    SMyMoney *mMoney;
+//    SMyMoney *mMoney;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -60,29 +60,29 @@
 - (void)headerBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在获取数据..." maskType:SVProgressHUDMaskTypeClear];
     page = 1;
-    [[SUser currentUser] getMoney:page block:^(SResBase *resb, SMyMoney *money) {
-        
-        [self headerEndRefresh];
-        
-
-        if (resb.msuccess) {
-            mMoney = money;
-            [SVProgressHUD dismiss];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        if( mMoney.mContent.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
-    
+//    [[SUser currentUser] getMoney:page block:^(SResBase *resb, SMyMoney *money) {
+//        
+//        [self headerEndRefresh];
+//        
+//
+//        if (resb.msuccess) {
+//            mMoney = money;
+//            [SVProgressHUD dismiss];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        if( mMoney.mContent.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
+//    
     
 }
 #pragma mark----地步刷新
@@ -90,28 +90,28 @@
 {
     [SVProgressHUD showWithStatus:@"正在获取数据..." maskType:SVProgressHUDMaskTypeClear];
     page ++;
-    [[SUser currentUser] getMoney:page block:^(SResBase *resb, SMyMoney *money) {
-        [self footetEndRefresh];
-        if (resb.msuccess) {
-            mMoney = money;
-
-             [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-            
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-        if( mMoney.mContent.count == 0 )
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-    }];
+//    [[SUser currentUser] getMoney:page block:^(SResBase *resb, SMyMoney *money) {
+//        [self footetEndRefresh];
+//        if (resb.msuccess) {
+//            mMoney = money;
+//
+//             [self.tableView reloadData];
+//            [SVProgressHUD dismiss];
+//            
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//        if( mMoney.mContent.count == 0 )
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//    }];
     
 }
 
@@ -128,7 +128,8 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return mMoney.mContent.count;
+//    return mMoney.mContent.count;
+    return 3;
     
 }
 
@@ -147,11 +148,11 @@
         cell = [[moreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    SMoney *monry = mMoney.mContent[indexPath.row];
-
-    cell.mTime.text = monry.mCreateTime;
-    cell.mOrderID.text = [NSString stringWithFormat:@"订单编号：%@",monry.mOrderId];
-    cell.mPrice.text = [NSString stringWithFormat:@"+%.2f",monry.mMoney];
+//    SMoney *monry = mMoney.mContent[indexPath.row];
+//
+//    cell.mTime.text = monry.mCreateTime;
+//    cell.mOrderID.text = [NSString stringWithFormat:@"订单编号：%@",monry.mOrderId];
+//    cell.mPrice.text = [NSString stringWithFormat:@"+%.2f",monry.mMoney];
     
 
     return cell;
@@ -169,7 +170,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     mHeaderView = [footView shareMyMoney];
     
-    mHeaderView.mMyMoney.text = [NSString stringWithFormat:@"¥%.2f",mMoney.mTotleMoney];
+//    mHeaderView.mMyMoney.text = [NSString stringWithFormat:@"¥%.2f",mMoney.mTotleMoney];
 
     return mHeaderView;
     

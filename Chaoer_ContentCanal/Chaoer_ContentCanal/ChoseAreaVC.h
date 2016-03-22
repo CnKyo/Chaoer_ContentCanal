@@ -12,11 +12,11 @@
 
 @interface ChoseAreaVC : BaseVC
 
-@property (nonatomic,strong) void(^itblock)(SProvince *p,SProvince *c,SProvince *a);
-
-@property (nonatomic,strong) SProvince *pp;
-@property (nonatomic,strong) SProvince *cp;
-@property (nonatomic,strong) SProvince *ap;
+//@property (nonatomic,strong) void(^itblock)(SProvince *p,SProvince *c,SProvince *a);
+//
+//@property (nonatomic,strong) SProvince *pp;
+//@property (nonatomic,strong) SProvince *cp;
+//@property (nonatomic,strong) SProvince *ap;
 
 @property (weak, nonatomic) IBOutlet UIButton *mProvice;
 @property (weak, nonatomic) IBOutlet UIButton *mCity;
@@ -32,6 +32,6 @@
 - (IBAction)mCityClick:(id)sender;
 - (IBAction)mAreaClick:(id)sender;
 
-@property (nonatomic,strong)  SShop*    mtagshop;
+//@property (nonatomic,strong)  SShop*    mtagshop;
 
 @end

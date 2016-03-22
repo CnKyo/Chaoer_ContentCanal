@@ -10,7 +10,7 @@
 
 @interface msgDetailView : BaseVC
 
-@property (strong,nonatomic) SMessageInfo *Smsg;
+//@property (strong,nonatomic) SMessageInfo *Smsg;
 
 @property (strong,nonatomic) NSString *mTitleStr;
 @end

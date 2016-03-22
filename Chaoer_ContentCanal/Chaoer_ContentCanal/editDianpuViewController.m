@@ -73,99 +73,99 @@
 
 - (void)rightBtnTouched:(id)sender{
     if (_mType == 1) {
-        [_mShop updateDianpuName:self.mContent.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mContent.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        [_mShop updateDianpuName:self.mContent.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mContent.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
 
     }if (_mType == 2) {
-        [_mShop updateArticle:self.mTxView.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mTxView.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        [_mShop updateArticle:self.mTxView.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mTxView.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
     }if (_mType == 3){
-        if (![Util isMobileNumber:self.mContent.text]) {
-            [self showErrorStatus:@"请输入合法的手机号码"];
-            [self.mContent becomeFirstResponder];
-            return;
-        }
-        [_mShop updateTel:self.mContent.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mContent.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        if (![Util isMobileNumber:self.mContent.text]) {
+//            [self showErrorStatus:@"请输入合法的手机号码"];
+//            [self.mContent becomeFirstResponder];
+//            return;
+//        }
+//        [_mShop updateTel:self.mContent.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mContent.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
     }if (_mType == 4) {
-        [_mShop updateBrief:self.mTxView.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mTxView.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        [_mShop updateBrief:self.mTxView.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mTxView.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
     }
     
     if (_mType == 8) {
         
-        if (![Util checkNum:self.mContent.text]) {
-            [self showErrorStatus:@"请输入正确的起送价"];
-            [self.mContent becomeFirstResponder];
-            return;
-        }
-        [_mShop updateQs:self.mContent.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mContent.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        if (![Util checkNum:self.mContent.text]) {
+//            [self showErrorStatus:@"请输入正确的起送价"];
+//            [self.mContent becomeFirstResponder];
+//            return;
+//        }
+//        [_mShop updateQs:self.mContent.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mContent.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
     }
     
     if (_mType == 9) {
         
-        if (![Util checkNum:self.mContent.text]) {
-            [self showErrorStatus:@"请输入正确的配送费"];
-            [self.mContent becomeFirstResponder];
-            return;
-        }
-        [_mShop updatePs:self.mContent.text block:^(SResBase *info) {
-            if (info.msuccess) {
-                if (_itblock) {
-                    _itblock(self.mContent.text);
-                }
-                
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:info.mmsg];
-            }
-        }];
+//        if (![Util checkNum:self.mContent.text]) {
+//            [self showErrorStatus:@"请输入正确的配送费"];
+//            [self.mContent becomeFirstResponder];
+//            return;
+//        }
+//        [_mShop updatePs:self.mContent.text block:^(SResBase *info) {
+//            if (info.msuccess) {
+//                if (_itblock) {
+//                    _itblock(self.mContent.text);
+//                }
+//                
+//                [self popViewController];
+//            }else{
+//                [SVProgressHUD showErrorWithStatus:info.mmsg];
+//            }
+//        }];
     }
   
 }

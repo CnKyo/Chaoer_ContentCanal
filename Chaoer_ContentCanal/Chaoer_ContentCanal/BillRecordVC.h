@@ -10,6 +10,6 @@
 
 @interface BillRecordVC : BaseVC
 
-@property (nonatomic,strong) SShop *mShop;
+//@property (nonatomic,strong) SShop *mShop;
 
 @end

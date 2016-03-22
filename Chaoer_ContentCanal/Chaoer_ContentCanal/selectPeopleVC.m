@@ -21,12 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.Title = self.mPageName = self.mTagOrder.mOrderType == 1 ? @"选择配送人员":@"选择服务人员";
+//    self.Title = self.mPageName = self.mTagOrder.mOrderType == 1 ? @"选择配送人员":@"选择服务人员";
     
-    if( self.mTagOrder.mStaff )
-        _index = self.mTagOrder.mStaff.mId;
-    else
-        _index = -1;
+//    if( self.mTagOrder.mStaff )
+//        _index = self.mTagOrder.mStaff.mId;
+//    else
+//        _index = -1;
     self.hiddenRightBtn = NO;
     [self setRightBtnTitle:@"确定"];
     
@@ -37,47 +37,47 @@
 }
 -(void)rightBtnTouched:(id)sender
 {
-    if( _index != self.mTagOrder.mStaff.mId )
-    {
-        [SVProgressHUD showWithStatus:@"操作中..." maskType:SVProgressHUDMaskTypeClear];
-        [self.mTagOrder selectPeople:_index block:^(SResBase *resb) {
-            
-            if( resb.msuccess )
-            {
-                if( _mitblock )
-                    _mitblock( _index );
-                
-                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:0.75f];
-                
-            }
-            else
-            {
-                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            }
-        }];
-    }
-    else
-        [self leftBtnTouched:nil];
+//    if( _index != self.mTagOrder.mStaff.mId )
+//    {
+//        [SVProgressHUD showWithStatus:@"操作中..." maskType:SVProgressHUDMaskTypeClear];
+//        [self.mTagOrder selectPeople:_index block:^(SResBase *resb) {
+//            
+//            if( resb.msuccess )
+//            {
+//                if( _mitblock )
+//                    _mitblock( _index );
+//                
+//                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:0.75f];
+//                
+//            }
+//            else
+//            {
+//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            }
+//        }];
+//    }
+//    else
+//        [self leftBtnTouched:nil];
 }
 
 -(void)headerBeganRefresh
 {
     
-    [SPeople getPeoples:self.mTagOrder.mOrderType block:^(SResBase *resb, NSArray *all) {
-        
-        [self headerEndRefresh];
-        if( resb.msuccess )
-        {
-            [self.tempArray removeAllObjects];
-            [self.tempArray addObjectsFromArray:all];
-            [self.tableView reloadData];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        
-    }];
+//    [SPeople getPeoples:self.mTagOrder.mOrderType block:^(SResBase *resb, NSArray *all) {
+//        
+//        [self headerEndRefresh];
+//        if( resb.msuccess )
+//        {
+//            [self.tempArray removeAllObjects];
+//            [self.tempArray addObjectsFromArray:all];
+//            [self.tableView reloadData];
+//        }
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        
+//    }];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -95,13 +95,13 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier: nil];
     }
-    SPeople * one = [self.tempArray objectAtIndex:indexPath.row];
-    if( one.mId == _index )
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    else
-        cell.accessoryType = UITableViewCellAccessoryNone;
+//    SPeople * one = [self.tempArray objectAtIndex:indexPath.row];
+//    if( one.mId == _index )
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    else
+//        cell.accessoryType = UITableViewCellAccessoryNone;
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@      %@",one.mName,one.mMobile];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@      %@",one.mName,one.mMobile];
 
     cell.tintColor = [UIColor redColor];
     
@@ -110,8 +110,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    SPeople * one = [self.tempArray objectAtIndex:indexPath.row];
-    _index = one.mId;
+//    SPeople * one = [self.tempArray objectAtIndex:indexPath.row];
+//    _index = one.mId;
     [tableView reloadData];
     
 }

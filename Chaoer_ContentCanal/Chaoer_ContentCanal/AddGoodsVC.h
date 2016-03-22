@@ -12,9 +12,9 @@
 @interface AddGoodsVC : BaseVC
 
 @property (nonatomic,strong) void(^block)(BOOL flag);
-@property (nonatomic,strong) SGoods *mGoods;
+//@property (nonatomic,strong) SGoods *mGoods;
 @property (nonatomic,assign) int     mSelect; //1:上架 2:下架
-@property (nonatomic,strong) SGoodsCate *mCate;
+//@property (nonatomic,strong) SGoodsCate *mCate;
 
 @property (weak, nonatomic) IBOutlet UILabel *mLeftText;
 @property (weak, nonatomic) IBOutlet UIImageView *mLeftImg;

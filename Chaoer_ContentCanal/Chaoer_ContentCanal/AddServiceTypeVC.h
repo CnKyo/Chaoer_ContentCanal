@@ -10,7 +10,7 @@
 
 @interface AddServiceTypeVC : BaseVC
 
-@property (nonatomic,strong) SGoodsCate *mCate;
+//@property (nonatomic,strong) SGoodsCate *mCate;
 @property (weak, nonatomic) IBOutlet UILabel *mType;
 @property (weak, nonatomic) IBOutlet UITableView *mTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mTableViewHeight;

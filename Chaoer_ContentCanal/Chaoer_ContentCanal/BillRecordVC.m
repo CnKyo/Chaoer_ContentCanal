@@ -41,29 +41,29 @@
     self.page=1;
     
     
-    [_mShop searchBill:self.page type:2 status:nil block:^(SResBase *info, NSArray *bill) {
-        
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (info.msuccess) {
-            
-            [self.tempArray removeAllObjects];
-            [self.tempArray addObjectsFromArray:bill];
-        }
-        else{
-            [self addEmptyViewWithImg:nil];
-        }
-        
-        if(bill.count == 0 || bill == nil)
-        {
-            [self addEmptyViewWithImg:nil];
-        }
-        else
-        {
-            [self removeEmptyView];
-        }
-        [self.tableView reloadData];
-    }];
+//    [_mShop searchBill:self.page type:2 status:nil block:^(SResBase *info, NSArray *bill) {
+//        
+//        [self headerEndRefresh];
+//        [self.tempArray removeAllObjects];
+//        if (info.msuccess) {
+//            
+//            [self.tempArray removeAllObjects];
+//            [self.tempArray addObjectsFromArray:bill];
+//        }
+//        else{
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        
+//        if(bill.count == 0 || bill == nil)
+//        {
+//            [self addEmptyViewWithImg:nil];
+//        }
+//        else
+//        {
+//            [self removeEmptyView];
+//        }
+//        [self.tableView reloadData];
+//    }];
     
     
 }
@@ -72,16 +72,16 @@
 {
     self.page++;
 
-    [_mShop searchBill:self.page type:2 status:nil block:^(SResBase *info, NSArray *bill) {
-        [self footetEndRefresh];
-        if (info.msuccess) {
-
-            [self.tempArray addObjectsFromArray:bill];
-        }
-        else{
-            [SVProgressHUD showErrorWithStatus:info.mmsg];
-        }
-    }];
+//    [_mShop searchBill:self.page type:2 status:nil block:^(SResBase *info, NSArray *bill) {
+//        [self footetEndRefresh];
+//        if (info.msuccess) {
+//
+//            [self.tempArray addObjectsFromArray:bill];
+//        }
+//        else{
+//            [SVProgressHUD showErrorWithStatus:info.mmsg];
+//        }
+//    }];
     
     [self.tableView reloadData];
     
@@ -124,21 +124,21 @@
         return cell;
     }
     
-    SShopBill *bill = [self.tempArray objectAtIndex:indexPath.row-1];
-    
-    cell.mTime.text = bill.mCreateTime;
-    cell.mPrice.text = [NSString stringWithFormat: @"%@",bill.mMoney];
-    if (bill.mStatus == 0){
-        cell.mStatus.text = @"待审核";
-        cell.mStatus.textColor = COLOR(220, 162, 95);
-    }else if (bill.mStatus == 1){
-        cell.mStatus.text = @"成功";
-        cell.mStatus.textColor = COLOR(34, 190, 82);
-    }
-    else if (bill.mStatus == 2){
-        cell.mStatus.text = @"拒绝";
-        cell.mStatus.textColor = M_CO;
-    }
+//    SShopBill *bill = [self.tempArray objectAtIndex:indexPath.row-1];
+//    
+//    cell.mTime.text = bill.mCreateTime;
+//    cell.mPrice.text = [NSString stringWithFormat: @"%@",bill.mMoney];
+//    if (bill.mStatus == 0){
+//        cell.mStatus.text = @"待审核";
+//        cell.mStatus.textColor = COLOR(220, 162, 95);
+//    }else if (bill.mStatus == 1){
+//        cell.mStatus.text = @"成功";
+//        cell.mStatus.textColor = COLOR(34, 190, 82);
+//    }
+//    else if (bill.mStatus == 2){
+//        cell.mStatus.text = @"拒绝";
+//        cell.mStatus.textColor = M_CO;
+//    }
     
     
     return cell;

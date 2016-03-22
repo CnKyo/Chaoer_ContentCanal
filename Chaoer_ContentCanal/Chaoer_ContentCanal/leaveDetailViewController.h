@@ -10,5 +10,5 @@
 
 @interface leaveDetailViewController : BaseVC
 
-@property (strong, nonatomic) SLeave    *ssl;
+//@property (strong, nonatomic) SLeave    *ssl;
 @end

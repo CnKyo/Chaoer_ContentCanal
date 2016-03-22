@@ -44,7 +44,7 @@
     self.Title = self.mPageName = @"校验手机号码";
     self.view.backgroundColor = M_BGCO;
 
-    self.mNowPhone.text = [NSString stringWithFormat:@"更改手机号后，需要使用新手机号登录。当前手机号：%@",[SUser currentUser].mPhone];
+//    self.mNowPhone.text = [NSString stringWithFormat:@"更改手机号后，需要使用新手机号登录。当前手机号：%@",[SUser currentUser].mPhone];
     
     self.mCodeView.layer.masksToBounds = YES;
     self.mCodeView.layer.borderColor = [UIColor colorWithHue:0.028 saturation:0.031 brightness:0.757 alpha:1].CGColor;
@@ -65,26 +65,26 @@
     
     [SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
     
-    [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
-        
-        if( resb.msuccess )
-        {
-            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-            [self timeCount];
-
-            [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
-        }
-        
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-            self.mCodeBtn.userInteractionEnabled = YES;
-            [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
-            
-        }
-        
-        
-    }];
+//    [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
+//        
+//        if( resb.msuccess )
+//        {
+//            [SVProgressHUD showSuccessWithStatus:resb.mmsg];
+//            [self timeCount];
+//
+//            [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
+//        }
+//        
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//            self.mCodeBtn.userInteractionEnabled = YES;
+//            [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
+//            
+//        }
+//        
+//        
+//    }];
 
 }
 
@@ -116,16 +116,16 @@
 - (void)okAction:(UIButton *)sender{
     [SVProgressHUD showWithStatus:@"校验中..." maskType:SVProgressHUDMaskTypeClear];
     
-    [SUser checkPhone:[SUser currentUser].mPhone andCode:self.mCodeTx.text block:^(SResBase *resb) {
-        if ( resb.mcode == 10122 ) {
-            changePhoneViewController *check = [[changePhoneViewController alloc]initWithNibName:@"changePhoneViewController" bundle:nil];
-            [self pushViewController:check];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mmsg];
-        }
-        [SVProgressHUD dismiss];
-
-    }];
+//    [SUser checkPhone:[SUser currentUser].mPhone andCode:self.mCodeTx.text block:^(SResBase *resb) {
+//        if ( resb.mcode == 10122 ) {
+//            changePhoneViewController *check = [[changePhoneViewController alloc]initWithNibName:@"changePhoneViewController" bundle:nil];
+//            [self pushViewController:check];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mmsg];
+//        }
+//        [SVProgressHUD dismiss];
+//
+//    }];
     
 
 }
