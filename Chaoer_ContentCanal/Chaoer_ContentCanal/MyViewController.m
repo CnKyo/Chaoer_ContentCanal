@@ -40,9 +40,9 @@
 
     [super viewWillAppear:YES];
     
-//    if ([mUserInfo isNeedLogin]) {
-//        [self gotoLoginVC];
-//    }
+    if ([mUserInfo isNeedLogin]) {
+        [self gotoLoginVC];
+    }
    
 }
 

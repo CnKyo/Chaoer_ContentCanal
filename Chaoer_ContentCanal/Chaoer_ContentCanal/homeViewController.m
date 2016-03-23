@@ -20,6 +20,9 @@
 #import "communityViewController.h"
 #import "serviceViewController.h"
 #import "mFeedBackViewController.h"
+
+#define Height (DEVICE_Width*0.67)
+
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -42,8 +45,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.Title = self.mPageName = @"新订单";
-    self.navBar.hidden = YES;
+    self.Title = self.mPageName = @"首页";
+    self.navBar.alpha = 0;
     self.hiddenBackBtn = YES;
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
@@ -53,7 +56,32 @@
     
     [self initview];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"监听的滚蛋-------%f",scrollView.contentOffset.y);
+    
+    [UIView animateWithDuration:1 animations:^{
+        self.navBar.alpha = 0.01*scrollView.contentOffset.y;
+        
+        if (scrollView.contentOffset.y>=100) {
+            
+            CGRect mRRR = mTableView.frame;
+            mRRR.origin.y = 64;
+            mRRR.size.height = DEVICE_Height-114;
+            mTableView.frame = mRRR;
+            
+        }else{
+            CGRect mRRR = mTableView.frame;
+            mRRR.origin.y = 0;
+            mRRR.size.height = DEVICE_Height-50;
+            mTableView.frame = mRRR;
+        }
 
+    }];
+    
+ 
+    
+
+}
 - (void)initview{
     
     mTableView = [UITableView new];

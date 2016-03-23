@@ -54,7 +54,7 @@
     retobj.mTitle = @"";
     retobj.mState = 400301;
     retobj.mData = nil;
-    retobj.mMessage = @"未知错误!";
+    retobj.mMessage = @"网络连接错误!";
     return retobj;
 }
 @end

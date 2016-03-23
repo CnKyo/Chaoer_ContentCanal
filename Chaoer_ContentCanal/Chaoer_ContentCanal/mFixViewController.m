@@ -19,10 +19,18 @@
 
 #import "RSKImageCropper.h"
 
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource>{
+#import "XMNPhotoPickerFramework.h"
+#import "XMNPhotoCollectionController.h"
+
+#import "XMNAssetCell.h"
+
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     HZQDatePickerView *_pikerView;
 
 }
+
+@property (nonatomic, copy)   NSArray<XMNAssetModel *> *assets;
+
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
@@ -68,6 +76,8 @@
     
     mArr = [NSMutableArray new];
     
+    self.assets = @[];
+
     self.Title = self.mPageName = @"物业报修";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -115,22 +125,52 @@
 }
 #pragma mark----图片按钮
 - (void)mImageAction:(UIButton *)sender{
-    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册中选择", nil];
-    ac.tag = 1001;
-    [ac showInView:[self.view window]];
+    //1. 推荐使用XMNPhotoPicker 的单例
+    //2. 设置选择完照片的block回调
+    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
+        if (images.count > 3) {
+            [SVProgressHUD showErrorWithStatus:@"图片选择不能超过3张!"];
+            NSLog(@"选择的图片超过3张!");
+            return ;
+        }
+        NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
+        self.assets = [assets copy];
+        
+        [mView.mLeftBtn setBackgroundImage:images[0] forState:0];
+
+    }];
+    //3. 设置选择完视频的block回调
+    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
+        NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
+        self.assets = @[asset];
+
+    }];
+    //4. 显示XMNPhotoPicker
+    [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
+
 }
 #pragma mark----视频按钮
 - (void)mVideoAction:(UIButton *)sender{
-}
-#pragma mark - IBActionSheet/UIActionSheet Delegate Method
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-        if ( buttonIndex != 2 ) {
-            
-            [self startImagePickerVCwithButtonIndex:buttonIndex];
-        }
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
 
     
+    UIAlertAction *localvideo = [UIAlertAction actionWithTitle:@"本地视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self locallVideo];
+    }];
+    UIAlertAction *shotvideo = [UIAlertAction actionWithTitle:@"拍摄视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self shotVideo];
+    }];
+    
+    
+    [alertController addAction:localvideo];
+    [alertController addAction:shotvideo];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
+
 #pragma mark----预约按钮
 - (void)mMakeAction:(UIButton *)sender{
 
@@ -357,87 +397,91 @@
 }
 
 
-- (void)startImagePickerVCwithButtonIndex:(NSInteger )buttonIndex
+//本地视频
+- (void)locallVideo
 {
-    int type;
+    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
     
+    imgPickerCtrl.delegate = self;
     
-    if (buttonIndex == 0) {
-        type = UIImagePickerControllerSourceTypeCamera;
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = type;
-        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        imagePicker.allowsEditing =NO;
+    imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+    //自定媒体类型
+    imgPickerCtrl.mediaTypes = @[@"public.movie"];
+    
+    [self presentViewController:imgPickerCtrl animated:YES completion:nil];
+    
+}
+//拍摄视频
+- (void)shotVideo
+{
+    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+    
+    imgPickerCtrl.delegate = self;
+    
+    imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    imgPickerCtrl.mediaTypes = @[@"public.movie"];
+    
+    [self presentViewController:imgPickerCtrl animated:YES completion:nil];
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    /**
+     
+     选取的信息都在info中，info 是一个字典。
+     字典中的键：
+     NSString *const  UIImagePickerControllerMediaType ;指定用户选择的媒体类型（文章最后进行扩展）
+     NSString *const  UIImagePickerControllerOriginalImage ;原始图片
+     NSString *const  UIImagePickerControllerEditedImage ;修改后的图片
+     NSString *const  UIImagePickerControllerCropRect ;裁剪尺寸
+     NSString *const  UIImagePickerControllerMediaURL ;媒体的URL
+     NSString *const  UIImagePickerControllerReferenceURL ;原件的URL
+     NSString *const  UIImagePickerControllerMediaMetadata;当来数据来源是照相机的时候这个值才有效
+     
+     
+     */
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:@"public.image"]) {
         
-        [self presentViewController:imagePicker animated:YES completion:^{
-            
-        }];
+        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        //如果是拍摄的照片
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            //保存在相册
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 200, 100, 100)];
+        
+        //添加imgView点击事件
+        //        UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xuanze)];
+        
+        //        [imgView addGestureRecognizer:tap];
+        
+        //        imgView.userInteractionEnabled = YES;
+        
+        imgView.image = image;
+        
+        imgView.layer.cornerRadius = imgView.frame.size.width / 2;
+        
+        imgView.clipsToBounds = YES;
+        
+        [self.view addSubview:imgView];
         
     }
-    else if(buttonIndex == 1){
-        type = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = type;
-        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        imagePicker.allowsEditing = NO;
-        [self presentViewController:imagePicker animated:YES completion:NULL];
-        
-        
+    else if ([mediaType isEqualToString:@"public.movie"])
+    {
+        //获取视图的url
+        NSURL *url = [info objectForKey:UIImagePickerControllerReferenceURL];
+        //播放视频
+        NSLog(@"%@",url);
     }
     
-    
-    
-}
-- (void)imagePickerController:(UIImagePickerController *)imagePickerController didFinishPickingMediaWithInfo:(id)info
-{
-    
-    UIImage* tempimage1 = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self gotCropIt:tempimage1];
-    
-    [imagePickerController dismissViewControllerAnimated:YES completion:^() {
-        
-    }];
-    
-}
--(void)gotCropIt:(UIImage*)photo
-{
-    RSKImageCropViewController *imageCropVC = nil;
-    
-    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
-    imageCropVC.dataSource = self;
-    imageCropVC.delegate = self;
-    [self.navigationController pushViewController:imageCropVC animated:YES];
-    
-}
-- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
-{
-    
-    [controller.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
-{
-    return   CGRectMake(self.view.center.x-mView.mLeftBtn.frame.size.width/2, self.view.center.y-mView.mLeftBtn.frame.size.height/2, mView.mLeftBtn.frame.size.width, mView.mLeftBtn.frame.size.height);
-    
-}
-- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
-{
-    return [UIBezierPath bezierPathWithRect:CGRectMake(self.view.center.x-mView.mLeftBtn.frame.size.width/2, self.view.center.y-mView.mLeftBtn.frame.size.height/2, mView.mLeftBtn.frame.size.width, mView.mLeftBtn.frame.size.height)];
-    
-}
-- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage
-{
-    
-    [controller.navigationController popViewControllerAnimated:YES];
-    
-    tempImage = croppedImage;
-//    [Util scaleImg:croppedImage maxsize:140];
-    
-    
-}
 
 @end
