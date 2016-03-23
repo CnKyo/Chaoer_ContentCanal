@@ -40,7 +40,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="头像">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mHeader:" destination="-1" eventType="touchUpInside" id="Hni-ZH-sPC"/>
@@ -55,7 +55,7 @@
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qea-iW-pav">
                             <rect key="frame" x="25" y="40" width="280" height="1"/>
-                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80392156862745101" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="hIQ-E4-A59"/>
                             </constraints>
@@ -67,7 +67,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="昵称">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mName:" destination="-1" eventType="touchUpInside" id="nDn-AJ-h5s"/>
@@ -85,7 +85,7 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6c5-pA-pBH">
                             <rect key="frame" x="25" y="80" width="280" height="1"/>
-                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80392156862745101" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="qhd-Ek-liw"/>
                             </constraints>
@@ -97,7 +97,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="住户信息">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mInfo:" destination="-1" eventType="touchUpInside" id="fyQ-sq-gID"/>
@@ -114,7 +114,7 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKj-f2-b2l">
                             <rect key="frame" x="25" y="120" width="280" height="1"/>
-                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80392156862745101" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="K2V-oM-4s4"/>
                             </constraints>
@@ -126,7 +126,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="二维码名片">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mErweima:" destination="-1" eventType="touchUpInside" id="Vr5-5s-h3Z"/>
@@ -134,7 +134,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHu-NV-9Gf">
                             <rect key="frame" x="25" y="160" width="280" height="1"/>
-                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80392156862745101" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ci3-qE-4rS"/>
                             </constraints>
@@ -146,7 +146,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="手机号码">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mPhone:" destination="-1" eventType="touchUpInside" id="0vN-9m-4JN"/>
@@ -162,7 +162,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8034213362068966" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="eKj-f2-b2l" firstAttribute="top" secondItem="yGd-US-k4a" secondAttribute="bottom" constant="8" id="2fC-LP-NEg"/>
                         <constraint firstItem="yGd-US-k4a" firstAttribute="top" secondItem="6c5-pA-pBH" secondAttribute="bottom" constant="10" id="6R1-bN-dZM"/>
@@ -214,7 +214,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="性别">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mSex:" destination="-1" eventType="touchUpInside" id="nrE-nD-xeX"/>
@@ -244,7 +244,7 @@
                             </constraints>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="个性签名">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84517780172413792" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mDEtail:" destination="-1" eventType="touchUpInside" id="d9U-we-eqX"/>
@@ -260,7 +260,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8034213362" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="aez-cv-AMZ" firstAttribute="leading" secondItem="M2e-VN-hJF" secondAttribute="leading" constant="25" id="6wS-fa-QGa"/>
                         <constraint firstItem="GfD-D7-qMk" firstAttribute="top" secondItem="M2e-VN-hJF" secondAttribute="top" constant="13" id="8Es-K2-E0x"/>
@@ -280,7 +280,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.92549019607843142" green="0.91764705882352937" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.92549019607843142" green="0.91764705882352937" blue="0.94901960784313721" alpha="0.79932650862068966" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="M2e-VN-hJF" secondAttribute="trailing" id="551-C6-QI0"/>
                 <constraint firstItem="M2e-VN-hJF" firstAttribute="top" secondItem="oSc-Ec-5Gn" secondAttribute="bottom" constant="16" id="6Yg-cY-KLk"/>
@@ -290,7 +290,7 @@
                 <constraint firstAttribute="trailing" secondItem="oSc-Ec-5Gn" secondAttribute="trailing" id="vuV-NB-JPn"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="290" y="3"/>
+            <point key="canvasLocation" x="199" y="-38"/>
         </view>
     </objects>
 </document>

@@ -14,7 +14,12 @@
 #import "takeFixViewController.h"
 
 #import "fixTableViewCell.h"
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate>{
+
+#import "choiseServicerViewController.h"
+
+#import "RSKImageCropper.h"
+
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource>{
     HZQDatePickerView *_pikerView;
 
 }
@@ -36,7 +41,8 @@
     
     NSString    *mType;
 
-    
+    UIImage *tempImage;
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -92,6 +98,11 @@
     [mView.mPipeBtn addTarget:self action:@selector(mPipeAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mResultBtn addTarget:self action:@selector(mResetAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mTimeBtn addTarget:self action:@selector(mTimeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mMakeBtn addTarget:self action:@selector(mMakeAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    [mView.mLeftBtn addTarget:self action:@selector(mImageAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mRightBtn addTarget:self action:@selector(mVideoAction:) forControlEvents:UIControlEventTouchUpInside];
 
 
     mView.mHiddenView.alpha = 0;
@@ -101,6 +112,31 @@
     
     
     
+}
+#pragma mark----图片按钮
+- (void)mImageAction:(UIButton *)sender{
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册中选择", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
+}
+#pragma mark----视频按钮
+- (void)mVideoAction:(UIButton *)sender{
+}
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+        if ( buttonIndex != 2 ) {
+            
+            [self startImagePickerVCwithButtonIndex:buttonIndex];
+        }
+
+    
+}
+#pragma mark----预约按钮
+- (void)mMakeAction:(UIButton *)sender{
+
+    
+    choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+    [self pushViewController:ccc];
 }
 #pragma mark----时间选择
 - (void)mTimeAction:(UIButton *)sender{
@@ -319,4 +355,89 @@
     }
 
 }
+
+
+- (void)startImagePickerVCwithButtonIndex:(NSInteger )buttonIndex
+{
+    int type;
+    
+    
+    if (buttonIndex == 0) {
+        type = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing =NO;
+        
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+        
+    }
+    else if(buttonIndex == 1){
+        type = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:NULL];
+        
+        
+    }
+    
+    
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)imagePickerController didFinishPickingMediaWithInfo:(id)info
+{
+    
+    UIImage* tempimage1 = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self gotCropIt:tempimage1];
+    
+    [imagePickerController dismissViewControllerAnimated:YES completion:^() {
+        
+    }];
+    
+}
+-(void)gotCropIt:(UIImage*)photo
+{
+    RSKImageCropViewController *imageCropVC = nil;
+    
+    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    [self.navigationController pushViewController:imageCropVC animated:YES];
+    
+}
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+{
+    return   CGRectMake(self.view.center.x-mView.mLeftBtn.frame.size.width/2, self.view.center.y-mView.mLeftBtn.frame.size.height/2, mView.mLeftBtn.frame.size.width, mView.mLeftBtn.frame.size.height);
+    
+}
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+{
+    return [UIBezierPath bezierPathWithRect:CGRectMake(self.view.center.x-mView.mLeftBtn.frame.size.width/2, self.view.center.y-mView.mLeftBtn.frame.size.height/2, mView.mLeftBtn.frame.size.width, mView.mLeftBtn.frame.size.height)];
+    
+}
+- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    tempImage = croppedImage;
+//    [Util scaleImg:croppedImage maxsize:140];
+    
+    
+}
+
 @end

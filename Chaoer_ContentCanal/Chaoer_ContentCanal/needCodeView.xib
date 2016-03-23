@@ -243,7 +243,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot1-rP-tus">
                             <rect key="frame" x="60" y="296" width="200" height="40"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmo-kZ-Nti">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmo-kZ-Nti">
                                     <rect key="frame" x="8" y="8" width="60" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="D8S-Pp-gHx"/>
@@ -254,7 +254,7 @@
                                     </state>
                                     <state key="selected" image="sex_selected"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiF-Yl-Sx5">
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiF-Yl-Sx5">
                                     <rect key="frame" x="132" y="8" width="60" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="blx-Iz-qTY"/>

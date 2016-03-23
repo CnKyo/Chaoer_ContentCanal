@@ -79,7 +79,7 @@ static ZJAlertListViewBlock _block;
     self.mainAlertListView.delegate = self;
     [self addSubview:self.mainAlertListView];
     
-    CGRect doneBtn = CGRectMake(0, self.bounds.size.height - ZJCustomButtonHeight, self.bounds.size.width / 2.0f - 0.5, ZJCustomButtonHeight);
+    CGRect doneBtn = CGRectMake(0, self.bounds.size.height - ZJCustomButtonHeight, self.bounds.size.width / 2.0f , ZJCustomButtonHeight);
     UIButton *doneButton = [[UIButton alloc] initWithFrame:doneBtn];
     doneButton.backgroundColor = [UIColor whiteColor];
     [doneButton setTitle:@"确定" forState:UIControlStateNormal];
@@ -89,7 +89,7 @@ static ZJAlertListViewBlock _block;
     [self.doneButton addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.doneButton];
     
-    CGRect cancelBtn = CGRectMake(self.bounds.size.width / 2.0f + 1, self.bounds.size.height - ZJCustomButtonHeight, self.bounds.size.width / 2.0f - 0.5, ZJCustomButtonHeight);
+    CGRect cancelBtn = CGRectMake(self.bounds.size.width / 2.0f , self.bounds.size.height - ZJCustomButtonHeight, self.bounds.size.width / 2.0f, ZJCustomButtonHeight);
     UIButton *cancelButton = [[UIButton alloc] initWithFrame:cancelBtn];
     cancelButton.backgroundColor = [UIColor whiteColor];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];

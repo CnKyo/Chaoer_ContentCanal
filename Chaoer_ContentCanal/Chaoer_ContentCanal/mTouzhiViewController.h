@@ -31,6 +31,19 @@
  *  投资按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mDoneBtn;
+/**
+ *  银行卡
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mBankBtn;
+/**
+ *  支付宝
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mAliBtn;
+/**
+ *  微信
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mwechatBtn;
+
 
 
 

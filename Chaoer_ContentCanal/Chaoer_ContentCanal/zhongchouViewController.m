@@ -37,6 +37,7 @@
      */
     mZhongchouView  *mSubView;
     
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,9 +55,15 @@
 
 - (void)initView{
 
+    mainScrollerView = [UIScrollView new];
+    mainScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
+    mainScrollerView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:mainScrollerView];
+    
+    
     mTopView = [mZhongchouView shareTopView];
-    mTopView.frame = CGRectMake(0, 64,self.view.bounds.size.width, 500);
-    [self.view addSubview:mTopView];
+    mTopView.frame = CGRectMake(0, 0,DEVICE_Width, 302);
+    [mainScrollerView addSubview:mTopView];
 
     
     mSubScrollerView = [UIScrollView new];
@@ -67,7 +74,7 @@
     
     CGFloat width = (DEVICE_Width-20)/3;
     float x = 0;
-    float y = 0;
+    float y = 5;
     for (int i = 0; i<80; i ++) {
         mSubView = [mZhongchouView shareSubView];
         mSubView.frame = CGRectMake(x,y, width-5, 90);
@@ -82,10 +89,11 @@
     
     
     mBottomView = [mZhongchouView shareBottomView];
-//    mBottomView.backgroundColor = [UIColor redColor];
-    mBottomView.frame = CGRectMake(0, 350, self.view.bounds.size.width, 500);
+    mBottomView.frame = CGRectMake(0, mTopView.mbottom+5, DEVICE_Width, 150);
     [mBottomView.mActivityBtn addTarget:self action:@selector(mJoinAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:mBottomView];
+    [mainScrollerView addSubview:mBottomView];
+    
+    mainScrollerView.contentSize = CGSizeMake(DEVICE_Width, mBottomView.mbottom+10);
     
 }
 #pragma mark----众筹活动按钮
@@ -109,5 +117,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

@@ -63,6 +63,10 @@
  *  选择的结果
  */
 @property (strong, nonatomic) IBOutlet UILabel *mResultContent;
+/**
+ *  预约
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mMakeBtn;
 
 
 

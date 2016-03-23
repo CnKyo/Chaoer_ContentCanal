@@ -63,7 +63,6 @@
 #pragma mark----小区
 - (IBAction)mValiigeAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    //    [self showValigeView:sender.selected];
     if (sender.selected) {
         
         MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
