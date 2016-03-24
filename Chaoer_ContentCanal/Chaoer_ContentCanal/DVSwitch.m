@@ -49,7 +49,7 @@
     
     self.strings = strings;
     self.cornerRadius = 12.0f;
-    self.sliderOffset = 1.0f;
+    self.sliderOffset = 0.0f;
     
     self.backgroundColor = [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1.0];
     self.sliderColor = [UIColor whiteColor];
@@ -113,7 +113,7 @@
     
     self.strings        = strings;
     self.cornerRadius   = 12.0f;
-    self.sliderOffset   = 1.0f;
+    self.sliderOffset   = 0.0f;
     
     self.backgroundColor    = [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1.0];
     self.sliderColor        = [UIColor whiteColor];
@@ -138,7 +138,7 @@
         label.tag               = idx;
         label.attributedText    = str;
         label.textAlignment     = NSTextAlignmentCenter;
-        
+        label.font = [UIFont systemFontOfSize:12];
         [self.backgroundView addSubview:label];
         [self.labels addObject:label];
         
@@ -164,7 +164,8 @@
         UILabel *label          = [[UILabel alloc] init];
         label.attributedText    = str;
         label.textAlignment     = NSTextAlignmentCenter;
-       
+        label.font = [UIFont systemFontOfSize:12];
+
         [self.sliderView addSubview:label];
         [self.onTopLabels addObject:label];
     }];

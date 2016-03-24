@@ -439,6 +439,36 @@
     else
         [self popViewController];
 }
+-(void)popViewController_3
+{
+    NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    if( vcs.count > 2 )
+    {
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [self.navigationController setViewControllers:vcs   animated:YES];
+    }
+    else
+        [self popViewController];
+}
+- (void)popViewController:(int)whatYouWant{
+    NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    
+    if (whatYouWant == 1) {
+        [self popViewController];
+    }else if (whatYouWant == 2){
+        [self popViewController_2];
+    }else if (whatYouWant == 3){
+        [self popViewController_3];
+    }else if (whatYouWant == 4){
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [vcs removeLastObject];
+        [self.navigationController setViewControllers:vcs   animated:YES];
+    }
+}
 -(void)popToRootViewController{
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

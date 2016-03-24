@@ -1,32 +1,29 @@
 //
-//  makeServiceViewController.m
+//  makeFixOrderDetailViewController.m
 //  Chaoer_ContentCanal
 //
-//  Created by 王钶 on 16/3/23.
+//  Created by 王钶 on 16/3/24.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "makeServiceViewController.h"
-#import "serviceDetailView.h"
 #import "makeFixOrderDetailViewController.h"
-
-@interface makeServiceViewController ()
+#import "makeServiceDetailView.h"
+@interface makeFixOrderDetailViewController ()
 
 @end
 
-@implementation makeServiceViewController
+@implementation makeFixOrderDetailViewController
 {
     UIScrollView *mScrollerVie;
     
     UIScrollView    *mSubScrollerView;
     
-    serviceDetailView   *mView;
+    makeServiceDetailView   *mView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    self.Title = self.mPageName = @"确认订单";
+    // Do any additional setup after loading the view.
+    self.Title = self.mPageName = @"维修订单详情";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -45,7 +42,7 @@
     [self.view addSubview:mScrollerVie];
     
     
-    mView = [serviceDetailView shareOrderView];
+    mView = [makeServiceDetailView shareOrderDetailView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
     float x = 2.8;
@@ -53,6 +50,10 @@
     mView.mRaitView.scorePercent = x/10;
     mView.mRaitView.allowIncompleteStar = YES;
     mView.mRaitView.hasAnimation = YES;
+    
+    
+    mView.mBalance.image = [UIImage imageNamed:@"sex_selected"];
+    
     [mView.mOkBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
     [mScrollerVie addSubview:mView];
     
@@ -84,12 +85,13 @@
     
     
 }
-
 - (void)okAction:(UIButton *)sender{
-
-    makeFixOrderDetailViewController *mmm = [[makeFixOrderDetailViewController alloc] initWithNibName:@"makeFixOrderDetailViewController" bundle:nil];
-    [self pushViewController:mmm];
+    
+    self.tabBarController.selectedIndex = 1;
+    
+    [self popViewController:4];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

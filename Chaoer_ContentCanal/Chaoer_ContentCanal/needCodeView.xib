@@ -27,7 +27,7 @@
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入户主或者租客姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-dw-wLI">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入户主或者租客姓名" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-dw-wLI">
                             <rect key="frame" x="80" y="4" width="230" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Zl9-dS-lrW"/>

@@ -19,6 +19,7 @@
 #import "mSetupViewController.h"
 #import "RSKImageCropper.h"
 
+#import "popMessageView.h"
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
 
 
@@ -33,6 +34,11 @@
     mPersonView *mRightView;
     
     UIImage *tempImage;
+    
+    popMessageView *mMessageView;
+    
+    
+    UIView *vvv;
 
 }
 
@@ -40,9 +46,14 @@
 
     [super viewWillAppear:YES];
     
-    if ([mUserInfo isNeedLogin]) {
-        [self gotoLoginVC];
-    }
+    
+    mMessageView.mFixBtn.selected = NO;
+    mMessageView.mCommunityBtn.selected = NO;
+    mMessageView.mStaffBtn.selected = NO;
+    mRightView.mMessageBtn.selected = NO;
+//    if ([mUserInfo isNeedLogin]) {
+//        [self gotoLoginVC];
+//    }
    
 }
 
@@ -55,6 +66,7 @@
     self.navBar.hidden = NO;
     [self loadRightView];
     [self initView];
+    [self initMessageView];
 }
 #pragma mark----初始化右边的按钮
 - (void)loadRightView{
@@ -67,9 +79,87 @@
     [self.view addSubview:mRightView];
     
 }
+#pragma mark----消息按钮
 - (void)mRightAction:(UIButton *)sender{
     NSLog(@"消息");
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self showMessageView];
+    }else{
+        [self hiddenMessageView];
+    }
+    
+    
 }
+
+- (void)initMessageView{
+    vvv = [UIView new];
+    vvv.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
+    vvv.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.3];
+    vvv.alpha = 0;
+    [self.view addSubview:vvv];
+    
+    mMessageView = [popMessageView shareView];
+    mMessageView.frame = CGRectMake(DEVICE_Width, 64, 110, 150);
+    [mMessageView.mStaffBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mMessageView.mCommunityBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mMessageView.mFixBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:mMessageView];
+    
+    UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tttAction)];
+    [self.view addGestureRecognizer:ttt];
+    
+}
+- (void)tttAction{
+    [self hiddenMessageView];
+
+}
+- (void)btnAction:(UIButton *)sender{
+    sender.selected = !sender.selected;
+
+    switch (sender.tag) {
+        case 1:{
+
+        }
+            break;
+        case 2:{
+            
+        }
+            break;
+        case 3:{
+            
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+}
+- (void)showMessageView{
+    [UIView animateWithDuration:0.3 animations:^{
+        vvv.alpha = 1;
+        mMessageView.alpha = 1;
+        CGRect mRRR = mMessageView.frame;
+        mRRR.origin.x = DEVICE_Width-110;
+        mRRR.size.height = 150;
+        mMessageView.frame = mRRR;
+    }];
+}
+- (void)hiddenMessageView{
+    mRightView.mMessageBtn.selected = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        vvv.alpha = 0;
+        mMessageView.alpha = 0;
+        CGRect mRRR = mMessageView.frame;
+        mRRR.origin.x = DEVICE_Width;
+        mRRR.size.height = 0;
+        mMessageView.frame = mRRR;
+    }];
+}
+
+
 #pragma mark----构造主页面
 - (void)initView{
 

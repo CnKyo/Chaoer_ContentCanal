@@ -220,7 +220,7 @@
                                 <action selector="mSex:" destination="-1" eventType="touchUpInside" id="nrE-nD-xeX"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="难" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfD-D7-qMk">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfD-D7-qMk">
                             <rect key="frame" x="103" y="13" width="209" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="209" id="9IL-gd-SWp"/>

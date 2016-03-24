@@ -10,6 +10,8 @@
 #import "mServiceAddressView.h"
 
 #import "phoneUpTopViewController.h"
+
+#import "cashViewController.h"
 @interface serviceViewController ()<CircleLHQdelegate>
 
 @end
@@ -59,7 +61,11 @@
 //    };
     
     [mView.mBtn1 addTarget:self action:@selector(btn1Action:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mBtn2 addTarget:self action:@selector(btn2Action:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mBtn3 addTarget:self action:@selector(btn3Action:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mBtn4 addTarget:self action:@selector(btn4Action:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mBtn5 addTarget:self action:@selector(btn5Action:) forControlEvents:UIControlEventTouchUpInside];
+
 
     
     
@@ -68,9 +74,17 @@
     mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
     [self pushViewController:ppp];
 }
+- (void)btn2Action:(UIButton *)sender{
+}
 - (void)btn3Action:(UIButton *)sender{
     phoneUpTopViewController *ppp = [[phoneUpTopViewController alloc] initWithNibName:@"phoneUpTopViewController" bundle:nil];
     [self pushViewController:ppp];
+}
+- (void)btn4Action:(UIButton *)sender{
+    cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
+    [self pushViewController:ccc];
+}
+- (void)btn5Action:(UIButton *)sender{
 }
 - (void)didSelectedBtnIndex:(NSInteger)index{
     NSLog(@"%ld被点击了",(long)index);

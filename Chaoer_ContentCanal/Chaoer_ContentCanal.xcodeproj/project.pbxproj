@@ -205,6 +205,14 @@
 		31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE2A01C91479A006C553D /* mCustomHomeView.xib */; };
 		31BBE2A41C916119006C553D /* mPersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BBE2A31C916119006C553D /* mPersonView.m */; };
 		31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BBE2A51C91612F006C553D /* mPersonView.xib */; };
+		31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1A7171CA3800D00D3496F /* makeServiceDetailView.m */; };
+		31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1A71F1CA3890C00D3496F /* makeFixOrderDetailViewController.m */; };
+		31E1A7221CA3890C00D3496F /* makeFixOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1A7201CA3890C00D3496F /* makeFixOrderDetailViewController.xib */; };
+		31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1A7231CA38AD300D3496F /* makeFixOrderDetailView.xib */; };
+		31E1A7271CA3951700D3496F /* popMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1A7261CA3951700D3496F /* popMessageView.m */; };
+		31E1A7291CA3952100D3496F /* popMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1A7281CA3952100D3496F /* popMessageView.xib */; };
+		31E1A72E1CA3C04A00D3496F /* cashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E1A72C1CA3C04A00D3496F /* cashViewController.m */; };
+		31E1A72F1CA3C04A00D3496F /* cashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E1A72D1CA3C04A00D3496F /* cashViewController.xib */; };
 		31EEB30C1C93A6DF00B61A86 /* takeFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EEB30B1C93A6DF00B61A86 /* takeFixViewController.m */; };
 		31EEB3101C93A80500B61A86 /* mFixTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EEB30E1C93A80500B61A86 /* mFixTableViewCell.m */; };
 		31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31EEB30F1C93A80500B61A86 /* mFixTableViewCell.xib */; };
@@ -815,6 +823,18 @@
 		31BBE2A21C916119006C553D /* mPersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPersonView.h; sourceTree = "<group>"; };
 		31BBE2A31C916119006C553D /* mPersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPersonView.m; sourceTree = "<group>"; };
 		31BBE2A51C91612F006C553D /* mPersonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPersonView.xib; sourceTree = "<group>"; };
+		31E1A7161CA3800D00D3496F /* makeServiceDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeServiceDetailView.h; sourceTree = "<group>"; };
+		31E1A7171CA3800D00D3496F /* makeServiceDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = makeServiceDetailView.m; sourceTree = "<group>"; };
+		31E1A71E1CA3890C00D3496F /* makeFixOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeFixOrderDetailViewController.h; sourceTree = "<group>"; };
+		31E1A71F1CA3890C00D3496F /* makeFixOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = makeFixOrderDetailViewController.m; sourceTree = "<group>"; };
+		31E1A7201CA3890C00D3496F /* makeFixOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = makeFixOrderDetailViewController.xib; sourceTree = "<group>"; };
+		31E1A7231CA38AD300D3496F /* makeFixOrderDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = makeFixOrderDetailView.xib; sourceTree = "<group>"; };
+		31E1A7251CA3951700D3496F /* popMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = popMessageView.h; sourceTree = "<group>"; };
+		31E1A7261CA3951700D3496F /* popMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popMessageView.m; sourceTree = "<group>"; };
+		31E1A7281CA3952100D3496F /* popMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popMessageView.xib; sourceTree = "<group>"; };
+		31E1A72B1CA3C04A00D3496F /* cashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cashViewController.h; sourceTree = "<group>"; };
+		31E1A72C1CA3C04A00D3496F /* cashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cashViewController.m; sourceTree = "<group>"; };
+		31E1A72D1CA3C04A00D3496F /* cashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cashViewController.xib; sourceTree = "<group>"; };
 		31EEB30A1C93A6DF00B61A86 /* takeFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = takeFixViewController.h; sourceTree = "<group>"; };
 		31EEB30B1C93A6DF00B61A86 /* takeFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = takeFixViewController.m; sourceTree = "<group>"; };
 		31EEB30D1C93A80500B61A86 /* mFixTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixTableViewCell.h; sourceTree = "<group>"; };
@@ -1432,6 +1452,12 @@
 				310EB5FE1CA26D6E005C61F4 /* makeServiceViewController.h */,
 				310EB5FF1CA26D6E005C61F4 /* makeServiceViewController.m */,
 				310EB6001CA26D6E005C61F4 /* makeServiceViewController.xib */,
+				31E1A7161CA3800D00D3496F /* makeServiceDetailView.h */,
+				31E1A7171CA3800D00D3496F /* makeServiceDetailView.m */,
+				31E1A7231CA38AD300D3496F /* makeFixOrderDetailView.xib */,
+				31E1A71E1CA3890C00D3496F /* makeFixOrderDetailViewController.h */,
+				31E1A71F1CA3890C00D3496F /* makeFixOrderDetailViewController.m */,
+				31E1A7201CA3890C00D3496F /* makeFixOrderDetailViewController.xib */,
 			);
 			name = "选择维修人员";
 			sourceTree = "<group>";
@@ -1859,6 +1885,7 @@
 				31B990351C96AD6D002E34A5 /* mServiceAddressView.h */,
 				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
 				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
+				31E1A72A1CA3C03500D3496F /* 提现 */,
 				3135F8081C97BB2A00EF9569 /* 帐户充值 */,
 				31B9903A1C96B34A002E34A5 /* 手机充值 */,
 			);
@@ -1884,6 +1911,16 @@
 				31BBE2941C914174006C553D /* DCWebImageManager.m */,
 			);
 			name = DCPicScroller;
+			sourceTree = "<group>";
+		};
+		31E1A72A1CA3C03500D3496F /* 提现 */ = {
+			isa = PBXGroup;
+			children = (
+				31E1A72B1CA3C04A00D3496F /* cashViewController.h */,
+				31E1A72C1CA3C04A00D3496F /* cashViewController.m */,
+				31E1A72D1CA3C04A00D3496F /* cashViewController.xib */,
+			);
+			name = "提现";
 			sourceTree = "<group>";
 		};
 		31EEB3151C93AC8600B61A86 /* segment */ = {
@@ -2767,6 +2804,9 @@
 				742739D21B7D97AB00EE58B1 /* controller */,
 				742739D11B7D97A800EE58B1 /* View */,
 				74F5FC411B53AE2B00307EED /* 自定义提示框 */,
+				31E1A7251CA3951700D3496F /* popMessageView.h */,
+				31E1A7261CA3951700D3496F /* popMessageView.m */,
+				31E1A7281CA3952100D3496F /* popMessageView.xib */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -3171,6 +3211,7 @@
 				748A3E6C1BB2C7200066B976 /* monthCellView.xib in Resources */,
 				31EEB32F1C94135700B61A86 /* mGoodsDetailView.xib in Resources */,
 				3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */,
+				31E1A72F1CA3C04A00D3496F /* cashViewController.xib in Resources */,
 				744BEA791BE34A7C0094EB96 /* searchView.xib in Resources */,
 				313413601CA28DC3003972E2 /* XMNPhotoPicker.xib in Resources */,
 				74599E5C1B95AB8D00678F0A /* monthCell.xib in Resources */,
@@ -3195,6 +3236,7 @@
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				74D292E11B96D7CC00A57977 /* DatingCell.xib in Resources */,
 				B2D22E631BF09761001ECC43 /* ReplyView.xib in Resources */,
+				31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */,
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
 				74C89A151BA018AB0010D38F /* dateCell.xib in Resources */,
 				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
@@ -3208,6 +3250,7 @@
 				3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */,
 				16279CC51C3D13B400B9A850 /* read_me.txt in Resources */,
 				B2CEE1281C0379D200FC159C /* MapCell.xib in Resources */,
+				31E1A7291CA3952100D3496F /* popMessageView.xib in Resources */,
 				313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */,
 				B29F03811BE321AC0050267C /* BillHeadView.xib in Resources */,
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
@@ -3235,6 +3278,7 @@
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				74C0782A1BEB537600B217F0 /* peisongView.xib in Resources */,
 				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,
+				31E1A7221CA3890C00D3496F /* makeFixOrderDetailViewController.xib in Resources */,
 				310EB5FA1CA26178005C61F4 /* serviceDetailView.xib in Resources */,
 				160833021C03A3B800083AC0 /* topsearch.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
@@ -3499,6 +3543,7 @@
 				749BEA0B1B32779800BABCA6 /* MBProgressHUD.m in Sources */,
 				74D292E91B96DA7A00A57977 /* moreView.m in Sources */,
 				749BEA421B3277AA00BABCA6 /* SDWebImageDownloaderOperation.m in Sources */,
+				31E1A7271CA3951700D3496F /* popMessageView.m in Sources */,
 				B29F037B1BE320EF0050267C /* BillVC.m in Sources */,
 				31B9902E1C96A4BD002E34A5 /* CircleLHQView.m in Sources */,
 				746709501BE1F6480096B169 /* UILabel+HYBAttributedCategory.m in Sources */,
@@ -3514,6 +3559,7 @@
 				B2CEC24F1BE9F9130050DB8F /* AddGoodsView.m in Sources */,
 				16E9CAD61BAC00BC00C48B8A /* DYLineView.m in Sources */,
 				31EEB3231C93BF8700B61A86 /* mSuperMarketTableViewCell.m in Sources */,
+				31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */,
 				749BEA4D1B3277AA00BABCA6 /* UIView+WebCacheOperation.m in Sources */,
 				3135F81D1C97D96800EF9569 /* mUserInfoViewController.m in Sources */,
 				310EB5EE1CA2499D005C61F4 /* DLStarView.m in Sources */,
@@ -3530,6 +3576,7 @@
 				740089541B38F22A00618BA0 /* NavC.m in Sources */,
 				7487DC1A1B4E17F000C40220 /* MASViewConstraint.m in Sources */,
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
+				31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */,
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				74B486A11BE88EA30023E839 /* UIFont+FontAwesome.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,
@@ -3543,6 +3590,7 @@
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				749BEA121B32779800BABCA6 /* MJPhotoView.m in Sources */,
+				31E1A72E1CA3C04A00D3496F /* cashViewController.m in Sources */,
 				B22B91F61BE3721F00A3043E /* AddServiceTypeVC.m in Sources */,
 				313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */,
 				313D76B71C98FB5A004D5679 /* mZhongchouView.m in Sources */,

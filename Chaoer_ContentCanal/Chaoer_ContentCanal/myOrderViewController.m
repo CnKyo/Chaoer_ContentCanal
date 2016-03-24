@@ -27,18 +27,24 @@
 }
 - (void)initViuew{
     
+    UIImageView *iii = [UIImageView new];
+    
+    iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
+    iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
+    [self.view addSubview:iii];
     NSInteger margin = 0;
     
     DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"购物订单", @"生活订单"]];
-    secondSwitch.frame = CGRectMake(margin, 63, DEVICE_Width, 35);
-    secondSwitch.layer.masksToBounds = YES;
-    secondSwitch.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
-    secondSwitch.layer.borderWidth = 1;
+    secondSwitch.frame = CGRectMake(margin, 63, DEVICE_Width, 30);
+//    secondSwitch.layer.masksToBounds = YES;
+//    secondSwitch.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
+//    secondSwitch.layer.borderWidth = 1;
     secondSwitch.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
     secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];
     secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
     secondSwitch.cornerRadius = 0;
+    secondSwitch.font = [UIFont systemFontOfSize:14];
     [secondSwitch setPressedHandler:^(NSUInteger index) {
         NSLog(@"点击了%lu",(unsigned long)index);
         [mTableView reloadData];
@@ -48,7 +54,7 @@
     
     mTableView = [UITableView new];
     mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0,99, DEVICE_Width, DEVICE_Height-99);
+    mTableView.frame = CGRectMake(0,94, DEVICE_Width, DEVICE_Height-99);
     mTableView.delegate = self;
     mTableView.dataSource = self;
     mTableView.separatorStyle = UITableViewCellSelectionStyleNone;

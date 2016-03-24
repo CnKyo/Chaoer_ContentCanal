@@ -121,7 +121,7 @@
 }
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
-//    [self loginOk];
+    [self loginOk];
     MLLog(@"登录");
     if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
         [self showErrorStatus:@"手机号码不能为空"];
@@ -140,15 +140,15 @@
     }
     
     
-    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
-
-    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
-        if (resb.mSucess) {
-            [self loginOk];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+//    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
+//
+//    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
+//        if (resb.mSucess) {
+//            [self loginOk];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+//        }
+//    }];
 }
 #pragma  mark -----键盘消失
 - (void)tapAction{

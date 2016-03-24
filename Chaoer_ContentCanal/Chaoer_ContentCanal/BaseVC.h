@@ -75,6 +75,16 @@
 -(void)setRightBtnImage:(UIImage *)rightImage;          //RightBtnimage Set方法
 -(void)popViewController;                               //返回上个controller
 -(void)popViewController_2;                             //返回上上个controller
+/**
+ *  返回上上上个controller
+ */
+- (void)popViewController_3;
+/**
+ *  想返回哪几个上级controller
+ *
+ *  @param whatYouWant 上级页面个数
+ */
+- (void)popViewController:(int)whatYouWant;
 -(void)popToRootViewController;                         //返回rootController
 -(void)pushViewController:(UIViewController *)vc;       //跳转到某个controller
 -(void)setToViewController:(UIViewController *)vc;       //直接设置过去
