@@ -15,8 +15,6 @@
 #import "APService.h"
 
 #import "WebVC.h"
-#import "myMessageViewController.h"
-#import "orderDetail.h"
 #import "ViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"

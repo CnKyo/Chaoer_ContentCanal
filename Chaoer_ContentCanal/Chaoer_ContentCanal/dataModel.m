@@ -530,7 +530,7 @@ bool g_bined = NO;
 
 + (void)openPush{
 
-    NSString* t = [NSString stringWithFormat:@"%d", [SUser currentUser].mUserId];
+    NSString* t = [NSString stringWithFormat:@"%d", [mUserInfo backNowUser].mUserId];
     
     t = [@"staff_" stringByAppendingString:t];
     

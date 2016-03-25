@@ -31,7 +31,6 @@
 #import "MJPhoto.h"
 #import "CTAssetsPickerController.h"
 #import "RSKImageCropViewController.h"
-#import "dateModel.h"
 #import "TTTAttributedLabel.h"
 #import "Masonry.h"
 #import "mCustomAlertView.h"
@@ -58,7 +57,6 @@
 
 #import "PPiFlatSegmentedControl.h"
 #import "NSString+FontAwesome.h"
-#import "FDCalendar.h"
 #import "HZQDatePickerView.h"
 
 #import "mAddressView.h"
