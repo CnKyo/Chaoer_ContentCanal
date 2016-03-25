@@ -327,6 +327,24 @@
  *  @param block    返回值
  */
 + (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb))block;
+
+/**
+ *  获取订单付款成功
+ *
+ *  @param mUserId  用户id
+ *  @param mOrderId 订单id
+ *  @param block    返回值
+ */
++ (void)getOrderPaySuccess:(int)mUserId andOrderId:(int)mOrderId block:(void(^)(mBaseData *resb))block;
+/**
+ *  设置订单状态
+ *
+ *  @param mUserId  用户id
+ *  @param mOrderId 订单id
+ *  @param block    返回值
+ */
++ (void)upDateOrderStatus:(int)mUserId andOrderId:(int)mOrderId block:(void(^)(mBaseData *resb,NSArray *array))block;
+
 /**
  *  打开推送
  */
@@ -478,4 +496,33 @@
 
 @end
 
+#pragma mark----商户列表
+@interface SSellerList : NSObject
+/**
+ *  商户id
+ */
+@property (nonatomic,assign)    int       mId;
+/**
+ *  商户名
+ */
+@property (nonatomic,strong)    NSString       *mSellerName;
+/**
+ *  商户电话
+ */
+@property (nonatomic,strong)    NSString       *mSellerPhone;
+/**
+ *  商户图片
+ */
+@property (nonatomic,strong)    NSString       *mSellerImg;
+/**
+ *  好评
+ */
+@property (nonatomic,assign)    float       mEvolution;
+/**
+ *  距离
+ */
+@property (nonatomic,assign)    float       mDistance;
+
+-(id)initWithObj:(NSDictionary*)obj;
+@end
 

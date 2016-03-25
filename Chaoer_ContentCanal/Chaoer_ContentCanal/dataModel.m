@@ -491,6 +491,43 @@ bool g_bined = NO;
 }
 
 
++ (void)getOrderPaySuccess:(int)mUserId andOrderId:(int)mOrderId block:(void (^)(mBaseData *))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/getOrderWgtPay.do" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+        }else{
+            
+        }
+    }];
+    
+}
++ (void)upDateOrderStatus:(int)mUserId andOrderId:(int)mOrderId block:(void(^)(mBaseData *resb,NSArray *array))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/modifyOrderWgtStatus.do" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            for (NSDictionary *dic in info.mData) {
+                
+                [tempArr addObject:[[SSellerList alloc]initWithObj:dic]];
+            }
+            block (info,tempArr);
+            
+        }else{
+            block (info,nil);
+        }
+    }];
+}
+
+
 + (void)openPush{
 
     NSString* t = [NSString stringWithFormat:@"%d", [SUser currentUser].mUserId];
@@ -621,6 +658,28 @@ bool g_bined = NO;
     self.mLevel = [[obj objectForKeyMy:@"level"] intValue];
     self.mtype = [[obj objectForKeyMy:@"type"] intValue];
 
+}
+
+@end
+@implementation SSellerList
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mSellerName = [obj objectForKeyMy:@"merchantName"];
+    self.mSellerPhone = [obj objectForKeyMy:@"merchantPhone"];
+    self.mEvolution = [[obj objectForKeyMy:@"praiseRate"] floatValue];
+    self.mDistance = [[obj objectForKeyMy:@"distance"] floatValue];
+    self.mSellerImg = [obj objectForKeyMy:@"merchantImage"];
+    
 }
 
 @end
