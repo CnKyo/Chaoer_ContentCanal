@@ -154,6 +154,9 @@
 		3182A16B1CA620DA0084E890 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3182A16A1CA620DA0084E890 /* loading.gif */; };
 		3182A16E1CA636460084E890 /* mTopUpBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3182A16D1CA636460084E890 /* mTopUpBalanceView.m */; };
 		3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3182A16F1CA636510084E890 /* mTopUpBalanceView.xib */; };
+		3182A1721CA67B390084E890 /* verifyBankCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3182A1711CA67B390084E890 /* verifyBankCardView.xib */; };
+		3182A1761CA681300084E890 /* verifyBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3182A1741CA681300084E890 /* verifyBankViewController.m */; };
+		3182A1771CA681300084E890 /* verifyBankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3182A1751CA681300084E890 /* verifyBankViewController.xib */; };
 		318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 318D56471C9BAD7E0045B5FB /* mGeneralSubView.m */; };
 		318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 318D56491C9BAD880045B5FB /* mGeneralSubView.xib */; };
 		318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 318D564D1C9BE2220045B5FB /* aboutusViewController.m */; };
@@ -653,6 +656,10 @@
 		3182A16C1CA636460084E890 /* mTopUpBalanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTopUpBalanceView.h; sourceTree = "<group>"; };
 		3182A16D1CA636460084E890 /* mTopUpBalanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTopUpBalanceView.m; sourceTree = "<group>"; };
 		3182A16F1CA636510084E890 /* mTopUpBalanceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpBalanceView.xib; sourceTree = "<group>"; };
+		3182A1711CA67B390084E890 /* verifyBankCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = verifyBankCardView.xib; sourceTree = "<group>"; };
+		3182A1731CA681300084E890 /* verifyBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verifyBankViewController.h; sourceTree = "<group>"; };
+		3182A1741CA681300084E890 /* verifyBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = verifyBankViewController.m; sourceTree = "<group>"; };
+		3182A1751CA681300084E890 /* verifyBankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = verifyBankViewController.xib; sourceTree = "<group>"; };
 		318D56461C9BAD7E0045B5FB /* mGeneralSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGeneralSubView.h; sourceTree = "<group>"; };
 		318D56471C9BAD7E0045B5FB /* mGeneralSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGeneralSubView.m; sourceTree = "<group>"; };
 		318D56491C9BAD880045B5FB /* mGeneralSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGeneralSubView.xib; sourceTree = "<group>"; };
@@ -1425,6 +1432,10 @@
 				311BE2261CA14160006757E8 /* needCodeView.h */,
 				311BE2271CA14160006757E8 /* needCodeView.m */,
 				311BE2291CA1416A006757E8 /* needCodeView.xib */,
+				3182A1711CA67B390084E890 /* verifyBankCardView.xib */,
+				3182A1731CA681300084E890 /* verifyBankViewController.h */,
+				3182A1741CA681300084E890 /* verifyBankViewController.m */,
+				3182A1751CA681300084E890 /* verifyBankViewController.xib */,
 				3135F81A1C97D96800EF9569 /* mUserInfoViewController.h */,
 				3135F81B1C97D96800EF9569 /* mUserInfoViewController.m */,
 				3135F81C1C97D96800EF9569 /* mUserInfoViewController.xib */,
@@ -2685,6 +2696,7 @@
 				3123CC3B1C92B4B100C3B928 /* mUserInfoView.xib in Resources */,
 				31B990391C96AD75002E34A5 /* mServiceAddressView.xib in Resources */,
 				749BE9AC1B32758100BABCA6 /* SVProgressHUD.bundle in Resources */,
+				3182A1771CA681300084E890 /* verifyBankViewController.xib in Resources */,
 				B2CEE1191C03782500FC159C /* city.txt in Resources */,
 				749BE9DC1B32775D00BABCA6 /* Images.xcassets in Resources */,
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
@@ -2717,6 +2729,7 @@
 				315442841C9A4A720047E52A /* mFeedCompanyViewController.xib in Resources */,
 				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,
 				310EB5DD1CA24107005C61F4 /* choiseServicerViewController.xib in Resources */,
+				3182A1721CA67B390084E890 /* verifyBankCardView.xib in Resources */,
 				7400897A1B38F6F000618BA0 /* QMapKit.bundle in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
@@ -2949,6 +2962,7 @@
 				31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */,
 				749BE99F1B32756800BABCA6 /* IQTitleBarButtonItem.m in Sources */,
 				31BBE29B1C9142C9006C553D /* homeTableViewCell.m in Sources */,
+				3182A1761CA681300084E890 /* verifyBankViewController.m in Sources */,
 				740089761B38F2C300618BA0 /* AFURLSessionManager.m in Sources */,
 				746907E61BABEFC100A4589A /* footView.m in Sources */,
 				749BE9AD1B32758100BABCA6 /* SVProgressHUD.m in Sources */,

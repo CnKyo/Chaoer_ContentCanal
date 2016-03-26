@@ -11,8 +11,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mBaseBgkImg" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-2S-V3d">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-2S-V3d">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-ch-eDc">
                     <rect key="frame" x="0.0" y="15" width="320" height="360"/>
@@ -368,7 +369,7 @@
                     <state key="selected" backgroundImage="gopay_selected"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="WFe-2S-V3d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="17A-Fe-Vc4"/>
                 <constraint firstItem="1l6-ch-eDc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1Kr-VN-gke"/>
@@ -407,7 +408,6 @@
     <resources>
         <image name="gopay_selected" width="396" height="99"/>
         <image name="gopay_unselected" width="396" height="99"/>
-        <image name="mBaseBgkImg" width="640" height="1136"/>
         <image name="sex_selected" width="24" height="24"/>
         <image name="sex_unselected" width="24" height="24"/>
     </resources>

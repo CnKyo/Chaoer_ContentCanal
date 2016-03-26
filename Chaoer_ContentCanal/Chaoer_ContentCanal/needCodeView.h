@@ -89,8 +89,63 @@
 
 
 
+#pragma mark----银行卡认证
+/**
+ *  真实姓名
+ */
+@property (strong, nonatomic) IBOutlet UITextField *mBankName;
+/**
+ *  身份证
+ */
+@property (strong, nonatomic) IBOutlet UITextField *mBankIdentify;
+/**
+ *  开户行
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mBankLb;
+/**
+ *  开户行按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mBankBtn;
+/**
+ *  开户省份
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mProvinceLb;
+/**
+ *  开户省份按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mProvinceBtn;
+/**
+ *  开户城市
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mChoiseCity;
+/**
+ *  开户城市按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mChoiseCityBtn;
+/**
+ *  开户网点
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mBankPointLb;
+/**
+ *  开户网点按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mBankPointBtn;
+/**
+ *  银行卡
+ */
+@property (strong, nonatomic) IBOutlet UITextField *mBanCardTx;
+/**
+ *  认证按钮
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mVerifyBtn;
 
 
+/**
+ *  初始化方法
+ *
+ *  @return view
+ */
++ (needCodeView *)shareVerifyBankView;
 
 
 @end

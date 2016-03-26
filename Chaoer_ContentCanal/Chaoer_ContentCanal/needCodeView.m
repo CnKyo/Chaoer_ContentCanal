@@ -24,4 +24,11 @@
     view.mBgkView.layer.borderWidth = 1;
     return view;
 }
+
++ (needCodeView *)shareVerifyBankView{
+
+    needCodeView *view = [[[NSBundle mainBundle] loadNibNamed:@"verifyBankCardView" owner:self options:nil] objectAtIndex:0];
+    return view;
+    
+}
 @end

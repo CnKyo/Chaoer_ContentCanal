@@ -10,6 +10,7 @@
 #import "needCodeView.h"
 #import "MHActionSheet.h"
 
+#import "verifyBankViewController.h"
 @interface needCodeViewController ()
 
 @end
@@ -51,6 +52,12 @@
     [self initview];
 }
 - (void)initview{
+    
+    UIImageView *iii = [UIImageView new];
+    
+    iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
+    iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
+    [self.view addSubview:iii];
     
     mScrollerView = [UIScrollView new];
     mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
@@ -169,7 +176,8 @@
 
 }
 - (void)okAction:(UIButton *)sender{
-    
+    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+    [self pushViewController:vvv];
 }
 
 - (void)choiseAction:(UIButton *)sender{

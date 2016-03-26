@@ -151,6 +151,17 @@ bool g_bined = NO;
     return self.mUserId != 0;
 }
 
++ (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mPhone forKey:@"loginName"];
+    [[HTTPrequest sharedClient] postUrl:@"zm/login/fgetVerfyCode.do" parameters:para call:^(mBaseData *info) {
+        if (info.mData) {
+            block (info);
+        }else
+            block(nil);
+    }];
+}
+
 + (void)mUserRegist:(NSString *)mPhoneNum andCode:(NSString *)mCode andPwd:(NSString *)mPwd andIdentity:(NSString *)mId block:(void (^)(mBaseData *))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];

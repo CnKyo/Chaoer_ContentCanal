@@ -67,6 +67,7 @@
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.88 green:0.87 blue:0.89 alpha:1].CGColor;
     self.mBgkView.layer.borderWidth = 1;
     
+    self.mPhone.delegate = self;
     
     self.mCodeBtn.layer.masksToBounds = YES;
     self.mCodeBtn.layer.cornerRadius = 3;
@@ -88,8 +89,14 @@
         [self.mPhone becomeFirstResponder];
         return;
     }
+    [mUserInfo getRegistVerifyCode:self.mPhone.text block:^(mBaseData *resb) {
+        if (resb.mData) {
+            [self timeCount];
+        }else{
+            [self showErrorStatus:@"网络请求错误！"];
+        }
+    }];
     
-    [self timeCount];
 }
 - (IBAction)mOkBtnAction:(id)sender {
     
@@ -186,6 +193,36 @@
 
 }
 
-
+///限制电话号码输入长度
+#define TEXT_MAXLENGTH 11
+///限制验证码输入长度
+#define PASS_LENGHT 20
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==11) {
+        res= TEXT_MAXLENGTH-[new length];
+        
+        
+    }else
+    {
+        res= PASS_LENGHT-[new length];
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
 
 @end

@@ -82,7 +82,7 @@
     
     mView.mPhone.delegate = mView.mBankCard.delegate = mView.mIdentify.delegate = self;
     
-    
+    [mView.mPhotoBtn addTarget:self action:@selector(scanAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [mView.mPayBtn addTarget:self action:@selector(mPayAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mCodeBtn addTarget:self action:@selector(mCodeAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -91,6 +91,11 @@
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
 
 }
+#pragma mark----扫描
+- (void)scanAction:(UIButton *)sender{
+
+}
+#pragma mark----验证吗按钮
 - (void)mCodeAction:(UIButton *)sender{
     if (mView.mBankCard.text.length == 0) {
         [mView.mBankCard becomeFirstResponder];
@@ -107,17 +112,17 @@
         [self showErrorStatus:@"CVV码不能为空"];
         return;
     }
-    if (mView.mNameTx.text == nil || [mView.mNameTx.text isEqualToString:@""]) {
+    if (mView.mNameTx.text.length == 0) {
         [mView.mNameTx becomeFirstResponder];
         [self showErrorStatus:@"姓名不能为空"];
         return;
     }
-    if (mView.mIdentify.text == nil || [mView.mIdentify.text isEqualToString:@""]) {
+    if (mView.mIdentify.text.length == 0) {
         [mView.mIdentify becomeFirstResponder];
         [self showErrorStatus:@"身份证不能为空"];
         return;
     }
-    if (mView.mPhone.text == nil || [mView.mPhone.text isEqualToString:@""]) {
+    if (mView.mPhone.text.length == 0) {
         [mView.mPhone becomeFirstResponder];
         [self showErrorStatus:@"手机号不能为空"];
         return;
@@ -156,39 +161,40 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark----支付按钮
 - (void)mPayAction:(UIButton *)sender{
 
-    if (mView.mBankCard.text == nil || [mView.mBankCard.text isEqualToString:@""]) {
+    if (mView.mBankCard.text.length == 0) {
         [mView.mBankCard becomeFirstResponder];
         [self showErrorStatus:@"银行卡不能为空"];
         return;
     }
-    if (mView.mTime.text == nil || [mView.mTime.text isEqualToString:@""]) {
+    if (mView.mTime.text.length == 0) {
         [mView.mTime becomeFirstResponder];
         [self showErrorStatus:@"有效期不能为空"];
         return;
     }
-    if (mView.mCVV.text == nil || [mView.mCVV.text isEqualToString:@""]) {
+    if (mView.mCVV.text.length == 0) {
         [mView.mCVV becomeFirstResponder];
         [self showErrorStatus:@"CVV码不能为空"];
         return;
     }
-    if (mView.mNameTx.text == nil || [mView.mNameTx.text isEqualToString:@""]) {
+    if (mView.mNameTx.text.length == 0) {
         [mView.mNameTx becomeFirstResponder];
         [self showErrorStatus:@"姓名不能为空"];
         return;
     }
-    if (mView.mIdentify.text == nil || [mView.mIdentify.text isEqualToString:@""]) {
+    if (mView.mIdentify.text.length == 0) {
         [mView.mIdentify becomeFirstResponder];
         [self showErrorStatus:@"身份证不能为空"];
         return;
     }
-    if (mView.mPhone.text == nil || [mView.mPhone.text isEqualToString:@""]) {
+    if (mView.mPhone.text.length == 0) {
         [mView.mPhone becomeFirstResponder];
         [self showErrorStatus:@"手机号不能为空"];
         return;
     }
-    if (mView.mCode.text == nil || [mView.mCode.text isEqualToString:@""]) {
+    if (mView.mCode.text.length == 0) {
         [mView.mCode becomeFirstResponder];
         [self showErrorStatus:@"验证码不能为空"];
         return;

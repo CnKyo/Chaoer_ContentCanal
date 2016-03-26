@@ -131,6 +131,15 @@
  *  退出登录
  */
 + (void)logOut;
+
+
+/**
+ *  获取注册验证吗
+ *
+ *  @param mPhone 手机号
+ *  @param block  返回值
+ */
++ (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
 /**
  *  注册
  *

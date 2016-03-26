@@ -214,14 +214,20 @@
             break;
         case 2:
         {
-            communityViewController   *ppp = [communityViewController new];
-            [self pushViewController:ppp];
+//            communityViewController   *ppp = [communityViewController new];
+//            [self pushViewController:ppp];
+            [self showErrorStatus:@"正在建设中..."];
         }
             break;
         case 3:
         {
             serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
             [self pushViewController:sss];
+        }
+            break;
+        case 4:
+        {
+            [self showErrorStatus:@"正在建设中..."];
         }
             break;
         case 5:
