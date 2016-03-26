@@ -10,4 +10,9 @@
 
 @interface mUserTopupViewController : BaseVC
 
+/**
+ *  充值金额
+ */
+@property (nonatomic,assign) int mPayMoney;
+
 @end

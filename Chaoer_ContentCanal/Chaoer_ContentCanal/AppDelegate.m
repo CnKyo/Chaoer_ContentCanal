@@ -39,7 +39,7 @@
 -(void)initExtComp
 {
     
-    [MTA startWithAppkey:@"I1DMN7E2WA4K"];
+    [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
     [WXApi registerApp:@"wxa2ca4ec0aa044c24" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
 

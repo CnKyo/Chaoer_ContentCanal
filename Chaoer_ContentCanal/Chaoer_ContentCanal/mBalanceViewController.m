@@ -7,7 +7,7 @@
 //
 
 #import "mBalanceViewController.h"
-
+#import "mUserTopupViewController.h"
 @interface mBalanceViewController ()<UITextFieldDelegate>
 
 @end
@@ -73,6 +73,7 @@
     [mView.alipayBtn addTarget:self action:@selector(bankAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [mView.wechatBtn addTarget:self action:@selector(bankAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mPayBtn addTarget:self action:@selector(payAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 #pragma mark----银行卡
@@ -129,7 +130,18 @@
 
 }
 
-
+- (void)payAction:(UIButton *)sender{
+    
+    if (mView.mMoneyTx.text.length == 0) {
+        [self showErrorStatus:@"请输入充值金额！"];
+        [mView.mMoneyTx becomeFirstResponder];
+        return;
+    }
+    
+    mUserTopupViewController *ppp = [[mUserTopupViewController alloc] initWithNibName:@"mUserTopupViewController" bundle:nil];
+    ppp.mPayMoney = [[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue];
+    [self pushViewController:ppp];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -12,7 +12,7 @@
 
 
 /**
- *  参数类型
+ *  参数类型1是注册2是忘记密码
  */
 @property (nonatomic,assign) int    mType;
 

@@ -96,6 +96,7 @@
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mType block:^(mBaseData *resb, NSArray *marray) {
+        [self headerEndRefresh];
         
     }];
 }

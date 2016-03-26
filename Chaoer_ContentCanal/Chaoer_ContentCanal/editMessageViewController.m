@@ -41,7 +41,7 @@
 - (void)rightBtnTouched:(id)sender{
     [SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
     if (self.mtype == 1) {
-        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:self.mTx.text andSex:nil andSignate:nil block:^(mBaseData *resb) {
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:self.mTx.text andSex:nil andSignate:nil block:^(mBaseData *resb,mUserInfo *mUser) {
             if (resb.mData) {
                 int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
                 
@@ -63,7 +63,7 @@
         
 
     }else{
-        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:nil andSignate:self.mTx.text block:^(mBaseData *resb) {
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:nil andSignate:self.mTx.text block:^(mBaseData *resb,mUserInfo *mUser) {
             if (resb.mData) {
                 int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
                 

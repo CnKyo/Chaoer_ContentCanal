@@ -77,7 +77,7 @@
 /**
  *  用户余额
  */
-@property (nonatomic,assign) float        mMoney;
+@property (nonatomic,assign) int        mMoney;
 
 /**
  *  用户ID
@@ -168,7 +168,7 @@
  *  @param mSignate   个性签名
  *  @param block      返回值
  */
-+ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb))block;
++ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block;
 
 /**
  *  修改头像
@@ -205,6 +205,23 @@
  */
 + (void)topUpPhone:(NSString *)mPhone andNum:(float)mMoney andUserId:(int)mUserId block:(void(^)(mBaseData *resb))block;
 
+
+/**
+ *  获取易宝验证吗
+ *
+ *  @param mSellerName 商户名称：默认超尔物管通
+ *  @param mLoginName  登录名
+ *  @param mMoney      支付金额
+ *  @param mPayName    付款人
+ *  @param mIdentify   身份证
+ *  @param mPhone      电话
+ *  @param mBalance    余额
+ *  @param mBankCard   银行卡
+ *  @param mTime       有效期
+ *  @param mCVV        cvv码
+ *  @param block       返回值
+ */
++ (void)getBalanceVerifyCode:(NSString *)mSellerName andLoginName:(NSString *)mLoginName andPayMoney:(int)mMoney andPayName:(NSString *)mPayName andIdentify:(NSString *)mIdentify andPhone:(NSString *)mPhone andBalance:(int)mBalance andBankCard:(NSString *)mBankCard andBankTime:(NSString *)mTime andCVV:(NSString *)mCVV block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----实名认证
 /**

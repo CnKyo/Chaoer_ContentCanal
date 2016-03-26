@@ -30,6 +30,8 @@
 }
 - (void)initView{
 
+    self.mPhoneT.text = [mUserInfo backNowUser].mPhone;
+    self.mBalance.text = [NSString stringWithFormat:@"%d元",[mUserInfo backNowUser].mMoney];
     self.mBgkView.layer.masksToBounds = YES;
     self.mBgkView.layer.borderWidth = 0.5;
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.83 alpha:1].CGColor;

@@ -81,4 +81,5 @@
 #import "WebVC.h"
 #import "HTTPrequest.h"
 #import "SVProgressHUD.h"
+#import "GiFHUD.h"
 #endif

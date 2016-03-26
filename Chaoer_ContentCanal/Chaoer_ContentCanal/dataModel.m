@@ -120,7 +120,7 @@ bool g_bined = NO;
     self.mUserImgUrl = [obj objectForKeyMy:@"img"];
     self.mCredit = [[obj objectForKeyMy:@"cret"] intValue];
     self.mGrade = [[obj objectForKeyMy:@"grade"] intValue];
-    self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
+    self.mMoney = [[obj objectForKeyMy:@"money"] intValue];
     self.mUserId = [[obj objectForKeyMy:@"userId"] intValue];
     self.mSignature = [obj objectForKeyMy:@"signature"];
     
@@ -158,7 +158,7 @@ bool g_bined = NO;
     [para setObject:mCode forKey:@"verfyCode"];
     [para setObject:mPwd forKey:@"password"];
     [para setObject:mId forKey:@"identity"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/regist.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/regist.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -171,7 +171,7 @@ bool g_bined = NO;
     [para setObject:mLoginName forKey:@"loginName"];
     [para setObject:mPwd forKey:@"password"];
     
-    [[HTTPrequest sharedClient] postUrl:@"login/flogin.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/login/flogin.do" parameters:para call:^(mBaseData *info) {
         [self dealUserSession:info andPhone:mLoginName block:block];
     }];
 }
@@ -179,7 +179,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"loginName"];
     [para setObject:mPwd forKey:@"newPassword"];
-    [[HTTPrequest sharedClient] postUrl:@"login/resetpwd.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/login/resetpwd.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -229,7 +229,7 @@ bool g_bined = NO;
     
 }
 
-+ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void (^)(mBaseData *))block{
++ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserid) forKey:@"id"];
     [para setObject:mLoginName forKey:@"loginName"];
@@ -246,7 +246,7 @@ bool g_bined = NO;
         [para setObject:mSignate forKey:@"signature"];
 
     }
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/udtBaseMessage.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/udtBaseMessage.do" parameters:para call:^(mBaseData *info) {
         if (info.mData) {
             int sucess = [[info.mData objectForKeyMy:@"r_msg"] intValue];
             
@@ -254,15 +254,16 @@ bool g_bined = NO;
                 
                 [mUserInfo backNowUser].mNickName = nickName;
                 
-                
-                block (info);
+            
+                [self dealUserSession:info andPhone:mLoginName block:block];
+
             }else{
-                block (nil );
+                block ( info,nil );
 
             }
             
         }else{
-            block (nil );
+            block ( info,nil );
 
         }
     }];
@@ -273,7 +274,7 @@ bool g_bined = NO;
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mImg forKey:@"img"];
     [para setObject:@"" forKey:@"saveDirectory"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/uploadHeadImg.ad" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/uploadHeadImg.ad" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -285,7 +286,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mType forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/redPackage.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/redPackage.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *temparr = [NSMutableArray new];
@@ -306,7 +307,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:NumberWithFloat(mMoney) forKey:@"num"];
-    [[HTTPrequest sharedClient] postUrl:@"front/conven/phone/IsRecharge.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/conven/phone/IsRecharge.do" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -320,7 +321,7 @@ bool g_bined = NO;
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:NumberWithFloat(mMoney) forKey:@"num"];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"front/conven/phone/onlineOrder.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/conven/phone/onlineOrder.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -329,10 +330,38 @@ bool g_bined = NO;
     }];
 }
 
++ (void)getBalanceVerifyCode:(NSString *)mSellerName andLoginName:(NSString *)mLoginName andPayMoney:(int)mMoney andPayName:(NSString *)mPayName andIdentify:(NSString *)mIdentify andPhone:(NSString *)mPhone andBalance:(int)mBalance andBankCard:(NSString *)mBankCard andBankTime:(NSString *)mTime andCVV:(NSString *)mCVV block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mSellerName forKey:@"merchantName"];
+    [para setObject:mLoginName forKey:@"merchantLogin"];
+    [para setObject:NumberWithInt(mBalance) forKey:@"merchantMoney"];
+    [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
+    [para setObject:mPayName forKey:@"buyerName"];
+    [para setObject:mIdentify forKey:@"buyerCard"];
+    [para setObject:mPhone forKey:@"buyerPhone"];
+    [para setObject:mBankCard forKey:@"buyerBankCard"];
+    [para setObject:mTime forKey:@"buyerBankExpire"];
+    [para setObject:mCVV forKey:@"buyerBankCvv"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"ybpay/epos/costMoney.do" parameters:para call:^(mBaseData *info) {
+        if (info.mData) {
+            
+            block( info );
+            
+        }else{
+            block (nil);
+        }
+    }];
+    
+}
+
+
+
+
 + (void)getCityId:(int)mCityId block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCityId) forKey:@"parentId"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/website.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/website.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -350,7 +379,7 @@ bool g_bined = NO;
 + (void)getBuildId:(int)mCId block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCId) forKey:@"cId"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/village.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/village.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -362,7 +391,7 @@ bool g_bined = NO;
 + (void)getBuilNum:(NSString *)mName block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mName forKey:@"name"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/building.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/building.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -375,7 +404,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mName forKey:@"villageName"];
     [para setObject:mBuildName forKey:@"buildName"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/buildNumber.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/buildNumber.do" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
         
@@ -390,7 +419,7 @@ bool g_bined = NO;
 + (void)getBundleMsg:(int)mUserId block:(void (^)(mBaseData *, SVerifyMsg *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/getBindHourseMessage.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/getBindHourseMessage.do" parameters:para call:^(mBaseData *info) {
         if (info.mData) {
             SVerifyMsg *mVerify = [[SVerifyMsg alloc] initWithObj:info.mData];
             
@@ -403,7 +432,7 @@ bool g_bined = NO;
 }
 
 + (void)getBaner:(void (^)(mBaseData *, NSArray *))block{
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/getBanner.do" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/getBanner.do" parameters:nil call:^(mBaseData *info) {
         NSMutableArray *temparr = [NSMutableArray new];
         if (info.mData ) {
             
@@ -423,7 +452,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mContent forKey:@"content"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/suggest.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/suggest.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
         }else{
@@ -440,7 +469,7 @@ bool g_bined = NO;
     [para setObject:mBuildName forKey:@"buildName"];
     [para setObject:mDoorNum forKey:@"buildingNumebr"];
     [para setObject:mReason forKey:@"cause"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/complaintresident.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/complaintresident.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
         }else{
@@ -457,7 +486,7 @@ bool g_bined = NO;
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mName forKey:@"name"];
     [para setObject:mReason forKey:@"cause"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/complaintmanager.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/complaintmanager.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
         }else{

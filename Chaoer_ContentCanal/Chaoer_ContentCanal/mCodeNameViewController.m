@@ -28,11 +28,19 @@
     self.hiddenTabBar = YES;
     isCode = NO;
     self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
-
     
     self.mBgkView.layer.masksToBounds = YES;
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.87 alpha:1].CGColor;
     self.mBgkView.layer.borderWidth = 0.5;
+    
+    
+    if ([mUserInfo backNowUser].mIsRegist) {
+        
+        self.mStatus.text = @"";
+    }else{
+        self.mStatus.text = @"未实名认证";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

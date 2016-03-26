@@ -16,7 +16,7 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122:8080/zm/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122:8080/";
 @interface HTTPrequest()
 
 @end

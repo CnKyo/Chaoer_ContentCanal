@@ -150,6 +150,10 @@
 		31671DD21CA1332A001DAEBA /* hasCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31671DD11CA1332A001DAEBA /* hasCodeViewController.m */; };
 		31671DD61CA13344001DAEBA /* hasCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31671DD41CA13344001DAEBA /* hasCodeTableViewCell.m */; };
 		31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31671DD51CA13344001DAEBA /* hasCodeTableViewCell.xib */; };
+		3182A1691CA620CC0084E890 /* GiFHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3182A1681CA620CC0084E890 /* GiFHUD.m */; };
+		3182A16B1CA620DA0084E890 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3182A16A1CA620DA0084E890 /* loading.gif */; };
+		3182A16E1CA636460084E890 /* mTopUpBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3182A16D1CA636460084E890 /* mTopUpBalanceView.m */; };
+		3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3182A16F1CA636510084E890 /* mTopUpBalanceView.xib */; };
 		318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 318D56471C9BAD7E0045B5FB /* mGeneralSubView.m */; };
 		318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 318D56491C9BAD880045B5FB /* mGeneralSubView.xib */; };
 		318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 318D564D1C9BE2220045B5FB /* aboutusViewController.m */; };
@@ -643,6 +647,12 @@
 		31671DD31CA13344001DAEBA /* hasCodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasCodeTableViewCell.h; sourceTree = "<group>"; };
 		31671DD41CA13344001DAEBA /* hasCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hasCodeTableViewCell.m; sourceTree = "<group>"; };
 		31671DD51CA13344001DAEBA /* hasCodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = hasCodeTableViewCell.xib; sourceTree = "<group>"; };
+		3182A1671CA620CC0084E890 /* GiFHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiFHUD.h; sourceTree = "<group>"; };
+		3182A1681CA620CC0084E890 /* GiFHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiFHUD.m; sourceTree = "<group>"; };
+		3182A16A1CA620DA0084E890 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		3182A16C1CA636460084E890 /* mTopUpBalanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTopUpBalanceView.h; sourceTree = "<group>"; };
+		3182A16D1CA636460084E890 /* mTopUpBalanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTopUpBalanceView.m; sourceTree = "<group>"; };
+		3182A16F1CA636510084E890 /* mTopUpBalanceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpBalanceView.xib; sourceTree = "<group>"; };
 		318D56461C9BAD7E0045B5FB /* mGeneralSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGeneralSubView.h; sourceTree = "<group>"; };
 		318D56471C9BAD7E0045B5FB /* mGeneralSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGeneralSubView.m; sourceTree = "<group>"; };
 		318D56491C9BAD880045B5FB /* mGeneralSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGeneralSubView.xib; sourceTree = "<group>"; };
@@ -1371,14 +1381,17 @@
 			path = PickImage;
 			sourceTree = "<group>";
 		};
-		3135F8081C97BB2A00EF9569 /* 帐户充值 */ = {
+		3135F8081C97BB2A00EF9569 /* 余额充值 */ = {
 			isa = PBXGroup;
 			children = (
 				3135F8091C97BB4500EF9569 /* mUserTopupViewController.h */,
 				3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */,
 				3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */,
+				3182A16C1CA636460084E890 /* mTopUpBalanceView.h */,
+				3182A16D1CA636460084E890 /* mTopUpBalanceView.m */,
+				3182A16F1CA636510084E890 /* mTopUpBalanceView.xib */,
 			);
-			name = "帐户充值";
+			name = "余额充值";
 			sourceTree = "<group>";
 		};
 		3135F80E1C97BCDE00EF9569 /* 投诉建议 */ = {
@@ -1565,6 +1578,16 @@
 			name = HTTPDATA;
 			sourceTree = "<group>";
 		};
+		3182A1661CA620BF0084E890 /* GIFHud */ = {
+			isa = PBXGroup;
+			children = (
+				3182A1671CA620CC0084E890 /* GiFHUD.h */,
+				3182A1681CA620CC0084E890 /* GiFHUD.m */,
+				3182A16A1CA620DA0084E890 /* loading.gif */,
+			);
+			name = GIFHud;
+			sourceTree = "<group>";
+		};
 		318D564B1C9BE1FF0045B5FB /* 关于我们 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1651,7 +1674,7 @@
 				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
 				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
 				31E1A72A1CA3C03500D3496F /* 提现 */,
-				3135F8081C97BB2A00EF9569 /* 帐户充值 */,
+				3135F8081C97BB2A00EF9569 /* 余额充值 */,
 				31B9903A1C96B34A002E34A5 /* 手机充值 */,
 			);
 			name = "便民服务";
@@ -2261,6 +2284,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3182A1661CA620BF0084E890 /* GIFHud */,
 				313413301CA28DC3003972E2 /* PickImage */,
 				310EB5E31CA24435005C61F4 /* HCSRaiting */,
 				31B365A11CA0E8ED00CD7945 /* HZQDatePickerView */,
@@ -2675,6 +2699,7 @@
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
+				3182A16B1CA620DA0084E890 /* loading.gif in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
@@ -2771,6 +2796,7 @@
 				310EB5FA1CA26178005C61F4 /* serviceDetailView.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
 				7470E1521B9C07B800ECEC69 /* leavVC.xib in Resources */,
+				3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */,
 				31EEB32B1C93E43200B61A86 /* mShopCarCell.xib in Resources */,
 				318D56531C9BE2980045B5FB /* aboutusView.xib in Resources */,
 			);
@@ -2830,7 +2856,9 @@
 				3135F8351C97FA3800EF9569 /* zhongchouViewController.m in Sources */,
 				B2CF98811BEB36AA003BB896 /* MyTempButton.m in Sources */,
 				749BEA491B3277AA00BABCA6 /* UIImage+WebP.m in Sources */,
+				3182A1691CA620CC0084E890 /* GiFHUD.m in Sources */,
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
+				3182A16E1CA636460084E890 /* mTopUpBalanceView.m in Sources */,
 				7487DC161B4E17F000C40220 /* MASConstraint.m in Sources */,
 				7470E1511B9C07B800ECEC69 /* leavVC.m in Sources */,
 				3154427E1C9A40EB0047E52A /* mFeedManageViewController.m in Sources */,

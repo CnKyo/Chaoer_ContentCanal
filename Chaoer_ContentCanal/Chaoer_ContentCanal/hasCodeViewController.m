@@ -16,8 +16,6 @@
 @implementation hasCodeViewController
 {
     
-    UITableView *mTableView;
-    
 
     SVerifyMsg  *mVerify;
 
@@ -43,28 +41,29 @@
     header.layer.borderWidth = 1;
     [self.view addSubview:header];
     
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0, header.mbottom, DEVICE_Width, DEVICE_Height-79);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-    [self.view addSubview:mTableView];
+    
+    [self loadTableView:CGRectMake(0, header.mbottom, DEVICE_Width, DEVICE_Height-79) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:self.tableView];
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"hasCodeTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
-    [self loadData];
 }
 
-- (void)loadData{
+- (void)headerBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
-        
+        [SVProgressHUD dismiss];
+        [self headerEndRefresh];
         if (resb.mData) {
             [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             mVerify = info;
-            [mTableView reloadData];
+            [self.tableView reloadData];
         }else{
             [SVProgressHUD showErrorWithStatus:@"数据错误！"];
             [self leftBtnTouched:nil];

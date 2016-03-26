@@ -79,8 +79,32 @@ typedef enum _RelDic
 + (NSString *)DateTimeInt:(int)time;
 
 +(NSString *) FormartTime:(NSDate*) compareDate;            //格式化时间
-
+/**
+ *  检验手机号
+ *
+ *  @param mobileNum <#mobileNum description#>
+ *
+ *  @return <#return value description#>
+ */
 + (BOOL)isMobileNumber:(NSString *)mobileNum;               //检测是否是手机号
+/**
+ *  检验身份证
+ *
+ *  @param cardNo <#mVerify description#>
+ *
+ *  @return <#return value description#>
+ */
++(BOOL)checkIdentityCardNo:(NSString*)cardNo;
+/**
+ *  检验银行卡号
+ *
+ *  @param cardNo <#cardNo description#>
+ *
+ *  @return <#return value description#>
+ */
++ (BOOL)checkBankCard:(NSString*)bankCard;
+
+
 +(BOOL)checkPasswdPre:(NSString *)passwd;                    //检测密码合法性
 
 + (NSString *)md5:(NSString *)str;
@@ -167,4 +191,6 @@ typedef enum _RelDic
 
 + (NSString *)getAPPName;
 + (NSString *)getAppSchemes;
+
+
 @end

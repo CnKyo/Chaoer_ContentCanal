@@ -45,7 +45,8 @@
     [self upDatePage];
 }
 - (void)upDatePage{
-    
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
 
     [self.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
@@ -55,6 +56,7 @@
     self.mSex.text = [mUserInfo backNowUser].mSex;
     self.mDetail.text = [mUserInfo backNowUser].mSignature;
     self.mPhone.text = [mUserInfo backNowUser].mPhone;
+    [SVProgressHUD dismiss];
     
     
 }
@@ -159,7 +161,7 @@
             sex = @"w";
             
         }
-        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:sex andSignate:nil block:^(mBaseData *resb) {
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:sex andSignate:nil block:^(mBaseData *resb,mUserInfo *mUser) {
             if (resb.mData) {
                 int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
                 

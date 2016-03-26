@@ -29,7 +29,6 @@
 
 @implementation homeViewController
 {
-    UITableView *mTableView;
     
     UIView  *mHeaderView;
     
@@ -45,7 +44,8 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [mTableView headerBeginRefreshing];
+    
+    [self.tableView headerBeginRefreshing];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,16 +68,16 @@
         
         if (scrollView.contentOffset.y>=100) {
             
-            CGRect mRRR = mTableView.frame;
+            CGRect mRRR = self.tableView.frame;
             mRRR.origin.y = 64;
             mRRR.size.height = DEVICE_Height-114;
-            mTableView.frame = mRRR;
+            self.tableView.frame = mRRR;
             
         }else{
-            CGRect mRRR = mTableView.frame;
+            CGRect mRRR = self.tableView.frame;
             mRRR.origin.y = 0;
             mRRR.size.height = DEVICE_Height-50;
-            mTableView.frame = mRRR;
+            self.tableView.frame = mRRR;
         }
 
     }];
@@ -86,38 +86,42 @@
 
 - (void)initview{
     
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-    mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:mTableView];
     
+    [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:self.tableView];
     self.haveHeader = YES;
-    [mTableView headerBeginRefreshing];
+    [self.tableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"homeTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
 }
 - (void)headerBeganRefresh{
-    [self loadBaner];
-}
-- (void)loadBaner{
     [mTempArr removeAllObjects];
-    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-
+//    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+    [GiFHUD show];
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
-        [SVProgressHUD dismiss];
+        [GiFHUD dismiss];
+        [self headerEndRefresh];
         if (mBaner) {
             [mTempArr addObjectsFromArray:mBaner];
-            [mTableView reloadData];
+            [self.tableView reloadData];
+        }else{
+            
         }
         [self loadScrollerView];
-
+        
     }];
 }
+
 - (void)loadHeaderView{
+    
+    for (UIButton *btn in mHeaderView.subviews) {
+        [btn removeFromSuperview];
+    }
+    
+    
     mHeaderView = [UIView new];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
     mHeaderView.backgroundColor = [UIColor whiteColor];
@@ -149,14 +153,6 @@
     float btnWidth = DEVICE_Width/3;
     
     for (int i = 0; i<marr.count; i++) {
-//
-//        mGeneralSubView *mSubView = [mGeneralSubView shareView];
-//        mSubView.frame = CGRectMake(x, y, btnWidth, 110);
-//        mSubView.mImg.image =imgArr[i];
-//        [mSubView.mName setText:marr[i]];
-//        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-//        mSubView.mBtn.tag = i;
-//        [mHeaderView addSubview:mSubView];
         
         UIButton    *btn = [UIButton new];
         btn.frame = CGRectMake(x, y, btnWidth, 110);
@@ -196,7 +192,7 @@
     mRect.size.height = y;
     mHeaderView.frame = mRect;
     
-    [mTableView setTableHeaderView:mHeaderView];
+    [self.tableView setTableHeaderView:mHeaderView];
     
 }
 #pragma mark----按钮的点击事件
@@ -253,11 +249,6 @@
     
     
     //网络加载
-    
-    NSArray *UrlStringArray = @[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
-                                @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
-                                @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
-                                @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"];
     
     
     NSMutableArray *arrtemp = [NSMutableArray new];
