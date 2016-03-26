@@ -121,7 +121,7 @@
 }
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
-    [self loginOk];
+//    [self loginOk];
     MLLog(@"登录");
     if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
         [self showErrorStatus:@"手机号码不能为空"];
@@ -140,15 +140,19 @@
     }
     
     
-//    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
-//
-//    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
-//        if (resb.mSucess) {
-//            [self loginOk];
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-//        }
-//    }];
+    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
+
+    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
+        if ([mUser.mR_msg isEqualToString:@"1"]) {
+            [self loginOk];
+            [SVProgressHUD showErrorWithStatus:@"登录成功"];
+        }else if ([mUser.mR_msg isEqualToString:@"101"])
+            [SVProgressHUD showErrorWithStatus:@"没有此用户!"];
+
+        else{
+            [SVProgressHUD showErrorWithStatus:@"密码错误!"];
+        }
+    }];
 }
 #pragma  mark -----键盘消失
 - (void)tapAction{

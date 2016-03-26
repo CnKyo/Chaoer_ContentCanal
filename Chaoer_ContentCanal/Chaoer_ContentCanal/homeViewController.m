@@ -20,7 +20,7 @@
 #import "communityViewController.h"
 #import "serviceViewController.h"
 #import "mFeedBackViewController.h"
-
+#import "dataModel.h"
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -42,6 +42,10 @@
     mCustomHomeView *mCustomBtn;
     
     
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [mTableView headerBeginRefreshing];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,10 +82,8 @@
 
     }];
     
- 
-    
-
 }
+
 - (void)initview{
     
     mTableView = [UITableView new];
@@ -92,21 +94,33 @@
     mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:mTableView];
     
-    
+    self.haveHeader = YES;
+    [mTableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"homeTableViewCell" bundle:nil];
     [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-    [self loadHeaderView];
+}
+- (void)headerBeganRefresh{
+    [self loadBaner];
+}
+- (void)loadBaner{
+    [mTempArr removeAllObjects];
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 
-    
+    [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
+        [SVProgressHUD dismiss];
+        if (mBaner) {
+            [mTempArr addObjectsFromArray:mBaner];
+            [mTableView reloadData];
+        }
+        [self loadScrollerView];
+
+    }];
 }
 - (void)loadHeaderView{
-
     mHeaderView = [UIView new];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
     mHeaderView.backgroundColor = [UIColor whiteColor];
-
-    [self loadScrollerView];
 
     UIView  *bgkView = [UIView new];
     bgkView.frame = CGRectMake(0, mScrollerView.mbottom, DEVICE_Width, 10);
@@ -225,7 +239,7 @@
     }
 }
 - (void)loadScrollerView{
-    
+
     for ( UIButton * btn in mHeaderView.subviews) {
         [btn removeFromSuperview];
     }
@@ -245,9 +259,17 @@
                                 @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
                                 @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"];
     
+    
+    NSMutableArray *arrtemp = [NSMutableArray new];
+    
+    for (MBaner *banar in mTempArr) {
+        [arrtemp addObject:banar.mImgUrl];
+    }
+    
+    NSLog(@"%@",arrtemp);
     //显示顺序和数组顺序一致
     //设置图片url数组,和滚动视图位置
-    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 150) WithImageUrls:UrlStringArray];
+    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 150) WithImageUrls:arrtemp];
     
     //显示顺序和数组顺序一致
     //设置标题显示文本数组
@@ -259,6 +281,14 @@
     
     [mScrollerView setImageViewDidTapAtIndex:^(NSInteger index) {
         printf("第%zd张图片\n",index);
+        MBaner *banar = mTempArr[index];
+        
+        WebVC *w = [WebVC new];
+        w.mName = @"banar";
+        w.mUrl = [NSString stringWithFormat:@"http://%@",banar.mContentUrl];
+        [self pushViewController:w];
+
+        
     }];
     
     //default is 2.0f,如果小于0.5不自动播放
@@ -276,8 +306,9 @@
         NSLog(@"%@",error);
     }];
     
+    [self loadHeaderView];
     [mHeaderView addSubview:mScrollerView];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

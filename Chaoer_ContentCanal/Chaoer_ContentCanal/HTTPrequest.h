@@ -21,4 +21,6 @@
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
 
++ (NSString *)returnNowURL;
+
 @end

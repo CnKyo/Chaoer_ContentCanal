@@ -35,7 +35,7 @@
 - (void)initViuew{
 
     mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
+    mTableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
     mTableView.frame = CGRectMake(0,64, DEVICE_Width, DEVICE_Height-50);
     mTableView.delegate = self;
     mTableView.dataSource = self;
@@ -50,9 +50,14 @@
     mHeader = [UIView new];
     mHeader.frame = CGRectMake(0, 0, DEVICE_Width, 230);
     
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+
     
     mHeaderView = [mRedBagHeader shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 195);
+    [mHeaderView.mHeaderBtn sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
+    mHeaderView.mDEtail.text = [mUserInfo backNowUser].mIdentity;
     [mHeader addSubview:mHeaderView];
     
     NSInteger margin = 0;
@@ -69,7 +74,12 @@
     secondSwitch.cornerRadius = 0;
     [secondSwitch setPressedHandler:^(NSUInteger index) {
         NSLog(@"点击了%lu",(unsigned long)index);
-        [mTableView reloadData];
+        if (index == 0) {
+            [self loadData:@"s"];
+        }else{
+            [self loadData:@"f"];
+
+        }
     }];
     [mHeader addSubview:secondSwitch];
     
@@ -82,6 +92,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)loadData:(NSString *)mType{
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+
+    [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mType block:^(mBaseData *resb, NSArray *marray) {
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 

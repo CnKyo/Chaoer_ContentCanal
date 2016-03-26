@@ -7,7 +7,7 @@
 //
 
 #import "mFeedCompanyViewController.h"
-
+#import "dataModel.h"
 @interface mFeedCompanyViewController ()
 
 @end
@@ -44,6 +44,16 @@
     [self.mReason setHolderToTop];
     [self initTap];
 
+}
+- (IBAction)mbtnAction:(id)sender {
+    
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+
+    [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.mReason.text block:^(mBaseData *resb) {
+        [SVProgressHUD dismiss];
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

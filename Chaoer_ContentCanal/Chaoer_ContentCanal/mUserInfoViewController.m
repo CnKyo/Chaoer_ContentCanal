@@ -20,6 +20,10 @@
     UIImage *tempImage;
 
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+//    [self upDatePage];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -38,8 +42,22 @@
     self.mHeaderImg.layer.masksToBounds = YES;
     self.mHeaderImg.layer.cornerRadius = self.mHeaderImg.mwidth/2;
     
+    [self upDatePage];
 }
+- (void)upDatePage{
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
 
+    [self.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    
+    self.mName.text = [mUserInfo backNowUser].mNickName;
+    self.mUserInfo.text = [mUserInfo backNowUser].mIdentity;
+    self.mSex.text = [mUserInfo backNowUser].mSex;
+    self.mDetail.text = [mUserInfo backNowUser].mSignature;
+    self.mPhone.text = [mUserInfo backNowUser].mPhone;
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -73,6 +91,7 @@
     
     editMessageViewController *eee = [[editMessageViewController alloc] initWithNibName:@"editMessageViewController" bundle:nil];
     eee.mTitel = @"昵称";
+    eee.mtype = 1;
     eee.mPlaceholder = @"请输入昵称";
     eee.mtext = @"好的名字能让别人记住你。";
     eee.block = ^(NSString *content){
@@ -129,12 +148,36 @@
         }
     }else{
         NSLog(@"选择了第 %ld个", (long)buttonIndex);
+        
+        NSString *sex = nil;
+        NSString *text = nil;
         if (buttonIndex == 0) {
-            self.mSex.text = @"男";
+            sex = @"m";
+            text= @"男";
         }else{
-            self.mSex.text = @"女";
+            text= @"女";
+            sex = @"w";
             
         }
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:sex andSignate:nil block:^(mBaseData *resb) {
+            if (resb.mData) {
+                int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
+                
+                if (sucess == 1) {
+                    [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+                    self.mSex.text = text;
+
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+                    [self leftBtnTouched:nil];
+                    
+                }
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+            }
+        }];
+
     }
 
 }
@@ -148,11 +191,12 @@
     
     editMessageViewController *eee = [[editMessageViewController alloc] initWithNibName:@"editMessageViewController" bundle:nil];
     eee.mTitel = @"个性签名";
+    eee.mtype = 2;
     eee.mPlaceholder = @"请输入个性签名";
     eee.mtext = @"好的签名能让别人记住你。";
     eee.block = ^(NSString *content){
         
-        self.mDetail.text = content;;
+        self.mDetail.text = content;
     };
     [self pushViewController:eee];
 }

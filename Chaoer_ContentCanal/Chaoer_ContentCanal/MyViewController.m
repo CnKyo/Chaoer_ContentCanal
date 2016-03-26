@@ -18,7 +18,7 @@
 #import "myOrderViewController.h"
 #import "mSetupViewController.h"
 #import "RSKImageCropper.h"
-
+#import "HTTPrequest.h"
 #import "popMessageView.h"
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
 
@@ -51,9 +51,10 @@
     mMessageView.mCommunityBtn.selected = NO;
     mMessageView.mStaffBtn.selected = NO;
     mRightView.mMessageBtn.selected = NO;
-//    if ([mUserInfo isNeedLogin]) {
-//        [self gotoLoginVC];
-//    }
+    if ([mUserInfo isNeedLogin]) {
+        [self gotoLoginVC];
+    }
+    [self loadData];
    
 }
 
@@ -159,6 +160,18 @@
     }];
 }
 
+#pragma mark----加载数据
+- (void)loadData{
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    
+    [mHeaderView.mHeaderBtn sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
+    mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
+    mHeaderView.mLevel.text = [NSString stringWithFormat:@"我的等级:%d级",[mUserInfo backNowUser].mGrade];
+    mHeaderView.mScore.text = [NSString stringWithFormat:@"我的积分:%d",[mUserInfo backNowUser].mCredit];
+
+}
 
 #pragma mark----构造主页面
 - (void)initView{
@@ -170,6 +183,7 @@
 
     mHeaderView = [mPersonView shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 250);
+ 
     [mScrollerView addSubview:mHeaderView];
     
     

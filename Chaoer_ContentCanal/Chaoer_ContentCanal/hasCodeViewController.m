@@ -17,6 +17,9 @@
 {
     
     UITableView *mTableView;
+    
+
+    SVerifyMsg  *mVerify;
 
 }
 - (void)viewDidLoad {
@@ -47,14 +50,28 @@
     mTableView.dataSource = self;
     [self.view addSubview:mTableView];
     
-    
     UINib   *nib = [UINib nibWithNibName:@"hasCodeTableViewCell" bundle:nil];
     [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
-    
+    [self loadData];
 }
 
+- (void)loadData{
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
+        
+        if (resb.mData) {
+            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
+            mVerify = info;
+            [mTableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"数据错误！"];
+            [self leftBtnTouched:nil];
+        };
+        
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -93,6 +110,35 @@
     NSString *reuseCellId = @"cell";
     
     hasCodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    if (indexPath.row == 0) {
+        cell.mName.text = @"帐号";
+        cell.mContent.text = [mUserInfo backNowUser].mPhone;
+    }
+    if (indexPath.row == 1) {
+        cell.mName.text = @"姓名";
+        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+    }
+    if (indexPath.row == 2) {
+        cell.mName.text = @"身份证";
+        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+    }
+    if (indexPath.row == 3) {
+        cell.mName.text = @"银行卡";
+        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+    }
+    if (indexPath.row == 4) {
+        cell.mName.text = @"物管公司";
+        cell.mContent.text = mVerify.mCompanyName;
+    }
+    if (indexPath.row == 5) {
+        cell.mName.text = @"居住关系";
+        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+    }
+    if (indexPath.row == 6) {
+        cell.mName.text = @"地址信息";
+        cell.mContent.text = mVerify.mVillageName;
+    }
     
     
     return cell;

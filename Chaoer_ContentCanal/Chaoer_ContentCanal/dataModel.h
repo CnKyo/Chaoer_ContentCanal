@@ -20,7 +20,7 @@
 
 @property (nonatomic,assign) int        mState;
 
-@property (nonatomic,assign) int        mSucess;
+@property (nonatomic,assign) BOOL        mSucess;
 
 @property (nonatomic,strong) id         mData;
 
@@ -54,9 +54,14 @@
  */
 @property (nonatomic,strong) NSString   *mNickName;
 /**
+ *  手机（登录名）
+ */
+@property (nonatomic,strong) NSString   *mPhone;
+
+/**
  *  身份
  */
-@property (nonatomic,assign) int        mIdentity;
+@property (nonatomic,strong) NSString        *mIdentity;
 /**
  *  用户头像
  */
@@ -64,11 +69,11 @@
 /**
  *  用户积分
  */
-@property (nonatomic,assign) float        mCredit;
+@property (nonatomic,assign) int        mCredit;
 /**
  *  用户登记
  */
-@property (nonatomic,assign) float        mGrade;
+@property (nonatomic,assign) int        mGrade;
 /**
  *  用户余额
  */
@@ -173,7 +178,14 @@
  *  @param block   返回值
  */
 + (void)modifyUserImg:(int)mUserId andImage:(UIImage *)mImg block:(void(^)(mBaseData *resb))block;
-
+/**
+ *  获取红包信息
+ *
+ *  @param mUserId 用户id
+ *  @param mType   类型（s为收到的红包，f为发出的红包）
+ *  @param block   返回值
+ */
++ (void)getRedBag:(int)mUserId andType:(NSString *)mType block:(void(^)(mBaseData *resb,NSArray *marray))block;
 /**
  *  验证手机能否充值
  *
@@ -344,6 +356,23 @@
  *  @param block    返回值
  */
 + (void)upDateOrderStatus:(int)mUserId andOrderId:(int)mOrderId block:(void(^)(mBaseData *resb,NSArray *array))block;
+/**
+ *  用户预约商户
+ *
+ *  @param mOrderid  订单id
+ *  @param mSellerId 商户id
+ *  @param block     返回值
+ */
+- (void)getUserAppointment:(int)mOrderid andSellerId:(int)mSellerId block:(void(^)(mBaseData *resb))block;
+/**
+ *  获取商户信息
+ *
+ *  @param mOid  订单id
+ *  @param mId   商户id
+ *  @param block 返回值
+ */
+- (void)getSellerMsg:(int)mOid andmId:(int)mId block:(void(^)(mBaseData *resb))block;
+
 
 /**
  *  打开推送
@@ -461,8 +490,10 @@
  *  城市
  */
 @property (nonatomic,strong)    NSString       *mCity;
-
-
+/**
+ *  cid
+ */
+@property (nonatomic,assign)    int     cId;
 
 @end
 /**
@@ -526,3 +557,20 @@
 -(id)initWithObj:(NSDictionary*)obj;
 @end
 
+@interface MBaner : NSObject
+/**
+ *  图片地址
+ */
+@property (nonatomic,strong)    NSString       *mImgUrl;
+/**
+ *  内容
+ */
+@property (nonatomic,strong)    NSString       *mContentUrl;
+/**
+ *  uuid    
+ */
+@property (nonatomic,strong)    NSString       *mUUID;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end

@@ -12,7 +12,7 @@
 /**
  *  头像
  */
-@property (strong, nonatomic) IBOutlet UIButton *mHeaderBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *mHeaderBtn;
 
 /**
  *  姓名

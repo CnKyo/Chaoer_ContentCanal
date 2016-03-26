@@ -20,7 +20,6 @@
 #import "CustomDefine.h"
 #import "NSString+CheckEmpty.h"
 #import "IQKeyboardManager.h"
-#import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+SuperView.h"
 #import "Util.h"
@@ -79,4 +78,7 @@
 #import "mGeneralSubView.h"
 
 #import "ZJAlertListView.h"
+#import "WebVC.h"
+#import "HTTPrequest.h"
+#import "SVProgressHUD.h"
 #endif

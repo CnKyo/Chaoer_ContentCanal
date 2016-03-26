@@ -33,6 +33,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *mStatus;
 
 @property (nonatomic,strong) void(^block)(NSString *block);
-
+/**
+ *  参数类型：1是昵称 2是个性签名
+ */
+@property (nonatomic,assign) int    mtype;
 
 @end

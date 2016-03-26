@@ -104,7 +104,7 @@
     
     if( buttonIndex == 1)
     {
-//        [SUser logout];
+        [mUserInfo logOut];
         [SVProgressHUD showSuccessWithStatus:@"退出成功"];
         [mFootView.mLoginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [self gotoLoginVC];

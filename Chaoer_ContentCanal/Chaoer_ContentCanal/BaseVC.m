@@ -9,6 +9,8 @@
 #import "BaseVC.h"
 #import "MTA.h"
 #import "ViewController.h"
+#import "HTTPrequest.h"
+#import "dataModel.h"
 @interface BaseVC ()<UIGestureRecognizerDelegate>
 {
     UIView *emptyView;

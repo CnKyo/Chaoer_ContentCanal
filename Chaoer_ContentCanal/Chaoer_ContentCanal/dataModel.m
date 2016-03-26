@@ -30,7 +30,7 @@
     if( self && obj != nil )
     {
         [self fetchIt:obj];
-        self.mcoredat = obj;
+        self.mData = obj;
     }
     return self;
 
@@ -108,21 +108,44 @@ bool g_bined = NO;
     
     self.mR_msg = [obj objectForKeyMy:@"r_msg"];
     self.mNickName = [obj objectForKeyMy:@"nickName"];
-    self.mIdentity = [[obj objectForKeyMy:@"identity"] intValue];
+    
+    int mIdd =  [[obj objectForKeyMy:@"identity"] intValue];
+    
+    if (mIdd == 1) {
+        self.mIdentity = @"房主";
+    }else{
+        self.mIdentity = @"租客";
+    }
+    
     self.mUserImgUrl = [obj objectForKeyMy:@"img"];
-    self.mCredit = [[obj objectForKeyMy:@"cret"] floatValue];
-    self.mGrade = [[obj objectForKeyMy:@"grade"] floatValue];
+    self.mCredit = [[obj objectForKeyMy:@"cret"] intValue];
+    self.mGrade = [[obj objectForKeyMy:@"grade"] intValue];
     self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
     self.mUserId = [[obj objectForKeyMy:@"userId"] intValue];
     self.mSignature = [obj objectForKeyMy:@"signature"];
-    self.mSex = [obj objectForKeyMy:@"sex"];
+    
+    NSString    *sss = [obj objectForKeyMy:@"sex"];
+    if ([sss isEqualToString:@"m"]) {
+        self.mSex = @"男";
+    }else{
+        self.mSex = @"女";
+    }
+    
     self.mIsRegist = [[obj objectForKeyMy:@"isRegist"] boolValue];
     self.mIsBundle = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
-    
+    self.mPhone = [obj objectForKeyMy:@"mPhone"];
 }
 
 + (BOOL)isNeedLogin{
     return [mUserInfo backNowUser] == nil;
+}
+//退出登陆
++(void)logOut
+{
+    [mUserInfo closePush];
+    g_user = nil;
+
+    
 }
 - (BOOL)isVaildUser{
     return self.mUserId != 0;
@@ -149,7 +172,7 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"password"];
     
     [[HTTPrequest sharedClient] postUrl:@"login/flogin.do" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info block:block];
+        [self dealUserSession:info andPhone:mLoginName block:block];
     }];
 }
 +(void)mForgetPwd:(NSString *)mLoginName andNewPwd:(NSString *)mPwd block:(void (^)(mBaseData *))block{
@@ -179,19 +202,20 @@ bool g_bined = NO;
     
     [def synchronize];
 }
-+(void)dealUserSession:(mBaseData*)info block:(void(^)(mBaseData* resb, mUserInfo*user))block
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPhone block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
-    if (info.mSucess && info.mData) {
+    if ( info.mData ) {
         NSDictionary* tmpdic = info.mData;
         
         NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
-        NSString* fucktoken = [info.mcoredat objectForKeyMy:@"token"];
-        if( fucktoken.length )
-            [tdic setObject:fucktoken forKey:@"token"];
-        else
-        {//如果没有token,那弄原来的
-//            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
-        }
+//        NSString* fucktoken = [info.mcoredat objectForKeyMy:@"token"];
+//        if( fucktoken.length )
+//            [tdic setObject:fucktoken forKey:@"token"];
+//        else
+//        {//如果没有token,那弄原来的
+////            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
+//        }
+        [tdic setObject:mPhone forKey:@"mPhone"];
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
         tmpdic = tdic;
         if ([tu isVaildUser]) {
@@ -223,10 +247,23 @@ bool g_bined = NO;
 
     }
     [[HTTPrequest sharedClient] postUrl:@"front/personal/udtBaseMessage.do" parameters:para call:^(mBaseData *info) {
-        if (info.mSucess) {
+        if (info.mData) {
+            int sucess = [[info.mData objectForKeyMy:@"r_msg"] intValue];
+            
+            if (sucess == 1) {
+                
+                [mUserInfo backNowUser].mNickName = nickName;
+                
+                
+                block (info);
+            }else{
+                block (nil );
+
+            }
             
         }else{
-        
+            block (nil );
+
         }
     }];
     
@@ -244,6 +281,27 @@ bool g_bined = NO;
         }
     }];
 }
++ (void)getRedBag:(int)mUserId andType:(NSString *)mType block:(void(^)(mBaseData *resb,NSArray *marray))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:mType forKey:@"type"];
+    [[HTTPrequest sharedClient] postUrl:@"front/personal/redPackage.do" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            NSMutableArray *temparr = [NSMutableArray new];
+            for (NSDictionary *dic in info.mData) {
+                [temparr addObject:[[SRedBag alloc] initWithObj:dic]];
+            }
+            
+            block( info,temparr);
+        }else{
+            block( info,nil);
+
+        }
+    }];
+}
+
+
 + (void)verifyUserPhone:(NSString *)mPhone andNum:(float)mMoney block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"phone"];
@@ -333,7 +391,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [[HTTPrequest sharedClient] postUrl:@"front/personal/getBindHourseMessage.do" parameters:para call:^(mBaseData *info) {
-        if (info.mSucess) {
+        if (info.mData) {
             SVerifyMsg *mVerify = [[SVerifyMsg alloc] initWithObj:info.mData];
             
             block( info,mVerify);
@@ -346,11 +404,16 @@ bool g_bined = NO;
 
 + (void)getBaner:(void (^)(mBaseData *, NSArray *))block{
     [[HTTPrequest sharedClient] postUrl:@"front/personal/getBanner.do" parameters:nil call:^(mBaseData *info) {
-        NSMutableArray *mArr = [NSMutableArray new];
-        if (info.mSucess ) {
+        NSMutableArray *temparr = [NSMutableArray new];
+        if (info.mData ) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [temparr addObject:[[MBaner alloc] initWithObj:dic]];
+            }
+            block (info,temparr);
             
         }else{
-        
+            block (info,nil);
         }
     }];
 }
@@ -528,6 +591,42 @@ bool g_bined = NO;
 }
 
 
+- (void)getUserAppointment:(int)mOrderid andSellerId:(int)mSellerId block:(void(^)(mBaseData *resb))block
+{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mOrderid) forKey:@"orderId"];
+    [para setObject:NumberWithInt(mSellerId) forKey:@"merchantId"];
+    [[HTTPrequest sharedClient] postUrl:@"merchant/reserve.do" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+  
+            
+        }else{
+        }
+    }];
+
+}
+
+
+- (void)getSellerMsg:(int)mOid andmId:(int)mId block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mOid) forKey:@"oId"];
+    [para setObject:NumberWithInt(mId) forKey:@"mId"];
+    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/getOrderInfo.do" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            
+            
+        }else{
+        }
+    }];
+
+
+}
+
+
 + (void)openPush{
 
     NSString* t = [NSString stringWithFormat:@"%d", [mUserInfo backNowUser].mUserId];
@@ -634,6 +733,7 @@ bool g_bined = NO;
     self.mDoorNumber = [obj objectForKeyMy:@"buildNumber"];
     self.mProvince = [obj objectForKeyMy:@"province"];
     self.mCity = [obj objectForKeyMy:@"city"];
+    self.cId = [[obj objectForKeyMy:@"cId"] intValue];
     
 }
 
@@ -679,6 +779,25 @@ bool g_bined = NO;
     self.mEvolution = [[obj objectForKeyMy:@"praiseRate"] floatValue];
     self.mDistance = [[obj objectForKeyMy:@"distance"] floatValue];
     self.mSellerImg = [obj objectForKeyMy:@"merchantImage"];
+    
+}
+
+@end
+@implementation MBaner
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mImgUrl = [obj objectForKeyMy:@"img"];
+    self.mContentUrl = [obj objectForKeyMy:@"url"];
+    self.mUUID = [obj objectForKeyMy:@"uuid"];
     
 }
 

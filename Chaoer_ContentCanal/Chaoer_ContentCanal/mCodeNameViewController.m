@@ -41,7 +41,7 @@
 }
 - (IBAction)mCode:(id)sender {
 
-    if (isCode) {
+    if ([mUserInfo backNowUser].mIsRegist) {
         hasCodeViewController *hhh = [hasCodeViewController new];
         [self pushViewController:hhh];
     }else{

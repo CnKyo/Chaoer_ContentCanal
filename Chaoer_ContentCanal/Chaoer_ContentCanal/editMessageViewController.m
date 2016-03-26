@@ -39,9 +39,53 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)rightBtnTouched:(id)sender{
+    [SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
+    if (self.mtype == 1) {
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:self.mTx.text andSex:nil andSignate:nil block:^(mBaseData *resb) {
+            if (resb.mData) {
+                int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
+                
+                if (sucess == 1) {
+                    [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+                    self.block(self.mTx.text);
+                    [self leftBtnTouched:nil];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+                    [self leftBtnTouched:nil];
+
+                }
+
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+                [self leftBtnTouched:nil];
+            }
+        }];
+        
+
+    }else{
+        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:nil andSignate:self.mTx.text block:^(mBaseData *resb) {
+            if (resb.mData) {
+                int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
+                
+                if (sucess == 1) {
+                    [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+                    self.block(self.mTx.text);
+                    [self leftBtnTouched:nil];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+                    [self leftBtnTouched:nil];
+                    
+                }
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+                [self leftBtnTouched:nil];
+            }
+        }];
+
+    }
     
-    self.block(self.mTx.text);
-    [self leftBtnTouched:nil];
+
 }
 /*
 #pragma mark - Navigation
