@@ -134,6 +134,7 @@ bool g_bined = NO;
     self.mIsRegist = [[obj objectForKeyMy:@"isRegist"] boolValue];
     self.mIsBundle = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
     self.mPhone = [obj objectForKeyMy:@"mPhone"];
+    self.mPwd = @"";
 }
 
 + (BOOL)isNeedLogin{
@@ -149,6 +150,9 @@ bool g_bined = NO;
 }
 - (BOOL)isVaildUser{
     return self.mPwd != 0;
+}
+- (BOOL)isNeedLogin{
+    return self.mPwd.length == 0;
 }
 
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{

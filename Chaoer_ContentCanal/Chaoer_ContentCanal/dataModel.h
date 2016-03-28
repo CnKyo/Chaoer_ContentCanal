@@ -118,6 +118,9 @@
  *  @return
  */
 -(BOOL)isVaildUser;
+
+- (BOOL)isNeedLogin;
+
 /**
  *  返回当前用户
  *

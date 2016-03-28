@@ -90,6 +90,13 @@
     mLoginV = [mLoginView shareView];
     mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
     
+    
+    if ([mUserInfo backNowUser].mPhone) {
+        mLoginV.phoneTx.text = [mUserInfo backNowUser].mPhone;
+
+    }
+    
+
     mLoginV.phoneTx.delegate = mLoginV.codeTx.delegate = self;
     
     [mLoginV.loginBtn addTarget:self action:@selector(mLoginAction:) forControlEvents:UIControlEventTouchUpInside];

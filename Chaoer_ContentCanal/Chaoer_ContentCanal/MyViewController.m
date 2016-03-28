@@ -51,9 +51,9 @@
     mMessageView.mCommunityBtn.selected = NO;
     mMessageView.mStaffBtn.selected = NO;
     mRightView.mMessageBtn.selected = NO;
-    if ([mUserInfo isNeedLogin]) {
-        [self gotoLoginVC];
-    }
+//    if ([mUserInfo isNeedLogin]) {
+//        [self gotoLoginVC];
+//    }
     [self loadData];
    
 }
@@ -65,6 +65,11 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
     self.navBar.hidden = NO;
+    
+    if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
+        [self gotoLoginVC];
+    }
+    
     [self loadRightView];
     [self initView];
     [self initMessageView];
