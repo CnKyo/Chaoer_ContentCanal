@@ -8,7 +8,10 @@
 
 #import "mUserTopupViewController.h"
 #import "mTopUpBalanceView.h"
-@interface mUserTopupViewController ()<MZTimerLabelDelegate,UITextFieldDelegate>
+#import "CardIOPaymentViewControllerDelegate.h"
+#import "CardIO.h"
+
+@interface mUserTopupViewController ()<MZTimerLabelDelegate,UITextFieldDelegate,CardIOPaymentViewControllerDelegate>
 
 @end
 
@@ -25,7 +28,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [CardIOUtilities preload];
+
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -93,8 +97,31 @@
 }
 #pragma mark----扫描
 - (void)scanAction:(UIButton *)sender{
-
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    scanViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:scanViewController animated:YES completion:nil];
 }
+
+#pragma mark - CardIOPaymentViewControllerDelegate
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"Scan succeeded with info: %@", info);
+    // Do whatever needs to be done to deliver the purchased items.
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSString *mTT = [NSString stringWithFormat:@"Received card info. Number: %@, expiry: %02lu/%lu, cvv: %@.", info.redactedCardNumber, (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear, info.cvv];
+    NSLog(@"最后扫描出来的信息是：%@",mTT);
+    
+    mView.mBankCard.text = info.cardNumber;
+    mView.mTime.text = [NSString stringWithFormat:@"%02lu/%lu",(unsigned long)info.expiryMonth, (unsigned long)info.expiryYear];
+    mView.mCVV.text = info.cvv;
+}
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"User cancelled scan");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark----验证吗按钮
 - (void)mCodeAction:(UIButton *)sender{
     if (mView.mBankCard.text.length == 0) {

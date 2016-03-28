@@ -101,7 +101,10 @@
  *  是否绑定住户信息
  */
 @property (nonatomic,assign) BOOL        mIsBundle;
-
+/**
+ *  密码
+ */
+@property (nonatomic,strong) NSString   *mPwd;
 
 @property (nonatomic,strong) SVerifyMsg *mVerifyMsg;
 

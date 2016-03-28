@@ -148,7 +148,7 @@ bool g_bined = NO;
     
 }
 - (BOOL)isVaildUser{
-    return self.mUserId != 0;
+    return self.mPwd != 0;
 }
 
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
