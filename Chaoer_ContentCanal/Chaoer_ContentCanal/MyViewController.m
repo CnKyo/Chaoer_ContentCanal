@@ -68,6 +68,7 @@
     
     if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
         [self gotoLoginVC];
+        
     }
     
     [self loadRightView];

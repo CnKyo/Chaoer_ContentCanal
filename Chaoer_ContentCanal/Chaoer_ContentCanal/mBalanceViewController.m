@@ -64,6 +64,14 @@
     
     mView = [mAddressView sharePayView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    [mView.mLogo sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+
+    mView.mName.text = [mUserInfo backNowUser].mPhone;
+    mView.mBalance.text = [NSString stringWithFormat:@"%d元",[mUserInfo backNowUser].mMoney];
+    
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);

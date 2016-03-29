@@ -58,15 +58,15 @@
 - (void)headerBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
-        [SVProgressHUD dismiss];
         [self headerEndRefresh];
         if (resb.mData) {
             [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             mVerify = info;
             [self.tableView reloadData];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"数据错误！"];
-            [self leftBtnTouched:nil];
+            [SVProgressHUD showErrorWithStatus:@"数据加载错误！"];
+            [self performSelector:@selector(leftBtnTouched:) withObject:self afterDelay:1];
+
         };
         
     }];
