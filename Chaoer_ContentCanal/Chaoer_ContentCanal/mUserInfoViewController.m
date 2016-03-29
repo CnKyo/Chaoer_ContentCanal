@@ -45,6 +45,10 @@
     [self upDatePage];
 }
 - (void)upDatePage{
+    
+    
+    NSLog(@"个人欣喜:%@",[mUserInfo backNowUser]);
+    
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
@@ -98,7 +102,7 @@
     eee.mtext = @"好的名字能让别人记住你。";
     eee.block = ^(NSString *content){
         
-        self.mName.text = content;;
+        self.mName.text = content;
     };
 
     [self pushViewController:eee];
@@ -168,6 +172,7 @@
                 if (sucess == 1) {
                     [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
                     self.mSex.text = text;
+                    [mUserInfo backNowUser].mSex = text;
 
                 }else{
                     [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];

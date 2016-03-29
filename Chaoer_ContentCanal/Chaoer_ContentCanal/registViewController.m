@@ -89,11 +89,15 @@
         [self.mPhone becomeFirstResponder];
         return;
     }
+    [SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
+
     [mUserInfo getRegistVerifyCode:self.mPhone.text block:^(mBaseData *resb) {
         if (resb.mData) {
+            [SVProgressHUD showSuccessWithStatus:@"验证码发送成功！"];
+
             [self timeCount];
         }else{
-            [self showErrorStatus:@"网络请求错误！"];
+            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
         }
     }];
     
@@ -122,6 +126,22 @@
             return;
         }
     }
+    [SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
+
+    [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:mIdentify[0] block:^(mBaseData *resb) {
+        if (resb.mData) {
+            [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
+            int msg = [[resb.mData objectForKey:@"r_msg"] intValue];
+            
+            if (msg == 1) {
+                [self leftBtnTouched:nil];
+            }
+
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+        }
+    }];
 
 }
 - (void)timeCount{//倒计时函数

@@ -19,6 +19,22 @@
 
 #import "registViewController.h"
 #import "dataModel.h"
+
+
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
+//新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 @interface ViewController ()<UITextFieldDelegate>
 
 @end
@@ -104,6 +120,13 @@
     [mLoginV.mRegistBtn addTarget:self action:@selector(registAction:) forControlEvents:UIControlEventTouchUpInside];
     [mLoginV.mForgetBtn addTarget:self action:@selector(forgetAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    [mLoginV.mWechatLogin addTarget:self action:@selector(wechatAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [mLoginV.mTencentLogin addTarget:self action:@selector(tencentAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mLoginV.mSinaLogin addTarget:self action:@selector(sinaAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     [mScrollerView addSubview:mLoginV];
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
     
@@ -114,6 +137,75 @@
     
     
 }
+#pragma mark----微信登录
+- (void)wechatAction:(UIButton *)sender{
+    ///微信登录
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             NSLog(@"返回的用户信息：%@",user);
+             
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+         }
+         
+     }];
+
+}
+#pragma mark----qq登录
+- (void)tencentAction:(UIButton *)sender{
+
+    ///qq登录
+    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             NSLog(@"返回的用户信息：%@",user);
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+
+         }
+         
+     }];
+    
+}
+#pragma mark----新浪登录
+- (void)sinaAction:(UIButton *)sender{
+    ///新浪登录
+    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             NSLog(@"返回的用户信息：%@",user);
+
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+
+         }
+         
+     }];
+    
+}
+
+
 #pragma mark----忘记密码
 - (void)forgetAction:(UIButton *)sender{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];

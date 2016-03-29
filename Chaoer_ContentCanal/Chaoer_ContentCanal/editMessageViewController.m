@@ -65,8 +65,9 @@
                 
                 if (sucess == 1) {
                     [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+                    [mUserInfo backNowUser].mNickName = self.mTx.text;
                     self.block(self.mTx.text);
-                    [self leftBtnTouched:nil];
+                    [self popViewController];
                 }else{
                     [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
                     [self leftBtnTouched:nil];
@@ -87,8 +88,9 @@
                 
                 if (sucess == 1) {
                     [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
+                    [mUserInfo backNowUser].mSignature = self.mTx.text;
                     self.block(self.mTx.text);
-                    [self leftBtnTouched:nil];
+                    [self popViewController];
                 }else{
                     [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
                     [self leftBtnTouched:nil];

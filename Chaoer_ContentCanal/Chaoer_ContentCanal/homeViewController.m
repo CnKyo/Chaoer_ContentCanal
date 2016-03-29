@@ -105,10 +105,11 @@
         [GiFHUD dismiss];
         [self headerEndRefresh];
         if (mBaner) {
+            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             [mTempArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
         }else{
-            
+            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
         }
         [self loadScrollerView];
         
@@ -214,9 +215,9 @@
             break;
         case 2:
         {
-//            communityViewController   *ppp = [communityViewController new];
-//            [self pushViewController:ppp];
-            [self showErrorStatus:@"正在建设中..."];
+            communityViewController   *ppp = [communityViewController new];
+            [self pushViewController:ppp];
+//            [self showErrorStatus:@"正在建设中..."];
         }
             break;
         case 3:

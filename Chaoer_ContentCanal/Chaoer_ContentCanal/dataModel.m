@@ -158,6 +158,7 @@ bool g_bined = NO;
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"loginName"];
+    [para setObject:@"1" forKey:@"from"];
     [[HTTPrequest sharedClient] postUrl:@"zm/login/fgetVerfyCode.do" parameters:para call:^(mBaseData *info) {
         if (info.mData) {
             block (info);
@@ -174,10 +175,11 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"password"];
     [para setObject:mId forKey:@"identity"];
     [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/regist.do" parameters:para call:^(mBaseData *info) {
-        if (info.mSucess) {
-            
+        if (info.mData) {
+        
+            block (info);
         }else{
-
+            block (nil);
         }
     }];
 }
@@ -219,6 +221,8 @@ bool g_bined = NO;
 }
 +(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPhone block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
+    
+#warning 返回的数据是整个用户信息对象
     if ( info.mData ) {
         NSDictionary* tmpdic = info.mData;
         
@@ -267,7 +271,25 @@ bool g_bined = NO;
             
             if (sucess == 1) {
                 
-                [mUserInfo backNowUser].mNickName = nickName;
+                if (nickName) {
+                    [mUserInfo backNowUser].mNickName = nickName;
+                    
+                }
+                if (mSex) {
+                    if ([mSex isEqualToString:@"m"]) {
+                        [mUserInfo backNowUser].mNickName = @"男";
+
+                    }else
+                    {
+                        [mUserInfo backNowUser].mNickName = @"女";
+
+                    }
+                    
+                }
+                if (mSignate) {
+                    [mUserInfo backNowUser].mNickName = mSignate;
+                    
+                }
                 
             
                 [self dealUserSession:info andPhone:mLoginName block:block];
