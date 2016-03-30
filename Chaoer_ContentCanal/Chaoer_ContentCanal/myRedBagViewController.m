@@ -23,6 +23,11 @@
     
     UIView *mHeader;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadData:@"s"];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -97,6 +102,11 @@
 
     [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mType block:^(mBaseData *resb, NSArray *marray) {
         [self headerEndRefresh];
+        if (resb.mData) {
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+        }
         
     }];
 }

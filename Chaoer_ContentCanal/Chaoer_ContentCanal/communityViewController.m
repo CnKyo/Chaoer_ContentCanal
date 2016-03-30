@@ -17,7 +17,7 @@
 
 #import "shopViewController.h"
 #import "washAndSendViewController.h"
-@interface communityViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
 
 @end
 
@@ -28,7 +28,8 @@
     UITableView *mTableView;
     
     UIView *mHeaderView;
-    
+    AMapLocationManager *mLocation;
+
 
 }
 
@@ -70,7 +71,38 @@
     mTopView = [mAddressView shareView];
     mTopView.frame  =CGRectMake(0, 0, DEVICE_Width, 50);
     [mHeaderView addSubview:mTopView];
-    
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [SVProgressHUD showErrorWithStatus:eee];
+            mTopView.mAddress.text = eee;
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            //            if (error.code == AMapLocatingErrorLocateFailed)
+            //            {
+            //                return;
+            //            }
+        }
+        
+        NSLog(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+            
+            NSLog(@"reGeocode:%@", regeocode);
+            mTopView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+
+        }
+    }];
+
     
     UIImage *imag1 = [UIImage imageNamed:@"supermarket"];
     UIImage *imag2 = [UIImage imageNamed:@"fruit"];

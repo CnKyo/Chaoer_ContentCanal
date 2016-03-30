@@ -34,6 +34,8 @@
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
+
+
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate>
 
 @end
@@ -53,7 +55,9 @@
 }
 -(void)initExtComp
 {
-    
+    [MAMapServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
+    [AMapSearchServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
+    [AMapLocationServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
     [WXApi registerApp:@"wxa2ca4ec0aa044c24" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,

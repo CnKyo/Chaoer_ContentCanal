@@ -12,7 +12,7 @@
 #import "phoneUpTopViewController.h"
 
 #import "cashViewController.h"
-@interface serviceViewController ()<CircleLHQdelegate>
+@interface serviceViewController ()<CircleLHQdelegate,AMapLocationManagerDelegate>
 
 @end
 
@@ -20,6 +20,8 @@
 {
     mServiceAddressView *mView;
     UIScrollView *mScrollerView;
+    AMapLocationManager *mLocation;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,13 +61,44 @@
 //    LHQView.clickSomeOne=^(NSInteger index){
 //
 //    };
-    
+    mView.mName.text = [mUserInfo backNowUser].mNickName;
     [mView.mBtn1 addTarget:self action:@selector(btn1Action:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mBtn2 addTarget:self action:@selector(btn2Action:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mBtn3 addTarget:self action:@selector(btn3Action:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mBtn4 addTarget:self action:@selector(btn4Action:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mBtn5 addTarget:self action:@selector(btn5Action:) forControlEvents:UIControlEventTouchUpInside];
 
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [SVProgressHUD showErrorWithStatus:eee];
+            mView.mAddress.text = eee;
+
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            //            if (error.code == AMapLocatingErrorLocateFailed)
+            //            {
+            //                return;
+            //            }
+        }
+        
+        NSLog(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+            
+            NSLog(@"reGeocode:%@", regeocode);
+            mView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+        }
+    }];
 
     
     

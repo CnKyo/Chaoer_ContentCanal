@@ -10,13 +10,21 @@
 
 #import "canalViewController.h"
 #import "wpgViewController.h"
-@interface payViewController ()
+
+
+@interface payViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
 
 @end
 
 @implementation payViewController
 {
     mAddressView *mAdView;
+    
+    MAMapView *mAmapView;
+    
+    AMapLocationManager *mLocation;
+
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -28,7 +36,6 @@
     self.hiddenTabBar = YES;
 
     [super viewDidLoad];
-
 
     self.Title = self.mPageName = @"缴费功能";
     self.hiddenRightBtn = YES;
@@ -51,6 +58,45 @@
                          .view).offset(64);
         make.height.offset(50);
     }];
+    
+    mAmapView = [[MAMapView alloc] initWithFrame:CGRectMake(DEVICE_Width, DEVICE_Height, 0, 0)];
+    mAmapView.delegate = self;
+    mAmapView.showsUserLocation = YES;
+    [self.view addSubview:mAmapView];
+    
+    
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [SVProgressHUD showErrorWithStatus:eee];
+            mAdView.mAddress.text = eee;
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+//            if (error.code == AMapLocatingErrorLocateFailed)
+//            {
+//                return;
+//            }
+        }
+        
+        NSLog(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+
+            NSLog(@"reGeocode:%@", regeocode);
+            mAdView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+
+        }
+    }];
+    
 }
 
 - (void)loadHidden{
@@ -112,5 +158,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark----高德地图代理方法
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
+updatingLocation:(BOOL)updatingLocation
+{
+    if(updatingLocation)
+    {
+        //取出当前位置的坐标
+        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+    }
+}
 
 @end

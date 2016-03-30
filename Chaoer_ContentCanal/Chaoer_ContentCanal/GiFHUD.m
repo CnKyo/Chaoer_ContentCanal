@@ -195,7 +195,7 @@ static GiFHUD *instance;
 
 #pragma mark HUD
 
-+ (void)showWithOverlay {
++ (void)showoverlay {
     [self dismiss:^{
         [APPDELEGATE.window addSubview:[[self instance] overlay]];
         [self show];
@@ -216,7 +216,7 @@ static GiFHUD *instance;
     if (![[self instance] shown])
         return;
     
-    [[[self instance] overlay] removeFromSuperview];
+    [[[self instance] layView] removeFromSuperview];
     [[self instance] fadeOut];
 }
 
@@ -225,7 +225,7 @@ static GiFHUD *instance;
         return complated ();
     
     [[self instance] fadeOutComplate:^{
-        [[[self instance] overlay] removeFromSuperview];
+        [[[self instance] layView] removeFromSuperview];
         complated ();
     }];
 }
@@ -259,7 +259,7 @@ static GiFHUD *instance;
 }
 
 
-- (UIView *)overlay {
+- (UIView *)layView {
     
     if (!self.overlayView) {
         self.overlayView = [[UIView alloc] initWithFrame:APPDELEGATE.window.frame];

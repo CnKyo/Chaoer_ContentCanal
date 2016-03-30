@@ -83,7 +83,8 @@
 #import "SVProgressHUD.h"
 #import "GiFHUD.h"
 
-
-
+#import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 
 #endif

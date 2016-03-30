@@ -11,7 +11,7 @@
 @interface GiFHUD : UIView
 
 + (void)show;
-+ (void)showWithOverlay;
++ (void)showoverlay;
 
 + (void)dismiss;
 
