@@ -34,6 +34,7 @@
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
+#import <RongIMKit/RongIMKit.h>
 
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate>
@@ -63,7 +64,7 @@
     [WXApi registerApp:@"wxa2ca4ec0aa044c24" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
     
-    
+    [[RCIM sharedRCIM] initWithAppKey:@"n19jmcy59znh9"];
     
     
     
