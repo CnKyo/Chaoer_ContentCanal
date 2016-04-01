@@ -21,9 +21,12 @@
 #import "serviceViewController.h"
 #import "mFeedBackViewController.h"
 #import "dataModel.h"
+
+#import "homeNavView.h"
+
 #define Height (DEVICE_Width*0.67)
 
-@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
 
 @end
 
@@ -40,6 +43,11 @@
     
     mCustomHomeView *mCustomBtn;
     
+    homeNavView *mNavView;
+    
+    AMapLocationManager *mLocation;
+
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -50,44 +58,69 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.Title = self.mPageName = @"首页";
-    self.navBar.alpha = 0;
+//    self.navBar.alpha = 0;
     self.hiddenBackBtn = YES;
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
-    
+    self.navBar.hidden = YES;
+
     mTempArr = [NSMutableArray new];
     
+    [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
+    
+    if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
+        [self gotoLoginVC];
+        return;
+        
+    }
+    
+
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+-(void)callBack{
+    
+    NSLog(@"this is Notification.");
     
     [self initview];
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"监听的滚蛋-------%f",scrollView.contentOffset.y);
     
-    [UIView animateWithDuration:1 animations:^{
-        self.navBar.alpha = 0.01*scrollView.contentOffset.y;
-        
-        if (scrollView.contentOffset.y>=100) {
-            
-            CGRect mRRR = self.tableView.frame;
-            mRRR.origin.y = 64;
-            mRRR.size.height = DEVICE_Height-114;
-            self.tableView.frame = mRRR;
-            
-        }else{
-            CGRect mRRR = self.tableView.frame;
-            mRRR.origin.y = 0;
-            mRRR.size.height = DEVICE_Height-50;
-            self.tableView.frame = mRRR;
-        }
+}
 
-    }];
-    
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"监听的变化-------%f",scrollView.contentOffset.y);
+//    
+//    [UIView animateWithDuration:1 animations:^{
+//        
+//        if (scrollView.contentOffset.y>=100) {
+//            
+//            CGRect mRRR = self.tableView.frame;
+//            mRRR.origin.y = 64;
+//            mRRR.size.height = DEVICE_Height-114;
+//            self.tableView.frame = mRRR;
+//            
+//        }else{
+//            CGRect mRRR = self.tableView.frame;
+//            mRRR.origin.y = 0;
+//            mRRR.size.height = DEVICE_Height-50;
+//            self.tableView.frame = mRRR;
+//        }
+//
+//    }];
+//    
+//}
 
 - (void)initview{
     
+    mNavView = [homeNavView shareView];
+    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    [self.view addSubview:mNavView];
     
-    [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:self.tableView];
@@ -95,7 +128,42 @@
     [self.tableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"homeTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self loadAddress];
     
+}
+- (void)loadAddress{
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [SVProgressHUD showErrorWithStatus:eee];
+            mNavView.mAddress.text = eee;
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            //            if (error.code == AMapLocatingErrorLocateFailed)
+            //            {
+            //                return;
+            //            }
+        }
+        
+        NSLog(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+            
+            NSLog(@"reGeocode:%@", regeocode);
+            mNavView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            
+        }
+    }];
+
 }
 - (void)headerBeganRefresh{
     [mTempArr removeAllObjects];

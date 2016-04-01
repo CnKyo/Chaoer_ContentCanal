@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -242,9 +242,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="5fB-JT-LjI" kind="relationship" relationship="viewControllers" id="3ex-CY-0bo"/>
                         <segue destination="94W-V2-ig3" kind="relationship" relationship="viewControllers" id="2cB-gg-PbO"/>
+                        <segue destination="5fB-JT-LjI" kind="relationship" relationship="viewControllers" id="3ex-CY-0bo"/>
                         <segue destination="0VO-Tv-vPt" kind="relationship" relationship="viewControllers" id="bf3-lO-oX5"/>
+                        <segue destination="Ye6-fO-qTJ" kind="relationship" relationship="viewControllers" id="KW7-du-6Ts"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfl-KP-GPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,11 +408,11 @@
             </objects>
             <point key="canvasLocation" x="-495" y="-466"/>
         </scene>
-        <!--评价-->
+        <!--厨房-->
         <scene sceneID="LKM-59-gBJ">
             <objects>
                 <navigationController id="Ye6-fO-qTJ" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="评价" image="82-5" id="tqe-jN-RPo"/>
+                    <tabBarItem key="tabBarItem" title="厨房" image="82-5" id="tqe-jN-RPo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H7u-ki-qG4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1064,11 +1065,11 @@
             </objects>
             <point key="canvasLocation" x="-374" y="1291"/>
         </scene>
-        <!--关于我们-->
+        <!--钱包-->
         <scene sceneID="KVF-jP-wiB">
             <objects>
                 <navigationController id="0VO-Tv-vPt" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="关于我们" image="aboutus_unselected" selectedImage="aboutus_selected" id="hOy-qh-dRJ"/>
+                    <tabBarItem key="tabBarItem" title="钱包" image="aboutus_unselected" selectedImage="aboutus_selected" id="hOy-qh-dRJ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqZ-Un-A9C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1102,10 +1103,10 @@
             </objects>
             <point key="canvasLocation" x="1362" y="768"/>
         </scene>
-        <!--Pingjia View Controller-->
+        <!--Kitchen View Controller-->
         <scene sceneID="pN1-F9-XiF">
             <objects>
-                <viewController id="CcP-zl-1Zz" customClass="pingjiaViewController" sceneMemberID="viewController">
+                <viewController id="CcP-zl-1Zz" customClass="kitchenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nnK-4Q-3MY"/>
                         <viewControllerLayoutGuide type="bottom" id="BM4-dg-KMu"/>

@@ -66,10 +66,7 @@
     self.hiddenRightBtn = YES;
     self.navBar.hidden = NO;
     
-    if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
-        [self gotoLoginVC];
-        
-    }
+
     
     [self loadRightView];
     [self initView];

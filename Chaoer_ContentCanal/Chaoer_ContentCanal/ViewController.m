@@ -285,9 +285,9 @@
 - (void)loginOk{
     
 
-    self.tabBarController.selectedIndex = 1;
+//    self.tabBarController.selectedIndex = 1;
 
-    
+
     if( self.quikTagVC )
     {
         [self setToViewController_2:self.quikTagVC];
@@ -295,9 +295,11 @@
     else
     {
         [self popViewController_2];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
+
     }
     
-    
+
 //    [((AppDelegate*)[UIApplication sharedApplication].delegate) dealFuncTab];
   
     
