@@ -22,11 +22,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pec-2a-Kk2">
-                    <rect key="frame" x="10" y="25" width="30" height="30"/>
+                    <rect key="frame" x="10" y="25" width="28" height="28"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="0Md-bd-Cpp"/>
-                        <constraint firstAttribute="height" constant="30" id="Llp-pn-hQx"/>
+                        <constraint firstAttribute="width" constant="28" id="0Md-bd-Cpp"/>
+                        <constraint firstAttribute="height" constant="28" id="Llp-pn-hQx"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" backgroundImage="icon_setup">
@@ -34,11 +34,11 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-Ah-xgs">
-                    <rect key="frame" x="280" y="25" width="30" height="30"/>
+                    <rect key="frame" x="282" y="25" width="28" height="28"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="UeI-Ak-ZEL"/>
-                        <constraint firstAttribute="width" constant="30" id="VRP-1c-K9m"/>
+                        <constraint firstAttribute="height" constant="28" id="UeI-Ak-ZEL"/>
+                        <constraint firstAttribute="width" constant="28" id="VRP-1c-K9m"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" backgroundImage="icon_nomsg">
@@ -46,7 +46,7 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.8862745098" green="0.4549019608" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="xr0-gB-nnu" firstAttribute="centerY" secondItem="pec-2a-Kk2" secondAttribute="centerY" id="91u-h6-ZTk"/>
                 <constraint firstItem="pec-2a-Kk2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="Iwd-7K-jIh"/>

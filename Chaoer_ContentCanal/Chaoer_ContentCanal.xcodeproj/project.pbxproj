@@ -158,6 +158,12 @@
 		313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313D76E41C99507D004D5679 /* mJoinActivityViewController.xib */; };
 		314586351CAE4249003EB85E /* myViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314586331CAE4249003EB85E /* myViewTableViewCell.m */; };
 		314586361CAE4249003EB85E /* myViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314586341CAE4249003EB85E /* myViewTableViewCell.xib */; };
+		31462CE01CB38D7600E67836 /* walletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31462CDF1CB38D7600E67836 /* walletViewController.m */; };
+		31462CE31CB38E0400E67836 /* walletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31462CE21CB38E0400E67836 /* walletView.m */; };
+		31462CE51CB38E0F00E67836 /* walletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31462CE41CB38E0F00E67836 /* walletView.xib */; };
+		31462CE91CB3B02C00E67836 /* LXCircleAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31462CE81CB3B02C00E67836 /* LXCircleAnimationView.m */; };
+		31462CEC1CB3B07100E67836 /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 31462CEB1CB3B07100E67836 /* UIColor+Extensions.m */; };
+		31462CEF1CB3BBE500E67836 /* UILabel+FlickerNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 31462CEE1CB3BBE500E67836 /* UILabel+FlickerNumber.m */; };
 		3154427E1C9A40EB0047E52A /* mFeedManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */; };
 		3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */; };
 		315442831C9A4A720047E52A /* mFeedCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 315442811C9A4A720047E52A /* mFeedCompanyViewController.m */; };
@@ -722,6 +728,17 @@
 		314586321CAE4249003EB85E /* myViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myViewTableViewCell.h; sourceTree = "<group>"; };
 		314586331CAE4249003EB85E /* myViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myViewTableViewCell.m; sourceTree = "<group>"; };
 		314586341CAE4249003EB85E /* myViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myViewTableViewCell.xib; sourceTree = "<group>"; };
+		31462CDE1CB38D7600E67836 /* walletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = walletViewController.h; sourceTree = "<group>"; };
+		31462CDF1CB38D7600E67836 /* walletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = walletViewController.m; sourceTree = "<group>"; };
+		31462CE11CB38E0400E67836 /* walletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = walletView.h; sourceTree = "<group>"; };
+		31462CE21CB38E0400E67836 /* walletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = walletView.m; sourceTree = "<group>"; };
+		31462CE41CB38E0F00E67836 /* walletView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = walletView.xib; sourceTree = "<group>"; };
+		31462CE71CB3B02C00E67836 /* LXCircleAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCircleAnimationView.h; sourceTree = "<group>"; };
+		31462CE81CB3B02C00E67836 /* LXCircleAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCircleAnimationView.m; sourceTree = "<group>"; };
+		31462CEA1CB3B07100E67836 /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
+		31462CEB1CB3B07100E67836 /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
+		31462CED1CB3BBE500E67836 /* UILabel+FlickerNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FlickerNumber.h"; sourceTree = "<group>"; };
+		31462CEE1CB3BBE500E67836 /* UILabel+FlickerNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FlickerNumber.m"; sourceTree = "<group>"; };
 		3154427B1C9A40EB0047E52A /* mFeedManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedManageViewController.h; sourceTree = "<group>"; };
 		3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedManageViewController.m; sourceTree = "<group>"; };
 		3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedManageViewController.xib; sourceTree = "<group>"; };
@@ -1845,6 +1862,31 @@
 			name = "快捷缴费";
 			sourceTree = "<group>";
 		};
+		31462CDD1CB38D4D00E67836 /* 钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				31462CDE1CB38D7600E67836 /* walletViewController.h */,
+				31462CDF1CB38D7600E67836 /* walletViewController.m */,
+				31462CE11CB38E0400E67836 /* walletView.h */,
+				31462CE21CB38E0400E67836 /* walletView.m */,
+				31462CE41CB38E0F00E67836 /* walletView.xib */,
+			);
+			name = "钱包";
+			sourceTree = "<group>";
+		};
+		31462CE61CB3B01F00E67836 /* LXCircle */ = {
+			isa = PBXGroup;
+			children = (
+				31462CED1CB3BBE500E67836 /* UILabel+FlickerNumber.h */,
+				31462CEE1CB3BBE500E67836 /* UILabel+FlickerNumber.m */,
+				31462CE71CB3B02C00E67836 /* LXCircleAnimationView.h */,
+				31462CE81CB3B02C00E67836 /* LXCircleAnimationView.m */,
+				31462CEA1CB3B07100E67836 /* UIColor+Extensions.h */,
+				31462CEB1CB3B07100E67836 /* UIColor+Extensions.m */,
+			);
+			name = LXCircle;
+			sourceTree = "<group>";
+		};
 		3154428D1C9A932C0047E52A /* HTTPDATA */ = {
 			isa = PBXGroup;
 			children = (
@@ -2643,6 +2685,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				31462CE61CB3B01F00E67836 /* LXCircle */,
 				317E46231CAD269800217C60 /* rongcloud */,
 				3182DA371CAB6B6500C217AE /* AMAP */,
 				312D088B1CAA1C560006F0FA /* ShareSDK */,
@@ -2863,10 +2906,11 @@
 		749BEA611B32B26200BABCA6 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				31462CDD1CB38D4D00E67836 /* 钱包 */,
 				31F544781CAE0BE100307B83 /* 厨房 */,
 				318D564B1C9BE1FF0045B5FB /* 关于我们 */,
 				3123CC0E1C92742200C3B928 /* 通用 */,
-				749BEA641B32B32700BABCA6 /* 个人中心 */,
+				749BEA641B32B32700BABCA6 /* 管家 */,
 				749BEA621B32B31300BABCA6 /* 首页 */,
 			);
 			name = mainVC;
@@ -2883,7 +2927,7 @@
 			name = "首页";
 			sourceTree = "<group>";
 		};
-		749BEA641B32B32700BABCA6 /* 个人中心 */ = {
+		749BEA641B32B32700BABCA6 /* 管家 */ = {
 			isa = PBXGroup;
 			children = (
 				313D76A81C98ED49004D5679 /* 设置 */,
@@ -2898,7 +2942,7 @@
 				31E1A7261CA3951700D3496F /* popMessageView.m */,
 				31E1A7281CA3952100D3496F /* popMessageView.xib */,
 			);
-			name = "个人中心";
+			name = "管家";
 			sourceTree = "<group>";
 		};
 		74BCE14F1B3A6058008F515A /* RSKImageCropper */ = {
@@ -3084,6 +3128,7 @@
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
 				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
+				31462CE51CB38E0F00E67836 /* walletView.xib in Resources */,
 				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
 				312D08B51CAA1C560006F0FA /* WeiboSDK.bundle in Resources */,
 				3135F8401C9801D700EF9569 /* myRedBagViewController.xib in Resources */,
@@ -3244,6 +3289,7 @@
 				310EB5EF1CA2499D005C61F4 /* UIView+Subviews.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
 				318D56721C9FD4230045B5FB /* ZJAlertListView.m in Sources */,
+				31462CE91CB3B02C00E67836 /* LXCircleAnimationView.m in Sources */,
 				742FB9031B5CDEB3005A1AFA /* NSMutableString+TagReplace.m in Sources */,
 				749BEA111B32779800BABCA6 /* MJPhotoToolbar.m in Sources */,
 				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
@@ -3368,6 +3414,7 @@
 				310EB5DC1CA24107005C61F4 /* choiseServicerViewController.m in Sources */,
 				7487DC1C1B4E17F000C40220 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				749BE9E51B32777F00BABCA6 /* MMLocationManager.m in Sources */,
+				31462CEC1CB3B07100E67836 /* UIColor+Extensions.m in Sources */,
 				16A987BD1C0397F100D55C4A /* Util.m in Sources */,
 				31671DD21CA1332A001DAEBA /* hasCodeViewController.m in Sources */,
 				315442881C9A54800047E52A /* mFeedPersonViewController.m in Sources */,
@@ -3419,6 +3466,7 @@
 				746709501BE1F6480096B169 /* UILabel+HYBAttributedCategory.m in Sources */,
 				749BE9981B32756800BABCA6 /* IQUIView+Hierarchy.m in Sources */,
 				310EB5F21CA24EBF005C61F4 /* TQStarRatingView.m in Sources */,
+				31462CE31CB38E0400E67836 /* walletView.m in Sources */,
 				7487DC171B4E17F000C40220 /* MASConstraintMaker.m in Sources */,
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,
@@ -3428,6 +3476,7 @@
 				16E9CAD61BAC00BC00C48B8A /* DYLineView.m in Sources */,
 				31EEB3231C93BF8700B61A86 /* mSuperMarketTableViewCell.m in Sources */,
 				31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */,
+				31462CEF1CB3BBE500E67836 /* UILabel+FlickerNumber.m in Sources */,
 				749BEA4D1B3277AA00BABCA6 /* UIView+WebCacheOperation.m in Sources */,
 				3135F81D1C97D96800EF9569 /* mUserInfoViewController.m in Sources */,
 				310EB5EE1CA2499D005C61F4 /* DLStarView.m in Sources */,
@@ -3444,6 +3493,7 @@
 				7487DC1A1B4E17F000C40220 /* MASViewConstraint.m in Sources */,
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
 				31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */,
+				31462CE01CB38D7600E67836 /* walletViewController.m in Sources */,
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				74B486A11BE88EA30023E839 /* UIFont+FontAwesome.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,

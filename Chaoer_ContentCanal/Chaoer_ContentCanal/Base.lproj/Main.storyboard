@@ -1083,10 +1083,10 @@
             </objects>
             <point key="canvasLocation" x="932" y="780"/>
         </scene>
-        <!--Aboutus View Controller-->
+        <!--Wallet View Controller-->
         <scene sceneID="xg6-xd-DjJ">
             <objects>
-                <viewController storyboardIdentifier="wkOrderT" id="9TH-NI-Ocm" customClass="aboutusViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wkOrderT" id="9TH-NI-Ocm" customClass="walletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Vr-Zp-mL1"/>
                         <viewControllerLayoutGuide type="bottom" id="lxY-zX-742"/>

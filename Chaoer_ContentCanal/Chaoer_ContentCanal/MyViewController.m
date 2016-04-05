@@ -55,7 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.Title = self.mPageName = @"个人中心";
+    self.Title = self.mPageName = @"管家";
     self.hiddenBackBtn = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
