@@ -24,4 +24,9 @@
     return view;
 }
 
++ (homeNavView *)sharePersonNav{
+    
+    homeNavView *view = [[[NSBundle mainBundle] loadNibNamed:@"mPersonNavView" owner:self options:nil] objectAtIndex:0];
+    return view;
+}
 @end

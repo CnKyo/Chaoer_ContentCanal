@@ -24,6 +24,8 @@
 
 #import "homeNavView.h"
 
+#import "mGeneralSubView.h"
+
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
@@ -47,7 +49,7 @@
     
     AMapLocationManager *mLocation;
 
-    
+    mGeneralSubView *mSubView;
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -128,7 +130,6 @@
     [self.tableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"homeTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-    [self loadAddress];
     
 }
 - (void)loadAddress{
@@ -166,6 +167,8 @@
 
 }
 - (void)headerBeganRefresh{
+    [self loadAddress];
+
     [mTempArr removeAllObjects];
 //    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     [GiFHUD show];
@@ -176,10 +179,11 @@
             [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             [mTempArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
+            [self loadScrollerView];
+
         }else{
             [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
         }
-        [self loadScrollerView];
         
     }];
 }
@@ -192,14 +196,54 @@
     
     
     mHeaderView = [UIView new];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 470);
     mHeaderView.backgroundColor = [UIColor whiteColor];
 
     UIView  *bgkView = [UIView new];
-    bgkView.frame = CGRectMake(0, mScrollerView.mbottom, DEVICE_Width, 10);
-    bgkView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
+    bgkView.frame = CGRectMake(0, mScrollerView.mbottom, DEVICE_Width, 5);
+    bgkView.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.91 alpha:1.00];
     [mHeaderView addSubview:bgkView];
     
+    float x1 = 20;
+    float y1 = bgkView.mbottom+10;
+    float btnWidth1 = DEVICE_Width/2-20;
+
+    UIImage *imag11 = [UIImage imageNamed:@"home_staff"];
+    UIImage *imag21 = [UIImage imageNamed:@"home_fix"];
+    NSArray *imgArr11 = @[imag11,imag21];
+    NSArray *marr11 = @[@"快捷缴费",@"物业保修"];
+
+    for (int i = 0; i<2; i++) {
+        
+        mSubView = [mGeneralSubView shareView];
+        mSubView.frame =CGRectMake(x1, y1, btnWidth1, 110);
+        mSubView.mImg.image = imgArr11[i];
+        mSubView.mName.text = marr11[i];
+        mSubView.mBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        mSubView.mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [mSubView.mBtn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
+
+        
+        [mSubView.mBtn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
+        [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
+        
+        mSubView.mBtn.tag = i;
+        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [mHeaderView addSubview:mSubView];
+        x1 += btnWidth1+20;
+        
+        if (x1 >= DEVICE_Width) {
+            x1 = 0;
+            y1 += 110;
+        }
+
+    }
+    
+    UIView  *bgkView1 = [UIView new];
+    bgkView1.frame = CGRectMake(0, y1, DEVICE_Width, 5);
+    bgkView1.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.91 alpha:1.00];
+    [mHeaderView addSubview:bgkView1];
     
     UIImage *imag1 = [UIImage imageNamed:@"home_staff"];
     UIImage *imag2 = [UIImage imageNamed:@"home_fix"];
@@ -217,37 +261,36 @@
     NSArray *marr = @[@"快捷缴费",@"物业保修",@"社区生活",@"便民服务",@"邻里交流",@"投诉建议"];
     
     float x = 0;
-    float y = bgkView.mbottom+10;
+    float y = bgkView1.mbottom;
 
     float btnWidth = DEVICE_Width/3;
     
     for (int i = 0; i<marr.count; i++) {
         
-        UIButton    *btn = [UIButton new];
-        btn.frame = CGRectMake(x, y, btnWidth, 110);
-        [btn setImage:imgArr[i] forState:0];
-        [btn setTitle:marr[i] forState:0];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
-        btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        float left;
-        if (DEVICE_Width<=320) {
-            left = -60;
-        }else{
-            left = -80;
-        };
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, left, 20, 0);
+        mSubView = [mGeneralSubView shareView];
+        mSubView.frame = CGRectMake(x, y, btnWidth, 110);
+        
+        mSubView.layer.masksToBounds = YES;
+        mSubView.layer.borderColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.91 alpha:1.00].CGColor;
+        mSubView.layer.borderWidth = 0.5;
+        
+        
+        mSubView.mImg.image = imgArr[i];
+        mSubView.mName.text = marr[i];
+        
+        mSubView.mBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        mSubView.mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [mSubView.mBtn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
 
-        [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
+        [mSubView.mBtn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
+        [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
         
-        btn.tag = i;
-        [btn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        mSubView.mBtn.tag = i;
+        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        [mHeaderView addSubview:btn];
+        [mHeaderView addSubview:mSubView];
         
-        x += btnWidth+10;
+        x += btnWidth;
         
         if (x >= DEVICE_Width) {
             x = 0;
@@ -335,7 +378,7 @@
     NSLog(@"%@",arrtemp);
     //显示顺序和数组顺序一致
     //设置图片url数组,和滚动视图位置
-    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 150) WithImageUrls:arrtemp];
+    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 120) WithImageUrls:arrtemp];
     
     //显示顺序和数组顺序一致
     //设置标题显示文本数组
@@ -390,7 +433,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return 0;
     
 }
 

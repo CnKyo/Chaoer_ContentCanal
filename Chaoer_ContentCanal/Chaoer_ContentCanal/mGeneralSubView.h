@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface mGeneralSubView : UIView
-
+/**
+ *  图片
+ */
 @property (strong, nonatomic) IBOutlet UIImageView *mImg;
-
+/**
+ *  按钮
+ */
 @property (strong, nonatomic) IBOutlet UIButton *mBtn;
-
+/**
+ *  标题  
+ */
 @property (strong, nonatomic) IBOutlet UILabel *mName;
 
 + (mGeneralSubView *)shareView;

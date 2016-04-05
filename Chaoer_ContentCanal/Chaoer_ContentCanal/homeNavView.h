@@ -15,4 +15,15 @@
 @property (strong, nonatomic) IBOutlet UILabel *mAddress;
 
 + (homeNavView *)shareView;
+/**
+ *  <#Description#>
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mSetupBtn;
+/**
+ *  <#Description#>
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mMsgBtn;
+
++ (homeNavView *)sharePersonNav;
+
 @end

@@ -20,40 +20,35 @@
 #import "RSKImageCropper.h"
 #import "HTTPrequest.h"
 #import "popMessageView.h"
-@interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
+
+#import "myViewTableViewCell.h"
+
+#import "homeNavView.h"
+@interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
 @end
 
 @implementation MyViewController{
 
-    UIScrollView *mScrollerView;
     
     mPersonView *mHeaderView;
     
-    mPersonView *mRightView;
-    
     UIImage *tempImage;
+        
+    NSArray *mArr1;
+    NSArray *mArr2;
     
-    popMessageView *mMessageView;
+    homeNavView *mNavView;
     
     
-    UIView *vvv;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
-    
-    
-    mMessageView.mFixBtn.selected = NO;
-    mMessageView.mCommunityBtn.selected = NO;
-    mMessageView.mStaffBtn.selected = NO;
-    mRightView.mMessageBtn.selected = NO;
-//    if ([mUserInfo isNeedLogin]) {
-//        [self gotoLoginVC];
-//    }
+
     [self loadData];
    
 }
@@ -64,224 +59,249 @@
     self.hiddenBackBtn = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
-    self.navBar.hidden = NO;
+    self.navBar.hidden = YES;
     
-
     
-    [self loadRightView];
     [self initView];
-    [self initMessageView];
-}
-#pragma mark----初始化右边的按钮
-- (void)loadRightView{
-
-    mRightView = [mPersonView shareRightView];
-    mRightView.frame = CGRectMake(DEVICE_Width-80, 16, 80, 50);
-    
-    [mRightView.mMessageBtn addTarget:self action:@selector(mRightAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:mRightView];
-    
-}
-#pragma mark----消息按钮
-- (void)mRightAction:(UIButton *)sender{
-    NSLog(@"消息");
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        [self showMessageView];
-    }else{
-        [self hiddenMessageView];
-    }
-    
-    
+    [self initData];
 }
 
-- (void)initMessageView{
-    vvv = [UIView new];
-    vvv.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
-    vvv.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.3];
-    vvv.alpha = 0;
-    [self.view addSubview:vvv];
-    
-    mMessageView = [popMessageView shareView];
-    mMessageView.frame = CGRectMake(DEVICE_Width, 64, 110, 150);
-    [mMessageView.mStaffBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mMessageView.mCommunityBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mMessageView.mFixBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:mMessageView];
-    
-    UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tttAction)];
-    [self.view addGestureRecognizer:ttt];
-    
-}
-- (void)tttAction{
-    [self hiddenMessageView];
 
-}
-- (void)btnAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
 
-    switch (sender.tag) {
-        case 1:{
-
-        }
-            break;
-        case 2:{
-            
-        }
-            break;
-        case 3:{
-            
-        }
-            break;
-        default:
-            break;
-    }
-    
-    
-}
-- (void)showMessageView{
-    [UIView animateWithDuration:0.3 animations:^{
-        vvv.alpha = 1;
-        mMessageView.alpha = 1;
-        CGRect mRRR = mMessageView.frame;
-        mRRR.origin.x = DEVICE_Width-110;
-        mRRR.size.height = 150;
-        mMessageView.frame = mRRR;
-    }];
-}
-- (void)hiddenMessageView{
-    mRightView.mMessageBtn.selected = NO;
-    [UIView animateWithDuration:0.3 animations:^{
-        vvv.alpha = 0;
-        mMessageView.alpha = 0;
-        CGRect mRRR = mMessageView.frame;
-        mRRR.origin.x = DEVICE_Width;
-        mRRR.size.height = 0;
-        mMessageView.frame = mRRR;
-    }];
-}
 
 #pragma mark----加载数据
 - (void)loadData{
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
     
     
-    [mHeaderView.mHeaderBtn sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
-    mHeaderView.mLevel.text = [NSString stringWithFormat:@"我的等级:%d级",[mUserInfo backNowUser].mGrade];
-    mHeaderView.mScore.text = [NSString stringWithFormat:@"我的积分:%d",[mUserInfo backNowUser].mCredit];
+    mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+    mHeaderView.mBalance.text = [NSString stringWithFormat:@"余额 %d元",[mUserInfo backNowUser].mGrade];
+    mHeaderView.mScore.text = [NSString stringWithFormat:@"积分 %d分",[mUserInfo backNowUser].mCredit];
 
+}
+- (void)initData{
+    [self.tempArray removeAllObjects];
+    
+    
+    UIImage *img1 = [UIImage imageNamed:@"icon_verify"];
+    UIImage *img2 = [UIImage imageNamed:@"icon_getorder"];
+    UIImage *img3 = [UIImage imageNamed:@"icon_activity"];
+    UIImage *img4 = [UIImage imageNamed:@"icon_redbag"];
+    UIImage *img5 = [UIImage imageNamed:@"icon_order"];
+    UIImage *img6 = [UIImage imageNamed:@"icon_rent"];
+
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setObject:@"实名认证" forKey:@"name"];
+    [dic setObject:img1 forKey:@"img"];
+    [dic setObject:NumberWithInt(1) forKey:@"ppp"];
+    [dic setObject:NumberWithInt(1) forKey:@"hidden"];
+
+    
+    NSMutableDictionary *dic2 = [NSMutableDictionary new];
+    [dic2 setObject:@"我的跑腿" forKey:@"name"];
+    [dic2 setObject:img2 forKey:@"img"];
+    [dic2 setObject:NumberWithInt(2) forKey:@"ppp"];
+    [dic2 setObject:NumberWithInt(1) forKey:@"hidden"];
+
+    
+    mArr1 = @[dic,dic2];
+    
+    
+    NSMutableDictionary *dic3 = [NSMutableDictionary new];
+    [dic3 setObject:@"活动中心" forKey:@"name"];
+    [dic3 setObject:img3 forKey:@"img"];
+    [dic3 setObject:NumberWithInt(3) forKey:@"ppp"];
+    [dic3 setObject:NumberWithInt(2) forKey:@"hidden"];
+
+    
+    NSMutableDictionary *dic4 = [NSMutableDictionary new];
+    [dic4 setObject:@"我的红包" forKey:@"name"];
+    [dic4 setObject:img4 forKey:@"img"];
+    [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
+    [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
+
+    NSMutableDictionary *dic5 = [NSMutableDictionary new];
+    [dic5 setObject:@"我的订单" forKey:@"name"];
+    [dic5 setObject:img5 forKey:@"img"];
+    [dic5 setObject:NumberWithInt(5) forKey:@"ppp"];
+    [dic5 setObject:NumberWithInt(2) forKey:@"hidden"];
+
+    NSMutableDictionary *dic6 = [NSMutableDictionary new];
+    [dic6 setObject:@"出租房" forKey:@"name"];
+    [dic6 setObject:img6 forKey:@"img"];
+    [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
+    [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
+
+    mArr2 = @[dic3,dic4,dic5,dic6];
+    
+    [self.tempArray addObject:mArr1];
+    [self.tempArray addObject:mArr2];
+    
+    [self.tableView  reloadData];
+    
 }
 
 #pragma mark----构造主页面
 - (void)initView{
 
-    mScrollerView = [UIScrollView new];
-    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114);
-    mScrollerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:mScrollerView];
+    mNavView = [homeNavView sharePersonNav];
+    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mNavView];
+
+    
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
+   self.tableView.allowsSelection = YES;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
+//    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:self.tableView];
+
+    UINib   *nib = [UINib nibWithNibName:@"myViewTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
     mHeaderView = [mPersonView shareView];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 250);
- 
-    [mScrollerView addSubview:mHeaderView];
-    
-    
-    float x = 0;
-    float y = mHeaderView.mbottom+10;
-    
-    float btnWidth = DEVICE_Width/3;
-    
-    UIImage *imag1 = [UIImage imageNamed:@"code"];
-    UIImage *imag2 = [UIImage imageNamed:@"activity"];
-    
-    UIImage *imag3 = [UIImage imageNamed:@"redbag"];
-    
-    UIImage *imag4 = [UIImage imageNamed:@"rent"];
-    
-    UIImage *imag5 = [UIImage imageNamed:@"order-2"];
-    
-    UIImage *imag6 = [UIImage imageNamed:@"setup-2"];
-    
-    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
-    
-    NSArray *mRR = @[@"实名认证",@"活动中心",@"我的红包",@"出租房",@"我的订单",@"设 置 "];
-    
-    for (int i = 0; i<mRR.count; i++) {
-        
-        mGeneralSubView *mSubView = [mGeneralSubView shareView];
-        mSubView.frame = CGRectMake(x, y, btnWidth, 110);
-        mSubView.mImg.image =imgArr[i];
-        [mSubView.mName setText:mRR[i]];
-        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        mSubView.mBtn.tag = i;
-        [mScrollerView addSubview:mSubView];
-        
-        
-        x += btnWidth;
-        
-        if (x >= DEVICE_Width) {
-            x = 0;
-            y += 110;
-        }
-        
-        
-    }
-    
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, y);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 162);
+    [mHeaderView.mHeaderBtn addTarget:self action:@selector(mHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView setTableHeaderView:mHeaderView];
+
     
 }
-#pragma mark----按钮点击事件
-- (void)mCusBtnAction:(UIButton *)sender{
-    NSLog(@"第%ld个",(long)sender.tag);
+#pragma mark----设置事件
+- (void)mSetupAction:(UIButton *)sender{
+    mSetupViewController *mmm = [[mSetupViewController alloc] initWithNibName:@"mSetupViewController" bundle:nil];
+    [self pushViewController:mmm];
+}
+#pragma mark----信息事件
+- (void)mMsgAction:(UIButton *)sender{
+}
+#pragma mark----头像事件
+- (void)mHeaderAction:(UIButton *)sender{
+
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark -- tableviewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
+{
+    return self.tempArray.count;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     
-    switch (sender.tag) {
-        case 0:
+    NSArray *t = self.tempArray[section];
+    return t.count;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    UIView *line= [UIView  new];
+    line.frame = CGRectMake(0, 0, DEVICE_Width, 8);
+    line.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
+    line.layer.masksToBounds = YES;
+    line.layer.borderColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.00].CGColor;
+    line.layer.borderWidth = 0.5;
+    return line;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        return 10;
+
+    }else{
+        return 5;
+    }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
+    
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSArray *rrr = self.tempArray[indexPath.section];
+    NSDictionary *dic = rrr[indexPath.row];
+    NSString *reuseCellId = @"cell";
+    
+    
+    myViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    cell.mTitle.text = [dic objectForKey:@"name"];
+    cell.mImg.image = [dic objectForKey:@"img"];
+    if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
+        cell.mDetail.hidden = NO;
+        
+    }else{
+        cell.mDetail.hidden = YES;
+    }
+    return cell;
+    
+
+    
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray *rrr = self.tempArray[indexPath.section];
+    NSDictionary *dic = rrr[indexPath.row];
+    int  i = [[dic objectForKey:@"ppp"] intValue];
+    
+    switch (i) {
+        case 1:
         {
             mCodeNameViewController *mmm = [[mCodeNameViewController alloc] initWithNibName:@"mCodeNameViewController" bundle:nil];
             [self pushViewController:mmm];
-        
-        }
-            break;
-        case 1:
-        {
-            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
-            [self pushViewController:mmm];
-            
+
         }
             break;
         case 2:
         {
-            myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
-            [self pushViewController:mmm];
-            
+            NSLog(@"我的跑腿");
         }
             break;
-            
+        case 3:
+        {
+            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
+            [self pushViewController:mmm];
+
+        }
+            break;
         case 4:
         {
-            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
+            myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
             [self pushViewController:mmm];
-            
+
         }
             break;
         case 5:
         {
-            mSetupViewController *mmm = [[mSetupViewController alloc] initWithNibName:@"mSetupViewController" bundle:nil];
+            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
             [self pushViewController:mmm];
+        }
+            break;
+        case 6:
+        {
             
+            NSLog(@"我的订单");
+
         }
             break;
         default:
             break;
     }
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+    
+    
 }
 
 @end

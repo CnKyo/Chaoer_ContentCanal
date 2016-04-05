@@ -12,7 +12,7 @@
 /**
  *  头像
  */
-@property (strong, nonatomic) IBOutlet UIImageView *mHeaderBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *mHeaderImg;
 
 /**
  *  姓名
@@ -22,7 +22,10 @@
  *  身份
  */
 @property (strong, nonatomic) IBOutlet UILabel *mJob;
-
+/**
+ *  电话
+ */
+@property (strong, nonatomic) IBOutlet UILabel *mPhone;
 
 /**
  *  积分
@@ -32,10 +35,11 @@
 
 
 /**
- *  等级
+ *  余额
  */
-@property (strong, nonatomic) IBOutlet UILabel *mLevel;
+@property (strong, nonatomic) IBOutlet UILabel *mBalance;
 
+@property (strong, nonatomic) IBOutlet UIButton *mHeaderBtn;
 
 
 /**

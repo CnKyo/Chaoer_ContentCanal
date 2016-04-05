@@ -14,7 +14,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvZ-LT-tTe">
                     <rect key="frame" x="40" y="12" width="240" height="40"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区大坪石油路万科锦程160号1004春秋超尔科技" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="mOv-px-WJ9">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在定位..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="mOv-px-WJ9">
                             <rect key="frame" x="28" y="10" width="204" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="vD0-de-zTT"/>
@@ -43,7 +43,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="dvZ-LT-tTe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7nb-ao-oeN"/>
                 <constraint firstItem="dvZ-LT-tTe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="e2i-va-k0g"/>
