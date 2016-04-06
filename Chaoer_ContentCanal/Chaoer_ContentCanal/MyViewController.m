@@ -24,6 +24,10 @@
 #import "myViewTableViewCell.h"
 
 #import "homeNavView.h"
+
+#import "msgViewController.h"
+
+#import "paotuiViewController.h"
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -71,6 +75,15 @@
 
 #pragma mark----加载数据
 - (void)loadData{
+    
+    NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
+    NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
+
+    mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%d元</color>",[mUserInfo backNowUser].mGrade] attributedStringWithStyleBook:mStyle];
+    mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
+    
+
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
     
     
@@ -78,9 +91,8 @@
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
     mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
-    mHeaderView.mBalance.text = [NSString stringWithFormat:@"余额 %d元",[mUserInfo backNowUser].mGrade];
-    mHeaderView.mScore.text = [NSString stringWithFormat:@"积分 %d分",[mUserInfo backNowUser].mCredit];
 
+    
 }
 - (void)initData{
     [self.tempArray removeAllObjects];
@@ -89,9 +101,9 @@
     UIImage *img1 = [UIImage imageNamed:@"icon_verify"];
     UIImage *img2 = [UIImage imageNamed:@"icon_getorder"];
     UIImage *img3 = [UIImage imageNamed:@"icon_activity"];
-    UIImage *img4 = [UIImage imageNamed:@"icon_redbag"];
-    UIImage *img5 = [UIImage imageNamed:@"icon_order"];
-    UIImage *img6 = [UIImage imageNamed:@"icon_rent"];
+    UIImage *img4 = [UIImage imageNamed:@"icon_order"];
+    UIImage *img5 = [UIImage imageNamed:@"icon_rent"];
+    UIImage *img6 = [UIImage imageNamed:@"add_hourse"];
 
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"实名认证" forKey:@"name"];
@@ -116,25 +128,26 @@
     [dic3 setObject:NumberWithInt(3) forKey:@"ppp"];
     [dic3 setObject:NumberWithInt(2) forKey:@"hidden"];
 
-    
+
     NSMutableDictionary *dic4 = [NSMutableDictionary new];
-    [dic4 setObject:@"我的红包" forKey:@"name"];
+    [dic4 setObject:@"我的订单" forKey:@"name"];
     [dic4 setObject:img4 forKey:@"img"];
     [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
     [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
 
     NSMutableDictionary *dic5 = [NSMutableDictionary new];
-    [dic5 setObject:@"我的订单" forKey:@"name"];
+    [dic5 setObject:@"出租房" forKey:@"name"];
     [dic5 setObject:img5 forKey:@"img"];
     [dic5 setObject:NumberWithInt(5) forKey:@"ppp"];
     [dic5 setObject:NumberWithInt(2) forKey:@"hidden"];
 
+    
     NSMutableDictionary *dic6 = [NSMutableDictionary new];
-    [dic6 setObject:@"出租房" forKey:@"name"];
+    [dic6 setObject:@"房屋添加" forKey:@"name"];
     [dic6 setObject:img6 forKey:@"img"];
     [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
     [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
-
+    
     mArr2 = @[dic3,dic4,dic5,dic6];
     
     [self.tempArray addObject:mArr1];
@@ -149,6 +162,7 @@
 
     mNavView = [homeNavView sharePersonNav];
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    
     [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mNavView];
@@ -177,6 +191,9 @@
 }
 #pragma mark----信息事件
 - (void)mMsgAction:(UIButton *)sender{
+    NSLog(@"消息");
+    msgViewController *mmm = [[msgViewController alloc] initWithNibName:@"msgViewController" bundle:nil];
+    [self pushViewController:mmm];
 }
 #pragma mark----头像事件
 - (void)mHeaderAction:(UIButton *)sender{
@@ -266,6 +283,9 @@
         case 2:
         {
             NSLog(@"我的跑腿");
+            paotuiViewController *ppp = [[paotuiViewController alloc] initWithNibName:@"paotuiViewController" bundle:nil];
+            ppp.mType = 2;
+            [self pushViewController:ppp];
         }
             break;
         case 3:
@@ -277,24 +297,23 @@
             break;
         case 4:
         {
-            myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
+
+            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
             [self pushViewController:mmm];
 
         }
             break;
         case 5:
         {
-            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
-            [self pushViewController:mmm];
+
         }
             break;
         case 6:
         {
             
-            NSLog(@"我的订单");
-
         }
             break;
+
         default:
             break;
     }

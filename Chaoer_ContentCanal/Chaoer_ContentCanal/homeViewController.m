@@ -26,6 +26,7 @@
 
 #import "mGeneralSubView.h"
 
+#import "mSenderViewController.h"
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
@@ -208,8 +209,8 @@
     float y1 = bgkView.mbottom+10;
     float btnWidth1 = DEVICE_Width/2-20;
 
-    UIImage *imag11 = [UIImage imageNamed:@"home_staff"];
-    UIImage *imag21 = [UIImage imageNamed:@"home_fix"];
+    UIImage *imag11 = [UIImage imageNamed:@"qiuk_pay"];
+    UIImage *imag21 = [UIImage imageNamed:@"canal_fix"];
     NSArray *imgArr11 = @[imag11,imag21];
     NSArray *marr11 = @[@"快捷缴费",@"物业保修"];
 
@@ -228,7 +229,7 @@
         [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
         
         mSubView.mBtn.tag = i;
-        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [mSubView.mBtn addTarget:self action:@selector(mTwoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [mHeaderView addSubview:mSubView];
         x1 += btnWidth1+20;
@@ -245,20 +246,20 @@
     bgkView1.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.91 alpha:1.00];
     [mHeaderView addSubview:bgkView1];
     
-    UIImage *imag1 = [UIImage imageNamed:@"home_staff"];
-    UIImage *imag2 = [UIImage imageNamed:@"home_fix"];
+    UIImage *imag1 = [UIImage imageNamed:@"community_life"];
+    UIImage *imag2 = [UIImage imageNamed:@"person_service"];
 
-    UIImage *imag3 = [UIImage imageNamed:@"home_community"];
+    UIImage *imag3 = [UIImage imageNamed:@"neiborhud"];
 
-    UIImage *imag4 = [UIImage imageNamed:@"home_service"];
+    UIImage *imag4 = [UIImage imageNamed:@"feedback_sorpport"];
 
-    UIImage *imag5 = [UIImage imageNamed:@"home_conversition"];
+    UIImage *imag5 = [UIImage imageNamed:@"movie_ticket"];
 
-    UIImage *imag6 = [UIImage imageNamed:@"home_feedback"];
+    UIImage *imag6 = [UIImage imageNamed:@"community_status"];
 
     NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
     
-    NSArray *marr = @[@"快捷缴费",@"物业保修",@"社区生活",@"便民服务",@"邻里交流",@"投诉建议"];
+    NSArray *marr = @[@"社区生活",@"便民服务",@"邻里圈",@"投诉建议",@"跑跑腿",@"社区动态",];
     
     float x = 0;
     float y = bgkView1.mbottom;
@@ -286,7 +287,7 @@
         [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
         
         mSubView.mBtn.tag = i;
-        [mSubView.mBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [mSubView.mBtn addTarget:self action:@selector(mSomeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [mHeaderView addSubview:mSubView];
         
@@ -307,10 +308,7 @@
     [self.tableView setTableHeaderView:mHeaderView];
     
 }
-#pragma mark----按钮的点击事件
-- (void)mCusBtnAction:(UIButton *)sender{
-    NSLog(@"第%ld个",(long)sender.tag);
-    
+- (void)mTwoBtnAction:(UIButton *)sender{
     switch (sender.tag) {
         case 0:
         {
@@ -324,28 +322,54 @@
             [self pushViewController:ppp];
         }
             break;
-        case 2:
+        default:
+            break;
+    }
+}
+#pragma mark----按钮的点击事件
+- (void)mSomeBtnAction:(UIButton *)sender{
+    NSLog(@"第%ld个",(long)sender.tag);
+    
+    switch (sender.tag) {
+        case 0:
         {
             communityViewController   *ppp = [communityViewController new];
             [self pushViewController:ppp];
-//            [self showErrorStatus:@"正在建设中..."];
+            //            [self showErrorStatus:@"正在建设中..."];
+        }
+            break;
+        case 1:
+        {
+            serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
+            [self pushViewController:sss];
+
+        }
+            break;
+        case 2:
+        {
+            [self showErrorStatus:@"正在建设中..."];
+
         }
             break;
         case 3:
         {
-            serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
+            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
             [self pushViewController:sss];
         }
             break;
         case 4:
         {
-            [self showErrorStatus:@"正在建设中..."];
+//            [self showErrorStatus:@"正在建设中..."];
+            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+            [self pushViewController:mmm];
+
         }
             break;
         case 5:
         {
-            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
-            [self pushViewController:sss];
+            
+            [self showErrorStatus:@"正在建设中..."];
+
         }
             break;
         default:

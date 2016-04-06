@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jjg-MB-eEz" customClass="senderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jjg-MB-eEz" id="ecr-JH-AbQ">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RN1-Jm-I2C">
+                        <rect key="frame" x="10" y="12" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="HuF-VO-GPe"/>
+                            <constraint firstAttribute="height" constant="35" id="QSN-3W-QsI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我需要一个字啊 撒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBR-eq-2eN">
+                        <rect key="frame" x="53" y="13" width="244" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-11-11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlP-Dv-H5x">
+                        <rect key="frame" x="53" y="31" width="244" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou1" translatesAutoresizingMaskIntoConstraints="NO" id="esR-bs-5gU">
+                        <rect key="frame" x="305" y="23" width="7" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="W1J-8R-dBh"/>
+                            <constraint firstAttribute="height" constant="13" id="l3h-3u-SWN"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGG-I7-RtR">
+                        <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44503546099290781" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="TOr-sv-fYr"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="esR-bs-5gU" firstAttribute="top" secondItem="ecr-JH-AbQ" secondAttribute="topMargin" constant="15" id="4B7-dy-WAf"/>
+                    <constraint firstItem="nlP-Dv-H5x" firstAttribute="leading" secondItem="RN1-Jm-I2C" secondAttribute="trailing" constant="8" id="9dZ-bb-Caj"/>
+                    <constraint firstItem="RN1-Jm-I2C" firstAttribute="top" secondItem="ecr-JH-AbQ" secondAttribute="topMargin" constant="4" id="Bzw-60-XHH"/>
+                    <constraint firstItem="nlP-Dv-H5x" firstAttribute="top" secondItem="TBR-eq-2eN" secondAttribute="bottom" constant="1" id="DPi-nq-7h0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="AGG-I7-RtR" secondAttribute="trailing" constant="-8" id="XGX-OC-upP"/>
+                    <constraint firstItem="RN1-Jm-I2C" firstAttribute="leading" secondItem="ecr-JH-AbQ" secondAttribute="leadingMargin" constant="2" id="cGN-tm-Qv0"/>
+                    <constraint firstItem="TBR-eq-2eN" firstAttribute="leading" secondItem="RN1-Jm-I2C" secondAttribute="trailing" constant="8" id="hSK-n2-ZvO"/>
+                    <constraint firstItem="esR-bs-5gU" firstAttribute="leading" secondItem="TBR-eq-2eN" secondAttribute="trailing" constant="8" id="nup-LU-cRQ"/>
+                    <constraint firstAttribute="topMargin" secondItem="TBR-eq-2eN" secondAttribute="top" constant="-5" id="seq-EL-fo7"/>
+                    <constraint firstItem="AGG-I7-RtR" firstAttribute="leading" secondItem="ecr-JH-AbQ" secondAttribute="leadingMargin" constant="-8" id="u6Q-gN-pmA"/>
+                    <constraint firstItem="AGG-I7-RtR" firstAttribute="top" secondItem="esR-bs-5gU" secondAttribute="bottom" constant="23" id="v5J-kG-aSR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="esR-bs-5gU" secondAttribute="trailing" id="z3G-6f-9aW"/>
+                    <constraint firstItem="esR-bs-5gU" firstAttribute="leading" secondItem="nlP-Dv-H5x" secondAttribute="trailing" constant="8" id="zxO-eg-W7Q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="mImg" destination="RN1-Jm-I2C" id="pIq-os-y9R"/>
+                <outlet property="mTiele" destination="TBR-eq-2eN" id="B3e-vZ-U85"/>
+                <outlet property="mtime" destination="nlP-Dv-H5x" id="fh0-KW-BLh"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="jiantou1" width="15" height="26"/>
+    </resources>
+</document>

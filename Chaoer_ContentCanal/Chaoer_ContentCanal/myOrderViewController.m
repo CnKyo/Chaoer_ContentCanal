@@ -36,9 +36,7 @@
     
     DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"购物订单", @"生活订单"]];
     secondSwitch.frame = CGRectMake(margin, 63, DEVICE_Width, 30);
-//    secondSwitch.layer.masksToBounds = YES;
-//    secondSwitch.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
-//    secondSwitch.layer.borderWidth = 1;
+
     secondSwitch.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
     secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];

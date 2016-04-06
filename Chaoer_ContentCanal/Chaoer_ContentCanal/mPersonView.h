@@ -30,14 +30,14 @@
 /**
  *  积分
  */
-@property (strong, nonatomic) IBOutlet UILabel *mScore;
+@property (strong, nonatomic) IBOutlet WPHotspotLabel *mScore;
 
 
 
 /**
  *  余额
  */
-@property (strong, nonatomic) IBOutlet UILabel *mBalance;
+@property (strong, nonatomic) IBOutlet WPHotspotLabel *mBalance;
 
 @property (strong, nonatomic) IBOutlet UIButton *mHeaderBtn;
 

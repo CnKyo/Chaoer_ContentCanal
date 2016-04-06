@@ -39,6 +39,10 @@
  *  交易记录
  */
 @property (strong, nonatomic) IBOutlet UIButton *mHistoryBtn;
+/**
+ *  红包
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mRedBagBtn;
 
 /**
  *  初始化方法

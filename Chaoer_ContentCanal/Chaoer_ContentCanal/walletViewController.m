@@ -12,7 +12,7 @@
 #import "LXCircleAnimationView.h"
 
 #import "UILabel+FlickerNumber.h"
-
+#import "myRedBagViewController.h"
 @interface walletViewController ()
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
@@ -47,6 +47,8 @@
     [mView.topupBtn addTarget:self action:@selector(topupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mOrderBtn addTarget:self action:@selector(orderAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mHistoryBtn addTarget:self action:@selector(historyAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mRedBagBtn addTarget:self action:@selector(redbagAction:) forControlEvents:UIControlEventTouchUpInside];
+
     
     [self.view addSubview:mView];
     CGFloat num = 123.4567;
@@ -76,8 +78,15 @@
 - (void)topupAction:(UIButton *)sender{
 
 }
-#pragma mark----我的订单
+#pragma mark----我的积分
 - (void)orderAction:(UIButton *)sender{
+
+    
+}
+#pragma mark----我的红包
+- (void)redbagAction:(UIButton *)sender{
+    myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
+    [self pushViewController:mmm];
     
 }
 #pragma mark----交易记录

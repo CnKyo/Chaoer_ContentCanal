@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -412,7 +412,7 @@
         <scene sceneID="LKM-59-gBJ">
             <objects>
                 <navigationController id="Ye6-fO-qTJ" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="厨房" image="82-5" id="tqe-jN-RPo"/>
+                    <tabBarItem key="tabBarItem" title="厨房" image="82-4" id="tqe-jN-RPo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H7u-ki-qG4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3368,9 +3368,9 @@
         <image name="17-1" width="191" height="88"/>
         <image name="3-1" width="574" height="88"/>
         <image name="72" width="160" height="160"/>
-        <image name="82-5" width="22" height="22"/>
-        <image name="aboutus_selected" width="47" height="47"/>
-        <image name="aboutus_unselected" width="47" height="47"/>
+        <image name="82-4" width="30" height="32"/>
+        <image name="aboutus_selected" width="30" height="32"/>
+        <image name="aboutus_unselected" width="30" height="32"/>
         <image name="dp_defaultImg" width="64" height="64"/>
         <image name="dp_del" width="21" height="21"/>
         <image name="dp_dpdz" width="38" height="38"/>
@@ -3383,8 +3383,8 @@
         <image name="dp_spgl" width="38" height="38"/>
         <image name="dp_xiajia" width="21" height="21"/>
         <image name="greenBtn" width="574" height="88"/>
-        <image name="home_selected" width="47" height="47"/>
-        <image name="home_unselected" width="47" height="47"/>
+        <image name="home_selected" width="30" height="32"/>
+        <image name="home_unselected" width="30" height="32"/>
         <image name="img_def" width="331" height="341"/>
         <image name="item_2" width="25" height="25"/>
         <image name="item_2_select" width="25" height="25"/>
@@ -3392,8 +3392,8 @@
         <image name="jiantou1.png" width="16" height="26"/>
         <image name="msg" width="27" height="27"/>
         <image name="passwd" width="26" height="32"/>
-        <image name="personcenter_selected" width="42" height="49"/>
-        <image name="personcenter_unselected" width="42" height="49"/>
+        <image name="personcenter_selected" width="30" height="32"/>
+        <image name="personcenter_unselected" width="30" height="32"/>
         <image name="phone" width="26" height="32"/>
     </resources>
 </document>
