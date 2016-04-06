@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="activityCenterViewController">
+            <connections>
+                <outlet property="mActivityStas" destination="El7-v7-9m8" id="LvD-aJ-jeM"/>
+                <outlet property="mChoujiang" destination="b9F-c5-7IT" id="9vm-cg-oIw"/>
+                <outlet property="mGongyi" destination="PiB-XP-xfK" id="Tf8-02-4Tx"/>
+                <outlet property="mZongchou" destination="s1R-e7-7hn" id="TFr-iV-9ln"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_bgk" translatesAutoresizingMaskIntoConstraints="NO" id="rOk-oG-Kpr">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIb-9a-Wmm">
+                    <rect key="frame" x="0.0" y="64" width="320" height="25"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voice" translatesAutoresizingMaskIntoConstraints="NO" id="Kfz-X5-Mcb">
+                            <rect key="frame" x="20" y="6" width="16" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="DlT-Wd-XJS"/>
+                                <constraint firstAttribute="height" constant="13" id="I5B-vJ-7Jz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽奖活动好礼送不停" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El7-v7-9m8">
+                            <rect key="frame" x="44" y="6" width="268" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.97647058823529409" green="0.95294117647058818" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92549019607843142" green="0.27843137254901962" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="El7-v7-9m8" firstAttribute="leading" secondItem="Kfz-X5-Mcb" secondAttribute="trailing" constant="8" id="Bue-da-BCp"/>
+                        <constraint firstAttribute="trailing" secondItem="El7-v7-9m8" secondAttribute="trailing" constant="8" id="Tai-YE-JfJ"/>
+                        <constraint firstItem="Kfz-X5-Mcb" firstAttribute="leading" secondItem="hIb-9a-Wmm" secondAttribute="leading" constant="20" id="bWD-t8-rbu"/>
+                        <constraint firstAttribute="height" constant="25" id="d8N-Fe-WqI"/>
+                        <constraint firstItem="Kfz-X5-Mcb" firstAttribute="top" secondItem="hIb-9a-Wmm" secondAttribute="top" constant="6" id="mif-OS-Mmz"/>
+                        <constraint firstItem="El7-v7-9m8" firstAttribute="top" secondItem="hIb-9a-Wmm" secondAttribute="top" constant="6" id="xG4-KB-Jl0"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9F-c5-7IT">
+                    <rect key="frame" x="60" y="140" width="200" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="1Jy-Kc-4lS"/>
+                        <constraint firstAttribute="width" constant="200" id="fNx-Ij-WyA"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="积分抽奖" backgroundImage="btn_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="btn_selected"/>
+                    <connections>
+                        <action selector="mChoujiang:" destination="-1" eventType="touchUpInside" id="No9-bC-c1K"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1R-e7-7hn">
+                    <rect key="frame" x="60" y="240" width="200" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="OCh-5w-bNk"/>
+                        <constraint firstAttribute="height" constant="50" id="lRa-IJ-TUF"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="众筹活动" backgroundImage="btn_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="btn_selected"/>
+                    <connections>
+                        <action selector="mZongchou:" destination="-1" eventType="touchUpInside" id="EqL-YM-sA1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiB-XP-xfK">
+                    <rect key="frame" x="60" y="340" width="200" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="AEs-hX-99e"/>
+                        <constraint firstAttribute="width" constant="200" id="Mv1-2V-4OC"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="公益活动" backgroundImage="btn_unselected">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage="btn_selected"/>
+                    <connections>
+                        <action selector="mGongyi:" destination="-1" eventType="touchUpInside" id="c18-OD-THP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="rOk-oG-Kpr" secondAttribute="bottom" id="6DE-Uv-ya9"/>
+                <constraint firstItem="b9F-c5-7IT" firstAttribute="top" secondItem="hIb-9a-Wmm" secondAttribute="bottom" constant="51" id="Btr-Ir-gwr"/>
+                <constraint firstItem="s1R-e7-7hn" firstAttribute="top" secondItem="b9F-c5-7IT" secondAttribute="bottom" constant="50" id="IZh-6m-NkG"/>
+                <constraint firstAttribute="trailing" secondItem="hIb-9a-Wmm" secondAttribute="trailing" id="JZS-Qy-Mh8"/>
+                <constraint firstItem="rOk-oG-Kpr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MZ0-iH-VqP"/>
+                <constraint firstAttribute="trailing" secondItem="rOk-oG-Kpr" secondAttribute="trailing" id="QiF-EF-Xir"/>
+                <constraint firstItem="PiB-XP-xfK" firstAttribute="top" secondItem="s1R-e7-7hn" secondAttribute="bottom" constant="50" id="XFM-9H-6a7"/>
+                <constraint firstItem="rOk-oG-Kpr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="XXb-uf-oLd"/>
+                <constraint firstItem="PiB-XP-xfK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oNj-w0-TiA"/>
+                <constraint firstItem="hIb-9a-Wmm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="rCc-yv-dlG"/>
+                <constraint firstItem="hIb-9a-Wmm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tRC-m6-I7J"/>
+                <constraint firstItem="s1R-e7-7hn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uYH-MH-FGo"/>
+                <constraint firstItem="b9F-c5-7IT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="znh-at-yaS"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="214" y="280"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="activity_bgk" width="640" height="1008"/>
+        <image name="btn_selected" width="396" height="100"/>
+        <image name="btn_unselected" width="396" height="100"/>
+        <image name="voice" width="26" height="22"/>
+    </resources>
+</document>

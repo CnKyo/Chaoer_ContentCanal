@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="fixTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="240" height="29"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5I-Ld-fbA">
+                        <rect key="frame" x="8" y="4" width="206" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="JvU-0j-bLa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fixcell_unselecte" translatesAutoresizingMaskIntoConstraints="NO" id="cbM-oP-XLo">
+                        <rect key="frame" x="222" y="10" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="H4Q-rH-XvD"/>
+                            <constraint firstAttribute="height" constant="10" id="ZIg-V5-H74"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="leadingMargin" secondItem="v5I-Ld-fbA" secondAttribute="leading" id="H7f-gE-ekX"/>
+                    <constraint firstItem="v5I-Ld-fbA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-4" id="avQ-If-UNm"/>
+                    <constraint firstItem="cbM-oP-XLo" firstAttribute="leading" secondItem="v5I-Ld-fbA" secondAttribute="trailing" constant="8" id="mDi-Dr-x75"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="cbM-oP-XLo" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="kkY-Gp-laF"/>
+                <constraint firstAttribute="trailing" secondItem="cbM-oP-XLo" secondAttribute="trailing" constant="8" id="tkF-xL-HfQ"/>
+            </constraints>
+            <connections>
+                <outlet property="mImg" destination="cbM-oP-XLo" id="7mT-Y8-qhH"/>
+                <outlet property="mName" destination="v5I-Ld-fbA" id="pVf-LW-oBh"/>
+            </connections>
+            <point key="canvasLocation" x="198" y="357"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="fixcell_unselecte" width="12" height="14"/>
+    </resources>
+</document>
