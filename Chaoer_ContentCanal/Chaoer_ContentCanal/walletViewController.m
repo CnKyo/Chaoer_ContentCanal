@@ -13,6 +13,12 @@
 
 #import "UILabel+FlickerNumber.h"
 #import "myRedBagViewController.h"
+
+#import "valleteHistoryViewController.h"
+
+#import "phoneUpTopViewController.h"
+
+#import "cashViewController.h"
 @interface walletViewController ()
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
@@ -72,16 +78,20 @@
 
 #pragma mark----提现
 - (void)tixianAction:(UIButton *)sender{
-
+    cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
+    [self pushViewController:ccc];
 }
 #pragma mark----充值
 - (void)topupAction:(UIButton *)sender{
-
+    mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
+    [self pushViewController:ppp];
 }
 #pragma mark----我的积分
 - (void)orderAction:(UIButton *)sender{
 
-    
+    valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
+    vvv.mType = 1;
+    [self pushViewController:vvv];
 }
 #pragma mark----我的红包
 - (void)redbagAction:(UIButton *)sender{
@@ -91,7 +101,9 @@
 }
 #pragma mark----交易记录
 - (void)historyAction:(UIButton *)sender{
-    
+    valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
+    vvv.mType = 2;
+    [self pushViewController:vvv];
 }
 
 - (void)didReceiveMemoryWarning {
