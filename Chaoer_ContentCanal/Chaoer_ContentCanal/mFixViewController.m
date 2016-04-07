@@ -475,13 +475,268 @@
     else if ([mediaType isEqualToString:@"public.movie"])
     {
         //获取视图的url
-        NSURL *url = [info objectForKey:UIImagePickerControllerReferenceURL];
+        NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
+
+        UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([NSString stringWithFormat:@"%@",url]);
+
+
+
         //播放视频
-        NSLog(@"%@",url);
+
+        [self convertVideoQuailtyWithInputURL:url outputURL:nil completeHandler:^(AVAssetExportSession *exportSession) {
+            switch (exportSession.status) {
+                    
+                case AVAssetExportSessionStatusUnknown:
+                    
+                    NSLog(@"AVAssetExportSessionStatusUnknown");
+                    
+                    break;
+                    
+                case AVAssetExportSessionStatusWaiting:
+                    
+                    NSLog(@"AVAssetExportSessionStatusWaiting");
+                    
+                    break;
+                    
+                case AVAssetExportSessionStatusExporting:
+                    
+                    NSLog(@"AVAssetExportSessionStatusExporting");
+                    
+                    break;
+                    
+                case AVAssetExportSessionStatusCompleted:
+                    
+                    NSLog(@"AVAssetExportSessionStatusCompleted");
+                    NSLog(@"完成之后－－－＋－＋－＋－＋－%@",exportSession);
+                    break;
+                    
+                case AVAssetExportSessionStatusFailed:
+                    
+                    NSLog(@"AVAssetExportSessionStatusFailed");
+                    
+                    break;
+                    
+                    
+            }
+
+        }];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) convertVideoQuailtyWithInputURL:(NSURL*)inputURL
+                               outputURL:(NSURL*)outputURL
+                         completeHandler:(void (^)(AVAssetExportSession *exportSession))handler
+{
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
+    
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    NSLog(@"%@",compatiblePresets);
+    
+    if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
+        
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+        
+        NSDateFormatter *formater = [[NSDateFormatter alloc] init];//用时间给文件全名，以免重复，在测试的时候其实可以判断文件是否存在若存在，则删除，重新生成文件即可
+        
+        [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+        
+        NSString * resultPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
+        
+        NSLog(@"resultPath = %@",resultPath);
+        exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
+        [self getFileSize:[NSString stringWithFormat:@"%@",exportSession.outputURL]];
 
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        
+        exportSession.shouldOptimizeForNetworkUse = YES;
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
+         
+         {
+             NSLog(@"-+-+-+-++-+-+-+-+--+:%@",exportSession.outputURL);
+
+             switch (exportSession.status) {
+                     
+                 case AVAssetExportSessionStatusUnknown:
+                     
+                     NSLog(@"AVAssetExportSessionStatusUnknown");
+                     
+                     break;
+                     
+                 case AVAssetExportSessionStatusWaiting:
+                     
+                     NSLog(@"AVAssetExportSessionStatusWaiting");
+                     
+                     break;
+                     
+                 case AVAssetExportSessionStatusExporting:
+                     
+                     NSLog(@"AVAssetExportSessionStatusExporting");
+                     
+                     break;
+                     
+                 case AVAssetExportSessionStatusCompleted:
+                     
+                     NSLog(@"AVAssetExportSessionStatusCompleted");
+                     NSLog(@"完成之后－－－＋－＋－＋－＋－%@",exportSession);
+                     break;
+                     
+                 case AVAssetExportSessionStatusFailed:
+                     
+                     NSLog(@"AVAssetExportSessionStatusFailed");
+                     
+                     break;
+                     
+                     
+             }
+             
+         }];
+        
+    }
+
+}
+
+- (CGFloat) getFileSize:(NSString *)path
+{
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    float filesize = -1.0;
+    if ([fileManager fileExistsAtPath:path]) {
+        NSDictionary *fileDic = [fileManager attributesOfItemAtPath:path error:nil];//获取文件的属性
+        unsigned long long size = [[fileDic objectForKey:NSFileSize] longLongValue];
+        filesize = 1.0*size/1024;
+    }
+    NSLog(@"问价大小是:%f",filesize);
+    return filesize;
+}
+
+- (void)saveVideoWith:(NSURL *)url
+{
+    NSError *error = nil;
+    CGSize renderSize = CGSizeMake(0, 0);
+    CMTime totalDuration = kCMTimeZero;
+    AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    if (!asset) {
+        NSLog(@"asset数据为空");
+        return;
+    }
+    NSLog(@"%@---%@",asset.tracks,[asset tracksWithMediaType:@"vide"]);
+    AVAssetTrack *assetTrack;
+    if ([asset tracksWithMediaType:@"vide"].count>0) {
+        assetTrack = [[asset tracksWithMediaType:@"vide"] objectAtIndex:0];
+    }else{
+        NSLog(@"asset数据为空");
+        return;
+    }
+    renderSize.width = MAX(renderSize.width, assetTrack.naturalSize.height);
+    renderSize.height = MAX(renderSize.height, assetTrack.naturalSize.width);
+    
+    CGFloat renderW = MIN(renderSize.width, renderSize.height);
+    AVMutableCompositionTrack *audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration)
+                        ofTrack:[[asset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+                         atTime:totalDuration
+                          error:nil];
+    
+    AVMutableCompositionTrack *videoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration)
+                        ofTrack:assetTrack
+                         atTime:totalDuration
+                          error:&error];
+    
+    //fix orientationissue
+    AVMutableVideoCompositionLayerInstruction *layerInstruciton = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
+    
+    totalDuration = CMTimeAdd(totalDuration, asset.duration);
+    
+    CGFloat rate;
+    rate = renderW / MIN(assetTrack.naturalSize.width, assetTrack.naturalSize.height);
+    
+    CGAffineTransform layerTransform = CGAffineTransformMake(assetTrack.preferredTransform.a, assetTrack.preferredTransform.b, assetTrack.preferredTransform.c, assetTrack.preferredTransform.d, assetTrack.preferredTransform.tx * rate, assetTrack.preferredTransform.ty * rate);
+    layerTransform = CGAffineTransformConcat(layerTransform, CGAffineTransformMake(1, 0, 0, 1, 0, -(assetTrack.naturalSize.width - assetTrack.naturalSize.height) / 2.0));//向上移动取中部影响
+    layerTransform = CGAffineTransformScale(layerTransform, rate, rate);//放缩，解决前后摄像结果大小不对称
+    
+    [layerInstruciton setTransform:layerTransform atTime:kCMTimeZero];
+    [layerInstruciton setOpacity:0.0 atTime:totalDuration];
+    
+    NSMutableArray *layerInstructionArray = [[NSMutableArray alloc] init];
+    [layerInstructionArray addObject:layerInstruciton];
+    
+    NSString *filePath = [[self class] getVideoMergeFilePathString];
+    
+    NSURL *mergeFileURL = [NSURL fileURLWithPath:filePath];
+    
+    //export
+    AVMutableVideoCompositionInstruction *mainInstruciton = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    mainInstruciton.timeRange = CMTimeRangeMake(kCMTimeZero, totalDuration);
+    mainInstruciton.layerInstructions = layerInstructionArray;
+    AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
+    mainCompositionInst.instructions = @[mainInstruciton];
+    mainCompositionInst.frameDuration = CMTimeMake(1, 30);
+    mainCompositionInst.renderSize = CGSizeMake(renderW, renderW);
+    
+    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality];
+    exporter.videoComposition = mainCompositionInst;
+    exporter.outputURL = mergeFileURL;
+    NSLog(@"最后的到的文件是：%@",exporter.outputURL);
+    exporter.outputFileType = AVFileTypeMPEG4;
+    exporter.shouldOptimizeForNetworkUse = YES;
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            switch ([exporter status]) {
+                case AVAssetExportSessionStatusFailed:
+                {
+                    [SVProgressHUD showErrorWithStatus:@"视频处理失败"];
+                    break;
+                }
+                    
+                case AVAssetExportSessionStatusCancelled:
+                    [SVProgressHUD showErrorWithStatus:@"视频处理取消"];
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                    [SVProgressHUD showSuccessWithStatus:@"视频处理完成"];
+                    //视频转码成功,删除原始文件
+                    [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+                                      break;
+                default:
+                    break;
+            }
+        });
+    }];
+    
+}
++ (NSString *)getVideoMergeFilePathString
+{
+    NSString *path =[NSString stringWithFormat:@"%@/tmp/",NSHomeDirectory()];
+    NSString *testDirectory = [path stringByAppendingPathComponent:@"videos"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager isExecutableFileAtPath:testDirectory]) {
+        NSLog(@"无文件夹,创建文件");
+        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    NSString *fileName = [[testDirectory stringByAppendingPathComponent:nowTimeStr] stringByAppendingString:@".mp4"];
+    
+    return fileName;
+}
+
+- (CGFloat) getVideoLength:(NSURL *)URL
+{
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
+                                                     forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:URL options:opts];
+    float second = 0;
+    second = urlAsset.duration.value/urlAsset.duration.timescale;
+    return second;
+}
 @end

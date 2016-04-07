@@ -18,49 +18,29 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="261"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRn-di-ROT">
-                            <rect key="frame" x="100" y="40" width="120" height="140"/>
+                            <rect key="frame" x="85" y="40" width="150" height="140"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDV-Um-Rb3">
-                                    <rect key="frame" x="20" y="61" width="80" height="18"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMT-Oz-dWi">
-                                            <rect key="frame" x="10" y="2" width="9" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="2332" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="nBp-le-2sS">
-                                            <rect key="frame" x="19" y="0.0" width="51" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="2332" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="nBp-le-2sS" customClass="UICountingLabel">
+                                    <rect key="frame" x="35" y="61" width="80" height="18"/>
                                     <constraints>
-                                        <constraint firstItem="nBp-le-2sS" firstAttribute="top" secondItem="FDV-Um-Rb3" secondAttribute="top" id="EKQ-do-A7z"/>
-                                        <constraint firstItem="fMT-Oz-dWi" firstAttribute="top" secondItem="FDV-Um-Rb3" secondAttribute="top" constant="2" id="HVH-Lu-fVw"/>
-                                        <constraint firstAttribute="height" constant="18" id="Tlp-Bd-Lc2"/>
-                                        <constraint firstAttribute="width" constant="80" id="Wsm-aK-geA"/>
-                                        <constraint firstItem="fMT-Oz-dWi" firstAttribute="leading" secondItem="FDV-Um-Rb3" secondAttribute="leading" constant="10" id="XMd-Ce-kbD"/>
-                                        <constraint firstItem="nBp-le-2sS" firstAttribute="leading" secondItem="fMT-Oz-dWi" secondAttribute="trailing" id="fnt-Id-ci8"/>
-                                        <constraint firstAttribute="trailing" secondItem="nBp-le-2sS" secondAttribute="trailing" constant="10" id="luB-5R-rzV"/>
-                                        <constraint firstAttribute="bottom" secondItem="nBp-le-2sS" secondAttribute="bottom" id="t43-Tk-32Q"/>
+                                        <constraint firstAttribute="width" constant="80" id="JKJ-2U-2wA"/>
+                                        <constraint firstAttribute="height" constant="18" id="kRE-cx-l0n"/>
                                     </constraints>
-                                </view>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="140" id="KcT-3w-3GG"/>
-                                <constraint firstItem="FDV-Um-Rb3" firstAttribute="centerY" secondItem="GRn-di-ROT" secondAttribute="centerY" id="aY4-0Q-84H"/>
-                                <constraint firstAttribute="width" constant="120" id="ex8-gD-0Zn"/>
-                                <constraint firstItem="FDV-Um-Rb3" firstAttribute="leading" secondItem="GRn-di-ROT" secondAttribute="leading" constant="20" id="mqy-MC-mFj"/>
-                                <constraint firstItem="FDV-Um-Rb3" firstAttribute="centerX" secondItem="GRn-di-ROT" secondAttribute="centerX" id="wxE-s5-NTa"/>
-                                <constraint firstAttribute="trailing" secondItem="FDV-Um-Rb3" secondAttribute="trailing" constant="20" id="z14-W9-IM9"/>
+                                <constraint firstItem="nBp-le-2sS" firstAttribute="centerX" secondItem="GRn-di-ROT" secondAttribute="centerX" id="N3n-bQ-Wq8"/>
+                                <constraint firstItem="nBp-le-2sS" firstAttribute="top" secondItem="GRn-di-ROT" secondAttribute="top" constant="61" id="NCP-EF-bOE"/>
+                                <constraint firstAttribute="width" constant="150" id="ex8-gD-0Zn"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分：10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-a1-0d0">
-                            <rect key="frame" x="8" y="185" width="304" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分：10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCE-a1-0d0" customClass="UICountingLabel">
+                            <rect key="frame" x="8" y="170" width="304" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -113,7 +93,7 @@
                         <constraint firstItem="lCE-a1-0d0" firstAttribute="leading" secondItem="yNc-XK-Kpp" secondAttribute="leading" constant="8" id="4IK-Tf-e14"/>
                         <constraint firstAttribute="bottom" secondItem="ctp-sB-72m" secondAttribute="bottom" id="FGR-Pc-nJ5"/>
                         <constraint firstAttribute="height" constant="261" id="Hwa-TK-eTf"/>
-                        <constraint firstItem="lCE-a1-0d0" firstAttribute="top" secondItem="GRn-di-ROT" secondAttribute="bottom" constant="5" id="Jgx-Tz-pgd"/>
+                        <constraint firstItem="lCE-a1-0d0" firstAttribute="top" secondItem="GRn-di-ROT" secondAttribute="bottom" constant="-10" id="Jgx-Tz-pgd"/>
                         <constraint firstItem="ByD-WK-MLe" firstAttribute="centerX" secondItem="yNc-XK-Kpp" secondAttribute="centerX" id="Kke-rG-RvA"/>
                         <constraint firstItem="ctp-sB-72m" firstAttribute="leading" secondItem="yNc-XK-Kpp" secondAttribute="leading" id="MrV-c6-Jdn"/>
                         <constraint firstItem="GRn-di-ROT" firstAttribute="centerX" secondItem="yNc-XK-Kpp" secondAttribute="centerX" id="NNy-I7-fKW"/>
@@ -121,7 +101,7 @@
                         <constraint firstItem="GRn-di-ROT" firstAttribute="top" secondItem="yNc-XK-Kpp" secondAttribute="top" constant="40" id="V7B-VB-zBs"/>
                         <constraint firstAttribute="trailing" secondItem="lCE-a1-0d0" secondAttribute="trailing" constant="8" id="bV2-eU-jOw"/>
                         <constraint firstItem="ctp-sB-72m" firstAttribute="top" secondItem="yNc-XK-Kpp" secondAttribute="top" id="kPh-9y-x8B"/>
-                        <constraint firstItem="ByD-WK-MLe" firstAttribute="top" secondItem="lCE-a1-0d0" secondAttribute="bottom" constant="5" id="wzM-aT-SMq"/>
+                        <constraint firstItem="ByD-WK-MLe" firstAttribute="top" secondItem="lCE-a1-0d0" secondAttribute="bottom" constant="20" id="wzM-aT-SMq"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EF4-6n-RB3">
@@ -140,7 +120,7 @@
                                 <constraint firstAttribute="height" constant="20" id="lYK-Pl-huj"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycg-WI-mfR">
@@ -170,7 +150,7 @@
                                 <constraint firstAttribute="height" constant="20" id="0pl-K4-Op8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SL-T1-8SF">
@@ -221,7 +201,7 @@
                                 <constraint firstAttribute="height" constant="20" id="Ef7-FR-cho"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAo-b0-tbs">

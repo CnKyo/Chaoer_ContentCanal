@@ -49,10 +49,10 @@
 - (void)loadData{
     
     
-    UIImage *img3 = [UIImage imageNamed:@"icon_activity"];
-    UIImage *img4 = [UIImage imageNamed:@"icon_redbag"];
-    UIImage *img5 = [UIImage imageNamed:@"icon_order"];
-    UIImage *img6 = [UIImage imageNamed:@"icon_rent"];
+    UIImage *img3 = [UIImage imageNamed:@"money_msg"];
+    UIImage *img4 = [UIImage imageNamed:@"community_msg"];
+    UIImage *img5 = [UIImage imageNamed:@"fix_msg"];
+    UIImage *img6 = [UIImage imageNamed:@"system_msg"];
     
     
     NSMutableDictionary *dic3 = [NSMutableDictionary new];

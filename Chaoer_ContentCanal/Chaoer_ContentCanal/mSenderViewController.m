@@ -12,6 +12,8 @@
 
 
 #import "senderDetailViewController.h"
+
+#import "evolutionViewController.h"
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
 
 @end
@@ -185,6 +187,8 @@
     senderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     [cell.mComfirBtn addTarget:self action:@selector(mComfirAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.mFinishBtn addTarget:self action:@selector(mfinishAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
 }
@@ -209,5 +213,13 @@
 
     mType = 2;
     [self.tableView reloadData];
+}
+
+- (void)mfinishAction:(UIButton *)sender{
+    
+    evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
+    [self pushViewController:eee];
+    
+
 }
 @end

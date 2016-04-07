@@ -57,9 +57,16 @@
 
     
     [self.view addSubview:mView];
-    CGFloat num = 123.4567;
-    [mView.mBalanceLb dd_setNumber:@(num) formatter:nil];
 
+    mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
+    mView.mBalanceLb.format = @"¥%.2f";
+    [mView.mBalanceLb countFrom:0 to:1002.13];
+    
+    
+    mView.mScore.method = UILabelCountingMethodEaseInOut;
+    mView.mScore.format = @"积分：%d";
+    [mView.mScore countFrom:0 to:10000];
+    
     
     self.circleProgressView = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(0, 0, mView.mBalanceView.mwidth, mView.mBalanceView.mheight)];
     self.circleProgressView.percent = 84.f;

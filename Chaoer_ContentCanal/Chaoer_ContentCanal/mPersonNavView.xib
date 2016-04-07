@@ -45,16 +45,30 @@
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlV-HQ-Gvt">
+                    <rect key="frame" x="285" y="30" width="15" height="15"/>
+                    <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="BVm-WY-O0N"/>
+                        <constraint firstAttribute="width" constant="15" id="J2S-lA-eck"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.8862745098" green="0.4549019608" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="xr0-gB-nnu" firstAttribute="centerY" secondItem="pec-2a-Kk2" secondAttribute="centerY" id="91u-h6-ZTk"/>
                 <constraint firstItem="pec-2a-Kk2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="Iwd-7K-jIh"/>
+                <constraint firstItem="NlV-HQ-Gvt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="KiC-OD-T32"/>
                 <constraint firstItem="xr0-gB-nnu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PVS-gh-v1v"/>
                 <constraint firstItem="xr0-gB-nnu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="SrC-Q5-Un7"/>
                 <constraint firstItem="pec-2a-Kk2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="TVr-7H-Pa5"/>
                 <constraint firstAttribute="trailing" secondItem="YaO-Ah-xgs" secondAttribute="trailing" constant="10" id="Uww-1i-BcK"/>
                 <constraint firstItem="YaO-Ah-xgs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="hhj-l8-Nfd"/>
+                <constraint firstItem="YaO-Ah-xgs" firstAttribute="leading" secondItem="NlV-HQ-Gvt" secondAttribute="trailing" constant="-18" id="vKZ-vf-trf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -64,10 +78,11 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="mBadge" destination="NlV-HQ-Gvt" id="bO0-vi-llp"/>
                 <outlet property="mMsgBtn" destination="YaO-Ah-xgs" id="bmR-YR-uEh"/>
                 <outlet property="mSetupBtn" destination="pec-2a-Kk2" id="KPT-Uf-Z4C"/>
             </connections>
-            <point key="canvasLocation" x="215" y="-43"/>
+            <point key="canvasLocation" x="81" y="296"/>
         </view>
     </objects>
     <resources>

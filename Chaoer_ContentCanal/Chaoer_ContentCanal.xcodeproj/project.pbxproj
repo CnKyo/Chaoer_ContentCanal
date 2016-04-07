@@ -35,6 +35,11 @@
 		04648C7A1CB51DD0006823C9 /* valleteHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C781CB51DD0006823C9 /* valleteHistoryViewController.xib */; };
 		04648C7E1CB51E88006823C9 /* valletTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04648C7C1CB51E88006823C9 /* valletTCell.m */; };
 		04648C7F1CB51E88006823C9 /* valletTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C7D1CB51E88006823C9 /* valletTCell.xib */; };
+		048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD82F1CB62EB600383DF8 /* UICountingLabel.m */; };
+		048FD8341CB63B6800383DF8 /* MovieAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8321CB63B6800383DF8 /* MovieAddComment.m */; };
+		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
+		048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8371CB642CD00383DF8 /* evolutionViewController.m */; };
+		048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8381CB642CD00383DF8 /* evolutionViewController.xib */; };
 		16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */; };
 		16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB81C3D13A400B9A850 /* AlipaySDK.framework */; };
 		16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB91C3D13A400B9A850 /* libcrypto.a */; };
@@ -553,6 +558,14 @@
 		04648C7B1CB51E88006823C9 /* valletTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valletTCell.h; sourceTree = "<group>"; };
 		04648C7C1CB51E88006823C9 /* valletTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = valletTCell.m; sourceTree = "<group>"; };
 		04648C7D1CB51E88006823C9 /* valletTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = valletTCell.xib; sourceTree = "<group>"; };
+		048FD82E1CB62EB600383DF8 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		048FD82F1CB62EB600383DF8 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		048FD8311CB63B6800383DF8 /* MovieAddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieAddComment.h; sourceTree = "<group>"; };
+		048FD8321CB63B6800383DF8 /* MovieAddComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieAddComment.m; sourceTree = "<group>"; };
+		048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieAddComment1.xib; sourceTree = "<group>"; };
+		048FD8361CB642CD00383DF8 /* evolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolutionViewController.h; sourceTree = "<group>"; };
+		048FD8371CB642CD00383DF8 /* evolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evolutionViewController.m; sourceTree = "<group>"; };
+		048FD8381CB642CD00383DF8 /* evolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evolutionViewController.xib; sourceTree = "<group>"; };
 		16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		16279CB81C3D13A400B9A850 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		16279CB91C3D13A400B9A850 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -1470,8 +1483,23 @@
 				04648C6F1CB50389006823C9 /* senderSubView.h */,
 				04648C701CB50389006823C9 /* senderSubView.m */,
 				04648C721CB50394006823C9 /* senderSubView.xib */,
+				048FD8361CB642CD00383DF8 /* evolutionViewController.h */,
+				048FD8371CB642CD00383DF8 /* evolutionViewController.m */,
+				048FD8381CB642CD00383DF8 /* evolutionViewController.xib */,
+				048FD8311CB63B6800383DF8 /* MovieAddComment.h */,
+				048FD8321CB63B6800383DF8 /* MovieAddComment.m */,
+				048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */,
 			);
 			name = "跑跑腿";
+			sourceTree = "<group>";
+		};
+		048FD82D1CB62EA400383DF8 /* scrollerLablr */ = {
+			isa = PBXGroup;
+			children = (
+				048FD82E1CB62EB600383DF8 /* UICountingLabel.h */,
+				048FD82F1CB62EB600383DF8 /* UICountingLabel.m */,
+			);
+			name = scrollerLablr;
 			sourceTree = "<group>";
 		};
 		16279CB61C3D13A400B9A850 /* alipay */ = {
@@ -2814,6 +2842,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				048FD82D1CB62EA400383DF8 /* scrollerLablr */,
 				31462CE61CB3B01F00E67836 /* LXCircle */,
 				317E46231CAD269800217C60 /* rongcloud */,
 				3182DA371CAB6B6500C217AE /* AMAP */,
@@ -3205,6 +3234,7 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 52WE57W932;
 					};
 					741B8DA31B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
@@ -3253,6 +3283,7 @@
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
+				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
@@ -3340,6 +3371,7 @@
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
+				048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */,
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
@@ -3418,6 +3450,7 @@
 				318D56661C9C012B0045B5FB /* MHSheetFoot.m in Sources */,
 				74DE206B1BCE527E003C03E7 /* changePhoneViewController.m in Sources */,
 				746BFC221BAFDA0C006AAEA6 /* changeNameViewController.m in Sources */,
+				048FD8341CB63B6800383DF8 /* MovieAddComment.m in Sources */,
 				749BE99A1B32756800BABCA6 /* IQKeyboardManager.m in Sources */,
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
 				044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */,
@@ -3434,6 +3467,7 @@
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
+				048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				310EB5EF1CA2499D005C61F4 /* UIView+Subviews.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -3490,6 +3524,7 @@
 				318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */,
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
 				7445C0931B33A39000F330EA /* UIViewExt.m in Sources */,
+				048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */,
 				749BE9681B3272E700BABCA6 /* MJRefreshHeaderView.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
@@ -3856,7 +3891,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = life.community;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3908,7 +3943,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = life.community;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

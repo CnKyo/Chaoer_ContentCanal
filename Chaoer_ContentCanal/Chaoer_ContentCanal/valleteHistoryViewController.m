@@ -88,7 +88,11 @@
     NSString *reuseCellId = @"cell";
     
     valletTCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    if (self.mType == 1) {
+        cell.mImf.image = [UIImage imageNamed:@"score_cell"];
+    }else{
+        cell.mImf.image = [UIImage imageNamed:@"topup_cell"];
+    }
     return cell;
     
 }

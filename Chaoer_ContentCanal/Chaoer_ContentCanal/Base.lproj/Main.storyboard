@@ -426,11 +426,11 @@
             </objects>
             <point key="canvasLocation" x="-72" y="-466"/>
         </scene>
-        <!--个人中心-->
+        <!--管家-->
         <scene sceneID="EBs-7f-ABj">
             <objects>
                 <navigationController id="5fB-JT-LjI" customClass="NavC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" image="personcenter_unselected" selectedImage="personcenter_selected" id="1Mq-tE-3a2"/>
+                    <tabBarItem key="tabBarItem" title="管家" image="personcenter_unselected" selectedImage="personcenter_selected" id="1Mq-tE-3a2"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vo7-Ha-f8q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

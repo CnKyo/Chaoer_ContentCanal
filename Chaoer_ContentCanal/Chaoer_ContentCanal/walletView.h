@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UICountingLabel.h"
 
 @interface walletView : UIView
 
@@ -17,12 +18,12 @@
 /**
  *  余额lb
  */
-@property (strong, nonatomic) IBOutlet UILabel *mBalanceLb;
+@property (strong, nonatomic) IBOutlet UICountingLabel *mBalanceLb;
 
 /**
  *  积分
  */
-@property (strong, nonatomic) IBOutlet UILabel *mScore;
+@property (strong, nonatomic) IBOutlet UICountingLabel *mScore;
 /**
  *  提现按钮
  */

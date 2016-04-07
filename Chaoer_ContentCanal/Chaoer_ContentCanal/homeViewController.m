@@ -147,11 +147,7 @@
             [SVProgressHUD showErrorWithStatus:eee];
             mNavView.mAddress.text = eee;
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-            
-            //            if (error.code == AMapLocatingErrorLocateFailed)
-            //            {
-            //                return;
-            //            }
+
         }
         
         NSLog(@"location:%@", location);
