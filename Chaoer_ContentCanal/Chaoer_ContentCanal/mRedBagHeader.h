@@ -22,5 +22,12 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mDEtail;
 
+/**
+ *  背景图
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
+
+
+
 + (mRedBagHeader *)shareView;
 @end

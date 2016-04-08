@@ -22,9 +22,10 @@
     
     
     view.mHeaderBtn.layer.masksToBounds = YES;
-    view.mHeaderBtn.layer.cornerRadius = view.mHeaderBtn.mwidth/2;
-    view.mHeaderBtn.layer.borderColor = M_CO.CGColor;
-    view.mHeaderBtn.layer.borderWidth = 10;
+    view.mHeaderBtn.layer.cornerRadius = 3;
+    view.mHeaderBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    view.mHeaderBtn.layer.borderWidth = 4;
+    
 
     return view;
 }

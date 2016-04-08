@@ -145,6 +145,8 @@
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [SVProgressHUD showErrorWithStatus:eee];
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+
             mNavView.mAddress.text = eee;
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
 
