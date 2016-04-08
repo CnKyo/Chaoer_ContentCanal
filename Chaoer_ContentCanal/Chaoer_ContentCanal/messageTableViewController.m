@@ -78,7 +78,6 @@
     
     
     msgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    cell.mLogo.image = [UIImage imageNamed:@"genery_msg"];
     return cell;
     
     

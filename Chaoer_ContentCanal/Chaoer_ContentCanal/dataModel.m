@@ -61,6 +61,30 @@
 }
 @end
 
+@implementation Ginfo
+
++ (void)getGinfo:(void (^)(mBaseData *))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mLoginId) forKey:@"loginId"];
+    [para setObject:[Util getAppVersion] forKey:@"appVersion"];
+    [para setObject:[Util getDeviceModel] forKey:@"mobileVersion"];
+    [para setObject:[Util getDeviceVersion] forKey:@"mobileSystem"];
+    [para setObject:[Util getDeviceUUID] forKey:@"imei"];
+    [para setObject:@"ios" forKey:@"type"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/login/loginlog" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+        }
+        
+        block (info);
+    }];
+    
+}
+
+@end
+
 @implementation mUserInfo
 
 static mUserInfo *g_user = nil;
@@ -106,7 +130,8 @@ bool g_bined = NO;
 - (void)fetchIt:(NSDictionary *)obj{
     
     
-    self.mR_msg = [obj objectForKeyMy:@"r_msg"];
+    self.mLoginId = [[obj objectForKeyMy:@"loginId"] intValue];
+    
     self.mNickName = [obj objectForKeyMy:@"nickName"];
     
     int mIdd =  [[obj objectForKeyMy:@"identity"] intValue];
@@ -120,7 +145,7 @@ bool g_bined = NO;
     self.mUserImgUrl = [obj objectForKeyMy:@"img"];
     self.mCredit = [[obj objectForKeyMy:@"cret"] intValue];
     self.mGrade = [[obj objectForKeyMy:@"grade"] intValue];
-    self.mMoney = [[obj objectForKeyMy:@"money"] intValue];
+    self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
     self.mUserId = [[obj objectForKeyMy:@"userId"] intValue];
     self.mSignature = [obj objectForKeyMy:@"signature"];
     
@@ -170,25 +195,25 @@ bool g_bined = NO;
 + (void)mUserRegist:(NSString *)mPhoneNum andCode:(NSString *)mCode andPwd:(NSString *)mPwd andIdentity:(NSString *)mId block:(void (^)(mBaseData *))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mPhoneNum forKey:@"loginName"];
+    [para setObject:mPhoneNum forKey:@"userName"];
     [para setObject:mCode forKey:@"verfyCode"];
-    [para setObject:mPwd forKey:@"password"];
+    [para setObject:mPwd forKey:@"passWord"];
     [para setObject:mId forKey:@"identity"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/regist.do" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
+    [[HTTPrequest sharedClient] postUrl:@"app/auth/register" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
         
             block (info);
         }else{
-            block (nil);
+            block (info);
         }
     }];
 }
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mLoginName forKey:@"loginName"];
-    [para setObject:mPwd forKey:@"password"];
+    [para setObject:mLoginName forKey:@"userName"];
+    [para setObject:mPwd forKey:@"passWord"];
     
-    [[HTTPrequest sharedClient] postUrl:@"zm/login/flogin.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
         [self dealUserSession:info andPhone:mLoginName block:block];
     }];
 }
@@ -223,7 +248,7 @@ bool g_bined = NO;
 {
     
 #warning 返回的数据是整个用户信息对象
-    if ( info.mData ) {
+    if ( info.mSucess ) {
         NSDictionary* tmpdic = info.mData;
         
         NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];

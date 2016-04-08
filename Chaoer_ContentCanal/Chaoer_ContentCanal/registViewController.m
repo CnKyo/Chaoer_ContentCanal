@@ -110,36 +110,34 @@
         [self.mPhone becomeFirstResponder];
         return;
     }
-    if (self.mCode.text == nil || [self.mCode.text isEqualToString:@""]) {
+    else if (self.mCode.text == nil || [self.mCode.text isEqualToString:@""]) {
         [self showErrorStatus:@"验证码不能为空"];
         [self.mCode becomeFirstResponder];
         return;
     }
-    if (self.mPwd.text != self.mComfirPwd.text) {
+   else if (self.mComfirPwd.text.length != self.mPwd.text.length) {
         [self showErrorStatus:@"2次输入密码不一致"];
         [self.mPwd becomeFirstResponder];
         return;
     }
-    if(self.mType == 1){
+    else if(self.mType == 1){
         if (!mIdentify.count) {
             [self showErrorStatus:@"请选择您的身份"];
             return;
         }
     }
-    [SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:mIdentify[0] block:^(mBaseData *resb) {
-        if (resb.mData) {
+        if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
-            int msg = [[resb.mData objectForKey:@"r_msg"] intValue];
-            
-            if (msg == 1) {
-                [self leftBtnTouched:nil];
-            }
+            self.block(self.mCode.text);
+
+            [self popViewController];
 
             
         }else{
-            [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
     }];
 

@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PK9-cR-oIW">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genery_msg" translatesAutoresizingMaskIntoConstraints="NO" id="PK9-cR-oIW">
                         <rect key="frame" x="15" y="12" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="cLb-nI-cOF"/>
@@ -66,5 +66,6 @@
     </objects>
     <resources>
         <image name="24" width="12" height="12"/>
+        <image name="genery_msg" width="60" height="60"/>
     </resources>
 </document>

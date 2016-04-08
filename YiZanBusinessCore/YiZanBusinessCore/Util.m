@@ -9,7 +9,7 @@
 #import "CustomDefine.h"
 #import "Util.h"
 #import <CommonCrypto/CommonDigest.h>
-
+#import "keyChain.h"
 
 @implementation Util
 
@@ -1090,6 +1090,44 @@
     }
     return tempArr[0];
 }
+
+
+
++ (NSString *)getDeviceModel{
+    
+    NSString* phoneModel = [[UIDevice currentDevice] model];
+
+    return phoneModel;
+}
+
++ (NSString *)getDeviceVersion{
+    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+    NSString* versionNum =[infoDict objectForKey:@"CFBundleVersion"];
+
+    return versionNum;
+}
+
++(NSString *)getDeviceUUID{
+    NSString * strUUID = (NSString *)[keyChain load:@"com.company.app.usernamepassword"];
+    
+    //首次执行该方法时，uuid为空
+    if ([strUUID isEqualToString:@""] || !strUUID)
+    {
+        //生成一个uuid的方法
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        
+        strUUID = (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        
+        //将该uuid保存到keychain
+        [keyChain save:KEY_USERNAME_PASSWORD data:strUUID];
+        
+    }
+    return strUUID;
+}
+
+
+
+
 @end
 
 

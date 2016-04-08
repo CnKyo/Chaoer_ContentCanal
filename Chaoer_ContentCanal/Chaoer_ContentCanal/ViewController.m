@@ -51,6 +51,9 @@
     mLoginView  *mLoginV;
     
     mCustomAlertView *mAlertView;
+    
+    
+    NSString    *mCodeStr;
 
 }
 
@@ -216,6 +219,10 @@
 - (void)registAction:(UIButton *)sender{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
     rrr.mType = 1;
+    rrr.block = ^(NSString *content){
+        
+        mCodeStr = content;
+    };
     [self pushViewController:rrr];
 }
 #pragma mark----登录
@@ -242,15 +249,16 @@
     [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
-        if ([mUser.mR_msg isEqualToString:@"1"]) {
+        
+        if (resb.mSucess) {
             [self loginOk];
             [SVProgressHUD showErrorWithStatus:@"登录成功"];
-        }else if ([mUser.mR_msg isEqualToString:@"101"])
-            [SVProgressHUD showErrorWithStatus:@"没有此用户!"];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
 
-        else{
-            [SVProgressHUD showErrorWithStatus:@"密码错误!"];
         }
+        
+        
     }];
 }
 #pragma  mark -----键盘消失

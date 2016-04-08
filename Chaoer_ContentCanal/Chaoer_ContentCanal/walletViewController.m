@@ -60,24 +60,34 @@
 
     mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
     mView.mBalanceLb.format = @"¥%.2f";
-    [mView.mBalanceLb countFrom:0 to:1002.13];
+    [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
     
     
     mView.mScore.method = UILabelCountingMethodEaseInOut;
     mView.mScore.format = @"积分：%d";
-    [mView.mScore countFrom:0 to:10000];
+    [mView.mScore countFrom:0 to:[mUserInfo backNowUser].mCredit];
+    
+    
+    CGFloat mLevel;
+    if ([mUserInfo backNowUser].mMoney <= 100) {
+        mLevel = [mUserInfo backNowUser].mMoney;
+    }else if ([mUserInfo backNowUser].mMoney >= 100){
+        mLevel = [mUserInfo backNowUser].mMoney*0.1;
+    }else if ([mUserInfo backNowUser].mMoney >= 1000){
+        mLevel = [mUserInfo backNowUser].mMoney*0.01;
+    }
     
     
     self.circleProgressView = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(0, 0, mView.mBalanceView.mwidth, mView.mBalanceView.mheight)];
-    self.circleProgressView.percent = 84.f;
+    self.circleProgressView.percent = mLevel;
     [mView.mBalanceView addSubview:self.circleProgressView];
     
     self.circleProgressView2 = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(8.f,8.f, mView.mBalanceView.mwidth-16, mView.mBalanceView.mheight-16)];
-    self.circleProgressView2.percent = 84.f;
+    self.circleProgressView2.percent = mLevel;
     [mView.mBalanceView addSubview:self.circleProgressView2];
     
     self.circleProgressView3 = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(10.f,10.f, mView.mBalanceView.mwidth-20, mView.mBalanceView.mheight-20)];
-    self.circleProgressView3.percent = 84.f;
+    self.circleProgressView3.percent = mLevel;
     [mView.mBalanceView addSubview:self.circleProgressView3];
 
     

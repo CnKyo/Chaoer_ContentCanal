@@ -66,7 +66,6 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.navBar.hidden = YES;
-
     mTempArr = [NSMutableArray new];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
@@ -81,6 +80,17 @@
     
 }
 
+- (void)appInit{
+
+    [Ginfo getGinfo:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            
+        }else{
+            
+        }
+    }];
+}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -89,7 +99,8 @@
 -(void)callBack{
     
     NSLog(@"this is Notification.");
-    
+    [self appInit];
+
     [self initview];
     
 }
@@ -174,7 +185,8 @@
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
         [GiFHUD dismiss];
         [self headerEndRefresh];
-        if (mBaner) {
+        [self removeEmptyView];
+        if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             [mTempArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
@@ -182,6 +194,7 @@
 
         }else{
             [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+            [self addEmptyView:nil];
         }
         
     }];

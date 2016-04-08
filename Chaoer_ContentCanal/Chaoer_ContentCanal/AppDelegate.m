@@ -151,15 +151,12 @@
 //    [SUser relTokenWithPush];
 //    
 //    
-//    [GInfo getGInfo:^(SResBase *resb, GInfo *gInfo) {
-//        
-//        if (resb.msuccess) {
+//    [Ginfo getGinfo:^(mBaseData *resb) {
+//        if (resb.mSucess) {
 //            
-//        }
-//        else{
+//        }else{
 //        
 //        }
-//        
 //    }];
     
     

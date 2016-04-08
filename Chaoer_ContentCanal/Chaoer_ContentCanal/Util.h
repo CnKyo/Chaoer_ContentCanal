@@ -144,7 +144,6 @@ typedef enum _RelDic
 //生成XML
 +(NSString*)makeXML:(NSDictionary*)param;
 
-+(NSString*)getAppVersion;
 
 +(int)gettopestV:(int)v;
 
@@ -188,9 +187,38 @@ typedef enum _RelDic
 #pragma mark----2个时间比较大小
 ///2个时间比较大小
 + (NSDate *)CompareTime:(NSString *)mTimeStr;
-
+/**
+ *  获取app名称
+ *
+ *  @return 返回字符串
+ */
 + (NSString *)getAPPName;
+
 + (NSString *)getAppSchemes;
+/**
+ *  获取app版本
+ *
+ *  @return 返回字符串
+ */
++(NSString*)getAppVersion;
 
 
+/**
+ *  获取设备型号
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getDeviceModel;
+/**
+ *  获取设备版本
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getDeviceVersion;
+/**
+ *  获取设备uuid
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getDeviceUUID;
 @end

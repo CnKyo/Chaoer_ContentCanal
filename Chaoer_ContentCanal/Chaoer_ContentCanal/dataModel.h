@@ -38,16 +38,50 @@
 +(mBaseData *)infoWithError:(NSString*)error;
 
 @end
+
+@interface Ginfo : NSObject
+/**
+ *  app版本
+ */
+@property (nonatomic,strong) NSString   *mAppVersion;
+/**
+ *  设备型号
+ */
+@property (nonatomic,strong) NSString   *mDeviceModel;
+/**
+ *  设备版本
+ */
+@property (nonatomic,strong) NSString   *mDeviceVersion;
+/**
+ *  udid
+ */
+@property (nonatomic,strong) NSString   *mUDID;
+/**
+ *  系统
+ */
+@property (nonatomic,strong) NSString   *mSystem;
+
++ (void)getGinfo:(void(^)(mBaseData *resb))block;
+
+@end
+
 @class SVerifyMsg;
 @class SFix;
 /**
  *  用户信息
  */
 @interface mUserInfo : NSObject
+
 /**
- *  返回信息
+ *  登陆id
  */
-@property (nonatomic,strong) NSString   *mR_msg;
+@property (assign,nonatomic)int mLoginId;
+
+/**
+ *  验证码
+ */
+@property (nonatomic,strong) NSString   *mVerifyCode;
+
 
 /**
  *  昵称
@@ -77,7 +111,7 @@
 /**
  *  用户余额
  */
-@property (nonatomic,assign) int        mMoney;
+@property (nonatomic,assign) CGFloat        mMoney;
 
 /**
  *  用户ID
