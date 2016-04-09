@@ -10,4 +10,6 @@
 
 @interface choiseServicerViewController : BaseVC
 
+@property (strong,nonatomic) mBaseData  *mData;
+
 @end

@@ -210,8 +210,10 @@
     
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:mSuperID andClassification:mClassID[0] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:nil andImg:mImgData block:^(mBaseData *resb) {
+        [SVProgressHUD dismiss];
         if (resb.mSucess) {
             choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+            ccc.mData = resb;
             [self pushViewController:ccc];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

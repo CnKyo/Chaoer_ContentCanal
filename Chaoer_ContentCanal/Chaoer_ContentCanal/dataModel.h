@@ -401,6 +401,19 @@
 + (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck;
 
 /**
+ *  获取服务人员列表
+ *
+ *  @param mAddress 地址
+ *  @param mLng     经度
+ *  @param mLat     纬度
+ *  @param mOne     一级分类
+ *  @param mTwo     二级分类
+ *  @param block    返回值
+ */
++ (void)getServiceName:(NSString *)mAddress andLng:(CGFloat)mLng andLat:(CGFloat)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block;
+
+
+/**
  *  获取维修订单页面数据
  *
  *  @param mOrderId 订单id

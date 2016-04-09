@@ -629,22 +629,49 @@ bool g_bined = NO;
     [para setObject:mRemark forKey:@"remarks"];
     [para setObject:mTime forKey:@"appointmentTime"];
     [para setObject:mPhone forKey:@"phone"];
-    [para setObject:@"cqasdas" forKey:@"address"];
+    [para setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
     [para setObject:mImgData forKey:@"img"];
 
-    
-    
-    [[HTTPrequest sharedClient] postUrlWithString:@"app/warrantyOrder/addRepairOrder" andFileName:mImgData andPara:para block:^(mBaseData *info) {
+
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
+        
         if (info.mSucess) {
-            
+            blck( info );
+
         }else{
             blck( info );
         }
+
+    
     }];
         
   
     
 }
++ (void)getServiceName:(NSString *)mAddress andLng:(CGFloat)mLng andLat:(CGFloat)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    if (mAddress) {
+        [para setObject:mAddress forKey:@"address"];
+        
+    }if (mLng) {
+        [para setObject:NumberWithFloat(mLng) forKey:@"lng"];
+        [para setObject:NumberWithFloat(mLat) forKey:@"lat"];
+    }
+    [para setObject:mOne forKey:@"classification1"];
+    [para setObject:mTwo forKey:@"classification2"];
+    [para setObject:@"0" forKey:@"isAuthentication"];
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/MerchantList" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+        }else{
+            
+        }
+    }];
+    
+}
+
 
 + (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];

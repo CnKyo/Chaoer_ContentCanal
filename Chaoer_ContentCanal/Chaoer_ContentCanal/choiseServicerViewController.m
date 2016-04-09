@@ -42,21 +42,23 @@
     iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
     [self.view addSubview:iii];
     
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0, 79, DEVICE_Width, DEVICE_Height-64);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-    mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:mTableView];
+    [self loadTableView:CGRectMake(0, 79, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor clearColor];
+
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    
+    self.haveHeader = YES;
+    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"choiseServicerTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
 }
+- (void)headerBeganRefresh{
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
