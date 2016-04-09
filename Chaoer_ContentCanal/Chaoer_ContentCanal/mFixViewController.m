@@ -41,21 +41,28 @@
     mFixView *mView;
     
     
-    ZJAlertListView *mHomeA;
     ZJAlertListView *mCleanA;
-    ZJAlertListView *mPipeA;
     
     NSMutableArray  *mArr;
-    
+    NSMutableArray  *mClassID;
+
     NSString    *mType;
 
     UIImage *tempImage;
+    
+    
+    
+    NSString *mSuperID;
+    
+    NSString    *mTime;
+    
 
+    NSData  *mImgData;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self loadData];
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -75,7 +82,8 @@
     [super viewDidLoad];
     
     mArr = [NSMutableArray new];
-    
+    mClassID = [NSMutableArray new];
+
     self.assets = @[];
 
     self.Title = self.mPageName = @"物业报修";
@@ -123,6 +131,12 @@
     
     
 }
+- (void)loadData{
+
+    mView.mPhone.text = [NSString stringWithFormat:@"电话：%@",[mUserInfo backNowUser].mPhone];
+    
+    
+}
 #pragma mark----图片按钮
 - (void)mImageAction:(UIButton *)sender{
     //1. 推荐使用XMNPhotoPicker 的单例
@@ -134,6 +148,9 @@
             return ;
         }
         NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
+        tempImage = [Util scaleImg:images[0] maxsize:5];
+        mImgData = UIImagePNGRepresentation(tempImage);
+        
         self.assets = [assets copy];
         
         [mView.mLeftBtn setBackgroundImage:images[0] forState:0];
@@ -173,10 +190,36 @@
 
 #pragma mark----预约按钮
 - (void)mMakeAction:(UIButton *)sender{
-
     
-    choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
-    [self pushViewController:ccc];
+    if (mClassID.count <= 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择服务类型"];
+        return;
+    }if (mView.mTxView.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入您的备注!"];
+        return;
+
+
+    }if (mTime.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择服务时间"];
+        return;
+
+    }if (tempImage == nil) {
+        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:mSuperID andClassification:mClassID[0] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:nil andImg:mImgData block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+            [self pushViewController:ccc];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+    
+
 }
 #pragma mark----时间选择
 - (void)mTimeAction:(UIButton *)sender{
@@ -200,7 +243,7 @@
     switch (type) {
         case DateTypeOfStart:
             [mView.mTimeBtn setTitle:[NSString stringWithFormat:@"选择时间:%@", date] forState:0];
-            
+            mTime = date;
             break;
 
             
@@ -215,71 +258,70 @@
 }
 #pragma mark----家电
 - (void)mHomeAction:(UIButton *)sender{
+    
+    mSuperID = @"1";
+    
     mType = sender.titleLabel.text;
-    mHomeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
-    mHomeA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
-    mHomeA.datasource = self;
-    mHomeA.delegate = self;
-    //点击确定的时候，调用它去做点事情
-    [mHomeA setDoneButtonWithBlock:^{
-        
-        NSLog(@"结果是：%@",mArr);
-        mView.mHiddenView.alpha = 1;
-        mView.mSelectedView.alpha = 0;
-        
-        [mView.mResultBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-        mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArr[0]];
-        [mHomeA dismiss];
-        
-    }];
-    [mHomeA show];
+
+    [self getData:sender.titleLabel.text];
+
 }
 #pragma mark----清洁
 - (void)mCleanAction:(UIButton *)sender{
-        mType = sender.titleLabel.text;
-    mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
-
-    mCleanA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
-    mCleanA.datasource = self;
-    mCleanA.delegate = self;
-    //点击确定的时候，调用它去做点事情
-    [mCleanA setDoneButtonWithBlock:^{
-        
-        NSLog(@"结果是：%@",mArr);
-
-        mView.mHiddenView.alpha = 1;
-        mView.mSelectedView.alpha = 0;
-        
-        [mView.mResultBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-        mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArr[0]];
-        [mCleanA dismiss];
-        
-    }];
-    [mCleanA show];
+    
+    mSuperID = @"2";
+    [self getData:sender.titleLabel.text];
+    mType = sender.titleLabel.text;
+   
 }
 #pragma mark----管道
 - (void)mPipeAction:(UIButton *)sender{
-        mType = sender.titleLabel.text;
-    mPipeA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
-    mPipeA.titleLabel.text = [NSString stringWithFormat:@"-%@-",sender.titleLabel.text];
-    mPipeA.datasource = self;
-    mPipeA.delegate = self;
-    //点击确定的时候，调用它去做点事情
-    [mPipeA setDoneButtonWithBlock:^{
-        
-        NSLog(@"结果是：%@",mArr);
-        mView.mHiddenView.alpha = 1;
-        mView.mSelectedView.alpha = 0;
-        
-        [mView.mResultBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-        mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArr[0]];
-        
-        [mPipeA dismiss];
-        
-    }];
-    [mPipeA show];
+    mSuperID = @"3";
+    mType = sender.titleLabel.text;
+    [self getData:sender.titleLabel.text];
+
 }
 
+/**
+ *  获取数据
+ *
+ *  @param mTitle 标签
+ */
+- (void)getData:(NSString *)mTitle{
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo getFixDetail:mSuperID andLevel:@"2" block:^(mBaseData *resb, NSArray *marr) {
+        [self.tempArray removeAllObjects];
+
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:@"加载成功!"];
+            [self.tempArray addObjectsFromArray:marr];
+            
+            mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
+            
+            mCleanA.titleLabel.text = mTitle;
+            mCleanA.datasource = self;
+            mCleanA.delegate = self;
+            //点击确定的时候，调用它去做点事情
+            [mCleanA setDoneButtonWithBlock:^{
+                
+                NSLog(@"结果是：%@",mArr);
+                
+                mView.mHiddenView.alpha = 1;
+                mView.mSelectedView.alpha = 0;
+                
+                [mView.mResultBtn setTitle:mTitle forState:UIControlStateNormal];
+                mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArr[0]];
+                [mCleanA dismiss];
+                
+            }];
+            [mCleanA show];
+
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"数据加载错误!"];
+        }
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -297,15 +339,7 @@
 #pragma mark -设置行数
 - (NSInteger)alertListTableView:(ZJAlertListView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == mHomeA) {
-        return 15;
-
-    }if (tableView == mCleanA) {
-        return 10;
-
-    }else{
-        return 5;
-    }
+    return self.tempArray.count;
 
 }
 
@@ -353,7 +387,10 @@
         cell.accessoryView = iii;
 
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"-%@---%ld---", mType,(long)indexPath.row];
+    
+    GFix *fix = self.tempArray[indexPath.row];
+    
+    cell.textLabel.text = fix.mClassName;
     return cell;
 }
 
@@ -375,6 +412,7 @@
 {
 
     [mArr removeAllObjects];
+    [mClassID removeAllObjects];
     self.selectedIndexPath = indexPath;
     UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
     cell.tintColor = M_CO;
@@ -387,7 +425,10 @@
         [cell.contentView addSubview:iii];
         cell.accessoryView = iii;
 //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [mArr addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+        GFix *fix = self.tempArray[indexPath.row];
+
+        [mArr addObject:fix.mClassName];
+        [mClassID addObject:NumberWithInt(fix.mId)];
         NSLog(@"选择了第:%ld行", (long)indexPath.row);
         NSLog(@"一共有%@",mArr);
     }else{

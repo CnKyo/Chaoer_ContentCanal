@@ -29,8 +29,8 @@
     self = [super init];
     if( self && obj != nil )
     {
+        self.mData = [obj objectForKeyMy:@"data"];
         [self fetchIt:obj];
-        self.mData = obj;
     }
     return self;
 
@@ -149,8 +149,8 @@ bool g_bined = NO;
     self.mUserId = [[obj objectForKeyMy:@"userId"] intValue];
     self.mSignature = [obj objectForKeyMy:@"signature"];
     
-    NSString    *sss = [obj objectForKeyMy:@"sex"];
-    if ([sss isEqualToString:@"m"]) {
+    int    sss = [[obj objectForKeyMy:@"sex"] intValue];
+    if (sss == 1) {
         self.mSex = @"男";
     }else{
         self.mSex = @"女";
@@ -494,12 +494,12 @@ bool g_bined = NO;
 }
 
 + (void)getBaner:(void (^)(mBaseData *, NSArray *))block{
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/getBanner.do" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/banner/getBanner" parameters:nil call:^(mBaseData *info) {
         NSMutableArray *temparr = [NSMutableArray new];
-        if (info.mData ) {
+        if (info.mSucess ) {
             
             for (NSDictionary *dic in info.mData) {
-                [temparr addObject:[[MBaner alloc] initWithObj:dic]];
+                [temparr addObject:[[MBaner alloc] initWithObj:[dic objectForKey:@"attrs"]]];
             }
             block (info,temparr);
             
@@ -584,7 +584,7 @@ bool g_bined = NO;
         if (info.mSucess ) {
             
             for (NSDictionary *dic in info.mData) {
-                [tempArr addObject:[[SFix alloc] initWithObj:dic]];
+                [tempArr addObject:[[GFix alloc] initWithObj:dic]];
 
                 block(info,tempArr);
             }
@@ -597,37 +597,52 @@ bool g_bined = NO;
     }];
 }
 
-+ (void)getFixDetail:(int)mUid block:(void(^)(mBaseData *resb))block{
++ (void)getFixDetail:(NSString *)mSuperiorId andLevel:(NSString *)mLevel block:(void(^)(mBaseData *resb,NSArray *marr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUid) forKey:@"uid"];
-    [[HTTPrequest sharedClient] postUrl:@"repair/repairBackUser.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:mSuperiorId forKey:@"superiorId"];
+    [para setObject:mLevel forKey:@"level"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/classify/getClassify" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GFix alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+            
         }else{
-        
+            block (info,nil);
+
         }
     }];
 }
 
-+ (void)commiteFixOrder:(int)mUid andLevel:(int)mLevel andClassification:(int)mClassification andRemark:(NSString *)mRemark andtime:(int)mTime andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))blck{
++ (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUid) forKey:@"uid"];
-    [para setObject:NumberWithInt(mLevel) forKey:@"classification1"];
-    [para setObject:NumberWithInt(mClassification) forKey:@"classification2"];
-    if (mRemark) {
-        [para setObject:mRemark forKey:@"remarks"];
-
-    }
-    [para setObject:NumberWithInt(mTime) forKey:@"appointmentTime"];
+    [para setObject:mUid forKey:@"uid"];
+    [para setObject:mLevel forKey:@"classification1"];
+    [para setObject:mClassification forKey:@"classification2"];
+    [para setObject:mRemark forKey:@"remarks"];
+    [para setObject:mTime forKey:@"appointmentTime"];
     [para setObject:mPhone forKey:@"phone"];
-    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/addRepairOrder.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:@"cqasdas" forKey:@"address"];
+    [para setObject:mImgData forKey:@"img"];
+
+    
+    
+    [[HTTPrequest sharedClient] postUrlWithString:@"app/warrantyOrder/addRepairOrder" andFileName:mImgData andPara:para block:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
-            
+            blck( info );
         }
     }];
+        
+  
     
 }
 
@@ -830,28 +845,6 @@ bool g_bined = NO;
 
 @end
 
-@implementation SFix
-
--(id)initWithObj:(NSDictionary*)obj{
-    self = [super init];
-    if( self )
-    {
-        [self fetch:obj];
-    }
-    return self;
-}
--(void)fetch:(NSDictionary*)obj
-{
-
-    self.mName = [obj objectForKeyMy:@"classificationName"];
-    self.mId = [[obj objectForKeyMy:@"Id"] intValue];
-    self.mSuperiorId = [[obj objectForKeyMy:@"superiorId"] intValue];
-    self.mLevel = [[obj objectForKeyMy:@"level"] intValue];
-    self.mtype = [[obj objectForKeyMy:@"type"] intValue];
-
-}
-
-@end
 @implementation SSellerList
 
 -(id)initWithObj:(NSDictionary*)obj{
@@ -888,8 +881,30 @@ bool g_bined = NO;
 {
     self.mImgUrl = [obj objectForKeyMy:@"img"];
     self.mContentUrl = [obj objectForKeyMy:@"url"];
-    self.mUUID = [obj objectForKeyMy:@"uuid"];
-    
+    self.mName = [obj objectForKeyMy:@"name"];
+    self.mB_index = [[obj objectForKeyMy:@"b_index"] intValue];
 }
+
+@end
+
+@implementation GFix
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mClassName = [obj objectForKeyMy:@"classificationName"];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mLevel = [[obj objectForKeyMy:@"level"] intValue];
+    self.mSuperID = [[obj objectForKeyMy:@"superiorId"] intValue];
+    self.mType = [[obj objectForKeyMy:@"type"] intValue];
+
+}
+
 
 @end

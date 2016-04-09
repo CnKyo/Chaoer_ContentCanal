@@ -66,7 +66,7 @@
 @end
 
 @class SVerifyMsg;
-@class SFix;
+@class GFix;
 /**
  *  用户信息
  */
@@ -383,19 +383,22 @@
  *
  *  @param block 返回值
  */
-+ (void)getFixDetail:(int)mUid block:(void(^)(mBaseData *resb))block;
++ (void)getFixDetail:(NSString *)mSuperiorId andLevel:(NSString *)mLevel block:(void(^)(mBaseData *resb,NSArray *marr))block;
+
 /**
- *  提交报修
+ *  提交保修
  *
  *  @param mUid            用户id
- *  @param mLevel          一级分类
- *  @param mClassification 二级分类
+ *  @param mLevel          1级分类
+ *  @param mClassification 2级分类
  *  @param mRemark         备注
- *  @param mTime           预约时间
- *  @param mPhone          预留电话
+ *  @param mTime           时间
+ *  @param mPhone          电话
+ *  @param mAddress        地址
+ *  @param mImg            图片
  *  @param blck            返回值
  */
-+ (void)commiteFixOrder:(int)mUid andLevel:(int)mLevel andClassification:(int)mClassification andRemark:(NSString *)mRemark andtime:(int)mTime andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))blck;
++ (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck;
 
 /**
  *  获取维修订单页面数据
@@ -562,36 +565,6 @@
 @property (nonatomic,assign)    int     cId;
 
 @end
-/**
- *  报修分类
- */
-@interface SFix : NSObject
-/**
- *  分类名
- */
-@property (nonatomic,strong)    NSString       *mName;
-/**
- *  分类id
- */
-@property (nonatomic,assign)    int       mId;
-/**
- *  上级分类
- */
-@property (nonatomic,assign)    int       mSuperiorId;
-/**
- *  级别？
- */
-@property (nonatomic,assign)    int       mLevel;
-/**
- *  类型
- */
-@property (nonatomic,assign)    int       mtype;
-
--(id)initWithObj:(NSDictionary*)obj;
-
-
-
-@end
 
 #pragma mark----商户列表
 @interface SSellerList : NSObject
@@ -633,10 +606,45 @@
  */
 @property (nonatomic,strong)    NSString       *mContentUrl;
 /**
- *  uuid    
+ *  title名称
  */
-@property (nonatomic,strong)    NSString       *mUUID;
+@property (nonatomic,strong)    NSString       *mName;
+/**
+ *  排序
+ */
+@property (assign,nonatomic) int    mB_index;
+
 
 -(id)initWithObj:(NSDictionary*)obj;
+
+@end
+/**
+ *  保修类
+ */
+@interface GFix : NSObject
+/**
+ *  分类名称
+ */
+@property (nonatomic,strong)    NSString       *mClassName;
+/**
+ *  分类id
+ */
+@property (assign,nonatomic) int    mId;
+/**
+ *  级别
+ */
+@property (assign,nonatomic) int    mLevel;
+/**
+ *  父类id
+ */
+@property (assign,nonatomic) int    mSuperID;
+/**
+ *  类型
+ */
+@property (assign,nonatomic) int    mType;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
 
 @end

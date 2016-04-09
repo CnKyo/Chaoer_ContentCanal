@@ -180,7 +180,7 @@
     [self loadAddress];
 
     [mTempArr removeAllObjects];
-//    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     [GiFHUD show];
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
         [GiFHUD dismiss];
@@ -428,7 +428,7 @@
         MBaner *banar = mTempArr[index];
         
         WebVC *w = [WebVC new];
-        w.mName = @"banar";
+        w.mName = banar.mName;
         w.mUrl = [NSString stringWithFormat:@"http://%@",banar.mContentUrl];
         [self pushViewController:w];
 

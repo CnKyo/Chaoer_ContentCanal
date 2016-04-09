@@ -221,4 +221,6 @@ typedef enum _RelDic
  *  @return 返回字符串
  */
 + (NSString *)getDeviceUUID;
+
+
 @end
