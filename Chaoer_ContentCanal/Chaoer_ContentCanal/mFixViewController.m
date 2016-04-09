@@ -203,10 +203,11 @@
         [SVProgressHUD showErrorWithStatus:@"请选择服务时间"];
         return;
 
-    }if (tempImage == nil) {
-        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
-        return;
     }
+//    if (tempImage == nil) {
+//        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
+//        return;
+//    }
     
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:mSuperID andClassification:mClassID[0] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:nil andImg:mImgData block:^(mBaseData *resb) {

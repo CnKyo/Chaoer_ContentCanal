@@ -42,7 +42,7 @@
     iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
     [self.view addSubview:iii];
     
-    [self loadTableView:CGRectMake(0, 79, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 79, DEVICE_Width, DEVICE_Height-79) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor clearColor];
 
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -57,7 +57,22 @@
     
 }
 - (void)headerBeganRefresh{
+    
+    NSString *address = [self.mData.mData objectForKey:@"address"];
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
+    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] block:^(mBaseData *resb, NSArray *marr) {
+        [SVProgressHUD dismiss];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self.tempArray addObjectsFromArray:marr];
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,7 +96,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return self.tempArray.count;
     
 }
 
@@ -95,14 +110,23 @@
 {
     NSString *reuseCellId = @"cell";
     
+    
+    SServicer *ss = self.tempArray[indexPath.row];
+    
     choiseServicerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    float x = 2.8;
-    cell.mRaitingView.numberOfStars = 5;
-    cell.mRaitingView.scorePercent = x/10;
-    cell.mRaitingView.allowIncompleteStar = YES;
-    cell.mRaitingView.hasAnimation = YES;
+    
+    cell.mName.text = ss.mMerchantName;
+    cell.mDistance.text  = ss.mDistance;
+    
+//    int x = ss.mPraiseRate;
+//    cell.mRaitingView.numberOfStars = 5;
+//    cell.mRaitingView.scorePercent = x/10;
+//    cell.mRaitingView.allowIncompleteStar = YES;
+//    cell.mRaitingView.hasAnimation = YES;
     
     [cell.mDoneBtn addTarget:self action:@selector(makeAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     
     return cell;

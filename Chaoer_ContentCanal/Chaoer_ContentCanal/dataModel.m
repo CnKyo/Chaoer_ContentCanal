@@ -630,7 +630,10 @@ bool g_bined = NO;
     [para setObject:mTime forKey:@"appointmentTime"];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
-    [para setObject:mImgData forKey:@"img"];
+    if (mImgData) {
+        [para setObject:mImgData forKey:@"img"];
+    }
+    
 
 
     [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
@@ -648,25 +651,33 @@ bool g_bined = NO;
   
     
 }
-+ (void)getServiceName:(NSString *)mAddress andLng:(CGFloat)mLng andLat:(CGFloat)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
++ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
 
     if (mAddress) {
         [para setObject:mAddress forKey:@"address"];
         
-    }if (mLng) {
-        [para setObject:NumberWithFloat(mLng) forKey:@"lng"];
-        [para setObject:NumberWithFloat(mLat) forKey:@"lat"];
+    }else {
+        [para setObject:mLng forKey:@"lng"];
+        [para setObject:mLat forKey:@"lat"];
     }
     [para setObject:mOne forKey:@"classification1"];
     [para setObject:mTwo forKey:@"classification2"];
-    [para setObject:@"0" forKey:@"isAuthentication"];
+    [para setObject:@"1" forKey:@"isAuthentication"];
     [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/MerchantList" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
-        }else{
+            NSMutableArray *tempArr = [NSMutableArray new];
             
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[SServicer alloc] initWithObj:dic]];
+            }
+            
+            block ( info,tempArr);
+            
+        }else{
+            block (info, nil );
         }
     }];
     
@@ -931,6 +942,34 @@ bool g_bined = NO;
     self.mSuperID = [[obj objectForKeyMy:@"superiorId"] intValue];
     self.mType = [[obj objectForKeyMy:@"type"] intValue];
 
+}
+
+
+@end
+
+@implementation SServicer
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mAddress = [obj objectForKeyMy:@"address"];
+    self.mDistance = [obj objectForKeyMy:@"distance"];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mMerchantName  = [obj objectForKeyMy:@"merchantName"];
+    self.mMerchantImage = [obj objectForKeyMy:@"merchantImage"];
+    self.mMerchantPhone = [obj objectForKeyMy:@"merchantPhone"];
+    self.mPraiseRate = [[obj objectForKeyMy:@"praiseRate"] intValue];
+
+    
+    
+    
 }
 
 

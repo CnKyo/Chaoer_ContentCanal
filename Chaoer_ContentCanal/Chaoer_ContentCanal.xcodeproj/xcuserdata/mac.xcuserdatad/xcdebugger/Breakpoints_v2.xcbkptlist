@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/mFixViewController.m"
-            timestampString = "481885136.153019"
+            timestampString = "481886899.622779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "728"
-            endingLineNumber = "728"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
             landmarkName = "-saveVideoWith:"
             landmarkType = "5">
          </BreakpointContent>
@@ -64,22 +64,6 @@
             startingLineNumber = "120"
             endingLineNumber = "120"
             landmarkName = "-postUrlWithString:andFileName:andPara:block:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "481885969.058037"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "666"
-            endingLineNumber = "666"
-            landmarkName = "+getServiceName:andLng:andLat:andOneLevel:andTwoLevel:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

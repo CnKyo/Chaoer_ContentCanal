@@ -67,6 +67,7 @@
 
 @class SVerifyMsg;
 @class GFix;
+@class SServicer;
 /**
  *  用户信息
  */
@@ -410,7 +411,7 @@
  *  @param mTwo     二级分类
  *  @param block    返回值
  */
-+ (void)getServiceName:(NSString *)mAddress andLng:(CGFloat)mLng andLat:(CGFloat)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block;
++ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block;
 
 
 /**
@@ -658,6 +659,45 @@
 
 
 -(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+/**
+ *  服务人员对象
+ */
+@interface SServicer : NSObject
+
+/**
+ *   地址
+ */
+@property (nonatomic,strong)    NSString       *mAddress;
+/**
+ *  距离
+ */
+@property (nonatomic,strong)    NSString       *mDistance;
+/**
+ *  头像
+ */
+@property (nonatomic,strong)    NSString       *mMerchantImage;
+/**
+ *  姓名
+ */
+@property (nonatomic,strong)    NSString       *mMerchantName;
+/**
+ *  电话
+ */
+@property (nonatomic,strong)    NSString       *mMerchantPhone;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int    mId;
+/**
+ *  评价
+ */
+@property (assign,nonatomic) int    mPraiseRate;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
 
 
 @end
