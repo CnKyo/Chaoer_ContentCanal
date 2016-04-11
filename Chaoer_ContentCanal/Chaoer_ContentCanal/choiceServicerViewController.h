@@ -10,4 +10,6 @@
 
 @interface choiceServicerViewController : BaseVC
 
+@property (strong,nonatomic) SServicer  *mS;
+
 @end

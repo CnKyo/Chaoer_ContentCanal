@@ -68,6 +68,7 @@
 @class SVerifyMsg;
 @class GFix;
 @class SServicer;
+@class GFixOrder;
 /**
  *  用户信息
  */
@@ -280,7 +281,7 @@
  *  @param mCityId 城市id默认是0
  *  @param block   返回值
  */
-+ (void)getCityId:(int)mCityId block:(void(^)(mBaseData *resb))block;
++ (void)getCityId:(int)mCityId block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 /**
  *  获得对应管理用户
  *
@@ -421,7 +422,7 @@
  *  @param mId      商户id
  *  @param block    返回值
  */
-+ (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb))block;
++ (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb,GFixOrder *mOrder))block;
 
 /**
  *  获取订单付款成功
@@ -456,6 +457,23 @@
  */
 - (void)getSellerMsg:(int)mOid andmId:(int)mId block:(void(^)(mBaseData *resb))block;
 
+
+/**
+ *  获取小区信息
+ *
+ *  @param mUserId 用户id
+ *  @param block   返回值
+ */
+- (void)getArear:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+
+/**
+ *  获取钱包
+ *
+ *  @param mUserID 用户id
+ *  @param block   返回值
+ */
+- (void)getWallete:(int)mUserID block:(void(^)(mBaseData *resb))block;
 
 /**
  *  打开推送
@@ -701,3 +719,86 @@
 
 
 @end
+
+@interface GFixOrder : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+/**
+ *  订单创建时间
+ */
+@property (nonatomic,strong)    NSString       *mAppointmentTime;
+/**
+ *  地址
+ */
+@property (nonatomic,strong)    NSString       *mBuyerAddress;
+/**
+ *  分类
+ */
+@property (nonatomic,strong)    NSString       *mClassificationName;
+/**
+ *  姓名
+ */
+@property (nonatomic,strong)    NSString       *mMerchantName;
+/**
+ *  备注
+ */
+@property (nonatomic,strong)    NSString       *mNote;
+/**
+ *  电话
+ */
+@property (nonatomic,strong)    NSString       *mPhone;
+/**
+ *  订单编号
+ */
+@property (nonatomic,strong)    NSString       *mOrderCode;
+/**
+ *  订单状态
+ */
+@property (assign,nonatomic) int    mStatus;
+/**
+ *  订单id
+ */
+@property (assign,nonatomic) int    mOrderId;
+
+
+@end
+
+
+@interface GArear : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  小区名称
+ */
+@property (nonatomic,strong)    NSString       *mAddress;
+/**
+ *  小区id
+ */
+@property (assign,nonatomic) int    mId;
+
+@end
+
+
+@interface GCity : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  城市,区县名称
+ */
+@property (nonatomic,strong)    NSString       *mAreaName;
+/**
+ *  城市id
+ */
+@property (assign,nonatomic) NSString    *mAreaId;
+/**
+ *  城市，区县父级ID(查询用得到)
+ */
+@property (assign,nonatomic) NSString    *mParentId;
+
+
+@end
+
+
+
+

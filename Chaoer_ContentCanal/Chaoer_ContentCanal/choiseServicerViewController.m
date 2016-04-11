@@ -117,12 +117,15 @@
     
     cell.mName.text = ss.mMerchantName;
     cell.mDistance.text  = ss.mDistance;
+    cell.mPhone.text = ss.mMerchantPhone;
     
-//    int x = ss.mPraiseRate;
-//    cell.mRaitingView.numberOfStars = 5;
-//    cell.mRaitingView.scorePercent = x/10;
-//    cell.mRaitingView.allowIncompleteStar = YES;
-//    cell.mRaitingView.hasAnimation = YES;
+    int x = ss.mPraiseRate;
+    cell.mRaitingView.numberOfStars = 5;
+    cell.mRaitingView.scorePercent = x/10;
+    cell.mRaitingView.allowIncompleteStar = YES;
+    cell.mRaitingView.hasAnimation = YES;
+    
+    cell.mDoneBtn.tag = ss.mId;
     
     [cell.mDoneBtn addTarget:self action:@selector(makeAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -138,15 +141,37 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    SServicer *ss = self.tempArray[indexPath.row];
+
     choiceServicerViewController *sss = [choiceServicerViewController new];
+    sss.mS = SServicer.new;
+    sss.mS = ss;
     [self pushViewController:sss];
 }
 #pragma mark----预约按钮
 - (void)makeAction:(UIButton *)sender{
 
-    makeServiceViewController *mmm = [[makeServiceViewController alloc] initWithNibName:@"makeServiceViewController" bundle:nil];
-    [self pushViewController:mmm
-     ];
+    [mUserInfo getFixOrderComfirm:[[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue] andmId:[[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue] block:^(mBaseData *resb, GFixOrder *mOrder) {
+
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            makeServiceViewController *mmm = [[makeServiceViewController alloc] initWithNibName:@"makeServiceViewController" bundle:nil];
+            mmm.mOrder = GFixOrder.new;
+            mmm.mOrder = mOrder;
+            mmm.mId = [[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue];
+            mmm.mOrderId = [[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue];
+            [self pushViewController:mmm
+             ];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+    
+    
+    
+    
+
     
 }
 

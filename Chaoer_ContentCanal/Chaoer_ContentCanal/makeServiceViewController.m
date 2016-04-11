@@ -48,6 +48,13 @@
     mView = [serviceDetailView shareOrderView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
+    mView.mServiceName.text = self.mOrder.mMerchantName;
+    mView.mClass.text = self.mOrder.mClassificationName;
+    mView.mAddress.text = self.mOrder.mBuyerAddress;
+    mView.mPhone.text = self.mOrder.mPhone;
+    mView.mServiceTime.text = self.mOrder.mAppointmentTime;
+    mView.mMoney.text = @"保证金";
+    
     float x = 2.8;
     mView.mRaitView.numberOfStars = 5;
     mView.mRaitView.scorePercent = x/10;
@@ -63,7 +70,7 @@
     mSubScrollerView.backgroundColor = [UIColor clearColor];
     [mView.mContentView addSubview:mSubScrollerView];
     
-    NSString *sss = @"周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊";
+    NSString *sss = self.mOrder.mNote;
     
     UILabel *mContent = [UILabel new];
     mContent.frame = CGRectMake(5, 5, mView.mContentView.mwidth-10, 20);
@@ -87,9 +94,24 @@
 
 - (void)okAction:(UIButton *)sender{
 
-    makeFixOrderDetailViewController *mmm = [[makeFixOrderDetailViewController alloc] initWithNibName:@"makeFixOrderDetailViewController" bundle:nil];
-    [self pushViewController:mmm];
-}
+    
+    
+    [mUserInfo getOrderPaySuccess:self.mId andOrderId:self.mOrderId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+
+//            makeFixOrderDetailViewController *mmm = [[makeFixOrderDetailViewController alloc] initWithNibName:@"makeFixOrderDetailViewController" bundle:nil];
+//            
+//            [self pushViewController:mmm];
+
+            [self popViewController_3];
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+  }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

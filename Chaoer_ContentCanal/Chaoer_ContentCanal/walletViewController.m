@@ -29,8 +29,11 @@
 {
     walletView *mView;
     
-    
+}
+- (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:YES];
+    [self loadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,8 +44,31 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
     self.navBar.hidden = YES;
+    [self loadData];
     [self initView];
+    
 }
+
+- (void)loadData{
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] getWallete:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
+            [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];
+            [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
+            
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+}
+
 - (void)initView{
 
     mView = [walletView shareView];

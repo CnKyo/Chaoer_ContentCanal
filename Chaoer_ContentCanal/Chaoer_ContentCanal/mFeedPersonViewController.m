@@ -14,7 +14,12 @@
 @end
 
 @implementation mFeedPersonViewController
-
+{
+    /**
+     *  1是小区 2是楼栋
+     */
+    int mType;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -56,23 +61,68 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)loadData{
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+
+    [[mUserInfo backNowUser] getArear:^(mBaseData *resb, NSArray *mArr) {
+        
+        [SVProgressHUD dismiss];
+        [self.tempArray removeAllObjects];
+        
+        if (resb.mSucess) {
+        
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            for (GArear *mArear in mArr) {
+                [self.tempArray addObject:mArear.mAddress];
+            }
+            [self loadMHActionSheetView];
+            
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+}
+
+
+- (void)loadMHActionSheetView{
+    
+    NSString *mTiele = nil;
+    
+    if (mType == 1) {
+        mTiele = @"请选择小区";
+    }else{
+        mTiele = @"请选择楼栋";
+    }
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:mTiele style:MHSheetStyleWeiChat itemTitles:self.tempArray];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
+//        [sender setTitle:text forState:UIControlStateSelected];
+        
+    }];
+
+}
+
 #pragma mark----提交按钮
 - (IBAction)mSubmitAction:(id)sender {
 
+
+    
 }
 #pragma mark----小区
 - (IBAction)mValiigeAction:(UIButton *)sender {
+    mType = 1;
     sender.selected = !sender.selected;
     if (sender.selected) {
-        
-        MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-        actionSheet.cancleTitle = @"取消选择";
-        
-        [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-            NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-            [sender setTitle:text forState:UIControlStateSelected];
-            
-        }];
+        [self loadData];
         
     }else{
         sender.selected = NO;
@@ -82,6 +132,8 @@
 }
 #pragma mark----楼栋
 - (IBAction)mBuildAction:(UIButton *)sender {
+    mType = 2;
+
     sender.selected = !sender.selected;
 //    [self showBuildView:sender.selected];
     if (sender.selected) {

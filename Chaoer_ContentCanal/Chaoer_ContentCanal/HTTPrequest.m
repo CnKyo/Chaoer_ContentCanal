@@ -82,50 +82,13 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
 
 - (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback{
     NSLog(@"请求地址：%@-------请求参数：%@",urlString,para);
-    NSString *urlStri = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString];
-    NSURLRequest *request = [[HTTPrequest sharedClient].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:urlStri parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
-        // 要解决此问题，
-        // 可以在上传时使用当前的系统事件作为文件名
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        // 设置时间格式
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *str = [formatter stringFromDate:[NSDate date]];
-        NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-        if (mFileName) {
-            [formData appendPartWithFileData:mFileName name:@"file" fileName:fileName mimeType:@"image/png"];
-
-        }
-        
-    } error:nil];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperation *op = [[HTTPrequest sharedClient]HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
-        
-        mBaseData   *retob = [[mBaseData alloc]initWithObj:responseObject];
-        
-        if( retob.mState == 400301 )
-        {//需要登陆
-            id oneid = [UIApplication sharedApplication].delegate;
-            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
-        }
-        callback(  retob );
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
-        NSLog(@"request的url是：%@",request.URL);
-        callback( [mBaseData infoWithError:@"网络请求错误"] );
-    }];
-    
-    [op start];
+  
+  
+   
 }
 
 + (NSString *)returnNowURL{
-    return @"http://192.168.1.130:8080/zm";
+    return kAFAppDotNetAPIBaseURLString;
 }
 
 @end

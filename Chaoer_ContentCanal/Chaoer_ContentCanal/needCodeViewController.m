@@ -21,6 +21,12 @@
     
     needCodeView    *mView;
     
+    int mCityId;
+    
+    int mArearId;
+    
+    int mType;
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -49,6 +55,8 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    mType = 1;
+    
     [self initview];
 }
 - (void)initview{
@@ -88,47 +96,117 @@
     
 }
 
-- (void)cityAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
+
+- (void)loadData{
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    if (mType == 3) {
+        
+        [mUserInfo getArearId:mArearId andProvince:mCityId block:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+
+            }
+        }];
+        
+    }else{
+        [mUserInfo getCityId:mCityId block:^(mBaseData *resb, NSArray *mArr) {
+            [SVProgressHUD dismiss];
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self loadMHActionSheetView];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+            
+        }];
+    }
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择城市" style:MHSheetStyleWeiChat itemTitles:@[@"重庆",@"成都",@"西安",@"贵阳",@"长沙",@"广州",@"福州",@"淄博",@"郴州"]];
+    
+}
+
+- (void)loadMHActionSheetView{
+    
+    NSString *mTt = nil;
+    
+    if (mType == 1) {
+        mTt = @"选择城市";
+    }else if (mType == 2){
+    
+        mTt = @"选择市区";
+    }else{
+        mTt = @"选择物管公司";
+    }
+    
+    
+    NSMutableArray  *Arrtemp = [NSMutableArray new];
+    
+    for (GCity *city in self.tempArray) {
+        [Arrtemp addObject:city.mAreaName];
+    }
+
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:mTt style:MHSheetStyleWeiChat itemTitles:Arrtemp];
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"%@", title];
-        mView.mCityLb.text = text;
+        
+        GCity *city = self.tempArray[index];
+        
+        NSString *text = [NSString stringWithFormat:@"%@", city.mAreaName];
+        mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
+        
+        if (mType == 1) {
+            mView.mCityLb.text = text;
+        }else if (mType == 2){
+            
+            mView.mArearLb.text = text;
+            mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
+
+        }else{
+            mView.mCanalLb.text = text;
+        }
+        
+        
     }];
-    
- 
+}
+- (void)cityAction:(UIButton *)sender{
+    if (mView.mNameTx.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入您的名称！"];
+        [mView.mNameTx becomeFirstResponder];
+        return;
+    }
+    sender.selected = !sender.selected;
+    mType = 1;
+    mCityId = 0;
+    [self loadData];
 
 }
 - (void)arearAction:(UIButton *)sender{
+    if (mCityId == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
+        return;
+    }
     sender.selected = !sender.selected;
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择市区" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-        mView.mArearLb.text = text;
-        
-    }];
-    
+    mType = 2;
+    [self loadData];
+
 
 
 }
 - (void)canalAction:(UIButton *)sender{
+    if (mType == 1) {
+        [SVProgressHUD showErrorWithStatus:@"请选择区县!"];
+        return;
+    }
     sender.selected = !sender.selected;
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择物管公司" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-        mView.mCanalLb.text = text;
-        
-    }];
-
+    mType = 3;
+    [self loadData];
 
 }
 - (void)communityAction:(UIButton *)sender{

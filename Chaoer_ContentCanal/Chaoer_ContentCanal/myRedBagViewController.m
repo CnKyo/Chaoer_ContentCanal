@@ -81,9 +81,12 @@
 //    }];
 //    [self.view addSubview:secondSwitch];
 
+    UIView *vvv= [UIView new];
+    vvv.frame = CGRectMake(0, 164, DEVICE_Width, 1);
+    vvv.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
+    [self.view addSubview:vvv];
     
-    
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 164, DEVICE_Width, 40) andTitleWithBtn:@[@"收到的红包", @"发出的红包"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:70 delegate:self andIsHiddenLine:NO];
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收到的红包", @"发出的红包"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:70 delegate:self andIsHiddenLine:NO];
     
     [self.view addSubview:mSegmentView];
     
@@ -166,7 +169,7 @@
     NSString *reuseCellId = @"cell";
     
     redBagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+
     
     return cell;
     

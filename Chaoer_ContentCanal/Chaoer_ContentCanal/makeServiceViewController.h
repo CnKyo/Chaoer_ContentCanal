@@ -10,4 +10,11 @@
 
 @interface makeServiceViewController : BaseVC
 
+
+@property (strong,nonatomic) GFixOrder  *mOrder;
+
+@property (assign,nonatomic) int mId;
+
+@property (assign,nonatomic) int mOrderId;
+
 @end

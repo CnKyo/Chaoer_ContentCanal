@@ -76,21 +76,41 @@
 #pragma mark----加载数据
 - (void)loadData{
     
-    NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
-    NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
+    
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] getWallete:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
+            [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];
+            [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
+            
+            NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
+            NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
+            
+            mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
+            mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
+            
+            
+            
+            NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+            
+            
+            [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+            mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
+            mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
+            mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+            
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
 
-    mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
-    mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
-    
-
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
-    
-    
-    [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
-    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
-    mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
-    mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+   
 
     
 }
@@ -253,7 +273,11 @@
     cell.mTitle.text = [dic objectForKey:@"name"];
     cell.mImg.image = [dic objectForKey:@"img"];
     if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
-        cell.mDetail.hidden = NO;
+        if ([mUserInfo backNowUser].mIsRegist) {
+            cell.mDetail.hidden = YES;
+        }else{
+            cell.mDetail.hidden = NO;
+        }
         
     }else{
         cell.mDetail.hidden = YES;

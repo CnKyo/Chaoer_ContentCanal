@@ -420,22 +420,39 @@ bool g_bined = NO;
 
 
 
-+ (void)getCityId:(int)mCityId block:(void (^)(mBaseData *))block{
++ (void)getCityId:(int)mCityId block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCityId) forKey:@"parentId"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/website.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/city/appWebSite" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
-        }else{
+            NSMutableArray *tempArr = [NSMutableArray new];
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCity alloc] initWithObj:dic]];
+            }
             
+            block ( info ,tempArr );
+            
+        }else{
+            block ( info ,nil );
         }
     }];
 }
 
 + (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mCityId) forKey:@"city"];
-    [para setObject:NumberWithInt(mProvince) forKey:@"province"];
+    [para setObject:NumberWithInt(mCityId) forKey:@"cityId"];
+    [para setObject:NumberWithInt(mProvince) forKey:@"areaId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/zocompany/appZocompany" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+    }];
 }
 
 + (void)getBuildId:(int)mCId block:(void (^)(mBaseData *))block{
@@ -619,7 +636,7 @@ bool g_bined = NO;
         }
     }];
 }
-
+#pragma mark－－－－提交保修表单
 + (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -630,25 +647,42 @@ bool g_bined = NO;
     [para setObject:mTime forKey:@"appointmentTime"];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
+    
     if (mImgData) {
-        [para setObject:mImgData forKey:@"img"];
+        AFHTTPSessionManager *session = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HTTPrequest returnNowURL]]];
+        
+        [session POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+            
+            NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
+            [formData appendPartWithFileData:mImgData name:@"img" fileName:fileName mimeType:@"image/png"];
+            
+            
+        } success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@ˆ",responseObject);
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"%@",error);
+            
+        }];
+
+    }else{
+        [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
+            if (info.mSucess) {
+                
+                
+                blck (info);
+                
+            }else{
+                blck (info );
+                
+            }
+        }];
     }
     
-
-
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
-        
-        if (info.mSucess) {
-            blck( info );
-
-        }else{
-            blck( info );
-        }
-
-    
-    }];
-        
-  
     
 }
 + (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
@@ -684,15 +718,16 @@ bool g_bined = NO;
 }
 
 
-+ (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb))block{
++ (void)getFixOrderComfirm:(int)mOrderId andmId:(int)mId block:(void(^)(mBaseData *resb,GFixOrder *mOrder))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
     [para setObject:NumberWithInt(mId) forKey:@"mId"];
-    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/getOrderWgt.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/getPreOrder" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
-            
+
+            block ( info ,[[GFixOrder alloc] initWithObj:info.mData]);
         }else{
-            
+            block ( info ,nil);
         }
     }];
 }
@@ -702,13 +737,13 @@ bool g_bined = NO;
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
-    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mUserId) forKey:@"mId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/getOrderWgtPay.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/reserve" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
-            
+            block (info);
         }else{
-            
+            block (info);
         }
     }];
     
@@ -768,6 +803,44 @@ bool g_bined = NO;
     }];
 
 
+}
+
+
+- (void)getArear:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/getCommunity" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GArear alloc] initWithObj:dic]];
+            }
+            block ( info,tempArr );
+            
+        }else{
+            block ( info,nil );
+        }
+    }];
+
+    
+}
+
+- (void)getWallete:(int)mUserID block:(void (^)(mBaseData *))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/wallet/walletInfo" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+    }];
 }
 
 
@@ -960,7 +1033,13 @@ bool g_bined = NO;
 -(void)fetch:(NSDictionary*)obj
 {
     self.mAddress = [obj objectForKeyMy:@"address"];
-    self.mDistance = [obj objectForKeyMy:@"distance"];
+    
+    float distance = [[obj objectForKeyMy:@"distance"] floatValue];
+    
+    
+    
+    self.mDistance = [NSString stringWithFormat:@"%.2fkm",distance/1000];
+    
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     self.mMerchantName  = [obj objectForKeyMy:@"merchantName"];
     self.mMerchantImage = [obj objectForKeyMy:@"merchantImage"];
@@ -972,5 +1051,76 @@ bool g_bined = NO;
     
 }
 
+
+@end
+
+@implementation GFixOrder
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mAppointmentTime = [obj objectForKeyMy:@"appointmentTime"];
+    self.mBuyerAddress = [obj objectForKeyMy:@"buyerAddress"];
+    self.mClassificationName = [obj objectForKeyMy:@"classificationName"];
+    self.mMerchantName = [obj objectForKeyMy:@"merchantName"];
+    self.mNote = [obj objectForKeyMy:@"note"];
+    self.mOrderId = [[obj objectForKeyMy:@"orderId"] intValue];
+    self.mOrderCode = [obj objectForKeyMy:@"orderCode"];
+    self.mStatus = [[obj objectForKeyMy:@"status"] intValue];
+    self.mPhone = [obj objectForKeyMy:@"phone"];
+
+    
+}
+
+@end
+
+@implementation GArear
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mAddress = [obj objectForKeyMy:@"address"];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+
+    
+}
+
+@end
+
+@implementation GCity
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mAreaName = [obj objectForKeyMy:@"areaName"];
+    self.mAreaId = [obj objectForKeyMy:@"areaId"];
+    self.mParentId = [obj objectForKeyMy:@"parentId"];
+
+    
+}
 
 @end

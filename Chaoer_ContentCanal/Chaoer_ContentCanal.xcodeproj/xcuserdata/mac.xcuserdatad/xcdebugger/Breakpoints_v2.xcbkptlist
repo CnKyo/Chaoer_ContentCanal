@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/mFixViewController.m"
-            timestampString = "481886899.622779"
+            timestampString = "482034590.748165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "730"
+            endingLineNumber = "730"
             landmarkName = "-saveVideoWith:"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/HTTPrequest.m"
-            timestampString = "481883735.231598"
+            filePath = "Chaoer_ContentCanal/mFeedPersonViewController.m"
+            timestampString = "482049641.12972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-postUrlWithString:andFileName:andPara:block:"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-loadData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,29 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/HTTPrequest.m"
-            timestampString = "481883735.231598"
+            filePath = "Chaoer_ContentCanal/dataModel.m"
+            timestampString = "482053922.26164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-postUrlWithString:andFileName:andPara:block:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/HTTPrequest.m"
-            timestampString = "481883735.231598"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-postUrlWithString:andFileName:andPara:block:"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "+getArearId:andProvince:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,7 +10,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFURLResponseSerialization.h"
 #import "dataModel.h"
-
+#import "AFNetworking.h"
 
 @class mBaseData;
 

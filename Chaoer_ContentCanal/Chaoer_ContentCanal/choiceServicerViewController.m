@@ -39,7 +39,15 @@
     mView = [serviceDetailView shareView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
-    float x = 2.8;
+    
+    
+    mView.mName.text = self.mS.mMerchantName;
+    mView.mPhpone.text  = self.mS.mMerchantPhone;
+    
+    mView.mPrice.text = @"暂无";
+    mView.mCompany.text = @"暂无";
+    
+    float x = self.mS.mPraiseRate;
     mView.mRaitView.numberOfStars = 5;
     mView.mRaitView.scorePercent = x/10;
     mView.mRaitView.allowIncompleteStar = YES;
