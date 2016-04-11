@@ -439,7 +439,7 @@ bool g_bined = NO;
     }];
 }
 
-+ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void (^)(mBaseData *))block{
++ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCityId) forKey:@"cityId"];
     [para setObject:NumberWithInt(mProvince) forKey:@"areaId"];
@@ -447,13 +447,21 @@ bool g_bined = NO;
     [[HTTPrequest sharedClient] postUrl:@"app/zocompany/appZocompany" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
-            block ( info );
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCommunity alloc] initWithObj:dic]];
+            }
+            
+            block ( info ,tempArr);
             
         }else{
-            block ( info );
+            block ( info ,nil);
         }
     }];
 }
+
+
 
 + (void)getBuildId:(int)mCId block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -467,30 +475,45 @@ bool g_bined = NO;
     }];
 }
 
-+ (void)getBuilNum:(NSString *)mName block:(void (^)(mBaseData *))block{
++ (void)getBuilNum:(int)mId block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mName forKey:@"name"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/building.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithInt(mId) forKey:@"propertyId"];
+    [[HTTPrequest sharedClient] postUrl:@"app/house/appHouseList" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
+            NSMutableArray *tempArr = [NSMutableArray new];
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[dic objectForKey:@"ban"]];
+            }
+            
+            block ( info , tempArr);
             
         }else{
-            
+            block ( info , nil);
         }
     }];
 }
 
-+ (void)getDoorNum:(NSString *)mName andBuildName:(NSString *)mBuildName block:(void (^)(mBaseData *))block{
++ (void)getDoorNum:(int )mName andBuildName:(int)mBuildName block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mName forKey:@"villageName"];
-    [para setObject:mBuildName forKey:@"buildName"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/buildNumber.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithInt(mName) forKey:@"propertyId"];
+    [para setObject:NumberWithInt(mBuildName) forKey:@"unitNum"];
+    [[HTTPrequest sharedClient] postUrl:@"app/house/appHouseUnit" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
-        
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                
+                [tempArr addObject:[[GdoorNum alloc] initWithObj:dic]];
+                
+            }
+            
+            block (info,tempArr);
 
             
         }else{
-            
+            block (info,nil);
         }
     }];
 }
@@ -509,6 +532,155 @@ bool g_bined = NO;
         }
     }];
 }
+
+
++ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    if (mName) {
+        [para setObject:mName forKey:@"userName"];
+    }
+    
+    [para setObject:NumberWithInt(mUserid) forKey:@"userId"];
+    [para setObject:NumberWithInt(mCommunityId) forKey:@"propertyId"];
+    [para setObject:NumberWithInt(mBannum) forKey:@"banNum"];
+    [para setObject:NumberWithInt(mUnitNum) forKey:@"unitNum"];
+    [para setObject:NumberWithInt(mFloor) forKey:@"floorNum"];
+    [para setObject:NumberWithInt(mDoorNum) forKey:@"roomNum"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/house/appBindHouse" parameters:para call:^(mBaseData *info) {
+        if (info.mData) {
+            
+            block( info);
+        }else{
+            block( info);
+            
+        }
+    }];
+    
+
+    
+    
+    
+}
+
+
+
+
++ (void)getbank:(void(^)(mBaseData *resb,NSArray *marr))block
+{    
+    [[HTTPrequest sharedClient] postUrl:@"app/bank/appBankList?&paramName=bankname" parameters:nil call:^(mBaseData *info) {
+        if (info.mData) {
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[dic objectForKey:@"bankname"]];
+            }
+            
+            block( info,tempArr);
+        }else{
+            block( info,nil);
+            
+        }
+    }];
+    
+    
+
+}
+
++ (void)getBankOfCity:(NSString *)mCity andProvince:(NSString *)mProvince andBankName:(NSString *)mName andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *marr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    NSString *url = @"app/bank/appBankList";
+    
+   if (mType ==2){
+       url = @"app/bank/appBankList?&paramName=province";
+       
+    }else if (mType ==3){
+        url = @"app/bank/appBankList?&paramName=province&";
+        
+        [para setObject:mCity forKey:@"province"];
+        
+    }else if (mType == 4){
+        url = @"app/bank/appBankList?&paramName=name&";
+        [para setObject:mProvince forKey:@"city"];
+        [para setObject:mCity forKey:@"province"];
+        [para setObject:mName forKey:@"bankname"];
+
+    }
+    
+    
+    [[HTTPrequest sharedClient] postUrl:url parameters:para call:^(mBaseData *info) {
+
+        if (info.mData) {
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            
+            if (mType == 3) {
+                for (NSDictionary *dic in info.mData) {
+                    
+                    [tempArr addObject:[dic objectForKey:@"province"]];
+                }
+                
+            }else if(mType ==4){
+                
+                [tempArr addObjectsFromArray:info.mData];
+            }else{
+                for (NSDictionary *dic in info.mData) {
+                    
+                    [tempArr addObject:[dic objectForKey:@"province"]];
+                }
+            }
+            
+            
+            
+            block( info,tempArr);
+        }else{
+            block( info,nil);
+            
+        }
+    }];
+}
+
+
+
++ (void)geBankCode:(NSString *)mName andUserId:(int)mUserId andIdentify:(NSString *)mIdentify andBankName:(NSString *)mBankName andProvince:(NSString *)mProvince andCity:(NSString *)mCity andPoint:(NSString *)mPoint andBankCard:(NSString *)mCard andBankCode:(NSString *)mBankCode block:(void(^)(mBaseData *resb))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:mName forKey:@"name"];
+    [para setObject:mIdentify forKey:@"card"];
+    [para setObject:mBankName forKey:@"bankName"];
+    [para setObject:mProvince forKey:@"bankProvince"];
+    [para setObject:mCity forKey:@"bankCity"];
+    [para setObject:mPoint forKey:@"bankWebSite"];
+    [para setObject:mCard forKey:@"bankCard"];
+    
+    [para setObject:mBankCode forKey:@"bankCode"];
+
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/epos/realVerify/appRealNameVerify" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess ) {
+            
+            block (info);
+            
+        }else{
+            block (info);
+        }
+    }];
+
+    
+    
+    
+    
+}
+
+
+
 
 + (void)getBaner:(void (^)(mBaseData *, NSArray *))block{
     [[HTTPrequest sharedClient] postUrl:@"app/banner/getBanner" parameters:nil call:^(mBaseData *info) {
@@ -1120,6 +1292,50 @@ bool g_bined = NO;
     self.mAreaId = [obj objectForKeyMy:@"areaId"];
     self.mParentId = [obj objectForKeyMy:@"parentId"];
 
+    
+}
+
+@end
+
+@implementation  GCommunity
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mCommunityName = [obj objectForKeyMy:@"communityName"];
+    self.mPropertyId = [obj objectForKeyMy:@"propertyId"];
+
+    
+}
+
+@end
+
+@implementation GdoorNum
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mFloor = [[obj objectForKeyMy:@"floor"] intValue];
+    self.mRoomNumber = [[obj objectForKeyMy:@"roomNumber"] intValue];
+    self.mUnit = [[obj objectForKeyMy:@"unit"] intValue];
+
+    
     
 }
 

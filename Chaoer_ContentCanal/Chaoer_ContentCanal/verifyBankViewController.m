@@ -17,8 +17,24 @@
 {
     UIScrollView *mScrollerView;
     
+    
+    NSMutableArray *mArray;
+    
     needCodeView    *mView;
     
+    int mType;
+    
+    
+    NSString    *mProvince;
+    
+    NSString    *mCity;
+    
+    NSString    *mBankName;
+    
+    NSString *mPoint;
+
+    NSString *mBankCode;
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -47,6 +63,9 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    mArray = [NSMutableArray new];
+    
     [self initview];
 }
 - (void)initview{
@@ -86,58 +105,162 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)bankNameAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
+
+
+- (void)loadData{
+
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择城市" style:MHSheetStyleWeiChat itemTitles:@[@"重庆",@"成都",@"西安",@"贵阳",@"长沙",@"广州",@"福州",@"淄博",@"郴州"]];
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    
+    if (mType == 1) {
+        [mUserInfo getbank:^(mBaseData *resb, NSArray *marr) {
+            
+            [SVProgressHUD dismiss];
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                
+                [self.tempArray addObjectsFromArray:marr];
+                [self loadMHActionSheetView];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+            
+            
+        }];
+    }else {
+    
+        [mUserInfo getBankOfCity:mProvince andProvince:mCity andBankName:mBankName andType:mType block:^(mBaseData *resb, NSArray *marr) {
+            
+            [SVProgressHUD dismiss];
+            [self.tempArray removeAllObjects];
+            [mArray removeAllObjects];
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                
+                if (mType == 4) {
+                    [mArray addObjectsFromArray:marr];
+                }else{
+                    [self.tempArray addObjectsFromArray:marr];
+                }
+                
+                
+                [self loadMHActionSheetView];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+        }];
+        
+    }
+    
+
+
+    
+}
+
+- (void)loadMHActionSheetView{
+    
+    NSString *mTt = nil;
+    
+    if (mType == 1) {
+        mTt = @"选择银行";
+    }else if (mType == 2)
+    {
+        mTt = @"选择开户省份";
+    }else if (mType == 3)
+    {
+        mTt = @"选择开户城市";
+    }else if (mType == 4)
+    {
+        mTt = @"选择开户网点";
+        
+        [self.tempArray removeAllObjects];
+        for (NSDictionary *dic in mArray) {
+            [self.tempArray addObject:[dic objectForKey:@"name"]];
+        }
+        
+    }
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:mTt style:MHSheetStyleWeiChat itemTitles:self.tempArray];
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"%@", title];
-        mView.mBankLb.text = text;
+        NSString *text = nil;
+        
+        if (mType == 1) {
+            text = self.tempArray[index];
+            mView.mBankLb.text = text;
+            mBankName = text;
+
+        }else if (mType == 2){
+        
+            text = self.tempArray[index];
+            mView.mProvinceLb.text = text;
+            mProvince = text;
+
+        }else if (mType == 3){
+            
+            text = self.tempArray[index];
+            mView.mChoiseCity.text = text;
+            mCity = text;
+            
+        }else if (mType == 4){
+            
+            
+            NSDictionary *dic = mArray[index];
+            
+            text = [dic objectForKey:@"name"];
+            mView.mBankPointLb.text = text;
+            mPoint = text;
+            mBankCode = [dic objectForKey:@"bankCode"];
+            
+        }
+        
     }];
+}
+
+- (void)bankNameAction:(UIButton *)sender{
     
+    sender.selected = !sender.selected;
+    mType = 1;
+    [self loadData];
     
     
 }
 - (void)provinceAction:(UIButton *)sender{
+    if ([mView.mBankLb.text isEqualToString:@"选择开户行"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
+        return;
+    }
     sender.selected = !sender.selected;
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择城市" style:MHSheetStyleWeiChat itemTitles:@[@"重庆",@"成都",@"西安",@"贵阳",@"长沙",@"广州",@"福州",@"淄博",@"郴州"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"%@", title];
-        mView.mProvinceLb.text = text;
-    }];
-    
-    
+    mType = 2;
+    [self loadData];
     
 }
 - (void)cityAction:(UIButton *)sender{
+    if ([mView.mProvinceLb.text isEqualToString:@"选择开户行"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
+        return;
+    }
     sender.selected = !sender.selected;
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择城市" style:MHSheetStyleWeiChat itemTitles:@[@"重庆",@"成都",@"西安",@"贵阳",@"长沙",@"广州",@"福州",@"淄博",@"郴州"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"%@", title];
-        mView.mChoiseCity.text = text;
-    }];
+    mType = 3;
+    [self loadData];
     
     
     
 }
 - (void)pointAction:(UIButton *)sender{
+    if ([mView.mChoiseCity.text isEqualToString:@"选择开户行"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
+        return;
+    }
     sender.selected = !sender.selected;
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择城市" style:MHSheetStyleWeiChat itemTitles:@[@"重庆",@"成都",@"西安",@"贵阳",@"长沙",@"广州",@"福州",@"淄博",@"郴州"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"%@", title];
-        mView.mBankPointLb.text = text;
-    }];
+    mType = 4;
+    [self loadData];
     
     
     
@@ -170,6 +293,26 @@
         [self showErrorStatus:@"请输入合法的银行卡号"];
         return;
     }
+    
+    
+    [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo geBankCode:mView.mBankName.text andUserId:[mUserInfo backNowUser].mUserId andIdentify:mView.mBankIdentify.text andBankName:mBankName andProvince:mProvince andCity:mCity andPoint:mPoint andBankCard:mView.mBanCardTx.text andBankCode:mBankCode block:^(mBaseData *resb) {
+        
+        [SVProgressHUD dismiss];
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController_3];
+
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+
+    
+    
+    
+    
 }
 /*
 #pragma mark - Navigation

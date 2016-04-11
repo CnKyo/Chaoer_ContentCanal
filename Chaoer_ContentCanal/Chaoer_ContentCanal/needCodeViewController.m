@@ -27,6 +27,23 @@
     
     int mType;
     
+    int mCommunityId;
+    
+    int mBan;
+    
+    int mUnit;
+    
+    int mDoornum;
+    
+    int mFloor;
+    
+    NSMutableArray *mDoornumArr;
+    
+    NSMutableArray *mUnitArr;
+    
+    NSMutableArray *mFloorArr;
+
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -57,6 +74,11 @@
     self.hiddenTabBar = YES;
     mType = 1;
     
+    mDoornumArr = [NSMutableArray new];
+    mUnitArr = [NSMutableArray new];
+    mFloorArr = [NSMutableArray new];
+
+    
     [self initview];
 }
 - (void)initview{
@@ -77,12 +99,23 @@
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
     
+    
+    if ([[mUserInfo backNowUser].mIdentity isEqualToString:@"房主"]) {
+        mView.mMasterBtn.selected = YES;
+    }else{
+        mView.mVisitorBtn.selected = YES;
+    }
+    
     [mView.mCityBtn addTarget:self action:@selector(cityAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mArearBtn addTarget:self action:@selector(arearAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mCanalBtn addTarget:self action:@selector(canalAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mCommunityBtn addTarget:self action:@selector(communityAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mDoorNuimBtn addTarget:self action:@selector(doornumAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     [mView.mBuildBtn addTarget:self action:@selector(builAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mUnitBtn addTarget:self action:@selector(unitAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mDoorNuimBtn addTarget:self action:@selector(doornumAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mFloorBtn addTarget:self action:@selector(floorAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     [mView.mOkBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [mView.mMasterBtn addTarget:self action:@selector(choiseAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,16 +135,53 @@
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     if (mType == 3) {
         
-        [mUserInfo getArearId:mArearId andProvince:mCityId block:^(mBaseData *resb) {
+        [mUserInfo getArearId:mArearId andProvince:mCityId block:^(mBaseData *resb,NSArray *mArr) {
+            [SVProgressHUD dismiss];
+            [self.tempArray removeAllObjects];
             if (resb.mSucess) {
+                
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self.tempArray addObjectsFromArray:mArr];
+                [self loadMHActionSheetView];
             }else{
                 [SVProgressHUD showErrorWithStatus:resb.mMessage];
 
             }
         }];
         
-    }else{
+    }else if (mType == 4){
+    
+        [mUserInfo getBuilNum:mCommunityId block:^(mBaseData *resb, NSArray *mArr) {
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self.tempArray addObjectsFromArray:mArr];
+                [self loadMHActionSheetView];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                
+            }
+
+        }];
+        
+    }else if (mType == 5){
+                
+        [mUserInfo getDoorNum:mCommunityId andBuildName:mBan block:^(mBaseData *resb, NSArray *mArr) {
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self.tempArray addObjectsFromArray:mArr];
+                [self loadMHActionSheetView];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                
+            }
+        }];
+        
+    }
+    else{
         [mUserInfo getCityId:mCityId block:^(mBaseData *resb, NSArray *mArr) {
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
@@ -139,15 +209,78 @@
     }else if (mType == 2){
     
         mTt = @"选择市区";
+    }else if(mType == 3){
+        mTt = @"选择小区";
+    }else if(mType == 4){
+        mTt = @"选择楼栋号";
+    }else if(mType == 5){
+        mTt = @"选择单元";
+    }else if(mType == 6){
+        mTt = @"选择楼层";
     }else{
-        mTt = @"选择物管公司";
+        mTt = @"选择门牌号";
     }
-    
     
     NSMutableArray  *Arrtemp = [NSMutableArray new];
     
-    for (GCity *city in self.tempArray) {
-        [Arrtemp addObject:city.mAreaName];
+    if (mType == 3) {
+        for (GCommunity *city in self.tempArray) {
+            [Arrtemp addObject:city.mCommunityName];
+        }
+    }else if(mType == 4){
+       
+        for (NSString *str in self.tempArray) {
+            [Arrtemp addObject:str];
+        }
+        
+    }else if(mType == 5){
+        [mDoornumArr removeAllObjects];
+        [mUnitArr removeAllObjects];
+        [Arrtemp removeAllObjects];
+
+        for (GdoorNum *door in self.tempArray) {
+            
+            if (door.mUnit) {
+                if (door.mUnit == 1) {
+                    [mUnitArr addObject:[NSString stringWithFormat:@"1单元"]];
+
+                }else{
+                    for (int i = 1; i<door.mUnit; i++) {
+                        [mUnitArr addObject:[NSString stringWithFormat:@"%d单元",i]];
+                        
+                    }
+                }
+                
+           
+            }
+            
+       
+            for (int j =1; j<door.mFloor; j++) {
+                [mFloorArr addObject:[NSString stringWithFormat:@"%d层",j]];
+
+            }
+            for (int k = 1; k<door.mRoomNumber; k++) {
+                [mDoornumArr addObject:[NSString stringWithFormat:@"%d号",k]];
+            }
+            [Arrtemp addObjectsFromArray:mUnitArr];
+            
+        }
+        
+    }else if(mType == 6){
+        
+        [Arrtemp removeAllObjects];
+        [Arrtemp addObjectsFromArray:mFloorArr];
+        
+    }
+    else if(mType == 7){
+        
+        [Arrtemp removeAllObjects];
+        [Arrtemp addObjectsFromArray:mDoornumArr];
+        
+    }else{
+        for (GCity *city in self.tempArray) {
+            [Arrtemp addObject:city.mAreaName];
+        }
     }
 
     
@@ -155,26 +288,66 @@
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        
-        GCity *city = self.tempArray[index];
-        
-        NSString *text = [NSString stringWithFormat:@"%@", city.mAreaName];
-        mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
+        NSString *text = nil;
         
         if (mType == 1) {
+            GCity *city = self.tempArray[index];
+            text = [NSString stringWithFormat:@"%@", city.mAreaName];
+            mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
             mView.mCityLb.text = text;
+
         }else if (mType == 2){
-            
+            GCity *city = self.tempArray[index];
+            text = [NSString stringWithFormat:@"%@", city.mAreaName];
+            mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
+
             mView.mArearLb.text = text;
             mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
 
+        }else if(mType == 3){
+            GCommunity *gm = self.tempArray[index];
+            text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
+            mCommunityId = [[NSString stringWithFormat:@"%@",gm.mPropertyId] intValue];
+            mView.mCommunityLb.text = text;
+        }else if(mType == 4){
+            NSString *gm = Arrtemp[index];
+            mBan = [gm intValue];
+            text = [NSString stringWithFormat:@"%@栋", gm];
+            mView.mBuildLb.text = text;
+            mUnit = [gm intValue];
+            
+        }else if(mType == 5){
+            int gm = [mUnitArr[index] intValue];
+            text = [NSString stringWithFormat:@"%d单元", gm];
+            mUnit = gm;
+            mView.mUnitLb.text = text;
+            
+        }else if(mType == 6){
+            int gm = [mFloorArr[index] intValue];
+            text = [NSString stringWithFormat:@"%d楼", gm];
+            mView.mFloorLb.text = text;
+            mFloor = gm;
+            
+        }
+        else if(mType == 7){
+            int gm = [mDoornumArr[index] intValue];
+            text = [NSString stringWithFormat:@"%d号", gm];
+            mView.mDoorNumLb.text = text;
+            mDoornum = gm;
+            
         }else{
-            mView.mCanalLb.text = text;
+            NSString *gm = Arrtemp[index];
+            text = gm;
+            mView.mDoorNumLb.text = text;
+            mDoornum = [gm intValue];
+
         }
         
         
     }];
 }
+
+
 - (void)cityAction:(UIButton *)sender{
     if (mView.mNameTx.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入您的名称！"];
@@ -199,7 +372,11 @@
 
 
 }
-- (void)canalAction:(UIButton *)sender{
+
+- (void)communityAction:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    
+ 
     if (mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择区县!"];
         return;
@@ -208,54 +385,83 @@
     mType = 3;
     [self loadData];
 
-}
-- (void)communityAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-        mView.mCommunityLb.text = text;
-
-    }];
-    
  
 
 }
-- (void)doornumAction:(UIButton *)sender{
+
+
+- (void)unitAction:(UIButton *)sender{
+    if ([mView.mBuildLb.text isEqualToString:@"选择楼栋号"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择楼栋号!"];
+        return;
+    }
     sender.selected = !sender.selected;
+    mType = 5;
+    [self loadData];
+
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择楼栋号" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-    actionSheet.cancleTitle = @"取消选择";
+}
+- (void)floorAction:(UIButton *)sender{
+    if ([mView.mUnitLb.text isEqualToString:@"选择单元"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择单元!"];
+        return;
+    }
+    sender.selected = !sender.selected;
+    mType = 6;
     
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-        mView.mDoorNumLb.text = text;
-        
-    }];
+    
+    [self loadMHActionSheetView];
+}
+- (void)doornumAction:(UIButton *)sender{
+    
+
+    if ([mView.mFloorLb.text isEqualToString:@"选择楼层"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择楼层!"];
+        return;
+    }
+    sender.selected = !sender.selected;
+    mType = 7;
+    
+    
+    [self loadMHActionSheetView];
+    
 
 
 }
 - (void)builAction:(UIButton *)sender{
+
+    if ([mView.mCommunityLb.text isEqualToString:@"选择小区"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择小区!"];
+        return;
+    }
     sender.selected = !sender.selected;
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择门牌号" style:MHSheetStyleWeiChat itemTitles:@[@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"头等舱",@"商务舱",@"经济舱",@"特等座",@"一等座",@"二等座",@"软座",@"硬座",@"不限"]];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = [NSString stringWithFormat:@"第%ld行,%@",(long)index, title];
-        mView.mBuildLb.text = text;
-        
-    }];
-    
+    mType = 4;
+
+    [self loadData];
 
 
 }
+
+
+
 - (void)okAction:(UIButton *)sender{
-    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-    [self pushViewController:vvv];
+    
+    
+    [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
+    
+        if (resb.mSucess ) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+    
 }
 
 - (void)choiseAction:(UIButton *)sender{

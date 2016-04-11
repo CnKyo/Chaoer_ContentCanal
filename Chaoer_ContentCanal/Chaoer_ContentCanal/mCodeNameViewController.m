@@ -11,6 +11,7 @@
 #import "mUserInfoViewController.h"
 #import "hasCodeViewController.h"
 #import "needCodeViewController.h"
+#import "verifyBankViewController.h"
 @interface mCodeNameViewController ()
 
 @end
@@ -53,9 +54,12 @@
         hasCodeViewController *hhh = [hasCodeViewController new];
         [self pushViewController:hhh];
     }else{
-        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+//        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+//
+//        [self pushViewController:nnn];
+        verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+        [self pushViewController:vvv];
 
-        [self pushViewController:nnn];
     }
 }
 - (IBAction)mInfo:(id)sender {

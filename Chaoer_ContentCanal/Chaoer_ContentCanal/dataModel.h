@@ -289,7 +289,7 @@
  *  @param mProvince 区县
  *  @param block     返回值
  */
-+ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void(^)(mBaseData *resb))block;
++ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 /**
  *  获取管理用户的楼盘信息
@@ -305,7 +305,7 @@
  *  @param mName 所选择的楼盘名
  *  @param block 返回值
  */
-+ (void)getBuilNum:(NSString *)mName block:(void(^)(mBaseData *))block;
++ (void)getBuilNum:(int)mId block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 /**
  *  获取对应住房号
  *
@@ -313,7 +313,7 @@
  *  @param mBuildName 楼栋号
  *  @param block      返回值
  */
-+ (void)getDoorNum:(NSString *)mName andBuildName:(NSString *)mBuildName block:(void(^)(mBaseData *resb))block;
++ (void)getDoorNum:(int )mName andBuildName:(int)mBuildName block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 /**
  *  获取绑定住户的信息
@@ -322,6 +322,52 @@
  *  @param block   返回值
  */
 + (void)getBundleMsg:(int)mUserId block:(void(^)(mBaseData *resb,SVerifyMsg *info))block;
+
+
+/**
+ *  实名认证
+ *
+ *  @param mUserid      用户id
+ *  @param mCommunityId 社区id
+ *  @param mBannum      楼栋号
+ *  @param mUnitNum     单元号
+ *  @param mFloor       楼层号
+ *  @param mDoorNum     门牌号
+ *  @param block        返回值
+ */
++ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block;
+
+/**
+ *  获取银行列表
+ *
+ *  @param block 返回值
+ */
++ (void)getbank:(void(^)(mBaseData *resb,NSArray *marr))block;
+
+/**
+ *  获取银行卡城市
+ *
+ *  @param mCity 城市
+ *  @param block 返回值
+ */
++ (void)getBankOfCity:(NSString *)mCity andProvince:(NSString *)mProvince andBankName:(NSString *)mName andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *marr))block;
+
+
+
+/**
+ *  银行卡认证
+ *
+ *  @param mName     姓名
+ *  @param mIdentify 身份证
+ *  @param mBankName 开户行
+ *  @param mProvince 省份
+ *  @param mCity     城市
+ *  @param mPoint    网点
+ *  @param mCard     银行卡
+ *  @param block     返回值
+ */
++ (void)geBankCode:(NSString *)mName andUserId:(int)mUserId andIdentify:(NSString *)mIdentify andBankName:(NSString *)mBankName andProvince:(NSString *)mProvince andCity:(NSString *)mCity andPoint:(NSString *)mPoint andBankCard:(NSString *)mCard andBankCode:(NSString *)mBankCode block:(void(^)(mBaseData *resb))block;
+
 
 /**
  *  获取baner横幅
@@ -801,4 +847,36 @@
 
 
 
+@interface GCommunity : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  社区名称
+ */
+@property (nonatomic,strong)    NSString       *mCommunityName;
+/**
+ *  社区id
+ */
+@property (assign,nonatomic) NSString    *mPropertyId;
+
+
+@end
+
+@interface GdoorNum : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  楼层
+ */
+@property (assign,nonatomic) int    mFloor;
+/**
+ *  门牌号
+ */
+@property (assign,nonatomic) int    mRoomNumber;
+/**
+ *  单元
+ */
+@property (assign,nonatomic) int    mUnit;
+
+@end
 

@@ -67,6 +67,17 @@
  */
 @property (strong, nonatomic) IBOutlet UIButton *mDoorNuimBtn;
 /**
+ *  单元
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mUnitLb;
+/**
+ *  单元按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mUnitBtn;
+
+
+
+/**
  *  房主
  */
 @property (strong, nonatomic) IBOutlet UIButton *mMasterBtn;
@@ -138,7 +149,14 @@
  *  认证按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mVerifyBtn;
-
+/**
+ *  楼层
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mFloorLb;
+/**
+ *  楼层按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mFloorBtn;
 
 /**
  *  初始化方法
