@@ -11,7 +11,7 @@
 #import "AFURLResponseSerialization.h"
 #import "dataModel.h"
 #import "AFNetworking.h"
-
+#import "AFAppDotNetAPIClient.h"
 @class mBaseData;
 
 @interface HTTPrequest : AFHTTPRequestOperationManager

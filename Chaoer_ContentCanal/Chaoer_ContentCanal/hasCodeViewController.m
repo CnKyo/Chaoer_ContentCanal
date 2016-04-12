@@ -120,11 +120,11 @@
     }
     if (indexPath.row == 2) {
         cell.mName.text = @"身份证";
-        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+        cell.mContent.text = mVerify.mCard;
     }
     if (indexPath.row == 3) {
         cell.mName.text = @"银行卡";
-        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+        cell.mContent.text = mVerify.mBankCard;
     }
     if (indexPath.row == 4) {
         cell.mName.text = @"物管公司";
@@ -132,7 +132,7 @@
     }
     if (indexPath.row == 5) {
         cell.mName.text = @"居住关系";
-        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+        cell.mContent.text = [mUserInfo backNowUser].mIdentity;
     }
     if (indexPath.row == 6) {
         cell.mName.text = @"地址信息";

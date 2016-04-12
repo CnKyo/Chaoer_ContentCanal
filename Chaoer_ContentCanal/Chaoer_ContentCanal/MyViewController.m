@@ -272,16 +272,28 @@
     
     cell.mTitle.text = [dic objectForKey:@"name"];
     cell.mImg.image = [dic objectForKey:@"img"];
-    if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
-        if ([mUserInfo backNowUser].mIsRegist) {
-            cell.mDetail.hidden = YES;
-        }else{
-            cell.mDetail.hidden = NO;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            if ([mUserInfo backNowUser].mIsRegist) {
+                cell.mDetail.hidden = YES;
+            }else{
+                cell.mDetail.hidden = NO;
+            }
+            
         }
-        
-    }else{
-        cell.mDetail.hidden = YES;
     }
+    else {
+        if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
+    
+            cell.mDetail.hidden = NO;
+       
+            
+        }else{
+            cell.mDetail.hidden = YES;
+        }
+
+    }
+    
     return cell;
     
 

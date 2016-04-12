@@ -93,11 +93,11 @@
 
     [mUserInfo getRegistVerifyCode:self.mPhone.text block:^(mBaseData *resb) {
         if (resb.mData) {
-            [SVProgressHUD showSuccessWithStatus:@"验证码发送成功！"];
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 
             [self timeCount];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
     }];
     
@@ -126,20 +126,41 @@
             return;
         }
     }
-    [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 
-    [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:mIdentify[0] block:^(mBaseData *resb) {
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
-            self.block(self.mCode.text);
+    if (_mType == 1) {
+        [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 
-            [self popViewController];
+        [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:mIdentify[0] block:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
+                self.block(self.mPhone.text,self.mComfirPwd.text);
+                
+                [self popViewController];
+                
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+        }];
+    }else{
+        [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
 
-            
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+        [mUserInfo mForgetPwd:self.mPhone.text andNewPwd:self.mComfirPwd.text block:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                self.block(self.mPhone.text,self.mComfirPwd.text);
+                
+                [self popViewController];
+                
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+
+        }];
+    }
+    
+
 
 }
 - (void)timeCount{//倒计时函数

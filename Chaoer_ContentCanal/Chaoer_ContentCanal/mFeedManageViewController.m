@@ -13,10 +13,12 @@
 @end
 
 @implementation mFeedManageViewController
+{
+    int mid;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -32,7 +34,44 @@
     
 }
 
+- (void)loadData{
 
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] getArear:^(mBaseData *resb, NSArray *mArr) {
+        [SVProgressHUD dismiss];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self.tempArray addObjectsFromArray:mArr];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            
+        }
+
+    }];
+}
+- (void)loadActionView{
+    
+    NSMutableArray *mar = [NSMutableArray new];
+    [mar removeAllObjects];
+    for ( NSDictionary *dic in self.tempArray) {
+        [mar addObject:[dic objectForKey:@"address"]];
+    }
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择小区" style:MHSheetStyleWeiChat itemTitles:mar];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+
+        self.mValligeBtn.titleLabel.text = title;
+        GArear *mAraer = self.tempArray[index];
+        mid = mAraer.mId;
+    }];
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -42,7 +81,7 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.Title = self.mPageName = @"投诉管理者";
-    
+    mid = 0;
     self.mReason.placeholder = @"请输入您要投诉的原因 。";
     [self.mReason setHolderToTop];
     self.mBgtkView.layer.masksToBounds = YES;
@@ -50,15 +89,43 @@
     self.mBgtkView.layer.borderWidth = 1;
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 
     
 }
+
+- (IBAction)mVallige:(UIButton *)sender {
+    [self loadData];
+
+}
+
 #pragma mark----提交按钮
 - (IBAction)okAction:(id)sender {
+    if (mid == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择您要投诉的小区！"];
+        return;
+    }
+    if (self.mName.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入被投诉的人！"];
+        return;
+    }if (self.mReason.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入您要投诉的内容！"];
+        return;
+    }
     
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo feedCanal:mid andName:self.mName.text andReason:self.mReason.text block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
     
     
 }

@@ -27,6 +27,11 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mAddress;
 /**
+ *  地址按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mAddressBtn;
+
+/**
  *  电话
  */
 @property (strong, nonatomic) IBOutlet UILabel *mPhone;

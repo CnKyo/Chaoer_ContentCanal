@@ -59,7 +59,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *mBgkH;
 
 
-@property (nonatomic,strong) void(^block)(NSString *block);
+@property (nonatomic,strong) void(^block)(NSString *block,NSString *mPwd);
 
 
 @end

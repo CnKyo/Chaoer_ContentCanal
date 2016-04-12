@@ -54,11 +54,11 @@
         hasCodeViewController *hhh = [hasCodeViewController new];
         [self pushViewController:hhh];
     }else{
-//        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-//
-//        [self pushViewController:nnn];
-        verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-        [self pushViewController:vvv];
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+
+        [self pushViewController:nnn];
+//        verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+//        [self pushViewController:vvv];
 
     }
 }

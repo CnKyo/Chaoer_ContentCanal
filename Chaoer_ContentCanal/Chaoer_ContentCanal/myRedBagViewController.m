@@ -39,7 +39,7 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    mTypr = @"s";
+    mTypr = @"1";
     [self initViuew];
 }
 - (void)initViuew{
@@ -105,10 +105,10 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     NSLog(@"点击了%lu",(unsigned long)mIndex);
     if (mIndex == 0) {
-        mTypr = @"s";
+        mTypr = @"1";
         [self headerBeganRefresh];
     }else{
-        mTypr = @"f";
+        mTypr = @"2";
         [self headerBeganRefresh];
     }
 }
@@ -125,12 +125,12 @@
         [self removeEmptyView];
         if (resb.mData) {
             [self.tempArray addObjectsFromArray:marray];
-            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self addEmptyViewWithImg:nil];
             [self.tableView reloadData];
             
         }else{
-            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
         
     }];

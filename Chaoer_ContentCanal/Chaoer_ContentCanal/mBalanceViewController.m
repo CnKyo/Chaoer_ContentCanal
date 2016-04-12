@@ -70,7 +70,7 @@
     [mView.mLogo sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 
     mView.mName.text = [mUserInfo backNowUser].mPhone;
-    mView.mBalance.text = [NSString stringWithFormat:@"%d元",[mUserInfo backNowUser].mMoney];
+    mView.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
     
     [mScrollerView addSubview:mView];
     

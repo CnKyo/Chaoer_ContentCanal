@@ -23,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet IQTextView *mReason;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *mValligeBtn;
 
 @end

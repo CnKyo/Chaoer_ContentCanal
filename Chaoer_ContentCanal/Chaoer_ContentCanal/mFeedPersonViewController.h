@@ -12,26 +12,48 @@
  *  背景
  */
 @property (strong, nonatomic) IBOutlet UIView *mBgkView;
+
+/**
+ *  小区列表
+ */
+@property (strong, nonatomic) IBOutlet UITableView *mValiigeTableView;
+
+/**
+ *  楼栋列表
+ */
+@property (strong, nonatomic) IBOutlet UITableView *mBuildTableView;
+
+
+/**
+ *  省份
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mProvinceBtn;
+/**
+ *  区县
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mCityBtn;
 /**
  *  小区按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mValiigeBtn;
 /**
- *  小区列表
- */
-@property (strong, nonatomic) IBOutlet UITableView *mValiigeTableView;
-/**
  *  楼栋按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mBuildBtn;
 /**
- *  楼栋列表
+ *  单元
  */
-@property (strong, nonatomic) IBOutlet UITableView *mBuildTableView;
+@property (weak, nonatomic) IBOutlet UIButton *mUnitBtn;
+/**
+ *  楼层  
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mFloorBtn;
 /**
  *  门牌号按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mDoorNumBtn;
+
+
 /**
  *  门牌号列表
  */

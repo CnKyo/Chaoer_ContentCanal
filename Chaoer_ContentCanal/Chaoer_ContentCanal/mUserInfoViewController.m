@@ -18,7 +18,9 @@
 @implementation mUserInfoViewController
 {
     UIImage *tempImage;
-
+    
+    NSString *msex;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -28,9 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.Title = self.mPageName = @"个人信息";
-    self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    self.rightBtnTitle = @"保存";
     
     self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     
@@ -58,6 +60,13 @@
     self.mName.text = [mUserInfo backNowUser].mNickName;
     self.mUserInfo.text = [mUserInfo backNowUser].mIdentity;
     self.mSex.text = [mUserInfo backNowUser].mSex;
+    
+    if ([[mUserInfo backNowUser].mSex isEqualToString:@"女"]) {
+        msex = @"0";
+    }else{
+        msex = @"1";
+    }
+    
     self.mDetail.text = [mUserInfo backNowUser].mSignature;
     self.mPhone.text = [mUserInfo backNowUser].mPhone;
     [SVProgressHUD dismiss];
@@ -160,30 +169,14 @@
         if (buttonIndex == 0) {
             sex = @"m";
             text= @"男";
+            msex = @"1";
         }else{
             text= @"女";
             sex = @"w";
+            msex = @"0";
             
         }
-        [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:[mUserInfo backNowUser].mPhone andNickName:nil andSex:sex andSignate:nil block:^(mBaseData *resb,mUserInfo *mUser) {
-            if (resb.mData) {
-                int sucess = [[resb.mData objectForKey:@"r_msg"] intValue];
-                
-                if (sucess == 1) {
-                    [SVProgressHUD showSuccessWithStatus:@"保存成功!"];
-                    self.mSex.text = text;
-                    [mUserInfo backNowUser].mSex = text;
-
-                }else{
-                    [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
-                    [self leftBtnTouched:nil];
-                    
-                }
-                
-            }else{
-                [SVProgressHUD showErrorWithStatus:@"网络请求错误!"];
-            }
-        }];
+        self.mSex.text = text;
 
     }
 
@@ -290,8 +283,47 @@
     
     self.mHeaderImg.image = tempImage;
     
+    NSData *imageData = UIImagePNGRepresentation(tempImage);
+
+    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),@"test"];
+    [imageData writeToFile:aPath atomically:YES];
+    
+    
+    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),@"test"];
+    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+    UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+    
+    tempImage = [Util scaleImg:imageView3.image maxsize:10];
+    
+    NSData *mmm = UIImagePNGRepresentation(tempImage);
+    
+    [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo modifyUserImg:[mUserInfo backNowUser].mUserId andImage:mmm andPath:aPath3 block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
     
 }
 
+- (void)rightBtnTouched:(id)sender{
+
+    [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:nil andNickName:self.mName.text andSex:msex andSignate:self.mDetail.text block:^(mBaseData *resb, mUserInfo *mUser) {
+        
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+    
+}
 
 @end

@@ -142,6 +142,53 @@
  */
 @property (nonatomic,strong) NSString   *mPwd;
 
+/**
+ *  地址
+ */
+@property (nonatomic,strong) NSString   *mAddress;
+/**
+ *  国家
+ */
+@property (nonatomic,strong) NSString   *mCountry;
+/**
+ *  城市
+ */
+@property (nonatomic,strong) NSString   *mCity;
+/**
+ *  添加时间
+ */
+@property (nonatomic,strong) NSString   *mAddTime;
+/**
+ *  年龄
+ */
+@property (nonatomic,strong) NSString   *mAge;
+/**
+ *  教育
+ */
+@property (nonatomic,strong) NSString   *mEducation;
+/**
+ *  邮箱
+ */
+@property (nonatomic,strong) NSString   *mEmail;
+/**
+ *  肖像
+ */
+@property (nonatomic,strong) NSString   *mPortrait;
+/**
+ *  省份
+ */
+@property (nonatomic,strong) NSString   *mProvince;
+/**
+ *  qq
+ */
+@property (nonatomic,strong) NSString   *mQQ;
+/**
+ *  状态
+ */
+@property (nonatomic,strong) NSString   *mStatus;
+/**
+ *  
+ */
 @property (nonatomic,strong) SVerifyMsg *mVerifyMsg;
 
 -(id)initWithObj:(NSDictionary*)obj;
@@ -228,7 +275,7 @@
  *  @param mImg    图片
  *  @param block   返回值
  */
-+ (void)modifyUserImg:(int)mUserId andImage:(UIImage *)mImg block:(void(^)(mBaseData *resb))block;
++ (void)modifyUserImg:(int)mUserId andImage:(NSData *)mImg andPath:(NSString *)mPath block:(void(^)(mBaseData *resb))block;
 /**
  *  获取红包信息
  *
@@ -274,6 +321,16 @@
  */
 + (void)getBalanceVerifyCode:(NSString *)mSellerName andLoginName:(NSString *)mLoginName andPayMoney:(int)mMoney andPayName:(NSString *)mPayName andIdentify:(NSString *)mIdentify andPhone:(NSString *)mPhone andBalance:(int)mBalance andBankCard:(NSString *)mBankCard andBankTime:(NSString *)mTime andCVV:(NSString *)mCVV block:(void(^)(mBaseData *resb))block;
 
+
+/**
+ *  核实验证码并首款
+ *
+ *  @param mOrderCode   本地订单号
+ *  @param mYBOrderCode 易宝订单号
+ *  @param mCode        手机验证码
+ *  @param block        返回值
+ */
++ (void)getCodeAndPay:(NSString *)mOrderCode andYBOrderCode:(NSString *)mYBOrderCode andPhoneCode:(NSString *)mCode block:(void(^)(mBaseData *resb))block;
 #pragma mark----实名认证
 /**
  * 实名认证 获取城市id
@@ -395,7 +452,7 @@
  *  @param mReason      原因
  *  @param blovk        返回值
  */
-+ (void)feedPerson:(int)mUserId andVillageName:(NSString *)mVillageName andBuildName:(NSString *) mBuildName andDoorNum:(NSString *)mDoorNum andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))blovk;
++ (void)feedPerson:(NSString *)mValligeId andBuilId:(NSString *)mBuildId andUnit:(NSString *)mUnitId andFloor:(NSString *)mFloor andDoornum:(NSString *)mdoornum andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))blovk;
 
 /**
  *  投诉物管
@@ -405,7 +462,7 @@
  *  @param mReason 原因
  *  @param block   返回值
  */
-+ (void)feedCanal:(int)mUserId andName:(NSString *)mName andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))block;
++ (void)feedCanal:(int)mArearId andName:(NSString *)mName andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))block;
 
 
 /**
@@ -641,6 +698,17 @@
  *  cid
  */
 @property (nonatomic,assign)    int     cId;
+
+@property (nonatomic,strong)    NSString       *mBankCard;
+@property (nonatomic,strong)    NSString       *mBankCity;
+
+@property (nonatomic,strong)    NSString       *mBankName;
+
+@property (nonatomic,strong)    NSString       *mBankProvince;
+@property (nonatomic,strong)    NSString       *mCard;
+@property (nonatomic,strong)    NSString       *mWebsite;
+@property (nonatomic,strong)    NSString       *mReal_name;
+
 
 @end
 

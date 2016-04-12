@@ -24,6 +24,8 @@
 
 #import "XMNAssetCell.h"
 
+#import "addAddressViewController.h"
+
 @interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     HZQDatePickerView *_pikerView;
 
@@ -117,6 +119,7 @@
     [mView.mResultBtn addTarget:self action:@selector(mResetAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mTimeBtn addTarget:self action:@selector(mTimeAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mMakeBtn addTarget:self action:@selector(mMakeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mAddressBtn addTarget:self action:@selector(mAddressAction:) forControlEvents:UIControlEventTouchUpInside];
 
     
     [mView.mLeftBtn addTarget:self action:@selector(mImageAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -784,4 +787,17 @@
     second = urlAsset.duration.value/urlAsset.duration.timescale;
     return second;
 }
+
+
+- (void)mAddressAction:(UIButton *)sender{
+
+    addAddressViewController *add = [[addAddressViewController alloc] initWithNibName:@"addAddressViewController" bundle:nil];
+    
+    
+    [self pushViewController:add];
+    
+    
+}
+
+
 @end

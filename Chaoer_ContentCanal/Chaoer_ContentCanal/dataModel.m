@@ -10,7 +10,6 @@
 #import "HTTPrequest.h"
 #import "NSObject+myobj.h"
 #import "APService.h"
-
 @implementation dataModel
 
 @end
@@ -182,13 +181,13 @@ bool g_bined = NO;
 
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mPhone forKey:@"loginName"];
+    [para setObject:mPhone forKey:@"moblie"];
     [para setObject:@"1" forKey:@"from"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/login/fgetVerfyCode.do" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
+    [[HTTPrequest sharedClient] postUrl:@"app/verfyCode/appVerfyCode" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
             block (info);
         }else
-            block(nil);
+            block(info);
     }];
 }
 
@@ -219,13 +218,15 @@ bool g_bined = NO;
 }
 +(void)mForgetPwd:(NSString *)mLoginName andNewPwd:(NSString *)mPwd block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mLoginName forKey:@"loginName"];
+    [para setObject:mLoginName forKey:@"userName"];
     [para setObject:mPwd forKey:@"newPassword"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/login/resetpwd.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/auth/updatePassowrd" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
-            
+            block (info);
+
         }else{
-        
+            block (info);
+
         }
     }];
 
@@ -259,7 +260,12 @@ bool g_bined = NO;
 //        {//如果没有token,那弄原来的
 ////            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
 //        }
-        [tdic setObject:mPhone forKey:@"mPhone"];
+        
+        if (mPhone) {
+            [tdic setObject:mPhone forKey:@"mPhone"];
+        }
+        
+        
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
         tmpdic = tdic;
         if ([tu isVaildUser]) {
@@ -275,80 +281,90 @@ bool g_bined = NO;
 
 + (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUserid) forKey:@"id"];
-    [para setObject:mLoginName forKey:@"loginName"];
+    [para setObject:NumberWithInt(mUserid) forKey:@"userId"];
+    if (mLoginName) {
+        [para setObject:mLoginName forKey:@"loginName"];
+    }
     
     if (nickName) {
         [para setObject:nickName forKey:@"nickName"];
-
     }
     if (mSex) {
         [para setObject:mSex forKey:@"sex"];
-
+        
     }
     if (mSignate) {
         [para setObject:mSignate forKey:@"signature"];
-
+        
     }
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/udtBaseMessage.do" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
-            int sucess = [[info.mData objectForKeyMy:@"r_msg"] intValue];
-            
-            if (sucess == 1) {
-                
-                if (nickName) {
-                    [mUserInfo backNowUser].mNickName = nickName;
-                    
-                }
-                if (mSex) {
-                    if ([mSex isEqualToString:@"m"]) {
-                        [mUserInfo backNowUser].mNickName = @"男";
+    
+    
+    [para setObject:[mUserInfo backNowUser].mPhone forKey:@"moblie"];
 
-                    }else
-                    {
-                        [mUserInfo backNowUser].mNickName = @"女";
+    [[HTTPrequest sharedClient] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
+        
+        [self dealUserSession:info andPhone:nil block:block];
 
-                    }
-                    
-                }
-                if (mSignate) {
-                    [mUserInfo backNowUser].mNickName = mSignate;
-                    
-                }
-                
-            
-                [self dealUserSession:info andPhone:mLoginName block:block];
-
-            }else{
-                block ( info,nil );
-
-            }
-            
-        }else{
-            block ( info,nil );
-
-        }
     }];
     
 }
-+ (void)modifyUserImg:(int)mUserId andImage:(UIImage *)mImg block:(void (^)(mBaseData *))block{
++ (void)modifyUserImg:(int)mUserId andImage:(NSData *)mImg andPath:(NSString *)mPath block:(void(^)(mBaseData *resb))block{
+
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [para setObject:mImg forKey:@"img"];
-    [para setObject:@"" forKey:@"saveDirectory"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/uploadHeadImg.ad" parameters:para call:^(mBaseData *info) {
-        if (info.mSucess) {
-            
-        }else{
-            
-        }
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//
+//    NSURL *urlstr = [NSURL fileURLWithPath:mPath];
+//    
+//    [manager POST:[NSString stringWithFormat:@"%@app/updUser/appModfiyHead",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//         [formData appendPartWithFileURL:urlstr name:@"image" error:nil];
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@ˆ",responseObject);
+//
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",error);
+//
+//        block( [mBaseData infoWithError:[NSString stringWithFormat:@"%@",error]] );
+//
+//    }];
+    
+    
+    AFHTTPRequestOperation *operator = [manager POST:[NSString stringWithFormat:@"%@app/updUser/appModfiyHead",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImg];
+        [formData appendPartWithFileData:mImg name:@"img" fileName:fileName mimeType:@"image/png"];
+
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@ˆ",responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+        block( [mBaseData infoWithError:[NSString stringWithFormat:@"%@",error]] );
+
+        
     }];
+    
+    [operator setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        NSLog(@"bytesWritten=%lu, totalBytesWritten=%lld, totalBytesExpectedToWrite=%lld", (unsigned long)bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+
+
 }
+
+
 + (void)getRedBag:(int)mUserId andType:(NSString *)mType block:(void(^)(mBaseData *resb,NSArray *marray))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mType forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/redPackage.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/redpackage/appRedPackage" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *temparr = [NSMutableArray new];
@@ -368,34 +384,39 @@ bool g_bined = NO;
 + (void)verifyUserPhone:(NSString *)mPhone andNum:(float)mMoney block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"phone"];
-    [para setObject:NumberWithFloat(mMoney) forKey:@"num"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/conven/phone/IsRecharge.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
+    [[HTTPrequest sharedClient] postUrl:@"app/convenience/appIsRecharge" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
-        }else{
+            block ( info );
             
+        }else{
+            block ( info );
         }
     }];
 }
 + (void)topUpPhone:(NSString *)mPhone andNum:(float)mMoney andUserId:(int)mUserId block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"phone"];
-    [para setObject:NumberWithFloat(mMoney) forKey:@"num"];
+    [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/conven/phone/onlineOrder.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedClient] postUrl:@"app/convenience/appLineOrder" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
-            
+            block ( info );
+
         }else{
-            
+            block ( info );
+
         }
     }];
 }
 
 + (void)getBalanceVerifyCode:(NSString *)mSellerName andLoginName:(NSString *)mLoginName andPayMoney:(int)mMoney andPayName:(NSString *)mPayName andIdentify:(NSString *)mIdentify andPhone:(NSString *)mPhone andBalance:(int)mBalance andBankCard:(NSString *)mBankCard andBankTime:(NSString *)mTime andCVV:(NSString *)mCVV block:(void(^)(mBaseData *resb))block{
+    
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mSellerName forKey:@"merchantName"];
-    [para setObject:mLoginName forKey:@"merchantLogin"];
+    [para setObject:mLoginName forKey:@"userMoblie"];
     [para setObject:NumberWithInt(mBalance) forKey:@"merchantMoney"];
     [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
     [para setObject:mPayName forKey:@"buyerName"];
@@ -404,19 +425,40 @@ bool g_bined = NO;
     [para setObject:mBankCard forKey:@"buyerBankCard"];
     [para setObject:mTime forKey:@"buyerBankExpire"];
     [para setObject:mCVV forKey:@"buyerBankCvv"];
-    
-    [[HTTPrequest sharedClient] postUrl:@"ybpay/epos/costMoney.do" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:@"t+0" forKey:@"paymentMethod"];
+    [[HTTPrequest sharedClient] postUrl:@"app/epos/pay/appHandleFunc" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
             
             block( info );
             
         }else{
-            block (nil);
+            block( info );
         }
     }];
     
 }
 
++ (void)getCodeAndPay:(NSString *)mOrderCode andYBOrderCode:(NSString *)mYBOrderCode andPhoneCode:(NSString *)mCode block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    [para setObject:mYBOrderCode forKey:@"ybOrderCode"];
+    [para setObject:mCode forKey:@"verifyCode"];
+    [[HTTPrequest sharedClient] postUrl:@"app/epos/pay/vertifyCodePay" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block( info );
+            
+        }else{
+            block( info );
+        }
+    }];
+    
+    
+    
+}
 
 
 
@@ -521,8 +563,8 @@ bool g_bined = NO;
 + (void)getBundleMsg:(int)mUserId block:(void (^)(mBaseData *, SVerifyMsg *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/getBindHourseMessage.do" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
+    [[HTTPrequest sharedClient] postUrl:@"app/epos/realVerify/appBankInfo" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
             SVerifyMsg *mVerify = [[SVerifyMsg alloc] initWithObj:info.mData];
             
             block( info,mVerify);
@@ -702,46 +744,56 @@ bool g_bined = NO;
 + (void)feedCompany:(int)mUserId andContent:(NSString *)mContent block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [para setObject:mContent forKey:@"content"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/suggest.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:mContent forKey:@"complainReason"];
+    [para setObject:@"3" forKey:@"type"];
+    [[HTTPrequest sharedClient] postUrl:@"app/complain/companyOpinion" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
-            
+            block (info);
         }else{
-            
+            block (info);
         }
     }];
 }
 
-+ (void)feedPerson:(int)mUserId andVillageName:(NSString *)mVillageName andBuildName:(NSString *) mBuildName andDoorNum:(NSString *)mDoorNum andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))blovk{
++ (void)feedPerson:(NSString *)mValligeId andBuilId:(NSString *)mBuildId andUnit:(NSString *)mUnitId andFloor:(NSString *)mFloor andDoornum:(NSString *)mdoornum andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))blovk{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [para setObject:mVillageName forKey:@"villageName"];
-    [para setObject:mBuildName forKey:@"buildName"];
-    [para setObject:mDoorNum forKey:@"buildingNumebr"];
-    [para setObject:mReason forKey:@"cause"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/complaintresident.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:@"1" forKey:@"type"];
+    [para setObject:mValligeId forKey:@"communityId"];
+    [para setObject:mBuildId forKey:@"ban"];
+    [para setObject:mUnitId forKey:@"unit"];
+    [para setObject:mFloor forKey:@"floor"];
+    [para setObject:mdoornum forKey:@"roomNumber"];
+    [para setObject:mReason forKey:@"complainReason"];
+    [[HTTPrequest sharedClient] postUrl:@"app/complain/residentsComplaints" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
+            blovk (info);
+
         }else{
-            
+            blovk (info);
+
         }
     }];
     
     
 }
 
-+ (void)feedCanal:(int)mUserId andName:(NSString *)mName andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))block{
++ (void)feedCanal:(int)mArearId andName:(NSString *)mName andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [para setObject:mName forKey:@"name"];
-    [para setObject:mReason forKey:@"cause"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/complaintmanager.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mArearId) forKey:@"communityId"];
+    [para setObject:mName forKey:@"staffName"];
+    [para setObject:mReason forKey:@"complainReason"];
+    [para setObject:@"2" forKey:@"type"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/complain/propertyComplaints" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
-            
+            block ( info );
         }else{
-            
+            block ( info );
         }
     }];
     
@@ -819,11 +871,30 @@ bool g_bined = NO;
     [para setObject:mTime forKey:@"appointmentTime"];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
+//    
+//        AFHTTPSessionManager *session = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HTTPrequest returnNowURL]]];
+//        
+//        [session POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//            
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            formatter.dateFormat = @"yyyyMMddHHmmss";
+//            NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+//            
+//            NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
+//            [formData appendPartWithFileData:mImgData name:@"img" fileName:fileName mimeType:@"image/png"];
+//            
+//            
+//        } success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSLog(@"%@ˆ",responseObject);
+//            
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"%@",error);
+//            
+//        }];
+//        
     
-    if (mImgData) {
-        AFHTTPSessionManager *session = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HTTPrequest returnNowURL]]];
-        
-        [session POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        AFHTTPRequestOperation *operator = [manager POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -831,30 +902,21 @@ bool g_bined = NO;
             
             NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
             [formData appendPartWithFileData:mImgData name:@"img" fileName:fileName mimeType:@"image/png"];
-            
-            
-        } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@ˆ",responseObject);
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"%@",error);
-            
-        }];
 
-    }else{
-        [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
-            if (info.mSucess) {
-                
-                
-                blck (info);
-                
-            }else{
-                blck (info );
-                
-            }
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@ˆ",responseObject);
+
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+
         }];
-    }
     
+    [operator setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+         NSLog(@"bytesWritten=%lu, totalBytesWritten=%lld, totalBytesExpectedToWrite=%lld", (unsigned long)bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+        
+
     
 }
 + (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
@@ -1124,6 +1186,16 @@ bool g_bined = NO;
     self.mCity = [obj objectForKeyMy:@"city"];
     self.cId = [[obj objectForKeyMy:@"cId"] intValue];
     
+    
+    
+    self.mBankCard = [obj objectForKeyMy:@"bankCard"];
+    self.mBankName = [obj objectForKeyMy:@"bankName"];
+    self.mBankCity = [obj objectForKeyMy:@"bankCity"];
+    self.mBankProvince = [obj objectForKeyMy:@"bankProvince"];
+    self.mCard = [obj objectForKeyMy:@"card"];
+    self.mReal_name = [obj objectForKeyMy:@"real_name"];
+    self.mWebsite = [obj objectForKeyMy:@"website"];
+
 }
 
 @end

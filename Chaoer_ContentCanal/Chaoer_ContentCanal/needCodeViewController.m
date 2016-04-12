@@ -256,7 +256,7 @@
             
        
             for (int j =1; j<door.mFloor; j++) {
-                [mFloorArr addObject:[NSString stringWithFormat:@"%d层",j]];
+                [mFloorArr addObject:[NSString stringWithFormat:@"%d楼",j]];
 
             }
             for (int k = 1; k<door.mRoomNumber; k++) {
@@ -374,7 +374,6 @@
 }
 
 - (void)communityAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
     
  
     if (mType == 1) {

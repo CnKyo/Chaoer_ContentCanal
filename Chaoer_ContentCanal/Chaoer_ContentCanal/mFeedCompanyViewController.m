@@ -51,7 +51,12 @@
 
     [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.mReason.text block:^(mBaseData *resb) {
         [SVProgressHUD dismiss];
-        
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
     }];
     
 }

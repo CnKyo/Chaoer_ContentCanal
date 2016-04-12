@@ -67,6 +67,13 @@
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhz-86-Gjz">
+                            <rect key="frame" x="25" y="397" width="230" height="21"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话：177777777777" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eng-cH-zbh">
                             <rect key="frame" x="25" y="428" width="230" height="21"/>
                             <constraints>
@@ -207,13 +214,16 @@
                         <constraint firstItem="eng-cH-zbh" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="PGT-T1-2J8"/>
                         <constraint firstItem="8TV-q5-DQM" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" id="Q6x-Zo-2oc"/>
                         <constraint firstItem="y0O-Bh-MZ4" firstAttribute="top" secondItem="aqd-Cp-XDG" secondAttribute="top" constant="15" id="R4k-TG-x01"/>
+                        <constraint firstItem="eng-cH-zbh" firstAttribute="top" secondItem="Vhz-86-Gjz" secondAttribute="bottom" constant="10" id="Rw3-bf-OqA"/>
                         <constraint firstAttribute="trailing" secondItem="M0N-K4-4qc" secondAttribute="trailing" constant="45" id="UNN-NS-fdB"/>
                         <constraint firstItem="M0N-K4-4qc" firstAttribute="width" secondItem="apF-HU-52e" secondAttribute="width" id="URz-Rr-4hf"/>
                         <constraint firstItem="M0N-K4-4qc" firstAttribute="baseline" secondItem="apF-HU-52e" secondAttribute="baseline" id="Utr-Ya-XJB"/>
+                        <constraint firstItem="Vhz-86-Gjz" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="VRW-h3-Y6P"/>
                         <constraint firstItem="JVO-2Y-Ccd" firstAttribute="top" secondItem="aqd-Cp-XDG" secondAttribute="top" constant="136" id="XQz-58-k2u"/>
                         <constraint firstItem="M0N-K4-4qc" firstAttribute="leading" secondItem="apF-HU-52e" secondAttribute="trailing" constant="25" id="Ymt-wj-JCD"/>
                         <constraint firstAttribute="trailing" secondItem="eng-cH-zbh" secondAttribute="trailing" constant="25" id="ZBe-wr-fc2"/>
                         <constraint firstItem="CAQ-CI-bye" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="Zmh-vK-Cut"/>
+                        <constraint firstAttribute="trailing" secondItem="Vhz-86-Gjz" secondAttribute="trailing" constant="25" id="aDB-UQ-qPQ"/>
                         <constraint firstItem="8TV-q5-DQM" firstAttribute="top" secondItem="aqd-Cp-XDG" secondAttribute="top" id="bwP-2g-2Q6"/>
                         <constraint firstItem="JVO-2Y-Ccd" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="byU-bN-FfK"/>
                         <constraint firstItem="WJi-WX-zmr" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="bz3-7t-QYI"/>
@@ -221,6 +231,7 @@
                         <constraint firstAttribute="height" constant="500" id="hKs-jX-5bZ"/>
                         <constraint firstItem="Old-n5-3F2" firstAttribute="top" secondItem="JVO-2Y-Ccd" secondAttribute="bottom" constant="17" id="hbv-CR-3rv"/>
                         <constraint firstItem="Old-n5-3F2" firstAttribute="leading" secondItem="aqd-Cp-XDG" secondAttribute="leading" constant="25" id="ipf-dw-WsC"/>
+                        <constraint firstItem="Vhz-86-Gjz" firstAttribute="top" secondItem="M0N-K4-4qc" secondAttribute="bottom" constant="20" id="kQJ-KF-1qL"/>
                         <constraint firstItem="zgx-Ze-jaI" firstAttribute="top" secondItem="y0O-Bh-MZ4" secondAttribute="bottom" constant="26" id="mS9-mB-8aA"/>
                         <constraint firstItem="WJi-WX-zmr" firstAttribute="top" secondItem="eng-cH-zbh" secondAttribute="bottom" constant="10" id="qAP-WZ-3sc"/>
                         <constraint firstItem="y0O-Bh-MZ4" firstAttribute="centerX" secondItem="aqd-Cp-XDG" secondAttribute="centerX" id="tkc-zv-DbD"/>
@@ -263,6 +274,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="mAddress" destination="CAQ-CI-bye" id="o6l-RD-mAH"/>
+                <outlet property="mAddressBtn" destination="Vhz-86-Gjz" id="sgH-7B-xXJ"/>
                 <outlet property="mCleanBtn" destination="7ze-dI-5wv" id="ys3-iv-IFX"/>
                 <outlet property="mHiddenView" destination="imi-MR-Fu3" id="zep-Df-GsQ"/>
                 <outlet property="mHomeBtn" destination="gIj-RX-YdP" id="Hll-nH-mk2"/>

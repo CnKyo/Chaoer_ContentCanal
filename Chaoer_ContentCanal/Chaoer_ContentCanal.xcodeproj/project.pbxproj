@@ -41,6 +41,12 @@
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
 		048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8371CB642CD00383DF8 /* evolutionViewController.m */; };
 		048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8381CB642CD00383DF8 /* evolutionViewController.xib */; };
+		04BBA2E11CBD1B2000BD1420 /* addAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */; };
+		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
+		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
+		04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */; };
+		04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E91CBD1D6200BD1420 /* addressViewController.m */; };
+		04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */; };
 		16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */; };
 		16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB81C3D13A400B9A850 /* AlipaySDK.framework */; };
 		16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB91C3D13A400B9A850 /* libcrypto.a */; };
@@ -570,6 +576,15 @@
 		048FD8361CB642CD00383DF8 /* evolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolutionViewController.h; sourceTree = "<group>"; };
 		048FD8371CB642CD00383DF8 /* evolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evolutionViewController.m; sourceTree = "<group>"; };
 		048FD8381CB642CD00383DF8 /* evolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evolutionViewController.xib; sourceTree = "<group>"; };
+		04BBA2DE1CBD1B2000BD1420 /* addAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addAddressViewController.h; sourceTree = "<group>"; };
+		04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addAddressViewController.m; sourceTree = "<group>"; };
+		04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addAddressViewController.xib; sourceTree = "<group>"; };
+		04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTableViewCell.h; sourceTree = "<group>"; };
+		04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addTableViewCell.m; sourceTree = "<group>"; };
+		04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addTableViewCell.xib; sourceTree = "<group>"; };
+		04BBA2E81CBD1D6200BD1420 /* addressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressViewController.h; sourceTree = "<group>"; };
+		04BBA2E91CBD1D6200BD1420 /* addressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressViewController.m; sourceTree = "<group>"; };
+		04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addressViewController.xib; sourceTree = "<group>"; };
 		16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		16279CB81C3D13A400B9A850 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		16279CB91C3D13A400B9A850 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -1639,6 +1654,15 @@
 				318D56461C9BAD7E0045B5FB /* mGeneralSubView.h */,
 				318D56471C9BAD7E0045B5FB /* mGeneralSubView.m */,
 				318D56491C9BAD880045B5FB /* mGeneralSubView.xib */,
+				04BBA2DE1CBD1B2000BD1420 /* addAddressViewController.h */,
+				04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */,
+				04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */,
+				04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */,
+				04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */,
+				04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */,
+				04BBA2E81CBD1D6200BD1420 /* addressViewController.h */,
+				04BBA2E91CBD1D6200BD1420 /* addressViewController.m */,
+				04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */,
 			);
 			name = "通用";
 			sourceTree = "<group>";
@@ -3327,6 +3351,7 @@
 				04648C671CB4F64E006823C9 /* senderTableViewCell.xib in Resources */,
 				31EEB32D1C93F73200B61A86 /* mOrderComform.xib in Resources */,
 				31F544801CAE12C400307B83 /* homeNavView.xib in Resources */,
+				04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */,
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
 				31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */,
 				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
@@ -3401,6 +3426,7 @@
 				31E1A7291CA3952100D3496F /* popMessageView.xib in Resources */,
 				313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */,
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
+				04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */,
 				310EB5E21CA241B0005C61F4 /* choiseServicerTableViewCell.xib in Resources */,
 				3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */,
 				3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */,
@@ -3423,6 +3449,7 @@
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,
 				31E1A7221CA3890C00D3496F /* makeFixOrderDetailViewController.xib in Resources */,
+				04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */,
 				310EB5FA1CA26178005C61F4 /* serviceDetailView.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
 				04648C621CB4F1A4006823C9 /* mSenderViewController.xib in Resources */,
@@ -3541,12 +3568,14 @@
 				749BE9681B3272E700BABCA6 /* MJRefreshHeaderView.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
+				04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */,
 				3135F8231C97E29800EF9569 /* editMessageViewController.m in Sources */,
 				742FB8FB1B5CDEA3005A1AFA /* WPAttributedStyleAction.m in Sources */,
 				3123CC421C92CA3500C3B928 /* mFixView.m in Sources */,
 				746907E21BABEC6600A4589A /* moreCell.m in Sources */,
 				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
+				04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */,
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
 				044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */,
 				313413551CA28DC3003972E2 /* XMNAlbumCell.m in Sources */,
@@ -3630,6 +3659,7 @@
 				740089701B38F2C300618BA0 /* AFHTTPSessionManager.m in Sources */,
 				313413621CA28DC3003972E2 /* XMNPhotoPreviewCell.m in Sources */,
 				749BEA0F1B32779800BABCA6 /* MJPhotoLoadingView.m in Sources */,
+				04BBA2E11CBD1B2000BD1420 /* addAddressViewController.m in Sources */,
 				31EEB30C1C93A6DF00B61A86 /* takeFixViewController.m in Sources */,
 				749BEA431B3277AA00BABCA6 /* SDWebImageManager+MJ.m in Sources */,
 				31EEB3191C93B32F00B61A86 /* communityViewController.m in Sources */,

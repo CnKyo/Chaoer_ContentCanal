@@ -213,15 +213,21 @@
 - (void)forgetAction:(UIButton *)sender{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
     rrr.mType = 2;
+    rrr.block = ^(NSString *content,NSString *mPwd){
+        
+        mLoginV.phoneTx.text = content;
+        mLoginV.codeTx.text = mPwd;
+    };
     [self pushViewController:rrr];
 }
 #pragma mark----注册
 - (void)registAction:(UIButton *)sender{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
     rrr.mType = 1;
-    rrr.block = ^(NSString *content){
+    rrr.block = ^(NSString *content,NSString *mPwd){
         
-        mCodeStr = content;
+        mLoginV.phoneTx.text = content;
+        mLoginV.codeTx.text = mPwd;
     };
     [self pushViewController:rrr];
 }

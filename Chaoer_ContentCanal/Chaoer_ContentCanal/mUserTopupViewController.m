@@ -23,6 +23,10 @@
     mTopUpBalanceView *mView;
 
     UILabel *timer_show;//倒计时label
+    
+    NSString *orderCode;
+    NSString *ybOrderCode;
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -63,7 +67,7 @@
     [mView.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 
     mView.mName.text = [NSString stringWithFormat:@"帐号：%@",[mUserInfo backNowUser].mPhone];
-    mView.mBalance.text = [NSString stringWithFormat:@"帐户余额：%d",[mUserInfo backNowUser].mMoney];
+    mView.mBalance.text = [NSString stringWithFormat:@"帐户余额：%f",[mUserInfo backNowUser].mMoney];
     
     
     
@@ -174,12 +178,19 @@
         [self leftBtnTouched:nil];
         return;
     }
+    [SVProgressHUD showWithStatus:@"正在获取..." maskType:SVProgressHUDMaskTypeClear];
+
     [mUserInfo getBalanceVerifyCode:@"超尔物管通" andLoginName:[mUserInfo backNowUser].mPhone andPayMoney:self.mPayMoney andPayName:mView.mNameTx.text andIdentify:mView.mNameTx.text andPhone:mView.mPhone.text andBalance:[mUserInfo backNowUser].mMoney andBankCard:mView.mBankCard.text andBankTime:mView.mTime.text andCVV:mView.mCVV.text block:^(mBaseData *resb) {
-        if (resb.mData) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self timeCount];
+            
+            ybOrderCode = [resb.mData objectForKey:@"ybOrderCode"];
+            
+            orderCode = [resb.mData objectForKey:@"orderCode"];
 
         }else{
-        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
     }];
 
@@ -242,7 +253,17 @@
         [self showErrorStatus:@"请输入合法的银行卡号"];
         return;
     }
+    [SVProgressHUD showWithStatus:@"正在充值..." maskType:SVProgressHUDMaskTypeClear];
 
+    [mUserInfo getCodeAndPay:orderCode andYBOrderCode:ybOrderCode andPhoneCode:mView.mCode.text block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+    
 }
 /*
 #pragma mark - Navigation

@@ -224,43 +224,42 @@
     [self.wkCodeTx resignFirstResponder];
     [self.wkNewPWD resignFirstResponder];
     [self.wkComfirPWD resignFirstResponder];
+    
+    if ([Util isMobileNumber:self.wkPhoneTX.text]) {
+        [self showErrorStatus:@"请输入合法的手机号码"];
+        [self.wkPhoneTX becomeFirstResponder];
+        return;
+    }
+    
     MLLog(@"验证码");
     [SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
 
-    if (_wkType == 1) {
-        
+//    if (_wkType == 1) {
+    
         _codeBtn.userInteractionEnabled = NO;
+        [mUserInfo getRegistVerifyCode:self.wkPhoneTX.text block:^(mBaseData *resb) {
+            if( resb.mSucess )
+            {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self timeCount];
+                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
+            }
+            
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                _codeBtn.userInteractionEnabled = YES;
+                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
+                
+            }
+
+        }];
         
-        
-//        [SUser sendSM:[SUser currentUser].mPhone block:^(SResBase *resb) {
-//            
-//            if( resb.msuccess )
-//            {
-//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-//                [self timeCount];
-//                [sender setBackgroundImage:[UIImage imageNamed:@"16"] forState:0];
-//            }
-//            
-//            else
-//            {
-//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-//                _codeBtn.userInteractionEnabled = YES;
-//                [sender setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
-//                
-//            }
-//            
-//            
-//        }];
 
         
-    }else{
-        if (![Util isMobileNumber:_wkPhoneTX.text]) {
-            [self showErrorStatus:@"请输入合法的手机号码"];
-//            [_wkPhoneTX becomeFirstResponder];
-            return;
-        }
-        _codeBtn.userInteractionEnabled = NO;
-        
+//    }else{
+//            _codeBtn.userInteractionEnabled = NO;
+    
         
 //        [SUser sendSM:_wkPhoneTX.text block:^(SResBase *resb) {
 //            
@@ -282,7 +281,7 @@
 //            
 //        }];
 //
-    }
+//    }
 
     
     

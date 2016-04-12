@@ -16,6 +16,37 @@
 {
     NSMutableArray *mTT;
 }
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:YES];
+    
+}
+
+- (void)loadData{
+    [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo verifyUserPhone:self.mPhoneT.text andNum:[[mTT lastObject] floatValue] block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self topup];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+
+}
+
+- (void)topup{
+    [SVProgressHUD showWithStatus:@"正在充值..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo topUpPhone:self.mPhoneT.text andNum:[[mTT lastObject] floatValue] andUserId:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -25,13 +56,12 @@
     self.Title = self.mPageName = @"手机充值";
     
     mTT = [NSMutableArray new];
-    
     [self initView];
 }
 - (void)initView{
 
     self.mPhoneT.text = [mUserInfo backNowUser].mPhone;
-    self.mBalance.text = [NSString stringWithFormat:@"%d元",[mUserInfo backNowUser].mMoney];
+    self.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
     self.mBgkView.layer.masksToBounds = YES;
     self.mBgkView.layer.borderWidth = 0.5;
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.83 alpha:1].CGColor;
@@ -105,13 +135,19 @@
     }
 }
 - (void)mGoPayAction:(UIButton *)sender{
+    if (self.mPhoneT.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入您要充值的手机号码！"];
+        return;
+    }
     if (mTT.count <= 0) {
         [SVProgressHUD showErrorWithStatus:@"请选择充值金额！"];
         return;
     }
 
     NSLog(@"选择了%@",[mTT lastObject]);
-
+    [self loadData];
+    
+    
 
 }
 - (void)didReceiveMemoryWarning {
