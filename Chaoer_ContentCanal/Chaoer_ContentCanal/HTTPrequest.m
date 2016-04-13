@@ -16,7 +16,7 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.172/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.230:8080/";
 
@@ -35,7 +35,7 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.172
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     });
     _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;
-    _sharedClient.requestSerializer.timeoutInterval = 10;
+    _sharedClient.requestSerializer.timeoutInterval = 60;
     return _sharedClient;
 }
 

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface dataModel : NSObject
+@interface dataModel : NSObject <NSURLConnectionDataDelegate>
++(instancetype)shareInstance;
 
 @end
 

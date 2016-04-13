@@ -256,13 +256,13 @@
 
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
         
-        if (resb.mSucess) {
+//        if (resb.mSucess) {
             [self loginOk];
-            [SVProgressHUD showErrorWithStatus:@"登录成功"];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-
-        }
+//            [SVProgressHUD showErrorWithStatus:@"登录成功"];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+//
+//        }
         
         
     }];
