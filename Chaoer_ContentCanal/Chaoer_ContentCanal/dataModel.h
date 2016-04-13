@@ -70,6 +70,7 @@
 @class GFix;
 @class SServicer;
 @class GFixOrder;
+@class GServiceList;
 /**
  *  用户信息
  */
@@ -516,7 +517,7 @@
  *  @param mTwo     二级分类
  *  @param block    返回值
  */
-+ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block;
++ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo andPage:(int)mStart andEnd:(int)mEnd block:(void(^)(mBaseData *resb,GServiceList *mList))block;
 
 
 /**
@@ -928,6 +929,7 @@
  */
 @property (assign,nonatomic) NSString    *mPropertyId;
 
+@property (assign,nonatomic) NSString    *mAreaName;
 
 @end
 
@@ -946,6 +948,25 @@
  *  单元
  */
 @property (assign,nonatomic) int    mUnit;
+
+@end
+
+
+@interface GServiceList : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  分页
+ */
+@property (assign,nonatomic) int    pageNumber;
+/**
+ *  结束页
+ */
+@property (assign,nonatomic) int    pageSize;
+/**
+ *  数据
+ */
+@property (strong,nonatomic) NSArray    *mArray;
 
 @end
 

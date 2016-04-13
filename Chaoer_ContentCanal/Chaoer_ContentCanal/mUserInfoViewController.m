@@ -10,8 +10,9 @@
 
 #import "editMessageViewController.h"
 #import "RSKImageCropper.h"
+#import "TFFileUploadManager.h"
 
-@interface mUserInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate>
+@interface mUserInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,THHHTTPDelegate>
 
 @end
 
@@ -283,29 +284,50 @@
     
     self.mHeaderImg.image = tempImage;
     
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
     NSData *imageData = UIImagePNGRepresentation(tempImage);
-
-    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),@"test"];
+    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
     [imageData writeToFile:aPath atomically:YES];
     
-    
-    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),@"test"];
+    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
     UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
     UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+
     
-    tempImage = [Util scaleImg:imageView3.image maxsize:10];
+    tempImage = [Util scaleImg:imageView3.image maxsize:150];
     
     NSData *mmm = UIImagePNGRepresentation(tempImage);
+
     
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"userId"];
+    [para setObject:imageData forKey:@"file"];
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo modifyUserImg:[mUserInfo backNowUser].mUserId andImage:mmm andPath:aPath3 block:^(mBaseData *resb) {
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/updUser/appModfiyHead",[HTTPrequest returnNowURL]];
+    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+    manage.delegate = self;
+    [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError) {
+            NSLog(@"请求出错 %@",connectionError);
         }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            NSLog(@"请求返回：\n%@",response);
         }
     }];
+}
+
+- (void)block:(mBaseData *)resb{
+    
+    if (resb.mSucess) {
+        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+    }else{
+        [SVProgressHUD showErrorWithStatus:resb.mMessage];
+    }
     
 }
 

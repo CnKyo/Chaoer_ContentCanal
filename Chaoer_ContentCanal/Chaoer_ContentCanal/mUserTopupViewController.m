@@ -67,7 +67,7 @@
     [mView.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 
     mView.mName.text = [NSString stringWithFormat:@"帐号：%@",[mUserInfo backNowUser].mPhone];
-    mView.mBalance.text = [NSString stringWithFormat:@"帐户余额：%f",[mUserInfo backNowUser].mMoney];
+    mView.mBalance.text = [NSString stringWithFormat:@"帐户余额：%.2f",[mUserInfo backNowUser].mMoney];
     
     
     
@@ -291,7 +291,7 @@
 }
 //倒计时结束后的代理方法
 - (void)timerLabel:(MZTimerLabel *)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
-    [mView.mCodeBtn setTitle:@"重新发送验证码" forState:UIControlStateNormal];//倒计时结束后按钮名称改为"发送验证码"
+    [mView.mCodeBtn setTitle:@"重新获取" forState:UIControlStateNormal];//倒计时结束后按钮名称改为"发送验证码"
     [timer_show removeFromSuperview];//移除倒计时模块
     mView.mCodeBtn.userInteractionEnabled = YES;//按钮可以点击
     [mView.mCodeBtn setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];

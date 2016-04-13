@@ -332,55 +332,54 @@ bool g_bined = NO;
 + (void)modifyUserImg:(int)mUserId andImage:(NSData *)mImg andPath:(NSString *)mPath block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-    [para setObject:mImg forKey:@"image"];
+    [para setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"userId"];
+    [para setObject:mImg forKey:@"file"];
     
     
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@zm/merchantOrder/addRepairOrder.do",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/updUser/appModfiyHead",[HTTPrequest returnNowURL]];
     
     
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:mUrlStr] cachePolicy:(NSURLRequestUseProtocolCachePolicy) timeoutInterval:30];
-//    NSString *boundary = @"wfWiEWrgEFA9A78512weF7106A";
-//    NSData *fileData = [NSData dataWithContentsOfFile:mPath];
-//
-//
-//    
-//    request.HTTPMethod = @"POST";
-//    request.allHTTPHeaderFields = @{
-//                                    @"Content-Type":[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary]
-//                                    };
-//    
-//    //multipart/form-data格式按照构建上传数据
-//    NSMutableData *postData = [[NSMutableData alloc]init];
-//    for (NSString *key in para) {
-//        NSString *pair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n",boundary,key];
-//        [postData appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        id value = [para objectForKey:key];
-//        if ([value isKindOfClass:[NSString class]]) {
-//            [postData appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
-//        }else if ([value isKindOfClass:[NSData class]]){
-//            [postData appendData:value];
-//        }
-//        [postData appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    
-//    //文件部分
-//    NSString *filename = [mPath lastPathComponent];
-//    NSString *contentType = AFContentTypeForPathExtension([mPath pathExtension]);
-//    
-//    NSString *filePair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\";Content-Type=%@\r\n\r\n",boundary,@"pic",filename,contentType];
-//    [postData appendData:[filePair dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    //[postData appendData:[@"测试文件数据" dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:mImg]; //加入文件的数据
-//    
-//    [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    request.HTTPBody = postData;
-//    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
-//    
-//  NSURLConnection * _connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-//    [_connection start];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:mUrlStr] cachePolicy:(NSURLRequestUseProtocolCachePolicy) timeoutInterval:30];
+    NSString *boundary = @"wfWiEWrgEFA9A78512weF7106A";
+
+
+    
+    request.HTTPMethod = @"POST";
+    request.allHTTPHeaderFields = @{
+                                    @"Content-Type":[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary]
+                                    };
+    
+    //multipart/form-data格式按照构建上传数据
+    NSMutableData *postData = [[NSMutableData alloc]init];
+    for (NSString *key in para) {
+        NSString *pair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n",boundary,key];
+        [postData appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        id value = [para objectForKey:key];
+        if ([value isKindOfClass:[NSString class]]) {
+            [postData appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
+        }else if ([value isKindOfClass:[NSData class]]){
+            [postData appendData:value];
+        }
+        [postData appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    //文件部分
+    NSString *filename = [mPath lastPathComponent];
+    NSString *contentType = AFContentTypeForPathExtension([mPath pathExtension]);
+    
+    NSString *filePair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\";Content-Type=%@\r\n\r\n",boundary,@"file",filename,contentType];
+    [postData appendData:[filePair dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[postData appendData:[@"测试文件数据" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:mImg]; //加入文件的数据
+    
+    [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    request.HTTPBody = postData;
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
+    
+  NSURLConnection * _connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [_connection start];
 
     
     
@@ -445,28 +444,28 @@ bool g_bined = NO;
     
     
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    
-    [manager POST:mUrlStr parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        NSString *fileName = [NSString stringWithFormat:@"%@.png",nowTimeStr];
-        [formData appendPartWithFileData:mImg name:@"file" fileName:fileName mimeType:@"application/octet-stream"];
-
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@ˆ",responseObject);
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-        block( [mBaseData infoWithError:[NSString stringWithFormat:@"%@",error]] );
-
-    }];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    
+//    [manager POST:mUrlStr parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//        
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"yyyyMMddHHmmss";
+//        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+//        
+//        NSString *fileName = [NSString stringWithFormat:@"%@.png",nowTimeStr];
+//        [formData appendPartWithFileData:mImg name:@"file" fileName:fileName mimeType:@"application/octet-stream"];
+//
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@ˆ",responseObject);
+//
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",error);
+//        block( [mBaseData infoWithError:[NSString stringWithFormat:@"%@",error]] );
+//
+//    }];
     
   
 
@@ -1067,7 +1066,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
-+ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo block:(void(^)(mBaseData *resb,NSArray *marr))block{
++ (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo andPage:(int)mStart andEnd:(int)mEnd block:(void(^)(mBaseData *resb,GServiceList *mList))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
 
@@ -1081,16 +1080,24 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mOne forKey:@"classification1"];
     [para setObject:mTwo forKey:@"classification2"];
     [para setObject:@"1" forKey:@"isAuthentication"];
+    [para setObject:NumberWithInt(mStart) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mEnd) forKey:@"pageSize"];
+
+
     [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/MerchantList" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
             
-            for (NSDictionary *dic in info.mData) {
+            GServiceList *GService = [[GServiceList alloc] initWithObj:info.mData];
+            
+            for (NSDictionary *dic in GService.mArray) {
+                
                 [tempArr addObject:[[SServicer alloc] initWithObj:dic]];
             }
+            GService.mArray = tempArr;
             
-            block ( info,tempArr);
+            block ( info,GService);
             
         }else{
             block (info, nil );
@@ -1531,8 +1538,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 {
     
     self.mCommunityName = [obj objectForKeyMy:@"communityName"];
-    self.mPropertyId = [obj objectForKeyMy:@"propertyId"];
-
+    self.mPropertyId = [obj objectForKeyMy:@"id"];
+    self.mAreaName = [obj objectForKeyMy:@"areaName"];
     
 }
 
@@ -1556,6 +1563,28 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mUnit = [[obj objectForKeyMy:@"unit"] intValue];
 
     
+    
+}
+
+@end
+
+@implementation GServiceList
+
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mArray = [obj objectForKeyMy:@"merchantList"];
+    self.pageSize = [[obj objectForKeyMy:@"pageSize"] intValue];
+    self.pageNumber = [[obj objectForKeyMy:@"pageNumber"] intValue];
     
 }
 

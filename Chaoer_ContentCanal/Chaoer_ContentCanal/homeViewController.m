@@ -27,6 +27,9 @@
 #import "mGeneralSubView.h"
 
 #import "mSenderViewController.h"
+
+#import "communityStatusViewController.h"
+
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
@@ -379,7 +382,9 @@
         case 5:
         {
             
-            [self showErrorStatus:@"正在建设中..."];
+//            [self showErrorStatus:@"正在建设中..."];
+            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
+            [self pushViewController:ccc];
 
         }
             break;

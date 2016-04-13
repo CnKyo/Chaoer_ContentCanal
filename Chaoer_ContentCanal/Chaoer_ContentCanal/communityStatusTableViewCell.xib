@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="communityStatusTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uas-3e-q4N">
+                        <rect key="frame" x="15" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="G8A-1L-bKQ"/>
+                            <constraint firstAttribute="height" constant="50" id="xSL-gc-ZOq"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="捐赠活动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdg-CF-Ogm">
+                        <rect key="frame" x="73" y="8" width="239" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阳光社区活动的撒的 撒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVE-l9-sOP">
+                        <rect key="frame" x="73" y="29" width="239" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-06-06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXc-rx-d9b">
+                        <rect key="frame" x="73" y="49" width="239" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uas-3e-q4N" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="0hQ-4n-Lc8"/>
+                    <constraint firstItem="uas-3e-q4N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="1J2-Zr-pWU"/>
+                    <constraint firstItem="QXc-rx-d9b" firstAttribute="top" secondItem="kVE-l9-sOP" secondAttribute="bottom" constant="3" id="6bx-ZD-uuw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Wdg-CF-Ogm" secondAttribute="trailing" id="SC8-nA-xH5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QXc-rx-d9b" secondAttribute="trailing" id="XLb-04-QWe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kVE-l9-sOP" secondAttribute="trailing" id="bKP-kY-8mv"/>
+                    <constraint firstItem="Wdg-CF-Ogm" firstAttribute="leading" secondItem="uas-3e-q4N" secondAttribute="trailing" constant="8" id="cLI-bE-gsn"/>
+                    <constraint firstAttribute="topMargin" secondItem="Wdg-CF-Ogm" secondAttribute="top" id="fy0-Fh-qut"/>
+                    <constraint firstItem="QXc-rx-d9b" firstAttribute="leading" secondItem="uas-3e-q4N" secondAttribute="trailing" constant="8" id="jnz-Td-aq0"/>
+                    <constraint firstItem="kVE-l9-sOP" firstAttribute="leading" secondItem="uas-3e-q4N" secondAttribute="trailing" constant="8" id="yAn-kJ-v9A"/>
+                    <constraint firstItem="kVE-l9-sOP" firstAttribute="top" secondItem="Wdg-CF-Ogm" secondAttribute="bottom" constant="3" id="zNJ-ec-7X3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mContent" destination="kVE-l9-sOP" id="YGS-DY-3SQ"/>
+                <outlet property="mImage" destination="uas-3e-q4N" id="nzk-1W-BqY"/>
+                <outlet property="mTime" destination="QXc-rx-d9b" id="zYD-6J-qiR"/>
+                <outlet property="mTitle" destination="Wdg-CF-Ogm" id="ZiA-6V-ALG"/>
+            </connections>
+            <point key="canvasLocation" x="294" y="330.5"/>
+        </tableViewCell>
+    </objects>
+</document>

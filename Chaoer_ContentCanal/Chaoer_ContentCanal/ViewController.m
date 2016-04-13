@@ -233,7 +233,6 @@
 }
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
-//    [self loginOk];
     MLLog(@"登录");
     if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
         [self showErrorStatus:@"手机号码不能为空"];
@@ -256,13 +255,13 @@
 
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
         
-//        if (resb.mSucess) {
+        if (resb.mSucess) {
             [self loginOk];
-//            [SVProgressHUD showErrorWithStatus:@"登录成功"];
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-//
-//        }
+            [SVProgressHUD showErrorWithStatus:@"登录成功"];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+
+        }
         
         
     }];
@@ -428,20 +427,14 @@
 {
     if( DeviceIsiPhone() )
     {
-        return @[@"replash-1.png",@"replash.png",@"replash-1.png",@"replash-1.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash3.png",@"replash4.png"];
     }
     else
     {
-        return @[@"replash-1.png",@"replash.png",@"replash-1.png",@"replash-1.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash3.png",@"replash4.png"];
     }
     
 }
-
-
-
-
-
-
 
 
 

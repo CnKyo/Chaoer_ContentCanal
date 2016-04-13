@@ -22,6 +22,14 @@
 {
 
     UITableView *mTableView;
+    
+    /**
+     *  起始页1最后10
+     */
+    int mStart;
+    
+    int mEnd;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +39,10 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    mStart = 1;
+    mEnd = 10;
+    
     [self initview];
 }
 
@@ -48,6 +60,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     self.haveHeader = YES;
+    self.haveFooter = YES;
     [self headerBeganRefresh];
     
     
@@ -57,22 +70,55 @@
     
 }
 - (void)headerBeganRefresh{
+    mStart -= 10;
+    mEnd -= 10;
+    
+    if (mStart <= 1) {
+        mStart = 1;
+    }if (mEnd<=10) {
+        mEnd = 10;
+    }
     
     NSString *address = [self.mData.mData objectForKey:@"address"];
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
-    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] block:^(mBaseData *resb, NSArray *marr) {
-        [SVProgressHUD dismiss];
+    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [self headerEndRefresh];
         [self.tempArray removeAllObjects];
         if (resb.mSucess) {
             
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            [self.tempArray addObjectsFromArray:marr];
+            
+            [self.tempArray addObjectsFromArray:mList.mArray];
+
             [self.tableView reloadData];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
     }];
+}
+- (void)footetBeganRefresh{
+    mStart += 10;
+    mEnd += 10;
+    NSString *address = [self.mData.mData objectForKey:@"address"];
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [self footetEndRefresh];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self.tempArray addObjectsFromArray:mList.mArray];
+            mStart = mList.pageNumber+10;
+            mEnd = mList.pageSize+10;
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -174,5 +220,29 @@
 
     
 }
+
+- (void)leftBtnTouched:(id)sender{
+
+    [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        [self popViewController_2];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"离开", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
+
 
 @end

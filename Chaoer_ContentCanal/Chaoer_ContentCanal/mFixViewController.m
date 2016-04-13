@@ -25,8 +25,9 @@
 #import "XMNAssetCell.h"
 
 #import "addAddressViewController.h"
+#import "TFFileUploadManager.h"
 
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate>{
     HZQDatePickerView *_pikerView;
 
 }
@@ -60,6 +61,12 @@
     
 
     NSData  *mImgData;
+    NSString *mImagePath;
+    
+    NSData *mVedioData;
+    
+    
+    NSMutableDictionary *mPara;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -91,6 +98,10 @@
     self.Title = self.mPageName = @"物业报修";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    mPara = [NSMutableDictionary new];
+
+    
     [self initView];
     
 }
@@ -139,20 +150,39 @@
     mView.mPhone.text = [NSString stringWithFormat:@"电话：%@",[mUserInfo backNowUser].mPhone];
     
     
+
+    
+    
 }
 #pragma mark----图片按钮
 - (void)mImageAction:(UIButton *)sender{
     //1. 推荐使用XMNPhotoPicker 的单例
     //2. 设置选择完照片的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
-        if (images.count > 3) {
-            [SVProgressHUD showErrorWithStatus:@"图片选择不能超过3张!"];
+        
+        if (images.count > 1) {
+            [SVProgressHUD showErrorWithStatus:@"只能选择1张图片!"];
             NSLog(@"选择的图片超过3张!");
             return ;
         }
         NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        tempImage = [Util scaleImg:images[0] maxsize:5];
-        mImgData = UIImagePNGRepresentation(tempImage);
+        tempImage = [Util scaleImg:images[0] maxsize:150];
+       
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+        
+        NSData *imageData = UIImagePNGRepresentation(tempImage);
+        NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+        [imageData writeToFile:aPath atomically:YES];
+        
+        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+        UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+        
+        
+        mImgData = UIImagePNGRepresentation(imageView3.image);
+
         
         self.assets = [assets copy];
         
@@ -207,27 +237,58 @@
         return;
 
     }
-//    if (tempImage == nil) {
-//        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
-//        return;
-//    }
+    if (!mImgData) {
+        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
+        return;
+    }
+
+    [self commit];
     
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+}
+
+- (void)commit{
     
-    [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:mSuperID andClassification:mClassID[0] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:nil andImg:mImgData block:^(mBaseData *resb) {
-        [SVProgressHUD dismiss];
-        if (resb.mSucess) {
-            choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
-            ccc.mData = resb;
-            [self pushViewController:ccc];
+    [mPara setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"uid"];
+    [mPara setObject:mImgData forKey:@"file"];
+
+    [mPara setObject:[NSString stringWithFormat:@"%@",mSuperID] forKey:@"classification1"];
+    [mPara setObject:[NSString stringWithFormat:@"%@",mClassID[0]] forKey:@"classification2"];
+    [mPara setObject:mView.mTxView.text forKey:@"remarks"];
+    [mPara setObject:mTime forKey:@"appointmentTime"];
+    [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
+    [mPara setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
+    
+    
+    [SVProgressHUD showWithStatus:@"正在提交中..." maskType:SVProgressHUDMaskTypeClear];
+
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]];
+    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+    manage.delegate = self;
+    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData fileKey:@"pic" filePath:mImagePath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError) {
+            NSLog(@"请求出错 %@",connectionError);
         }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            NSLog(@"请求返回：\n%@",response);
         }
     }];
-    
-    
-
 }
+
+- (void)block:(mBaseData *)resb{
+    
+    if (resb.mSucess) {
+        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+        ccc.mData = mBaseData.new;
+        ccc.mData = resb;
+        [self pushViewController:ccc];
+
+    }else{
+        [SVProgressHUD showErrorWithStatus:resb.mMessage];
+    }
+    
+}
+
 #pragma mark----时间选择
 - (void)mTimeAction:(UIButton *)sender{
     [self setupDateView:DateTypeOfStart];
@@ -476,101 +537,63 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    /**
-     
-     选取的信息都在info中，info 是一个字典。
-     字典中的键：
-     NSString *const  UIImagePickerControllerMediaType ;指定用户选择的媒体类型（文章最后进行扩展）
-     NSString *const  UIImagePickerControllerOriginalImage ;原始图片
-     NSString *const  UIImagePickerControllerEditedImage ;修改后的图片
-     NSString *const  UIImagePickerControllerCropRect ;裁剪尺寸
-     NSString *const  UIImagePickerControllerMediaURL ;媒体的URL
-     NSString *const  UIImagePickerControllerReferenceURL ;原件的URL
-     NSString *const  UIImagePickerControllerMediaMetadata;当来数据来源是照相机的时候这个值才有效
-     
-     
-     */
+
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
-    if ([mediaType isEqualToString:@"public.image"]) {
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    if ([mediaType isEqualToString:@"public.image"]){
         
-        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        ;
+        NSLog(@"%@",image);
+        NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp.jpg"];
+        ;
         
-        //如果是拍摄的照片
-        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            //保存在相册
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        success = [fileManager fileExistsAtPath:imageFile];
+        if(success) {
+            success = [fileManager removeItemAtPath:imageFile error:&error];
         }
         
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(200, 200, 100, 100)];
+        tempImage = image;
+        [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
         
-        //添加imgView点击事件
-        //        UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xuanze)];
+        //SETIMAGE(image);
+        //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);
+        ;    }
+    else if([mediaType isEqualToString:@"public.movie"]){
+        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         
-        //        [imgView addGestureRecognizer:tap];
+        [self saveVideoWith:videoURL];
         
-        //        imgView.userInteractionEnabled = YES;
+      
+//        
+//        /****************************************/
+//        
+//        NSString *videoFile = [documentsDirectory stringByAppendingPathComponent:@"temp.mov"];
+//        ;
+//        
+//        success = [fileManager fileExistsAtPath:videoFile];
+//        if(success) {
+//            success = [fileManager removeItemAtPath:videoFile error:&error];
+//        }
+//        [mVedioData writeToFile:videoFile atomically:YES];
+//        //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);
+//        ;    //NSLog(videoURL);
+//        
         
-        imgView.image = image;
+
         
-        imgView.layer.cornerRadius = imgView.frame.size.width / 2;
-        
-        imgView.clipsToBounds = YES;
-        
-        [self.view addSubview:imgView];
         
     }
-    else if ([mediaType isEqualToString:@"public.movie"])
-    {
-        //获取视图的url
-        NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
-
-        UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([NSString stringWithFormat:@"%@",url]);
+    [picker dismissModalViewControllerAnimated:YES];
 
 
-
-        //播放视频
-
-        [self convertVideoQuailtyWithInputURL:url outputURL:nil completeHandler:^(AVAssetExportSession *exportSession) {
-            switch (exportSession.status) {
-                    
-                case AVAssetExportSessionStatusUnknown:
-                    
-                    NSLog(@"AVAssetExportSessionStatusUnknown");
-                    
-                    break;
-                    
-                case AVAssetExportSessionStatusWaiting:
-                    
-                    NSLog(@"AVAssetExportSessionStatusWaiting");
-                    
-                    break;
-                    
-                case AVAssetExportSessionStatusExporting:
-                    
-                    NSLog(@"AVAssetExportSessionStatusExporting");
-                    
-                    break;
-                    
-                case AVAssetExportSessionStatusCompleted:
-                    
-                    NSLog(@"AVAssetExportSessionStatusCompleted");
-                    NSLog(@"完成之后－－－＋－＋－＋－＋－%@",exportSession);
-                    break;
-                    
-                case AVAssetExportSessionStatusFailed:
-                    
-                    NSLog(@"AVAssetExportSessionStatusFailed");
-                    
-                    break;
-                    
-                    
-            }
-
-        }];
-    }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) convertVideoQuailtyWithInputURL:(NSURL*)inputURL
@@ -748,6 +771,7 @@
                     break;
                 case AVAssetExportSessionStatusCompleted:
                     [SVProgressHUD showSuccessWithStatus:@"视频处理完成"];
+                      mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
                     //视频转码成功,删除原始文件
                     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
                                       break;
@@ -800,4 +824,24 @@
 }
 
 
+
+
+
+
+
+
+#pragma mark----视频压缩
+- (void) lowQuailtyWithInputURL:(NSURL*)inputURL
+                      outputURL:(NSURL*)outputURL
+                   blockHandler:(void (^)(AVAssetExportSession*))handler
+{
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
+    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:asset     presetName:AVAssetExportPresetMediumQuality];
+    session.outputURL = outputURL;
+    session.outputFileType = AVFileTypeQuickTimeMovie;
+    [session exportAsynchronouslyWithCompletionHandler:^(void)
+     {
+         handler(session);
+     }];
+}
 @end
