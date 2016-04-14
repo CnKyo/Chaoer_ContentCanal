@@ -25,4 +25,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *mValligeBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *mArearLb;
 @end

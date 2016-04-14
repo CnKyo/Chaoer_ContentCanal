@@ -1048,8 +1048,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
             
             NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
-            [formData appendPartWithFileData:mImgData name:@"img" fileName:fileName mimeType:@"image/png"];
-
+            
+            [formData appendPartWithFileData:mImgData name:@"file" fileName:fileName mimeType:@"image/png"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"%@ˆ",responseObject);

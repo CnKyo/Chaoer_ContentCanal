@@ -667,7 +667,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     NSParameterAssert(mimeType);
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
-    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"%@\"", name, fileName] forKey:@"Content-Disposition"];
+    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"%@\"", name, fileName] forKey:[NSString stringWithFormat:@"--%@\r\nContent-Disposition\r\n\r\n",self.boundary]];
     [mutableHeaders setValue:mimeType forKey:@"Content-Type"];
 
     [self appendPartWithHeaders:mutableHeaders body:data];
@@ -679,7 +679,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     NSParameterAssert(name);
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
-    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"", name] forKey:@"Content-Disposition"];
+    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"", name] forKey:[NSString stringWithFormat:@"--%@\r\nContent-Disposition",self.boundary]];
 
     [self appendPartWithHeaders:mutableHeaders body:data];
 }

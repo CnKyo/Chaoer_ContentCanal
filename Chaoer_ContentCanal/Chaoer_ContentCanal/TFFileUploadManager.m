@@ -70,6 +70,84 @@
     [_connection start];
 }
 
+
+-(void)uploadFileWithURL:(NSString*)urlString params:(NSDictionary*)params andData:(NSData *)mData andVideoData:(NSData *)mVideoData imgFileKey:(NSString*)imgfileKey andVideoFileKey:(NSString *)videoKey andVideoPath:(NSString *)videoPath filePath:(NSString*)filePath completeHander:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError))completeHander{
+
+    NSURL *URL = [[NSURL alloc]initWithString:urlString];
+    request = [[NSMutableURLRequest alloc]initWithURL:URL cachePolicy:(NSURLRequestUseProtocolCachePolicy) timeoutInterval:30];
+    NSString *boundary = @"wfWiEWrgEFA9A78512weF7106A";
+
+    request.HTTPMethod = @"POST";
+    request.allHTTPHeaderFields = @{
+                                    @"Content-Type":[NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary]
+                                    };
+    
+    //multipart/form-data格式按照构建上传数据
+    NSMutableData *postData = [[NSMutableData alloc]init];
+    for (NSString *key in params) {
+
+        NSString *pair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n",boundary,key];
+        
+//        [pair appendFormat:@"Content-Type:image/png, video/mp4\r\n\r\n"];
+        
+        [postData appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        id value = [params objectForKey:key];
+        if ([value isKindOfClass:[NSString class]]) {
+            [postData appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
+        }else if ([value isKindOfClass:[NSData class]]){
+            [postData appendData:value];
+        }
+        [postData appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    if (mData) {
+        
+            
+        //文件部分
+        NSString *filename = [filePath lastPathComponent];
+//        NSString *contentType = AFContentTypeForPathExtension([filePath pathExtension]);
+        NSString *contentType = @"image/png";
+
+        NSString *filePair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\";Content-Type=%@\r\n\r\n",boundary,imgfileKey,filename,contentType];
+        [request addValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+
+        [postData appendData:[filePair dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:mData]; //加入文件的数据
+
+    }
+    
+
+    
+    if (mVideoData) {
+        NSString *videoname = [videoPath lastPathComponent];
+//        NSString *videoContentType = AFContentTypeForPathExtension([videoPath pathExtension]);
+        NSString *videoContentType = @"video/mp4";
+
+        
+        NSString *videoFilePair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\";Content-Type=%@\r\n\r\n",boundary,videoKey,videoname,videoContentType];
+        [request addValue:@"video/png" forHTTPHeaderField:@"Content-Type"];
+
+        [postData appendData:[videoFilePair dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:mVideoData];
+
+    }
+    
+    [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    
+    request.HTTPBody = postData;
+    
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
+    
+    _connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [_connection start];
+    
+
+
+}
+
+
 #pragma mark - connection delegate
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -120,5 +198,6 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     return @"application/octet-stream";
 #endif
 }
+
 
 @end

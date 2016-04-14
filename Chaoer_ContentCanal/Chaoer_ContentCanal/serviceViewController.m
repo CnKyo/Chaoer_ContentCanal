@@ -52,6 +52,15 @@
     mView.frame = CGRectMake(0, 0, DEVICE_Width, mScrollerView.mheight);
     [mScrollerView addSubview:mView];
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+    
+    mView.mHeader.layer.masksToBounds = YES;
+    mView.mHeader.layer.cornerRadius = mView.mHeader.mwidth/2;
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    
+    [mView.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+    
 //
 //    CircleLHQView *LHQView = [[CircleLHQView alloc] initWithFrame:CGRectMake(10, 130, DEVICE_Width-20, 300) andImage:nil];
 //    [LHQView addSubViewWithSubView:nil andTitle:@[@"提现",@"买票",@"帐号充值",@"敬请期待",@"手机充值"] andSize:CGSizeMake(60, 60) andcenterImage:nil];

@@ -21,4 +21,7 @@
 
 -(void)uploadFileWithURL:(NSString*)urlString params:(NSDictionary*)params andData:(NSData *)mData fileKey:(NSString*)fileKey filePath:(NSString*)filePath completeHander:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError))completeHander;
 
+
+-(void)uploadFileWithURL:(NSString*)urlString params:(NSDictionary*)params andData:(NSData *)mData andVideoData:(NSData *)mVideoData imgFileKey:(NSString*)imgfileKey andVideoFileKey:(NSString *)videoKey andVideoPath:(NSString *)videoPath filePath:(NSString*)filePath completeHander:(void(^)(NSURLResponse *response, NSData *data, NSError *connectionError))completeHander;
+
 @end

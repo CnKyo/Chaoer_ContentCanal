@@ -106,12 +106,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "482244822.690634"
+                  timestampString = "482313592.969194"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "596"
                   endingLineNumber = "596"
-                  offsetFromSymbolStart = "548">
+                  offsetFromSymbolStart = "470">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "482244822.690773"
+                  timestampString = "482313592.969474"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "597"
                   endingLineNumber = "597"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -217,28 +217,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mUserInfoViewController.m"
-            timestampString = "482221133.660029"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "-imageCropViewController:didCropImage:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/mFixViewController.m"
-            timestampString = "482243703.614278"
+            timestampString = "482311882.328482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "-locallVideo"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/mFixViewController.m"
-            timestampString = "482244652.58035"
+            timestampString = "482311882.328482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "648"
+            endingLineNumber = "648"
             landmarkName = "-convertVideoQuailtyWithInputURL:outputURL:completeHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -265,13 +249,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mFixViewController.m"
-            timestampString = "482243703.614278"
+            filePath = "Chaoer_ContentCanal/dataModel.m"
+            timestampString = "482301614.176331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            startingLineNumber = "1058"
+            endingLineNumber = "1058"
+            landmarkName = "+commiteFixOrder:andOneLevel:andClassification:andRemark:andtime:andPhone:andAddress:andImg:block:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chaoer_ContentCanal/dataModel.m"
+            timestampString = "482301943.959259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1063"
+            endingLineNumber = "1063"
+            landmarkName = "+commiteFixOrder:andOneLevel:andClassification:andRemark:andtime:andPhone:andAddress:andImg:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

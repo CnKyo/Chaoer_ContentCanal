@@ -26,7 +26,7 @@
 
 #import "addAddressViewController.h"
 #import "TFFileUploadManager.h"
-
+#define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
 @interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate>{
     HZQDatePickerView *_pikerView;
 
@@ -64,7 +64,7 @@
     NSString *mImagePath;
     
     NSData *mVedioData;
-    
+    NSString *mVedioPath;
     
     NSMutableDictionary *mPara;
 }
@@ -137,6 +137,12 @@
     [mView.mRightBtn addTarget:self action:@selector(mVideoAction:) forControlEvents:UIControlEventTouchUpInside];
 
 
+    
+    mView.mLeftBtn.layer.masksToBounds = mView.mRightBtn.layer.masksToBounds = YES;
+    mView.mLeftBtn.layer.cornerRadius = mView.mRightBtn.layer.cornerRadius = 3;
+    
+    
+
     mView.mHiddenView.alpha = 0;
     [mScrollerView addSubview:mView];
     
@@ -160,13 +166,20 @@
     //2. 设置选择完照片的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
         
-        if (images.count > 1) {
+        if (images.count > 1 || assets.count > 1) {
             [SVProgressHUD showErrorWithStatus:@"只能选择1张图片!"];
             NSLog(@"选择的图片超过3张!");
             return ;
         }
+        
         NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        tempImage = [Util scaleImg:images[0] maxsize:150];
+
+        for (XMNAssetModel *model in assets) {
+            tempImage = [Util scaleImg:model.originImage maxsize:150];
+            [mView.mLeftBtn setBackgroundImage:model.thumbnail forState:0];
+
+        }
+        
        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -176,18 +189,19 @@
         NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
         [imageData writeToFile:aPath atomically:YES];
         
+        
         NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
         UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
         UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
         
+        mImagePath = aPath;
         
         mImgData = UIImagePNGRepresentation(imageView3.image);
 
         
         self.assets = [assets copy];
         
-        [mView.mLeftBtn setBackgroundImage:images[0] forState:0];
-
+        
     }];
     //3. 设置选择完视频的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
@@ -221,7 +235,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark----预约按钮
+#pragma mark----提交预约按钮
 - (void)mMakeAction:(UIButton *)sender{
     
     if (mClassID.count <= 0) {
@@ -241,16 +255,36 @@
         [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
         return;
     }
-
+//    [SVProgressHUD showWithStatus:@"正在提交中..." maskType:SVProgressHUDMaskTypeClear];
+//
+//    [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:[NSString stringWithFormat:@"%@",mSuperID] andClassification:[NSString stringWithFormat:@"%@",mClassID[0]] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:@"重庆市渝中区大坪石油路万科锦程1栋1004" andImg:mImgData block:^(mBaseData *resb) {
+//        
+//        if (resb.mSucess) {
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+//        }
+//        
+//    }];
+    
+    
     [self commit];
+
     
 }
 
 - (void)commit{
     
+    
+    
     [mPara setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"uid"];
-    [mPara setObject:mImgData forKey:@"file"];
+    [mPara setObject:mImgData forKey:@"image"];
+    
+    if (mVedioData) {
+        [mPara setObject:mVedioData forKey:@"video"];
 
+    }
+    
     [mPara setObject:[NSString stringWithFormat:@"%@",mSuperID] forKey:@"classification1"];
     [mPara setObject:[NSString stringWithFormat:@"%@",mClassID[0]] forKey:@"classification2"];
     [mPara setObject:mView.mTxView.text forKey:@"remarks"];
@@ -258,13 +292,21 @@
     [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
     [mPara setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
     
+    NSLog(@"这里提交的参数是：%@",mPara);
     
     [SVProgressHUD showWithStatus:@"正在提交中..." maskType:SVProgressHUDMaskTypeClear];
 
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
-    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData fileKey:@"pic" filePath:mImagePath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    
+    
+    if (!mVedioPath) {
+        mVedioPath = nil;
+    }
+    
+    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData andVideoData:mVedioData imgFileKey:@"pic" andVideoFileKey:@"video" andVideoPath:mVedioPath filePath:mImagePath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+
         
         if (connectionError) {
             NSLog(@"请求出错 %@",connectionError);
@@ -273,6 +315,7 @@
         }
     }];
 }
+
 
 - (void)block:(mBaseData *)resb{
     
@@ -569,6 +612,8 @@
     else if([mediaType isEqualToString:@"public.movie"]){
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         
+        [mView.mRightBtn setBackgroundImage:[self imageWithMediaURL:videoURL] forState:0];
+
         [self saveVideoWith:videoURL];
         
       
@@ -591,7 +636,7 @@
         
         
     }
-    [picker dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 
 }
@@ -739,6 +784,8 @@
     
     NSString *filePath = [[self class] getVideoMergeFilePathString];
     
+    mVedioPath = filePath;
+    
     NSURL *mergeFileURL = [NSURL fileURLWithPath:filePath];
     
     //export
@@ -754,6 +801,12 @@
     exporter.videoComposition = mainCompositionInst;
     exporter.outputURL = mergeFileURL;
     NSLog(@"最后的到的文件是：%@",exporter.outputURL);
+    
+    if ([self getFileSize:[NSString stringWithFormat:@"%@",exporter.outputURL]] >= 10.0*1024) {
+        [SVProgressHUD showErrorWithStatus:@"选择的文件太大了！"];
+        return;
+    }
+    
     exporter.outputFileType = AVFileTypeMPEG4;
     exporter.shouldOptimizeForNetworkUse = YES;
     [exporter exportAsynchronouslyWithCompletionHandler:^{
@@ -824,24 +877,32 @@
 }
 
 
-
-
-
-
-
-
-#pragma mark----视频压缩
-- (void) lowQuailtyWithInputURL:(NSURL*)inputURL
-                      outputURL:(NSURL*)outputURL
-                   blockHandler:(void (^)(AVAssetExportSession*))handler
-{
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:inputURL options:nil];
-    AVAssetExportSession *session = [[AVAssetExportSession alloc] initWithAsset:asset     presetName:AVAssetExportPresetMediumQuality];
-    session.outputURL = outputURL;
-    session.outputFileType = AVFileTypeQuickTimeMovie;
-    [session exportAsynchronouslyWithCompletionHandler:^(void)
-     {
-         handler(session);
-     }];
+/**
+ *  通过视频的URL，获得视频缩略图
+ *
+ *  @param url 视频URL
+ *
+ *  @return首帧缩略图
+ */
+- (UIImage *)imageWithMediaURL:(NSURL *)url {
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
+                                                     forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    // 初始化媒体文件
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
+    // 根据asset构造一张图
+    AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
+    // 设定缩略图的方向
+    // 如果不设定，可能会在视频旋转90/180/270°时，获取到的缩略图是被旋转过的，而不是正向的（自己的理解）
+    generator.appliesPreferredTrackTransform = YES;
+    // 设置图片的最大size(分辨率)
+    generator.maximumSize = CGSizeMake(600, 450);
+    // 初始化error
+    NSError *error = nil;
+    // 根据时间，获得第N帧的图片
+    // CMTimeMake(a, b)可以理解为获得第a/b秒的frame
+    CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(0, 10000) actualTime:NULL error:&error];
+    // 构造图片
+    UIImage *image = [UIImage imageWithCGImage: img];
+    return image;
 }
 @end

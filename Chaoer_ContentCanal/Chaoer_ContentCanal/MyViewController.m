@@ -183,6 +183,9 @@
     mNavView = [homeNavView sharePersonNav];
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
     
+    
+    mNavView.mBadge.hidden = YES;
+    
     [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mNavView];

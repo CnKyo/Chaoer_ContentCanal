@@ -45,6 +45,7 @@
             
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self.tempArray addObjectsFromArray:mArr];
+            [self loadActionView];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             
@@ -56,8 +57,8 @@
     
     NSMutableArray *mar = [NSMutableArray new];
     [mar removeAllObjects];
-    for ( NSDictionary *dic in self.tempArray) {
-        [mar addObject:[dic objectForKey:@"address"]];
+    for ( GArear *dic in self.tempArray) {
+        [mar addObject:dic.mAddress];
     }
     
     MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择小区" style:MHSheetStyleWeiChat itemTitles:mar];
@@ -65,7 +66,7 @@
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
 
-        self.mValligeBtn.titleLabel.text = title;
+        self.mArearLb.text = title;
         GArear *mAraer = self.tempArray[index];
         mid = mAraer.mId;
     }];

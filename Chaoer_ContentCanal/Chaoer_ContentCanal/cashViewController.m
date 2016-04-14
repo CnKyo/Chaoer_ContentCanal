@@ -41,6 +41,8 @@
     self.hiddenTabBar = YES;
     self.Title = self.mPageName = @"余额提现";
     
+    self.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
+    
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.00];
 }
 
@@ -58,6 +60,22 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)mTimeAction:(id)sender {
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择到账时间" style:MHSheetStyleWeiChat itemTitles:@[@"24小时内到账",@"12小时内到账",@"2小时内到账"]];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+        NSString *text = title;
+        NSLog(@"%@",text);
+       
+        [self.mTimeBtn setTitle:text forState:0];
+        
+    }];
+
+}
+
+
 - (IBAction)okbtn:(UIButton *)sender {
     sender.selected = !sender.selected;
 }
