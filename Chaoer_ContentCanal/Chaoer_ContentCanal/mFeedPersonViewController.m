@@ -252,7 +252,8 @@
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
             mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
             self.mProvinceBtn.titleLabel.text = text;
-            
+            mType = 2;
+
         }else if (mType == 2){
             GCity *city = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
@@ -260,31 +261,38 @@
             
             self.mCityBtn.titleLabel.text = text;
             mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
-            
+            mType = 3;
+
         }else if(mType == 3){
             GCommunity *gm = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
             mCommunityId = [[NSString stringWithFormat:@"%@",gm.mPropertyId] intValue];
             self.mValiigeBtn.titleLabel.text = text;
+            mType = 4;
+
         }else if(mType == 4){
             NSString *gm = Arrtemp[index];
             mBan = [gm intValue];
             text = [NSString stringWithFormat:@"%@栋", gm];
             self.mBuildBtn.titleLabel.text = text;
             mUnit = [gm intValue];
+            mType = 5;
+
             
         }else if(mType == 5){
             int gm = [mUnitArr[index] intValue];
             text = [NSString stringWithFormat:@"%d单元", gm];
             mUnit = gm;
             self.mUnitBtn.titleLabel.text = text;
-            
+            mType = 6;
+
         }else if(mType == 6){
             int gm = [mFloorArr[index] intValue];
             text = [NSString stringWithFormat:@"%d楼", gm];
             self.mFloorBtn.titleLabel.text = text;
             mFloor = gm;
-            
+            mType = 7;
+
         }
         else if(mType == 7){
             int gm = [mDoornumArr[index] intValue];
@@ -342,13 +350,13 @@
 }
 #pragma mark----区县
 - (IBAction)cityAction:(id)sender {
-    
+    if (mType == 1) {
+        [SVProgressHUD showErrorWithStatus:@"请选择省份！"];
+        return;
+
+    }
     UIButton *btn = sender;
     
-    if (mCityId == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
-        return;
-    }
     btn.selected = !btn.selected;
     mType = 2;
     [self loadData];
@@ -358,8 +366,8 @@
 
 #pragma mark----小区
 - (IBAction)mValiigeAction:(UIButton *)sender {
-    if (mType == 1) {
-        [SVProgressHUD showErrorWithStatus:@"请选择区县!"];
+    if (mType == 2 || mType == 1) {
+        [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
         return;
     }
     sender.selected = !sender.selected;
@@ -372,7 +380,7 @@
 
 #pragma mark----楼栋
 - (IBAction)mBuildAction:(UIButton *)sender {
-    if (mType == 2) {
+    if (mType == 3 || mType == 2 || mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择小区!"];
         return;
     }
@@ -383,7 +391,7 @@
 }
 #pragma mark----单元
 - (IBAction)mUnitAction:(UIButton *)sender {
-    if ([self.mBuildBtn.titleLabel.text isEqualToString:@"选择楼栋号"]) {
+    if (mType == 4 || mType == 3 || mType == 2 || mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择楼栋号!"];
         return;
     }
@@ -393,7 +401,7 @@
 }
 #pragma mark----楼层
 - (IBAction)mFloorAction:(UIButton *)sender {
-    if ([self.mUnitBtn.titleLabel.text isEqualToString:@"选择单元"]) {
+    if (mType == 5 || mType == 4 || mType == 3 || mType == 2 || mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择单元!"];
         return;
     }
@@ -405,7 +413,7 @@
 }
 #pragma mark----门牌号
 - (IBAction)mDoorAction:(UIButton *)sender {
-    if ([self.mFloorBtn.titleLabel.text isEqualToString:@"选择楼层"]) {
+    if (mType == 6 || mType == 5 || mType == 4 || mType == 3 || mType == 2 || mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择楼层!"];
         return;
     }

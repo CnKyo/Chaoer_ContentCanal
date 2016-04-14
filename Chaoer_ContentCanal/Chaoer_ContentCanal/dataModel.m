@@ -163,7 +163,7 @@ bool g_bined = NO;
     }
     
     self.mUserImgUrl = [obj objectForKeyMy:@"img"];
-    self.mCredit = [[obj objectForKeyMy:@"cret"] intValue];
+    self.mCredit = [[obj objectForKeyMy:@"credit"] intValue];
     self.mGrade = [[obj objectForKeyMy:@"grade"] intValue];
     self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
     self.mUserId = [[obj objectForKeyMy:@"userId"] intValue];
@@ -178,7 +178,7 @@ bool g_bined = NO;
     
     self.mIsRegist = [[obj objectForKeyMy:@"isRegist"] boolValue];
     self.mIsBundle = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
-    self.mPhone = [obj objectForKeyMy:@"mPhone"];
+    self.mPhone = [obj objectForKeyMy:@"moblie"];
     self.mPwd = @"";
 }
 
@@ -564,7 +564,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mSellerName forKey:@"merchantName"];
     [para setObject:mLoginName forKey:@"userMoblie"];
-    [para setObject:NumberWithInt(mBalance) forKey:@"merchantMoney"];
+    [para setObject:NumberWithInt(mBalance) forKey:@"userBalance"];
     [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
     [para setObject:mPayName forKey:@"buyerName"];
     [para setObject:mIdentify forKey:@"buyerCard"];

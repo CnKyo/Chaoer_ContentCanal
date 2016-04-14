@@ -180,7 +180,7 @@
     }
     [SVProgressHUD showWithStatus:@"正在获取..." maskType:SVProgressHUDMaskTypeClear];
 
-    [mUserInfo getBalanceVerifyCode:@"超尔物管通" andLoginName:[mUserInfo backNowUser].mPhone andPayMoney:self.mPayMoney andPayName:mView.mNameTx.text andIdentify:mView.mNameTx.text andPhone:mView.mPhone.text andBalance:[mUserInfo backNowUser].mMoney andBankCard:mView.mBankCard.text andBankTime:mView.mTime.text andCVV:mView.mCVV.text block:^(mBaseData *resb) {
+    [mUserInfo getBalanceVerifyCode:@"超尔物管通" andLoginName:[mUserInfo backNowUser].mPhone andPayMoney:self.mPayMoney andPayName:mView.mNameTx.text andIdentify:mView.mIdentify.text andPhone:mView.mPhone.text andBalance:[mUserInfo backNowUser].mMoney andBankCard:mView.mBankCard.text andBankTime:mView.mTime.text andCVV:mView.mCVV.text block:^(mBaseData *resb) {
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self timeCount];

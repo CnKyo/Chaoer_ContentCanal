@@ -64,6 +64,8 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     
+    mType = 1;
+    
     mArray = [NSMutableArray new];
     
     [self initview];
@@ -193,18 +195,24 @@
             text = self.tempArray[index];
             mView.mBankLb.text = text;
             mBankName = text;
+            mType = 2;
+
 
         }else if (mType == 2){
         
             text = self.tempArray[index];
             mView.mProvinceLb.text = text;
             mProvince = text;
+            mType = 3;
+
 
         }else if (mType == 3){
             
             text = self.tempArray[index];
             mView.mChoiseCity.text = text;
             mCity = text;
+            mType = 4;
+
             
         }else if (mType == 4){
             
@@ -222,44 +230,53 @@
 }
 
 - (void)bankNameAction:(UIButton *)sender{
-    
-    sender.selected = !sender.selected;
+    if (mView.mBankName.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入姓名"];
+        [mView.mBankName becomeFirstResponder];
+        return;
+    }
+    if (mView.mBankIdentify.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入身份证"];
+        [mView.mBankIdentify becomeFirstResponder];
+        return;
+    }
     mType = 1;
+    sender.selected = !sender.selected;
     [self loadData];
     
     
 }
 - (void)provinceAction:(UIButton *)sender{
-    if ([mView.mBankLb.text isEqualToString:@"选择开户行"]) {
+    if (mType == 1) {
         [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 2;
+    sender.selected = !sender.selected;
     [self loadData];
     
 }
 - (void)cityAction:(UIButton *)sender{
-    if ([mView.mProvinceLb.text isEqualToString:@"选择开户行"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
+    if (mType == 2 || mType == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择开户省份！"];
         return;
     }
+    mType = 3;
     sender.selected = !sender.selected;
     
-    mType = 3;
     [self loadData];
     
     
     
 }
 - (void)pointAction:(UIButton *)sender{
-    if ([mView.mChoiseCity.text isEqualToString:@"选择开户行"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择开户行！"];
+    if (mType == 3 || mType == 2 || mType == 1) {
+        [SVProgressHUD showErrorWithStatus:@"请选择开户城市！"];
         return;
     }
+    mType = 4;
     sender.selected = !sender.selected;
     
-    mType = 4;
     [self loadData];
     
     
@@ -302,7 +319,14 @@
         [SVProgressHUD dismiss];
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            [self popViewController_3];
+            
+            if ([mUserInfo backNowUser].mIsBundle == 1) {
+                [self popViewController_2];
+            }else{
+                [self popViewController_3];
+
+            }
+            
 
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

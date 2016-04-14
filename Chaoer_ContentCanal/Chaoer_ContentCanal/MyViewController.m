@@ -104,6 +104,8 @@
             mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
             mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
             
+            [self initData];
+            
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

@@ -295,6 +295,7 @@
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
             mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
             mView.mCityLb.text = text;
+            mType = 2;
 
         }else if (mType == 2){
             GCity *city = self.tempArray[index];
@@ -303,31 +304,39 @@
 
             mView.mArearLb.text = text;
             mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
+            mType = 3;
 
         }else if(mType == 3){
             GCommunity *gm = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
             mCommunityId = [[NSString stringWithFormat:@"%@",gm.mPropertyId] intValue];
             mView.mCommunityLb.text = text;
+            mType = 4;
+
         }else if(mType == 4){
             NSString *gm = Arrtemp[index];
             mBan = [gm intValue];
             text = [NSString stringWithFormat:@"%@栋", gm];
             mView.mBuildLb.text = text;
             mUnit = [gm intValue];
+            mType = 5;
+
             
         }else if(mType == 5){
             int gm = [mUnitArr[index] intValue];
             text = [NSString stringWithFormat:@"%d单元", gm];
             mUnit = gm;
             mView.mUnitLb.text = text;
+            mType = 6;
+
             
         }else if(mType == 6){
             int gm = [mFloorArr[index] intValue];
             text = [NSString stringWithFormat:@"%d楼", gm];
             mView.mFloorLb.text = text;
             mFloor = gm;
-            
+            mType = 7;
+
         }
         else if(mType == 7){
             int gm = [mDoornumArr[index] intValue];
