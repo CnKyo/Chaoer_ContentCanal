@@ -946,6 +946,57 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+- (void)getCanalMsg:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/getPropertyCost" parameters:@{@"userId":[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]} call:^(mBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                
+                [tempArr addObject:[[GCanal alloc] initWithObj:dic]];
+            }
+            
+            block ( info,tempArr);
+            
+        }else{
+            block ( info,nil);
+        }
+        
+    }];
+
+}
+
+- (void)payCanal:(NSMutableDictionary *)mPara block:(void(^)(mBaseData *resb))block{
+
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/deliveryCharge" parameters:mPara call:^(mBaseData *info) {
+        if (info.mSucess) {
+            block ( info );
+        }else{
+            block ( info );
+        }
+    }];
+    
+}
+
+- (void)FindPublickProvince:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    
+    [JHJsonRequst httpNsynchronousRequestUrl:JH_API postStr:[NSString stringWithFormat:@"?key=%@",JH_KEY] finshedBlock:^(NSString *dataString) {
+        NSLog(@"nsynResult:%@",dataString);
+
+        
+    
+    }];
+}
+
+
+
+
+
 +(void)getCash:(int)mUid andMoney:(float)mMoney andPresentManner:(int)mPresentManner block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUid) forKey:@"uid"];
@@ -1585,6 +1636,61 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mArray = [obj objectForKeyMy:@"merchantList"];
     self.pageSize = [[obj objectForKeyMy:@"pageSize"] intValue];
     self.pageNumber = [[obj objectForKeyMy:@"pageNumber"] intValue];
+    
+}
+
+@end
+
+@implementation GCanal
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mActualPayment = [[obj objectForKeyMy:@"actualPayment"] floatValue];
+    self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
+    self.mPaymentUnit = [obj objectForKeyMy:@"paymentUnit"];
+    self.mCommunityId = [[obj objectForKeyMy:@"communityId"] intValue];
+    self.mDeadline = [obj objectForKeyMy:@"deadline"];
+    self.mUserName = [obj objectForKeyMy:@"userName"];
+    self.mPayableMoney = [[obj objectForKeyMy:@"payableMoney"] floatValue];
+    self.mPaymentAccount = [obj objectForKeyMy:@"paymentAccount"];
+    self.mStatus = [[obj objectForKeyMy:@"status"] intValue];
+    
+    if (self.mStatus == 1) {
+        self.mStatustr = @"已支付";
+    }else{
+        self.mStatustr = @"未支付";
+    }
+    
+    
+    
+}
+
+@end
+
+@implementation JHProvince
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mProvinceId = [obj objectForKeyMy:@"provinceId"];
+    self.mProvinceName = [obj objectForKeyMy:@"provinceName"];
     
 }
 

@@ -22,6 +22,11 @@
     UIScrollView *mScrollerView;
     canPayView *mCanView;
     
+    
+    NSMutableDictionary *mParas;
+    
+    BOOL isSelected;
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -34,6 +39,7 @@
     [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
     //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    [self loadData];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -41,6 +47,123 @@
     [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
+}
+
+- (void)loadData{
+
+    
+    mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",[mUserInfo backNowUser].mMoney];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    
+    [mCanView.mLogoImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+    
+    [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
+    [[mUserInfo backNowUser] getCanalMsg:^(mBaseData *resb, NSArray *mArr) {
+    
+        [self.tempArray removeAllObjects];
+        
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            [self updatePage];
+            
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+}
+- (void)updatePage{
+
+    if (self.tempArray.count<=0) {
+        [SVProgressHUD showErrorWithStatus:@"数据查询错误！"];
+        [self popViewController];
+        return;
+    }
+    
+    if (self.tempArray.count >= 1) {
+        
+         GCanal *mC = self.tempArray[0];
+        
+        [mCanView.mChioceCanalBtn setTitle:mC.mPaymentUnit forState:0];
+        
+        NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor redColor]};
+        
+        mCanView.mWillBalance.attributedText = [[NSString stringWithFormat:@"<font>本月应交物管费:</font><color>¥%.2f元</color>",mC.mPayableMoney] attributedStringWithStyleBook:mStyle];
+        mCanView.mTime.text = [NSString stringWithFormat:@"请在%@之前缴纳完！",mC.mDeadline];
+        mCanView.mNumTx.text = mC.mPaymentAccount;
+        mCanView.mNameTx.text = mC.mUserName;
+        mCanView.mMoneyTx.text = [NSString stringWithFormat:@"%.2f",mC.mPayableMoney];
+        if (mC.mMoney <= 0.0) {
+            mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",[mUserInfo backNowUser].mMoney];
+
+        }else{
+            mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",mC.mMoney];
+
+        }
+        
+
+        
+    }
+    
+    
+    
+    
+    
+}
+- (void)loadActionView{
+ 
+    NSMutableArray *Arrtemp = [NSMutableArray new];
+    
+    [Arrtemp removeAllObjects];
+    
+    for (GCanal *mC in self.tempArray) {
+        [Arrtemp addObject:mC.mPaymentUnit];
+    }
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区物管" style:MHSheetStyleWeiChat itemTitles:Arrtemp];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+
+        GCanal *mC = self.tempArray[index];
+        
+        mCanView.mJaintou.image = [UIImage imageNamed:@"jiantou_down"];
+
+        [mParas removeObjectForKey:NumberWithInt([mUserInfo backNowUser].mUserId)];
+        [mParas removeObjectForKey:mCanView.mMoneyTx.text];
+        [mParas removeObjectForKey:mC.mPaymentAccount];
+        [mParas removeObjectForKey:NumberWithInt(mC.mCommunityId)];
+
+        [mCanView.mChioceCanalBtn setTitle:mC.mPaymentUnit forState:0];
+        
+        NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor redColor]};
+
+        mCanView.mWillBalance.attributedText = [[NSString stringWithFormat:@"<font>本月应交物管费:</font><color>¥%.2f元</color>",mC.mPayableMoney] attributedStringWithStyleBook:mStyle];
+        mCanView.mTime.text = [NSString stringWithFormat:@"请在%@之前缴纳完！",mC.mDeadline];
+        mCanView.mNumTx.text = mC.mPaymentAccount;
+        mCanView.mNameTx.text = mC.mUserName;
+        mCanView.mMoneyTx.text = [NSString stringWithFormat:@"%.2f",mC.mPayableMoney];
+
+        if (mC.mMoney <= 0.0) {
+            mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",[mUserInfo backNowUser].mMoney];
+            
+        }else{
+            mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",mC.mMoney];
+            
+        }
+        
+        
+        [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+        [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
+        [mParas setObject:NumberWithInt(mC.mCommunityId) forKey:@"id"];
+        
+    }];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,6 +176,10 @@
     mrr.size.width = 100;
     mrr.origin.x = DEVICE_Width-80;
     self.navBar.rightBtn.frame = mrr;
+    
+    
+    mParas = [NSMutableDictionary new];
+    
     [self initView];
     
 }
@@ -67,12 +194,12 @@
     
     mCanView = [canPayView shareView];
     mCanView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
-    mCanView.mWillBalance.text = [NSString stringWithFormat:@"本月应%@  50¥",_mTitel];
     mCanView.mMoneyTx.delegate = mCanView.mNumTx.delegate = mCanView.mNameTx.delegate = self;
     
     [mCanView.mTopup addTarget:self action:@selector(mTopupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mCanView.mBalanceBtn addTarget:self action:@selector(mBalanceAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [mCanView.mChioceCanalBtn addTarget:self action:@selector(mCanalAction:) forControlEvents:UIControlEventTouchUpInside];
+
     
     [mScrollerView addSubview:mCanView];
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
@@ -84,12 +211,29 @@
     
     
 }
+/**
+ *  选择物管
+ *
+ *  @param sender <#sender description#>
+ */
+- (void)mCanalAction:(UIButton *)sender{
+    
+    
+    
+    [self loadActionView];
+
+    mCanView.mJaintou.image = [UIImage imageNamed:@"jiantou_up"];
+ 
+    
+}
 #pragma  mark -----键盘消失
 - (void)tapAction{
     [mCanView.mMoneyTx resignFirstResponder];
     [mCanView.mNumTx resignFirstResponder];
     [mCanView.mNameTx resignFirstResponder];
     
+    mCanView.mJaintou.image = [UIImage imageNamed:@"jiantou_down"];
+
 }
 /**
  *  充值
@@ -108,6 +252,22 @@
  */
 - (void)mBalanceAction:(UIButton *)sender{
     NSLog(@"缴费");
+    [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+
+    [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
+    [[mUserInfo backNowUser] payCanal:mParas block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

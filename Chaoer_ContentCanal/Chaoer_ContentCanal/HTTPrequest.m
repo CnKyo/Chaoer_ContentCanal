@@ -18,6 +18,8 @@
 
 static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.172/";
 
+
+
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.230:8080/";
 
 @interface HTTPrequest()

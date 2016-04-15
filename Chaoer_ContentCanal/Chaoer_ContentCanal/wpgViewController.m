@@ -20,7 +20,6 @@
 
 @implementation wpgViewController
 {
-    UITableView *mTableView;
     
     canPayView *mHeaderView;
 }
@@ -56,19 +55,17 @@
     [mHeaderView.mChongzhi addTarget:self action:@selector(mTopupAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mHeaderView];
 
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0, mHeaderView.mbottom+10, DEVICE_Width, DEVICE_Height);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-//    mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:mTableView];
+    
+    [self loadTableView:CGRectMake(0, 124, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
+    [self.view addSubview:self.tableView];
 
-    
     UINib   *nib = [UINib nibWithNibName:@"wpgTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
+    [self.tempArray addObject:@"水费"];
+    [self.tempArray addObject:@"电费"];
+    [self.tempArray addObject:@"燃气费"];
 
     
     
@@ -107,6 +104,7 @@
     
     wpgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
+    cell.mName.text = self.tempArray[indexPath.row];
     
     return cell;
     

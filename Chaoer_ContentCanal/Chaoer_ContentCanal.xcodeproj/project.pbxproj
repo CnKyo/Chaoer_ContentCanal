@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
+		04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D9B1CC0E76300CB6249 /* utilityView.m */; };
+		04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04223D9D1CC0E77100CB6249 /* utilityView.xib */; };
 		044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24771CB4A85700A6379C /* kitchenTableViewCell.m */; };
 		044A247A1CB4A85700A6379C /* kitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A24781CB4A85700A6379C /* kitchenTableViewCell.xib */; };
 		044A247F1CB4B25700A6379C /* msgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A247D1CB4B25700A6379C /* msgViewController.m */; };
@@ -530,6 +533,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04223D971CC0C9E400CB6249 /* JHJsonRequst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHJsonRequst.h; sourceTree = "<group>"; };
+		04223D981CC0C9E400CB6249 /* JHJsonRequst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHJsonRequst.m; sourceTree = "<group>"; };
+		04223D9A1CC0E76300CB6249 /* utilityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilityView.h; path = AFNetworking/utilityView.h; sourceTree = "<group>"; };
+		04223D9B1CC0E76300CB6249 /* utilityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = utilityView.m; path = AFNetworking/utilityView.m; sourceTree = "<group>"; };
+		04223D9D1CC0E77100CB6249 /* utilityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = utilityView.xib; sourceTree = "<group>"; };
 		044A24761CB4A85700A6379C /* kitchenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kitchenTableViewCell.h; sourceTree = "<group>"; };
 		044A24771CB4A85700A6379C /* kitchenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kitchenTableViewCell.m; sourceTree = "<group>"; };
 		044A24781CB4A85700A6379C /* kitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = kitchenTableViewCell.xib; sourceTree = "<group>"; };
@@ -1714,6 +1722,9 @@
 				3123CC271C929F4300C3B928 /* wpgTableViewCell.h */,
 				3123CC281C929F4300C3B928 /* wpgTableViewCell.m */,
 				3123CC291C929F4300C3B928 /* wpgTableViewCell.xib */,
+				04223D9A1CC0E76300CB6249 /* utilityView.h */,
+				04223D9B1CC0E76300CB6249 /* utilityView.m */,
+				04223D9D1CC0E77100CB6249 /* utilityView.xib */,
 			);
 			name = "水电气";
 			sourceTree = "<group>";
@@ -2103,6 +2114,8 @@
 				3154428F1C9A93810047E52A /* HTTPrequest.m */,
 				04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */,
 				04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */,
+				04223D971CC0C9E400CB6249 /* JHJsonRequst.h */,
+				04223D981CC0C9E400CB6249 /* JHJsonRequst.m */,
 			);
 			name = HTTPDATA;
 			sourceTree = "<group>";
@@ -3401,6 +3414,7 @@
 				044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */,
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
 				318D56651C9C012B0045B5FB /* MHSheetCell.xib in Resources */,
+				04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */,
 				044A24801CB4B25700A6379C /* msgViewController.xib in Resources */,
 				31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */,
 				741C85151BABFA0B00CEFD18 /* headerView.xib in Resources */,
@@ -3689,6 +3703,7 @@
 				749BE99C1B32756800BABCA6 /* IQSegmentedNextPrevious.m in Sources */,
 				749BE9D41B32772000BABCA6 /* GTMBase64.m in Sources */,
 				310EB5ED1CA2499D005C61F4 /* DLStarRatingControl.m in Sources */,
+				04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */,
 				749BEA4B1B3277AA00BABCA6 /* UIImageView+MJWebCache.m in Sources */,
 				740089701B38F2C300618BA0 /* AFHTTPSessionManager.m in Sources */,
 				313413621CA28DC3003972E2 /* XMNPhotoPreviewCell.m in Sources */,
@@ -3776,6 +3791,7 @@
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
+				04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */,
 				749BEA121B32779800BABCA6 /* MJPhotoView.m in Sources */,
 				31E1A72E1CA3C04A00D3496F /* cashViewController.m in Sources */,
 				313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */,

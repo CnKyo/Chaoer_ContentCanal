@@ -45,6 +45,13 @@
  *  缴费
  */
 @property (strong, nonatomic) IBOutlet UIButton *mBalanceBtn;
+/**
+ *  选择小区按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChioceCanalBtn;
+
+@property (weak, nonatomic) IBOutlet UIImageView *mJaintou;
+
 
 + (canPayView *)shareView;
 

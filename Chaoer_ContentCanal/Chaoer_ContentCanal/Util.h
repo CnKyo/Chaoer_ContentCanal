@@ -227,5 +227,8 @@ typedef enum _RelDic
  * @return 返回字典
  */
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
++ (NSString*)dictionaryToJson:(NSDictionary *)dic;
+
+
 
 @end

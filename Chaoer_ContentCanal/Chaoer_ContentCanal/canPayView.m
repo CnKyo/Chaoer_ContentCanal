@@ -14,11 +14,11 @@
     canPayView *view = [[[NSBundle mainBundle] loadNibNamed:@"canPayView" owner:self options:nil] objectAtIndex:0];
 
     view.mTopup.layer.masksToBounds = YES;
-    view.mTopup.layer.cornerRadius = 5;
+    view.mTopup.layer.cornerRadius = 3;
     view.mTopup.layer.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1].CGColor;
     view.mTopup.layer.borderWidth = 0.5;
     view.mBalanceBtn.layer.masksToBounds = YES;
-    view.mBalanceBtn.layer.cornerRadius = 6;
+    view.mBalanceBtn.layer.cornerRadius = 3;
     
     return view;
     

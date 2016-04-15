@@ -71,6 +71,7 @@
 @class SServicer;
 @class GFixOrder;
 @class GServiceList;
+@class GCanal;
 /**
  *  用户信息
  */
@@ -465,6 +466,31 @@
  *  @param block   返回值
  */
 + (void)feedCanal:(int)mArearId andName:(NSString *)mName andReason:(NSString *)mReason block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----管费回显信息
+/**
+ *  获取物管回显信息
+ */
+- (void)getCanalMsg:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----交物管费
+/**
+ *  交物管费
+ *
+ *  @param mPayMoney 缴费金额
+ *  @param mPayCount 缴费账户
+ *  @param mPayID    缴费ID
+ */
+- (void)payCanal:(NSMutableDictionary *)mPara block:(void(^)(mBaseData *resb))block;
+
+
+#pragma mark----聚合数据：公共事业省份查询
+/**
+ *  公共事业省份查询
+ *
+ *  @param block
+ */
+- (void)FindPublickProvince:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 
 /**
@@ -927,9 +953,9 @@
 /**
  *  社区id
  */
-@property (assign,nonatomic) NSString    *mPropertyId;
+@property (assign,nonatomic) int    mPropertyId;
 
-@property (assign,nonatomic) NSString    *mAreaName;
+@property (strong,nonatomic) NSString    *mAreaName;
 
 @end
 
@@ -969,4 +995,68 @@
 @property (strong,nonatomic) NSArray    *mArray;
 
 @end
+
+
+
+@interface GCanal : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+/**
+ *  已交费用
+ */
+@property (assign,nonatomic) float    mActualPayment;
+/**
+ *  余额
+ */
+@property (assign,nonatomic) float    mMoney;
+/**
+ *  缴费单位
+ */
+@property (strong,nonatomic) NSString    *mPaymentUnit;
+/**
+ *  社区ID
+ */
+@property (assign,nonatomic) int    mCommunityId;
+/**
+ *  最后期限
+ */
+@property (strong,nonatomic) NSString    *mDeadline;
+/**
+ *  用户名
+ */
+@property (strong,nonatomic) NSString    *mUserName;
+/**
+ *  应交的物管费
+ */
+@property (assign,nonatomic) float    mPayableMoney;
+/**
+ *  缴费账户
+ */
+@property (strong,nonatomic) NSString    *mPaymentAccount;
+/**
+ *  缴费状态
+ */
+@property (assign,nonatomic) int    mStatus;
+
+@property (strong,nonatomic) NSString    *mStatustr;
+
+@end
+
+#pragma mark----聚合数据->省份对象
+@interface JHProvince : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  省份ID
+ */
+@property (strong,nonatomic) NSString    *mProvinceId;
+/**
+ *  省份名称
+ */
+@property (strong,nonatomic) NSString    *mProvinceName;
+
+
+@end
+
 
