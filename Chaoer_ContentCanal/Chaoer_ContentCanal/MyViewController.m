@@ -326,16 +326,20 @@
         case 2:
         {
             NSLog(@"我的跑腿");
-            paotuiViewController *ppp = [[paotuiViewController alloc] initWithNibName:@"paotuiViewController" bundle:nil];
-            ppp.mType = 2;
-            [self pushViewController:ppp];
+//            paotuiViewController *ppp = [[paotuiViewController alloc] initWithNibName:@"paotuiViewController" bundle:nil];
+//            ppp.mType = 2;
+//            [self pushViewController:ppp];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
         }
             break;
         case 3:
         {
-            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
-            [self pushViewController:mmm];
+//            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
+//            [self pushViewController:mmm];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 
+            
         }
             break;
         case 4:
@@ -348,6 +352,7 @@
             break;
         case 5:
         {
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 
         }
             break;

@@ -72,12 +72,12 @@
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [WJStatusBarHUD showLoading:@"正在定位中..."];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
-            [SVProgressHUD showErrorWithStatus:eee];
+            [WJStatusBarHUD showErrorImageName:nil text:eee];
             mTopView.mAddress.text = eee;
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
@@ -87,7 +87,7 @@
         
         if (regeocode)
         {
-            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             NSLog(@"reGeocode:%@", regeocode);
             mTopView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];

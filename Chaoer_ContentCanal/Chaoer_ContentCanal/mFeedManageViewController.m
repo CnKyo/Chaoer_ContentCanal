@@ -7,7 +7,9 @@
 //
 
 #import "mFeedManageViewController.h"
-
+#import "utilityView.h"
+#import "verifyBankViewController.h"
+#import "hasCodeViewController.h"
 @interface mFeedManageViewController ()
 
 @end
@@ -15,6 +17,9 @@
 @implementation mFeedManageViewController
 {
     int mid;
+
+    utilityView *mView;
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -48,10 +53,24 @@
             [self loadActionView];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self initEmptyView];
             
+            [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+
         }
 
     }];
+}
+
+
+- (void)initEmptyView{
+    
+    mView = [utilityView shareEmpty];
+    mView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
+    
+    [self.view addSubview:mView];
+    
+    
 }
 - (void)loadActionView{
     
@@ -140,5 +159,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 0)
+    {
+        [self popViewController];
+    }else{
+        if ([mUserInfo backNowUser].mIsRegist) {
+            hasCodeViewController *hhh = [hasCodeViewController new];
+            [self pushViewController:hhh];
+        }else if([mUserInfo backNowUser].mIsBundle == 1){
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+            
+        }
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 
 @end

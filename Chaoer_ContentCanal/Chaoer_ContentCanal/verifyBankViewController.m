@@ -134,7 +134,7 @@
         }];
     }else {
     
-        [mUserInfo getBankOfCity:mProvince andProvince:mCity andBankName:mBankName andType:mType block:^(mBaseData *resb, NSArray *marr) {
+        [mUserInfo getBankOfCity:mCity andProvince:mProvince andBankName:mBankName andType:mType block:^(mBaseData *resb, NSArray *marr) {
             
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];

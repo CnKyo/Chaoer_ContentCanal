@@ -102,7 +102,7 @@
 
 - (void)loadHidden{
     self.mCanalBagdge.hidden = YES;
-    self.mThreeBadge.hidden = NO;
+    self.mThreeBadge.hidden = YES;
     self.mParkBadge.hidden = YES;
 }
 - (void)didReceiveMemoryWarning {
@@ -147,12 +147,16 @@
  *  @param sender
  */
 - (IBAction)mParkAction:(id)sender {
-    UIButton *bbb = sender;
-    bbb.selected = !bbb.selected;
-    canalViewController *ccc= [canalViewController new];
-    ccc.mTitel= @"缴费－停车费";
+    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+    return;
+//    UIButton *bbb = sender;
+//    bbb.selected = !bbb.selected;
+//    canalViewController *ccc= [canalViewController new];
+//    ccc.mTitel= @"缴费－停车费";
+//
+//    [self pushViewController:ccc];
 
-    [self pushViewController:ccc];
+
 }
 
 /*

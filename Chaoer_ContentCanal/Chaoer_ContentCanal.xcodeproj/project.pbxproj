@@ -67,6 +67,12 @@
 		04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E91CBD1D6200BD1420 /* addressViewController.m */; };
 		04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */; };
 		04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD291CC5DF2500E62795 /* myOrderCell.xib */; };
+		04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2B1CC61F6700E62795 /* WJ_error.png */; };
+		04E5BD321CC61F6700E62795 /* WJ_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */; };
+		04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2D1CC61F6700E62795 /* WJ_sucess.png */; };
+		04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */; };
+		04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2F1CC61F6700E62795 /* WJ_warning.png */; };
+		04E5BD361CC61F6700E62795 /* WJ_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */; };
 		04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */; };
 		04F2DDF71CBE2BC80088C90F /* communityStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF51CBE2BC80088C90F /* communityStatusViewController.m */; };
 		04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2DDF61CBE2BC80088C90F /* communityStatusViewController.xib */; };
@@ -637,6 +643,12 @@
 		04BBA2E91CBD1D6200BD1420 /* addressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressViewController.m; sourceTree = "<group>"; };
 		04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addressViewController.xib; sourceTree = "<group>"; };
 		04E5BD291CC5DF2500E62795 /* myOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderCell.xib; sourceTree = "<group>"; };
+		04E5BD2B1CC61F6700E62795 /* WJ_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_error.png; sourceTree = "<group>"; };
+		04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_error@2x.png"; sourceTree = "<group>"; };
+		04E5BD2D1CC61F6700E62795 /* WJ_sucess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_sucess.png; sourceTree = "<group>"; };
+		04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_sucess@2x.png"; sourceTree = "<group>"; };
+		04E5BD2F1CC61F6700E62795 /* WJ_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_warning.png; sourceTree = "<group>"; };
+		04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_warning@2x.png"; sourceTree = "<group>"; };
 		04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUploadManager.h; sourceTree = "<group>"; };
 		04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUploadManager.m; sourceTree = "<group>"; };
 		04F2DDF41CBE2BC80088C90F /* communityStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = communityStatusViewController.h; sourceTree = "<group>"; };
@@ -1527,6 +1539,12 @@
 		040B80111CC50B0C006A9489 /* WJStatusBar */ = {
 			isa = PBXGroup;
 			children = (
+				04E5BD2B1CC61F6700E62795 /* WJ_error.png */,
+				04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */,
+				04E5BD2D1CC61F6700E62795 /* WJ_sucess.png */,
+				04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */,
+				04E5BD2F1CC61F6700E62795 /* WJ_warning.png */,
+				04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */,
 				040B801B1CC50D50006A9489 /* WJStatusBarHUD_error.png */,
 				040B801C1CC50D50006A9489 /* WJStatusBarHUD_error@2x.png */,
 				040B801D1CC50D50006A9489 /* WJStatusBarHUD_success.png */,
@@ -3436,6 +3454,7 @@
 				3182A1771CA681300084E890 /* verifyBankViewController.xib in Resources */,
 				B2CEE1191C03782500FC159C /* city.txt in Resources */,
 				749BE9DC1B32775D00BABCA6 /* Images.xcassets in Resources */,
+				04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */,
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
 				74D292EB1B96DA8500A57977 /* moreView.xib in Resources */,
@@ -3449,6 +3468,7 @@
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
+				04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */,
 				040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */,
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
@@ -3475,6 +3495,7 @@
 				310EB5DD1CA24107005C61F4 /* choiseServicerViewController.xib in Resources */,
 				3182A1721CA67B390084E890 /* verifyBankCardView.xib in Resources */,
 				7400897A1B38F6F000618BA0 /* QMapKit.bundle in Resources */,
+				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
 				040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */,
@@ -3508,6 +3529,7 @@
 				04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */,
 				044A24801CB4B25700A6379C /* msgViewController.xib in Resources */,
 				31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */,
+				04E5BD321CC61F6700E62795 /* WJ_error@2x.png in Resources */,
 				741C85151BABFA0B00CEFD18 /* headerView.xib in Resources */,
 				749BE9641B3272E700BABCA6 /* MJRefresh.bundle in Resources */,
 				3182DA471CAB77AD00C217AE /* AMap.bundle in Resources */,
@@ -3558,6 +3580,7 @@
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
 				040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */,
+				04E5BD361CC61F6700E62795 /* WJ_warning@2x.png in Resources */,
 				31EEB3291C93C86F00B61A86 /* mShopCarView.xib in Resources */,
 				044A247A1CB4A85700A6379C /* kitchenTableViewCell.xib in Resources */,
 				040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */,
@@ -3587,6 +3610,7 @@
 				04648C751CB50AFE006823C9 /* senderStausCell.xib in Resources */,
 				313D76B91C98FB68004D5679 /* mZhongchouView.xib in Resources */,
 				311BE22F1CA14B38006757E8 /* needCodeViewController.xib in Resources */,
+				04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */,
 				3135F82E1C97EB7300EF9569 /* activityCenterViewController.xib in Resources */,
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,

@@ -39,6 +39,8 @@
     
     
     NSMutableDictionary *mParas;
+    
+    BOOL mIsChoice;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -215,9 +217,10 @@
                 
                 [mParas setObject:[resb.mData objectForKey:@"productId"] forKey:@"productId"];
                 [mParas setObject:[resb.mData objectForKey:@"productId"] forKey:@"productName"];
-                
+                mIsChoice = NO;
             }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [LCProgressHUD showInfoMsg:resb.mMessage];
+                mIsChoice = YES;
             }
         }];
     }
@@ -370,6 +373,12 @@
     [self loadData];
 }
 - (void)mPayFeeAction:(UIButton *)sender{
+    
+    if (mIsChoice) {
+        [SVProgressHUD showErrorWithStatus:@"您选择的缴费类型不可用！请重新选择！"];
+        return;
+    }
+    
     mGoPayViewController *mmm = [[mGoPayViewController alloc] initWithNibName:@"mGoPayViewController" bundle:nil];
     mmm.mTitel = mTT;
     mmm.mPayType = mPayTypeStr;

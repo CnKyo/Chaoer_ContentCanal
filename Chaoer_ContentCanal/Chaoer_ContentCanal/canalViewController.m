@@ -10,6 +10,9 @@
 #import "canPayView.h"
 
 #import "mBalanceViewController.h"
+#import "utilityView.h"
+#import "verifyBankViewController.h"
+#import "hasCodeViewController.h"
 
 @interface canalViewController ()<UITextFieldDelegate>
 
@@ -26,6 +29,8 @@
     NSMutableDictionary *mParas;
     
     BOOL isSelected;
+    utilityView *mView;
+
     
 }
 
@@ -78,14 +83,25 @@
         
     }];
 }
+- (void)initEmptyView{
+    
+    mView = [utilityView shareEmpty];
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+    
+    [mScrollerView addSubview:mView];
+    
+    
+}
 - (void)updatePage{
 
     if (self.tempArray.count<=0) {
-        [SVProgressHUD showErrorWithStatus:@"数据查询错误！"];
-        [self popViewController];
+        [self initEmptyView];
+        
+        [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
         return;
     }
-    
+    [self initView];
+
     if (self.tempArray.count >= 1) {
         
          GCanal *mC = self.tempArray[0];
@@ -188,19 +204,20 @@
     self.navBar.rightBtn.frame = mrr;
     
     
+    
+    mScrollerView = [UIScrollView new];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
+    mScrollerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.97 alpha:1.00];
+    [self.view addSubview:mScrollerView];
+
+    
     mParas = [NSMutableDictionary new];
     
-    [self initView];
     
 }
 - (void)initView{
     
-    
-    mScrollerView = [UIScrollView new];
-    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
-    mScrollerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:mScrollerView];
-
+   
     
     mCanView = [canPayView shareView];
     mCanView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
@@ -294,5 +311,31 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 0)
+    {
+        [self popViewController];
+    }else{
+        if ([mUserInfo backNowUser].mIsRegist) {
+            hasCodeViewController *hhh = [hasCodeViewController new];
+            [self pushViewController:hhh];
+        }else if([mUserInfo backNowUser].mIsBundle == 1){
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+            
+        }
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 @end

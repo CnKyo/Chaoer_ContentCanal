@@ -17,7 +17,7 @@ static NSTimer *timer_;
 static CGFloat const WJWindowH = 20;
 
 /** HUD控件的动画持续时间 */
-static CGFloat const WJAnimationDuration = 1.0;
+static CGFloat const WJAnimationDuration = 1;
 
 /** HUD控件默认会停留多长时间 */
 static CGFloat const WJHUDStayDuration = 1.5;
@@ -135,7 +135,7 @@ static CGFloat const WJHUDStayDuration = 1.5;
 + (NSString *)cheakSuccessImageName:(NSString *)imageName{
     
     if (imageName.length < 1 || imageName == nil || imageName == NULL) {
-        imageName = @"WJStatusBarHUD_success";
+        imageName = @"WJ_sucess";
     }
     return imageName;
 }
@@ -153,7 +153,7 @@ static CGFloat const WJHUDStayDuration = 1.5;
 + (NSString *)cheakErrorImageName:(NSString *)imageName{
     
     if (imageName.length < 1 || imageName == nil || imageName == NULL) {
-        imageName = @"WJStatusBarHUD_error";
+        imageName = @"WJ_error";
     }
     return imageName;
 }
@@ -161,7 +161,7 @@ static CGFloat const WJHUDStayDuration = 1.5;
 + (NSString *)cheakWarningImageName:(NSString *)imageName{
     
     if (imageName.length < 1 || imageName == nil || imageName == NULL) {
-        imageName = @"WJStatusBarHUD_warning";
+        imageName = @"WJ_warning";
     }
     return imageName;
 }

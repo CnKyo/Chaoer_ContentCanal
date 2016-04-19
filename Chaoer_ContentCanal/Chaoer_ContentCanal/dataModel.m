@@ -841,20 +841,23 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSMutableDictionary *para = [NSMutableDictionary new];
 
-    NSString *url = @"app/bank/appBankList";
+    NSString *url = nil;
     
    if (mType ==2){
        url = @"app/bank/appBankList?&paramName=province";
+       [para setObject:mName forKey:@"bankname"];
        
     }else if (mType ==3){
-        url = @"app/bank/appBankList?&paramName=province&";
+        url = @"app/bank/appBankList?&paramName=city&";
         
-        [para setObject:mCity forKey:@"province"];
+        [para setObject:mProvince forKey:@"province"];
+        [para setObject:mName forKey:@"bankname"];
+
         
     }else if (mType == 4){
         url = @"app/bank/appBankList?&paramName=name&";
-        [para setObject:mProvince forKey:@"city"];
-        [para setObject:mCity forKey:@"province"];
+        [para setObject:mProvince forKey:@"province"];
+        [para setObject:mCity forKey:@"city"];
         [para setObject:mName forKey:@"bankname"];
 
     }
@@ -862,14 +865,14 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     [[HTTPrequest sharedClient] postUrl:url parameters:para call:^(mBaseData *info) {
 
-        if (info.mData) {
+        if (info.mSucess) {
             NSMutableArray *tempArr = [NSMutableArray new];
             
             
             if (mType == 3) {
                 for (NSDictionary *dic in info.mData) {
                     
-                    [tempArr addObject:[dic objectForKey:@"province"]];
+                    [tempArr addObject:[dic objectForKey:@"city"]];
                 }
                 
             }else if(mType ==4){

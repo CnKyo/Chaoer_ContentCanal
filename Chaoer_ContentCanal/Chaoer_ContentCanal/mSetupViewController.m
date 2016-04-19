@@ -47,8 +47,10 @@
 */
 - (IBAction)mBundleAction:(id)sender {
     
-    mBundleViewController *mmm = [[mBundleViewController alloc] initWithNibName:@"mBundleViewController" bundle:nil];
-    [self pushViewController:mmm];
+//    mBundleViewController *mmm = [[mBundleViewController alloc] initWithNibName:@"mBundleViewController" bundle:nil];
+//    [self pushViewController:mmm];
+    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
     
 }
 - (IBAction)mLogout:(id)sender {

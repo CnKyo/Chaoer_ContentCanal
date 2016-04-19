@@ -345,8 +345,10 @@
     switch (sender.tag) {
         case 0:
         {
-            communityViewController   *ppp = [communityViewController new];
-            [self pushViewController:ppp];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+//
+//            communityViewController   *ppp = [communityViewController new];
+//            [self pushViewController:ppp];
         }
             break;
         case 1:
@@ -370,8 +372,11 @@
             break;
         case 4:
         {
-            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
-            [self pushViewController:mmm];
+//            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+//            [self pushViewController:mmm];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
+            
 
         }
             break;
