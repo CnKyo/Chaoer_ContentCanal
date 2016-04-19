@@ -14,6 +14,8 @@
 
 
 #import "canalViewController.h"
+
+#import "payFeeViewController.h"
 @interface wpgViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -117,13 +119,13 @@
     NSString *mTT = nil;
     
     if (indexPath.row == 0) {
-        mTT = @"缴费-电费";
-    }if (indexPath.row == 1) {
         mTT = @"缴费-水费";
+    }if (indexPath.row == 1) {
+        mTT = @"缴费-电费";
     }if(indexPath.row == 2){
         mTT = @"缴费-燃气费";
     }
-    canalViewController *ccc= [canalViewController new];
+    payFeeViewController *ccc= [[payFeeViewController alloc] initWithNibName:@"payFeeViewController" bundle:nil];
     
     ccc.mTitel= mTT;
     [self pushViewController:ccc];

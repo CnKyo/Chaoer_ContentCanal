@@ -28,10 +28,11 @@
     BOOL isSelected;
     
 }
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -126,6 +127,7 @@
     }
     
     MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择小区物管" style:MHSheetStyleWeiChat itemTitles:Arrtemp];
+    actionSheet.delegate = self;
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
@@ -164,6 +166,14 @@
         
     }];
 
+}
+
+- (void)sheetViewHidden:(BOOL)mHidden{
+
+    if (mHidden) {
+        mCanView.mJaintou.image = [UIImage imageNamed:@"jiantou_down"];
+
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

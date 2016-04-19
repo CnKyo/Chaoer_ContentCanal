@@ -68,7 +68,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:0.89 green:0.90 blue:0.90 alpha:1.00];
-    self.Title = self.mPageName = @"实名认证";
+    NSString *mtt = nil;
+    if (self.mType == 1) {
+        mtt = @"实名认证";
+    }else{
+        mtt = @"添加房屋";
+    }
+    
+    self.Title = self.mPageName = mtt;
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -309,7 +316,7 @@
         }else if(mType == 3){
             GCommunity *gm = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
-            mCommunityId = [[NSString stringWithFormat:@"%@",gm.mPropertyId] intValue];
+            mCommunityId = gm.mPropertyId;
             mView.mCommunityLb.text = text;
             mType = 4;
 
@@ -454,21 +461,35 @@
 
 - (void)okAction:(UIButton *)sender{
     
-    
-    [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
-    
-    [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
-    
-        if (resb.mSucess ) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-            [self pushViewController:vvv];
-        }else{
+    if (mType == 1) {
+        [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-        
-    }];
+        [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
+            
+            if (resb.mSucess ) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                [self pushViewController:vvv];
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+            
+        }];
+
+    }else{
+        [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
+        [[mUserInfo backNowUser] addHouse:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
+            if (resb.mSucess ) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+        }];
+    }
+    
     
 }
 

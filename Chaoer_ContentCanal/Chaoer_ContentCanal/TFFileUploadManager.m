@@ -119,20 +119,6 @@
     
 
     
-    if (mVideoData) {
-        NSString *videoname = [videoPath lastPathComponent];
-//        NSString *videoContentType = AFContentTypeForPathExtension([videoPath pathExtension]);
-        NSString *videoContentType = @"video/mp4";
-
-        
-        NSString *videoFilePair = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\";Content-Type=%@\r\n\r\n",boundary,videoKey,videoname,videoContentType];
-        [request addValue:@"video/png" forHTTPHeaderField:@"Content-Type"];
-
-        [postData appendData:[videoFilePair dataUsingEncoding:NSUTF8StringEncoding]];
-        [postData appendData:mVideoData];
-
-    }
-    
     [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
     

@@ -762,9 +762,9 @@ CGFloat SVProgressHUDRingThickness = 6;
 #endif
         
 		stringLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-
+#pragma mark----这里修改文字颜色
         // UIAppearance is used when iOS >= 5.0
-		stringLabel.textColor = self.hudForegroundColor;
+		stringLabel.textColor = [UIColor whiteColor];
 		stringLabel.font = self.hudFont;
         
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
@@ -797,7 +797,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 		spinnerView.bounds = CGRectMake(0, 0, 37, 37);
         
         if([spinnerView respondsToSelector:@selector(setColor:)]) // setColor is iOS 5+
-            spinnerView.color = self.hudForegroundColor;
+            spinnerView.color = [UIColor whiteColor];
     }
     
     if(!spinnerView.superview)
@@ -838,10 +838,11 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
+#pragma mark----这里修改hud背景颜色
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.80];
 #else
-    return [UIColor colorWithWhite:0 alpha:0.8];
+    return [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.80];
 #endif
 }
 
@@ -913,7 +914,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
     return [UIColor colorWithWhite:200.0f/255.0f alpha:0.8];
 #else
-    return [UIColor blackColor];
+    return [UIColor whiteColor];
 #endif
 }
 
@@ -945,9 +946,10 @@ CGFloat SVProgressHUDRingThickness = 6;
         return _uiHudSuccessImage;
     }
 #endif
+#pragma mark----这里修改状态图片
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return [UIImage imageNamed:@"SVProgressHUD.bundle/success-black"];
+    return [UIImage imageNamed:@"SVProgressHUD.bundle/success.png"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/success.png"];
 #endif
@@ -965,7 +967,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 #endif
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    return [UIImage imageNamed:@"SVProgressHUD.bundle/error-black"];
+    return [UIImage imageNamed:@"SVProgressHUD.bundle/error.png"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/error.png"];
 #endif

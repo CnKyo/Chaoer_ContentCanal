@@ -32,10 +32,7 @@
  *  缴费单位按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mUnitBtn;
-/**
- *  缴费金额
- */
-@property (weak, nonatomic) IBOutlet UITextField *mPayMoneyTx;
+
 /**
  *  户号
  */
@@ -47,7 +44,69 @@
 /**
  *  缴费按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mPayBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mInquireBtn;
+
+
+
+
+/**
+ *  初始化查询界面
+ *
+ *  @return view
+ */
++ (utilityView *)shareInquireView;
+/**
+ *  图片
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mLogo;
+/**
+ *  支付类型
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPaytypeLb;
+/**
+ *  欠费
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mArrearsMoneyLb;
+/**
+ *  省份
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mProvinceLb;
+/**
+ *  城市
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mCityLb;
+/**
+ *  缴费类型
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mTypeLb;
+/**
+ *  单位
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mUnitLb;
+/**
+ *  户号
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mHouseLb;
+/**
+ *  户名
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mNameLb;
+/**
+ *  缴费按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mGoPayBtn;
+
+/**
+ *  标题
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mTitle;
+/**
+ *  内容
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mContent;
++ (utilityView *)shareEmpty;
+
+
 
 
 @end

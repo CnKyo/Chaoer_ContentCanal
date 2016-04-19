@@ -76,6 +76,44 @@
 }
 @end
 
+#pragma mark----聚合基本数据
+
+@implementation mJHBaseData
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        self.mData = [obj objectForKeyMy:@"result"];
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    _mState = [[obj objectForKeyMy:@"error_code"] intValue];
+    self.mMessage = [obj objectForKeyMy:@"reason"];
+    self.mData = [obj objectForKeyMy:@"result"];
+    
+    
+    if (self.mState == 0) {
+        self.mSucess = YES;
+    }else{
+        self.mSucess = NO;
+    }
+    
+}
++ (mJHBaseData *)infoWithError:(NSString *)error{
+    mJHBaseData *retobj = mJHBaseData.new;
+    retobj.mState = 400301;
+    retobj.mData = nil;
+    retobj.mMessage = @"数据查询错误!";
+    return retobj;
+}
+
+@end
+#pragma mark----聚合基本数据
 @implementation Ginfo
 
 + (void)getGinfo:(void (^)(mBaseData *))block{
@@ -739,7 +777,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mDoorNum) forKey:@"roomNum"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/house/appBindHouse" parameters:para call:^(mBaseData *info) {
-        if (info.mData) {
+        if (info.mSucess) {
             
             block( info);
         }else{
@@ -754,6 +792,27 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+- (void)addHouse:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mCommunityId) forKey:@"propertyId"];
+    [para setObject:NumberWithInt(mBannum) forKey:@"banNum"];
+    [para setObject:NumberWithInt(mUnitNum) forKey:@"unitNum"];
+    [para setObject:NumberWithInt(mFloor) forKey:@"floorNum"];
+    [para setObject:NumberWithInt(mDoorNum) forKey:@"roomNum"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/house/appAddHouse" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block( info);
+        }else{
+            block( info);
+            
+        }
+    }];
+}
 
 
 
@@ -982,19 +1041,134 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
-- (void)FindPublickProvince:(void(^)(mBaseData *resb,NSArray *mArr))block{
+- (void)FindPublickType:(int)mType andId:(NSString *)mId block:(void(^)(mJHBaseData *resb,NSArray *mArr))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    NSString *posturl = nil;
     
-    [JHJsonRequst httpNsynchronousRequestUrl:JH_API postStr:[NSString stringWithFormat:@"?key=%@",JH_KEY] finshedBlock:^(NSString *dataString) {
-        NSLog(@"nsynResult:%@",dataString);
+    if (mType == 1) {
+        posturl = @"province";
+        [para setObject:JH_KEY forKey:@"key"];
 
+    }else{
+        posturl = @"city";
+        [para setObject:JH_KEY forKey:@"key"];
+        [para setObject:mId forKey:@"provid"];
+
+    }
+    
+    
+    
+    [[JHJsonRequst sharedClient] postUrl:posturl parameters:para call:^(mJHBaseData *info) {
         
-    
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+            if (mType == 1) {
+                for ( NSDictionary *dic in info.mData) {
+                    [tempArr addObject:[[JHProvince alloc] initWithObj:dic]];
+                }
+            }else{
+                for (NSDictionary *dic in info.mData) {
+                    [tempArr addObject:[[JHCity alloc]initWithObj:dic]];
+                }
+                
+            }
+            
+        
+            
+            block ( info ,tempArr);
+            
+        }else{
+            block ( info ,nil);
+        }
+        
     }];
+
 }
 
+- (void)FindPublic:(int )mType andPara:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb,NSArray *mArr))block{
+    NSString *posturl = nil;
+    
+    if (mType == 1) {
+        posturl = @"province";
+        
+    }else if(mType == 2){
+        posturl = @"city";
+        
+    }else if(mType == 3){
+        posturl = @"project";
+        
+    }else if(mType == 4){
+        posturl = @"unit";
+        
+    }else if(mType == 5){
+        posturl = @"query";
+    }
+    [[JHJsonRequst sharedClient] postUrl:posturl parameters:mParas call:^(mJHBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[JHPayData alloc]initWithObj:dic]];
+            }
 
+            block ( info ,tempArr);
+            
+        }else{
+            block ( info ,nil);
+        }
+        
+    }];
 
+    
+}
+- (void)Inquire:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
+
+    
+    [[JHJsonRequst sharedClient] postUrl:@"mbalance" parameters:mParas call:^(mJHBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[JHPayData alloc]initWithObj:dic]];
+            }
+            
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+        
+    }];
+
+}
+
+- (void)goPay:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
+    [[JHJsonRequst sharedClient] postUrl:@"order" parameters:mParas call:^(mJHBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        [tempArr removeAllObjects];
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[JHPayData alloc]initWithObj:dic]];
+            }
+            
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+        
+    }];
+}
 
 
 +(void)getCash:(int)mUid andMoney:(float)mMoney andPresentManner:(int)mPresentManner block:(void(^)(mBaseData *resb))block{
@@ -1589,7 +1763,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 {
     
     self.mCommunityName = [obj objectForKeyMy:@"communityName"];
-    self.mPropertyId = [obj objectForKeyMy:@"id"];
+    self.mPropertyId = [[obj objectForKeyMy:@"id"] intValue];
     self.mAreaName = [obj objectForKeyMy:@"areaName"];
     
 }
@@ -1692,6 +1866,56 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mProvinceId = [obj objectForKeyMy:@"provinceId"];
     self.mProvinceName = [obj objectForKeyMy:@"provinceName"];
     
+}
+
+@end
+
+@implementation JHCity
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mProvinceId = [obj objectForKeyMy:@"provinceId"];
+    self.mCityName = [obj objectForKeyMy:@"cityName"];
+    self.mCityId = [obj objectForKeyMy:@"cityId"];
+    
+}
+
+@end
+
+@implementation JHPayData
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mProvinceId = [obj objectForKeyMy:@"provinceId"];
+    self.mProvinceName = [obj objectForKeyMy:@"provinceName"];
+    self.mCityName = [obj objectForKeyMy:@"cityName"];
+    self.mCityId = [obj objectForKeyMy:@"cityId"];
+    self.mPayProjectId = [obj objectForKeyMy:@"payProjectId"];
+    self.mPayProjectName = [obj objectForKeyMy:@"payProjectName"];
+    self.mPayUnitId = [obj objectForKeyMy:@"payUnitId"];
+    self.mPayUnitName = [obj objectForKeyMy:@"payUnitName"];
+
+    self.mProductId = [obj objectForKeyMy:@"productId"];
+    self.mProductName = [obj objectForKeyMy:@"productName"];
+    self.mInprice = [obj objectForKeyMy:@"inprice"];
+
 }
 
 @end

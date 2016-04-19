@@ -7,80 +7,81 @@
 //
 
 #import "JHJsonRequst.h"
+#import "CBCUtil.h"
+#import "NSObject+myobj.h"
+#import "CustomDefine.h"
+#import "Util.h"
+
+#import "dataModel.h"
+#pragma mark -
+#pragma mark APIClient
+
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://op.juhe.cn/ofpay/public/";
 
 @implementation JHJsonRequst
-//该方法同步请求服务器,需要在主线程中创建其它线程完成请求,否则会阻塞主线程导致UI卡住
-+(NSString*) httpAsynchronousRequestUrl:(NSString*) spec postStr:(NSString *)sData
+#pragma mark -
++ (instancetype)sharedClient {
+    static JHJsonRequst *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedClient = [[JHJsonRequst alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetAPIBaseURLString]];
+        _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    });
+    _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;
+    _sharedClient.requestSerializer.timeoutInterval = 60;
+    return _sharedClient;
+}
+
+- (void)cancelHttpOpretion:(AFHTTPRequestOperation *)http
 {
-    NSURL *url = [NSURL URLWithString:spec];
-    NSMutableURLRequest *requst = [NSMutableURLRequest requestWithURL:url];
-    [requst setHTTPMethod:@"POST"];
-    NSData *postData = [sData dataUsingEncoding:NSUTF8StringEncoding];
-    [requst setHTTPBody:postData];
-    [requst setTimeoutInterval:15.0];
+    for (NSOperation *operation in [self.operationQueue operations]) {
+        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
+            continue;
+        }
+        if ([operation isEqual:http]) {
+            [operation cancel];
+            break;
+        }
+    }
+}
+
+-(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)(mJHBaseData  * info))callback
+{
     
-    NSHTTPURLResponse *urlResponse = nil;
-    NSError *error = nil;
-    //如果使用局部变量指针需要传指针的地址
-    NSData *data = [NSURLConnection sendSynchronousRequest:requst returningResponse:&urlResponse error:&error];
-    NSString *returnStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"code:%ld",[urlResponse statusCode]);
-    if ([urlResponse statusCode] == 200) {
-        return returnStr;
+    NSLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    
+    [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+        
+        mJHBaseData   *retob = [[mJHBaseData alloc]initWithObj:responseObject];
+        
+        if( retob.mState == 400301 )
+        {//需要登陆
+            id oneid = [UIApplication sharedApplication].delegate;
+            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+        }
+        callback(  retob );
+        
     }
-    return nil;
+       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           
+           NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+           callback( [mJHBaseData infoWithError:@"网络请求错误"] );
+           
+       }];
 }
 
-//该方法为异步请求服务器，不用在主线程创建其它线程
-+(void) httpNsynchronousRequestUrl:(NSString*) spec postStr:(NSString*)sData finshedBlock:(FinishBlock)block
-{
-    JHJsonRequst *http = [[JHJsonRequst alloc]init];
-    http.finishBlock = block;
-    //初始HTTP
-    NSURL *url = [NSURL URLWithString:spec];
-    NSMutableURLRequest *requst = [NSMutableURLRequest requestWithURL:url];
-    [requst setHTTPMethod:@"POST"];
-    NSData *postData = [sData dataUsingEncoding:NSUTF8StringEncoding];
-    [requst setHTTPBody:postData];
-    [requst setTimeoutInterval:15.0];
-    //连接
-    NSURLConnection *con = [[NSURLConnection alloc]initWithRequest:requst delegate:http];
-    NSLog(con ? @"连接创建成功" : @"连接创建失败");
+- (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback{
+    NSLog(@"请求地址：%@-------请求参数：%@",urlString,para);
+    
+    
+    
 }
 
-//收到服务器传输数据的时候调用，此方法根据数据大小执行若干次
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"didReceiveData");
-    [self.resultData appendData:data];
-}
-
-//接收到服务器回应的时回调
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"didReceiveResponse");
-    if (self.resultData == nil) {
-        self.resultData = [[NSMutableData alloc]init];
-    }else{
-        [self.resultData setLength:0];
-    }
-}
-
-//数据传完之后调用此方法
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"connectionDidFinishLoading");
-    NSString *retStr = [[NSString alloc]initWithData:self.resultData encoding:NSUTF8StringEncoding];
-    if(self.finishBlock != nil)
-        self.finishBlock(retStr);
-}
-
-//网络请求过程中，出现任何错误（断网，连接超时等）会进入此方法
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"didFailWithError");
-    if(self.finishBlock != nil)
-        self.finishBlock(nil);
++ (NSString *)returnNowURL{
+    return kAFAppDotNetAPIBaseURLString;
 }
 
 @end

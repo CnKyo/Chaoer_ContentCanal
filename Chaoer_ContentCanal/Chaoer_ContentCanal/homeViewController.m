@@ -153,13 +153,12 @@
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+    [WJStatusBarHUD showLoading:@"正在定位中..."];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
-            [SVProgressHUD showErrorWithStatus:eee];
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            [WJStatusBarHUD showErrorImageName:nil text:eee];
 
             mNavView.mAddress.text = eee;
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
@@ -170,11 +169,11 @@
         
         if (regeocode)
         {
-            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+
+            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             NSLog(@"reGeocode:%@", regeocode);
             mNavView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
-            
         }
     }];
 
@@ -183,20 +182,19 @@
     [self loadAddress];
 
     [mTempArr removeAllObjects];
-    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-    [GiFHUD show];
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
-        [GiFHUD dismiss];
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
+//            [SVProgressHUD showSuccessWithStatus:@"加载成功"];
+
+            
             [mTempArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
             [self loadScrollerView];
 
         }else{
-            [SVProgressHUD showErrorWithStatus:@"网络请求错误！"];
+//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self addEmptyView:nil];
         }
         
@@ -349,7 +347,6 @@
         {
             communityViewController   *ppp = [communityViewController new];
             [self pushViewController:ppp];
-            //            [self showErrorStatus:@"正在建设中..."];
         }
             break;
         case 1:
@@ -361,7 +358,7 @@
             break;
         case 2:
         {
-            [self showErrorStatus:@"正在建设中..."];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 
         }
             break;
@@ -373,7 +370,6 @@
             break;
         case 4:
         {
-//            [self showErrorStatus:@"正在建设中..."];
             mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
             [self pushViewController:mmm];
 
@@ -382,7 +378,6 @@
         case 5:
         {
             
-//            [self showErrorStatus:@"正在建设中..."];
             communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
             [self pushViewController:ccc];
 

@@ -40,6 +40,30 @@
 
 @end
 
+#pragma mark----聚合基本数据结构
+@interface mJHBaseData : NSObject
+
+
+
+
+@property (nonatomic,assign) int        mState;
+
+@property (nonatomic,assign) BOOL        mSucess;
+
+@property (nonatomic,strong) id         mData;
+
+
+@property (nonatomic,strong) NSString   *mMessage;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+-(void)fetchIt:(NSDictionary*)obj;
+
++(mJHBaseData *)infoWithError:(NSString*)error;
+
+@end
+#pragma mark----聚合基本数据结构
 @interface Ginfo : NSObject
 /**
  *  app版本
@@ -72,6 +96,8 @@
 @class GFixOrder;
 @class GServiceList;
 @class GCanal;
+@class JHCity;
+@class JHProvince;
 /**
  *  用户信息
  */
@@ -397,6 +423,9 @@
  */
 + (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block;
 
+- (void)addHouse:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block;
+
+
 /**
  *  获取银行列表
  *
@@ -490,8 +519,25 @@
  *
  *  @param block
  */
-- (void)FindPublickProvince:(void(^)(mBaseData *resb,NSArray *mArr))block;
+- (void)FindPublickType:(int)mType andId:(NSString *)mId block:(void(^)(mJHBaseData *resb,NSArray *mArr))block;
 
+- (void)FindPublic:(int )mType andPara:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb,NSArray *mArr))block;
+
+/**
+ *  账户欠费查询
+ *
+ *  @param mParas 参数
+ *  @param block  返回值
+ */
+- (void)Inquire:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block;
+
+/**
+ *  缴费
+ *
+ *  @param mParas 参数
+ *  @param block  返回值
+ */
+- (void)goPay:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block;
 
 /**
  *  提现
@@ -1056,7 +1102,80 @@
  */
 @property (strong,nonatomic) NSString    *mProvinceName;
 
+@property (strong,nonatomic) NSString    *mPayProjectId;
+
+@property (strong,nonatomic) NSString    *mPayProjectName;
+
+
+
+@end
+#pragma mark----聚合数据->城市对象
+@interface JHCity : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  城市ID
+ */
+@property (strong,nonatomic) NSString    *mCityId;
+/**
+ *  城市名称
+ */
+@property (strong,nonatomic) NSString    *mCityName;
+/**
+ *  省份ID
+ */
+@property (strong,nonatomic) NSString    *mProvinceId;
+
 
 @end
 
+#pragma mark----聚合缴费数据对象
+@interface JHPayData : NSObject
 
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  省份ID
+ */
+@property (strong,nonatomic) NSString    *mProvinceId;
+/**
+ *  省份名称
+ */
+@property (strong,nonatomic) NSString    *mProvinceName;
+/**
+ *  城市ID
+ */
+@property (strong,nonatomic) NSString    *mCityId;
+/**
+ *  城市名称
+ */
+@property (strong,nonatomic) NSString    *mCityName;
+/**
+ *  缴费类型id
+ */
+@property (strong,nonatomic) NSString    *mPayProjectId;
+/**
+ *  缴费类型名称
+ */
+@property (strong,nonatomic) NSString    *mPayProjectName;
+/**
+ *  缴费单位id
+ */
+@property (strong,nonatomic) NSString    *mPayUnitId;
+/**
+ *  缴费单位名称
+ */
+@property (strong,nonatomic) NSString    *mPayUnitName;
+/**
+ *  商品id
+ */
+@property (strong,nonatomic) NSString    *mProductId;
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString    *mProductName;
+/**
+ *  价格？
+ */
+@property (strong,nonatomic) NSString    *mInprice;
+
+@end

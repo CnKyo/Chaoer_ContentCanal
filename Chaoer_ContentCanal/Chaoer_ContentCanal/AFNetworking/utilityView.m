@@ -23,10 +23,23 @@
     utilityView *view = [[[NSBundle mainBundle]loadNibNamed:@"utilityView" owner:self options:nil] objectAtIndex:0];
     
     
-    view.mPayBtn.layer.masksToBounds = YES;
-    view.mPayBtn.layer.cornerRadius = 3;
+       
+    view.mGoPayBtn.layer.masksToBounds = view.mInquireBtn.layer.masksToBounds = YES;
+    view.mGoPayBtn.layer.cornerRadius = view.mInquireBtn.layer.cornerRadius = 3;
     return view;
 }
 
++ (utilityView *)shareInquireView{
+    utilityView *view = [[[NSBundle mainBundle]loadNibNamed:@"inquireView" owner:self options:nil] objectAtIndex:0];
+    view.mGoPayBtn.layer.masksToBounds = view.mInquireBtn.layer.masksToBounds = YES;
+    view.mGoPayBtn.layer.cornerRadius = view.mInquireBtn.layer.cornerRadius = 3;
+    return view;
+
+}
+
++ (utilityView *)shareEmpty{
+    utilityView *view = [[[NSBundle mainBundle]loadNibNamed:@"emptyView" owner:self options:nil] objectAtIndex:0];
+    return view;
+}
 
 @end

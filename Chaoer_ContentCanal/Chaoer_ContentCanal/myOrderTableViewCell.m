@@ -32,5 +32,19 @@
     self.mPayBtn.layer.borderColor = self.mEvolutionBtn.layer.borderColor = [UIColor colorWithRed:0.77 green:0.77 blue:0.77 alpha:1].CGColor;
     self.mPayBtn.layer.borderWidth = self.mEvolutionBtn.layer.borderWidth = 0.5;
     
+    
+    
+    self.mLeftBtn.layer.masksToBounds = self.mRightBtn.layer.masksToBounds = YES;
+    self.mLeftBtn.layer.cornerRadius = self.mRightBtn.layer.cornerRadius = 4;
+    self.mLeftBtn.layer.borderColor = [UIColor colorWithRed:0.95 green:0.27 blue:0.29 alpha:1.00].CGColor;
+    self.mRightBtn.layer.borderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.22 alpha:1.00].CGColor;
+
+    self.mLeftBtn.layer.borderWidth = self.mRightBtn.layer.borderWidth = 0.5;
+    
+    
+    
+    
+    
+    
 }
 @end

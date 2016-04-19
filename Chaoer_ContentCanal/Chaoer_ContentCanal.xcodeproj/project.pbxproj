@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040B80051CC47875006A9489 /* payFeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80031CC47875006A9489 /* payFeeViewController.m */; };
+		040B80061CC47875006A9489 /* payFeeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B80041CC47875006A9489 /* payFeeViewController.xib */; };
+		040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B80071CC4DBA3006A9489 /* inquireView.xib */; };
+		040B800C1CC4DFCC006A9489 /* mGoPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B800A1CC4DFCC006A9489 /* mGoPayViewController.m */; };
+		040B800D1CC4DFCC006A9489 /* mGoPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B800B1CC4DFCC006A9489 /* mGoPayViewController.xib */; };
+		040B800F1CC4FD11006A9489 /* emptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B800E1CC4FD11006A9489 /* emptyView.xib */; };
+		040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80141CC50B60006A9489 /* LBProgressHUD.m */; };
+		040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 040B80161CC50C08006A9489 /* LCProgressHUD.bundle */; };
+		040B801A1CC50C08006A9489 /* LCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80181CC50C08006A9489 /* LCProgressHUD.m */; };
+		040B80231CC50D50006A9489 /* WJStatusBarHUD_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801B1CC50D50006A9489 /* WJStatusBarHUD_error.png */; };
+		040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801C1CC50D50006A9489 /* WJStatusBarHUD_error@2x.png */; };
+		040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801D1CC50D50006A9489 /* WJStatusBarHUD_success.png */; };
+		040B80261CC50D50006A9489 /* WJStatusBarHUD_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801E1CC50D50006A9489 /* WJStatusBarHUD_success@2x.png */; };
+		040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801F1CC50D50006A9489 /* WJStatusBarHUD_warning.png */; };
+		040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */; };
+		040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80221CC50D50006A9489 /* WJStatusBarHUD.m */; };
 		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
 		04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D9B1CC0E76300CB6249 /* utilityView.m */; };
 		04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04223D9D1CC0E77100CB6249 /* utilityView.xib */; };
@@ -50,6 +66,7 @@
 		04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */; };
 		04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E91CBD1D6200BD1420 /* addressViewController.m */; };
 		04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */; };
+		04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD291CC5DF2500E62795 /* myOrderCell.xib */; };
 		04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */; };
 		04F2DDF71CBE2BC80088C90F /* communityStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF51CBE2BC80088C90F /* communityStatusViewController.m */; };
 		04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2DDF61CBE2BC80088C90F /* communityStatusViewController.xib */; };
@@ -533,6 +550,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040B80021CC47875006A9489 /* payFeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = payFeeViewController.h; path = AFNetworking/payFeeViewController.h; sourceTree = "<group>"; };
+		040B80031CC47875006A9489 /* payFeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = payFeeViewController.m; path = AFNetworking/payFeeViewController.m; sourceTree = "<group>"; };
+		040B80041CC47875006A9489 /* payFeeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = payFeeViewController.xib; path = AFNetworking/payFeeViewController.xib; sourceTree = "<group>"; };
+		040B80071CC4DBA3006A9489 /* inquireView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = inquireView.xib; sourceTree = "<group>"; };
+		040B80091CC4DFCC006A9489 /* mGoPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGoPayViewController.h; sourceTree = "<group>"; };
+		040B800A1CC4DFCC006A9489 /* mGoPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGoPayViewController.m; sourceTree = "<group>"; };
+		040B800B1CC4DFCC006A9489 /* mGoPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGoPayViewController.xib; sourceTree = "<group>"; };
+		040B800E1CC4FD11006A9489 /* emptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptyView.xib; sourceTree = "<group>"; };
+		040B80131CC50B60006A9489 /* LBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProgressHUD.h; sourceTree = "<group>"; };
+		040B80141CC50B60006A9489 /* LBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBProgressHUD.m; sourceTree = "<group>"; };
+		040B80161CC50C08006A9489 /* LCProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCProgressHUD.bundle; sourceTree = "<group>"; };
+		040B80171CC50C08006A9489 /* LCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCProgressHUD.h; sourceTree = "<group>"; };
+		040B80181CC50C08006A9489 /* LCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCProgressHUD.m; sourceTree = "<group>"; };
+		040B801B1CC50D50006A9489 /* WJStatusBarHUD_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJStatusBarHUD_error.png; sourceTree = "<group>"; };
+		040B801C1CC50D50006A9489 /* WJStatusBarHUD_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJStatusBarHUD_error@2x.png"; sourceTree = "<group>"; };
+		040B801D1CC50D50006A9489 /* WJStatusBarHUD_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJStatusBarHUD_success.png; sourceTree = "<group>"; };
+		040B801E1CC50D50006A9489 /* WJStatusBarHUD_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJStatusBarHUD_success@2x.png"; sourceTree = "<group>"; };
+		040B801F1CC50D50006A9489 /* WJStatusBarHUD_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJStatusBarHUD_warning.png; sourceTree = "<group>"; };
+		040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJStatusBarHUD_warning@2x.png"; sourceTree = "<group>"; };
+		040B80211CC50D50006A9489 /* WJStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJStatusBarHUD.h; sourceTree = "<group>"; };
+		040B80221CC50D50006A9489 /* WJStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJStatusBarHUD.m; sourceTree = "<group>"; };
 		04223D971CC0C9E400CB6249 /* JHJsonRequst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHJsonRequst.h; sourceTree = "<group>"; };
 		04223D981CC0C9E400CB6249 /* JHJsonRequst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHJsonRequst.m; sourceTree = "<group>"; };
 		04223D9A1CC0E76300CB6249 /* utilityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilityView.h; path = AFNetworking/utilityView.h; sourceTree = "<group>"; };
@@ -598,6 +636,7 @@
 		04BBA2E81CBD1D6200BD1420 /* addressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressViewController.h; sourceTree = "<group>"; };
 		04BBA2E91CBD1D6200BD1420 /* addressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressViewController.m; sourceTree = "<group>"; };
 		04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addressViewController.xib; sourceTree = "<group>"; };
+		04E5BD291CC5DF2500E62795 /* myOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderCell.xib; sourceTree = "<group>"; };
 		04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUploadManager.h; sourceTree = "<group>"; };
 		04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUploadManager.m; sourceTree = "<group>"; };
 		04F2DDF41CBE2BC80088C90F /* communityStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = communityStatusViewController.h; sourceTree = "<group>"; };
@@ -1476,6 +1515,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040B80101CC50B03006A9489 /* LBProgress */ = {
+			isa = PBXGroup;
+			children = (
+				040B80131CC50B60006A9489 /* LBProgressHUD.h */,
+				040B80141CC50B60006A9489 /* LBProgressHUD.m */,
+			);
+			name = LBProgress;
+			sourceTree = "<group>";
+		};
+		040B80111CC50B0C006A9489 /* WJStatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				040B801B1CC50D50006A9489 /* WJStatusBarHUD_error.png */,
+				040B801C1CC50D50006A9489 /* WJStatusBarHUD_error@2x.png */,
+				040B801D1CC50D50006A9489 /* WJStatusBarHUD_success.png */,
+				040B801E1CC50D50006A9489 /* WJStatusBarHUD_success@2x.png */,
+				040B801F1CC50D50006A9489 /* WJStatusBarHUD_warning.png */,
+				040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */,
+				040B80211CC50D50006A9489 /* WJStatusBarHUD.h */,
+				040B80221CC50D50006A9489 /* WJStatusBarHUD.m */,
+			);
+			name = WJStatusBar;
+			sourceTree = "<group>";
+		};
+		040B80121CC50B21006A9489 /* LCProgress */ = {
+			isa = PBXGroup;
+			children = (
+				040B80161CC50C08006A9489 /* LCProgressHUD.bundle */,
+				040B80171CC50C08006A9489 /* LCProgressHUD.h */,
+				040B80181CC50C08006A9489 /* LCProgressHUD.m */,
+			);
+			name = LCProgress;
+			sourceTree = "<group>";
+		};
 		044A247B1CB4B23100A6379C /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1725,6 +1798,14 @@
 				04223D9A1CC0E76300CB6249 /* utilityView.h */,
 				04223D9B1CC0E76300CB6249 /* utilityView.m */,
 				04223D9D1CC0E77100CB6249 /* utilityView.xib */,
+				040B80071CC4DBA3006A9489 /* inquireView.xib */,
+				040B800E1CC4FD11006A9489 /* emptyView.xib */,
+				040B80021CC47875006A9489 /* payFeeViewController.h */,
+				040B80031CC47875006A9489 /* payFeeViewController.m */,
+				040B80041CC47875006A9489 /* payFeeViewController.xib */,
+				040B80091CC4DFCC006A9489 /* mGoPayViewController.h */,
+				040B800A1CC4DFCC006A9489 /* mGoPayViewController.m */,
+				040B800B1CC4DFCC006A9489 /* mGoPayViewController.xib */,
 			);
 			name = "水电气";
 			sourceTree = "<group>";
@@ -1993,6 +2074,7 @@
 				3135F8511C980B3C00EF9569 /* myOrderTableViewCell.h */,
 				3135F8521C980B3C00EF9569 /* myOrderTableViewCell.m */,
 				3135F8531C980B3C00EF9569 /* myOrderTableViewCell.xib */,
+				04E5BD291CC5DF2500E62795 /* myOrderCell.xib */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -2156,9 +2238,12 @@
 		3182A1661CA620BF0084E890 /* GIFHud */ = {
 			isa = PBXGroup;
 			children = (
+				040B80101CC50B03006A9489 /* LBProgress */,
+				040B80111CC50B0C006A9489 /* WJStatusBar */,
+				040B80121CC50B21006A9489 /* LCProgress */,
+				312D08C51CAA1ECD0006F0FA /* loading.gif */,
 				3182A1671CA620CC0084E890 /* GiFHUD.h */,
 				3182A1681CA620CC0084E890 /* GiFHUD.m */,
-				312D08C51CAA1ECD0006F0FA /* loading.gif */,
 			);
 			name = GIFHud;
 			sourceTree = "<group>";
@@ -3359,10 +3444,12 @@
 				310EB6041CA26E47005C61F4 /* makeServiceView.xib in Resources */,
 				318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
+				040B800F1CC4FD11006A9489 /* emptyView.xib in Resources */,
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
+				040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */,
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
@@ -3380,14 +3467,17 @@
 				741B8D9A1B326EFA002104A0 /* Main.storyboard in Resources */,
 				313D76E11C994740004D5679 /* mPublicWalerViewController.xib in Resources */,
 				B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */,
+				040B80061CC47875006A9489 /* payFeeViewController.xib in Resources */,
 				746F8ACE1BEC330900C87992 /* HZQDatePickerView.xib in Resources */,
 				315442841C9A4A720047E52A /* mFeedCompanyViewController.xib in Resources */,
 				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,
+				040B800D1CC4DFCC006A9489 /* mGoPayViewController.xib in Resources */,
 				310EB5DD1CA24107005C61F4 /* choiseServicerViewController.xib in Resources */,
 				3182A1721CA67B390084E890 /* verifyBankCardView.xib in Resources */,
 				7400897A1B38F6F000618BA0 /* QMapKit.bundle in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
+				040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */,
 				749BEA0A1B32779800BABCA6 /* MBProgressHUD.bundle in Resources */,
 				741B8D9F1B326EFA002104A0 /* LaunchScreen.xib in Resources */,
 				04648C671CB4F64E006823C9 /* senderTableViewCell.xib in Resources */,
@@ -3407,6 +3497,7 @@
 				3135F8241C97E29800EF9569 /* editMessageViewController.xib in Resources */,
 				04648C7F1CB51E88006823C9 /* valletTCell.xib in Resources */,
 				312D08B01CAA1C560006F0FA /* ShareSDKUI.bundle in Resources */,
+				040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */,
 				04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */,
@@ -3435,6 +3526,7 @@
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
+				040B80261CC50D50006A9489 /* WJStatusBarHUD_success@2x.png in Resources */,
 				3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */,
 				31AF47BA1CAE65CA00A722CD /* mPersonNavView.xib in Resources */,
 				04648C691CB4FD80006823C9 /* mySenderCell.xib in Resources */,
@@ -3452,18 +3544,23 @@
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
+				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
 				048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */,
+				04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */,
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
+				040B80231CC50D50006A9489 /* WJStatusBarHUD_error.png in Resources */,
 				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
 				318D56691C9C012B0045B5FB /* MHSheetHead.xib in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
+				040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */,
 				31EEB3291C93C86F00B61A86 /* mShopCarView.xib in Resources */,
 				044A247A1CB4A85700A6379C /* kitchenTableViewCell.xib in Resources */,
+				040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */,
 				3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */,
 				16279CC51C3D13B400B9A850 /* read_me.txt in Resources */,
 				317E46361CAD26A900217C60 /* RongCloud.bundle in Resources */,
@@ -3629,6 +3726,7 @@
 				3135F8171C97D5EE00EF9569 /* mCodeNameViewController.m in Sources */,
 				313413571CA28DC3003972E2 /* XMNAlbumModel.m in Sources */,
 				74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */,
+				040B800C1CC4DFCC006A9489 /* mGoPayViewController.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
 				04648C661CB4F64E006823C9 /* senderTableViewCell.m in Sources */,
 				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
@@ -3645,6 +3743,7 @@
 				742FB8FD1B5CDEA3005A1AFA /* WPTappableLabel.m in Sources */,
 				313413631CA28DC3003972E2 /* XMNPhotoPreviewController.m in Sources */,
 				74DDE8FB1BAC1134004878D1 /* setupViewController.m in Sources */,
+				040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */,
 				04F2DDFC1CBE2C460088C90F /* communityStatusTableViewCell.m in Sources */,
 				7400896D1B38F2C300618BA0 /* AFAppDotNetAPIClient.m in Sources */,
 				318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */,
@@ -3682,6 +3781,8 @@
 				16E9CADB1BAC00BC00C48B8A /* UIImage+DYUIImage.m in Sources */,
 				310EB6011CA26D6E005C61F4 /* makeServiceViewController.m in Sources */,
 				749BEA451B3277AA00BABCA6 /* SDWebImagePrefetcher.m in Sources */,
+				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
+				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
 				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
@@ -3712,6 +3813,7 @@
 				31EEB30C1C93A6DF00B61A86 /* takeFixViewController.m in Sources */,
 				749BEA431B3277AA00BABCA6 /* SDWebImageManager+MJ.m in Sources */,
 				31EEB3191C93B32F00B61A86 /* communityViewController.m in Sources */,
+				040B801A1CC50C08006A9489 /* LCProgressHUD.m in Sources */,
 				749BEA4A1B3277AA00BABCA6 /* UIImageView+HighlightedWebCache.m in Sources */,
 				31BBE2951C914174006C553D /* DCPicScrollView.m in Sources */,
 				31B990261C969791002E34A5 /* mWashDetailView.m in Sources */,

@@ -10,4 +10,10 @@
 
 @interface needCodeViewController : BaseVC
 
+
+/**
+ *  页面类型
+ */
+@property (nonatomic,assign) int mType;
+
 @end

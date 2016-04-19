@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 ///Block回调
 typedef void (^SelectIndexBlock)(NSInteger index, NSString *title);
 
@@ -28,6 +29,8 @@ typedef NS_ENUM(NSUInteger, MHSheetStyle) {
 ///简单传递出index和title
 - (void)sheetViewDidSelectIndex:(NSInteger)index
                           title:(NSString *)title;
+
+- (void)sheetViewHidden:(BOOL)mHidden;
 @end
 
 @interface MHActionSheet : UIView

@@ -28,6 +28,8 @@
 #import "msgViewController.h"
 
 #import "paotuiViewController.h"
+#import "needCodeViewController.h"
+
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -351,7 +353,9 @@
             break;
         case 6:
         {
-            
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.mType = 2;
+            [self pushViewController:nnn];
         }
             break;
 

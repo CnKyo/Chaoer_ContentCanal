@@ -235,31 +235,35 @@
 - (void)mLoginAction:(UIButton *)sender{
     MLLog(@"登录");
     if (mLoginV.phoneTx.text == nil || [mLoginV.phoneTx.text isEqualToString:@""]) {
-        [self showErrorStatus:@"手机号码不能为空"];
+        [LCProgressHUD showInfoMsg:@"手机号码不能为空"];
         [mLoginV.phoneTx becomeFirstResponder];
         return;
     }
     if (![Util isMobileNumber:mLoginV.phoneTx.text]) {
-        [self showErrorStatus:@"请输入合法的手机号码"];
+        [LCProgressHUD showInfoMsg:@"请输入合法的手机号码"];
+
         return;
     }
     if (mLoginV.codeTx.text == nil || [mLoginV.codeTx.text isEqualToString:@""]) {
-        [self showErrorStatus:@"密码不能为空"];
+        [LCProgressHUD showInfoMsg:@"密码不能为空"];
+
         [mLoginV.codeTx becomeFirstResponder];
         
         return;
     }
     
     
-    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
+    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
 
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
-        
+        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         if (resb.mSucess) {
             [self loginOk];
-            [SVProgressHUD showErrorWithStatus:@"登录成功"];
+            
+            [LCProgressHUD showSuccess:@"登录成功"];
         }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [LCProgressHUD showFailure:resb.mMessage];
 
         }
         

@@ -67,6 +67,16 @@
     NSString *mVedioPath;
     
     NSMutableDictionary *mPara;
+    
+    
+    int mSelecte;
+    
+    
+    NSURL *mVideoUrl;
+    
+    
+    NSString *mVideoUrlString;
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -101,6 +111,7 @@
     
     mPara = [NSMutableDictionary new];
 
+    mSelecte = 1;
     
     [self initView];
     
@@ -167,7 +178,8 @@
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
         
         if (images.count > 1 || assets.count > 1) {
-            [SVProgressHUD showErrorWithStatus:@"只能选择1张图片!"];
+            [LCProgressHUD showFailure:@"只能选择1张图片!"];
+
             NSLog(@"选择的图片超过3张!");
             return ;
         }
@@ -239,52 +251,38 @@
 - (void)mMakeAction:(UIButton *)sender{
     
     if (mClassID.count <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请选择服务类型"];
+        [LCProgressHUD showFailure:@"请选择服务类型"];
+
         return;
     }if (mView.mTxView.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入您的备注!"];
+        [LCProgressHUD showFailure:@"请输入您的备注!"];
+
         return;
 
 
     }if (mTime.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请选择服务时间"];
+        [LCProgressHUD showFailure:@"请选择服务时间!"];
+
         return;
 
     }
     if (!mImgData) {
-        [SVProgressHUD showErrorWithStatus:@"请选择图片!"];
+        [LCProgressHUD showFailure:@"请选择图片!"];
         return;
     }
-//    [SVProgressHUD showWithStatus:@"正在提交中..." maskType:SVProgressHUDMaskTypeClear];
-//
-//    [mUserInfo commiteFixOrder:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] andOneLevel:[NSString stringWithFormat:@"%@",mSuperID] andClassification:[NSString stringWithFormat:@"%@",mClassID[0]] andRemark:mView.mTxView.text andtime:mTime andPhone:[mUserInfo backNowUser].mPhone andAddress:@"重庆市渝中区大坪石油路万科锦程1栋1004" andImg:mImgData block:^(mBaseData *resb) {
-//        
-//        if (resb.mSucess) {
-//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-//        }
-//        
-//    }];
-    
     
     [self commit];
+
 
     
 }
 
 - (void)commit{
     
-    
+    mSelecte = 1;
     
     [mPara setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"uid"];
     [mPara setObject:mImgData forKey:@"image"];
-    
-    if (mVedioData) {
-        [mPara setObject:mVedioData forKey:@"video"];
-
-    }
-    
     [mPara setObject:[NSString stringWithFormat:@"%@",mSuperID] forKey:@"classification1"];
     [mPara setObject:[NSString stringWithFormat:@"%@",mClassID[0]] forKey:@"classification2"];
     [mPara setObject:mView.mTxView.text forKey:@"remarks"];
@@ -292,43 +290,86 @@
     [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
     [mPara setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
     
+    if (mVideoUrlString == nil || [mVideoUrlString isEqualToString:@""]) {
+        
+    }else{
+        [mPara setObject:mVideoUrlString forKey:@"video"];
+
+    }
+    
     NSLog(@"这里提交的参数是：%@",mPara);
     
-    [SVProgressHUD showWithStatus:@"正在提交中..." maskType:SVProgressHUDMaskTypeClear];
+    [LBProgressHUD showHUDto:self.view withTips:@"正在提交..." animated:YES];
 
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
     
     
-    if (!mVedioPath) {
-        mVedioPath = nil;
-    }
     
-    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData andVideoData:mVedioData imgFileKey:@"pic" andVideoFileKey:@"video" andVideoPath:mVedioPath filePath:mImagePath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-        
+    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData fileKey:@"pic" filePath:mImagePath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError) {
             NSLog(@"请求出错 %@",connectionError);
         }else{
             NSLog(@"请求返回：\n%@",response);
         }
     }];
-}
+  }
 
+- (void)upLoadVideo{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+
+    [para setObject:mVedioData forKey:@"video"];
+    
+    NSLog(@"上传的参数是：%@",para);
+    
+    [LBProgressHUD showHUDto:self.view withTips:@"正在上传视频..." animated:YES];
+
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/upload/uploadVideo",[HTTPrequest returnNowURL]];
+    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+    manage.delegate = self;
+    
+    [manage uploadFileWithURL:mUrlStr params:para andData:mVedioData fileKey:@"video" filePath:mVedioPath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            NSLog(@"请求出错 %@",connectionError);
+        }else{
+            NSLog(@"请求返回：\n%@",response);
+        }
+    }];
+    
+}
 
 - (void)block:(mBaseData *)resb{
     
-    if (resb.mSucess) {
-        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-        choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
-        ccc.mData = mBaseData.new;
-        ccc.mData = resb;
-        [self pushViewController:ccc];
+    if (mSelecte == 2) {
+        if (resb.mSucess) {
+            [LCProgressHUD showSuccess:resb.mMessage];
+
+            mVideoUrlString = [resb.mData objectForKey:@"video"];
+            
+        }else{
+            [LCProgressHUD showFailure:resb.mMessage];
+        }
 
     }else{
-        [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        if (resb.mSucess) {
+            [LCProgressHUD showSuccess:resb.mMessage];
+            choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+            ccc.mData = mBaseData.new;
+            ccc.mData = resb;
+            [self pushViewController:ccc];
+            
+            
+        }else{
+            [LCProgressHUD showFailure:resb.mMessage];
+        }
+
     }
+
+    
+    
     
 }
 
@@ -399,12 +440,15 @@
  *  @param mTitle 标签
  */
 - (void)getData:(NSString *)mTitle{
-    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+    [LBProgressHUD showHUDto:self.view withTips:@"正在加载中..." animated:YES];
     [mUserInfo getFixDetail:mSuperID andLevel:@"2" block:^(mBaseData *resb, NSArray *marr) {
+        
+        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
         [self.tempArray removeAllObjects];
 
         if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:@"加载成功!"];
+            [LCProgressHUD showSuccess:resb.mMessage];
             [self.tempArray addObjectsFromArray:marr];
             
             mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
@@ -428,7 +472,8 @@
             [mCleanA show];
 
         }else{
-            [SVProgressHUD showErrorWithStatus:@"数据加载错误!"];
+            [LCProgressHUD showFailure:@"数据加载错误!"];
+
         }
     }];
     
@@ -611,8 +656,8 @@
         ;    }
     else if([mediaType isEqualToString:@"public.movie"]){
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        
-        [mView.mRightBtn setBackgroundImage:[self imageWithMediaURL:videoURL] forState:0];
+        mVideoUrl = videoURL;
+        [mView.mRightBtn setBackgroundImage:[self imageWithMediaURL:mVideoUrl] forState:0];
 
         [self saveVideoWith:videoURL];
         
@@ -803,7 +848,8 @@
     NSLog(@"最后的到的文件是：%@",exporter.outputURL);
     
     if ([self getFileSize:[NSString stringWithFormat:@"%@",exporter.outputURL]] >= 10.0*1024) {
-        [SVProgressHUD showErrorWithStatus:@"选择的文件太大了！"];
+        [LCProgressHUD showFailure:@"选择的文件太大了！"];
+
         return;
     }
     
@@ -815,16 +861,22 @@
             switch ([exporter status]) {
                 case AVAssetExportSessionStatusFailed:
                 {
-                    [SVProgressHUD showErrorWithStatus:@"视频处理失败"];
+                    
+                    [LCProgressHUD showFailure:@"视频处理失败！"];
+
                     break;
                 }
                     
                 case AVAssetExportSessionStatusCancelled:
-                    [SVProgressHUD showErrorWithStatus:@"视频处理取消"];
+                    [LCProgressHUD showFailure:@"视频处理取消！"];
+
                     break;
                 case AVAssetExportSessionStatusCompleted:
-                    [SVProgressHUD showSuccessWithStatus:@"视频处理完成"];
+                    [LCProgressHUD showSuccess:@"视频处理完成"];
                       mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
+                    mSelecte = 2;
+                    [self upLoadVideo];
+
                     //视频转码成功,删除原始文件
                     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
                                       break;

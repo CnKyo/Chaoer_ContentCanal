@@ -299,11 +299,16 @@
         [weakSelf.bgButton removeFromSuperview];
         [weakSelf removeFromSuperview];
     }];
+    
+    [weakSelf.delegate sheetViewHidden:YES];
 }
 
 //消失微信样式
 - (void)dismissWeiChatStyeSheetView
 {
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"dissmiss"object:self];
+    
+    
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:kDismissTime animations:^{
         weakSelf.contentView.frame = CGRectMake(0, kWH, kWW, weakSelf.contentVH);
@@ -318,6 +323,8 @@
         [weakSelf.bgButton removeFromSuperview];
         [weakSelf removeFromSuperview];
     }];
+    [weakSelf.delegate sheetViewHidden:YES];
+
 }
 
 //消失TableView样式
@@ -332,6 +339,8 @@
         [weakSelf.bgButton removeFromSuperview];
         [weakSelf removeFromSuperview];
     }];
+    [weakSelf.delegate sheetViewHidden:YES];
+
 }
 
 - (void)setTitleTextFont:(UIFont *)titleTextFont

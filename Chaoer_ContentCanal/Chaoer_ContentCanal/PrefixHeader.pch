@@ -74,6 +74,7 @@
 #import "CircleLHQView.h"
 
 #import "dataModel.h"
+#import "JHJsonRequst.h"
 #import "DVSwitch.h"
 #import "InputText.h"
 #import "JVFloatLabeledTextView.h"
@@ -96,4 +97,9 @@
 
 #import "JHJsonRequst.h"
 
+
+
+#import "LBProgressHUD.h"
+#import "LCProgressHUD.h"
+#import "WJStatusBarHUD.h"
 #endif

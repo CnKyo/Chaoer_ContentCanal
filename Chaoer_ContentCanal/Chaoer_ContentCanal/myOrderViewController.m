@@ -8,18 +8,19 @@
 
 #import "myOrderViewController.h"
 #import "myOrderTableViewCell.h"
-@interface myOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface myOrderViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
 
 @end
 
 @implementation myOrderViewController
 {
     UITableView *mTableView;
+    WKSegmentControl    *mSegmentView;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.Title = self.mPageName = @"我的红包";
+    self.Title = self.mPageName = @"我的订单";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -32,40 +33,26 @@
     iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
     iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
     [self.view addSubview:iii];
-    NSInteger margin = 0;
     
-    DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"购物订单", @"生活订单"]];
-    secondSwitch.frame = CGRectMake(margin, 63, DEVICE_Width, 30);
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"未完成订单", @"已完成订单",@"待评价订单"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:DEVICE_Width/3 delegate:self andIsHiddenLine:NO];
+    
+    [self.view addSubview:mSegmentView];
+    
+    
+    [self loadTableView:CGRectMake(0,mSegmentView.mbottom, DEVICE_Width, DEVICE_Height-mSegmentView.mbottom) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
-    secondSwitch.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
-    secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
-    secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];
-    secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
-    secondSwitch.cornerRadius = 0;
-    secondSwitch.font = [UIFont systemFontOfSize:14];
-    [secondSwitch setPressedHandler:^(NSUInteger index) {
-        NSLog(@"点击了%lu",(unsigned long)index);
-        [mTableView reloadData];
-    }];
-    
-    [self.view addSubview:secondSwitch];
-    
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor clearColor];
-    mTableView.frame = CGRectMake(0,94, DEVICE_Width, DEVICE_Height-99);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-    mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:mTableView];
-    
-    
-    UINib   *nib = [UINib nibWithNibName:@"myOrderTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    UINib   *nib = [UINib nibWithNibName:@"myOrderCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
 
 }
+- (void)WKDidSelectedIndex:(NSInteger)mIndex{
+    NSLog(@"点击了%lu",(unsigned long)mIndex);
 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,7 +83,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 170;
     
 }
 
