@@ -19,10 +19,6 @@
  *  @return
  */
 /**
- *  图片
- */
-@property (strong, nonatomic) IBOutlet UIImageView *mLogo;
-/**
  *  名称
  */
 @property (strong, nonatomic) IBOutlet UILabel *mName;
@@ -30,18 +26,7 @@
  *  数量
  */
 @property (strong, nonatomic) IBOutlet UILabel *mNum;
-/**
- *  价格
- */
-@property (strong, nonatomic) IBOutlet UILabel *mPrice;
-/**
- *  支付按钮
- */
-@property (strong, nonatomic) IBOutlet UIButton *mPayBtn;
-/**
- *  评价按钮
- */
-@property (strong, nonatomic) IBOutlet UIButton *mEvolutionBtn;
+
 
 
 #pragma mark---第二种cell样式
@@ -57,13 +42,14 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mOrderStatus;
 /**
- *  订单数量
+ *  服务时间
  */
-@property (weak, nonatomic) IBOutlet UILabel *mOrderNum;
+@property (weak, nonatomic) IBOutlet UILabel *mServiceTime;
 /**
- *  订单图片
+ *  服务地址
  */
-@property (weak, nonatomic) IBOutlet UIView *mOrderImages;
+@property (weak, nonatomic) IBOutlet UILabel *mServiceAddress;
+
 /**
  *  订单价格
  */
@@ -77,5 +63,34 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *mRightBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *mImage1;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mServiceTimeLeft;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mAddressLeft;
+
+
+#pragma mark----第三种cell样式
+/**
+ *  手机logo
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mPhoneLogo;
+/**
+ *  手机号码
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPhone;
+/**
+ *  充值金额
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPhoneMoney;
+/**
+ *  交易时间
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPhoneTime;
+/**
+ *  状态
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPhoneStatus;
 
 @end

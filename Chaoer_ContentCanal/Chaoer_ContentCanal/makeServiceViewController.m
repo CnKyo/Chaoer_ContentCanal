@@ -94,7 +94,8 @@
 
 - (void)okAction:(UIButton *)sender{
 
-    
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+
     
     [mUserInfo getOrderPaySuccess:self.mId andOrderId:self.mOrderId block:^(mBaseData *resb) {
         if (resb.mSucess) {

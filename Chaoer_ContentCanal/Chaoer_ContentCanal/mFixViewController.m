@@ -357,6 +357,7 @@
         if (resb.mSucess) {
             [LCProgressHUD showSuccess:resb.mMessage];
             choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+            ccc.Type = 1;
             ccc.mData = mBaseData.new;
             ccc.mData = resb;
             [self pushViewController:ccc];

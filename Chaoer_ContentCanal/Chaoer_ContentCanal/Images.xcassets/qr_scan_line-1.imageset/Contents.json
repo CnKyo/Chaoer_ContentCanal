@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "qr_scan_line.png"
+      "filename" : "qr_scan_line.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

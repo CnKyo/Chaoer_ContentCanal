@@ -20,6 +20,9 @@
 +(makeServiceDetailView *)shareOrderDetailView{
     makeServiceDetailView *view = [[[NSBundle mainBundle] loadNibNamed:@"makeFixOrderDetailView" owner:self options:nil] objectAtIndex:0];
     
+    view.mOkBtn.layer.masksToBounds = YES;
+    view.mOkBtn.layer.cornerRadius = 3;
+    
     return view;
 }
 @end

@@ -17,6 +17,7 @@
 {
     [super viewWillAppear:animated];
     self.mOkBtn.selected = NO;
+    [self loadData];
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -32,7 +33,24 @@
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
 }
+- (void)loadData{
 
+    [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
+    [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
+        [self headerEndRefresh];
+        if (resb.mData) {
+            [SVProgressHUD showSuccessWithStatus:@"验证成功！"];
+            self.mBankNumTx.text = [resb.mData objectForKey:@"bankCard"];
+
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"数据验证失败！"];
+            
+            
+        };
+        
+    }];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -62,7 +80,9 @@
 */
 - (IBAction)mTimeAction:(id)sender {
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择到账时间" style:MHSheetStyleWeiChat itemTitles:@[@"24小时内到账",@"12小时内到账",@"2小时内到账"]];
+    return;
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择到账时间" style:MHSheetStyleWeiChat itemTitles:@[@"24小时内到账",@"2小时内到账",@"2小时内到账"]];
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
@@ -78,6 +98,21 @@
 
 - (IBAction)okbtn:(UIButton *)sender {
     sender.selected = !sender.selected;
+    
+    [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [mUserInfo  getCash:[mUserInfo backNowUser].mUserId andMoney:self.mMoneyTx.text andPresentManner:@"0" block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+        
+    }];
+
+    
 }
 
 @end

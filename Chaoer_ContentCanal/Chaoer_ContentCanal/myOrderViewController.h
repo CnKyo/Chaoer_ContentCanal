@@ -9,5 +9,9 @@
 #import "BaseVC.h"
 
 @interface myOrderViewController : BaseVC
+/**
+ *  订单类型 1是保修订单 2是充值订单
+ */
+@property (assign,nonatomic) NSString *mType;
 
 @end

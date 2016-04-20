@@ -12,4 +12,10 @@
 
 @property (strong,nonatomic) mBaseData  *mData;
 
+
+@property (strong,nonatomic) GFixOrder *mFix;
+
+@property (nonatomic,assign) int    Type;
+
+
 @end

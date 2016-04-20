@@ -175,6 +175,7 @@
             
         }
         
+        isSelected = YES;
         
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
         [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
@@ -212,6 +213,8 @@
 
     
     mParas = [NSMutableDictionary new];
+    
+    isSelected = NO;
     
     
 }
@@ -279,7 +282,21 @@
  */
 - (void)mBalanceAction:(UIButton *)sender{
     NSLog(@"缴费");
-    [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+    GCanal *mC = self.tempArray[0];
+    
+    if (isSelected) {
+        
+        [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+    }else{
+    
+        [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+        [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
+        [mParas setObject:NumberWithInt(mC.mCommunityId) forKey:@"id"];
+        [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+
+    }
+    
+    
 
     [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] payCanal:mParas block:^(mBaseData *resb) {

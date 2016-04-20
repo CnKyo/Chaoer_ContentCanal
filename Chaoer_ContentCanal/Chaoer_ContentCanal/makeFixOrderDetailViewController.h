@@ -10,4 +10,6 @@
 
 @interface makeFixOrderDetailViewController : BaseVC
 
+@property (nonatomic,strong) GFixOrder *mFixOrder;
+
 @end

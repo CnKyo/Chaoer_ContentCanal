@@ -1174,16 +1174,18 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 
 
-+(void)getCash:(int)mUid andMoney:(float)mMoney andPresentManner:(int)mPresentManner block:(void(^)(mBaseData *resb))block{
++(void)getCash:(int)mUid andMoney:(NSString *)mMoney andPresentManner:(NSString *)mPresentManner block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mUid) forKey:@"uid"];
-    [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
-    [para setObject:NumberWithInt(mPresentManner) forKey:@"presentManner"];
-    [[HTTPrequest sharedClient] postUrl:@"ybpay/epos/withdrawals.do" parameters:para call:^(mBaseData *info) {
+    [para setObject:NumberWithInt(mUid) forKey:@"userId"];
+    [para setObject:mMoney forKey:@"money"];
+    [para setObject:mPresentManner forKey:@"presentManner"];
+    [[HTTPrequest sharedClient] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
-        }else{
+            block ( info );
             
+        }else{
+            block ( info );
         }
     }];
 
@@ -1422,6 +1424,34 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 }
 
+- (void)finishFixOrder:(NSString *)mOrderId andPayType:(NSString *)mPayType andRate:(NSString *)mRate block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mOrderId forKey:@"orderId"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    if (mPayType) {
+    [para setObject:mPayType forKey:@"payWay"];
+    }
+    if (mRate) {
+        [para setObject:mRate forKey:@"praiseRate"];
+    }
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/userConfirmation" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block ( info );
+            
+        }else{
+            block ( info );
+        }
+    }];
+    
+    
+    
+}
+
+
 
 - (void)getArear:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
@@ -1459,6 +1489,96 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         }
     }];
 }
+#pragma mark----获取订单列表
+- (void)getOrderList:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    NSString *mUrl = nil;
+  
+    mUrl = @"app/order/countOrderList";
+   
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GOrderCount alloc] initWithObj:dic]];
+            }
+            
+            block ( info , tempArr );
+            
+        }else{
+            block ( info , nil );
+        }
+    }];
+ 
+}
+
+- (void)getOrder:(NSString *)mType andStart:(int)mStart andEd:(int)mEnd block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSString *mUrl = nil;
+    
+    if ([mType isEqualToString:@"2"]) {
+        mUrl = @"app/order/getMobileOrderList";
+    }else if ([mType isEqualToString:@"1"]){
+        mUrl = @"app/order/getWarrantyOrderList";
+    }
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mStart) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mEnd) forKey:@"pageSize"];
+
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"list"]) {
+                [tempArr addObject:[[GFixOrder alloc] initWithObj:dic]];
+            }
+            
+            block ( info , tempArr );
+            
+        }else{
+            block ( info , nil );
+        }
+    }];
+
+    
+    
+    
+}
+
+- (void)getOrderDetail:(NSString *)mOrderID block:(void(^)(mBaseData *resb,GFixOrder *mFixOrder))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mOrderID forKey:@"orderId"];
+
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/getOrderDetails" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            GFixOrder *mFix = [[GFixOrder alloc] initWithObj:info.mData];
+            
+            block ( info , mFix );
+            
+        }else{
+            block ( info , nil );
+        }
+    }];
+    
+    
+    
+}
+
 
 
 + (void)openPush{
@@ -1704,6 +1824,27 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mStatus = [[obj objectForKeyMy:@"status"] intValue];
     self.mPhone = [obj objectForKeyMy:@"phone"];
 
+    self.mAddress = [obj objectForKeyMy:@"addRess"];
+    self.mCommunityId = [obj objectForKeyMy:@"communityId"];
+    self.mOrderMerchanid = [obj objectForKeyMy:@"merchantId"];
+    self.mOrderPrice = [[obj objectForKeyMy:@"price"] floatValue];
+    self.mOrderStatus = [obj objectForKeyMy:@"statusName"];
+    self.mOrderImage = [obj objectForKeyMy:@"imageUrl"];
+    
+    self.mClassificationName2 = [obj objectForKeyMy:@"classificationName2"];
+    self.mOrderServiceTime = [obj objectForKeyMy:@"appointmentTime"];
+    self.mOrderID = [obj objectForKeyMy:@"id"];
+    
+    self.addTime = [obj objectForKeyMy:@"addTime"];
+    self.mDescription = [obj objectForKeyMy:@"description"];
+    self.serviceTime = [obj objectForKeyMy:@"serviceTime"];
+    self.tel = [obj objectForKeyMy:@"tel"];
+    
+    
+    self.mSerialNumber = [obj objectForKeyMy:@"serialNumber"];
+    self.mIntegral = [obj objectForKeyMy:@"integral"];
+    self.mRechargeTime = [obj objectForKeyMy:@"rechargeTime"];
+    self.mPaymentMethod = [obj objectForKeyMy:@"paymentMethod"];
     
 }
 
@@ -1919,6 +2060,25 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mProductName = [obj objectForKeyMy:@"productName"];
     self.mInprice = [obj objectForKeyMy:@"inprice"];
 
+}
+
+@end
+
+@implementation GOrderCount
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mOrderNum = [obj objectForKeyMy:@"count"];
+    self.mOrderType = [obj objectForKeyMy:@"type"];
+    self.mOrderName = [obj objectForKeyMy:@"orderTypeName"];
 }
 
 @end

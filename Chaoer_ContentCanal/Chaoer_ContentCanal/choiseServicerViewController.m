@@ -78,46 +78,131 @@
     }if (mEnd<=10) {
         mEnd = 10;
     }
-    
-    NSString *address = [self.mData.mData objectForKey:@"address"];
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
-    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
-        [self headerEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            
-            [self.tempArray addObjectsFromArray:mList.mArray];
+    NSString *address = nil;
+    
+    if (_Type == 1) {
+        address = [self.mData.mData objectForKey:@"address"];
+        
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+            [self headerEndRefresh];
+            [self.tempArray removeAllObjects];
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                if (mList.mArray.count<=0) {
+                    [self addEmptyViewWithImg:nil];
+                }else{
+                    [self.tempArray addObjectsFromArray:mList.mArray];
+                    
+                    [self.tableView reloadData];
+                }
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self addEmptyViewWithImg:nil];
 
-            [self.tableView reloadData];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+            }
+        }];
+
+    }else{
+    
+        address = self.mFix.mAddress;
+        
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+            [self headerEndRefresh];
+            [self.tempArray removeAllObjects];
+            [self removeEmptyView];
+
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                
+                if (mList.mArray.count<=0) {
+                    [self addEmptyViewWithImg:nil];
+                }else{
+                    [self.tempArray addObjectsFromArray:mList.mArray];
+                    
+                    [self.tableView reloadData];
+                }
+                
+
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self addEmptyViewWithImg:nil];
+
+            }
+        }];
+
+    }
+    
+    
+    
+   
 }
 - (void)footetBeganRefresh{
     mStart += 10;
     mEnd += 10;
-    NSString *address = [self.mData.mData objectForKey:@"address"];
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
-        [self footetEndRefresh];
-        [self.tempArray removeAllObjects];
-        if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            [self.tempArray addObjectsFromArray:mList.mArray];
-            mStart = mList.pageNumber+10;
-            mEnd = mList.pageSize+10;
-            [self.tableView reloadData];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+    NSString *address = nil;
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
+    if (_Type == 1) {
+        
+        address = [self.mData.mData objectForKey:@"address"];
+
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+            [self footetEndRefresh];
+            [self removeEmptyView];
+
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                if (mList.mArray.count<=0) {
+                    [self addEmptyViewWithImg:nil];
+                }else{
+                    [self.tempArray addObjectsFromArray:mList.mArray];
+                    mStart = mList.pageNumber+10;
+                    mEnd = mList.pageSize+10;
+                    [self.tableView reloadData];
+                }
+   
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self addEmptyViewWithImg:nil];
+
+            }
+        }];
+
+    }else{
+        address = self.mFix.mAddress;
+
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+            [self footetEndRefresh];
+            [self removeEmptyView];
+
+            if (resb.mSucess) {
+                
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                if (mList.mArray.count<=0) {
+                    [self addEmptyViewWithImg:nil];
+                }else{
+                    [self.tempArray addObjectsFromArray:mList.mArray];
+                    mStart = mList.pageNumber+10;
+                    mEnd = mList.pageSize+10;
+                    [self.tableView reloadData];
+                }
+
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self addEmptyViewWithImg:nil];
+
+            }
+        }];
+
+    }
+   
 
 }
 - (void)didReceiveMemoryWarning {
@@ -196,6 +281,7 @@
 }
 #pragma mark----预约按钮
 - (void)makeAction:(UIButton *)sender{
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo getFixOrderComfirm:[[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue] andmId:[[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue] block:^(mBaseData *resb, GFixOrder *mOrder) {
 
@@ -223,8 +309,13 @@
 
 - (void)leftBtnTouched:(id)sender{
 
-    [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+    if (_Type == 1) {
+        [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
+    }else{
+        [self popViewController];
+    }
+  
 }
 
 

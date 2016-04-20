@@ -547,7 +547,7 @@
  *  @param mPresentManner 是否是及时(1:为及时即T+0;为空或者为0：T+1)
  *  @param block          返回值
  */
-+(void)getCash:(int)mUid andMoney:(float)mMoney andPresentManner:(int)mPresentManner block:(void(^)(mBaseData *resb))block;
++(void)getCash:(int)mUid andMoney:(NSString *)mMoney andPresentManner:(NSString *)mPresentManner block:(void(^)(mBaseData *resb))block;
 
 /**
  *  获取二级分类
@@ -633,6 +633,17 @@
  *  @param block 返回值
  */
 - (void)getSellerMsg:(int)mOid andmId:(int)mId block:(void(^)(mBaseData *resb))block;
+/**
+ *  完成保修订单
+ *
+ *  @param mOrderId 订单id
+ *  @param mPayType 支付方式
+ *  @param mRate    评价
+ *  @param block    返回值
+ */
+- (void)finishFixOrder:(NSString *)mOrderId andPayType:(NSString *)mPayType andRate:(NSString *)mRate block:(void(^)(mBaseData *resb))block;
+
+
 
 
 /**
@@ -651,6 +662,33 @@
  *  @param block   返回值
  */
 - (void)getWallete:(int)mUserID block:(void(^)(mBaseData *resb))block;
+#pragma mark----订单列表
+/**
+ *  获取订单列表
+ *
+ *  @param mType 订单类型
+ *  @param block 返回值
+ */
+- (void)getOrderList:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+/**
+ *  获取子订单列表
+ *
+ *  @param mType  订单类型
+ *  @param mStart 起始分页
+ *  @param mEnd   结束分页
+ *  @param block  返回值
+ */
+- (void)getOrder:(NSString *)mType andStart:(int)mStart andEd:(int)mEnd block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+/**
+ *  获取保修订单详情
+ *
+ *  @param mOrderID 订单id
+ *  @param block    返回值
+ */
+- (void)getOrderDetail:(NSString *)mOrderID block:(void(^)(mBaseData *resb,GFixOrder *mFixOrder))block;
+
+
 
 /**
  *  打开推送
@@ -948,6 +986,69 @@
  *  订单id
  */
 @property (assign,nonatomic) int    mOrderId;
+/**
+ *  订单图片
+ */
+@property (nonatomic,strong)    NSString       *mOrderImage;
+/**
+ *  订单状态
+ */
+@property (nonatomic,strong)    NSString       *mOrderStatus;
+/**
+ *  服务时间
+ */
+@property (nonatomic,strong)    NSString       *mOrderServiceTime;
+/**
+ *  id？
+ */
+@property (nonatomic,strong)    NSString       *mOrderMerchanid;
+/**
+ *  订单价格
+ */
+@property (nonatomic,assign)    CGFloat       mOrderPrice;
+/**
+ *  社区id
+ */
+@property (nonatomic,strong)    NSString       *mCommunityId;
+/**
+ *  地址
+ */
+@property (nonatomic,strong)    NSString       *mAddress;
+/**
+ *  二级分累
+ */
+@property (nonatomic,strong)    NSString       *mClassificationName2;
+/**
+ *  订单id
+ */
+@property (nonatomic,strong)    NSString       *mOrderID;
+/**
+ *  添加时间
+ */
+@property (nonatomic,strong)    NSString       *addTime;
+/**
+ *  说明？
+ */
+@property (nonatomic,strong)    NSString       *mDescription;
+/**
+ *  服务时间
+ */
+@property (nonatomic,strong)    NSString       *serviceTime;
+/**
+ *  电话
+ */
+@property (nonatomic,strong)    NSString       *tel;
+
+
+#pragma mark----手机充值对象
+@property (nonatomic,strong)    NSString       *mSerialNumber;
+
+@property (nonatomic,strong)    NSString       *mIntegral;
+
+@property (nonatomic,strong)    NSString       *mRechargeTime;
+
+@property (nonatomic,strong)    NSString       *mPaymentMethod;
+
 
 
 @end
@@ -1177,5 +1278,29 @@
  *  价格？
  */
 @property (strong,nonatomic) NSString    *mInprice;
+
+@end
+
+/**
+ 订单统计对象
+ 
+ - returns:
+ */
+@interface GOrderCount : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+/**
+ *  订单类型
+ */
+@property (strong,nonatomic) NSString    *mOrderType;
+/**
+ *  订单数量
+ */
+@property (strong,nonatomic) NSString    *mOrderNum;
+/**
+ *  订单名称
+ */
+@property (strong,nonatomic) NSString    *mOrderName;
+
 
 @end

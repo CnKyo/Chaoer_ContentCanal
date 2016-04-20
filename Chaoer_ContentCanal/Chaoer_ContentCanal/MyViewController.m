@@ -30,6 +30,8 @@
 #import "paotuiViewController.h"
 #import "needCodeViewController.h"
 
+#import "orderTongjiViewController.h"
+
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -345,9 +347,14 @@
         case 4:
         {
 
-            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
-            [self pushViewController:mmm];
+//            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
+//            [self pushViewController:mmm];
 
+            
+            orderTongjiViewController *oo = [[orderTongjiViewController alloc] initWithNibName:@"orderTongjiViewController" bundle:nil];
+            
+            [self pushViewController:oo];
+            
         }
             break;
         case 5:

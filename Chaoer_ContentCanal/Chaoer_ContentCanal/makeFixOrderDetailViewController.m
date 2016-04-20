@@ -19,7 +19,17 @@
     UIScrollView    *mSubScrollerView;
     
     makeServiceDetailView   *mView;
+    
+    UILabel *mContent;
+
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:YES];
+    [self loadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -64,9 +74,9 @@
     mSubScrollerView.backgroundColor = [UIColor clearColor];
     [mView.mContentView addSubview:mSubScrollerView];
     
-    NSString *sss = @"周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊周末天气很好啊";
+    NSString *sss = self.mFixOrder.mDescription;
     
-    UILabel *mContent = [UILabel new];
+    mContent = [UILabel new];
     mContent.frame = CGRectMake(5, 5, mView.mContentView.mwidth-10, 20);
     mContent.textAlignment = NSTextAlignmentLeft;
     mContent.font = [UIFont systemFontOfSize:12];
@@ -85,11 +95,87 @@
     
     
 }
+
+- (void)loadData{
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    NSLog(@"id是：%@",self.mFixOrder.mOrderID);
+    [[mUserInfo backNowUser] getOrderDetail:self.mFixOrder.mOrderID block:^(mBaseData *resb, GFixOrder *mFixOrder) {
+        
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            self.mFixOrder = mFixOrder;
+            [self updatePage];
+            
+            
+            
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self popViewController];
+        }
+        
+    }];
+}
+
+- (void)updatePage{
+
+    
+    mView.mServiceName.text = self.mFixOrder.mMerchantName;
+    mView.mServiceClass.text = self.mFixOrder.mClassificationName2;
+    mView.mAddress.text = self.mFixOrder.mAddress;
+    mView.mPhone.text = self.mFixOrder.tel;
+    mView.mServiceTime.text = self.mFixOrder.serviceTime;
+    mView.mServicePrice.text = [NSString stringWithFormat:@"%.2f元",self.mFixOrder.mOrderPrice];
+    mContent.text = self.mFixOrder.mDescription;
+    
+    if (self.mFixOrder.mStatus == 5) {
+
+        [mView.mOkBtn setTitle:@"完成服务" forState:0];
+        mView.mOkBtn.backgroundColor = M_CO;
+        
+        mView.mOkBtn.userInteractionEnabled = YES;
+    }else if (self.mFixOrder.mStatus == 6){
+
+        [mView.mOkBtn setTitle:@"服务已完成" forState:0];
+        mView.mOkBtn.backgroundColor = [UIColor lightGrayColor];
+        
+        mView.mOkBtn.userInteractionEnabled = NO;
+    }else{
+    
+        [mView.mOkBtn setTitle:@"服务进行中" forState:0];
+        mView.mOkBtn.backgroundColor = [UIColor lightGrayColor];
+        
+        mView.mOkBtn.userInteractionEnabled = NO;
+    }
+    
+    
+}
+
 - (void)okAction:(UIButton *)sender{
     
-    self.tabBarController.selectedIndex = 1;
+//    self.tabBarController.selectedIndex = 1;
+//    
+//    [self popViewController:4];
     
-    [self popViewController:4];
+    [SVProgressHUD showWithStatus:@"正在确认..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] finishFixOrder:self.mFixOrder.mOrderID andPayType:@"6" andRate:@"好评" block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [self popViewController];
+            
+        }else{
+        
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

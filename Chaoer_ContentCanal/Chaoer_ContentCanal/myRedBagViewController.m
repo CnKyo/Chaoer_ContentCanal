@@ -123,7 +123,7 @@
     [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mTypr block:^(mBaseData *resb, NSArray *marray) {
         [self headerEndRefresh];
         [self removeEmptyView];
-        if (resb.mData) {
+        if (resb.mSucess) {
             [self.tempArray addObjectsFromArray:marray];
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self addEmptyViewWithImg:nil];
