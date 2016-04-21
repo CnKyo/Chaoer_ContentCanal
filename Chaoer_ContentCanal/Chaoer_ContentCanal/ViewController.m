@@ -107,7 +107,7 @@
     [self.view addSubview:mScrollerView];
     
     mLoginV = [mLoginView shareView];
-    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, DEVICE_Height);
+    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, DEVICE_Height+100);
     
     
     if ([mUserInfo backNowUser].mPhone) {
@@ -131,7 +131,7 @@
 
     
     [mScrollerView addSubview:mLoginV];
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, DEVICE_Height+100);
     
     
     
