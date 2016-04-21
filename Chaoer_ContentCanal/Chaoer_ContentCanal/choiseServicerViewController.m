@@ -30,6 +30,7 @@
     
     int mEnd;
     
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +43,8 @@
     
     mStart = 1;
     mEnd = 10;
+    
+    self.page = 1;
     
     [self initview];
 }
@@ -70,14 +73,7 @@
     
 }
 - (void)headerBeganRefresh{
-    mStart -= 10;
-    mEnd -= 10;
-    
-    if (mStart <= 1) {
-        mStart = 1;
-    }if (mEnd<=10) {
-        mEnd = 10;
-    }
+    self.page = 1;
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
     NSString *address = nil;
@@ -85,7 +81,7 @@
     if (_Type == 1) {
         address = [self.mData.mData objectForKey:@"address"];
         
-        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
             [self headerEndRefresh];
             [self.tempArray removeAllObjects];
             [self removeEmptyView];
@@ -110,7 +106,7 @@
     
         address = self.mFix.mAddress;
         
-        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
             [self headerEndRefresh];
             [self.tempArray removeAllObjects];
             [self removeEmptyView];
@@ -142,8 +138,8 @@
    
 }
 - (void)footetBeganRefresh{
-    mStart += 10;
-    mEnd += 10;
+    
+    self.page ++;
     
     NSString *address = nil;
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
@@ -152,7 +148,7 @@
         
         address = [self.mData.mData objectForKey:@"address"];
 
-        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
             [self footetEndRefresh];
             [self removeEmptyView];
 
@@ -178,7 +174,7 @@
     }else{
         address = self.mFix.mAddress;
 
-        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:mStart andEnd:mEnd block:^(mBaseData *resb, GServiceList *mList) {
+        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:self.mFix.mClassificationName andTwoLevel:self.mFix.mClassificationName2 andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
             [self footetEndRefresh];
             [self removeEmptyView];
 

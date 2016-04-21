@@ -69,6 +69,10 @@
 		04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
 		04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D476E01CC72B8400746491 /* orderTongjiViewController.xib */; };
+		04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */; };
+		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
+		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
+		04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D5041CC8BBC90090EC1E /* mCookDetail.m */; };
 		04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD291CC5DF2500E62795 /* myOrderCell.xib */; };
 		04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2B1CC61F6700E62795 /* WJ_error.png */; };
 		04E5BD321CC61F6700E62795 /* WJ_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */; };
@@ -649,6 +653,13 @@
 		04D476DE1CC72B8400746491 /* orderTongjiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTongjiViewController.h; sourceTree = "<group>"; };
 		04D476DF1CC72B8400746491 /* orderTongjiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTongjiViewController.m; sourceTree = "<group>"; };
 		04D476E01CC72B8400746491 /* orderTongjiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderTongjiViewController.xib; sourceTree = "<group>"; };
+		04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAndaJson.h; sourceTree = "<group>"; };
+		04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAndaJson.m; sourceTree = "<group>"; };
+		04D9D4FE1CC8B9180090EC1E /* mCookDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetailView.h; sourceTree = "<group>"; };
+		04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetailView.m; sourceTree = "<group>"; };
+		04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCookDetailView.xib; sourceTree = "<group>"; };
+		04D9D5031CC8BBC90090EC1E /* mCookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetail.h; sourceTree = "<group>"; };
+		04D9D5041CC8BBC90090EC1E /* mCookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetail.m; sourceTree = "<group>"; };
 		04E5BD291CC5DF2500E62795 /* myOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderCell.xib; sourceTree = "<group>"; };
 		04E5BD2B1CC61F6700E62795 /* WJ_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_error.png; sourceTree = "<group>"; };
 		04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_error@2x.png"; sourceTree = "<group>"; };
@@ -2227,6 +2238,8 @@
 				04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */,
 				04223D971CC0C9E400CB6249 /* JHJsonRequst.h */,
 				04223D981CC0C9E400CB6249 /* JHJsonRequst.m */,
+				04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */,
+				04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */,
 			);
 			name = HTTPDATA;
 			sourceTree = "<group>";
@@ -2484,6 +2497,11 @@
 				044A24761CB4A85700A6379C /* kitchenTableViewCell.h */,
 				044A24771CB4A85700A6379C /* kitchenTableViewCell.m */,
 				044A24781CB4A85700A6379C /* kitchenTableViewCell.xib */,
+				04D9D5031CC8BBC90090EC1E /* mCookDetail.h */,
+				04D9D5041CC8BBC90090EC1E /* mCookDetail.m */,
+				04D9D4FE1CC8B9180090EC1E /* mCookDetailView.h */,
+				04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */,
+				04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */,
 			);
 			name = "厨房";
 			sourceTree = "<group>";
@@ -3421,9 +3439,12 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 985ZN32SH4;
+						DevelopmentTeam = 5FKH22H2X2;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -3580,6 +3601,7 @@
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
+				04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */,
 				048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
 				31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */,
@@ -3881,6 +3903,8 @@
 				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				7400896F1B38F2C300618BA0 /* AFHTTPRequestOperationManager.m in Sources */,
 				749BE9751B32754000BABCA6 /* NSString+CheckEmpty.m in Sources */,
+				04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */,
+				04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */,
 				313D76E51C99507D004D5679 /* mJoinActivityViewController.m in Sources */,
 				749BEA0B1B32779800BABCA6 /* MBProgressHUD.m in Sources */,
 				74D292E91B96DA7A00A57977 /* moreView.m in Sources */,
@@ -3890,6 +3914,7 @@
 				746709501BE1F6480096B169 /* UILabel+HYBAttributedCategory.m in Sources */,
 				749BE9981B32756800BABCA6 /* IQUIView+Hierarchy.m in Sources */,
 				310EB5F21CA24EBF005C61F4 /* TQStarRatingView.m in Sources */,
+				04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */,
 				31462CE31CB38E0400E67836 /* walletView.m in Sources */,
 				7487DC171B4E17F000C40220 /* MASConstraintMaker.m in Sources */,
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
@@ -4085,7 +4110,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: shu fujia (M9Y4CLTF5D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4127,7 +4152,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9381fdc1-8670-4801-a351-ed27898d1d78";
 			};
 			name = Debug;
 		};
@@ -4137,7 +4162,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: shu fujia (M9Y4CLTF5D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4180,7 +4205,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9381fdc1-8670-4801-a351-ed27898d1d78";
 			};
 			name = Release;
 		};

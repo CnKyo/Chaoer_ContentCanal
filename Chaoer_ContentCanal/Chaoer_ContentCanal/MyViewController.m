@@ -220,6 +220,8 @@
 }
 #pragma mark----信息事件
 - (void)mMsgAction:(UIButton *)sender{
+    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+    return;
     NSLog(@"消息");
     msgViewController *mmm = [[msgViewController alloc] initWithNibName:@"msgViewController" bundle:nil];
     [self pushViewController:mmm];

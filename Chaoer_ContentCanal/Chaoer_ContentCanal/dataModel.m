@@ -272,7 +272,7 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:mLoginName block:block];
+        [self dealUserSession:info andPhone:nil block:block];
     }];
 }
 +(void)mForgetPwd:(NSString *)mLoginName andNewPwd:(NSString *)mPwd block:(void (^)(mBaseData *))block{
@@ -291,6 +291,22 @@ bool g_bined = NO;
 
 
 }
+
+- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
+        
+        [mUserInfo dealUserSession:info andPhone:nil block:block];
+
+    }];
+
+
+}
+
+
 +(void)saveUserInfo:(NSDictionary *)dccat
 {
     dccat = [Util delNUll:dccat];
@@ -304,7 +320,7 @@ bool g_bined = NO;
     
     [def synchronize];
 }
-+(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPhone block:(void(^)(mBaseData* resb, mUserInfo*user))block
++(void)dealUserSession:(mBaseData*)info andPhone:(NSDictionary *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
     
 #warning 返回的数据是整个用户信息对象
@@ -320,9 +336,9 @@ bool g_bined = NO;
 ////            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
 //        }
         
-        if (mPhone) {
-            [tdic setObject:mPhone forKey:@"mPhone"];
-        }
+//        if (mPhone) {
+//            [tdic setObject:mPhone forKey:@"mPhone"];
+//        }
         
         
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
@@ -338,7 +354,7 @@ bool g_bined = NO;
     
 }
 
-+ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
++ (void)editUserMsg:(NSString *)mHeader andUserid:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserid) forKey:@"userId"];
     if (mLoginName) {
@@ -356,13 +372,17 @@ bool g_bined = NO;
         [para setObject:mSignate forKey:@"signature"];
         
     }
+    if (mHeader) {
+        [para setObject:mSignate forKey:@"img"];
+        
+    }
     
     
     [para setObject:[mUserInfo backNowUser].mPhone forKey:@"moblie"];
 
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
         
-        [self dealUserSession:info andPhone:nil block:block];
+        [self dealUserSession:info andPhone:para block:block];
 
     }];
     
@@ -1063,7 +1083,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
     
-    [[JHJsonRequst sharedClient] postUrl:posturl parameters:para call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:posturl parameters:para call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1110,7 +1130,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }else if(mType == 5){
         posturl = @"query";
     }
-    [[JHJsonRequst sharedClient] postUrl:posturl parameters:mParas call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:posturl parameters:mParas call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1133,7 +1153,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 - (void)Inquire:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
 
     
-    [[JHJsonRequst sharedClient] postUrl:@"mbalance" parameters:mParas call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:@"mbalance" parameters:mParas call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1154,7 +1174,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 
 - (void)goPay:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
-    [[JHJsonRequst sharedClient] postUrl:@"order" parameters:mParas call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:@"order" parameters:mParas call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1579,6 +1599,81 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+- (void)getScoreList:(int)mType andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    
+    NSString *mUrl = nil;
+    
+    if (mType == 1) {
+        mUrl = @"app/wallet/getWalletRecordList";
+    }else{
+        mUrl = @"app/wallet/getIntegralRecord";
+
+    }
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"list"]) {
+                
+                
+                [tempArr addObject:[[GScroe alloc] initWithObj:dic]];
+                
+            }
+            
+            block ( info , tempArr );
+            
+        }else{
+            block ( info , nil );
+        }
+    }];
+    
+}
+#pragma mark----阿凡达菜谱
+- (void)getCookList:(int)mPage block:(void(^)(mJHBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:AVADA_KEY forKey:@"key"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(20) forKey:@"rows"];
+    [para setObject:@"JSON" forKey:@"dtype"];
+    [para setObject:NumberWithBool(false) forKey:@"format"];
+    
+    [[AVAndaJson sharedClient] postUrl:@"List" parameters:para call:^(mJHBaseData *info) {
+        
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                
+                [tempArr addObject:[[GCook alloc] initWithObj:dic]];
+                
+            }
+            
+            block ( info,tempArr );
+            
+        }else{
+        
+            block ( info,nil );
+        }
+        
+        
+    }];
+
+    
+}
 
 
 + (void)openPush{
@@ -1988,7 +2083,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         self.mStatustr = @"未支付";
     }
     
-    
+    self.mId = [obj objectForKeyMy:@"id"];
     
 }
 
@@ -2081,4 +2176,58 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mOrderName = [obj objectForKeyMy:@"orderTypeName"];
 }
 
+@end
+
+@implementation GScroe
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mAddTime = [obj objectForKeyMy:@"addTime"];
+    self.mConsumerId = [obj objectForKeyMy:@"consumerId"];
+    self.mDescribe = [obj objectForKeyMy:@"describe"];
+
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
+    self.mPaymentType = [[obj objectForKeyMy:@"paymentType"] intValue];
+    self.mScore = [[obj objectForKeyMy:@"score"] intValue];
+    self.mType = [[obj objectForKeyMy:@"type"] intValue];
+    self.mWid = [[obj objectForKeyMy:@"wid"] intValue];
+    self.mRed = [[obj objectForKeyMy:@"red "] intValue];
+
+}
+
+
+@end
+
+@implementation GCook
+
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+  
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mCount = [[obj objectForKeyMy:@"count"] intValue];
+    self.mDescription = [obj objectForKeyMy:@"description"];
+    self.mFood = [obj objectForKeyMy:@"food"];
+    self.mImg = [obj objectForKeyMy:@"img"];
+    self.mKeywords = [obj objectForKeyMy:@"keywords"];
+    self.mName = [obj objectForKeyMy:@"name"];
+
+    
+}
 @end

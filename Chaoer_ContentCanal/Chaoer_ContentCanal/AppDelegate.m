@@ -148,6 +148,8 @@
     
     [APService setupWithOption:launchOptions];
     
+    [mUserInfo openPush];
+    
 //    [SUser relTokenWithPush];
 //    
 //    
@@ -342,6 +344,7 @@
     if( iResCode == 6002 )
     {
 //        [SUser  relTokenWithPush];
+        [mUserInfo openPush];
     }
     
 }

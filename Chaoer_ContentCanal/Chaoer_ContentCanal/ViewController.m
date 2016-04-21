@@ -69,7 +69,7 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
     [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -103,11 +103,11 @@
 
     mScrollerView = [UIScrollView new];
     mScrollerView.frame = self.view.bounds;
-    mScrollerView.backgroundColor = [UIColor colorWithRed:0.91 green:0.53 blue:0.17 alpha:1];
+    mScrollerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:mScrollerView];
     
     mLoginV = [mLoginView shareView];
-    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
+    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, DEVICE_Height);
     
     
     if ([mUserInfo backNowUser].mPhone) {
@@ -143,68 +143,71 @@
 #pragma mark----微信登录
 - (void)wechatAction:(UIButton *)sender{
     ///微信登录
-    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-     {
-         if (state == SSDKResponseStateSuccess)
-         {
-             
-             NSLog(@"返回的用户信息：%@",user);
-             
-         }
-         
-         else
-         {
-             NSLog(@"%@",error);
-             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-         }
-         
-     }];
+//    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
+//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+//     {
+//         if (state == SSDKResponseStateSuccess)
+//         {
+//             
+//             NSLog(@"返回的用户信息：%@",user);
+//             
+//         }
+//         
+//         else
+//         {
+//             NSLog(@"%@",error);
+//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+//         }
+//         
+//     }];
+    [LCProgressHUD showInfoMsg:@"未授权..."];
 
 }
 #pragma mark----qq登录
 - (void)tencentAction:(UIButton *)sender{
 
-    ///qq登录
-    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-     {
-         if (state == SSDKResponseStateSuccess)
-         {
-             NSLog(@"返回的用户信息：%@",user);
-         }
-         
-         else
-         {
-             NSLog(@"%@",error);
-             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-
-         }
-         
-     }];
+//    ///qq登录
+//    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+//     {
+//         if (state == SSDKResponseStateSuccess)
+//         {
+//             NSLog(@"返回的用户信息：%@",user);
+//         }
+//         
+//         else
+//         {
+//             NSLog(@"%@",error);
+//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+//
+//         }
+//         
+//     }];
+    [LCProgressHUD showInfoMsg:@"未授权..."];
     
 }
 #pragma mark----新浪登录
 - (void)sinaAction:(UIButton *)sender{
-    ///新浪登录
-    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-     {
-         if (state == SSDKResponseStateSuccess)
-         {
-             
-             NSLog(@"返回的用户信息：%@",user);
-
-         }
-         
-         else
-         {
-             NSLog(@"%@",error);
-             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-
-         }
-         
-     }];
+//    ///新浪登录
+//    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
+//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+//     {
+//         if (state == SSDKResponseStateSuccess)
+//         {
+//             
+//             NSLog(@"返回的用户信息：%@",user);
+//
+//         }
+//         
+//         else
+//         {
+//             NSLog(@"%@",error);
+//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+//
+//         }
+//         
+//     }];
+    [LCProgressHUD showInfoMsg:@"未授权..."];
     
 }
 

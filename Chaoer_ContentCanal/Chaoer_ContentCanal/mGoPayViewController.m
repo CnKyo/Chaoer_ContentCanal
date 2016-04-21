@@ -95,6 +95,8 @@
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self initEmptyView];
+            mView.mTitle.text = @"查询失败!";
+            mView.mContent.text = resb.mMessage;
         }
     }];
     

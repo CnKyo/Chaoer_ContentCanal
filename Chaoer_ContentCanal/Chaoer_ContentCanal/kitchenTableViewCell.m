@@ -21,4 +21,10 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutSubviews{
+
+    self.mBgkImg.layer.masksToBounds = YES;
+    self.mBgkImg.layer.cornerRadius = 3;
+}
+
 @end

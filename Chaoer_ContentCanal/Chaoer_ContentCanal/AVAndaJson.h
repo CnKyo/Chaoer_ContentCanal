@@ -1,8 +1,8 @@
 //
-//  JHJsonRequst.h
+//  AVAndaJson.h
 //  Chaoer_ContentCanal
 //
-//  Created by Mac on 16/4/15.
+//  Created by Mac on 16/4/21.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
@@ -15,9 +15,8 @@
 
 @class mBaseData;
 
-@interface JHJsonRequst : AFHTTPRequestOperationManager
-
-+ (JHJsonRequst *)sharedClient:(NSString *)mUrl;
+@interface AVAndaJson : AFHTTPRequestOperationManager
++ (AVAndaJson *)sharedClient;
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mJHBaseData* info))callback;
 

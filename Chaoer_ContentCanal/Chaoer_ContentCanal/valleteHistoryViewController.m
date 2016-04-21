@@ -28,6 +28,8 @@
         str = @"交易纪录";
     }
     
+    self.page = 1;
+    
     self.Title = self.mPageName = str;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
@@ -43,10 +45,83 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
+    self.haveHeader = YES;
+    self.haveFooter = YES;
+    
+    [self headerBeganRefresh];
+    
     UINib   *nib = [UINib nibWithNibName:@"valletTCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
     
+}
+
+- (void)headerBeganRefresh{
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    self.page = 1;
+
+    [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self.tempArray removeAllObjects];
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            if (mArr.count <= 0) {
+                [self addEmptyViewWithImg:nil];
+                return ;
+            }
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            [self.tableView reloadData];
+            
+        }else{
+            
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self addEmptyViewWithImg:nil];
+            
+        }
+
+        
+    }];
+    
+}
+
+
+- (void)footetBeganRefresh{
+
+
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self footetEndRefresh];
+        
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            if (mArr.count <= 0) {
+                [self addEmptyViewWithImg:nil];
+                return ;
+            }
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            [self.tableView reloadData];
+            
+        }else{
+            
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self addEmptyViewWithImg:nil];
+            
+        }
+
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,7 +146,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return self.tempArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,12 +162,30 @@
 {
     NSString *reuseCellId = @"cell";
     
+    
+    GScroe *mScore = self.tempArray[indexPath.row];
+    
     valletTCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     if (self.mType == 1) {
         cell.mImf.image = [UIImage imageNamed:@"score_cell"];
     }else{
         cell.mImf.image = [UIImage imageNamed:@"topup_cell"];
     }
+    
+    cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
+    cell.mTime.text = mScore.mAddTime;
+    
+    int mType = mScore.mType;
+    
+    if (mType == 0) {
+        cell.mStatus.text = @"充值";
+    }else{
+        cell.mStatus.text = @"支付";
+    }
+    cell.mtitle.text = mScore.mDescribe;
+    
+    
+    
     return cell;
     
 }

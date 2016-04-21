@@ -104,6 +104,10 @@
             break;
         case 2:
         {
+            
+            [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
+            return;
+            
             if (sender.selected == NO) {
                 mView.bankBtn.selected = NO;
                 mView.alipayBtn.selected = YES;
@@ -118,6 +122,8 @@
             break;
         case 3:
         {
+            [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
+            return;
             if (sender.selected == NO) {
                 mView.bankBtn.selected = NO;
                 mView.alipayBtn.selected = NO;

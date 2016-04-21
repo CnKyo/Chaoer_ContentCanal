@@ -33,5 +33,11 @@
  *  确认按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mOkBtn;
+/**
+ *  银行卡
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mBankCode;
+
+
 
 @end

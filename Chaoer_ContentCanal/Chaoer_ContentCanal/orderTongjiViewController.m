@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.Title = self.mPageName = @"我的订单";
+    self.Title = self.mPageName = @"订单统计";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;

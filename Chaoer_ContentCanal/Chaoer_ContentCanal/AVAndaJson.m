@@ -1,12 +1,12 @@
 //
-//  JHJsonRequst.m
+//  AVAndaJson.m
 //  Chaoer_ContentCanal
 //
-//  Created by Mac on 16/4/15.
+//  Created by Mac on 16/4/21.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "JHJsonRequst.h"
+#import "AVAndaJson.h"
 #import "CBCUtil.h"
 #import "NSObject+myobj.h"
 #import "CustomDefine.h"
@@ -16,15 +16,16 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://op.juhe.cn/ofpay/public/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://api.avatardata.cn/Cook/";
 
-@implementation JHJsonRequst
+
+@implementation AVAndaJson
 #pragma mark -
-+ (JHJsonRequst *)sharedClient:(NSString *)mUrl{
++ (JHJsonRequst *)sharedClient{
     static JHJsonRequst *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[JHJsonRequst alloc] initWithBaseURL:[NSURL URLWithString:mUrl]];
+        _sharedClient = [[JHJsonRequst alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetAPIBaseURLString]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     });
     _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;

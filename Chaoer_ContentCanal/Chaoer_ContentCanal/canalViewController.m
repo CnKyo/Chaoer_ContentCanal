@@ -97,7 +97,7 @@
     if (self.tempArray.count<=0) {
         [self initEmptyView];
         
-        [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+//        [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
         return;
     }
     [self initView];
@@ -179,7 +179,7 @@
         
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
         [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
-        [mParas setObject:NumberWithInt(mC.mCommunityId) forKey:@"id"];
+        [mParas setObject:mC.mId forKey:@"id"];
         
     }];
 
@@ -208,7 +208,7 @@
     
     mScrollerView = [UIScrollView new];
     mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
-    mScrollerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.97 alpha:1.00];
+    mScrollerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:mScrollerView];
 
     
@@ -291,7 +291,7 @@
     
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
         [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
-        [mParas setObject:NumberWithInt(mC.mCommunityId) forKey:@"id"];
+        [mParas setObject:mC.mId forKey:@"id"];
         [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
 
     }

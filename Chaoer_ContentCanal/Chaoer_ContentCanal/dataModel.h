@@ -224,6 +224,8 @@
 
 -(void)fetchIt:(NSDictionary*)obj;
 
+
+
 /**
  *  是否是一个合法的用户对象
  *
@@ -249,6 +251,17 @@
  *  退出登录
  */
 + (void)logOut;
+
+/**
+ *  获取当前用户信息
+ *
+ *  @param block 返回值
+ */
+- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block;
+
++(void)dealUserSession:(mBaseData*)info andPhone:(NSDictionary *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block;
+
++(void)saveUserInfo:(NSDictionary *)dccat;
 
 
 /**
@@ -295,7 +308,7 @@
  *  @param mSignate   个性签名
  *  @param block      返回值
  */
-+ (void)editUserMsg:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block;
++ (void)editUserMsg:(NSString *)mHeader andUserid:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block;
 
 /**
  *  修改头像
@@ -688,6 +701,24 @@
  */
 - (void)getOrderDetail:(NSString *)mOrderID block:(void(^)(mBaseData *resb,GFixOrder *mFixOrder))block;
 
+
+/**
+ *  获取积分列表
+ *
+ *  @param mType 接口类型
+ *  @param mPage 分页
+ *  @param mNum  数量
+ *  @param block 返回值
+ */
+- (void)getScoreList:(int)mType andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark---菜谱
+/**
+ *  阿凡达菜谱数据
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getCookList:(int)mPage block:(void(^)(mJHBaseData *resb,NSArray *mArr))block;
 
 
 /**
@@ -1187,6 +1218,14 @@
 @property (assign,nonatomic) int    mStatus;
 
 @property (strong,nonatomic) NSString    *mStatustr;
+/**
+ *  缴费id
+ */
+@property (strong,nonatomic) NSString    *mId;
+
+
+
+
 
 @end
 
@@ -1304,3 +1343,88 @@
 
 
 @end
+@interface GScroe : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+/**
+ *  添加时间
+ */
+@property (strong,nonatomic) NSString    *mAddTime;
+/**
+ *  操作者
+ */
+@property (strong,nonatomic) NSString    *mConsumerId;
+/**
+ *  描述
+ */
+@property (strong,nonatomic) NSString    *mDescribe;
+/**
+ *  金额
+ */
+@property (assign,nonatomic) CGFloat    mMoney;
+/**
+ *  纪录id
+ */
+@property (assign,nonatomic) int    mId;
+/**
+ *  支付类型
+ */
+@property (assign,nonatomic) int    mPaymentType;
+/**
+ *  积分使用量
+ */
+@property (assign,nonatomic) int    mScore;
+/**
+ *  类型 0充值 1支付
+ */
+@property (assign,nonatomic) int    mType;
+/**
+ *  钱包id
+ */
+@property (assign,nonatomic) int    mWid;
+/**
+ *  使用的红包金额
+ */
+@property (assign,nonatomic) int    mRed;
+
+@end
+
+
+
+@interface GCook : NSObject
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+/**
+ *  图片
+ */
+@property (strong,nonatomic) NSString    *mImg;
+/**
+ *  说明
+ */
+@property (strong,nonatomic) NSString    *mDescription;
+/**
+ *  材料
+ */
+@property (strong,nonatomic) NSString    *mFood;
+/**
+ *  文字
+ */
+@property (strong,nonatomic) NSString    *mKeywords;
+/**
+ *  名称
+ */
+@property (strong,nonatomic) NSString    *mName;
+/**
+ *  数量
+ */
+@property (assign,nonatomic) int    mCount;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int    mId;
+
+@end
+

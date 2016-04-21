@@ -22,10 +22,5 @@
  *  左边标签
  */
 @property (weak, nonatomic) IBOutlet UILabel *mLeftLb;
-/**
- *  右边标签
- */
-@property (weak, nonatomic) IBOutlet UILabel *mRightLb;
-
 
 @end

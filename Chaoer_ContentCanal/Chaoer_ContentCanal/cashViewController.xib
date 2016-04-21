@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="cashViewController">
             <connections>
                 <outlet property="mBalance" destination="Wm3-ef-0xu" id="5D9-li-KGg"/>
+                <outlet property="mBankCode" destination="Sla-Mg-f1H" id="S69-Wc-0aw"/>
                 <outlet property="mBankImg" destination="aKZ-TV-aVx" id="2dQ-iJ-K6D"/>
                 <outlet property="mBankNumTx" destination="dwA-73-AK3" id="Rmi-YU-wLH"/>
                 <outlet property="mMoneyTx" destination="Top-18-PFM" id="sXM-oC-2Qb"/>
@@ -83,12 +84,21 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入银行卡号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="dwA-73-AK3">
+                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入银行卡号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="dwA-73-AK3">
                             <rect key="frame" x="80" y="8" width="194" height="25"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKZ-TV-aVx">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sla-Mg-f1H">
+                            <rect key="frame" x="80" y="8" width="232" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="gYB-7H-dvA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aKZ-TV-aVx">
                             <rect key="frame" x="282" y="5" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Vaz-6k-xoS"/>
@@ -102,10 +112,13 @@
                         <constraint firstItem="see-3S-B0u" firstAttribute="leading" secondItem="9OF-NF-emz" secondAttribute="leading" constant="15" id="8wf-ft-jqi"/>
                         <constraint firstAttribute="height" constant="40" id="L6U-ea-5Hb"/>
                         <constraint firstAttribute="bottom" secondItem="dwA-73-AK3" secondAttribute="bottom" constant="7" id="LB2-XS-scK"/>
+                        <constraint firstAttribute="trailing" secondItem="Sla-Mg-f1H" secondAttribute="trailing" constant="8" id="O4y-OR-D7f"/>
+                        <constraint firstItem="Sla-Mg-f1H" firstAttribute="top" secondItem="9OF-NF-emz" secondAttribute="top" constant="8" id="PEL-2C-ZBy"/>
                         <constraint firstItem="see-3S-B0u" firstAttribute="top" secondItem="9OF-NF-emz" secondAttribute="top" constant="10" id="VgX-Zp-GyP"/>
                         <constraint firstAttribute="trailing" secondItem="aKZ-TV-aVx" secondAttribute="trailing" constant="8" id="Vix-uT-6YX"/>
                         <constraint firstItem="aKZ-TV-aVx" firstAttribute="leading" secondItem="dwA-73-AK3" secondAttribute="trailing" constant="8" id="ekE-jE-whl"/>
                         <constraint firstItem="dwA-73-AK3" firstAttribute="leading" secondItem="see-3S-B0u" secondAttribute="trailing" constant="8" id="gJa-zB-QlF"/>
+                        <constraint firstItem="Sla-Mg-f1H" firstAttribute="leading" secondItem="see-3S-B0u" secondAttribute="trailing" constant="8" id="pIA-DW-YqW"/>
                         <constraint firstItem="dwA-73-AK3" firstAttribute="top" secondItem="9OF-NF-emz" secondAttribute="top" constant="8" id="rhz-Ok-BIx"/>
                     </constraints>
                 </view>

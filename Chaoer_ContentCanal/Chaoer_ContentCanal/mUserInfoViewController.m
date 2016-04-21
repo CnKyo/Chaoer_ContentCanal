@@ -22,11 +22,32 @@
     
     NSString *msex;
     
+    mUserInfo *mUser;
+    
+    NSString *mHeaderUrl;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-//    [self upDatePage];
+//    [self loadUserInfo];
 }
+
+
+- (void)loadUserInfo{
+
+    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+        if (resb.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+    
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -44,6 +65,9 @@
     
     self.mHeaderImg.layer.masksToBounds = YES;
     self.mHeaderImg.layer.cornerRadius = self.mHeaderImg.mwidth/2;
+    
+    mUser = [mUserInfo backNowUser];
+
     
     [self upDatePage];
 }
@@ -323,8 +347,15 @@
 
 - (void)block:(mBaseData *)resb{
     
+    
     if (resb.mSucess) {
         [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//        [self loadUserInfo];
+        
+        mHeaderUrl = resb.mData;
+        
+        [self rightBtnTouched:nil];
+        
     }else{
         [SVProgressHUD showErrorWithStatus:resb.mMessage];
     }
@@ -335,10 +366,11 @@
 
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo editUserMsg:[mUserInfo backNowUser].mUserId andLoginName:nil andNickName:self.mName.text andSex:msex andSignate:self.mDetail.text block:^(mBaseData *resb, mUserInfo *mUser) {
+    [mUserInfo editUserMsg:mHeaderUrl andUserid:[mUserInfo backNowUser].mUserId andLoginName:nil andNickName:self.mName.text andSex:msex andSignate:self.mDetail.text block:^(mBaseData *resb, mUserInfo *mUser) {
         
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//            [self loadUserInfo];
             [self popViewController];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

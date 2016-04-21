@@ -20,8 +20,6 @@
 @implementation myOrderViewController
 {
 
-    int mStart;
-    int mEnd;
 }
 @synthesize mType;
 
@@ -33,8 +31,7 @@
     self.hiddenTabBar = YES;
     
     
-    mStart = 1;
-    mEnd = 10;
+    self.page = 1;
     
     [self initViuew];
 }
@@ -67,24 +64,15 @@
 - (void)headerBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
 
-    
-    mStart -= 10;
-    mEnd -= 10;
-    
-    if (mStart <= 1) {
-        mStart = 1;
-    }if (mEnd<=10) {
-        mEnd = 10;
-    }
-
-    
+    self.page = 1;
+ 
     if ([mType isEqualToString:@"3"]) {
         [SVProgressHUD showErrorWithStatus:@"暂无数据！"];
         
         return;
     }else{
     
-        [[mUserInfo backNowUser] getOrder:mType andStart:mStart andEd:mEnd block:^(mBaseData *resb, NSArray *mArr) {
+        [[mUserInfo backNowUser] getOrder:mType andStart:self.page andEd:10 block:^(mBaseData *resb, NSArray *mArr) {
             
             [self.tempArray removeAllObjects];
             [self headerEndRefresh];
@@ -118,15 +106,13 @@
 
 - (void)footetBeganRefresh{
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
-
-    mStart += 10;
-    mEnd += 10;
+    self.page ++;
     if ([mType isEqualToString:@"3"]) {
         [SVProgressHUD showErrorWithStatus:@"暂无数据！"];
         
         return;
     }else{
-        [[mUserInfo backNowUser] getOrder:mType andStart:mStart andEd:mEnd block:^(mBaseData *resb, NSArray *mArr) {
+        [[mUserInfo backNowUser] getOrder:mType andStart:self.page andEd:10 block:^(mBaseData *resb, NSArray *mArr) {
             
             [self footetEndRefresh];
             
