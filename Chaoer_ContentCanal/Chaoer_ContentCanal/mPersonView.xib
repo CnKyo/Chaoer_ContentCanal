@@ -89,7 +89,7 @@
                         <constraint firstItem="0a6-lJ-UOq" firstAttribute="top" secondItem="H7D-S0-32o" secondAttribute="top" constant="10" id="nFa-RX-nL0"/>
                     </constraints>
                 </view>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_right" translatesAutoresizingMaskIntoConstraints="NO" id="zA2-sl-FVl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou_right" translatesAutoresizingMaskIntoConstraints="NO" id="zA2-sl-FVl">
                     <rect key="frame" x="300" y="47" width="7" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="7" id="3Fu-qj-Sij"/>

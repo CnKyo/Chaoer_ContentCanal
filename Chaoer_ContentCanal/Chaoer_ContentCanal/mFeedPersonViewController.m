@@ -40,6 +40,10 @@
     
     NSMutableArray *mFloorArr;
     
+    NSMutableArray  *Arrtemp;
+
+    NSInteger mUnitIndex;
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -72,7 +76,7 @@
     mDoornumArr = [NSMutableArray new];
     mUnitArr = [NSMutableArray new];
     mFloorArr = [NSMutableArray new];
-
+    Arrtemp = [NSMutableArray new];
     self.mBgkView.layer.masksToBounds = YES;
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
     self.mBgkView.layer.borderWidth = 1;
@@ -160,7 +164,8 @@
 
 - (void)loadMHActionSheetView{
     NSString *mTt = nil;
-    
+    [Arrtemp removeAllObjects];
+
     if (mType == 1) {
         mTt = @"选择城市";
     }else if (mType == 2){
@@ -178,7 +183,6 @@
         mTt = @"选择门牌号";
     }
     
-    NSMutableArray  *Arrtemp = [NSMutableArray new];
     
     if (mType == 3) {
         for (GCommunity *city in self.tempArray) {
@@ -193,46 +197,38 @@
     }else if(mType == 5){
         [mDoornumArr removeAllObjects];
         [mUnitArr removeAllObjects];
-        [Arrtemp removeAllObjects];
-        
-        for (GdoorNum *door in self.tempArray) {
+        [mFloorArr removeAllObjects];
+        for (int i = 0 ;i < self.tempArray.count ; i++) {
             
-            if (door.mUnit) {
-                if (door.mUnit == 1) {
-                    [mUnitArr addObject:[NSString stringWithFormat:@"1单元"]];
-                    
-                }else{
-                    for (int i = 1; i<door.mUnit; i++) {
-                        [mUnitArr addObject:[NSString stringWithFormat:@"%d单元",i]];
-                        
-                    }
-                }
-                
-                
-            }
+            GdoorNum *door = self.tempArray[i];
+            [mUnitArr addObject:[NSString stringWithFormat:@"%d单元",door.mUnit]];
             
-            
+            NSMutableArray *floor = [NSMutableArray new];
+            NSMutableArray *doorArr = [NSMutableArray new];
             for (int j =1; j<door.mFloor; j++) {
-                [mFloorArr addObject:[NSString stringWithFormat:@"%d楼",j]];
+                [floor addObject:[NSString stringWithFormat:@"%d楼",j]];
                 
+         
             }
             for (int k = 1; k<door.mRoomNumber; k++) {
-                [mDoornumArr addObject:[NSString stringWithFormat:@"%d号",k]];
+                [doorArr addObject:[NSString stringWithFormat:@"%d号",k]];
             }
-            [Arrtemp addObjectsFromArray:mUnitArr];
+            [mFloorArr addObject:floor];
+            [mDoornumArr addObject:doorArr];
             
         }
-        
+        [Arrtemp addObjectsFromArray:mUnitArr];
+
     }else if(mType == 6){
         
         [Arrtemp removeAllObjects];
-        [Arrtemp addObjectsFromArray:mFloorArr];
+        [Arrtemp addObjectsFromArray:mFloorArr[mUnitIndex]];
         
     }
     else if(mType == 7){
         
         [Arrtemp removeAllObjects];
-        [Arrtemp addObjectsFromArray:mDoornumArr];
+        [Arrtemp addObjectsFromArray:mDoornumArr[mUnitIndex]];
         
     }else{
         for (GCity *city in self.tempArray) {
@@ -266,7 +262,7 @@
         }else if(mType == 3){
             GCommunity *gm = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
-            mCommunityId = [[NSString stringWithFormat:@"%@",gm.mPropertyId] intValue];
+            mCommunityId = gm.mPropertyId;
             self.mValiigeBtn.titleLabel.text = text;
             mType = 4;
 
@@ -285,19 +281,22 @@
             mUnit = gm;
             self.mUnitBtn.titleLabel.text = text;
             mType = 6;
+            
+            mUnitIndex = index;
 
         }else if(mType == 6){
-            int gm = [mFloorArr[index] intValue];
+            int gm = [Arrtemp[index] intValue];
             text = [NSString stringWithFormat:@"%d楼", gm];
             self.mFloorBtn.titleLabel.text = text;
             mFloor = gm;
             mType = 7;
+            
 
         }
         else if(mType == 7){
-            int gm = [mDoornumArr[index] intValue];
-            text = [NSString stringWithFormat:@"%d号", gm];
-            self.mFloorBtn.titleLabel.text = text;
+            int gm = [Arrtemp[index] intValue];
+            text = [NSString stringWithFormat:@"%@", Arrtemp[index]];
+            self.mDoorNumBtn.titleLabel.text = text;
             mDoornum = gm;
             
         }else{

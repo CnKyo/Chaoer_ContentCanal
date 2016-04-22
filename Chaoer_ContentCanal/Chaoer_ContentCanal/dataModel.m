@@ -564,7 +564,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 #endif
 }
 
-
+#pragma mark----获取红包信息
 + (void)getRedBag:(int)mUserId andType:(NSString *)mType block:(void(^)(mBaseData *resb,NSArray *marray))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
@@ -1757,7 +1757,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mType = [obj objectForKeyMy:@"type"];
     self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
     self.mCreateTime = [obj objectForKeyMy:@"getTime"];
-    self.mName = [obj objectForKeyMy:@"getUserName"];
+    self.mName = [obj objectForKeyMy:@"nick_name"];
 }
 
 @end

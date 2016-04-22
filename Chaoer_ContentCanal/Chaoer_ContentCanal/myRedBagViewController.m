@@ -123,14 +123,23 @@
     [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mTypr block:^(mBaseData *resb, NSArray *marray) {
         [self headerEndRefresh];
         [self removeEmptyView];
+        [self.tempArray removeAllObjects];
         if (resb.mSucess) {
-            [self.tempArray addObjectsFromArray:marray];
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self addEmptyViewWithImg:nil];
+
+            if (marray.count <= 0) {
+                [self addEmptyViewWithImg:nil];
+            }else{
+                [self.tempArray addObjectsFromArray:marray];
+            }
             [self.tableView reloadData];
+
+            
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self addEmptyViewWithImg:nil];
+
         }
         
     }];
@@ -168,8 +177,12 @@
 {
     NSString *reuseCellId = @"cell";
     
+    SRedBag *mRedBag = self.tempArray[indexPath.row];
+    
     redBagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
 
+    cell.mName.text = mRedBag.mName;
+    cell.mMoney.text = [NSString stringWithFormat:@"%.2f元",mRedBag.mMoney];
     
     return cell;
     

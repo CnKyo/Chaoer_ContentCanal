@@ -28,9 +28,14 @@
 #import "msgViewController.h"
 
 #import "paotuiViewController.h"
-#import "needCodeViewController.h"
 
 #import "orderTongjiViewController.h"
+
+#import "mUserInfoViewController.h"
+
+#import "hasCodeViewController.h"
+#import "needCodeViewController.h"
+#import "verifyBankViewController.h"
 
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -229,6 +234,9 @@
 #pragma mark----头像事件
 - (void)mHeaderAction:(UIButton *)sender{
 
+    mUserInfoViewController *mmm = [[mUserInfoViewController alloc] initWithNibName:@"mUserInfoViewController" bundle:nil];
+    [self pushViewController:mmm];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -322,8 +330,22 @@
     switch (i) {
         case 1:
         {
-            mCodeNameViewController *mmm = [[mCodeNameViewController alloc] initWithNibName:@"mCodeNameViewController" bundle:nil];
-            [self pushViewController:mmm];
+            if ([mUserInfo backNowUser].mIsRegist) {
+                hasCodeViewController *hhh = [hasCodeViewController new];
+                [self pushViewController:hhh];
+            }else if([mUserInfo backNowUser].mIsBundle == 1){
+                
+                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                [self pushViewController:vvv];
+                
+                
+                
+            }else{
+                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                
+                [self pushViewController:nnn];
+            }
+
 
         }
             break;
