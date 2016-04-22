@@ -32,6 +32,7 @@
     
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -45,7 +46,8 @@
     mEnd = 10;
     
     self.page = 1;
-    
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+
     [self initview];
 }
 
@@ -74,7 +76,7 @@
 }
 - (void)headerBeganRefresh{
     self.page = 1;
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
     NSString *address = nil;
     
@@ -87,7 +89,7 @@
             [self removeEmptyView];
             if (resb.mSucess) {
                 
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 if (mList.mArray.count<=0) {
                     [self addEmptyViewWithImg:nil];
                 }else{
@@ -113,7 +115,7 @@
 
             if (resb.mSucess) {
                 
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 
                 if (mList.mArray.count<=0) {
                     [self addEmptyViewWithImg:nil];
@@ -142,7 +144,7 @@
     self.page ++;
     
     NSString *address = nil;
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
     if (_Type == 1) {
         
@@ -154,7 +156,7 @@
 
             if (resb.mSucess) {
                 
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 if (mList.mArray.count<=0) {
                     [self addEmptyViewWithImg:nil];
                 }else{
@@ -180,7 +182,7 @@
 
             if (resb.mSucess) {
                 
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+//                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 if (mList.mArray.count<=0) {
                     [self addEmptyViewWithImg:nil];
                 }else{
@@ -267,7 +269,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+
     SServicer *ss = self.tempArray[indexPath.row];
 
     choiceServicerViewController *sss = [choiceServicerViewController new];
@@ -288,8 +291,8 @@
             mmm.mOrder = mOrder;
             mmm.mId = [[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue];
             mmm.mOrderId = [[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue];
-            [self pushViewController:mmm
-             ];
+            [self presentViewController:mmm animated:YES completion:nil];
+
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
@@ -309,6 +312,7 @@
         [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
     }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
         [self popViewController];
     }
   
@@ -320,7 +324,9 @@
     
     if( buttonIndex == 1)
     {
-        [self popViewController_2];
+//        [self popViewController_2];
+//        self.tabBarController.selectedIndex = 1;
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

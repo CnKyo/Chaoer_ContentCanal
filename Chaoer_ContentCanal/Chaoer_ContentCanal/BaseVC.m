@@ -601,7 +601,8 @@
     
     id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
     
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self presentViewController:viewController animated:YES completion:nil];
+//    [self.navigationController pushViewController:viewController animated:YES];
 
 }
 

@@ -51,12 +51,12 @@
 
 - (void)loadData{
 
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     
     [[mUserInfo backNowUser] getWallete:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
         if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
             [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];

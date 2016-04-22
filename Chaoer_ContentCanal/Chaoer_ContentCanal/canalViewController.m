@@ -71,7 +71,8 @@
         [self.tempArray removeAllObjects];
         
         if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             [self.tempArray addObjectsFromArray:mArr];
             [self updatePage];

@@ -38,12 +38,16 @@
     [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
         [self headerEndRefresh];
-        if (resb.mData) {
-            [SVProgressHUD showSuccessWithStatus:@"验证成功！"];
+        if (resb.mSucess) {
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:@"验证成功！"];
             self.mBankCode.text = [resb.mData objectForKey:@"bankCard"];
 
         }else{
             [SVProgressHUD showErrorWithStatus:@"数据验证失败！"];
+            
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
+            
             
         };
         
@@ -94,6 +98,9 @@
 
 }
 
+- (void)leftBtnTouched:(id)sender{
+    [self popViewController];
+}
 
 - (IBAction)okbtn:(UIButton *)sender {
     sender.selected = !sender.selected;

@@ -29,7 +29,7 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
     [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-    //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

@@ -217,7 +217,8 @@ bool g_bined = NO;
     self.mIsRegist = [[obj objectForKeyMy:@"isRegist"] boolValue];
     self.mIsBundle = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
     self.mPhone = [obj objectForKeyMy:@"moblie"];
-    self.mPwd = @"";
+    self.mPwd = [obj objectForKeyMy:@"mPwd"];
+    self.muuid = @"";
 }
 
 + (BOOL)isNeedLogin{
@@ -232,10 +233,10 @@ bool g_bined = NO;
     
 }
 - (BOOL)isVaildUser{
-    return self.mPwd != 0;
+    return self.muuid != 0;
 }
 - (BOOL)isNeedLogin{
-    return self.mPwd.length == 0;
+    return self.muuid.length == 0;
 }
 
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
@@ -272,7 +273,7 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:nil block:block];
+        [self dealUserSession:info andPhone:mPwd block:block];
     }];
 }
 +(void)mForgetPwd:(NSString *)mLoginName andNewPwd:(NSString *)mPwd block:(void (^)(mBaseData *))block{
@@ -320,7 +321,7 @@ bool g_bined = NO;
     
     [def synchronize];
 }
-+(void)dealUserSession:(mBaseData*)info andPhone:(NSDictionary *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
     
 #warning 返回的数据是整个用户信息对象
@@ -336,9 +337,9 @@ bool g_bined = NO;
 ////            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
 //        }
         
-//        if (mPhone) {
-//            [tdic setObject:mPhone forKey:@"mPhone"];
-//        }
+        if (mPara) {
+            [tdic setObject:mPara forKey:@"mPwd"];
+        }
         
         
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
@@ -1674,6 +1675,32 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+
+
+
+- (void)getAddress:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/warrantyUserInfo" parameters:para call:^(mBaseData *info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            
+            [tempArr addObjectsFromArray:[info.mData objectForKey:@"address"]];
+            
+            block ( info ,tempArr);
+        }else{
+            block ( info ,nil);
+        }
+        
+        
+    }];
+    
+}
+
 
 
 + (void)openPush{

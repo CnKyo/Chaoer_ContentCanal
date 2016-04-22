@@ -61,7 +61,7 @@
     [AMapLocationServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
-    [WXApi registerApp:@"wxa2ca4ec0aa044c24" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
+    [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
     
     [[RCIM sharedRCIM] initWithAppKey:@"n19jmcy59znh9"];
@@ -117,8 +117,8 @@
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wx4868b35061f87885"
-                                       appSecret:@"64020361b8ec4c99936c0e3999a9f249"];
+                 [appInfo SSDKSetupWeChatByAppId:@"wxf8feb845b3a4d04e"
+                                       appSecret:@"5060f2cb199015e81b74c6d5fc26e4a6"];
                  break;
              case SSDKPlatformTypeQQ:
                  [appInfo SSDKSetupQQByAppId:@"100371282"

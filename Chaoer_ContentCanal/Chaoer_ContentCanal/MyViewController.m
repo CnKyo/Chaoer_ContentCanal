@@ -62,7 +62,7 @@
 
     [super viewWillAppear:YES];
 
-    [self loadData];
+    [self initData];
    
 }
 
@@ -76,56 +76,29 @@
     
     
     [self initView];
-    [self initData];
 }
 
-
-
-
-#pragma mark----加载数据
-- (void)loadData{
-    
-    
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
-    
-    [[mUserInfo backNowUser] getWallete:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
-        if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            
-            [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
-            [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];
-            [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
-            
-            NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
-            NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
-            
-            mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
-            mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
-            
-            
-            
-            NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
-            
-            
-            [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
-            mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
-            mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
-            mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
-            
-            [self initData];
-            
-            
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
-
-   
-
-    
-}
 - (void)initData{
+    
+    NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
+    NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
+    
+    mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
+    mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
+    
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    
+    NSLog(@"头像地址是：%@",url);
+    
+    [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
+    mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
+    mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+
+    
     [self.tempArray removeAllObjects];
     
     
@@ -205,9 +178,11 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
    self.tableView.allowsSelection = YES;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
-//    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:self.tableView];
 
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
+    
     UINib   *nib = [UINib nibWithNibName:@"myViewTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
@@ -217,7 +192,20 @@
     [self.tableView setTableHeaderView:mHeaderView];
 
     
+
 }
+- (void)headerBeganRefresh{
+
+    [mUserInfo mUserLogin:[mUserInfo backNowUser].mPhone andPassword:[mUserInfo backNowUser].mPwd block:^(mBaseData *resb, mUserInfo *mUser) {
+        [self headerEndRefresh];
+        if (resb.mSucess) {
+            [self initData];
+        }else{
+            
+        }
+    }];
+}
+
 #pragma mark----设置事件
 - (void)mSetupAction:(UIButton *)sender{
     mSetupViewController *mmm = [[mSetupViewController alloc] initWithNibName:@"mSetupViewController" bundle:nil];
@@ -275,7 +263,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return 50;
     
 }
 

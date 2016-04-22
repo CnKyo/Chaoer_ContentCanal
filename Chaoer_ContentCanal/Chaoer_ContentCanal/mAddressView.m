@@ -26,8 +26,8 @@
     
     mAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mTopUpView" owner:self options:nil] objectAtIndex:0];
     
-    view.mLogo.layer.masksToBounds = YES;
-    view.mLogo.layer.cornerRadius = view.mLogo.mwidth/2;
+    view.mLogo.layer.masksToBounds = view.mPayBtn.layer.masksToBounds = YES;
+    view.mLogo.layer.cornerRadius = view.mPayBtn.layer.cornerRadius = 3;
     
 
     

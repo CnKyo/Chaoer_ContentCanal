@@ -60,7 +60,8 @@
     [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
         [self headerEndRefresh];
         if (resb.mData) {
-            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             mVerify = info;
             [self.tableView reloadData];
         }else{

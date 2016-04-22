@@ -371,7 +371,7 @@
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 //            [self loadUserInfo];
-            [self popViewController];
+//            [self popViewController];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }

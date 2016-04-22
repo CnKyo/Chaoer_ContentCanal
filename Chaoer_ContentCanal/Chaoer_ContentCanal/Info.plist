@@ -37,12 +37,12 @@
 			<string>weixinpay</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxa2ca4ec0aa044c24</string>
+				<string>wxf8feb845b3a4d04e</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>alipay</string>

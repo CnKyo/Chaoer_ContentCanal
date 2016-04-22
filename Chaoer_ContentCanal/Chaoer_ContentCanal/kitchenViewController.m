@@ -51,7 +51,7 @@
 
     self.page = 1;
     
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] getCookList:self.page block:^(mJHBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
         [self removeEmptyView];
@@ -59,8 +59,8 @@
         
         if (resb.mSucess) {
             
-            
-            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             
             if (mArr.count <= 0) {
                 [self addEmptyViewWithImg:nil];
@@ -86,15 +86,15 @@
 - (void)footetBeganRefresh{
 
     self.page ++;
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] getCookList:self.page block:^(mJHBaseData *resb, NSArray *mArr) {
         [self footetEndRefresh];
         [self removeEmptyView];
         
         if (resb.mSucess) {
             
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             [self.tempArray addObjectsFromArray:mArr];
             [self.tableView reloadData];
@@ -139,7 +139,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    return 85;
     
 }
 

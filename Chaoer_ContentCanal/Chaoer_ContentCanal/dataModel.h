@@ -171,6 +171,8 @@
  */
 @property (nonatomic,strong) NSString   *mPwd;
 
+@property (nonatomic,strong) NSString   *muuid;
+
 /**
  *  地址
  */
@@ -259,7 +261,7 @@
  */
 - (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block;
 
-+(void)dealUserSession:(mBaseData*)info andPhone:(NSDictionary *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block;
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block;
 
 +(void)saveUserInfo:(NSDictionary *)dccat;
 
@@ -720,7 +722,13 @@
  */
 - (void)getCookList:(int)mPage block:(void(^)(mJHBaseData *resb,NSArray *mArr))block;
 
-
+#pragma mark----获取保修用户信息
+/**
+ *  获取保修用户信息
+ *
+ *  @param block 返回值
+ */
+- (void)getAddress:(void(^)(mBaseData *resb,NSArray *mArr))block;
 /**
  *  打开推送
  */

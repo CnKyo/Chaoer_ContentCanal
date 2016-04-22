@@ -58,28 +58,6 @@
         make.height.offset(@100);
     }];
 
-//    NSInteger margin = 0;
-//    
-//    DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"收到的红包", @"发出的红包"]];
-//    secondSwitch.frame = CGRectMake(margin, 164, DEVICE_Width, 35);
-//    secondSwitch.layer.masksToBounds = YES;
-//    secondSwitch.layer.borderColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1].CGColor;
-//    secondSwitch.layer.borderWidth = 1;
-//    secondSwitch.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
-//    secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
-//    secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];
-//    secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
-//    secondSwitch.cornerRadius = 0;
-//    [secondSwitch setPressedHandler:^(NSUInteger index) {
-//        NSLog(@"点击了%lu",(unsigned long)index);
-//        if (index == 0) {
-//            [self loadData:@"s"];
-//        }else{
-//            [self loadData:@"f"];
-//            
-//        }
-//    }];
-//    [self.view addSubview:secondSwitch];
 
     UIView *vvv= [UIView new];
     vvv.frame = CGRectMake(0, 164, DEVICE_Width, 1);
@@ -118,14 +96,15 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)headerBeganRefresh{
-    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     
     [mUserInfo getRedBag:[mUserInfo backNowUser].mUserId andType:mTypr block:^(mBaseData *resb, NSArray *marray) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
         if (resb.mSucess) {
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
 
             if (marray.count <= 0) {
                 [self addEmptyViewWithImg:nil];

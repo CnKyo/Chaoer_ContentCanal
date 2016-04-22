@@ -153,7 +153,7 @@
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-    [WJStatusBarHUD showLoading:@"正在定位中..."];
+//    [WJStatusBarHUD showLoading:@"正在定位中..."];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
@@ -186,7 +186,6 @@
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
-//            [SVProgressHUD showSuccessWithStatus:@"加载成功"];
 
             
             [mTempArr addObjectsFromArray:mBaner];
@@ -412,7 +411,7 @@
     
     
     NSMutableArray *arrtemp = [NSMutableArray new];
-    
+    [arrtemp removeAllObjects];
     for (MBaner *banar in mTempArr) {
         [arrtemp addObject:banar.mImgUrl];
     }

@@ -46,7 +46,7 @@
     
     ZJAlertListView *mCleanA;
     
-    NSMutableArray  *mArr;
+    NSMutableArray  *mArrTemp;
     NSMutableArray  *mClassID;
 
     NSString    *mType;
@@ -77,30 +77,25 @@
     
     NSString *mVideoUrlString;
     
+    NSString *mAddress;
+    
+    NSMutableArray *mDataArr;
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [WJStatusBarHUD hide];
+
     [self loadData];
-    /**
-     IQKeyboardManager为自定义收起键盘
-     **/
-    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
-    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-    //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-}
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
+  
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    mArr = [NSMutableArray new];
+    mArrTemp = [NSMutableArray new];
     mClassID = [NSMutableArray new];
 
     self.assets = @[];
@@ -110,8 +105,10 @@
     self.hiddenTabBar = YES;
     
     mPara = [NSMutableDictionary new];
+    mDataArr = [NSMutableDictionary new];
 
     mSelecte = 1;
+    
     
     [self initView];
     
@@ -164,6 +161,28 @@
 }
 - (void)loadData{
 
+    [LBProgressHUD showHUDto:self.view withTips:@"正在验证..." animated:YES];
+
+    [[mUserInfo backNowUser] getAddress:^(mBaseData *resb, NSArray *mArr) {
+        
+        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+        [mDataArr removeAllObjects];
+        
+        if (resb.mSucess) {
+            [mDataArr addObjectsFromArray:mArr];
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
+            
+            
+        }
+        
+    }];
+    
+    
     mView.mPhone.text = [NSString stringWithFormat:@"电话：%@",[mUserInfo backNowUser].mPhone];
     
     
@@ -171,6 +190,24 @@
     
     
 }
+
+- (void)loadMHActionSheetView{
+ 
+    NSLog(@"得到的数据是：%@",mDataArr);
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择地址:" style:MHSheetStyleWeiChat itemTitles:mDataArr];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+
+        mAddress = mDataArr[index];
+        
+        mView.mAddress.text = [NSString stringWithFormat:@"地点：%@",mDataArr[index]];
+        
+    }];
+}
+
+
 #pragma mark----图片按钮
 - (void)mImageAction:(UIButton *)sender{
     //1. 推荐使用XMNPhotoPicker 的单例
@@ -288,7 +325,7 @@
     [mPara setObject:mView.mTxView.text forKey:@"remarks"];
     [mPara setObject:mTime forKey:@"appointmentTime"];
     [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
-    [mPara setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
+    [mPara setObject:mAddress forKey:@"address"];
     
     if (mVideoUrlString == nil || [mVideoUrlString isEqualToString:@""]) {
         
@@ -342,9 +379,12 @@
 }
 
 - (void)block:(mBaseData *)resb{
-    
+    [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
     if (mSelecte == 2) {
+        
         if (resb.mSucess) {
+            
             [LCProgressHUD showSuccess:resb.mMessage];
 
             mVideoUrlString = [resb.mData objectForKey:@"video"];
@@ -360,8 +400,8 @@
             ccc.Type = 1;
             ccc.mData = mBaseData.new;
             ccc.mData = resb;
-            [self pushViewController:ccc];
-            
+            [self presentViewController:ccc animated:YES completion:nil];
+
             
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
@@ -411,7 +451,8 @@
 }
 #pragma mark----家电
 - (void)mHomeAction:(UIButton *)sender{
-    
+    [WJStatusBarHUD hide];
+
     mSuperID = @"1";
     
     mType = sender.titleLabel.text;
@@ -421,7 +462,8 @@
 }
 #pragma mark----清洁
 - (void)mCleanAction:(UIButton *)sender{
-    
+    [WJStatusBarHUD hide];
+
     mSuperID = @"2";
     [self getData:sender.titleLabel.text];
     mType = sender.titleLabel.text;
@@ -429,6 +471,8 @@
 }
 #pragma mark----管道
 - (void)mPipeAction:(UIButton *)sender{
+    [WJStatusBarHUD hide];
+
     mSuperID = @"3";
     mType = sender.titleLabel.text;
     [self getData:sender.titleLabel.text];
@@ -460,13 +504,13 @@
             //点击确定的时候，调用它去做点事情
             [mCleanA setDoneButtonWithBlock:^{
                 
-                NSLog(@"结果是：%@",mArr);
+                NSLog(@"结果是：%@",mArrTemp);
                 
                 mView.mHiddenView.alpha = 1;
                 mView.mSelectedView.alpha = 0;
                 
                 [mView.mResultBtn setTitle:mTitle forState:UIControlStateNormal];
-                mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArr[0]];
+                mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArrTemp[0]];
                 [mCleanA dismiss];
                 
             }];
@@ -568,7 +612,7 @@
 - (void)alertListTableView:(ZJAlertListView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    [mArr removeAllObjects];
+    [mArrTemp removeAllObjects];
     [mClassID removeAllObjects];
     self.selectedIndexPath = indexPath;
     UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
@@ -584,10 +628,10 @@
 //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
         GFix *fix = self.tempArray[indexPath.row];
 
-        [mArr addObject:fix.mClassName];
+        [mArrTemp addObject:fix.mClassName];
         [mClassID addObject:NumberWithInt(fix.mId)];
         NSLog(@"选择了第:%ld行", (long)indexPath.row);
-        NSLog(@"一共有%@",mArr);
+        NSLog(@"一共有%@",mArrTemp);
     }else{
         NSLog(@"dasda");
     }
@@ -921,12 +965,17 @@
 
 - (void)mAddressAction:(UIButton *)sender{
 
-    addAddressViewController *add = [[addAddressViewController alloc] initWithNibName:@"addAddressViewController" bundle:nil];
+//    addAddressViewController *add = [[addAddressViewController alloc] initWithNibName:@"addAddressViewController" bundle:nil];
+//    
+//    
+//    [self pushViewController:add];
     
+    if (self.tempArray.count <= 0) {
+        [SVProgressHUD showErrorWithStatus:@"未找到地址！请添加房屋！"];
+        return;
+    }
     
-    [self pushViewController:add];
-    
-    
+    [self loadMHActionSheetView];
 }
 
 
@@ -957,5 +1006,9 @@
     // 构造图片
     UIImage *image = [UIImage imageWithCGImage: img];
     return image;
+}
+
+- (void)leftBtnTouched:(id)sender{
+    [self popViewController];
 }
 @end

@@ -86,10 +86,10 @@
 }
 #pragma mark----银行卡
 - (void)bankAction:(UIButton *)sender{
-    [mTT removeAllObjects];
     switch (sender.tag) {
         case 1:
-        {
+        {    [mTT removeAllObjects];
+
             if (sender.selected == NO) {
                 mView.bankBtn.selected = YES;
                 mView.alipayBtn.selected = NO;
@@ -104,10 +104,11 @@
             break;
         case 2:
         {
-            
+
             [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
             return;
-            
+            [mTT removeAllObjects];
+
             if (sender.selected == NO) {
                 mView.bankBtn.selected = NO;
                 mView.alipayBtn.selected = YES;
@@ -122,8 +123,11 @@
             break;
         case 3:
         {
+
             [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
             return;
+            [mTT removeAllObjects];
+
             if (sender.selected == NO) {
                 mView.bankBtn.selected = NO;
                 mView.alipayBtn.selected = NO;
@@ -151,7 +155,11 @@
         [mView.mMoneyTx becomeFirstResponder];
         return;
     }
-    
+    if (mTT.count<=0) {
+        [self showErrorStatus:@"请选择充值类型！"];
+        return;
+        
+    }
     mUserTopupViewController *ppp = [[mUserTopupViewController alloc] initWithNibName:@"mUserTopupViewController" bundle:nil];
     ppp.mPayMoney = [[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue];
     [self pushViewController:ppp];

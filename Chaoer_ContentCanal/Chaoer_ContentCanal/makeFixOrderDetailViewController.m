@@ -103,8 +103,8 @@
     [[mUserInfo backNowUser] getOrderDetail:self.mFixOrder.mOrderID block:^(mBaseData *resb, GFixOrder *mFixOrder) {
         
         if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             self.mFixOrder = mFixOrder;
             [self updatePage];

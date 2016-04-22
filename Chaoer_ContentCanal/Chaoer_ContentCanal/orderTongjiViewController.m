@@ -64,7 +64,7 @@
     
     
     
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] getOrderList:mType block:^(mBaseData *resb, NSArray *mArr) {
         
         [self.tempArray removeAllObjects];
@@ -72,8 +72,8 @@
         
         [self removeEmptyView];
         if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             if (mArr.count <= 0) {
                 [self addEmptyViewWithImg:nil];

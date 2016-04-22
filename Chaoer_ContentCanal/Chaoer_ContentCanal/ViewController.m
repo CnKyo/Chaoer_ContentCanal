@@ -69,7 +69,7 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
     [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -308,16 +308,17 @@
 //    self.tabBarController.selectedIndex = 1;
 
 
-    if( self.quikTagVC )
-    {
-        [self setToViewController_2:self.quikTagVC];
-    }
-    else
-    {
-        [self popViewController_2];
+//    if( self.quikTagVC )
+//    {
+//        [self setToViewController_2:self.quikTagVC];
+//    }
+//    else
+//    {
+//        [self popViewController_2];
+        [self dismissViewControllerAnimated:YES completion:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
 
-    }
+//    }
     
 
 //    [((AppDelegate*)[UIApplication sharedApplication].delegate) dealFuncTab];
