@@ -135,7 +135,7 @@
                 [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
                 self.block(self.mPhone.text,self.mComfirPwd.text);
                 
-                [self popViewController];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
                 
             }else{
@@ -150,7 +150,7 @@
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 self.block(self.mPhone.text,self.mComfirPwd.text);
                 
-                [self popViewController];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
                 
             }else{
@@ -262,6 +262,11 @@
         return NO;
     }
     
+}
+
+- (void)leftBtnTouched:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 @end

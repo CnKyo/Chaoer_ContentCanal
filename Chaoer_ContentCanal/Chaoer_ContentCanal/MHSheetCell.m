@@ -19,12 +19,12 @@
     _tableDivLineHeight.constant = 0.5;
     _myLabel.backgroundColor = [UIColor whiteColor];
     _myLabel.textColor = [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
-    _myLabel.font = [UIFont systemFontOfSize:18];
+    _myLabel.font = [UIFont systemFontOfSize:15];
     if ([[UIScreen mainScreen] bounds].size.height == 667) {
-        _myLabel.font = [UIFont systemFontOfSize:20];
+        _myLabel.font = [UIFont systemFontOfSize:15];
     }
     else if ([[UIScreen mainScreen] bounds].size.height > 667) {
-        _myLabel.font = [UIFont systemFontOfSize:21];
+        _myLabel.font = [UIFont systemFontOfSize:15];
     }
 }
 

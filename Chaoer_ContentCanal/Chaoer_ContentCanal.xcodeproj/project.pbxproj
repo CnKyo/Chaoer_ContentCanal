@@ -73,6 +73,7 @@
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
 		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
 		04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D5041CC8BBC90090EC1E /* mCookDetail.m */; };
+		04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */; };
 		04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD291CC5DF2500E62795 /* myOrderCell.xib */; };
 		04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2B1CC61F6700E62795 /* WJ_error.png */; };
 		04E5BD321CC61F6700E62795 /* WJ_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */; };
@@ -660,6 +661,7 @@
 		04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCookDetailView.xib; sourceTree = "<group>"; };
 		04D9D5031CC8BBC90090EC1E /* mCookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetail.h; sourceTree = "<group>"; };
 		04D9D5041CC8BBC90090EC1E /* mCookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetail.m; sourceTree = "<group>"; };
+		04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSmallSubView.xib; sourceTree = "<group>"; };
 		04E5BD291CC5DF2500E62795 /* myOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myOrderCell.xib; sourceTree = "<group>"; };
 		04E5BD2B1CC61F6700E62795 /* WJ_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_error.png; sourceTree = "<group>"; };
 		04E5BD2C1CC61F6700E62795 /* WJ_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_error@2x.png"; sourceTree = "<group>"; };
@@ -2403,6 +2405,7 @@
 				31B990351C96AD6D002E34A5 /* mServiceAddressView.h */,
 				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
 				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
+				04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */,
 				31E1A72A1CA3C03500D3496F /* 提现 */,
 				3135F8081C97BB2A00EF9569 /* 余额充值 */,
 				31B9903A1C96B34A002E34A5 /* 手机充值 */,
@@ -3509,6 +3512,7 @@
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
 				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
 				31462CE51CB38E0F00E67836 /* walletView.xib in Resources */,
+				04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */,
 				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
 				312D08B51CAA1C560006F0FA /* WeiboSDK.bundle in Resources */,
 				3135F8401C9801D700EF9569 /* myRedBagViewController.xib in Resources */,
@@ -4152,7 +4156,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e87800b7-dc28-4c30-8a11-85ba119f1b78";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -4205,7 +4209,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e87800b7-dc28-4c30-8a11-85ba119f1b78";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

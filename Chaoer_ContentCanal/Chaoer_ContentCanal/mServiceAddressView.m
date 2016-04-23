@@ -24,4 +24,12 @@
 //    view.layer.borderWidth = 1;
     return view;
 }
+
+
++ (mServiceAddressView *)shareSmallSubView{
+    mServiceAddressView *view = [[[NSBundle mainBundle] loadNibNamed:@"mSmallSubView" owner:self options:nil] objectAtIndex:0];
+
+    return view;
+}
+
 @end

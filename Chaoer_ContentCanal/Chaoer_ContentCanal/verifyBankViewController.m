@@ -316,14 +316,13 @@
     
     [mUserInfo geBankCode:mView.mBankName.text andUserId:[mUserInfo backNowUser].mUserId andIdentify:mView.mBankIdentify.text andBankName:mBankName andProvince:mProvince andCity:mCity andPoint:mPoint andBankCard:mView.mBanCardTx.text andBankCode:mBankCode block:^(mBaseData *resb) {
         
-        [SVProgressHUD dismiss];
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             if ([mUserInfo backNowUser].mIsBundle == 1) {
-                [self popViewController_2];
+                [self popViewController];
             }else{
-                [self popViewController_3];
+                [self popViewController_2];
 
             }
             

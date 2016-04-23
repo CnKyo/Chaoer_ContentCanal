@@ -1436,3 +1436,18 @@
 
 @end
 
+
+
+@interface GAddress : NSObject
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@property (strong,nonatomic) NSString    *mAddressName;
+
+@property (strong,nonatomic) NSString    *mAddressId;
+
+
+@end
+

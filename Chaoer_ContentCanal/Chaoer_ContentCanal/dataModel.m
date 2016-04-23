@@ -632,7 +632,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mTime forKey:@"buyerBankExpire"];
     [para setObject:mCVV forKey:@"buyerBankCvv"];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-    [para setObject:@"t+0" forKey:@"paymentMethod"];
+    
     [[HTTPrequest sharedClient] postUrl:@"app/epos/pay/appHandleFunc" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
@@ -1199,7 +1199,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUid) forKey:@"userId"];
     [para setObject:mMoney forKey:@"money"];
-    [para setObject:mPresentManner forKey:@"presentManner"];
+//    [para setObject:mPresentManner forKey:@"presentManner"];
     [[HTTPrequest sharedClient] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
@@ -1688,9 +1688,12 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         
         if (info.mSucess) {
             
-            
-            [tempArr addObjectsFromArray:[info.mData objectForKey:@"address"]];
-            
+            for (NSDictionary *dic in [info.mData objectForKey:@"address"]) {
+             
+                [tempArr addObject:[[GAddress alloc] initWithObj:dic]];
+                
+            }
+                        
             block ( info ,tempArr);
         }else{
             block ( info ,nil);
@@ -2257,4 +2260,26 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+@end
+
+@implementation GAddress
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+
+    self.mAddressName = [obj objectForKeyMy:@"userAddress"];
+    self.mAddressId = [NSString stringWithFormat:@"%d",[[obj objectForKeyMy:@"communityId"] intValue]];
+    
+}
+
+
 @end

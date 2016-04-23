@@ -29,7 +29,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入户主或者租客姓名" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-dw-wLI">
-                            <rect key="frame" x="80" y="4" width="230" height="30"/>
+                            <rect key="frame" x="80" y="6" width="230" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Zl9-dS-lrW"/>
                             </constraints>
@@ -38,14 +38,14 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQb-cS-6iP">
-                            <rect key="frame" x="10" y="39" width="300" height="1"/>
+                            <rect key="frame" x="10" y="41" width="300" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44862607758620687" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="pIV-zh-CkY"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="居住城市：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oN-T7-hWr">
-                            <rect key="frame" x="10" y="48" width="70" height="21"/>
+                            <rect key="frame" x="10" y="50" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="7Em-Ep-glF"/>
                                 <constraint firstAttribute="width" constant="70" id="7lq-4y-EYF"/>
@@ -55,7 +55,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择城市" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1d-Nr-BHC">
-                            <rect key="frame" x="80" y="48" width="230" height="21"/>
+                            <rect key="frame" x="80" y="50" width="230" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="MtJ-vT-Bxd"/>
                             </constraints>
@@ -64,7 +64,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uya-cp-Kts">
-                            <rect key="frame" x="80" y="48" width="230" height="21"/>
+                            <rect key="frame" x="80" y="50" width="230" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="BsS-HT-C6k"/>
@@ -72,7 +72,7 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择市区" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5a-dK-GmP">
-                            <rect key="frame" x="80" y="77" width="230" height="21"/>
+                            <rect key="frame" x="80" y="79" width="230" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="aPZ-WU-HVE"/>
                             </constraints>
@@ -81,7 +81,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaJ-Ih-12t">
-                            <rect key="frame" x="80" y="77" width="230" height="21"/>
+                            <rect key="frame" x="80" y="79" width="230" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="n4c-dg-efD"/>
@@ -89,14 +89,14 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3B-5m-Mak">
-                            <rect key="frame" x="12" y="106" width="300" height="1"/>
+                            <rect key="frame" x="12" y="108" width="300" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44862607758620687" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="voa-RW-V1s"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小区名称：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymo-sy-8KG">
-                            <rect key="frame" x="12" y="115" width="70" height="21"/>
+                            <rect key="frame" x="12" y="117" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="LbZ-t9-gLo"/>
                                 <constraint firstAttribute="height" constant="21" id="PY9-9x-FZO"/>
@@ -106,7 +106,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择小区" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-D8-Fof">
-                            <rect key="frame" x="80" y="115" width="230" height="21"/>
+                            <rect key="frame" x="80" y="117" width="230" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Xpn-kv-rfe"/>
                             </constraints>
@@ -115,7 +115,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uat-BS-t9A">
-                            <rect key="frame" x="80" y="115" width="230" height="21"/>
+                            <rect key="frame" x="80" y="117" width="230" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Oim-Rd-Ier"/>
@@ -123,14 +123,14 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOw-VS-Cx6">
-                            <rect key="frame" x="10" y="144" width="300" height="1"/>
+                            <rect key="frame" x="10" y="146" width="300" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44862607758620687" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="TnN-Cw-D39"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="楼 栋 号 ：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUx-An-gwJ">
-                            <rect key="frame" x="10" y="153" width="70" height="21"/>
+                            <rect key="frame" x="10" y="155" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="KqJ-dJ-Q6i"/>
                                 <constraint firstAttribute="width" constant="70" id="YwO-gy-b1c"/>
@@ -140,7 +140,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择楼栋号" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF9-4E-ggT">
-                            <rect key="frame" x="80" y="153" width="230" height="21"/>
+                            <rect key="frame" x="80" y="155" width="230" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="wy4-MG-YEH"/>
                             </constraints>
@@ -149,7 +149,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSn-9z-ZW7">
-                            <rect key="frame" x="80" y="153" width="230" height="21"/>
+                            <rect key="frame" x="80" y="155" width="230" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="DlG-bc-Y9d"/>
@@ -157,14 +157,14 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyW-dX-OIr">
-                            <rect key="frame" x="12" y="182" width="300" height="1"/>
+                            <rect key="frame" x="12" y="184" width="300" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44862607758620687" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="b9a-5U-yzo"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门 牌 号 ：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH0-kk-ovz">
-                            <rect key="frame" x="12" y="191" width="70" height="21"/>
+                            <rect key="frame" x="12" y="193" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="uxI-9A-8Pd"/>
                                 <constraint firstAttribute="width" constant="70" id="w3K-ji-5EB"/>
@@ -174,7 +174,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择单元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQH-3K-bn2">
-                            <rect key="frame" x="90" y="191" width="76" height="21"/>
+                            <rect key="frame" x="90" y="193" width="76" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="76" id="6P9-QB-Uti"/>
                                 <constraint firstAttribute="height" constant="21" id="g5G-ZW-yAo"/>
@@ -184,7 +184,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择楼层" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5I-Tq-PnG">
-                            <rect key="frame" x="157" y="191" width="76" height="21"/>
+                            <rect key="frame" x="157" y="193" width="76" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ijT-70-vXs"/>
                                 <constraint firstAttribute="width" constant="76" id="k1z-Qz-Dxy"/>
@@ -194,7 +194,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择门牌号" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qZ-N6-ztJ">
-                            <rect key="frame" x="234" y="191" width="76" height="21"/>
+                            <rect key="frame" x="234" y="193" width="76" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="76" id="gUw-cD-l8n"/>
                                 <constraint firstAttribute="height" constant="21" id="y7P-xO-l68"/>
@@ -204,7 +204,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8p-fC-9rJ">
-                            <rect key="frame" x="101" y="191" width="65" height="21"/>
+                            <rect key="frame" x="101" y="193" width="65" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="i4D-f6-AF0"/>
@@ -213,7 +213,7 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwc-df-xO4">
-                            <rect key="frame" x="170" y="191" width="65" height="21"/>
+                            <rect key="frame" x="170" y="193" width="65" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="RKH-X8-2IO"/>
@@ -222,7 +222,7 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDC-Ps-rsB">
-                            <rect key="frame" x="234" y="191" width="78" height="21"/>
+                            <rect key="frame" x="234" y="193" width="78" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="9bX-WF-E5w"/>
@@ -231,14 +231,14 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqr-2O-7Yo">
-                            <rect key="frame" x="10" y="220" width="300" height="1"/>
+                            <rect key="frame" x="10" y="222" width="300" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44862607758620687" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="M1m-xl-qM1"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="居住关系：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ip9-vU-kMk">
-                            <rect key="frame" x="12" y="229" width="70" height="21"/>
+                            <rect key="frame" x="12" y="231" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="IU8-hV-FvC"/>
                                 <constraint firstAttribute="height" constant="21" id="PqK-qU-w0a"/>
@@ -248,7 +248,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot1-rP-tus">
-                            <rect key="frame" x="60" y="258" width="200" height="40"/>
+                            <rect key="frame" x="60" y="260" width="200" height="40"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmo-kZ-Nti">
                                     <rect key="frame" x="8" y="8" width="60" height="24"/>
@@ -309,7 +309,7 @@
                         <constraint firstItem="8qZ-N6-ztJ" firstAttribute="leading" secondItem="o5I-Tq-PnG" secondAttribute="trailing" constant="1" id="FUt-P8-dS6"/>
                         <constraint firstItem="Uat-BS-t9A" firstAttribute="top" secondItem="t3B-5m-Mak" secondAttribute="bottom" constant="8" id="FjU-6w-tjt"/>
                         <constraint firstItem="F5a-dK-GmP" firstAttribute="leading" secondItem="8oN-T7-hWr" secondAttribute="trailing" id="GKN-hg-WHI"/>
-                        <constraint firstItem="Ovk-dw-wLI" firstAttribute="top" secondItem="1l6-ch-eDc" secondAttribute="top" constant="4" id="Glw-cZ-3dK"/>
+                        <constraint firstItem="Ovk-dw-wLI" firstAttribute="top" secondItem="1l6-ch-eDc" secondAttribute="top" constant="6" id="Glw-cZ-3dK"/>
                         <constraint firstItem="Xqr-2O-7Yo" firstAttribute="top" secondItem="VDC-Ps-rsB" secondAttribute="bottom" constant="8" id="Gq8-gv-Ydo"/>
                         <constraint firstItem="F5a-dK-GmP" firstAttribute="top" secondItem="r1d-Nr-BHC" secondAttribute="bottom" constant="8" id="ItJ-wv-PAf"/>
                         <constraint firstItem="8oN-T7-hWr" firstAttribute="top" secondItem="MQb-cS-6iP" secondAttribute="bottom" constant="8" id="K4G-EQ-tNt"/>

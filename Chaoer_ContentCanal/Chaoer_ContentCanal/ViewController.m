@@ -21,7 +21,7 @@
 #import "dataModel.h"
 
 
-
+#import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
@@ -142,34 +142,48 @@
 }
 #pragma mark----微信登录
 - (void)wechatAction:(UIButton *)sender{
-    ///微信登录
-//    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
-//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-//     {
-//         if (state == SSDKResponseStateSuccess)
-//         {
-//             
-//             NSLog(@"返回的用户信息：%@",user);
-//             
-//         }
-//         
-//         else
-//         {
-//             NSLog(@"%@",error);
-//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-//         }
-//         
-//     }];
     [LCProgressHUD showInfoMsg:@"未授权..."];
 
+//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+//
+//    ///微信登录
+//    
+//    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat
+//                                   onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
+//                                       
+//                                       
+//                                       //在此回调中可以将社交平台用户信息与自身用户系统进行绑定，最后使用一个唯一用户标识来关联此用户信息。
+//                                       
+//                                       //在此示例中没有跟用户系统关联，则使用一个社交用户对应一个系统用户的方式。将社交用户的uid作为关联ID传入associateHandler。
+//                                       associateHandler (user.uid, user, user);
+//                                       NSLog(@"dd%@",user.rawData);
+//                                       NSLog(@"dd%@",user.credential);
+//                                   }onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
+//                                       
+//                                       if (state == SSDKResponseStateSuccess){
+//                                           NSLog(@"返回的用户信息：%@",user);
+//                                           
+//                                           
+//                                           
+//                                       }  else
+//                                       {
+//                                           NSLog(@"%@",error);
+//                                           [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+//                                       }
+//                                   }];
+    
+ 
 }
 #pragma mark----qq登录
 - (void)tencentAction:(UIButton *)sender{
-
+//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+//
 //    ///qq登录
 //    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
 //           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
 //     {
+//         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//
 //         if (state == SSDKResponseStateSuccess)
 //         {
 //             NSLog(@"返回的用户信息：%@",user);
@@ -188,10 +202,14 @@
 }
 #pragma mark----新浪登录
 - (void)sinaAction:(UIButton *)sender{
+//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+//
 //    ///新浪登录
 //    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
 //           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
 //     {
+//         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//
 //         if (state == SSDKResponseStateSuccess)
 //         {
 //             
@@ -221,7 +239,8 @@
         mLoginV.phoneTx.text = content;
         mLoginV.codeTx.text = mPwd;
     };
-    [self pushViewController:rrr];
+    
+    [self presentViewController:rrr animated:YES completion:nil];
 }
 #pragma mark----注册
 - (void)registAction:(UIButton *)sender{
@@ -231,8 +250,11 @@
         
         mLoginV.phoneTx.text = content;
         mLoginV.codeTx.text = mPwd;
+        
+        [self initLogin];
+        
     };
-    [self pushViewController:rrr];
+    [self presentViewController:rrr animated:YES completion:nil];
 }
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
@@ -255,24 +277,30 @@
         return;
     }
     
-    
-    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+    [self initLogin];
+   
+}
 
+- (void)initLogin{
+    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+    
     [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+        
         if (resb.mSucess) {
             [self loginOk];
             
             [LCProgressHUD showSuccess:@"登录成功"];
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
-
+            
         }
         
         
     }];
+
 }
+
 #pragma  mark -----键盘消失
 - (void)tapAction{
     [mLoginV.phoneTx resignFirstResponder];

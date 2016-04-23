@@ -289,8 +289,8 @@
             makeServiceViewController *mmm = [[makeServiceViewController alloc] initWithNibName:@"makeServiceViewController" bundle:nil];
             mmm.mOrder = GFixOrder.new;
             mmm.mOrder = mOrder;
-            mmm.mId = [[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue];
-            mmm.mOrderId = [[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue];
+            mmm.mOrderId = [[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue];
+            mmm.mId = [[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue];
             [self presentViewController:mmm animated:YES completion:nil];
 
         }else{

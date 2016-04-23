@@ -63,6 +63,12 @@
             [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
             
             
+            
+            mView.mBalanceLb.format = @"¥%.2f";
+            
+            
+            mView.mScore.format = @"积分：%d";
+            
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }
@@ -96,11 +102,11 @@
     
     CGFloat mLevel;
     if ([mUserInfo backNowUser].mMoney <= 100) {
-        mLevel = [mUserInfo backNowUser].mMoney;
+        mLevel = [mUserInfo backNowUser].mMoney+0.01;
     }else if ([mUserInfo backNowUser].mMoney >= 100){
-        mLevel = [mUserInfo backNowUser].mMoney*0.1;
+        mLevel = [mUserInfo backNowUser].mMoney*0.1+0.01;
     }else if ([mUserInfo backNowUser].mMoney >= 1000){
-        mLevel = [mUserInfo backNowUser].mMoney*0.01;
+        mLevel = [mUserInfo backNowUser].mMoney*0.01+0.01;
     }
     
     

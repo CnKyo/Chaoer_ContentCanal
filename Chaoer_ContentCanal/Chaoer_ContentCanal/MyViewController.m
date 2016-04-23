@@ -62,8 +62,7 @@
 
     [super viewWillAppear:YES];
 
-    [self initData];
-   
+    [self headerBeganRefresh];
 }
 
 - (void)viewDidLoad {
@@ -196,7 +195,8 @@
 }
 - (void)headerBeganRefresh{
 
-    [mUserInfo mUserLogin:[mUserInfo backNowUser].mPhone andPassword:[mUserInfo backNowUser].mPwd block:^(mBaseData *resb, mUserInfo *mUser) {
+    
+    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
         [self headerEndRefresh];
         if (resb.mSucess) {
             [self initData];
@@ -286,7 +286,7 @@
             }else{
                 cell.mDetail.hidden = NO;
             }
-            
+        
         }
     }
     else {
@@ -330,7 +330,8 @@
                 
             }else{
                 needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                
+                nnn.mType = 2;
+
                 [self pushViewController:nnn];
             }
 

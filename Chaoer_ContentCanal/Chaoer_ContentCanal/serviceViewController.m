@@ -31,21 +31,88 @@
     self.hiddenTabBar = YES;
     self.Title = self.mPageName = @"便民服务";
     
-    [self initView];
     
-}
-- (void)initView{
-
+    
     UIImageView *iii = [UIImageView new];
     iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
     iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height);
     [self.view addSubview:iii];
     
+
     mScrollerView = [UIScrollView new];
     mScrollerView.backgroundColor = [UIColor clearColor];
     mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
     [self.view addSubview:mScrollerView];
     
+//    [self addView];
+    [self initView];
+}
+
+- (void)addView{
+
+
+    
+    UIImage *imag1 = [UIImage imageNamed:@"supermarket"];
+    UIImage *imag2 = [UIImage imageNamed:@"fruit"];
+    
+    UIImage *imag3 = [UIImage imageNamed:@"eat"];
+    
+    UIImage *imag4 = [UIImage imageNamed:@"join"];
+    
+    UIImage *imag5 = [UIImage imageNamed:@"water"];
+    
+    UIImage *imag6 = [UIImage imageNamed:@"wash"];
+    
+    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
+    NSArray *marr = @[@"超市快递",@"水果生鲜",@"美食速递",@"招募合伙人",@"饮水配送",@"衣服洗涤"];
+    
+    float x = 0;
+    float y = 0;
+    
+    float btnWidth = DEVICE_Width/4;
+    
+    for (int i = 0; i<marr.count; i++) {
+        mView = [mServiceAddressView shareSmallSubView];
+        
+        mView.layer.masksToBounds = YES;
+        mView.layer.borderColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:0.45].CGColor;
+        mView.layer.borderWidth = 0.5;
+        mView.frame = CGRectMake(x, y, btnWidth, 80);
+        mView.mSmallImg.image = imgArr[i];
+        
+
+        mView.mSmallT.text = marr[i];
+     
+        float left;
+        if (DEVICE_Width<=320) {
+            left = -60;
+        }else{
+            left = -60;
+        };
+        
+        mView.mSmallBtn.tag = i;
+        [mView.mSmallBtn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [mScrollerView addSubview:mView];
+        
+        x += btnWidth;
+        
+        if (x >= DEVICE_Width) {
+            x = 0;
+            y += 80;
+        }
+        
+        
+    }
+
+    
+    
+}
+#pragma mark----按钮的点击事件
+- (void)mCusBtnAction:(UIButton *)sender{
+    NSLog(@"第%ld个",(long)sender.tag);
+}
+- (void)initView{
 
     
     mView = [mServiceAddressView shareView];

@@ -258,6 +258,7 @@
     [mUserInfo getCodeAndPay:orderCode andYBOrderCode:ybOrderCode andPhoneCode:mView.mCode.text block:^(mBaseData *resb) {
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self popViewController_2];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }

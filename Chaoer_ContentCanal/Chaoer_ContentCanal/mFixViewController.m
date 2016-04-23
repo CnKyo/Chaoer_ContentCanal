@@ -26,6 +26,8 @@
 
 #import "addAddressViewController.h"
 #import "TFFileUploadManager.h"
+#import "needCodeViewController.h"
+
 #define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
 @interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate>{
     HZQDatePickerView *_pikerView;
@@ -79,8 +81,9 @@
     
     NSString *mAddress;
     
-    NSMutableArray *mDataArr;
+    NSMutableArray *mAddressArr;
     
+    NSString *mACommunityId;
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -90,11 +93,27 @@
 
     [self loadData];
   
+    /**
+     IQKeyboardManager为自定义收起键盘
+     **/
+    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    mPara = [NSMutableDictionary new];
+    mAddressArr = [NSMutableArray new];
     mArrTemp = [NSMutableArray new];
     mClassID = [NSMutableArray new];
 
@@ -103,9 +122,6 @@
     self.Title = self.mPageName = @"物业报修";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    
-    mPara = [NSMutableDictionary new];
-    mDataArr = [NSMutableDictionary new];
 
     mSelecte = 1;
     
@@ -167,16 +183,15 @@
         
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
-        [mDataArr removeAllObjects];
+        [mAddressArr removeAllObjects];
         
         if (resb.mSucess) {
-            [mDataArr addObjectsFromArray:mArr];
+            [mAddressArr addObjectsFromArray:mArr];
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             
             [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-            
             
         }
         
@@ -193,16 +208,26 @@
 
 - (void)loadMHActionSheetView{
  
-    NSLog(@"得到的数据是：%@",mDataArr);
+    NSLog(@"得到的数据是：%@",mAddressArr);
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择地址:" style:MHSheetStyleWeiChat itemTitles:mDataArr];
+    NSMutableArray *madd = [NSMutableArray new];
+    
+    for (GAddress *mAddresss in mAddressArr) {
+        [madd addObject:mAddresss.mAddressName];
+    }
+    
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择地址:" style:MHSheetStyleWeiChat itemTitles:madd];
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
 
-        mAddress = mDataArr[index];
+        GAddress *mAddresss = mAddressArr[index];
         
-        mView.mAddress.text = [NSString stringWithFormat:@"地点：%@",mDataArr[index]];
+        mView.mAddress.text = [NSString stringWithFormat:@"地点：%@",mAddresss.mAddressName];
+        mACommunityId = mAddresss.mAddressId;
+        mAddress = mAddresss.mAddressName;
+
         
     }];
 }
@@ -228,6 +253,10 @@
             [mView.mLeftBtn setBackgroundImage:model.thumbnail forState:0];
 
         }
+        for (UIImage *img in images) {
+            tempImage = [Util scaleImg:img maxsize:150];
+            [mView.mLeftBtn setBackgroundImage:tempImage forState:0];
+        }
         
        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -245,7 +274,7 @@
         
         mImagePath = aPath;
         
-        mImgData = UIImagePNGRepresentation(imageView3.image);
+        mImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
 
         
         self.assets = [assets copy];
@@ -326,6 +355,8 @@
     [mPara setObject:mTime forKey:@"appointmentTime"];
     [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
     [mPara setObject:mAddress forKey:@"address"];
+    [mPara setObject:mACommunityId forKey:@"communityId"];
+
     
     if (mVideoUrlString == nil || [mVideoUrlString isEqualToString:@""]) {
         
@@ -970,8 +1001,9 @@
 //    
 //    [self pushViewController:add];
     
-    if (self.tempArray.count <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"未找到地址！请添加房屋！"];
+    if (mAddressArr.count <= 0) {
+        [self AlertViewShow:@"未找到地址！请添加房屋！" alertViewMsg:@"添加房屋地址后才能使用保修功能哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+
         return;
     }
     
@@ -1011,4 +1043,22 @@
 - (void)leftBtnTouched:(id)sender{
     [self popViewController];
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+        nnn.mType = 2;
+        [self pushViewController:nnn];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"离开", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
+
 @end

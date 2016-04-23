@@ -49,11 +49,11 @@
     }
     cell.myLabel.text = _dataSource[indexPath.row];
     
-    cell.myLabel.font = [UIFont systemFontOfSize:18];
+    cell.myLabel.font = [UIFont systemFontOfSize:16];
     if (kWH == 667) {
-        cell.myLabel.font = [UIFont systemFontOfSize:20];
+        cell.myLabel.font = [UIFont systemFontOfSize:16];
     } else if (kWH > 667) {
-        cell.myLabel.font = [UIFont systemFontOfSize:21];
+        cell.myLabel.font = [UIFont systemFontOfSize:16];
     }
     
     if (_cellTextFont) {
