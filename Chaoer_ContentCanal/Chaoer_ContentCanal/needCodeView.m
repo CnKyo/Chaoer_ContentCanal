@@ -22,6 +22,11 @@
     view.mBgkView.layer.masksToBounds = YES;
     view.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.83 alpha:1.00].CGColor;
     view.mBgkView.layer.borderWidth = 1;
+    
+    
+    view.mOkBtn.layer.masksToBounds = YES;
+    view.mOkBtn.layer.cornerRadius = 3;
+    
     return view;
 }
 

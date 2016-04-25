@@ -60,6 +60,9 @@
 }
 - (void)initView{
 
+    self.mGopayBtn.layer.masksToBounds = YES;
+    self.mGopayBtn.layer.cornerRadius = 3;
+    
     self.mPhoneT.text = [mUserInfo backNowUser].mPhone;
     self.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
     self.mBgkView.layer.masksToBounds = YES;

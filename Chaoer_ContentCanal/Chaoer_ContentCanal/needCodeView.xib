@@ -369,13 +369,15 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycJ-D2-Jwv">
-                    <rect key="frame" x="60" y="355" width="200" height="45"/>
+                    <rect key="frame" x="15" y="355" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="P92-ot-H93"/>
-                        <constraint firstAttribute="width" constant="200" id="mXT-wC-hhA"/>
+                        <constraint firstAttribute="height" constant="40" id="D9i-VV-uXn"/>
                     </constraints>
-                    <state key="normal" title="提交" backgroundImage="gopay_unselected">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="提交">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="selected" backgroundImage="gopay_selected"/>
                 </button>
@@ -384,13 +386,14 @@
             <constraints>
                 <constraint firstItem="WFe-2S-V3d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="17A-Fe-Vc4"/>
                 <constraint firstItem="1l6-ch-eDc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1Kr-VN-gke"/>
+                <constraint firstAttribute="trailing" secondItem="ycJ-D2-Jwv" secondAttribute="trailing" constant="15" id="3wr-lZ-xzl"/>
                 <constraint firstAttribute="trailing" secondItem="1l6-ch-eDc" secondAttribute="trailing" id="5l8-34-RCx"/>
+                <constraint firstItem="ycJ-D2-Jwv" firstAttribute="top" secondItem="1l6-ch-eDc" secondAttribute="bottom" constant="30" id="91X-Oj-QXq"/>
                 <constraint firstAttribute="bottom" secondItem="WFe-2S-V3d" secondAttribute="bottom" id="L2V-4h-Kyg"/>
                 <constraint firstItem="1l6-ch-eDc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Nk5-NU-PYt"/>
                 <constraint firstAttribute="trailing" secondItem="WFe-2S-V3d" secondAttribute="trailing" id="WYt-Ws-qBE"/>
-                <constraint firstItem="ycJ-D2-Jwv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WhR-WU-N2d"/>
                 <constraint firstItem="WFe-2S-V3d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XPv-Im-3MD"/>
-                <constraint firstItem="ycJ-D2-Jwv" firstAttribute="top" secondItem="1l6-ch-eDc" secondAttribute="bottom" constant="30" id="Xhu-fU-sxW"/>
+                <constraint firstItem="ycJ-D2-Jwv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="u9a-hc-9tz"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -420,7 +423,6 @@
     </objects>
     <resources>
         <image name="gopay_selected" width="396" height="99"/>
-        <image name="gopay_unselected" width="396" height="99"/>
         <image name="sex_selected" width="24" height="24"/>
         <image name="sex_unselected" width="24" height="24"/>
     </resources>

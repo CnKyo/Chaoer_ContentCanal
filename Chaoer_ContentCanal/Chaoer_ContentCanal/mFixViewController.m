@@ -248,17 +248,21 @@
         
         NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
 
-        for (XMNAssetModel *model in assets) {
-            tempImage = [Util scaleImg:model.originImage maxsize:150];
-            [mView.mLeftBtn setBackgroundImage:model.thumbnail forState:0];
-
-        }
-        for (UIImage *img in images) {
-            tempImage = [Util scaleImg:img maxsize:150];
-            [mView.mLeftBtn setBackgroundImage:tempImage forState:0];
-        }
         
-       
+        if (assets) {
+            for (XMNAssetModel *model in assets) {
+                tempImage = [Util scaleImg:model.previewImage maxsize:150];
+                [mView.mLeftBtn setBackgroundImage:model.thumbnail forState:0];
+                
+            }
+        }else{
+        
+            for (UIImage *img in images) {
+                tempImage = [Util scaleImg:img maxsize:150];
+                [mView.mLeftBtn setBackgroundImage:tempImage forState:0];
+            }
+        }
+
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";
         NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
@@ -1041,7 +1045,8 @@
 }
 
 - (void)leftBtnTouched:(id)sender{
-    [self popViewController];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

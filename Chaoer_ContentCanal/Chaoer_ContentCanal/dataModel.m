@@ -1199,7 +1199,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUid) forKey:@"userId"];
     [para setObject:mMoney forKey:@"money"];
-//    [para setObject:mPresentManner forKey:@"presentManner"];
+    [para setObject:@"0" forKey:@"presentManner"];
     [[HTTPrequest sharedClient] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             

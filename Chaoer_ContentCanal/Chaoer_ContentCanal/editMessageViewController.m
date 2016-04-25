@@ -39,7 +39,7 @@
     self.Title = self.mPageName = self.mTitel;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    self.rightBtnTitle = @"保存";
+    self.rightBtnTitle = @"确定";
     self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
 
     
@@ -72,6 +72,12 @@
     
 
 }
+
+- (void)leftBtnTouched:(id)sender{
+    self.block(self.mTx.text);
+    [self popViewController];
+}
+
 /*
 #pragma mark - Navigation
 

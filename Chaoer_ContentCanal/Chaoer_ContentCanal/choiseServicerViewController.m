@@ -326,7 +326,11 @@
     {
 //        [self popViewController_2];
 //        self.tabBarController.selectedIndex = 1;
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            [self popViewController];
+//        }];
+        self.presentingViewController.view.alpha = 0;
+        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

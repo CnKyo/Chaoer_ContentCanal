@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -197,28 +197,29 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oW-PP-ow8">
-                    <rect key="frame" x="60" y="339" width="200" height="50"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="15" y="339" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="5fz-9w-RxD"/>
-                        <constraint firstAttribute="height" constant="50" id="Yj4-PD-sVY"/>
+                        <constraint firstAttribute="height" constant="40" id="lZR-BI-8Md"/>
                     </constraints>
-                    <state key="normal" title="立即充值" backgroundImage="search_selected">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="立即充值">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="9oW-PP-ow8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="2yO-BT-8VC"/>
                 <constraint firstItem="A3x-5e-1cy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AG7-Iv-GEQ"/>
                 <constraint firstAttribute="trailing" secondItem="jI6-wo-y6V" secondAttribute="trailing" id="H2m-KW-vEV"/>
+                <constraint firstItem="9oW-PP-ow8" firstAttribute="top" secondItem="A3x-5e-1cy" secondAttribute="bottom" constant="50" id="M2R-90-LrM"/>
+                <constraint firstAttribute="trailing" secondItem="9oW-PP-ow8" secondAttribute="trailing" constant="15" id="NsR-9I-L3T"/>
                 <constraint firstAttribute="bottom" secondItem="jI6-wo-y6V" secondAttribute="bottom" id="OQg-FZ-9OP"/>
                 <constraint firstItem="jI6-wo-y6V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="WhP-4C-mdZ"/>
                 <constraint firstItem="A3x-5e-1cy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="erd-dQ-Qid"/>
                 <constraint firstItem="jI6-wo-y6V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lh2-ga-xs8"/>
-                <constraint firstItem="9oW-PP-ow8" firstAttribute="top" secondItem="A3x-5e-1cy" secondAttribute="bottom" constant="50" id="pzj-tt-hba"/>
                 <constraint firstAttribute="trailing" secondItem="A3x-5e-1cy" secondAttribute="trailing" id="wm2-lA-5sV"/>
-                <constraint firstItem="9oW-PP-ow8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zV8-XH-XyM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -228,6 +229,5 @@
     </objects>
     <resources>
         <image name="mBaseBgkImg" width="640" height="1136"/>
-        <image name="search_selected" width="283" height="103"/>
     </resources>
 </document>

@@ -168,17 +168,18 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot8-NX-oME">
-                    <rect key="frame" x="60" y="307" width="200" height="45"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="15" y="307" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="8OK-Rd-B9u"/>
-                        <constraint firstAttribute="width" constant="200" id="jRO-Ow-Hvg"/>
+                        <constraint firstAttribute="height" constant="40" id="Pca-rK-BN1"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="确认提现" backgroundImage="search_unselected">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="确认提现">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="selected" backgroundImage="search_selected"/>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="okbtn:" destination="-1" eventType="touchUpInside" id="rYM-hX-EMB"/>
                     </connections>
@@ -186,13 +187,13 @@
             </subviews>
             <color key="backgroundColor" red="0.92549019607843142" green="0.91764705882352937" blue="0.94901960784313721" alpha="0.80765086206896552" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="ot8-NX-oME" firstAttribute="top" secondItem="QuW-wa-fvx" secondAttribute="bottom" constant="20" id="6Vv-b2-WCf"/>
+                <constraint firstAttribute="trailing" secondItem="ot8-NX-oME" secondAttribute="trailing" constant="15" id="6np-Hu-rSc"/>
                 <constraint firstItem="9OF-NF-emz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Br3-IA-fdi"/>
                 <constraint firstAttribute="trailing" secondItem="9OF-NF-emz" secondAttribute="trailing" id="DUl-05-goj"/>
                 <constraint firstItem="KcT-QI-ZkL" firstAttribute="top" secondItem="Wm3-ef-0xu" secondAttribute="bottom" constant="8" id="ELD-4b-B8D"/>
+                <constraint firstItem="ot8-NX-oME" firstAttribute="top" secondItem="QuW-wa-fvx" secondAttribute="bottom" constant="20" id="NqR-id-hkR"/>
                 <constraint firstItem="Wm3-ef-0xu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="OTl-gF-qoP"/>
                 <constraint firstItem="9OF-NF-emz" firstAttribute="top" secondItem="KcT-QI-ZkL" secondAttribute="bottom" constant="15" id="SOL-gj-uuU"/>
-                <constraint firstItem="ot8-NX-oME" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TPf-BS-1sV"/>
                 <constraint firstItem="r5v-Tv-trg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WxX-RE-Xyx"/>
                 <constraint firstItem="QuW-wa-fvx" firstAttribute="top" secondItem="FUx-dT-9kc" secondAttribute="bottom" constant="8" id="Yr7-2m-EAA"/>
                 <constraint firstAttribute="trailing" secondItem="FUx-dT-9kc" secondAttribute="trailing" id="apr-aB-USz"/>
@@ -202,6 +203,7 @@
                 <constraint firstAttribute="trailing" secondItem="KcT-QI-ZkL" secondAttribute="trailing" id="nsI-6D-8Dl"/>
                 <constraint firstItem="QuW-wa-fvx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="s4j-be-1XS"/>
                 <constraint firstItem="r5v-Tv-trg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="tFR-CN-nQn"/>
+                <constraint firstItem="ot8-NX-oME" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="w4d-yb-KWt"/>
                 <constraint firstItem="KcT-QI-ZkL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wRD-7s-rDs"/>
                 <constraint firstItem="Wm3-ef-0xu" firstAttribute="leading" secondItem="r5v-Tv-trg" secondAttribute="trailing" constant="3" id="ycG-5f-nWq"/>
             </constraints>
@@ -210,8 +212,4 @@
             <point key="canvasLocation" x="206" y="138"/>
         </view>
     </objects>
-    <resources>
-        <image name="search_selected" width="283" height="103"/>
-        <image name="search_unselected" width="283" height="103"/>
-    </resources>
 </document>

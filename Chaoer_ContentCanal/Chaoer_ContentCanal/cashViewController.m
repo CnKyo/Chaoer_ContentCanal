@@ -62,6 +62,9 @@
     self.hiddenTabBar = YES;
     self.Title = self.mPageName = @"余额提现";
     
+    self.mOkBtn.layer.masksToBounds = YES;
+    self.mOkBtn.layer.cornerRadius = 3;
+    
     self.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.00];
