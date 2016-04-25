@@ -177,15 +177,14 @@
 }
 - (void)loadData{
 
-    [LBProgressHUD showHUDto:self.view withTips:@"正在验证..." animated:YES];
-
+    [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] getAddress:^(mBaseData *resb, NSArray *mArr) {
         
-        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
         [mAddressArr removeAllObjects];
         
         if (resb.mSucess) {
+            [SVProgressHUD dismiss];
             [mAddressArr addObjectsFromArray:mArr];
             
         }else{

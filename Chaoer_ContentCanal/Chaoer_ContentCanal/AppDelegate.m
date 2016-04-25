@@ -56,9 +56,9 @@
 }
 -(void)initExtComp
 {
-    [MAMapServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
-    [AMapSearchServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
-    [AMapLocationServices sharedServices].apiKey = @"d4ff1a6b1fa8db2ec9ee2d016d03a8e0";
+    [MAMapServices sharedServices].apiKey = AMAP_KEY;
+    [AMapSearchServices sharedServices].apiKey = AMAP_KEY;
+    [AMapLocationServices sharedServices].apiKey = AMAP_KEY;
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
     [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,

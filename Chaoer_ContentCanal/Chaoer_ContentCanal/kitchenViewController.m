@@ -153,7 +153,7 @@
     
     kitchenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    [cell.mBgkImg sd_setImageWithURL:[NSURL URLWithString:mCook.mImg] placeholderImage:nil];
+    [cell.mBgkImg sd_setImageWithURL:[NSURL URLWithString:mCook.mImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     cell.mContent.text = mCook.mName;
     cell.mLeftLb.text = mCook.mFood;   

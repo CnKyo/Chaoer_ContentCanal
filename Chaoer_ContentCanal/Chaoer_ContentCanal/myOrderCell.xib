@@ -47,7 +47,7 @@
                             <constraint firstAttribute="height" constant="1" id="0L6-jl-hwM"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="water" translatesAutoresizingMaskIntoConstraints="NO" id="u45-MU-BUt">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default" translatesAutoresizingMaskIntoConstraints="NO" id="u45-MU-BUt">
                         <rect key="frame" x="10" y="62" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="7Vf-N3-Kqz"/>
@@ -171,7 +171,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="img_default" width="1024" height="1024"/>
         <image name="jiantou1" width="15" height="26"/>
-        <image name="water" width="62" height="62"/>
     </resources>
 </document>

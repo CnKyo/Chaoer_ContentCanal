@@ -68,11 +68,11 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
 
         mBaseData   *retob = [[mBaseData alloc]initWithObj:responseObject];
                 
-        if( retob.mState == 400301 )
-        {//需要登陆
-            id oneid = [UIApplication sharedApplication].delegate;
-            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
-        }
+//        if( retob.mState == 400301 )
+//        {//需要登陆
+//            id oneid = [UIApplication sharedApplication].delegate;
+//            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+//        }
         callback(  retob );
         
     }

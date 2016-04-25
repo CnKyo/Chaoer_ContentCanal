@@ -213,7 +213,7 @@
         cell.mAddressLeft.constant = 0;
         cell.mServiceTimeLeft.constant = 0;
     }else{
-        [cell.mImage1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]] placeholderImage:[UIImage imageNamed:@"logo"]];
+        [cell.mImage1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]] placeholderImage:[UIImage imageNamed:@"img_default"]];
     }
     
     cell.mPhone.text = mFix.mPhone;

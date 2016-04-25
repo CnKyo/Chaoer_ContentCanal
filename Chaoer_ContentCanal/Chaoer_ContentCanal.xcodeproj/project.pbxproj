@@ -56,6 +56,8 @@
 		04648C7E1CB51E88006823C9 /* valletTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04648C7C1CB51E88006823C9 /* valletTCell.m */; };
 		04648C7F1CB51E88006823C9 /* valletTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C7D1CB51E88006823C9 /* valletTCell.xib */; };
 		04678F531CB7916A0074AA80 /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04678F521CB7916A0074AA80 /* keyChain.m */; };
+		047125881CCDEC330022BF77 /* mServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047125861CCDEC330022BF77 /* mServiceCell.m */; };
+		047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047125871CCDEC330022BF77 /* mServiceCell.xib */; };
 		048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD82F1CB62EB600383DF8 /* UICountingLabel.m */; };
 		048FD8341CB63B6800383DF8 /* MovieAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8321CB63B6800383DF8 /* MovieAddComment.m */; };
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
@@ -634,6 +636,9 @@
 		04678F4D1CB7908C0074AA80 /* Chaoer_ContentCanal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Chaoer_ContentCanal.entitlements; sourceTree = "<group>"; };
 		04678F511CB7916A0074AA80 /* keyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyChain.h; sourceTree = "<group>"; };
 		04678F521CB7916A0074AA80 /* keyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keyChain.m; sourceTree = "<group>"; };
+		047125851CCDEC330022BF77 /* mServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceCell.h; sourceTree = "<group>"; };
+		047125861CCDEC330022BF77 /* mServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceCell.m; sourceTree = "<group>"; };
+		047125871CCDEC330022BF77 /* mServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceCell.xib; sourceTree = "<group>"; };
 		048FD82E1CB62EB600383DF8 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		048FD82F1CB62EB600383DF8 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		048FD8311CB63B6800383DF8 /* MovieAddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieAddComment.h; sourceTree = "<group>"; };
@@ -2406,6 +2411,9 @@
 				31B990361C96AD6D002E34A5 /* mServiceAddressView.m */,
 				31B990381C96AD75002E34A5 /* mServiceAddressView.xib */,
 				04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */,
+				047125851CCDEC330022BF77 /* mServiceCell.h */,
+				047125861CCDEC330022BF77 /* mServiceCell.m */,
+				047125871CCDEC330022BF77 /* mServiceCell.xib */,
 				31E1A72A1CA3C03500D3496F /* 提现 */,
 				3135F8081C97BB2A00EF9569 /* 余额充值 */,
 				31B9903A1C96B34A002E34A5 /* 手机充值 */,
@@ -3611,6 +3619,7 @@
 				31E1A7241CA38AD300D3496F /* makeFixOrderDetailView.xib in Resources */,
 				04E5BD2A1CC5DF2500E62795 /* myOrderCell.xib in Resources */,
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
+				047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */,
 				040B80231CC50D50006A9489 /* WJStatusBarHUD_error.png in Resources */,
 				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
@@ -3927,6 +3936,7 @@
 				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
 				74B486A71BE88F200023E839 /* PPiFlatSegmentedControl.m in Sources */,
 				16E9CAD61BAC00BC00C48B8A /* DYLineView.m in Sources */,
+				047125881CCDEC330022BF77 /* mServiceCell.m in Sources */,
 				31EEB3231C93BF8700B61A86 /* mSuperMarketTableViewCell.m in Sources */,
 				31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */,
 				31462CEF1CB3BBE500E67836 /* UILabel+FlickerNumber.m in Sources */,
@@ -4156,7 +4166,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
 			};
 			name = Debug;
 		};
@@ -4209,7 +4219,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
 			};
 			name = Release;
 		};

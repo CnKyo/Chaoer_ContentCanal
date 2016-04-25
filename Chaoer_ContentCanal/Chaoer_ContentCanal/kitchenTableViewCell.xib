@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="1" id="sUf-zg-h09"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7oz-P2-wiW">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_default" translatesAutoresizingMaskIntoConstraints="NO" id="7oz-P2-wiW">
                         <rect key="frame" x="13" y="12" width="60" height="60"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -67,4 +67,7 @@
             <point key="canvasLocation" x="335" y="398.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img_default" width="1024" height="1024"/>
+    </resources>
 </document>

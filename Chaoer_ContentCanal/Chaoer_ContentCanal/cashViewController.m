@@ -106,7 +106,6 @@
 }
 
 - (IBAction)okbtn:(UIButton *)sender {
-    sender.selected = !sender.selected;
     
     [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
     
@@ -117,6 +116,8 @@
         }else{
         
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
+
         }
         
     }];
