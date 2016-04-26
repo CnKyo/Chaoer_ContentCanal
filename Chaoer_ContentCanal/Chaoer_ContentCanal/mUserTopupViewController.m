@@ -253,6 +253,16 @@
         [self showErrorStatus:@"请输入合法的银行卡号"];
         return;
     }
+    
+    if (orderCode.length == 0 || [orderCode isEqualToString:@""]) {
+        [self showErrorStatus:@"订单编号错误！请重新提交！"];
+        return;
+    }
+    if (ybOrderCode.length == 0 || [ybOrderCode isEqualToString:@""]) {
+        [self showErrorStatus:@"订单编号错误！请重新提交！"];
+        return;
+    }
+    
     [SVProgressHUD showWithStatus:@"正在充值..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo getCodeAndPay:orderCode andYBOrderCode:ybOrderCode andPhoneCode:mView.mCode.text block:^(mBaseData *resb) {

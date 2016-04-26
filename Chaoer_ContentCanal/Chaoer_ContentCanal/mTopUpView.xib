@@ -22,9 +22,9 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帐号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0z-pM-Wp7">
-                            <rect key="frame" x="78" y="13" width="60" height="21"/>
+                            <rect key="frame" x="78" y="13" width="30" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="iee-Mu-kG7"/>
+                                <constraint firstAttribute="width" constant="30" id="iee-Mu-kG7"/>
                                 <constraint firstAttribute="height" constant="21" id="xcx-X2-AXu"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -32,7 +32,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帐号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INh-kq-dZ2">
-                            <rect key="frame" x="165" y="15" width="147" height="18"/>
+                            <rect key="frame" x="113" y="15" width="199" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgX-9j-Ebi">
-                            <rect key="frame" x="165" y="49" width="147" height="17"/>
+                            <rect key="frame" x="143" y="49" width="169" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                     <constraints>
                         <constraint firstItem="L0z-pM-Wp7" firstAttribute="top" secondItem="mPF-jU-anV" secondAttribute="top" constant="13" id="4ob-kb-0pa"/>
                         <constraint firstItem="ipF-Z4-hIo" firstAttribute="leading" secondItem="7MB-87-z3n" secondAttribute="trailing" constant="8" id="96T-7F-85h"/>
-                        <constraint firstItem="INh-kq-dZ2" firstAttribute="leading" secondItem="L0z-pM-Wp7" secondAttribute="trailing" constant="27" id="9sp-ZR-Qjt"/>
+                        <constraint firstItem="INh-kq-dZ2" firstAttribute="leading" secondItem="L0z-pM-Wp7" secondAttribute="trailing" constant="5" id="9sp-ZR-Qjt"/>
                         <constraint firstAttribute="trailing" secondItem="DgX-9j-Ebi" secondAttribute="trailing" constant="8" id="Irs-DK-3j5"/>
                         <constraint firstAttribute="trailing" secondItem="INh-kq-dZ2" secondAttribute="trailing" constant="8" id="Jr9-47-iIR"/>
                         <constraint firstItem="7MB-87-z3n" firstAttribute="top" secondItem="mPF-jU-anV" secondAttribute="top" constant="13" id="RHO-jM-nD8"/>
@@ -67,7 +67,7 @@
                         <constraint firstAttribute="height" constant="80" id="VfR-u2-HS4"/>
                         <constraint firstItem="DgX-9j-Ebi" firstAttribute="top" secondItem="INh-kq-dZ2" secondAttribute="bottom" constant="16" id="baD-ru-86c"/>
                         <constraint firstItem="INh-kq-dZ2" firstAttribute="top" secondItem="mPF-jU-anV" secondAttribute="top" constant="15" id="kzY-Va-stW"/>
-                        <constraint firstItem="DgX-9j-Ebi" firstAttribute="leading" secondItem="ipF-Z4-hIo" secondAttribute="trailing" constant="27" id="pSA-E5-M39"/>
+                        <constraint firstItem="DgX-9j-Ebi" firstAttribute="leading" secondItem="ipF-Z4-hIo" secondAttribute="trailing" constant="5" id="pSA-E5-M39"/>
                         <constraint firstItem="ipF-Z4-hIo" firstAttribute="top" secondItem="L0z-pM-Wp7" secondAttribute="bottom" constant="13" id="r7L-0k-MX8"/>
                     </constraints>
                 </view>

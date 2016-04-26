@@ -73,10 +73,10 @@
 
 }
 
-- (void)leftBtnTouched:(id)sender{
-    self.block(self.mTx.text);
-    [self popViewController];
-}
+//- (void)leftBtnTouched:(id)sender{
+//    self.block(self.mTx.text);
+//    [self popViewController];
+//}
 
 /*
 #pragma mark - Navigation

@@ -624,7 +624,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mSellerName forKey:@"merchantName"];
     [para setObject:mLoginName forKey:@"userMoblie"];
     [para setObject:NumberWithInt(mBalance) forKey:@"userBalance"];
-    [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
+//    [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
+    [para setObject:NumberWithFloat(0.1) forKey:@"buyerMoney"];
     [para setObject:mPayName forKey:@"buyerName"];
     [para setObject:mIdentify forKey:@"buyerCard"];
     [para setObject:mPhone forKey:@"buyerPhone"];
