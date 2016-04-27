@@ -335,6 +335,10 @@
         [LCProgressHUD showFailure:@"请选择图片!"];
         return;
     }
+    if (mAddress == nil || [mAddress isEqualToString:@""]) {
+        [LCProgressHUD showFailure:@"请选择服务地址!"];
+        return;
+    }
     
     [self commit];
 
