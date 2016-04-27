@@ -198,11 +198,7 @@
     
     
     mView.mPhone.text = [NSString stringWithFormat:@"电话：%@",[mUserInfo backNowUser].mPhone];
-    
-    
-
-    
-    
+ 
 }
 
 - (void)loadMHActionSheetView{
@@ -1053,7 +1049,7 @@
     if( buttonIndex == 1)
     {
         needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-        nnn.mType = 2;
+        nnn.Type = 2;
         [self pushViewController:nnn];
     }
 }

@@ -76,7 +76,7 @@
                                 <constraint firstAttribute="height" constant="30" id="fjG-NK-VUT"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epg-5v-plB">
                             <rect key="frame" x="8" y="138" width="304" height="1"/>
@@ -91,7 +91,7 @@
                                 <constraint firstAttribute="height" constant="30" id="p2J-1e-mq4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaD-Je-FhI">
                             <rect key="frame" x="8" y="185" width="304" height="1"/>

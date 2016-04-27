@@ -72,7 +72,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:0.89 green:0.90 blue:0.90 alpha:1.00];
     NSString *mtt = nil;
-    if (self.mType == 1) {
+    if (self.Type == 1) {
         mtt = @"实名认证";
     }else{
         mtt = @"添加房屋";
@@ -460,7 +460,13 @@
 
 - (void)okAction:(UIButton *)sender{
     
-    if (mType == 1) {
+    
+    if ([mView.mDoorNumLb.text isEqualToString:@"选择门牌号"]) {
+        [SVProgressHUD showErrorWithStatus:@"请完善你的信息!"];
+        return;
+    }
+    
+    if (self.Type == 1) {
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
         [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {

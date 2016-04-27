@@ -12,7 +12,7 @@
 
 
 /**
- *  参数类型1是注册2是忘记密码
+ *  参数类型 1是注册 2是忘记密码 3是微信注册
  */
 @property (nonatomic,assign) int    mType;
 
@@ -61,5 +61,22 @@
 
 @property (nonatomic,strong) void(^block)(NSString *block,NSString *mPwd);
 
+
+/**
+ *  openid
+ */
+@property (nonatomic,strong) NSString *mOpenid;
+/**
+ *  昵称
+ */
+@property (nonatomic,strong) NSString *mNickName;
+/**
+ *  性别
+ */
+@property (nonatomic,strong) NSString *mSex;
+/**
+ *  头像
+ */
+@property (nonatomic,strong) NSString *mHeaderUrl;
 
 @end

@@ -330,7 +330,7 @@
                 
             }else{
                 needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                nnn.mType = 2;
+                nnn.Type = 1;
 
                 [self pushViewController:nnn];
             }
@@ -379,7 +379,7 @@
         case 6:
         {
             needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-            nnn.mType = 2;
+            nnn.Type = 3;
             [self pushViewController:nnn];
         }
             break;

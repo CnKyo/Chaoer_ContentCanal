@@ -45,7 +45,7 @@
     mIdentify = [NSMutableArray new];
     
     NSString    *sss = nil;
-    if (_mType == 1) {
+    if (_mType == 1 || _mType == 3) {
         sss = @"注册";
         self.mBgkH.constant = 250;
         self.mLastLine.hidden = NO;
@@ -142,7 +142,7 @@
                 [SVProgressHUD showErrorWithStatus:resb.mMessage];
             }
         }];
-    }else{
+    }else if(_mType == 2){
         [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
 
         [mUserInfo mForgetPwd:self.mPhone.text andNewPwd:self.mComfirPwd.text block:^(mBaseData *resb) {
@@ -158,6 +158,37 @@
             }
 
         }];
+    }else{
+        
+        NSMutableDictionary *para = [NSMutableDictionary new];
+        [para setObject:self.mPhone.text forKey:@"loginName"];
+        [para setObject:self.mCode.text forKey:@"verfyCode"];
+        [para setObject:self.mComfirPwd.text forKey:@"passWord"];
+        [para setObject:mIdentify[0] forKey:@"identity"];
+
+        [para setObject:self.mOpenid forKey:@"openid"];
+        [para setObject:self.mNickName forKey:@"nickname"];
+        [para setObject:self.mSex forKey:@"sex"];
+        [para setObject:self.mHeaderUrl forKey:@"headimgurl"];
+
+        [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
+        [mUserInfo mWechatRegist:para block:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
+                self.block(self.mPhone.text,self.mComfirPwd.text);
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+
+        }];
+        
+        
+        
+        
     }
     
 
@@ -180,7 +211,7 @@
 }
 //倒计时结束后的代理方法
 - (void)timerLabel:(MZTimerLabel *)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
-    [self.mCodeBtn setTitle:@"重新发送验证码" forState:UIControlStateNormal];//倒计时结束后按钮名称改为"发送验证码"
+    [self.mCodeBtn setTitle:@"重新获取" forState:UIControlStateNormal];//倒计时结束后按钮名称改为"发送验证码"
     [timer_show removeFromSuperview];//移除倒计时模块
     self.mCodeBtn.userInteractionEnabled = YES;//按钮可以点击
     [self.mCodeBtn setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];

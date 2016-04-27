@@ -63,6 +63,11 @@
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
 		048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8371CB642CD00383DF8 /* evolutionViewController.m */; };
 		048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8381CB642CD00383DF8 /* evolutionViewController.xib */; };
+		04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D671CD04DAE00870617 /* otherLoginViewController.m */; };
+		04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */; };
+		04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D6C1CD04DD700870617 /* mBundleView.m */; };
+		04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AB1D6E1CD04DE200870617 /* mBundleView.xib */; };
+		04AB1D731CD09F1C00870617 /* WJAdsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D721CD09F1C00870617 /* WJAdsView.m */; };
 		04BBA2E11CBD1B2000BD1420 /* addAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */; };
 		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
 		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
@@ -647,6 +652,14 @@
 		048FD8361CB642CD00383DF8 /* evolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolutionViewController.h; sourceTree = "<group>"; };
 		048FD8371CB642CD00383DF8 /* evolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evolutionViewController.m; sourceTree = "<group>"; };
 		048FD8381CB642CD00383DF8 /* evolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evolutionViewController.xib; sourceTree = "<group>"; };
+		04AB1D661CD04DAE00870617 /* otherLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otherLoginViewController.h; sourceTree = "<group>"; };
+		04AB1D671CD04DAE00870617 /* otherLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = otherLoginViewController.m; sourceTree = "<group>"; };
+		04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = otherLoginViewController.xib; sourceTree = "<group>"; };
+		04AB1D6B1CD04DD700870617 /* mBundleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBundleView.h; sourceTree = "<group>"; };
+		04AB1D6C1CD04DD700870617 /* mBundleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBundleView.m; sourceTree = "<group>"; };
+		04AB1D6E1CD04DE200870617 /* mBundleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBundleView.xib; sourceTree = "<group>"; };
+		04AB1D711CD09F1C00870617 /* WJAdsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJAdsView.h; sourceTree = "<group>"; };
+		04AB1D721CD09F1C00870617 /* WJAdsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJAdsView.m; sourceTree = "<group>"; };
 		04BBA2DE1CBD1B2000BD1420 /* addAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addAddressViewController.h; sourceTree = "<group>"; };
 		04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addAddressViewController.m; sourceTree = "<group>"; };
 		04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addAddressViewController.xib; sourceTree = "<group>"; };
@@ -1658,6 +1671,15 @@
 			name = scrollerLablr;
 			sourceTree = "<group>";
 		};
+		04AB1D701CD09F0E00870617 /* WJAdsView */ = {
+			isa = PBXGroup;
+			children = (
+				04AB1D711CD09F1C00870617 /* WJAdsView.h */,
+				04AB1D721CD09F1C00870617 /* WJAdsView.m */,
+			);
+			name = WJAdsView;
+			sourceTree = "<group>";
+		};
 		04F2DDF31CBE2BAB0088C90F /* 社区动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2629,6 +2651,12 @@
 				315442911C9A9E010047E52A /* registViewController.h */,
 				315442921C9A9E010047E52A /* registViewController.m */,
 				315442931C9A9E010047E52A /* registViewController.xib */,
+				04AB1D661CD04DAE00870617 /* otherLoginViewController.h */,
+				04AB1D671CD04DAE00870617 /* otherLoginViewController.m */,
+				04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */,
+				04AB1D6B1CD04DD700870617 /* mBundleView.h */,
+				04AB1D6C1CD04DD700870617 /* mBundleView.m */,
+				04AB1D6E1CD04DE200870617 /* mBundleView.xib */,
 				741B8D981B326EFA002104A0 /* Main.storyboard */,
 				749529A11BF72BF800E934D0 /* music */,
 				749BE9CB1B3276D600BABCA6 /* Resource */,
@@ -3056,6 +3084,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04AB1D701CD09F0E00870617 /* WJAdsView */,
 				048FD82D1CB62EA400383DF8 /* scrollerLablr */,
 				31462CE61CB3B01F00E67836 /* LXCircle */,
 				317E46231CAD269800217C60 /* rongcloud */,
@@ -3499,6 +3528,7 @@
 				749BE9DC1B32775D00BABCA6 /* Images.xcassets in Resources */,
 				04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */,
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
+				04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
 				74D292EB1B96DA8500A57977 /* moreView.xib in Resources */,
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
@@ -3610,6 +3640,7 @@
 				318D56771C9FDD150045B5FB /* fixTableViewCell.xib in Resources */,
 				317E46321CAD26A900217C60 /* Emoji.plist in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
+				04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
@@ -3771,6 +3802,7 @@
 				04648C611CB4F1A4006823C9 /* mSenderViewController.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
 				31B990231C969780002E34A5 /* washDetailViewController.m in Sources */,
+				04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */,
 				31EEB3141C93AC8000B61A86 /* WKSegmentControl.m in Sources */,
 				742FB9041B5CDEB3005A1AFA /* NSString+WPAttributedMarkup.m in Sources */,
 				318D56511C9BE28E0045B5FB /* aboutusView.m in Sources */,
@@ -3953,6 +3985,7 @@
 				740089521B38F22A00618BA0 /* BaseVC.m in Sources */,
 				7470E14F1B9C07B800ECEC69 /* leaveTableViewController.m in Sources */,
 				74C165631B7348F900C69390 /* forgetAndChangePwdView.m in Sources */,
+				04AB1D731CD09F1C00870617 /* WJAdsView.m in Sources */,
 				740089541B38F22A00618BA0 /* NavC.m in Sources */,
 				7487DC1A1B4E17F000C40220 /* MASViewConstraint.m in Sources */,
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
@@ -3978,6 +4011,7 @@
 				74BCE15B1B3A6058008F515A /* RSKTouchView.m in Sources */,
 				3123CC091C9261DA00C3B928 /* payViewController.m in Sources */,
 				740089721B38F2C300618BA0 /* AFSecurityPolicy.m in Sources */,
+				04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */,
 				31EEB3271C93BF9E00B61A86 /* mSuperMarketViewController.m in Sources */,
 				3122890E1C9662EA009C315F /* mShopTableViewCell.m in Sources */,
 				3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */,
@@ -4166,7 +4200,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
+				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
 			};
 			name = Debug;
 		};
@@ -4219,7 +4253,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
+				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
 			};
 			name = Release;
 		};

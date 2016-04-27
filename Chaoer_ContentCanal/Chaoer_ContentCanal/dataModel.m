@@ -267,6 +267,22 @@ bool g_bined = NO;
         }
     }];
 }
+
++ (void)mWechatRegist:(NSDictionary *)mPara block:(void(^)(mBaseData *resb))block{
+
+    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/register" parameters:mPara call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block (info);
+        }else{
+            block (info);
+        }
+    }];
+    
+}
+
+
+
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"userName"];
@@ -276,6 +292,30 @@ bool g_bined = NO;
         [self dealUserSession:info andPhone:mPwd block:block];
     }];
 }
++ (void)mVerifyOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mOpenId forKey:@"openid"];
+    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/login" parameters:para call:^(mBaseData *info) {
+        [self dealUserSession:info andPhone:nil block:block];
+    }];
+    
+    
+    
+}
+
++ (void)mLoginWithWechat:(NSString *)mLoginName andPassword:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mLoginName forKey:@"loginName"];
+    [para setObject:mPwd forKey:@"passWord"];
+    [para setObject:mOpenId forKey:@"openid"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/wxbind" parameters:para call:^(mBaseData *info) {
+        [self dealUserSession:info andPhone:mPwd block:block];
+    }];
+    
+}
+
+
 +(void)mForgetPwd:(NSString *)mLoginName andNewPwd:(NSString *)mPwd block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"userName"];

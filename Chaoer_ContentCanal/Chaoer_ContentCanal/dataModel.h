@@ -283,6 +283,16 @@
  *  @param block     返回值
  */
 + (void)mUserRegist:(NSString *)mPhoneNum andCode:(NSString *)mCode andPwd:(NSString *)mPwd andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block;
+
+/**
+ *  微信注册
+ *
+ *  @param mPara 参数
+ *  @param block 返回值
+ */
++ (void)mWechatRegist:(NSDictionary *)mPara block:(void(^)(mBaseData *resb))block;
+
+
 /**
  *  登录
  *
@@ -292,6 +302,22 @@
  */
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block;
 
+/**
+ *  验证是否有微信账号
+ *
+ *  @param mOpenId openid
+ *  @param block   返回值
+ */
++ (void)mVerifyOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block;
+/**
+ *  微信登录
+ *
+ *  @param mLoginName 用户名
+ *  @param mPwd       密码
+ *  @param mOpenId    openid
+ *  @param block      返回值
+ */
++ (void)mLoginWithWechat:(NSString *)mLoginName andPassword:(NSString *)mPwd andOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block;
 /**
  *  忘记密码
  *

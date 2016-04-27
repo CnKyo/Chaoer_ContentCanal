@@ -20,7 +20,9 @@
 #import "registViewController.h"
 #import "dataModel.h"
 
-
+#import "otherLoginViewController.h"
+#import "AppDelegate.h"
+#import "WJAdsView.h"
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -35,7 +37,7 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
-@interface ViewController ()<UITextFieldDelegate>
+@interface ViewController ()<UITextFieldDelegate,WJAdsViewDelegate>
 
 @end
 
@@ -54,6 +56,26 @@
     
     
     NSString    *mCodeStr;
+    
+    
+    /**
+     *  微信openid
+     */
+    NSString *mOpenID;
+    /**
+     *  昵称
+     */
+    NSString *mNickName;
+    /**
+     *  性别
+     */
+    NSString *mSex;
+    /**
+     *  头像
+     */
+    NSString *mHeaderUrl;
+    
+    int mType;
 
 }
 
@@ -142,35 +164,58 @@
 }
 #pragma mark----微信登录
 - (void)wechatAction:(UIButton *)sender{
-    [LCProgressHUD showInfoMsg:@"未授权..."];
+//    [LCProgressHUD showInfoMsg:@"未授权..."];
+    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
 
-//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
-//
-//    ///微信登录
-//    
-//    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat
-//                                   onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
-//                                       
-//                                       
-//                                       //在此回调中可以将社交平台用户信息与自身用户系统进行绑定，最后使用一个唯一用户标识来关联此用户信息。
-//                                       
-//                                       //在此示例中没有跟用户系统关联，则使用一个社交用户对应一个系统用户的方式。将社交用户的uid作为关联ID传入associateHandler。
-//                                       associateHandler (user.uid, user, user);
-//                                       NSLog(@"dd%@",user.rawData);
-//                                       NSLog(@"dd%@",user.credential);
-//                                   }onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
-//                                       
-//                                       if (state == SSDKResponseStateSuccess){
-//                                           NSLog(@"返回的用户信息：%@",user);
-//                                           
-//                                           
-//                                           
-//                                       }  else
-//                                       {
-//                                           NSLog(@"%@",error);
-//                                           [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-//                                       }
-//                                   }];
+    ///微信登录
+    
+    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat
+                                   onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
+                                       [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+                                       
+                                       //在此回调中可以将社交平台用户信息与自身用户系统进行绑定，最后使用一个唯一用户标识来关联此用户信息。
+                                       
+                                       //在此示例中没有跟用户系统关联，则使用一个社交用户对应一个系统用户的方式。将社交用户的uid作为关联ID传入associateHandler。
+                                       associateHandler (user.uid, user, user);
+                                       NSLog(@"dd%@",user.rawData);
+                                       NSLog(@"dd%@",user.credential);
+                                       
+                                       mOpenID = [user.rawData objectForKey:@"openid"];
+                                       mNickName = [user.rawData objectForKey:@"nickname"];
+                                       mSex = [user.rawData objectForKey:@"sex"];
+                                       mHeaderUrl = [user.rawData objectForKey:@"headimgurl"];
+
+                                       
+                                       [mUserInfo mVerifyOpenId:mOpenID block:^(mBaseData *resb, mUserInfo *mUser) {
+                                           if (resb.mState == 200000) {
+                                               [LCProgressHUD showSuccess:@"登录成功"];
+
+                                               [self loginOk];
+                                               
+                                           }
+                                           else{
+                                               
+                                               [self showAdsView];
+
+                                               
+                                           }
+                                       }];
+                                       
+
+                                   }onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
+                                       
+                                       if (state == SSDKResponseStateSuccess){
+                                           NSLog(@"返回的用户信息：%@",user);
+
+                                           
+                                           
+                                       }  else
+                                       {
+                                           NSLog(@"%@",error);
+                                           [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+                                       }
+                                   }];
     
  
 }
@@ -230,6 +275,14 @@
 }
 
 
+- (void)goWechat{
+
+    otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+    ooo.mType = 2;
+    ooo.mOpenId = mOpenID;
+    [self presentViewController:ooo animated:YES completion:nil];
+}
+
 #pragma mark----忘记密码
 - (void)forgetAction:(UIButton *)sender{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
@@ -244,8 +297,23 @@
 }
 #pragma mark----注册
 - (void)registAction:(UIButton *)sender{
+    
+    mType = 1;
+    
+    [self goRegist];
+}
+
+- (void)goRegist{
     registViewController *rrr = [[registViewController alloc] initWithNibName:@"registViewController" bundle:nil];
-    rrr.mType = 1;
+    rrr.mType = mType;
+    
+    if (mType == 3) {
+        rrr.mOpenid = mOpenID;
+        rrr.mNickName = mNickName;
+        rrr.mSex = mSex;
+        rrr.mHeaderUrl = mHeaderUrl;
+    }
+    
     rrr.block = ^(NSString *content,NSString *mPwd){
         
         mLoginV.phoneTx.text = content;
@@ -255,7 +323,9 @@
         
     };
     [self presentViewController:rrr animated:YES completion:nil];
+
 }
+
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
     MLLog(@"登录");
@@ -510,5 +580,88 @@
         mAlertView.alpha = 0;
     }];
 }
+
+
+#pragma mark----加载弹框
+- (void)showAdsView{
+    
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.backgroundColor = [UIColor colorWithWhite:20
+                                                   alpha:0.3];
+    WJAdsView *adsView = [[WJAdsView alloc] initWithWindow:app.window];
+    adsView.tag = 10;
+    adsView.delegate = self;
+    
+    NSArray *tt = @[@"已有账号去登录",@"未有账号去注册"];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    
+    UIView *vvvv = [UIView new];
+    vvvv.frame = CGRectMake(0, 0,adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.width);
+    
+    UIImageView *iii = [UIImageView new];
+    iii.frame = vvvv.bounds;
+    iii.image = [UIImage imageNamed:@"ren_bgk"];
+    [vvvv addSubview:iii];
+    
+    UIButton *aaa = [UIButton new];
+    aaa.frame = CGRectMake(15, vvvv.frame.size.height/2-60, vvvv.frame.size.width-30, 40);
+    aaa.backgroundColor = M_CO;
+    
+    aaa.layer.masksToBounds = YES;
+    aaa.layer.cornerRadius = 3;
+    
+    [aaa setTitle:tt[0] forState:0];
+    [aaa addTarget:self action:@selector(aaaAction:) forControlEvents:UIControlEventTouchUpInside];
+    [vvvv addSubview:aaa];
+    
+    UIButton *bbb = [UIButton new];
+    bbb.frame = CGRectMake(15, vvvv.frame.size.height/2+30, vvvv.frame.size.width-30, 40);
+    bbb.backgroundColor = [UIColor redColor];
+    
+    bbb.layer.masksToBounds = YES;
+    bbb.layer.cornerRadius = 3;
+    
+    [bbb setTitle:tt[1] forState:0];
+    [bbb addTarget:self action:@selector(bbbAction:) forControlEvents:UIControlEventTouchUpInside];
+    [vvvv addSubview:bbb];
+    
+    
+    [array addObject:vvvv];
+    
+    
+    
+    [self.view addSubview:adsView];
+    adsView.containerSubviews = array;
+    [adsView showAnimated:YES];
+}
+
+
+- (void)aaaAction:(UIButton *)sender{
+    [self goWechat];
+
+}
+
+- (void)bbbAction:(UIButton *)sender{
+    mType = 3;
+    [self goRegist];
+}
+
+- (void)hide{
+    WJAdsView *adsView = (WJAdsView *)[self.view viewWithTag:10];
+    [adsView hideAnimated:YES];
+}
+- (void)wjAdsViewDidAppear:(WJAdsView *)view{
+    NSLog(@"视图出现");
+}
+- (void)wjAdsViewDidDisAppear:(WJAdsView *)view{
+    NSLog(@"视图消失");
+}
+
+- (void)wjAdsViewTapMainContainView:(WJAdsView *)view currentSelectIndex:(long)selectIndex{
+    NSLog(@"点击主内容视图:--%ld",selectIndex);
+}
+
 
 @end
