@@ -21,21 +21,21 @@
     
     needCodeView    *mView;
     
-    int mCityId;
+    NSString *mCityId;
     
-    int mArearId;
+    NSString *mArearId;
     
     int mType;
     
-    int mCommunityId;
+   int mCommunityId;
     
-    int mBan;
+    NSString *mBan;
     
-    int mUnit;
+    NSString *mUnit;
     
-    int mDoornum;
+    NSString *mDoornum;
     
-    int mFloor;
+    NSString *mFloor;
     
     NSMutableArray *mDoornumArr;
     
@@ -146,7 +146,7 @@
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     if (mType == 3) {
         
-        [mUserInfo getArearId:mArearId andProvince:mCityId block:^(mBaseData *resb,NSArray *mArr) {
+        [mUserInfo getArearId:[[NSString stringWithFormat:@"%@",mArearId] intValue] andProvince:[[NSString stringWithFormat:@"%@",mCityId] intValue] block:^(mBaseData *resb,NSArray *mArr) {
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
@@ -178,7 +178,7 @@
         
     }else if (mType == 5){
                 
-        [mUserInfo getDoorNum:mCommunityId andBuildName:mBan block:^(mBaseData *resb, NSArray *mArr) {
+        [mUserInfo getDoorNum:mCommunityId andBuildName:[[NSString stringWithFormat:@"%@",mBan] intValue] block:^(mBaseData *resb, NSArray *mArr) {
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
                 
@@ -193,7 +193,7 @@
         
     }
     else{
-        [mUserInfo getCityId:mCityId block:^(mBaseData *resb, NSArray *mArr) {
+        [mUserInfo getCityId:[[NSString stringWithFormat:@"%@",mCityId] intValue] block:^(mBaseData *resb, NSArray *mArr) {
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
@@ -296,17 +296,17 @@
         if (mType == 1) {
             GCity *city = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
+            mCityId = city.mAreaId;
             mView.mCityLb.text = text;
             mType = 2;
 
         }else if (mType == 2){
             GCity *city = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
+            mCityId = city.mAreaId;
 
             mView.mArearLb.text = text;
-            mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
+            mArearId = city.mParentId;
             mType = 3;
 
         }else if(mType == 3){
@@ -318,16 +318,16 @@
 
         }else if(mType == 4){
             NSString *gm = Arrtemp[index];
-            mBan = [gm intValue];
+            mBan = gm;
             text = [NSString stringWithFormat:@"%@栋", gm];
             mView.mBuildLb.text = text;
-            mUnit = [gm intValue];
+            mUnit = gm;
             mType = 5;
 
             
         }else if(mType == 5){
-            int gm = [mUnitArr[index] intValue];
-            text = [NSString stringWithFormat:@"%d单元", gm];
+            NSString *gm = mUnitArr[index];
+            text = [NSString stringWithFormat:@"%@单元", gm];
             mUnit = gm;
             mView.mUnitLb.text = text;
             mType = 6;
@@ -337,15 +337,15 @@
 
             
         }else if(mType == 6){
-            int gm = [Arrtemp[index] intValue];
-            text = [NSString stringWithFormat:@"%d楼", gm];
+            NSString *gm = Arrtemp[index];
+            text = [NSString stringWithFormat:@"%@楼", gm];
             mView.mFloorLb.text = text;
             mFloor = gm;
             mType = 7;
 
         }
         else if(mType == 7){
-            int gm = [Arrtemp[index] intValue];
+            NSString *gm = Arrtemp[index];
             text = [NSString stringWithFormat:@"%@", Arrtemp[index]];
             mView.mDoorNumLb.text = text;
             mDoornum = gm;
@@ -354,7 +354,7 @@
             NSString *gm = Arrtemp[index];
             text = gm;
             mView.mDoorNumLb.text = text;
-            mDoornum = [gm intValue];
+            mDoornum = gm;
 
         }
         

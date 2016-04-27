@@ -122,12 +122,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "483436080.868016"
+                  timestampString = "483439083.424358"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1502"
                   endingLineNumber = "1502"
-                  offsetFromSymbolStart = "556">
+                  offsetFromSymbolStart = "489">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -137,12 +137,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "483436080.868199"
+                  timestampString = "483439083.424531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
                   endingLineNumber = "1503"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -218,12 +218,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/AVAndaJson.m"
-                  timestampString = "483436080.986387"
+                  timestampString = "483439083.427707"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
                   endingLineNumber = "54"
-                  offsetFromSymbolStart = "168">
+                  offsetFromSymbolStart = "165">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -233,12 +233,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/AVAndaJson.m"
-                  timestampString = "483436080.986665"
+                  timestampString = "483439083.427852"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
                   endingLineNumber = "57"
-                  offsetFromSymbolStart = "80">
+                  offsetFromSymbolStart = "69">
                </Location>
             </Locations>
          </BreakpointContent>
