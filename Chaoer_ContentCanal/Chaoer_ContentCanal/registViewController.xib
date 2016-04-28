@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-Br-zGK">
-                    <rect key="frame" x="0.0" y="79" width="320" height="250"/>
+                    <rect key="frame" x="0.0" y="79" width="320" height="186"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入有效的手机号码" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yGr-2P-spK" customClass="JVFloatLabeledTextField">
                             <rect key="frame" x="8" y="10" width="304" height="30"/>
@@ -173,7 +173,7 @@
                         <constraint firstItem="ZPW-1I-nq4" firstAttribute="leading" secondItem="cJ2-Br-zGK" secondAttribute="leading" constant="8" id="0J9-zm-Gev"/>
                         <constraint firstItem="epg-5v-plB" firstAttribute="top" secondItem="pN9-ig-6su" secondAttribute="bottom" constant="5" id="1GX-Os-QQW"/>
                         <constraint firstItem="iac-jm-zq9" firstAttribute="top" secondItem="AaD-Je-FhI" secondAttribute="bottom" constant="8" id="21T-6u-1ih"/>
-                        <constraint firstAttribute="height" constant="250" id="4R3-LC-4NN"/>
+                        <constraint firstAttribute="height" constant="186" id="4R3-LC-4NN"/>
                         <constraint firstItem="p7F-f9-KAq" firstAttribute="top" secondItem="yGr-2P-spK" secondAttribute="bottom" constant="5" id="7nd-9m-lpX"/>
                         <constraint firstItem="pN9-ig-6su" firstAttribute="top" secondItem="ZPW-1I-nq4" secondAttribute="bottom" constant="10" id="A8I-QS-3B8"/>
                         <constraint firstItem="ZPW-1I-nq4" firstAttribute="top" secondItem="QQP-TU-AGk" secondAttribute="bottom" constant="8" id="EkR-Hv-ceC"/>
@@ -207,13 +207,14 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-Ve-Vs2">
-                    <rect key="frame" x="60" y="370" width="200" height="45"/>
+                    <rect key="frame" x="15" y="306" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="mgC-Qq-Gvk"/>
-                        <constraint firstAttribute="width" constant="200" id="wUQ-iB-GNJ"/>
+                        <constraint firstAttribute="height" constant="40" id="NmO-mg-sZX"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="确定">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="mOkBtnAction:" destination="-1" eventType="touchUpInside" id="Uzf-CV-dlY"/>
@@ -229,8 +230,9 @@
                 <constraint firstAttribute="trailing" secondItem="cJ2-Br-zGK" secondAttribute="trailing" id="aEo-Fp-SSJ"/>
                 <constraint firstAttribute="bottom" secondItem="dTi-GX-aW8" secondAttribute="bottom" id="bUz-nw-2lP"/>
                 <constraint firstAttribute="trailing" secondItem="dTi-GX-aW8" secondAttribute="trailing" id="eF9-AW-7Ho"/>
-                <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kg4-QK-d9T"/>
-                <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="top" secondItem="cJ2-Br-zGK" secondAttribute="bottom" constant="41" id="wfT-Cu-DgN"/>
+                <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="top" secondItem="cJ2-Br-zGK" secondAttribute="bottom" constant="41" id="pAX-a9-gjN"/>
+                <constraint firstAttribute="trailing" secondItem="4Qt-Ve-Vs2" secondAttribute="trailing" constant="15" id="ple-Ea-ufO"/>
+                <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="xeO-BI-bUm"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="215" y="201"/>

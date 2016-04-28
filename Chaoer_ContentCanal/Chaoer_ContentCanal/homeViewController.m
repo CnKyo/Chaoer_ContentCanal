@@ -29,6 +29,13 @@
 #import "mSenderViewController.h"
 
 #import "communityStatusViewController.h"
+#import "mConversationViewController.h"
+
+
+
+
+
+
 
 #define Height (DEVICE_Width*0.67)
 
@@ -359,7 +366,10 @@
             break;
         case 2:
         {
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            
+            mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
+            [self pushViewController:ccc];
 
         }
             break;

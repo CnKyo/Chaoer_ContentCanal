@@ -47,6 +47,9 @@
     
     NSInteger mUnitIndex;
     
+    
+    NSMutableArray *mIdentify;
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -89,6 +92,7 @@
     mFloorArr = [NSMutableArray new];
 
     Arrtemp = [NSMutableArray new];
+    mIdentify = [NSMutableArray new];
 
     [self initview];
 }
@@ -111,11 +115,11 @@
     
     
     
-    if ([[mUserInfo backNowUser].mIdentity isEqualToString:@"房主"]) {
-        mView.mMasterBtn.selected = YES;
-    }else{
-        mView.mVisitorBtn.selected = YES;
-    }
+//    if ([[mUserInfo backNowUser].mIdentity isEqualToString:@"房主"]) {
+//        mView.mMasterBtn.selected = YES;
+//    }else{
+//        mView.mVisitorBtn.selected = YES;
+//    }
     
     [mView.mCityBtn addTarget:self action:@selector(cityAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mArearBtn addTarget:self action:@selector(arearAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -251,17 +255,17 @@
         for (int i = 0 ;i < self.tempArray.count ; i++) {
             
             GdoorNum *door = self.tempArray[i];
-            [mUnitArr addObject:[NSString stringWithFormat:@"%d单元",door.mUnit]];
+            [mUnitArr addObject:[NSString stringWithFormat:@"%@",door.mUnit]];
             
             NSMutableArray *floor = [NSMutableArray new];
             NSMutableArray *doorArr = [NSMutableArray new];
-            for (int j =1; j<door.mFloor; j++) {
-                [floor addObject:[NSString stringWithFormat:@"%d楼",j]];
+            for (int j =1; j<[[NSString stringWithFormat:@"%@",door.mFloor] intValue]; j++) {
+                [floor addObject:[NSString stringWithFormat:@"%d",j]];
                 
                 
             }
-            for (int k = 1; k<door.mRoomNumber; k++) {
-                [doorArr addObject:[NSString stringWithFormat:@"%d号",k]];
+            for (int k = 1; k<[[NSString stringWithFormat:@"%@",door.mRoomNumber] intValue]; k++) {
+                [doorArr addObject:[NSString stringWithFormat:@"%d",k]];
             }
             [mFloorArr addObject:floor];
             [mDoornumArr addObject:doorArr];
@@ -346,7 +350,7 @@
         }
         else if(mType == 7){
             NSString *gm = Arrtemp[index];
-            text = [NSString stringWithFormat:@"%@", Arrtemp[index]];
+            text = [NSString stringWithFormat:@"%@号", Arrtemp[index]];
             mView.mDoorNumLb.text = text;
             mDoornum = gm;
             
@@ -465,11 +469,14 @@
         [SVProgressHUD showErrorWithStatus:@"请完善你的信息!"];
         return;
     }
-    
+    if (!mIdentify.count) {
+        [self showErrorStatus:@"请选择您的身份"];
+        return;
+    }
     if (self.Type == 1) {
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
-        [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
+        [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum andIdentity:mIdentify[0] block:^(mBaseData *resb) {
             
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
@@ -484,7 +491,7 @@
 
     }else{
         [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] addHouse:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] addHouse:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum andIdentity:mIdentify[0] block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 [self popViewController];
@@ -499,15 +506,20 @@
 }
 
 - (void)choiseAction:(UIButton *)sender{
+    [mIdentify removeAllObjects];
+
     switch (sender.tag) {
         case 1:
         {
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = YES;
                 mView.mVisitorBtn.selected = NO;
+                [mIdentify addObject:NumberWithFloat(sender.tag)];
+
             }else{
                 sender.selected = NO;
-                
+                [mIdentify removeObject:NumberWithFloat(sender.tag)];
+
             }
         }
             break;
@@ -516,9 +528,12 @@
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = NO;
                 mView.mVisitorBtn.selected = YES;
+                [mIdentify addObject:NumberWithFloat(sender.tag)];
+
             }else{
                 sender.selected = NO;
-                
+                [mIdentify removeObject:NumberWithFloat(sender.tag)];
+
             }
         }
             break;

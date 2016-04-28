@@ -98,6 +98,10 @@
 @class GCanal;
 @class JHCity;
 @class JHProvince;
+@class GCanal;
+@class GCanalList;
+
+
 /**
  *  用户信息
  */
@@ -127,6 +131,12 @@
  *  身份
  */
 @property (nonatomic,strong) NSString        *mIdentity;
+/**
+ *  身份
+ */
+@property (nonatomic,assign) int        mId;
+
+
 /**
  *  用户头像
  */
@@ -221,6 +231,15 @@
  *  
  */
 @property (nonatomic,strong) SVerifyMsg *mVerifyMsg;
+/**
+ *  登录类型1是微信登录 0是手机登录 其它
+ */
+@property (nonatomic,assign) int mLoginType;
+/**
+ *  微信openid
+ */
+@property (nonatomic,strong) NSString   *mOpenId;
+
 
 -(id)initWithObj:(NSDictionary*)obj;
 
@@ -261,7 +280,7 @@
  */
 - (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block;
 
-+(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block;
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid block:(void(^)(mBaseData* resb, mUserInfo*user))block;
 
 +(void)saveUserInfo:(NSDictionary *)dccat;
 
@@ -308,7 +327,7 @@
  *  @param mOpenId openid
  *  @param block   返回值
  */
-+ (void)mVerifyOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block;
++ (void)mVerifyOpenId:(NSDictionary *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block;
 /**
  *  微信登录
  *
@@ -462,9 +481,9 @@
  *  @param mDoorNum     门牌号
  *  @param block        返回值
  */
-+ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block;
++ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block;
 
-- (void)addHouse:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block;
+- (void)addHouse:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block;
 
 
 /**
@@ -541,7 +560,7 @@
 /**
  *  获取物管回显信息
  */
-- (void)getCanalMsg:(void(^)(mBaseData *resb,NSArray *mArr))block;
+- (void)getCanalMsg:(void(^)(mBaseData *resb,GCanalList *mList))block;
 
 #pragma mark----交物管费
 /**
@@ -1177,15 +1196,15 @@
 /**
  *  楼层
  */
-@property (assign,nonatomic) int    mFloor;
+@property (strong,nonatomic) NSString    *mFloor;
 /**
  *  门牌号
  */
-@property (assign,nonatomic) int    mRoomNumber;
+@property (strong,nonatomic) NSString    *mRoomNumber;
 /**
  *  单元
  */
-@property (assign,nonatomic) int    mUnit;
+@property (strong,nonatomic) NSString    *mUnit;
 
 @end
 
@@ -1208,6 +1227,21 @@
 
 @end
 
+
+/**
+ 物管列表对象
+ 
+ - returns: 返回你
+ */
+@interface GCanalList : NSObject
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@property (strong,nonatomic) NSArray *mList;
+
+@property (assign,nonatomic) CGFloat mMoney;
+
+@end
 
 
 @interface GCanal : NSObject

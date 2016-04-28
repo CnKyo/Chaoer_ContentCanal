@@ -88,6 +88,12 @@
 		04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */; };
 		04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2F1CC61F6700E62795 /* WJ_warning.png */; };
 		04E5BD361CC61F6700E62795 /* WJ_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */; };
+		04F1E3A81CD1FBFE00222946 /* mBundlePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1E3A61CD1FBFE00222946 /* mBundlePhoneViewController.m */; };
+		04F1E3A91CD1FBFE00222946 /* mBundlePhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3A71CD1FBFE00222946 /* mBundlePhoneViewController.xib */; };
+		04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1E3AC1CD217EF00222946 /* mConversationViewController.m */; };
+		04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3AD1CD217EF00222946 /* mConversationViewController.xib */; };
+		04F1E3B31CD2185700222946 /* mConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1E3B11CD2185700222946 /* mConversationCell.m */; };
+		04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3B21CD2185700222946 /* mConversationCell.xib */; };
 		04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */; };
 		04F2DDF71CBE2BC80088C90F /* communityStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF51CBE2BC80088C90F /* communityStatusViewController.m */; };
 		04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2DDF61CBE2BC80088C90F /* communityStatusViewController.xib */; };
@@ -687,6 +693,15 @@
 		04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_sucess@2x.png"; sourceTree = "<group>"; };
 		04E5BD2F1CC61F6700E62795 /* WJ_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_warning.png; sourceTree = "<group>"; };
 		04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_warning@2x.png"; sourceTree = "<group>"; };
+		04F1E3A51CD1FBFE00222946 /* mBundlePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBundlePhoneViewController.h; sourceTree = "<group>"; };
+		04F1E3A61CD1FBFE00222946 /* mBundlePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBundlePhoneViewController.m; sourceTree = "<group>"; };
+		04F1E3A71CD1FBFE00222946 /* mBundlePhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBundlePhoneViewController.xib; sourceTree = "<group>"; };
+		04F1E3AB1CD217EF00222946 /* mConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mConversationViewController.h; sourceTree = "<group>"; };
+		04F1E3AC1CD217EF00222946 /* mConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mConversationViewController.m; sourceTree = "<group>"; };
+		04F1E3AD1CD217EF00222946 /* mConversationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mConversationViewController.xib; sourceTree = "<group>"; };
+		04F1E3B01CD2185700222946 /* mConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mConversationCell.h; sourceTree = "<group>"; };
+		04F1E3B11CD2185700222946 /* mConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mConversationCell.m; sourceTree = "<group>"; };
+		04F1E3B21CD2185700222946 /* mConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mConversationCell.xib; sourceTree = "<group>"; };
 		04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUploadManager.h; sourceTree = "<group>"; };
 		04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUploadManager.m; sourceTree = "<group>"; };
 		04F2DDF41CBE2BC80088C90F /* communityStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = communityStatusViewController.h; sourceTree = "<group>"; };
@@ -1680,6 +1695,19 @@
 			name = WJAdsView;
 			sourceTree = "<group>";
 		};
+		04F1E3AA1CD217AE00222946 /* 社区交流 */ = {
+			isa = PBXGroup;
+			children = (
+				04F1E3AB1CD217EF00222946 /* mConversationViewController.h */,
+				04F1E3AC1CD217EF00222946 /* mConversationViewController.m */,
+				04F1E3AD1CD217EF00222946 /* mConversationViewController.xib */,
+				04F1E3B01CD2185700222946 /* mConversationCell.h */,
+				04F1E3B11CD2185700222946 /* mConversationCell.m */,
+				04F1E3B21CD2185700222946 /* mConversationCell.xib */,
+			);
+			name = "社区交流";
+			sourceTree = "<group>";
+		};
 		04F2DDF31CBE2BAB0088C90F /* 社区动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2089,6 +2117,9 @@
 				31671DD31CA13344001DAEBA /* hasCodeTableViewCell.h */,
 				31671DD41CA13344001DAEBA /* hasCodeTableViewCell.m */,
 				31671DD51CA13344001DAEBA /* hasCodeTableViewCell.xib */,
+				04F1E3A51CD1FBFE00222946 /* mBundlePhoneViewController.h */,
+				04F1E3A61CD1FBFE00222946 /* mBundlePhoneViewController.m */,
+				04F1E3A71CD1FBFE00222946 /* mBundlePhoneViewController.xib */,
 			);
 			name = "实名认证";
 			sourceTree = "<group>";
@@ -2886,6 +2917,7 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
+				04F1E3AA1CD217AE00222946 /* 社区交流 */,
 				04F2DDF31CBE2BAB0088C90F /* 社区动态 */,
 				04648C5D1CB4F116006823C9 /* 跑跑腿 */,
 				313D76E71C9958B2004D5679 /* 快捷缴费 */,
@@ -3573,6 +3605,7 @@
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
+				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
 				040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */,
 				749BEA0A1B32779800BABCA6 /* MBProgressHUD.bundle in Resources */,
 				741B8D9F1B326EFA002104A0 /* LaunchScreen.xib in Resources */,
@@ -3599,7 +3632,9 @@
 				317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */,
+				04F1E3A91CD1FBFE00222946 /* mBundlePhoneViewController.xib in Resources */,
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
+				04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */,
 				318D56651C9C012B0045B5FB /* MHSheetCell.xib in Resources */,
 				04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */,
 				04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */,
@@ -3790,6 +3825,7 @@
 				04678F531CB7916A0074AA80 /* keyChain.m in Sources */,
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
 				315442941C9A9E010047E52A /* registViewController.m in Sources */,
+				04F1E3B31CD2185700222946 /* mConversationCell.m in Sources */,
 				740089551B38F22A00618BA0 /* TabBar.m in Sources */,
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				318D56681C9C012B0045B5FB /* MHSheetHead.m in Sources */,
@@ -3813,6 +3849,7 @@
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
 				7445C0931B33A39000F330EA /* UIViewExt.m in Sources */,
 				048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */,
+				04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */,
 				749BE9681B3272E700BABCA6 /* MJRefreshHeaderView.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
@@ -3987,6 +4024,7 @@
 				74C165631B7348F900C69390 /* forgetAndChangePwdView.m in Sources */,
 				04AB1D731CD09F1C00870617 /* WJAdsView.m in Sources */,
 				740089541B38F22A00618BA0 /* NavC.m in Sources */,
+				04F1E3A81CD1FBFE00222946 /* mBundlePhoneViewController.m in Sources */,
 				7487DC1A1B4E17F000C40220 /* MASViewConstraint.m in Sources */,
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
 				31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */,

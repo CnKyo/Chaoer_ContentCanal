@@ -164,7 +164,7 @@
 }
 #pragma mark----微信登录
 - (void)wechatAction:(UIButton *)sender{
-//    [LCProgressHUD showInfoMsg:@"未授权..."];
+
     [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
 
     ///微信登录
@@ -187,16 +187,27 @@
                                        mHeaderUrl = [user.rawData objectForKey:@"headimgurl"];
 
                                        
-                                       [mUserInfo mVerifyOpenId:mOpenID block:^(mBaseData *resb, mUserInfo *mUser) {
-                                           if (resb.mState == 200000) {
+                                       NSMutableDictionary *para = [NSMutableDictionary new];
+                                       [para setObject:mOpenID forKey:@"openid"];
+                                       [para setObject:mNickName forKey:@"nickname"];
+                                       [para setObject:mSex forKey:@"sex"];
+                                       [para setObject:mHeaderUrl forKey:@"headimgurl"];
+                                       [para setObject:@"1" forKey:@"loginType"];
+                                       
+                                       
+                                       [mUserInfo mVerifyOpenId:para block:^(mBaseData *resb, mUserInfo *mUser) {
+                                           if (resb.mState == 200011) {
+                                               
                                                [LCProgressHUD showSuccess:@"登录成功"];
 
                                                [self loginOk];
-                                               
+//                                               
                                            }
                                            else{
                                                
-                                               [self showAdsView];
+//                                               [self showAdsView];
+
+                                               [self showErrorStatus:resb.mMessage];
 
                                                
                                            }

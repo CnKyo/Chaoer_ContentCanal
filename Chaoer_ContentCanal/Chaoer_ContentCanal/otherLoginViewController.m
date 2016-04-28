@@ -97,12 +97,11 @@
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
         if (resb.mSucess) {
-            [LCProgressHUD showSuccess:@"登录成功"];
+            [LCProgressHUD showSuccess:@"绑定成功"];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
             
-            self.presentingViewController.view.alpha = 0;
-            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            [self popViewController];
 
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
@@ -161,6 +160,7 @@
 
 
 - (void)leftBtnTouched:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+    [self popViewController];
 }
 @end

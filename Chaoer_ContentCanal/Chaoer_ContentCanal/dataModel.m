@@ -219,6 +219,11 @@ bool g_bined = NO;
     self.mPhone = [obj objectForKeyMy:@"moblie"];
     self.mPwd = [obj objectForKeyMy:@"mPwd"];
     self.muuid = @"";
+    
+    self.mLoginType = [[obj objectForKeyMy:@"loginType"] intValue];
+    self.mOpenId = [obj objectForKeyMy:@"mOpenId"];
+    self.mId = [[obj objectForKeyMy:@"identity"] intValue];
+    
 }
 
 + (BOOL)isNeedLogin{
@@ -257,7 +262,10 @@ bool g_bined = NO;
     [para setObject:mPhoneNum forKey:@"userName"];
     [para setObject:mCode forKey:@"verfyCode"];
     [para setObject:mPwd forKey:@"passWord"];
-    [para setObject:mId forKey:@"identity"];
+    if (mId) {
+    [para setObject:mId forKey:@"identity"];    
+    }
+    
     [[HTTPrequest sharedClient] postUrl:@"app/auth/register" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
         
@@ -289,14 +297,14 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:mPwd block:block];
+        [self dealUserSession:info andPhone:mPwd andOpenId:nil block:block];
     }];
 }
-+ (void)mVerifyOpenId:(NSString *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mOpenId forKey:@"openid"];
-    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/login" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:nil block:block];
++ (void)mVerifyOpenId:(NSDictionary *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
+ 
+    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/login" parameters:mOpenId call:^(mBaseData *info) {
+        
+        [self dealUserSession:info andPhone:nil andOpenId:[mOpenId objectForKey:@"openid"] block:block];
     }];
     
     
@@ -309,8 +317,8 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     [para setObject:mOpenId forKey:@"openid"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/wxbind" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:mPwd block:block];
+    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/wxPhoneBind" parameters:para call:^(mBaseData *info) {
+        [self dealUserSession:info andPhone:mPwd  andOpenId:mOpenId block:block];
     }];
     
 }
@@ -340,7 +348,7 @@ bool g_bined = NO;
     
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
-        [mUserInfo dealUserSession:info andPhone:nil block:block];
+        [mUserInfo dealUserSession:info andPhone:nil andOpenId:nil block:block];
 
     }];
 
@@ -361,11 +369,12 @@ bool g_bined = NO;
     
     [def synchronize];
 }
-+(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara block:(void(^)(mBaseData* resb, mUserInfo*user))block
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
     
 #warning 返回的数据是整个用户信息对象
-    if ( info.mSucess ) {
+    if ( info.mSucess || info.mState == 200011) {
+        [mUserInfo openPush];
         NSDictionary* tmpdic = info.mData;
         
         NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
@@ -380,7 +389,10 @@ bool g_bined = NO;
         if (mPara) {
             [tdic setObject:mPara forKey:@"mPwd"];
         }
-        
+        if (mOpenid) {
+            [tdic setObject:mOpenid forKey:@"mOpenId"];
+
+        }
         
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
         tmpdic = tdic;
@@ -389,8 +401,12 @@ bool g_bined = NO;
             g_user = nil;
             
         }
+        
+        
 
     }
+    
+    
     block( info , [mUserInfo backNowUser] );
     
 }
@@ -423,7 +439,7 @@ bool g_bined = NO;
 
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
         
-        [self dealUserSession:info andPhone:para block:block];
+        [self dealUserSession:info andPhone:nil andOpenId:nil block:block];
 
     }];
     
@@ -664,8 +680,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mSellerName forKey:@"merchantName"];
     [para setObject:mLoginName forKey:@"userMoblie"];
     [para setObject:NumberWithInt(mBalance) forKey:@"userBalance"];
-//    [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
-    [para setObject:NumberWithFloat(0.1) forKey:@"buyerMoney"];
+    [para setObject:NumberWithInt(mMoney) forKey:@"buyerMoney"];
+//    [para setObject:NumberWithFloat(0.1) forKey:@"buyerMoney"];
     [para setObject:mPayName forKey:@"buyerName"];
     [para setObject:mIdentify forKey:@"buyerCard"];
     [para setObject:mPhone forKey:@"buyerPhone"];
@@ -823,20 +839,24 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 
 
-+ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block{
++ (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     if (mName) {
         [para setObject:mName forKey:@"userName"];
     }
-    
+    if (mId) {
+        [para setObject:mId forKey:@"customerType"];
+
+    }
     [para setObject:NumberWithInt(mUserid) forKey:@"userId"];
     [para setObject:NumberWithInt(mCommunityId) forKey:@"propertyId"];
-    [para setObject:NumberWithInt(mBannum) forKey:@"banNum"];
-    [para setObject:NumberWithInt(mUnitNum) forKey:@"unitNum"];
-    [para setObject:NumberWithInt(mFloor) forKey:@"floorNum"];
-    [para setObject:NumberWithInt(mDoorNum) forKey:@"roomNum"];
+    [para setObject:mBannum forKey:@"banNum"];
+    [para setObject:mUnitNum forKey:@"unitNum"];
+    [para setObject:mFloor forKey:@"floorNum"];
+    [para setObject:mDoorNum forKey:@"roomNum"];
+    
     
     [[HTTPrequest sharedClient] postUrl:@"app/house/appBindHouse" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
@@ -854,17 +874,20 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
-- (void)addHouse:(int)mCommunityId andBannum:(int)mBannum andUnnitnum:(int)mUnitNum andFloor:(int)mFloor andDoornum:(int)mDoorNum block:(void(^)(mBaseData *resb))block{
+- (void)addHouse:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:NumberWithInt(mCommunityId) forKey:@"propertyId"];
-    [para setObject:NumberWithInt(mBannum) forKey:@"banNum"];
-    [para setObject:NumberWithInt(mUnitNum) forKey:@"unitNum"];
-    [para setObject:NumberWithInt(mFloor) forKey:@"floorNum"];
-    [para setObject:NumberWithInt(mDoorNum) forKey:@"roomNum"];
-    
+    [para setObject:mBannum forKey:@"banNum"];
+    [para setObject:mUnitNum forKey:@"unitNum"];
+    [para setObject:mFloor forKey:@"floorNum"];
+    [para setObject:mDoorNum forKey:@"roomNum"];
+    if (mId) {
+        [para setObject:mId forKey:@"customerType"];
+        
+    }
     [[HTTPrequest sharedClient] postUrl:@"app/house/appAddHouse" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
@@ -1070,7 +1093,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
-- (void)getCanalMsg:(void(^)(mBaseData *resb,NSArray *mArr))block{
+- (void)getCanalMsg:(void(^)(mBaseData *resb,GCanalList *mList))block{
 
     [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/getPropertyCost" parameters:@{@"userId":[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]} call:^(mBaseData *info) {
         
@@ -1078,12 +1101,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         
         if (info.mSucess) {
             
-            for (NSDictionary *dic in info.mData) {
+            GCanalList *mCanal = [[GCanalList alloc] initWithObj:info.mData];
+            
+            
+            for (NSDictionary *dic in mCanal.mList) {
                 
                 [tempArr addObject:[[GCanal alloc] initWithObj:dic]];
             }
+            mCanal.mList = tempArr;
             
-            block ( info,tempArr);
+            block ( info,mCanal);
             
         }else{
             block ( info,nil);
@@ -1751,7 +1778,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSString* t = [NSString stringWithFormat:@"%d", [mUserInfo backNowUser].mUserId];
     
-    t = [@"staff_" stringByAppendingString:t];
+    t = [@"buyer_" stringByAppendingString:t];
     
     //别名
     //1."seller_1"
@@ -1763,7 +1790,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     //2."重庆"/...
     
     
-    NSSet* labelset = [[NSSet alloc]initWithObjects:@"staff", @"ios",nil];
+    NSSet* labelset = [[NSSet alloc]initWithObjects:@"buyer", @"ios",nil];
     
     [APService setTags:labelset alias:t callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
 
@@ -2093,9 +2120,9 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 -(void)fetch:(NSDictionary*)obj
 {
     
-    self.mFloor = [[obj objectForKeyMy:@"floor"] intValue];
-    self.mRoomNumber = [[obj objectForKeyMy:@"roomNumber"] intValue];
-    self.mUnit = [[obj objectForKeyMy:@"unit"] intValue];
+    self.mFloor = [obj objectForKeyMy:@"floor"];
+    self.mRoomNumber = [obj objectForKeyMy:@"roomNumber"];
+    self.mUnit = [obj objectForKeyMy:@"unit"];
 
     
     
@@ -2122,6 +2149,27 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.pageNumber = [[obj objectForKeyMy:@"pageNumber"] intValue];
     
 }
+
+@end
+
+
+@implementation  GCanalList
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    
+    self.mMoney = [[obj objectForKeyMy:@"money"] floatValue];
+    self.mList = [obj objectForKeyMy:@"propertyCostList"];
+    
+}
+
 
 @end
 

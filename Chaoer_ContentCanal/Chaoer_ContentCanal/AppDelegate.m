@@ -64,7 +64,7 @@
     [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
     
-    [[RCIM sharedRCIM] initWithAppKey:@"n19jmcy59znh9"];
+    [[RCIM sharedRCIM] initWithAppKey:@"cpj2xarljnyun"];
     
     
     
@@ -144,7 +144,7 @@
     
     [APService setupWithOption:launchOptions];
     
-    [mUserInfo openPush];
+//    [mUserInfo openPush];
     
 //    [SUser relTokenWithPush];
 //    

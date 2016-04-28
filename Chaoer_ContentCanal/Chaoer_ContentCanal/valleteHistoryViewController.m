@@ -172,15 +172,18 @@
         cell.mImf.image = [UIImage imageNamed:@"topup_cell"];
     }
     
-    cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
     cell.mTime.text = mScore.mAddTime;
     
     int mType = mScore.mType;
     
     if (mType == 0) {
         cell.mStatus.text = @"充值";
+        cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
+
     }else{
         cell.mStatus.text = @"支付";
+        cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
+
     }
     cell.mtitle.text = mScore.mDescribe;
     

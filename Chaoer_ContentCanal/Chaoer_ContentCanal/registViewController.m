@@ -17,6 +17,10 @@
     UILabel *timer_show;//倒计时label
     
     NSMutableArray *mIdentify;
+    
+    
+    NSString *mCode;
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -47,12 +51,12 @@
     NSString    *sss = nil;
     if (_mType == 1 || _mType == 3) {
         sss = @"注册";
-        self.mBgkH.constant = 250;
+        self.mBgkH.constant = 186;
         self.mLastLine.hidden = NO;
     }else{
     
         sss = @"忘记密码";
-        self.mBgkH.constant = 195;
+        self.mBgkH.constant = 186;
         self.mLastLine.hidden = YES;
     }
     
@@ -69,12 +73,11 @@
     
     self.mPhone.delegate = self;
     
-    self.mCodeBtn.layer.masksToBounds = YES;
-    self.mCodeBtn.layer.cornerRadius = 3;
+    self.mCodeBtn.layer.masksToBounds = self.mRegistBtn.layer.masksToBounds = YES;
+    self.mCodeBtn.layer.cornerRadius = self.mRegistBtn.layer.cornerRadius = 3;
     
     
-    [self.mRegistBtn setBackgroundImage:[UIImage imageNamed:@"btn_selected"] forState:UIControlStateSelected];
-    [self.mRegistBtn setBackgroundImage:[UIImage imageNamed:@"btn_unselected"] forState:UIControlStateNormal];
+
     
 }
 
@@ -95,6 +98,8 @@
         if (resb.mData) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 
+            mCode = [NSString stringWithFormat:@"%@",resb.mData];
+            
             [self timeCount];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
@@ -121,16 +126,24 @@
         return;
     }
     else if(self.mType == 1){
-        if (!mIdentify.count) {
-            [self showErrorStatus:@"请选择您的身份"];
-            return;
-        }
+//        if (!mIdentify.count) {
+//            [self showErrorStatus:@"请选择您的身份"];
+//            return;
+//        }
     }
+    
+    if (![self.mCode.text isEqualToString:mCode]) {
+        [self showErrorStatus:@"验证码输入错误!"];
+        [self.mCode becomeFirstResponder];
+        return;
+
+    }
+    
 
     if (_mType == 1) {
         [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 
-        [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:mIdentify[0] block:^(mBaseData *resb) {
+        [mUserInfo mUserRegist:self.mPhone.text andCode:self.mCode.text andPwd:self.mComfirPwd.text andIdentity:@"1" block:^(mBaseData *resb) {
             if (resb.mSucess) {
                 [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
                 self.block(self.mPhone.text,self.mComfirPwd.text);

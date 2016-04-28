@@ -37,6 +37,7 @@
 #import "needCodeViewController.h"
 #import "verifyBankViewController.h"
 
+#import "otherLoginViewController.h"
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -195,15 +196,22 @@
 }
 - (void)headerBeganRefresh{
 
-    
-    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+    if ([mUserInfo backNowUser].mId == 0) {
         [self headerEndRefresh];
-        if (resb.mSucess) {
-            [self initData];
-        }else{
-            
-        }
-    }];
+
+        [self initData];
+
+    }else{
+        [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+            [self headerEndRefresh];
+            if (resb.mSucess) {
+                [self initData];
+            }else{
+                
+            }
+        }];
+    }
+    
 }
 
 #pragma mark----设置事件
@@ -318,23 +326,35 @@
     switch (i) {
         case 1:
         {
-            if ([mUserInfo backNowUser].mIsRegist) {
-                hasCodeViewController *hhh = [hasCodeViewController new];
-                [self pushViewController:hhh];
-            }else if([mUserInfo backNowUser].mIsBundle == 1){
-                
-                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                [self pushViewController:vvv];
-                
-                
-                
+            
+            if ([mUserInfo backNowUser].mId == 0) {
+                otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+                ooo.mType = 2;
+                ooo.mOpenId = [mUserInfo backNowUser].mOpenId;
+                [self pushViewController:ooo];
+
             }else{
-                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                nnn.Type = 1;
+            
+                if ([mUserInfo backNowUser].mIsRegist) {
+                    hasCodeViewController *hhh = [hasCodeViewController new];
+                    [self pushViewController:hhh];
+                }else if([mUserInfo backNowUser].mIsBundle == 1){
+                    
+                    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                    [self pushViewController:vvv];
+                    
+                    
+                    
+                }else{
+                    needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                    nnn.Type = 1;
+                    
+                    [self pushViewController:nnn];
+                }
 
-                [self pushViewController:nnn];
             }
-
+            
+          
 
         }
             break;

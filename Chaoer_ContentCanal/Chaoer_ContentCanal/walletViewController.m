@@ -64,10 +64,14 @@
             
             
             
+            mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
             mView.mBalanceLb.format = @"¥%.2f";
+            [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
             
             
+            mView.mScore.method = UILabelCountingMethodEaseInOut;
             mView.mScore.format = @"积分：%d";
+            [mView.mScore countFrom:0 to:[mUserInfo backNowUser].mCredit];
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

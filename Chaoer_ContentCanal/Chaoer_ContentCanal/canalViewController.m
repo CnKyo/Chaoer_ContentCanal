@@ -30,6 +30,9 @@
     
     BOOL isSelected;
     utilityView *mView;
+    
+    
+    GCanalList *mCList;
 
     
 }
@@ -66,15 +69,18 @@
     [mCanView.mLogoImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
     
     [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
-    [[mUserInfo backNowUser] getCanalMsg:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getCanalMsg:^(mBaseData *resb, GCanalList *mList) {
     
         [self.tempArray removeAllObjects];
         
         if (resb.mSucess) {
             [SVProgressHUD dismiss];
-//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+
+            mCList = GCanalList.new;
+            mCList = mList;
             
-            [self.tempArray addObjectsFromArray:mArr];
+            [self.tempArray addObjectsFromArray:mList.mList];
+            
             [self updatePage];
             
         }else{
