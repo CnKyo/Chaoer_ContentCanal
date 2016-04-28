@@ -105,7 +105,9 @@
 //            
 //            [self pushViewController:mmm];
 
-            [self popViewController_3];
+//            [self popViewController_3];
+            self.presentingViewController.view.alpha = 0;
+            [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
