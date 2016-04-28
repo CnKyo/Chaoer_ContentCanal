@@ -135,7 +135,7 @@
                 [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
                 self.block(self.mPhone.text,self.mComfirPwd.text);
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewController];
                 
                 
             }else{
@@ -150,7 +150,7 @@
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 self.block(self.mPhone.text,self.mComfirPwd.text);
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewController];
                 
                 
             }else{
@@ -177,8 +177,7 @@
                 [SVProgressHUD showSuccessWithStatus:@"注册成功，即将重新登录!"];
                 self.block(self.mPhone.text,self.mComfirPwd.text);
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
+                [self dismissViewController];
                 
             }else{
                 [SVProgressHUD showErrorWithStatus:resb.mMessage];
@@ -296,7 +295,7 @@
 }
 
 - (void)leftBtnTouched:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewController];
 
 }
 

@@ -55,7 +55,7 @@
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self initEmptyView];
             
-            [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+            [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能投诉哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
         }
 
@@ -166,17 +166,19 @@
     {
         [self popViewController];
     }else{
-        if ([mUserInfo backNowUser].mIsRegist) {
-            hasCodeViewController *hhh = [hasCodeViewController new];
-            [self pushViewController:hhh];
-        }else if([mUserInfo backNowUser].mIsBundle == 1){
-            
-            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-            [self pushViewController:vvv];
-            
-            
-            
-        }
+        [self popViewController];
+//
+//        if ([mUserInfo backNowUser].mIsRegist) {
+//            hasCodeViewController *hhh = [hasCodeViewController new];
+//            [self pushViewController:hhh];
+//        }else if([mUserInfo backNowUser].mIsBundle == 1){
+//            
+//            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+//            [self pushViewController:vvv];
+//            
+//            
+//            
+//        }
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

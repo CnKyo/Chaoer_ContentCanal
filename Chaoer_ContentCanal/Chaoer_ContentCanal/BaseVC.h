@@ -85,8 +85,34 @@
  *  @param whatYouWant 上级页面个数
  */
 - (void)popViewController:(int)whatYouWant;
+
+
+/**
+ *  模态跳转返回上一级
+ */
+- (void)dismissViewController;
+/**
+ *  模态跳转返回上二级
+ */
+- (void)dismissViewController_2;
+/**
+ *  模态跳转返回上三级
+ */
+- (void)dismissViewController_3;
+/**
+ *  模态跳转返回上n级
+ */
+- (void)dismissViewController:(int)whatYouWant;
+
+
 -(void)popToRootViewController;                         //返回rootController
 -(void)pushViewController:(UIViewController *)vc;       //跳转到某个controller
+/**
+ *  模态跳转方法
+ *
+ *  @param vc 跳转的viewcontroller
+ */
+- (void)presentModalViewController:(UIViewController *)vc;
 -(void)setToViewController:(UIViewController *)vc;       //直接设置过去
 -(void)setToViewController_2:(UIViewController *)vc;     //直接设置过去,并且把上一级也移除了
 

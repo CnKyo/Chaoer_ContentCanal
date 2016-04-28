@@ -101,13 +101,7 @@
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 
-//            makeFixOrderDetailViewController *mmm = [[makeFixOrderDetailViewController alloc] initWithNibName:@"makeFixOrderDetailViewController" bundle:nil];
-//            
-//            [self pushViewController:mmm];
-
-//            [self popViewController_3];
-            self.presentingViewController.view.alpha = 0;
-            [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewController_3];
             
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

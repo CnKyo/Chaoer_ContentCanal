@@ -471,6 +471,37 @@
         [self.navigationController setViewControllers:vcs   animated:YES];
     }
 }
+
+
+/**
+ *  模态跳转返回上一级
+ */
+- (void)dismissViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+/**
+ *  模态跳转返回上二级
+ */
+- (void)dismissViewController_2{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+/**
+ *  模态跳转返回上三级
+ */
+- (void)dismissViewController_3{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+/**
+ *  模态跳转返回上n级
+ */
+- (void)dismissViewController:(int)whatYouWant{
+    self.presentingViewController.view.alpha = 0;
+    [self.presentingViewController.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)popToRootViewController{
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -489,6 +520,25 @@
 
         [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void)presentModalViewController:(UIViewController *)vc{
+    if( [vc isKindOfClass:[BaseVC class] ] )
+    {
+        if( ((BaseVC*)vc).isMustLogin )
+        {
+            
+        }
+        else
+            
+            [self presentViewController:vc animated:YES completion:nil];
+    }
+    else
+        
+        [self presentViewController:vc animated:YES completion:nil];
+}
+
+
+
 -(void)setToViewController:(UIViewController *)vc
 {
     NSMutableArray* vcs = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];

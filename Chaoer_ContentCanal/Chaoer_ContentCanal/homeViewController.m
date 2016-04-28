@@ -330,8 +330,7 @@
         case 1:
         {
             mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
-//            [self pushViewController:ppp];
-            [self presentViewController:ppp animated:YES completion:nil];
+            [self presentModalViewController:ppp];
         }
             break;
         default:

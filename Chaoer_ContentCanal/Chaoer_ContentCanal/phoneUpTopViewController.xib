@@ -67,60 +67,76 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToO-aY-OAY">
                             <rect key="frame" x="20" y="120" width="60" height="30"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8in-5g-Abw">
-                                    <rect key="frame" x="18" y="4" width="42" height="21"/>
+                                <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-uM-F7X">
+                                    <rect key="frame" x="5" y="3" width="50" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="R5s-qG-68j"/>
+                                        <constraint firstAttribute="width" constant="50" id="iou-1d-eQU"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" tag="30" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-uM-F7X">
-                                    <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal">
+                                    <state key="normal" title="30元" backgroundImage="paytype_unselected">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="selected" backgroundImage="paytype_selected">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="exg-uM-F7X" firstAttribute="centerY" secondItem="ToO-aY-OAY" secondAttribute="centerY" id="Aeo-3l-xYc"/>
+                                <constraint firstItem="exg-uM-F7X" firstAttribute="centerX" secondItem="ToO-aY-OAY" secondAttribute="centerX" id="n8z-Ts-qNb"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMN-L3-eEK">
                             <rect key="frame" x="136" y="120" width="60" height="30"/>
                             <subviews>
-                                <button opaque="NO" tag="50" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBD-AC-Ch5">
-                                    <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal">
+                                <button opaque="NO" tag="50" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBD-AC-Ch5">
+                                    <rect key="frame" x="5" y="3" width="50" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="eRq-2K-Ia6"/>
+                                        <constraint firstAttribute="height" constant="25" id="swa-Q3-Rmh"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="50元" backgroundImage="paytype_unselected">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <state key="selected" backgroundImage="paytype_selected">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QA6-Wa-lC2">
-                                    <rect key="frame" x="18" y="4" width="42" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="2rJ-1V-Qg1"/>
+                                <constraint firstItem="fBD-AC-Ch5" firstAttribute="centerX" secondItem="iMN-L3-eEK" secondAttribute="centerX" id="Lcp-F9-ABz"/>
+                                <constraint firstItem="fBD-AC-Ch5" firstAttribute="centerY" secondItem="iMN-L3-eEK" secondAttribute="centerY" id="fgy-Nc-IRP"/>
                                 <constraint firstAttribute="height" constant="30" id="gvX-Vm-mM8"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aft-jG-b5z">
                             <rect key="frame" x="252" y="120" width="60" height="30"/>
                             <subviews>
-                                <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-i0-qMX">
-                                    <rect key="frame" x="0.0" y="7" width="15" height="15"/>
-                                    <state key="normal">
+                                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-i0-qMX">
+                                    <rect key="frame" x="5" y="3" width="50" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="cXF-4i-cZ1"/>
+                                        <constraint firstAttribute="width" constant="50" id="x9I-Nr-pww"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="100元" backgroundImage="paytype_unselected">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <state key="selected" backgroundImage="paytype_selected">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybq-b1-iJG">
-                                    <rect key="frame" x="18" y="4" width="42" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="zVp-i0-qMX" firstAttribute="centerX" secondItem="aft-jG-b5z" secondAttribute="centerX" id="SmY-qv-RsT"/>
+                                <constraint firstItem="zVp-i0-qMX" firstAttribute="centerY" secondItem="aft-jG-b5z" secondAttribute="centerY" id="y2B-38-rRe"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5p1-8E-vVZ">
                             <rect key="frame" x="20" y="158" width="292" height="1"/>
@@ -229,5 +245,7 @@
     </objects>
     <resources>
         <image name="mBaseBgkImg" width="640" height="1136"/>
+        <image name="paytype_selected" width="120" height="46"/>
+        <image name="paytype_unselected" width="120" height="46"/>
     </resources>
 </document>

@@ -434,7 +434,8 @@
             ccc.Type = 1;
             ccc.mData = mBaseData.new;
             ccc.mData = resb;
-            [self presentViewController:ccc animated:YES completion:nil];
+            [self presentModalViewController:ccc];
+            
 
             
         }else{
@@ -1045,7 +1046,7 @@
 
 - (void)leftBtnTouched:(id)sender{
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewController];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

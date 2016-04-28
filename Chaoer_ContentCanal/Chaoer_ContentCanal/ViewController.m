@@ -206,12 +206,16 @@
                                    }onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
                                        
                                        if (state == SSDKResponseStateSuccess){
+                                           [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
                                            NSLog(@"返回的用户信息：%@",user);
 
                                            
                                            
                                        }  else
                                        {
+                                           [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
                                            NSLog(@"%@",error);
                                            [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
                                        }
@@ -280,7 +284,7 @@
     otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
     ooo.mType = 2;
     ooo.mOpenId = mOpenID;
-    [self presentViewController:ooo animated:YES completion:nil];
+    [self presentModalViewController:ooo];
 }
 
 #pragma mark----忘记密码
@@ -293,7 +297,7 @@
         mLoginV.codeTx.text = mPwd;
     };
     
-    [self presentViewController:rrr animated:YES completion:nil];
+    [self presentModalViewController:rrr];
 }
 #pragma mark----注册
 - (void)registAction:(UIButton *)sender{
@@ -322,8 +326,8 @@
         [self initLogin];
         
     };
-    [self presentViewController:rrr animated:YES completion:nil];
 
+    [self presentModalViewController:rrr];
 }
 
 #pragma mark----登录
@@ -413,8 +417,8 @@
 //    else
 //    {
 //        [self popViewController_2];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
+    [self dismissViewController];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
 
 //    }
     
@@ -598,7 +602,7 @@
     
     
     UIView *vvvv = [UIView new];
-    vvvv.frame = CGRectMake(0, 0,adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.width);
+    vvvv.frame = CGRectMake(0, 0,adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.height);
     
     UIImageView *iii = [UIImageView new];
     iii.frame = vvvv.bounds;

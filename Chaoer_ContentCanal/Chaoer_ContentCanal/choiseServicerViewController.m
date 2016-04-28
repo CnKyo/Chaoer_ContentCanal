@@ -315,7 +315,6 @@
         [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
     }else{
-        [self dismissViewControllerAnimated:YES completion:nil];
         [self popViewController];
     }
   
@@ -327,13 +326,7 @@
     
     if( buttonIndex == 1)
     {
-//        [self popViewController_2];
-//        self.tabBarController.selectedIndex = 1;
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            [self popViewController];
-//        }];
-        self.presentingViewController.view.alpha = 0;
-        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewController_2];
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
