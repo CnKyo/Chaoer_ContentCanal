@@ -244,6 +244,25 @@ bool g_bined = NO;
     return self.muuid.length == 0;
 }
 
+- (BOOL)mTemporary{
+    return self.mId == 0;
+}
+
+
++ (void)OpenRCConnect{
+
+    
+    mUserInfo *mUser = [mUserInfo backNowUser];
+    if (!mUser) {
+        return;
+    }
+    
+    
+    
+}
+
+
+
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"moblie"];

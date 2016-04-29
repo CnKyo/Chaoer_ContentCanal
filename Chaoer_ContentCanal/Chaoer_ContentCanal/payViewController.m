@@ -115,6 +115,11 @@
  *  @param sender
  */
 - (IBAction)mCanalAction:(id)sender {
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     UIButton *bbb = sender;
     bbb.selected = !bbb.selected;
     canalViewController *ccc= [canalViewController new];
@@ -131,6 +136,12 @@
  *  @param sender
  */
 - (IBAction)mThreeAction:(id)sender {
+    
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     UIButton *bbb = sender;
     bbb.selected = !bbb.selected;
 

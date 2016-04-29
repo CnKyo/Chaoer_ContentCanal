@@ -214,7 +214,7 @@
     MZTimerLabel *timer_cutDown = [[MZTimerLabel alloc] initWithLabel:timer_show andTimerType:MZTimerLabelTypeTimer];//创建MZTimerLabel类的对象timer_cutDown
     [timer_cutDown setCountDownTime:60];//倒计时时间60s
     timer_cutDown.timeFormat = @"ss秒后再试";//倒计时格式,也可以是@"HH:mm:ss SS"，时，分，秒，毫秒；想用哪个就写哪个
-    timer_cutDown.timeLabel.textColor = [UIColor whiteColor];//倒计时字体颜色
+    timer_cutDown.timeLabel.textColor = [UIColor lightGrayColor];//倒计时字体颜色
     timer_cutDown.timeLabel.font = [UIFont systemFontOfSize:17.0];//倒计时字体大小
     timer_cutDown.timeLabel.textAlignment = NSTextAlignmentCenter;//剧中
     timer_cutDown.delegate = self;//设置代理，以便后面倒计时结束时调用代理

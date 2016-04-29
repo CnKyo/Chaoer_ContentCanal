@@ -192,6 +192,13 @@
             break;
         case 1:
         {
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            } else if ([mUserInfo backNowUser].mIsRegist == 0) {
+                [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
+                return;
+            }
             cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
             [self pushViewController:ccc];
 
@@ -287,6 +294,13 @@
     [self pushViewController:ppp];
 }
 - (void)btn4Action:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    } else if ([mUserInfo backNowUser].mIsRegist == 0) {
+        [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
+        return;
+    }
     cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
     [self pushViewController:ccc];
 }
@@ -382,6 +396,13 @@
             break;
         case 1:
         {
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            } else if ([mUserInfo backNowUser].mIsRegist == 0) {
+                [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
+                return;
+            }
             cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
             [self pushViewController:ccc];
             

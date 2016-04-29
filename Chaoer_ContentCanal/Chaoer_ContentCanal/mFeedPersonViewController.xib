@@ -311,13 +311,13 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vo-s9-UD8">
-                    <rect key="frame" x="60" y="405" width="200" height="45"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="15" y="405" width="290" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="5bX-pQ-T2j"/>
-                        <constraint firstAttribute="width" constant="200" id="HEl-sB-LjV"/>
+                        <constraint firstAttribute="height" constant="40" id="SqN-hD-Rtq"/>
                     </constraints>
-                    <state key="normal" title="提交" backgroundImage="feed_unselected">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="提交">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -327,13 +327,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="2Vo-s9-UD8" firstAttribute="top" secondItem="GFx-c7-KBv" secondAttribute="bottom" constant="18" id="1ag-kN-OIx"/>
                 <constraint firstAttribute="bottom" secondItem="Kji-Hp-csI" secondAttribute="bottom" id="6Re-FB-IyQ"/>
                 <constraint firstItem="Kji-Hp-csI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="AA9-SU-9Ab"/>
                 <constraint firstAttribute="trailing" secondItem="Kji-Hp-csI" secondAttribute="trailing" id="Stv-iP-0od"/>
                 <constraint firstItem="Kji-Hp-csI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Tll-dk-r4N"/>
+                <constraint firstItem="2Vo-s9-UD8" firstAttribute="top" secondItem="GFx-c7-KBv" secondAttribute="bottom" constant="18" id="WHy-oA-8Lg"/>
+                <constraint firstItem="2Vo-s9-UD8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WjC-4U-dp3"/>
                 <constraint firstItem="GFx-c7-KBv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Zyw-qG-FgM"/>
-                <constraint firstItem="2Vo-s9-UD8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c5g-y0-8AU"/>
+                <constraint firstAttribute="trailing" secondItem="2Vo-s9-UD8" secondAttribute="trailing" constant="15" id="ta5-fx-ZgN"/>
                 <constraint firstAttribute="trailing" secondItem="GFx-c7-KBv" secondAttribute="trailing" id="tpU-KH-hLh"/>
                 <constraint firstItem="GFx-c7-KBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vu2-uy-MQH"/>
             </constraints>
@@ -342,7 +343,6 @@
         </view>
     </objects>
     <resources>
-        <image name="feed_unselected" width="412" height="106"/>
         <image name="mBaseBgkImg" width="640" height="1136"/>
     </resources>
 </document>

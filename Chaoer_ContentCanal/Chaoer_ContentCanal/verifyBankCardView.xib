@@ -289,26 +289,25 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDW-gf-2E8">
-                    <rect key="frame" x="60" y="340" width="200" height="45"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="15" y="340" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="4P6-7v-saW"/>
-                        <constraint firstAttribute="height" constant="45" id="y8N-Gv-dHq"/>
+                        <constraint firstAttribute="height" constant="40" id="Lep-ST-zM2"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="立即认证" backgroundImage="search_unselected">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="立即认证">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="selected" backgroundImage="search_selected"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="TYE-cN-5PG" secondAttribute="trailing" id="4QU-36-diY"/>
+                <constraint firstAttribute="trailing" secondItem="oDW-gf-2E8" secondAttribute="trailing" constant="15" id="RFE-hQ-VAf"/>
+                <constraint firstItem="oDW-gf-2E8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Rxt-nE-MZh"/>
                 <constraint firstItem="TYE-cN-5PG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="S1H-y0-aOf"/>
                 <constraint firstItem="TYE-cN-5PG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eIn-bH-TvD"/>
-                <constraint firstItem="oDW-gf-2E8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eQ7-up-Gef"/>
-                <constraint firstItem="oDW-gf-2E8" firstAttribute="top" secondItem="TYE-cN-5PG" secondAttribute="bottom" constant="25" id="f0D-QG-vT9"/>
+                <constraint firstItem="oDW-gf-2E8" firstAttribute="top" secondItem="TYE-cN-5PG" secondAttribute="bottom" constant="25" id="p3V-0U-eln"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -329,8 +328,4 @@
             <point key="canvasLocation" x="259" y="179"/>
         </view>
     </objects>
-    <resources>
-        <image name="search_selected" width="283" height="103"/>
-        <image name="search_unselected" width="283" height="103"/>
-    </resources>
 </document>

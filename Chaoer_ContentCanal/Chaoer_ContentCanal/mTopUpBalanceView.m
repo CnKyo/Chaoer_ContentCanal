@@ -26,8 +26,8 @@
     view.mHeader.layer.masksToBounds = YES;
     view.mHeader.layer.cornerRadius = 3;
     
-    view.mCodeBtn.layer.masksToBounds = YES;
-    view.mCodeBtn.layer.cornerRadius = 3;
+    view.mCodeBtn.layer.masksToBounds = view.mPayBtn.layer.masksToBounds = YES;
+    view.mCodeBtn.layer.cornerRadius = view.mPayBtn.layer.cornerRadius = 3;
     
     
     

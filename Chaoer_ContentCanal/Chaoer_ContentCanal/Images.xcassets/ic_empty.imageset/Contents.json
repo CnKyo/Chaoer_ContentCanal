@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "ic_empty.png"
+      "filename" : "查询-没有账单_030.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "查询-没有账单_030-1.png",
       "scale" : "2x"
     },
     {

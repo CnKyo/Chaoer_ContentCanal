@@ -47,15 +47,14 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxA-04-0k5">
-                            <rect key="frame" x="60" y="360" width="200" height="45"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <rect key="frame" x="15" y="360" width="290" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="200" id="4Eh-qg-T1C"/>
-                                <constraint firstAttribute="height" constant="45" id="azi-Bn-f2t"/>
+                                <constraint firstAttribute="height" constant="40" id="5Bl-ad-qDz"/>
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="发送" backgroundImage="feed_unselected">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="发送">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
                             <connections>
                                 <action selector="mbtnAction:" destination="-1" eventType="touchUpInside" id="KoY-VN-Zb8"/>
@@ -78,14 +77,16 @@
                         <constraint firstAttribute="trailing" secondItem="bg8-WM-bYN" secondAttribute="trailing" constant="40" id="3fN-M2-1Xz"/>
                         <constraint firstItem="bg8-WM-bYN" firstAttribute="leading" secondItem="x8h-r4-3Tr" secondAttribute="leading" constant="40" id="905-vC-rw4"/>
                         <constraint firstItem="FNI-uw-GD4" firstAttribute="centerX" secondItem="x8h-r4-3Tr" secondAttribute="centerX" id="AD8-t3-bPE"/>
+                        <constraint firstItem="hxA-04-0k5" firstAttribute="leading" secondItem="x8h-r4-3Tr" secondAttribute="leading" constant="15" id="Bg3-zI-8tr"/>
                         <constraint firstItem="BMV-sZ-mOb" firstAttribute="leading" secondItem="x8h-r4-3Tr" secondAttribute="leading" constant="15" id="E0a-tV-fVk"/>
                         <constraint firstAttribute="trailing" secondItem="eOs-rX-noR" secondAttribute="trailing" constant="8" id="GET-Vf-Wwz"/>
-                        <constraint firstItem="hxA-04-0k5" firstAttribute="top" secondItem="BMV-sZ-mOb" secondAttribute="bottom" constant="20" id="LMm-ze-NEa"/>
                         <constraint firstItem="BMV-sZ-mOb" firstAttribute="top" secondItem="x8h-r4-3Tr" secondAttribute="top" id="Qmw-PX-mrl"/>
                         <constraint firstItem="bg8-WM-bYN" firstAttribute="top" secondItem="FNI-uw-GD4" secondAttribute="bottom" constant="8" id="Tuf-CW-ZXI"/>
                         <constraint firstItem="FNI-uw-GD4" firstAttribute="top" secondItem="eOs-rX-noR" secondAttribute="bottom" constant="8" id="Wwe-jK-53J"/>
                         <constraint firstItem="eOs-rX-noR" firstAttribute="top" secondItem="x8h-r4-3Tr" secondAttribute="top" constant="45" id="YfW-7P-baX"/>
                         <constraint firstAttribute="trailing" secondItem="BMV-sZ-mOb" secondAttribute="trailing" constant="15" id="iQv-SD-suj"/>
+                        <constraint firstAttribute="trailing" secondItem="hxA-04-0k5" secondAttribute="trailing" constant="15" id="jf6-26-VhV"/>
+                        <constraint firstItem="hxA-04-0k5" firstAttribute="top" secondItem="FNI-uw-GD4" secondAttribute="bottom" constant="285" id="vbP-j6-ul6"/>
                     </constraints>
                 </view>
             </subviews>
@@ -94,7 +95,6 @@
                 <constraint firstItem="x8h-r4-3Tr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="33c-mQ-ww9"/>
                 <constraint firstItem="6Wl-ok-8QZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Adl-SE-ibC"/>
                 <constraint firstAttribute="bottom" secondItem="x8h-r4-3Tr" secondAttribute="bottom" id="GQs-0z-3he"/>
-                <constraint firstItem="hxA-04-0k5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UPo-ZX-v8v"/>
                 <constraint firstAttribute="trailing" secondItem="6Wl-ok-8QZ" secondAttribute="trailing" id="ZT7-Mn-x5N"/>
                 <constraint firstAttribute="bottom" secondItem="6Wl-ok-8QZ" secondAttribute="bottom" id="Zyb-93-JaQ"/>
                 <constraint firstAttribute="trailing" secondItem="x8h-r4-3Tr" secondAttribute="trailing" id="q2r-OH-lmi"/>
@@ -107,7 +107,6 @@
     </objects>
     <resources>
         <image name="feed_company_bgk" width="596" height="742"/>
-        <image name="feed_unselected" width="412" height="106"/>
         <image name="mBaseBgkImg" width="640" height="1136"/>
     </resources>
 </document>

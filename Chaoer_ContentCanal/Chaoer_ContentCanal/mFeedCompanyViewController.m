@@ -42,6 +42,10 @@
     
     self.mReason.placeholder = @"在此写上您宝贵的建议:";
     [self.mReason setHolderToTop];
+    
+    self.mSendBtn.layer.masksToBounds = YES;
+    self.mSendBtn.layer.cornerRadius = 3;
+    
     [self initTap];
 
 }

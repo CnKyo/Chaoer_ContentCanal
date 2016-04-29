@@ -383,6 +383,10 @@
 //            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
 //            [self pushViewController:mmm];
 
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            }
             
             orderTongjiViewController *oo = [[orderTongjiViewController alloc] initWithNibName:@"orderTongjiViewController" bundle:nil];
             
@@ -398,6 +402,11 @@
             break;
         case 6:
         {
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            }
+            
             needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
             nnn.Type = 3;
             [self pushViewController:nnn];

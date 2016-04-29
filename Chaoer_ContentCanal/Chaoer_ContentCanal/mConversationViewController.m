@@ -9,8 +9,8 @@
 #import "mConversationViewController.h"
 
 #import "mConversationCell.h"
-
-@interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
+#import <RongIMKit/RongIMKit.h>
+@interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,RCIMClientReceiveMessageDelegate,RCIMUserInfoDataSource>
 
 
 @end
@@ -34,7 +34,7 @@
 - (void)initViuew{
     
     
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"居民", @"管理员", @"群聊", @"附近的人"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:70 delegate:self andIsHiddenLine:NO];
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"居民",  @"附近的人"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:70 delegate:self andIsHiddenLine:NO];
     
     [self.view addSubview:mSegmentView];
     
@@ -50,7 +50,29 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
+    [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
+    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsgNotif) name:@"msgunread" object:nil];
+    
+    [RCIM sharedRCIM].userInfoDataSource = self;//这个代理设置到这里,这个VC一直存在,,,,
+
+    
 }
+-(void)showMsgNotif
+{
+    UITabBarItem* it = self.navigationController.tabBarItem;
+    //收到消息,,,
+    int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
+    if( allunread > 0 )
+    {//如果有 没有读的消息
+        it.badgeValue = [NSString stringWithFormat:@"%d",allunread];
+    }
+    else
+    {
+        it.badgeValue = nil;
+    }
+}
+
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     NSLog(@"点击了%lu",(unsigned long)mIndex);
 
@@ -84,7 +106,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 60;
     
 }
 

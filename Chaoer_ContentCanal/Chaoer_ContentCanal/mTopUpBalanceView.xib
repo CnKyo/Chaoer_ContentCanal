@@ -221,7 +221,7 @@
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leS-nN-uQd">
                             <rect key="frame" x="247" y="239" width="65" height="28"/>
-                            <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="fdc-IA-DoP"/>
                                 <constraint firstAttribute="width" constant="65" id="lXl-27-yL5"/>
@@ -308,15 +308,15 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pew-ti-D2X">
-                    <rect key="frame" x="60" y="365" width="200" height="45"/>
+                    <rect key="frame" x="15" y="365" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="GJ6-NA-CGr"/>
-                        <constraint firstAttribute="width" constant="200" id="w6D-ma-bbe"/>
+                        <constraint firstAttribute="height" constant="40" id="Qnt-cQ-RO2"/>
                     </constraints>
-                    <state key="normal" title="确定" backgroundImage="search_unselected">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="selected" backgroundImage="search_selected"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -324,11 +324,12 @@
                 <constraint firstItem="YyU-cf-7h6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3Bz-3F-P6h"/>
                 <constraint firstAttribute="trailing" secondItem="jiD-UP-VfO" secondAttribute="trailing" id="AZc-hv-gtr"/>
                 <constraint firstItem="YyU-cf-7h6" firstAttribute="top" secondItem="jiD-UP-VfO" secondAttribute="bottom" constant="8" id="CIA-zZ-eDz"/>
-                <constraint firstItem="pew-ti-D2X" firstAttribute="top" secondItem="YyU-cf-7h6" secondAttribute="bottom" constant="19" id="Dbg-OC-6YN"/>
                 <constraint firstItem="jiD-UP-VfO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FrX-mj-Whs"/>
-                <constraint firstItem="pew-ti-D2X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bhQ-wm-09q"/>
+                <constraint firstItem="pew-ti-D2X" firstAttribute="top" secondItem="YyU-cf-7h6" secondAttribute="bottom" constant="19" id="PlB-Sf-d88"/>
                 <constraint firstItem="jiD-UP-VfO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hMZ-bN-KEd"/>
                 <constraint firstAttribute="trailing" secondItem="YyU-cf-7h6" secondAttribute="trailing" id="iRh-R4-m53"/>
+                <constraint firstItem="pew-ti-D2X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="l0L-n2-G58"/>
+                <constraint firstAttribute="trailing" secondItem="pew-ti-D2X" secondAttribute="trailing" constant="15" id="w3M-3M-fn5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -352,7 +353,5 @@
     </objects>
     <resources>
         <image name="dp_paizhao" width="93" height="93"/>
-        <image name="search_selected" width="283" height="103"/>
-        <image name="search_unselected" width="283" height="103"/>
     </resources>
 </document>

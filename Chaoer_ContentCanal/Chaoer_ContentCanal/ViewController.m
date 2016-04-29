@@ -165,14 +165,52 @@
 #pragma mark----微信登录
 - (void)wechatAction:(UIButton *)sender{
 
-    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
-
-    ///微信登录
+    [self loginWithType:SSDKPlatformTypeWechat];
+}
+#pragma mark----qq登录
+- (void)tencentAction:(UIButton *)sender{
     
-    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat
+    [self loginWithType:SSDKPlatformTypeQQ];
+    
+}
+
+#pragma mark----新浪登录
+- (void)sinaAction:(UIButton *)sender{
+    //    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+    //
+    //    ///新浪登录
+    //    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
+    //           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+    //     {
+    //         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    //
+    //         if (state == SSDKResponseStateSuccess)
+    //         {
+    //
+    //             NSLog(@"返回的用户信息：%@",user);
+    //
+    //         }
+    //
+    //         else
+    //         {
+    //             NSLog(@"%@",error);
+    //             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+    //
+    //         }
+    //         
+    //     }];
+    [LCProgressHUD showInfoMsg:@"未授权..."];
+    
+}
+
+- (void)loginWithType:(SSDKPlatformType)type{
+    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
+    
+    
+    [SSEThirdPartyLoginHelper loginByPlatform:type
                                    onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
                                        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+                                       
                                        
                                        //在此回调中可以将社交平台用户信息与自身用户系统进行绑定，最后使用一个唯一用户标识来关联此用户信息。
                                        
@@ -181,11 +219,20 @@
                                        NSLog(@"dd%@",user.rawData);
                                        NSLog(@"dd%@",user.credential);
                                        
-                                       mOpenID = [user.rawData objectForKey:@"openid"];
-                                       mNickName = [user.rawData objectForKey:@"nickname"];
-                                       mSex = [user.rawData objectForKey:@"sex"];
-                                       mHeaderUrl = [user.rawData objectForKey:@"headimgurl"];
+                                       if (type == SSDKPlatformTypeQQ) {
+                                           mOpenID = user.credential.uid;
+                                           mNickName = [user.rawData objectForKey:@"nickname"];
+                                           mSex = [user.rawData objectForKey:@"gender"];
+                                           mHeaderUrl = [user.rawData objectForKey:@"figureurl_qq_2"];
 
+                                       }else if (type == SSDKPlatformTypeWechat){
+                                           mOpenID = [user.rawData objectForKey:@"openid"];
+                                           mNickName = [user.rawData objectForKey:@"nickname"];
+                                           mSex = [user.rawData objectForKey:@"sex"];
+                                           mHeaderUrl = [user.rawData objectForKey:@"headimgurl"];
+                                       }
+                                       
+                                       
                                        
                                        NSMutableDictionary *para = [NSMutableDictionary new];
                                        [para setObject:mOpenID forKey:@"openid"];
@@ -199,95 +246,45 @@
                                            if (resb.mState == 200011) {
                                                
                                                [LCProgressHUD showSuccess:@"登录成功"];
-
+                                               
                                                [self loginOk];
-//                                               
+                                               //
+                                           }else if (resb.mSucess){
+                                               [LCProgressHUD showSuccess:@"登录成功"];
+                                               
+                                               [self loginOk];
                                            }
                                            else{
                                                
-//                                               [self showAdsView];
-
+                                               //                                               [self showAdsView];
+                                               
                                                [self showErrorStatus:resb.mMessage];
-
+                                               
                                                
                                            }
                                        }];
                                        
-
+                                       
                                    }onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
                                        
                                        if (state == SSDKResponseStateSuccess){
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+                                           
                                            NSLog(@"返回的用户信息：%@",user);
-
+                                           
                                            
                                            
                                        }  else
                                        {
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+                                           
                                            NSLog(@"%@",error);
                                            [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
                                        }
                                    }];
-    
- 
+
 }
-#pragma mark----qq登录
-- (void)tencentAction:(UIButton *)sender{
-//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
-//
-//    ///qq登录
-//    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
-//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-//     {
-//         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//
-//         if (state == SSDKResponseStateSuccess)
-//         {
-//             NSLog(@"返回的用户信息：%@",user);
-//         }
-//         
-//         else
-//         {
-//             NSLog(@"%@",error);
-//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-//
-//         }
-//         
-//     }];
-    [LCProgressHUD showInfoMsg:@"未授权..."];
-    
-}
-#pragma mark----新浪登录
-- (void)sinaAction:(UIButton *)sender{
-//    [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
-//
-//    ///新浪登录
-//    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
-//           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
-//     {
-//         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//
-//         if (state == SSDKResponseStateSuccess)
-//         {
-//             
-//             NSLog(@"返回的用户信息：%@",user);
-//
-//         }
-//         
-//         else
-//         {
-//             NSLog(@"%@",error);
-//             [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
-//
-//         }
-//         
-//     }];
-    [LCProgressHUD showInfoMsg:@"未授权..."];
-    
-}
+
 
 
 - (void)goWechat{

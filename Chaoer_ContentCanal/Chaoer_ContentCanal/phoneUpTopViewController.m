@@ -70,6 +70,15 @@
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.83 alpha:1].CGColor;
     
     
+    if ([mUserInfo backNowUser].mMoney <= 0.0) {
+
+        self.mGopayBtn.enabled = NO;
+        self.mGopayBtn.backgroundColor = [UIColor lightGrayColor];
+    }else{
+        self.mGopayBtn.enabled = YES;
+        self.mGopayBtn.backgroundColor = M_CO;
+    }
+    
     [self.mThirty addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mFifty addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.mHundred addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -79,6 +88,12 @@
     
 }
 - (void)mBtnAction:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mMoney <= 0.0) {
+        
+        [LCProgressHUD showInfoMsg:@"您的余额不足！"];
+        return;
+    }
+
     [mTT removeAllObjects];
     switch (sender.tag) {
         case 30:

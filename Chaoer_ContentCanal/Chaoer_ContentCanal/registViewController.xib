@@ -154,14 +154,15 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQP-TU-AGk">
                             <rect key="frame" x="237" y="54" width="75" height="30"/>
-                            <color key="backgroundColor" red="0.83529411764705885" green="0.4392156862745098" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="75" id="3vd-kP-HM4"/>
                                 <constraint firstAttribute="height" constant="30" id="M1Z-Mi-0ie"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" title="获取验证码">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="mgetCode:" destination="-1" eventType="touchUpInside" id="IvP-iF-I60"/>

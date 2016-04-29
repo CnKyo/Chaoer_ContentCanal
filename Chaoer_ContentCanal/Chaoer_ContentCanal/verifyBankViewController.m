@@ -59,7 +59,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithRed:0.89 green:0.90 blue:0.90 alpha:1.00];
-    self.Title = self.mPageName = @"实名认证";
+    self.Title = self.mPageName = @"绑定银行卡";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -241,7 +241,6 @@
         return;
     }
     mType = 1;
-    sender.selected = !sender.selected;
     [self loadData];
     
     
@@ -252,7 +251,6 @@
         return;
     }
     mType = 2;
-    sender.selected = !sender.selected;
     [self loadData];
     
 }
@@ -262,7 +260,6 @@
         return;
     }
     mType = 3;
-    sender.selected = !sender.selected;
     
     [self loadData];
     
@@ -275,7 +272,6 @@
         return;
     }
     mType = 4;
-    sender.selected = !sender.selected;
     
     [self loadData];
     

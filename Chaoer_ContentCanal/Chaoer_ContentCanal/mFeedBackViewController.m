@@ -33,6 +33,10 @@
 }
 #pragma mark----投诉个人
 - (IBAction)mPerson:(id)sender {
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
     
     mFeedPersonViewController *mmm = [[mFeedPersonViewController alloc] initWithNibName:@"mFeedPersonViewController" bundle:nil];
     [self pushViewController:mmm];
@@ -40,6 +44,10 @@
 }
 #pragma mark----投诉物管
 - (IBAction)mCanal:(id)sender {
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
     
     mFeedManageViewController *mmm = [[mFeedManageViewController alloc] initWithNibName:@"mFeedManageViewController" bundle:nil];
     [self pushViewController:mmm];

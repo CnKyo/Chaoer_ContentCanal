@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "video_up.png",
+      "filename" : "立即下单_上传图片.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "video_up-1.png",
+      "filename" : "立即下单_上传图片-1.png",
       "scale" : "2x"
     },
     {

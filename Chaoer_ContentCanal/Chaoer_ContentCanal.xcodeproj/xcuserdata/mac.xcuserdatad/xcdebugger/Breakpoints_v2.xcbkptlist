@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "483536252.636591"
+            timestampString = "483621546.416459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
+            startingLineNumber = "608"
+            endingLineNumber = "608"
             landmarkName = "-connection:didReceiveResponse:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "483536252.636591"
+            timestampString = "483621546.416459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "612"
+            endingLineNumber = "612"
             landmarkName = "-connection:didReceiveData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "483541224.758078"
+            timestampString = "483621546.416459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1529"
-            endingLineNumber = "1529"
+            startingLineNumber = "1548"
+            endingLineNumber = "1548"
             landmarkName = "-finishFixOrder:andPayType:andRate:block:"
             landmarkType = "5">
             <Locations>
@@ -122,12 +122,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "483541225.845957"
+                  timestampString = "483626409.595113"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1529"
-                  endingLineNumber = "1529"
-                  offsetFromSymbolStart = "489">
+                  startingLineNumber = "1548"
+                  endingLineNumber = "1548"
+                  offsetFromSymbolStart = "556">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -137,12 +137,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "483541225.846199"
+                  timestampString = "483626409.595368"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1530"
-                  endingLineNumber = "1530"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "1549"
+                  endingLineNumber = "1549"
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "483541224.758078"
+            timestampString = "483621546.416459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1530"
-            endingLineNumber = "1530"
+            startingLineNumber = "1549"
+            endingLineNumber = "1549"
             landmarkName = "-finishFixOrder:andPayType:andRate:block:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,12 +218,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/AVAndaJson.m"
-                  timestampString = "483541225.850619"
+                  timestampString = "483626409.59885"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
                   endingLineNumber = "54"
-                  offsetFromSymbolStart = "165">
+                  offsetFromSymbolStart = "168">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -233,12 +233,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/AVAndaJson.m"
-                  timestampString = "483541225.85092"
+                  timestampString = "483626409.598998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
                   endingLineNumber = "57"
-                  offsetFromSymbolStart = "69">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -313,13 +313,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mGoPayViewController.m"
-            timestampString = "483541092.540144"
+            filePath = "Chaoer_ContentCanal/serviceViewController.m"
+            timestampString = "483622362.634213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-loadData"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-btn4Action:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

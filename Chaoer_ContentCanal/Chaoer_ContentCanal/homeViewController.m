@@ -336,6 +336,14 @@
             break;
         case 1:
         {
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            }else if ([mUserInfo backNowUser].mIsRegist == 0) {
+                [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
+                return;
+            }
+            
             mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
             [self presentModalViewController:ppp];
         }
@@ -367,6 +375,10 @@
         case 2:
         {
 //            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            }
             
             mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
             [self pushViewController:ccc];

@@ -131,29 +131,56 @@
 
 #pragma mark----提现
 - (void)tixianAction:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    } else if ([mUserInfo backNowUser].mIsRegist == 0) {
+        [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
+        return;
+    }
+    
     cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
     [self pushViewController:ccc];
 }
 #pragma mark----充值
 - (void)topupAction:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
     [self pushViewController:ppp];
 }
 #pragma mark----我的积分
 - (void)orderAction:(UIButton *)sender{
-
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
     vvv.mType = 1;
     [self pushViewController:vvv];
 }
 #pragma mark----我的红包
 - (void)redbagAction:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
     [self pushViewController:mmm];
     
 }
 #pragma mark----交易记录
 - (void)historyAction:(UIButton *)sender{
+    if ([mUserInfo backNowUser].mTemporary) {
+        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+        return;
+    }
+    
     valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
     vvv.mType = 2;
     [self pushViewController:vvv];

@@ -81,6 +81,9 @@
     self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
     self.mBgkView.layer.borderWidth = 1;
     
+    self.mSubmit.layer.masksToBounds = YES;
+    self.mSubmit.layer.cornerRadius = 3;
+    
     self.mReason.placeholder = @"在此写上您投诉的原因:";
     [self.mReason setHolderToTop];
 //    [self initTap];
@@ -341,7 +344,6 @@
 
 #pragma mark----省份
 - (IBAction)provinceAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
     mType = 1;
     mCityId = 0;
     [self loadData];
@@ -354,9 +356,7 @@
         return;
 
     }
-    UIButton *btn = sender;
-    
-    btn.selected = !btn.selected;
+
     mType = 2;
     [self loadData];
 
@@ -369,7 +369,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 3;
     [self loadData];
 
@@ -383,7 +382,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择小区!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 4;
     
     [self loadData];
@@ -394,7 +392,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择楼栋号!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 5;
     [self loadData];
 }
@@ -404,7 +401,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择单元!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 6;
     
     
@@ -416,7 +412,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择楼层!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 7;
     
     

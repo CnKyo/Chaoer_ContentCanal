@@ -241,6 +241,10 @@
 @property (nonatomic,strong) NSString   *mOpenId;
 
 
+
+
+
+
 -(id)initWithObj:(NSDictionary*)obj;
 
 -(void)fetchIt:(NSDictionary*)obj;
@@ -255,6 +259,12 @@
 -(BOOL)isVaildUser;
 
 - (BOOL)isNeedLogin;
+/**
+ *  临时身份
+ *
+ *  @return <#return value description#>
+ */
+- (BOOL)mTemporary;
 
 /**
  *  返回当前用户
@@ -272,6 +282,13 @@
  *  退出登录
  */
 + (void)logOut;
+
+#pragma mark----关联融云
+/**
+ *  关联融云
+ */
++ (void)OpenRCConnect;
+
 
 /**
  *  获取当前用户信息

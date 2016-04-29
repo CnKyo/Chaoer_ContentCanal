@@ -150,7 +150,7 @@
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     if (mType == 3) {
         
-        [mUserInfo getArearId:[[NSString stringWithFormat:@"%@",mArearId] intValue] andProvince:[[NSString stringWithFormat:@"%@",mCityId] intValue] block:^(mBaseData *resb,NSArray *mArr) {
+        [mUserInfo getArearId:[[NSString stringWithFormat:@"%@",mCityId] intValue] andProvince:[[NSString stringWithFormat:@"%@",mArearId] intValue] block:^(mBaseData *resb,NSArray *mArr) {
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
@@ -196,8 +196,22 @@
         }];
         
     }
-    else{
+    else if(mType == 2){
         [mUserInfo getCityId:[[NSString stringWithFormat:@"%@",mCityId] intValue] block:^(mBaseData *resb, NSArray *mArr) {
+            [SVProgressHUD dismiss];
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self loadMHActionSheetView];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+            
+        }];
+    }    else{
+        [mUserInfo getCityId:0 block:^(mBaseData *resb, NSArray *mArr) {
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
@@ -307,10 +321,10 @@
         }else if (mType == 2){
             GCity *city = self.tempArray[index];
             text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mCityId = city.mAreaId;
+            mArearId = city.mAreaId;
 
             mView.mArearLb.text = text;
-            mArearId = city.mParentId;
+            mCityId = city.mParentId;
             mType = 3;
 
         }else if(mType == 3){
@@ -373,7 +387,6 @@
         [mView.mNameTx becomeFirstResponder];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 1;
     mCityId = 0;
     [self loadData];
@@ -384,7 +397,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 2;
     [self loadData];
 
@@ -399,7 +411,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择区县!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 3;
     [self loadData];
 
@@ -413,7 +424,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择楼栋号!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 5;
     [self loadData];
 
@@ -424,7 +434,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择单元!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 6;
     
     
@@ -437,7 +446,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择楼层!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 7;
     
     
@@ -452,7 +460,6 @@
         [SVProgressHUD showErrorWithStatus:@"请选择小区!"];
         return;
     }
-    sender.selected = !sender.selected;
     mType = 4;
 
     [self loadData];

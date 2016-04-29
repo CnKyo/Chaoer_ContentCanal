@@ -21,6 +21,11 @@
 
 #define AMAP_KEY @"7970dba38f00e9b34aed65fb0bd29194"
 
+#define RCCAPP_KEY @"cpj2xarljnyun"
+
+#define RCCAPP_SECRET @"c1KUCfjxCNTD"
+
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #define MAS_SHORTHAND //use Masonry without the 'mas_' prefix

@@ -63,8 +63,12 @@
     [QMapServices sharedServices].apiKey = QQMAPKEY;
     [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
-    
-    [[RCIM sharedRCIM] initWithAppKey:@"cpj2xarljnyun"];
+    /**
+     融云
+     
+     - returns:
+     */
+    [[RCIM sharedRCIM] initWithAppKey:RCCAPP_KEY];
     
     
     
@@ -117,8 +121,8 @@
                                        appSecret:@"5060f2cb199015e81b74c6d5fc26e4a6"];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"100371282"
-                                      appKey:@"11070552590dc"
+                 [appInfo SSDKSetupQQByAppId:@"1105204239"
+                                      appKey:@"5SShQsbv5YgKswaF"
                                     authType:SSDKAuthTypeBoth];
                  break;
                  
@@ -164,6 +168,11 @@
     if( notificationPayload )
     {
 #warning push->notification
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:notificationPayload forKey:@"push"];
+        
+        [defaults synchronize];
 
         [self performSelector:@selector(pushView:) withObject:notificationPayload afterDelay:1.0f];
          
@@ -247,7 +256,13 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [application setApplicationIconBadgeNumber:0];
     [APService resetBadge];
+    [self performSelector:@selector(ddddoti:) withObject:nil afterDelay:1];
 
+
+}
+-(void)ddddoti:(id)sender
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"msgunread" object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -273,7 +288,8 @@
 }
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
-    
+    [application registerForRemoteNotifications];
+
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -284,7 +300,13 @@
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [APService registerDeviceToken:deviceToken];
+    //融云的
+    NSString *token =[[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]stringByReplacingOccurrencesOfString:@">"
+                                                                                                                                    withString:@""]
+                      stringByReplacingOccurrencesOfString:@" "
+                      withString:@""];
     
+    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

@@ -332,7 +332,7 @@
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, DEVICE_Width, 200)];
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 43, 43)];
-    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
+    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
     image.image = [UIImage imageNamed:@"ic_empty"];
     [emptyView addSubview:image];
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
@@ -385,7 +385,7 @@
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 120, DEVICE_Width, 200)];
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 140, 140, 105)];
-    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
+    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
     image.image = [UIImage imageNamed:view];
     [emptyView addSubview:image];
     
