@@ -218,28 +218,31 @@
                                        associateHandler (user.uid, user, user);
                                        NSLog(@"dd%@",user.rawData);
                                        NSLog(@"dd%@",user.credential);
-                                       
+                                       NSMutableDictionary *para = [NSMutableDictionary new];
+
                                        if (type == SSDKPlatformTypeQQ) {
                                            mOpenID = user.credential.uid;
                                            mNickName = [user.rawData objectForKey:@"nickname"];
                                            mSex = [user.rawData objectForKey:@"gender"];
                                            mHeaderUrl = [user.rawData objectForKey:@"figureurl_qq_2"];
+                                           [para setObject:@"2" forKey:@"loginType"];
+
 
                                        }else if (type == SSDKPlatformTypeWechat){
                                            mOpenID = [user.rawData objectForKey:@"openid"];
                                            mNickName = [user.rawData objectForKey:@"nickname"];
                                            mSex = [user.rawData objectForKey:@"sex"];
                                            mHeaderUrl = [user.rawData objectForKey:@"headimgurl"];
+                                           [para setObject:@"1" forKey:@"loginType"];
+
                                        }
                                        
                                        
                                        
-                                       NSMutableDictionary *para = [NSMutableDictionary new];
                                        [para setObject:mOpenID forKey:@"openid"];
                                        [para setObject:mNickName forKey:@"nickname"];
                                        [para setObject:mSex forKey:@"sex"];
                                        [para setObject:mHeaderUrl forKey:@"headimgurl"];
-                                       [para setObject:@"1" forKey:@"loginType"];
                                        
                                        
                                        [mUserInfo mVerifyOpenId:para block:^(mBaseData *resb, mUserInfo *mUser) {
