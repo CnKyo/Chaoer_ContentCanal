@@ -37,7 +37,7 @@
 #import <RongIMKit/RongIMKit.h>
 
 
-@interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate>
+@interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate>
 
 @end
 @interface myalert : UIAlertView
@@ -148,6 +148,8 @@
     
     [APService setupWithOption:launchOptions];
     
+    [mUserInfo OpenRCConnect];
+
 //    [mUserInfo openPush];
     
 //    [SUser relTokenWithPush];
@@ -163,6 +165,50 @@
     
     
     [self dealFuncTab];
+    if ([application
+         
+         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        
+        //注册推送, iOS 8
+        
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+                                                
+                                                settingsForTypes:(UIUserNotificationTypeBadge |
+                                                                  
+                                                                  UIUserNotificationTypeSound |
+                                                                  
+                                                                  UIUserNotificationTypeAlert)
+                                                
+                                                categories:nil];
+        
+        [application registerUserNotificationSettings:settings];
+        
+    } else {
+        
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+        
+        UIRemoteNotificationTypeAlert |
+        
+        UIRemoteNotificationTypeSound;
+        
+        [application registerForRemoteNotificationTypes:myTypes];
+        
+    }
+    
+    //融云即时通讯
+    
+    [[NSNotificationCenter defaultCenter]
+     
+     addObserver:self
+     
+     selector:@selector(didReceiveMessageNotification:)
+     
+     name:RCKitDispatchMessageNotification
+     
+     object:nil];
+    
+    [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
+
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if( notificationPayload )
@@ -183,6 +229,30 @@
 - (void)pushView:(NSDictionary *)dic{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"notify"object:dic];
 
+}
+- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
+    
+    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              
+                              initWithTitle:@"提示"
+                              
+                              message:@"您"
+                              
+                              @"的帐号在别的设备上登录，您被迫下线！"
+                              
+                              delegate:nil
+                              
+                              cancelButtonTitle:@"知道了"
+                              
+                              otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        
+    }
+    
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -257,13 +327,13 @@
     [application setApplicationIconBadgeNumber:0];
     [APService resetBadge];
     [self performSelector:@selector(ddddoti:) withObject:nil afterDelay:1];
-
-
 }
+
 -(void)ddddoti:(id)sender
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"msgunread" object:nil];
 }
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -421,6 +491,14 @@
     
 }
 
+
+- (void)didReceiveMessageNotification:(NSNotification *)notification {
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber =
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    
+}
 
 
 

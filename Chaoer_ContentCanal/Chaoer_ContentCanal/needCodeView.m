@@ -33,6 +33,11 @@
 + (needCodeView *)shareVerifyBankView{
 
     needCodeView *view = [[[NSBundle mainBundle] loadNibNamed:@"verifyBankCardView" owner:self options:nil] objectAtIndex:0];
+    
+    
+    view.mVerifyBtn.layer.masksToBounds = YES;
+    view.mVerifyBtn.layer.cornerRadius = 3;
+    
     return view;
     
 }

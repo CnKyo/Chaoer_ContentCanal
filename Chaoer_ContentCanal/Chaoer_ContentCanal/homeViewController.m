@@ -31,7 +31,7 @@
 #import "communityStatusViewController.h"
 #import "mConversationViewController.h"
 
-
+#import "mServiceClassViewController.h"
 
 
 
@@ -61,6 +61,16 @@
     AMapLocationManager *mLocation;
 
     mGeneralSubView *mSubView;
+    
+    /**
+     *  纬度
+     */
+    NSString *mLat;
+    /**
+     *  经度
+     */
+    NSString *mLng;
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -99,28 +109,32 @@
             
         }
     }];
-//    
-//    NSString *mtt = nil;
-//    if ([mUserInfo backNowUser].mUserId) {
-//        mtt = [NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId];
-//    }else{
-//        mtt = [mUserInfo backNowUser].mOpenId;
-//        
-//    }
-//    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
-//
-//    [mUserInfo getToken:@"1" andValue:mtt andUserName:[mUserInfo backNowUser].mNickName andPrtraitUri:url block:^(mBaseData *resb) {
-//        
-//        if (resb.mSucess) {
-//            
-//        }else{
-//        
-//        }
-//        
-//    }];
+    
+    [self getRCC];
     
     
 }
+- (void)getRCC{
+    NSString *mtt = nil;
+    if ([mUserInfo backNowUser].mUserId) {
+        mtt = [NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId];
+    }else{
+        mtt = [mUserInfo backNowUser].mOpenId;
+        
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    
+    [RCCInfo getToken:@"seller" andValue:mtt andUserName:[mUserInfo backNowUser].mNickName andPrtraitUri:url block:^(mBaseData *resb,RCCInfo *mrcc) {
+        
+        if (resb.mSucess) {
+            [mUserInfo OpenRCConnect];
+        }else{
+            NSLog(@"获取RCC返回错误信息:%@",resb.mMessage);
+        }
+        
+    }];
+}
+
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -193,7 +207,11 @@
 
         }
         
-        NSLog(@"location:%@", location);
+        NSLog(@"location:%f", location.coordinate.latitude);
+        
+        mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+        mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+        [self reloadRCCLocation];
         
         if (regeocode)
         {
@@ -206,6 +224,21 @@
     }];
 
 }
+
+- (void)reloadRCCLocation{
+
+    [mUserInfo reRCClocation:nil andLat:mLat andLong:mLng block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            
+        }else if(resb.mState == 401002){
+            [self getRCC];
+        }else{
+            NSLog(@"获取融云位置信息失败：%@",resb.mMessage);
+        }
+    }];
+    
+}
+
 - (void)headerBeganRefresh{
     [self loadAddress];
 
@@ -396,14 +429,33 @@
             break;
         case 2:
         {
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
-//            if ([mUserInfo backNowUser].mTemporary) {
-//                [LCProgressHUD showInfoMsg:@"您还未认证！"];
-//                return;
+//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            if ([mUserInfo backNowUser].mTemporary) {
+                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+                return;
+            }
+            
+            
+            
+//            mServiceClassViewController *mmm = [[mServiceClassViewController alloc] initWithNibName:@"mServiceClassViewController" bundle:nil];
+//            if (mLat) {
+//                mmm.mLat = mLat;
+//            }if (mLng) {
+//                mmm.mLng = mLng;
 //            }
-//            
-//            mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
-//            [self pushViewController:ccc];
+//            [self pushViewController:mmm];
+            
+            mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
+            
+            
+            if (mLat) {
+                ccc.mLat = mLat;
+            }if (mLng) {
+                ccc.mLng = mLng;
+            }
+            
+            
+            [self pushViewController:ccc];
 
         }
             break;

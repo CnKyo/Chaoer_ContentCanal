@@ -68,7 +68,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.Title = self.mPageName = _mTitel;
+    self.Title = self.mPageName = @"水电气费";
     self.hiddenTabBar = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
@@ -376,6 +376,15 @@
     
     if (mIsChoice) {
         [SVProgressHUD showErrorWithStatus:@"您选择的缴费类型不可用！请重新选择！"];
+        return;
+    }
+    if (mType == 4 || mType == 3 || mType == 2 || mType == 1) {
+        [SVProgressHUD showErrorWithStatus:@"请选择缴费单位！"];
+        return;
+    }
+
+    if (mView.mNumTx.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"户号不能为空！"];
         return;
     }
     

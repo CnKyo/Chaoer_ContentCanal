@@ -16,7 +16,7 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://103.22.191.189/";
 
@@ -73,6 +73,31 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
 //            id oneid = [UIApplication sharedApplication].delegate;
 //            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
 //        }
+        callback(  retob );
+        
+    }
+       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           
+           NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+           callback( [mBaseData infoWithError:@"网络请求错误"] );
+           
+       }];
+}
+- (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback{
+
+    NSLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    
+    [self GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+        
+        mBaseData   *retob = [[mBaseData alloc]initWithObj:responseObject];
+        
+        //        if( retob.mState == 400301 )
+        //        {//需要登陆
+        //            id oneid = [UIApplication sharedApplication].delegate;
+        //            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+        //        }
         callback(  retob );
         
     }

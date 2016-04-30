@@ -32,10 +32,9 @@
                                      };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    //[[UINavigationBar appearance]
-    //setBarTintColor:[UIColor colorWithRed:(1 / 255.0f) green:(149 / 255.0f) blue:(255 / 255.0f) alpha:1]];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavImg"] forBarMetrics:UIBarMetricsDefault];
-    
+    [[UINavigationBar appearance] setBarTintColor:M_CO];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavImg"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:M_CO];
     
     self.navigationController.navigationBarHidden = NO;
     self.tabBarController.tabBar.hidden = YES;
@@ -43,6 +42,8 @@
     self.hidesBottomBarWhenPushed = YES;
 
     self.conversationType = ConversationType_PRIVATE;
+    
+ 
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -52,7 +53,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//- (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion{
+//    if ([@"9069" isEqual:userId]) {
+//        RCUserInfo *user = [[RCUserInfo alloc]init];
+//        user.userId = self.mUserId;
+//        user.name = self.mName;
+//        user.portraitUri = self.mHeaderUrl;
+//        return completion(user);
+//    }
+//    return completion(nil);
+//}
 /*
 #pragma mark - Navigation
 
@@ -62,5 +72,23 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+/*!
+ 即将显示消息Cell的回调
+ 
+ @param cell        消息Cell
+ @param indexPath   该Cell对应的消息Cell数据模型在数据源中的索引值
+ 
+ @discussion 您可以在此回调中修改Cell的显示和某些属性。
+ */
+//- (void)willDisplayMessageCell:(RCMessageBaseCell *)cell
+//                   atIndexPath:(NSIndexPath *)indexPath{
+//
+//    if ([cell isMemberOfClass:[RCMessageBaseCell class]]) {
+//        RCMessageBaseCell *msgCell = (RCMessageBaseCell *)cell;
+//        UIView *msgBgk = (UIView *)msgCell.contentView;
+//        msgBgk.backgroundColor = M_CO;
+//    }
+//    
+//    
+//}
 @end

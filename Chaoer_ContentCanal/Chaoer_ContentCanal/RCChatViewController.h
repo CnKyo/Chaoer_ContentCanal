@@ -21,7 +21,7 @@
 /**
  *  id
  */
-@property (assign,nonatomic) int mUserId;
+@property (strong,nonatomic) NSString * mUserId;
 
 
 @end

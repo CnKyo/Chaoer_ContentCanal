@@ -20,6 +20,8 @@
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
+- (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
+
 - (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback;
 
 + (NSString *)returnNowURL;

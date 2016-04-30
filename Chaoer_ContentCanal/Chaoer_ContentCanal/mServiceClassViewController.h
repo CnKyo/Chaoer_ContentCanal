@@ -1,14 +1,14 @@
 //
-//  mConversationViewController.h
+//  mServiceClassViewController.h
 //  Chaoer_ContentCanal
 //
-//  Created by Mac on 16/4/28.
+//  Created by Mac on 16/4/30.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
 #import "BaseVC.h"
 
-@interface mConversationViewController : BaseVC
+@interface mServiceClassViewController : BaseVC
 /**
  *  纬度
  */
@@ -17,5 +17,4 @@
  *  经度
  */
 @property (nonatomic,strong) NSString *mLng;
-
 @end

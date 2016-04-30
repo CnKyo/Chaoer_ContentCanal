@@ -10,6 +10,9 @@
 
 #import "mConversationCell.h"
 #import <RongIMKit/RongIMKit.h>
+
+#import "RCChatViewController.h"
+
 @interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,RCIMClientReceiveMessageDelegate,RCIMUserInfoDataSource>
 
 
@@ -19,6 +22,10 @@
 {
     WKSegmentControl    *mSegmentView;
 
+    
+    int mType;
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +36,8 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
 
+    mType = 1;
+    
     [self initViuew];
 }
 - (void)initViuew{
@@ -42,9 +51,9 @@
     [self loadTableView:CGRectMake(0,mSegmentView.mbottom, DEVICE_Width, DEVICE_Height-mSegmentView.mbottom) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-
-//    self.haveHeader = YES;
-//    [self.tableView headerBeginRefreshing];
+    self.haveFooter = YES;
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"mConversationCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -52,15 +61,31 @@
     
     [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
     
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsgNotif) name:@"msgunread" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsgNotif) name:@"msgunread" object:nil];
     
     [RCIM sharedRCIM].userInfoDataSource = self;//这个代理设置到这里,这个VC一直存在,,,,
 
     
 }
+- (void)getUserInfoWithUserId:(NSString *)userId
+                   completion:(void (^)(RCUserInfo *userInfo))completion
+{
+    RCUserInfo*  tt = [[RCUserInfo alloc]initWithUserId:userId  name:[RCCInfo backRCCInfo].mRCCUserName portrait:[mUserInfo backNowUser].mUserImgUrl];
+    completion( tt );
+
+}
+
+//收到融云的消息
+- (void)onReceived:(RCMessage *)message
+              left:(int)nLeft
+            object:(id)object
+{
+    [self showMsgNotif];
+}
+
 -(void)showMsgNotif
 {
-    UITabBarItem* it = self.navigationController.tabBarItem;
+    UITabBarItem* it = self.tabBarController.viewControllers[0].tabBarItem;
     //收到消息,,,
     int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
     if( allunread > 0 )
@@ -73,8 +98,153 @@
     }
 }
 
+- (void)headerBeganRefresh{
+
+    self.page = 1;
+    
+    
+    if (mType == 1) {
+        
+        [RCCInfo getArearWithRcc:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+            [self headerEndRefresh];
+            [self removeEmptyView];
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                
+                if (mArr) {
+                    [self.tempArray addObjectsFromArray:mArr];
+
+                }else{
+                
+                    [self addEmptyViewWithImg:nil];
+                }
+                
+                
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [self addEmptyView:nil];
+            }
+            
+        }];
+
+    }else{
+   
+        if (self.mLat == nil || [self.mLat isEqualToString:@""]) {
+            self.mLat = @"";
+        }
+        if (self.mLng == nil || [self.mLng isEqualToString:@""]) {
+            self.mLng = @"";
+        }
+        
+        [RCCInfo getDistanceWith:self.page andNum:10 andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb, NSArray *mArr) {
+            
+            [self headerEndRefresh];
+            [self removeEmptyView];
+            [self.tempArray removeAllObjects];
+            if (resb.mSucess) {
+                if (mArr) {
+                    [self.tempArray addObjectsFromArray:mArr];
+                    
+                }else{
+                    
+                    [self addEmptyViewWithImg:nil];
+                }
+                
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [self addEmptyView:nil];
+            }
+            
+            
+            
+        }];
+        
+    }
+    
+    
+}
+- (void)footetBeganRefresh{
+    
+    self.page ++;
+    
+    
+    if (mType == 1) {
+        [RCCInfo getArearWithRcc:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+            [self footetEndRefresh];
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                
+                
+                if (mArr) {
+                    [self.tempArray addObjectsFromArray:mArr];
+                    
+                }else{
+                    
+                    [self addEmptyViewWithImg:nil];
+                }
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [self addEmptyView:nil];
+            }
+            
+        }];
+
+    }else{
+        [RCCInfo getDistanceWith:self.page andNum:10 andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb, NSArray *mArr) {
+            [self footetEndRefresh];
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                
+                
+                if (mArr) {
+                    [self.tempArray addObjectsFromArray:mArr];
+                    
+                }else{
+                    
+                    [self addEmptyViewWithImg:nil];
+                }
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [self addEmptyView:nil];
+            }
+        }];
+    }
+    
+    
+    
+}
+
+
+
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     NSLog(@"点击了%lu",(unsigned long)mIndex);
+    
+    if (mIndex == 0) {
+        mType = 1;
+        
+        
+        
+    }else{
+        if (self.mLat == nil || [self.mLat isEqualToString:@""]) {
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            return;
+        }
+        if (self.mLng == nil || [self.mLng isEqualToString:@""]) {
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            return;
+        }
+        mType = 2;
+    }
+
+    [self headerBeganRefresh];
 
 }
 
@@ -100,7 +270,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return self.tempArray.count;
     
 }
 
@@ -116,9 +286,38 @@
         
     mConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    [cell.mHeaderImg sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"img_default"]];
+    RCCUserInfo *mRccUser = self.tempArray[indexPath.row];
+    
+    [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:mRccUser.portraitUri] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    
+    cell.mName.text = mRccUser.userName;
     
     return cell;
+    
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    RCCUserInfo *mRccUser = self.tempArray[indexPath.row];
+
+    RCChatViewController *rcc = [[RCChatViewController alloc] init];
+
+    rcc.conversationType = ConversationType_PRIVATE;
+    
+    rcc.targetId = mRccUser.userId; //这里模拟自己给自己发消息，您可以替换成其他登录的用户的UserId
+    rcc.title = mRccUser.userName;
+    
+    
+    rcc.mHeaderUrl = mRccUser.portraitUri;
+    rcc.mUserId =mRccUser.userId;
+    rcc.mName =mRccUser.userName;
+    
+    [self pushViewController:rcc];
+    
+    
     
 }
 

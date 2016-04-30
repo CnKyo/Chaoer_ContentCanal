@@ -1,14 +1,15 @@
 //
-//  mConversationViewController.h
+//  ChatListViewController.h
 //  Chaoer_ContentCanal
 //
-//  Created by Mac on 16/4/28.
+//  Created by Mac on 16/4/30.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "BaseVC.h"
+#import <RongIMKit/RongIMKit.h>
+#import <RongIMKit/RongIMKit.h>
 
-@interface mConversationViewController : BaseVC
+@interface ChatListViewController : RCConversationListViewController
 /**
  *  纬度
  */
@@ -17,5 +18,4 @@
  *  经度
  */
 @property (nonatomic,strong) NSString *mLng;
-
 @end

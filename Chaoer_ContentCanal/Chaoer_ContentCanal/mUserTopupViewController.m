@@ -27,6 +27,9 @@
     NSString *orderCode;
     NSString *ybOrderCode;
     
+    
+    NSString    *_previousTextFieldContent;
+    UITextRange *_previousSelection;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -89,6 +92,11 @@
     mView.frame = CGRectMake(0, 0, DEVICE_Width, mScrollerView.mheight);
     
     mView.mPhone.delegate = mView.mBankCard.delegate = mView.mIdentify.delegate = self;
+    
+    mView.mTime.tag = 5;
+    
+    //当编辑改变的时候，进行字符校验
+    [mView.mTime addTarget:self action:@selector(reformatAsPhoneNumber:) forControlEvents:UIControlEventEditingChanged];
     
     [mView.mPhotoBtn addTarget:self action:@selector(scanAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -178,6 +186,12 @@
         [self leftBtnTouched:nil];
         return;
     }
+    if (mView.mTime.text.length <= 4) {
+        [self showErrorStatus:@"请输入正确的有效期"];
+        [mView.mTime becomeFirstResponder];
+        return;
+
+    }
     [SVProgressHUD showWithStatus:@"正在获取..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo getBalanceVerifyCode:@"超尔物管通" andLoginName:[mUserInfo backNowUser].mPhone andPayMoney:self.mPayMoney andPayName:mView.mNameTx.text andIdentify:mView.mIdentify.text andPhone:mView.mPhone.text andBalance:[mUserInfo backNowUser].mMoney andBankCard:mView.mBankCard.text andBankTime:mView.mTime.text andCVV:mView.mCVV.text block:^(mBaseData *resb) {
@@ -205,7 +219,7 @@
     if (mView.mBankCard.text.length == 0) {
         [mView.mBankCard becomeFirstResponder];
         [self showErrorStatus:@"银行卡不能为空"];
-        return;
+        return; 
     }
     if (mView.mTime.text.length == 0) {
         [mView.mTime becomeFirstResponder];
@@ -310,10 +324,12 @@
 }
 
 
+
 ///限制电话号码输入长度
 #define PHONE_MAXLENGTH 11
 ///限制验证码输入长度
 #define IDENTIFY_LENGHT 18
+#define Time_LENGHT 4
 #pragma mark **----键盘代理方法
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -323,7 +339,23 @@
         res= IDENTIFY_LENGHT-[new length];
         
         
-    }else
+    }
+    else if (textField.tag == 5){
+        res= Time_LENGHT-[new length];
+        
+        _previousSelection = textField.selectedTextRange;
+        _previousTextFieldContent = textField.text;
+        
+        if(range.location==0) {
+            if(string.integerValue >1)
+            {
+                return NO;
+            }
+        }
+
+
+    }
+    else
     {
         res= PHONE_MAXLENGTH-[new length];
         
@@ -341,6 +373,96 @@
     }
     
 }
+
+
+
+-(void)reformatAsPhoneNumber:(UITextField *)textField {
+    /**
+     *  判断正确的光标位置
+     */
+    NSUInteger targetCursorPostion = [textField offsetFromPosition:textField.beginningOfDocument toPosition:textField.selectedTextRange.start];
+    NSString *phoneNumberWithoutSpaces = [self removeNonDigits:textField.text andPreserveCursorPosition:&targetCursorPostion];
+    
+    
+    if([phoneNumberWithoutSpaces length]>5) {
+        /**
+         *  避免超过11位的输入
+         */
+        
+        [textField setText:_previousTextFieldContent];
+        textField.selectedTextRange = _previousSelection;
+        
+        return;
+    }
+    
+    
+    NSString *phoneNumberWithSpaces = [self insertSpacesEveryFourDigitsIntoString:phoneNumberWithoutSpaces andPreserveCursorPosition:&targetCursorPostion];
+    
+    textField.text = phoneNumberWithSpaces;
+    UITextPosition *targetPostion = [textField positionFromPosition:textField.beginningOfDocument offset:targetCursorPostion];
+    [textField setSelectedTextRange:[textField textRangeFromPosition:targetPostion toPosition:targetPostion]];
+    
+}
+
+/**
+ *  除去非数字字符，确定光标正确位置
+ *
+ *  @param string         当前的string
+ *  @param cursorPosition 光标位置
+ *
+ *  @return 处理过后的string
+ */
+- (NSString *)removeNonDigits:(NSString *)string andPreserveCursorPosition:(NSUInteger *)cursorPosition {
+    NSUInteger originalCursorPosition =*cursorPosition;
+    NSMutableString *digitsOnlyString = [NSMutableString new];
+    
+    for (NSUInteger i=0; i<string.length; i++) {
+        unichar characterToAdd = [string characterAtIndex:i];
+        
+        if(isdigit(characterToAdd)) {
+            NSString *stringToAdd = [NSString stringWithCharacters:&characterToAdd length:1];
+            [digitsOnlyString appendString:stringToAdd];
+        }
+        else {
+            if(i<originalCursorPosition) {
+                (*cursorPosition)--;
+            }
+        }
+    }
+    return digitsOnlyString;
+}
+
+/**
+ *  将空格插入我们现在的string 中，并确定我们光标的正确位置，防止在空格中
+ *
+ *  @param string         当前的string
+ *  @param cursorPosition 光标位置
+ *
+ *  @return 处理后有空格的string
+ */
+- (NSString *)insertSpacesEveryFourDigitsIntoString:(NSString *)string andPreserveCursorPosition:(NSUInteger *)cursorPosition{
+    NSMutableString *stringWithAddedSpaces = [NSMutableString new];
+    NSUInteger cursorPositionInSpacelessString = *cursorPosition;
+    
+    for (NSUInteger i=0; i<string.length; i++) {
+        if(i>0)
+        {
+            if(i==2) {
+                [stringWithAddedSpaces appendString:@"/"];
+                
+                if(i<cursorPositionInSpacelessString) {
+                    (*cursorPosition)++;
+                }
+            }
+        }
+        
+        unichar characterToAdd = [string characterAtIndex:i];
+        NSString *stringToAdd = [NSString stringWithCharacters:&characterToAdd length:1];
+        [stringWithAddedSpaces appendString:stringToAdd];
+    }
+    return stringWithAddedSpaces;
+}
+
 
 
 @end

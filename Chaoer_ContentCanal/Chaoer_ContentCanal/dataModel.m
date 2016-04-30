@@ -11,6 +11,7 @@
 #import "NSObject+myobj.h"
 #import "APService.h"
 #import <MobileCoreServices/UTType.h>
+#import <RongIMLib/RongIMLib.h>
 
 @implementation dataModel{
     NSMutableURLRequest *request;
@@ -252,31 +253,50 @@ bool g_bined = NO;
 + (void)OpenRCConnect{
 
     
-    mUserInfo *mUser = [mUserInfo backNowUser];
-    if (!mUser) {
+    RCCInfo *mRcc = [RCCInfo backRCCInfo];
+    if (!mRcc) {
         return;
     }
+    //初始化融云SDK
+    [[RCIMClient sharedRCIMClient] initWithAppKey:RCCAPP_KEY];
     
+    
+    
+    //连接服务器
+    [[RCIMClient sharedRCIMClient] connectWithToken:mRcc.mRCCToken success:^(NSString *userId) {
+        
+        NSLog(@"rc ok:%@",userId);
+        
+    } error:^(RCConnectErrorCode status) {
+        NSLog(@"rcerrcccrr:%ld",status);
+        
+    } tokenIncorrect:^{
+        
+        NSLog(@"rcerrrr:");
+        
+    }];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+
+    [RCIMClient sharedRCIMClient].currentUserInfo = [[RCUserInfo alloc]initWithUserId:mRcc.mRCCUserId  name:mRcc.mRCCUserName portrait:url];
+
     
     
 }
-+ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb))block{
 
++ (void)reRCClocation:(NSString *)mRCCUserId andLat:(NSString *)mLat andLong:(NSString *)mLong block:(void(^)(mBaseData *resb))block{
+    
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mType forKey:@"type"];
-    [para setObject:mValue forKey:@"value"];
-    [para setObject:mUserName forKey:@"userName"];
-    [para setObject:mHeader forKey:@"portraitUri"];
-    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appGetToken" parameters:para call:^(mBaseData *info) {
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLong forKey:@"lon"];
+    [para setObject:[RCCInfo backRCCInfo].mRCCUserId forKey:@"userId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appUpLocation" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block (info);
         }else
             block(info);
     }];
-    
-
 }
-
 
 
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
@@ -404,6 +424,8 @@ bool g_bined = NO;
     
     [def synchronize];
 }
+
+
 +(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid block:(void(^)(mBaseData* resb, mUserInfo*user))block
 {
     
@@ -445,6 +467,9 @@ bool g_bined = NO;
     block( info , [mUserInfo backNowUser] );
     
 }
+
+
+
 
 + (void)editUserMsg:(NSString *)mHeader andUserid:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -2405,5 +2430,192 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+
+@end
+
+@implementation RCCInfo
+
+static RCCInfo *g_rcc = nil;
+bool g_rccbined = NO;
+
++ (RCCInfo *)backRCCInfo{
+
+    if (g_rcc) {
+        return g_rcc;
+    }
+    if (g_rccbined) {
+        NSLog(@"警告！递归错误！");
+        return nil;
+    }
+    g_rccbined = YES;
+    
+    
+    @synchronized (self) {
+        if (!g_rcc) {
+            g_rcc = [RCCInfo loadRCCInfo];
+        }
+    }
+    g_rccbined = NO;
+    return g_rcc;
+}
+
++ (RCCInfo *)loadRCCInfo{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSDictionary* dat = [def objectForKey:@"Rccinfo"];
+    if( dat )
+    {
+        RCCInfo* tu = [[RCCInfo alloc]initWithObj:dat];
+        return tu;
+    }
+    return nil;
+}
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mRCCToken = [obj objectForKeyMy:@"token"];
+    self.mRCCUserId = [obj objectForKeyMy:@"userId"];
+    self.mRCCUserName = [obj objectForKeyMy:@"userName"];
+    
+}
++ (void)saveRCCInfo:(NSDictionary *)dic{
+    dic = [Util delNUll:dic];
+    
+    NSMutableDictionary *dcc = [[NSMutableDictionary alloc] initWithDictionary:dic];
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    
+    [def setObject:dcc forKey:@"Rccinfo"];
+    
+    
+    
+    [def synchronize];
+}
+
++ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb,RCCInfo *mrcc))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mType forKey:@"type"];
+    [para setObject:mValue forKey:@"value"];
+    [para setObject:mUserName forKey:@"userName"];
+    [para setObject:mHeader forKey:@"portraitUri"];
+    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appGetToken" parameters:para call:^(mBaseData *info) {
+        
+        [self dealSession:info block:block];
+ 
+    }];
+    
+    
+}
++ (void)getArearWithRcc:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:[RCCInfo backRCCInfo].mRCCUserId forKey:@"userId"];
+
+    
+    
+    [[HTTPrequest sharedClient] getUrl:@"app/rongCloud/appGetCommunityUsers" parameters:para call:^(mBaseData *info) {
+        
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in [info.mData objectForKeyMy:@"list"]) {
+                [tempArr addObject:[[RCCUserInfo alloc] initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+
+    }];
+}
+
+
++ (void)getDistanceWith:(int)mPage andNum:(int)mNum andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:[RCCInfo backRCCInfo].mRCCUserId forKey:@"userId"];
+    [para setObject:mLng forKey:@"lon"];
+    [para setObject:mLat forKey:@"lat"];
+
+    [[HTTPrequest sharedClient] getUrl:@"app/rongCloud/appGetNearbyUsers" parameters:para call:^(mBaseData *info) {
+        
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            for (NSDictionary *dic in [info.mData objectForKeyMy:@"list"]) {
+                [tempArr addObject:[[RCCUserInfo alloc] initWithObj:dic]];
+            }
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+}
+
+
+
+
+
++ (void)dealSession:(mBaseData *)info block:(void(^)(mBaseData* resb, RCCInfo*rcc))block{
+#warning 返回的数据是整个RCC信息对象
+    if ( info.mSucess ) {
+        NSDictionary* tmpdic = info.mData;
+        
+        NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
+        
+        RCCInfo* tu = [[RCCInfo alloc]initWithObj:tdic];
+        tmpdic = tdic;
+        
+        [RCCInfo saveRCCInfo:tmpdic];
+        
+    }
+    
+    
+    block( info , [RCCInfo backRCCInfo] );
+    
+}
+
+@end
+
+@implementation RCCUserInfo
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.totalRow = [obj objectForKeyMy:@"totalRow"];
+    self.pageNumber = [obj objectForKeyMy:@"pageNumber"];
+    self.totalPage = [obj objectForKeyMy:@"totalPage"];
+    self.pageSize = [obj objectForKeyMy:@"pageSize"];
+    self.userId = [obj objectForKeyMy:@"userId"];
+    self.userName = [obj objectForKeyMy:@"userName"];
+    self.portraitUri = [obj objectForKeyMy:@"portraitUri"];
+    self.mList = [obj objectForKeyMy:@"list"];
+}
 
 @end

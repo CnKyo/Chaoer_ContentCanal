@@ -327,18 +327,18 @@
         case 1:
         {
             
-            if ([mUserInfo backNowUser].mId == 0) {
+            if (![mUserInfo backNowUser].mUserId) {
                 otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
-                ooo.mType = 2;
+                            ooo.mType = 2;
                 ooo.mOpenId = [mUserInfo backNowUser].mOpenId;
                 [self pushViewController:ooo];
 
             }else{
             
-                if ([mUserInfo backNowUser].mIsRegist) {
+                if ([mUserInfo backNowUser].mIsRegist != 0) {
                     hasCodeViewController *hhh = [hasCodeViewController new];
                     [self pushViewController:hhh];
-                }else if([mUserInfo backNowUser].mIsBundle == 1){
+                }else if([mUserInfo backNowUser].mIsBundle != 0){
                     
                     verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
                     [self pushViewController:vvv];

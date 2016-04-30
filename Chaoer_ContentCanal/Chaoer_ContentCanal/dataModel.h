@@ -241,10 +241,6 @@
 @property (nonatomic,strong) NSString   *mOpenId;
 
 
-
-
-
-
 -(id)initWithObj:(NSDictionary*)obj;
 
 -(void)fetchIt:(NSDictionary*)obj;
@@ -272,6 +268,9 @@
  *  @return
  */
 + (mUserInfo *)backNowUser;
+
++ (mUserInfo *)backRCCInfo;
+
 /**
  *  是否需要登录
  *
@@ -289,15 +288,14 @@
  */
 + (void)OpenRCConnect;
 /**
- *  获取融云token
+ *  融云更新定位信息
  *
- *  @param mType     用户类型
- *  @param mValue    登录类型
- *  @param mUserName 用户昵称
- *  @param mHeader   头像
- *  @param block     返回值
+ *  @param mRCCUserId 融云userid
+ *  @param mLat       纬度
+ *  @param mLong      经度
+ *  @param block      返回值
  */
-+ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb))block;
++ (void)reRCClocation:(NSString *)mRCCUserId andLat:(NSString *)mLat andLong:(NSString *)mLong block:(void(^)(mBaseData *resb))block;
 
 /**
  *  获取当前用户信息
@@ -1533,6 +1531,76 @@
 @property (strong,nonatomic) NSString    *mAddressName;
 
 @property (strong,nonatomic) NSString    *mAddressId;
+
+
+@end
+
+
+#pragma mark----融云信息对象
+@interface RCCInfo : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
++ (RCCInfo *)backRCCInfo;
+
+@property (nonatomic,strong) NSString   *mRCCUserName;
+
+@property (nonatomic,strong) NSString   *mRCCUserId;
+
+@property (nonatomic,strong) NSString   *mRCCToken;
+/**
+ *  获取融云token
+ *
+ *  @param mType     用户类型
+ *  @param mValue    登录类型
+ *  @param mUserName 用户昵称
+ *  @param mHeader   头像
+ *  @param block     返回值
+ */
++ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb,RCCInfo *mrcc))block;
+
+/**
+ *  获取我的小区用户列表
+ *
+ *  @param mPage 页数
+ *  @param mNum  条数
+ *  @param block 返回值
+ */
++ (void)getArearWithRcc:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+/**
+ *  获取附近的人
+ *
+ *  @param mPage 页数
+ *  @param mNum  条数
+ *  @param mLat  纬度
+ *  @param mLng  经度
+ *  @param block 返回值
+ */
++ (void)getDistanceWith:(int)mPage andNum:(int)mNum andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+@end
+
+@interface  RCCUserInfo : NSObject
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@property (nonatomic,strong) NSString   *totalRow;
+
+@property (nonatomic,strong) NSString   *pageNumber;
+
+@property (nonatomic,strong) NSString   *totalPage;
+
+@property (nonatomic,strong) NSString   *pageSize;
+
+@property (nonatomic,strong) NSString   *userId;
+
+@property (nonatomic,strong) NSString   *userName;
+
+@property (nonatomic,strong) NSString   *portraitUri;
+
+@property (nonatomic,strong) NSArray   *mList;
 
 
 @end

@@ -51,6 +51,11 @@
 }
 - (IBAction)mbtnAction:(id)sender {
     
+    if (self.mReason.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"投诉内容不能为空！"];
+        return;
+    }
+    
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.mReason.text block:^(mBaseData *resb) {

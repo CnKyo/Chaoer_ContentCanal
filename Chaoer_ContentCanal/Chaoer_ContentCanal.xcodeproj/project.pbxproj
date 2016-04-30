@@ -34,6 +34,9 @@
 		044A24801CB4B25700A6379C /* msgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A247E1CB4B25700A6379C /* msgViewController.xib */; };
 		044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24821CB4B2EA00A6379C /* msgTableViewCell.m */; };
 		044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */; };
+		0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B7791CD4D64600B950BD /* mServiceClassViewController.m */; };
+		0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */; };
+		0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B77E1CD4D78000B950BD /* ChatListViewController.m */; };
 		04648C4C1CB4D6AD006823C9 /* messageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04648C4A1CB4D6AD006823C9 /* messageTableViewController.m */; };
 		04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C4B1CB4D6AD006823C9 /* messageTableViewController.xib */; };
 		04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C4E1CB4D783006823C9 /* messageCell.xib */; };
@@ -616,6 +619,11 @@
 		044A24811CB4B2EA00A6379C /* msgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msgTableViewCell.h; sourceTree = "<group>"; };
 		044A24821CB4B2EA00A6379C /* msgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = msgTableViewCell.m; sourceTree = "<group>"; };
 		044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = msgTableViewCell.xib; sourceTree = "<group>"; };
+		0461B7781CD4D64600B950BD /* mServiceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceClassViewController.h; sourceTree = "<group>"; };
+		0461B7791CD4D64600B950BD /* mServiceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceClassViewController.m; sourceTree = "<group>"; };
+		0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceClassViewController.xib; sourceTree = "<group>"; };
+		0461B77D1CD4D78000B950BD /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
+		0461B77E1CD4D78000B950BD /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		04648C491CB4D6AD006823C9 /* messageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageTableViewController.h; sourceTree = "<group>"; };
 		04648C4A1CB4D6AD006823C9 /* messageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageTableViewController.m; sourceTree = "<group>"; };
 		04648C4B1CB4D6AD006823C9 /* messageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = messageTableViewController.xib; sourceTree = "<group>"; };
@@ -1698,7 +1706,7 @@
 			name = WJAdsView;
 			sourceTree = "<group>";
 		};
-		04F1E3AA1CD217AE00222946 /* 社区交流 */ = {
+		04F1E3AA1CD217AE00222946 /* 邻里圈 */ = {
 			isa = PBXGroup;
 			children = (
 				04F1E3AB1CD217EF00222946 /* mConversationViewController.h */,
@@ -1709,8 +1717,13 @@
 				04F1E3B21CD2185700222946 /* mConversationCell.xib */,
 				042238EA1CD3046D00D1784B /* RCChatViewController.h */,
 				042238EB1CD3046D00D1784B /* RCChatViewController.m */,
+				0461B7781CD4D64600B950BD /* mServiceClassViewController.h */,
+				0461B7791CD4D64600B950BD /* mServiceClassViewController.m */,
+				0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */,
+				0461B77D1CD4D78000B950BD /* ChatListViewController.h */,
+				0461B77E1CD4D78000B950BD /* ChatListViewController.m */,
 			);
-			name = "社区交流";
+			name = "邻里圈";
 			sourceTree = "<group>";
 		};
 		04F2DDF31CBE2BAB0088C90F /* 社区动态 */ = {
@@ -2922,7 +2935,7 @@
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
-				04F1E3AA1CD217AE00222946 /* 社区交流 */,
+				04F1E3AA1CD217AE00222946 /* 邻里圈 */,
 				04F2DDF31CBE2BAB0088C90F /* 社区动态 */,
 				04648C5D1CB4F116006823C9 /* 跑跑腿 */,
 				313D76E71C9958B2004D5679 /* 快捷缴费 */,
@@ -3731,6 +3744,7 @@
 				311BE22F1CA14B38006757E8 /* needCodeViewController.xib in Resources */,
 				04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */,
 				3135F82E1C97EB7300EF9569 /* activityCenterViewController.xib in Resources */,
+				0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */,
 				31EEB3381C9419F800B61A86 /* mGoodsDetailViewController.xib in Resources */,
 				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,
 				31E1A7221CA3890C00D3496F /* makeFixOrderDetailViewController.xib in Resources */,
@@ -3849,6 +3863,7 @@
 				318D56511C9BE28E0045B5FB /* aboutusView.m in Sources */,
 				310EB5FD1CA2680F005C61F4 /* choiceServicerViewController.m in Sources */,
 				749BE96B1B3272E700BABCA6 /* UIView+MJExtension.m in Sources */,
+				0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */,
 				313D76C31C9929AD004D5679 /* mTouzhiViewController.m in Sources */,
 				318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */,
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
@@ -3945,6 +3960,7 @@
 				749BE9E51B32777F00BABCA6 /* MMLocationManager.m in Sources */,
 				31462CEC1CB3B07100E67836 /* UIColor+Extensions.m in Sources */,
 				16A987BD1C0397F100D55C4A /* Util.m in Sources */,
+				0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */,
 				31671DD21CA1332A001DAEBA /* hasCodeViewController.m in Sources */,
 				315442881C9A54800047E52A /* mFeedPersonViewController.m in Sources */,
 				749BE99C1B32756800BABCA6 /* IQSegmentedNextPrevious.m in Sources */,
