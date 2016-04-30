@@ -260,6 +260,22 @@ bool g_bined = NO;
     
     
 }
++ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mType forKey:@"type"];
+    [para setObject:mValue forKey:@"value"];
+    [para setObject:mUserName forKey:@"userName"];
+    [para setObject:mHeader forKey:@"portraitUri"];
+    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appGetToken" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            block (info);
+        }else
+            block(info);
+    }];
+    
+
+}
 
 
 

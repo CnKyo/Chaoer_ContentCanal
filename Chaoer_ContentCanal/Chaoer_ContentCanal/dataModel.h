@@ -288,7 +288,16 @@
  *  关联融云
  */
 + (void)OpenRCConnect;
-
+/**
+ *  获取融云token
+ *
+ *  @param mType     用户类型
+ *  @param mValue    登录类型
+ *  @param mUserName 用户昵称
+ *  @param mHeader   头像
+ *  @param block     返回值
+ */
++ (void)getToken:(NSString *)mType andValue:(NSString *)mValue andUserName:(NSString *)mUserName andPrtraitUri:(NSString *)mHeader block:(void(^)(mBaseData *resb))block;
 
 /**
  *  获取当前用户信息

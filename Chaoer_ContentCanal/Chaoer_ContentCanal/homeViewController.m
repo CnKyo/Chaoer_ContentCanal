@@ -99,6 +99,27 @@
             
         }
     }];
+//    
+//    NSString *mtt = nil;
+//    if ([mUserInfo backNowUser].mUserId) {
+//        mtt = [NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId];
+//    }else{
+//        mtt = [mUserInfo backNowUser].mOpenId;
+//        
+//    }
+//    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+//
+//    [mUserInfo getToken:@"1" andValue:mtt andUserName:[mUserInfo backNowUser].mNickName andPrtraitUri:url block:^(mBaseData *resb) {
+//        
+//        if (resb.mSucess) {
+//            
+//        }else{
+//        
+//        }
+//        
+//    }];
+    
+    
 }
 
 -(void)dealloc{
