@@ -36,6 +36,7 @@
 #import "hasCodeViewController.h"
 #import "needCodeViewController.h"
 #import "verifyBankViewController.h"
+#import "barCodeViewController.h"
 
 #import "otherLoginViewController.h"
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -108,6 +109,8 @@
     UIImage *img4 = [UIImage imageNamed:@"icon_order"];
     UIImage *img5 = [UIImage imageNamed:@"icon_rent"];
     UIImage *img6 = [UIImage imageNamed:@"add_hourse"];
+    UIImage *img7 = [UIImage imageNamed:@"bar_code"];
+
 
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:@"实名认证" forKey:@"name"];
@@ -121,35 +124,40 @@
     [dic2 setObject:img2 forKey:@"img"];
     [dic2 setObject:NumberWithInt(2) forKey:@"ppp"];
     [dic2 setObject:NumberWithInt(1) forKey:@"hidden"];
-
     
-    mArr1 = @[dic,dic2];
+    NSMutableDictionary *dic7 = [NSMutableDictionary new];
+    [dic7 setObject:@"我的二维码名片" forKey:@"name"];
+    [dic7 setObject:img7 forKey:@"img"];
+    [dic7 setObject:NumberWithInt(3) forKey:@"ppp"];
+    [dic7 setObject:NumberWithInt(2) forKey:@"hidden"];
+    
+    mArr1 = @[dic,dic2,dic7];
     
     
     NSMutableDictionary *dic3 = [NSMutableDictionary new];
     [dic3 setObject:@"活动中心" forKey:@"name"];
     [dic3 setObject:img3 forKey:@"img"];
-    [dic3 setObject:NumberWithInt(3) forKey:@"ppp"];
+    [dic3 setObject:NumberWithInt(4) forKey:@"ppp"];
     [dic3 setObject:NumberWithInt(2) forKey:@"hidden"];
 
 
     NSMutableDictionary *dic4 = [NSMutableDictionary new];
     [dic4 setObject:@"我的订单" forKey:@"name"];
     [dic4 setObject:img4 forKey:@"img"];
-    [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
+    [dic4 setObject:NumberWithInt(5) forKey:@"ppp"];
     [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
 
     NSMutableDictionary *dic5 = [NSMutableDictionary new];
     [dic5 setObject:@"出租房" forKey:@"name"];
     [dic5 setObject:img5 forKey:@"img"];
-    [dic5 setObject:NumberWithInt(5) forKey:@"ppp"];
+    [dic5 setObject:NumberWithInt(6) forKey:@"ppp"];
     [dic5 setObject:NumberWithInt(2) forKey:@"hidden"];
 
     
     NSMutableDictionary *dic6 = [NSMutableDictionary new];
     [dic6 setObject:@"房屋添加" forKey:@"name"];
     [dic6 setObject:img6 forKey:@"img"];
-    [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
+    [dic6 setObject:NumberWithInt(7) forKey:@"ppp"];
     [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
     
     mArr2 = @[dic3,dic4,dic5,dic6];
@@ -295,6 +303,16 @@
                 cell.mDetail.hidden = NO;
             }
         
+        }else if (indexPath.row == 2){
+            if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
+                
+                cell.mDetail.hidden = NO;
+                
+                
+            }else{
+                cell.mDetail.hidden = YES;
+            }
+
         }
     }
     else {
@@ -369,9 +387,12 @@
             break;
         case 3:
         {
-//            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
-//            [self pushViewController:mmm];
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
+            NSLog(@"我的二维码");
+            
+            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
+            
+            [self pushViewController:bbb];
 
             
         }
@@ -379,9 +400,17 @@
         case 4:
         {
 
-//            myOrderViewController *mmm = [[myOrderViewController alloc] initWithNibName:@"myOrderViewController" bundle:nil];
-//            [self pushViewController:mmm];
-
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            //            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
+            //            [self pushViewController:mmm];
+            
+            
+        }
+            break;
+        case 5:
+        {
+     
+            
             if ([mUserInfo backNowUser].mTemporary) {
                 [LCProgressHUD showInfoMsg:@"您还未认证！"];
                 return;
@@ -390,16 +419,18 @@
             orderTongjiViewController *oo = [[orderTongjiViewController alloc] initWithNibName:@"orderTongjiViewController" bundle:nil];
             
             [self pushViewController:oo];
-            
-        }
-            break;
-        case 5:
-        {
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
 
         }
             break;
         case 6:
+        {
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
+            
+        }
+            break;
+        case 7:
         {
             if ([mUserInfo backNowUser].mTemporary) {
                 [LCProgressHUD showInfoMsg:@"您还未认证！"];
@@ -409,9 +440,9 @@
             needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
             nnn.Type = 3;
             [self pushViewController:nnn];
+            
         }
             break;
-
         default:
             break;
     }

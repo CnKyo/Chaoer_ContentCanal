@@ -150,13 +150,7 @@
  */
 - (IBAction)mInfo:(id)sender {
 }
-/**
- *  二维码
- *
- *  @param sender
- */
-- (IBAction)mErweima:(id)sender {
-}
+
 /**
  *  电话
  *

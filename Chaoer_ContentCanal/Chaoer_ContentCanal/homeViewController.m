@@ -454,6 +454,11 @@
                 ccc.mLng = mLng;
             }
             
+            if ([mLat isEqualToString:@"0.000000"]) {
+                ccc.mLat = nil;
+            }if ([mLng isEqualToString:@"0.000000"]) {
+                ccc.mLng = nil;
+            }
             
             [self pushViewController:ccc];
 

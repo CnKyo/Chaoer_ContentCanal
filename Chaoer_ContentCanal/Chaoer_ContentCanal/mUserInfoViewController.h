@@ -42,10 +42,7 @@
  *  住户信息
  */
 @property (strong, nonatomic) IBOutlet UILabel *mUserInfo;
-/**
- *  二维码
- */
-@property (strong, nonatomic) IBOutlet UIButton *mErWeiMaBtn;
+
 /**
  *  手机号码
  */

@@ -23,6 +23,13 @@
 		040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801F1CC50D50006A9489 /* WJStatusBarHUD_warning.png */; };
 		040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */; };
 		040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80221CC50D50006A9489 /* WJStatusBarHUD.m */; };
+		040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0DC1CDB20C200270D4F /* barCodeViewController.m */; };
+		040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0DD1CDB20C200270D4F /* barCodeViewController.xib */; };
+		040FE0E21CDB20DA00270D4F /* mBarCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0E11CDB20DA00270D4F /* mBarCodeView.m */; };
+		040FE0E41CDB20E000270D4F /* mBarCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E31CDB20E000270D4F /* mBarCodeView.xib */; };
+		040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E51CDB28F200270D4F /* mSahreView.xib */; };
+		040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0E81CDB39E400270D4F /* barCodeCell.m */; };
+		040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E91CDB39E400270D4F /* barCodeCell.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
 		042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042238EB1CD3046D00D1784B /* RCChatViewController.m */; };
 		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
@@ -599,6 +606,16 @@
 		040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJStatusBarHUD_warning@2x.png"; sourceTree = "<group>"; };
 		040B80211CC50D50006A9489 /* WJStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJStatusBarHUD.h; sourceTree = "<group>"; };
 		040B80221CC50D50006A9489 /* WJStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJStatusBarHUD.m; sourceTree = "<group>"; };
+		040FE0DB1CDB20C200270D4F /* barCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barCodeViewController.h; sourceTree = "<group>"; };
+		040FE0DC1CDB20C200270D4F /* barCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barCodeViewController.m; sourceTree = "<group>"; };
+		040FE0DD1CDB20C200270D4F /* barCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barCodeViewController.xib; sourceTree = "<group>"; };
+		040FE0E01CDB20DA00270D4F /* mBarCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBarCodeView.h; sourceTree = "<group>"; };
+		040FE0E11CDB20DA00270D4F /* mBarCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBarCodeView.m; sourceTree = "<group>"; };
+		040FE0E31CDB20E000270D4F /* mBarCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBarCodeView.xib; sourceTree = "<group>"; };
+		040FE0E51CDB28F200270D4F /* mSahreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSahreView.xib; sourceTree = "<group>"; };
+		040FE0E71CDB39E400270D4F /* barCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barCodeCell.h; sourceTree = "<group>"; };
+		040FE0E81CDB39E400270D4F /* barCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barCodeCell.m; sourceTree = "<group>"; };
+		040FE0E91CDB39E400270D4F /* barCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barCodeCell.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
 		042238EA1CD3046D00D1784B /* RCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatViewController.h; sourceTree = "<group>"; };
 		042238EB1CD3046D00D1784B /* RCChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatViewController.m; sourceTree = "<group>"; };
@@ -1621,6 +1638,23 @@
 				040B80181CC50C08006A9489 /* LCProgressHUD.m */,
 			);
 			name = LCProgress;
+			sourceTree = "<group>";
+		};
+		040FE0DA1CDB20AA00270D4F /* 二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				040FE0DB1CDB20C200270D4F /* barCodeViewController.h */,
+				040FE0DC1CDB20C200270D4F /* barCodeViewController.m */,
+				040FE0DD1CDB20C200270D4F /* barCodeViewController.xib */,
+				040FE0E71CDB39E400270D4F /* barCodeCell.h */,
+				040FE0E81CDB39E400270D4F /* barCodeCell.m */,
+				040FE0E91CDB39E400270D4F /* barCodeCell.xib */,
+				040FE0E01CDB20DA00270D4F /* mBarCodeView.h */,
+				040FE0E11CDB20DA00270D4F /* mBarCodeView.m */,
+				040FE0E31CDB20E000270D4F /* mBarCodeView.xib */,
+				040FE0E51CDB28F200270D4F /* mSahreView.xib */,
+			);
+			name = "二维码";
 			sourceTree = "<group>";
 		};
 		044A247B1CB4B23100A6379C /* 消息 */ = {
@@ -2797,6 +2831,7 @@
 				314586321CAE4249003EB85E /* myViewTableViewCell.h */,
 				314586331CAE4249003EB85E /* myViewTableViewCell.m */,
 				314586341CAE4249003EB85E /* myViewTableViewCell.xib */,
+				040FE0DA1CDB20AA00270D4F /* 二维码 */,
 				74DE20621BCE4D1C003C03E7 /* changephone */,
 				7470E13E1B9C07AD00ECEC69 /* leave */,
 			);
@@ -3564,6 +3599,7 @@
 				74D292EB1B96DA8500A57977 /* moreView.xib in Resources */,
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
 				746907E31BABEC6600A4589A /* moreCell.xib in Resources */,
+				040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */,
 				310EB6041CA26E47005C61F4 /* makeServiceView.xib in Resources */,
 				318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
@@ -3576,6 +3612,7 @@
 				040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */,
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
+				040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
@@ -3627,6 +3664,7 @@
 				312D08B01CAA1C560006F0FA /* ShareSDKUI.bundle in Resources */,
 				040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */,
 				04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */,
+				040FE0E41CDB20E000270D4F /* mBarCodeView.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
@@ -3704,6 +3742,7 @@
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
 				04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */,
 				310EB5E21CA241B0005C61F4 /* choiseServicerTableViewCell.xib in Resources */,
+				040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */,
 				3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */,
 				3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */,
 				3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */,
@@ -3819,6 +3858,7 @@
 				313413531CA28DC3003972E2 /* UIView+Animations.m in Sources */,
 				313413541CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m in Sources */,
 				3154428C1C9A8B7A0047E52A /* dataModel.m in Sources */,
+				040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */,
 				04648C711CB50389006823C9 /* senderSubView.m in Sources */,
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
 				04678F531CB7916A0074AA80 /* keyChain.m in Sources */,
@@ -3835,6 +3875,7 @@
 				315442901C9A93810047E52A /* HTTPrequest.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				04648C611CB4F1A4006823C9 /* mSenderViewController.m in Sources */,
+				040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
 				31B990231C969780002E34A5 /* washDetailViewController.m in Sources */,
 				04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */,
@@ -3928,6 +3969,7 @@
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
+				040FE0E21CDB20DA00270D4F /* mBarCodeView.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,
 				310EB5E61CA24445005C61F4 /* HCSStarRatingView.m in Sources */,
 				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,

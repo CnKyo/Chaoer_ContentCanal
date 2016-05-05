@@ -2720,6 +2720,8 @@ bool g_rccbined = NO;
     self.userName = [obj objectForKeyMy:@"userName"];
     self.portraitUri = [obj objectForKeyMy:@"portraitUri"];
     self.mList = [obj objectForKeyMy:@"list"];
+    
+    self.distance = [obj objectForKeyMy:@"distance"];
 }
 
 @end

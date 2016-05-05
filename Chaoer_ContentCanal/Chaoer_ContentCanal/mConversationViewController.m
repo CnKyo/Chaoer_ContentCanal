@@ -136,12 +136,19 @@
         }];
 
     }else{
-   
+        [self removeEmptyView];
+
         if (self.mLat == nil || [self.mLat isEqualToString:@""]) {
-            self.mLat = @"";
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            [self addEmptyView:nil];
+
+            return;
         }
         if (self.mLng == nil || [self.mLng isEqualToString:@""]) {
-            self.mLng = @"";
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            [self addEmptyView:nil];
+
+            return;
         }
         
         [RCCInfo getDistanceWith:self.page andNum:10 andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb, NSArray *mArr) {
@@ -161,7 +168,7 @@
                 [self.tableView reloadData];
                 
             }else{
-                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
                 [self addEmptyView:nil];
             }
             
@@ -202,6 +209,21 @@
         }];
 
     }else{
+        [self removeEmptyView];
+        
+        if (self.mLat == nil || [self.mLat isEqualToString:@""]) {
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            [self addEmptyView:nil];
+            
+            return;
+        }
+        if (self.mLng == nil || [self.mLng isEqualToString:@""]) {
+            [LCProgressHUD showFailure:@"打开定位才能查看附近的人！"];
+            [self addEmptyView:nil];
+            
+            return;
+        }
+
         [RCCInfo getDistanceWith:self.page andNum:10 andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb, NSArray *mArr) {
             [self footetEndRefresh];
             [self removeEmptyView];
@@ -235,7 +257,8 @@
     
     if (mIndex == 0) {
         mType = 1;
-        
+        [self headerBeganRefresh];
+
         
         
     }else{
@@ -248,9 +271,10 @@
             return;
         }
         mType = 2;
+        [self headerBeganRefresh];
+
     }
 
-    [self headerBeganRefresh];
 
 }
 
@@ -297,6 +321,13 @@
     [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:mRccUser.portraitUri] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     cell.mName.text = mRccUser.userName;
+    cell.mDistance.text = [NSString stringWithFormat:@"距离：%@米",mRccUser.distance];
+    if (mType == 1) {
+        cell.mDistance.hidden = YES;
+        
+    }else{
+        cell.mDistance.hidden = NO;
+    }
     
     return cell;
     

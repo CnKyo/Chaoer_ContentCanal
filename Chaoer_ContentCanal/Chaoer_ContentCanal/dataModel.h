@@ -1619,6 +1619,8 @@
 
 @property (nonatomic,strong) NSString   *portraitUri;
 
+@property (nonatomic,strong) NSString   *distance;
+
 @property (nonatomic,strong) NSArray   *mList;
 
 
