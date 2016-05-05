@@ -7,7 +7,7 @@
 //
 
 #import "RCChatViewController.h"
-
+#import <RongIMKit/RongIMKit.h>
 @interface RCChatViewController ()
 
 @end
@@ -91,4 +91,20 @@
 //    
 //    
 //}
+
+
+#pragma mark----发送消息(除图片消息外的所有消息)，会自动更新UI
+- (RCMessage *)sendMessage:(RCConversationType)conversationType
+                  targetId:(NSString *)targetId
+                   content:(RCMessageContent *)content
+               pushContent:(NSString *)pushContent
+                  pushData:(NSString *)pushData
+                   success:(void (^)(long messageId))successBlock
+                     error:(void (^)(RCErrorCode nErrorCode, long messageId))errorBlock{
+
+   
+    
+    
+    
+}
 @end

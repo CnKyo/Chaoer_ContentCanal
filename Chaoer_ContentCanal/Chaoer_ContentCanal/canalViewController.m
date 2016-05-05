@@ -342,7 +342,7 @@
     {
         [self popViewController];
     }else{
-        if ([mUserInfo backNowUser].mIsRegist) {
+        if ([mUserInfo backNowUser].mIsHousingAuthentication) {
             hasCodeViewController *hhh = [hasCodeViewController new];
             [self pushViewController:hhh];
         }else if([mUserInfo backNowUser].mIsBundle == 1){

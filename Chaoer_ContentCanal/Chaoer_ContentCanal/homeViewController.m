@@ -527,6 +527,7 @@
     
     [mScrollerView setImageViewDidTapAtIndex:^(NSInteger index) {
         printf("第%zd张图片\n",index);
+        return;
         MBaner *banar = mTempArr[index];
         
         WebVC *w = [WebVC new];

@@ -16,7 +16,9 @@
     view.loginBtn.layer.masksToBounds = YES;
     view.loginBtn.layer.cornerRadius = 3;
     
-
+    view.phoneTx.tintColor = [UIColor whiteColor];
+    view.codeTx.tintColor = [UIColor whiteColor];
+    
     return view;
 }
 

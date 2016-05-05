@@ -22,7 +22,7 @@
     
     NSString *str = nil;
     
-    if (self.mType == 1) {
+    if (self.mType == 2) {
         str = @"积分纪录";
     }else{
         str = @"交易纪录";
@@ -176,7 +176,7 @@
     
     int mType = mScore.mType;
     
-    if (mType == 0) {
+    if (mType == 2) {
         cell.mStatus.text = @"充值";
         cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
 

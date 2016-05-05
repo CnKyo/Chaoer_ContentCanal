@@ -12,7 +12,7 @@
 #import "APService.h"
 #import <MobileCoreServices/UTType.h>
 #import <RongIMLib/RongIMLib.h>
-
+#import <RongIMKit/RongIMKit.h>
 @implementation dataModel{
     NSMutableURLRequest *request;
     NSOperationQueue *queue;
@@ -195,7 +195,7 @@ bool g_bined = NO;
     
     int mIdd =  [[obj objectForKeyMy:@"identity"] intValue];
     
-    if (mIdd == 1) {
+    if (mIdd == 2) {
         self.mIdentity = @"房主";
     }else{
         self.mIdentity = @"租客";
@@ -215,8 +215,20 @@ bool g_bined = NO;
         self.mSex = @"女";
     }
     
-    self.mIsRegist = [[obj objectForKeyMy:@"isRegist"] boolValue];
-    self.mIsBundle = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
+    
+    int isregist = [[obj objectForKeyMy:@"isRegist"] boolValue];
+    
+    int isbind = [[obj objectForKeyMy:@"isBindHourse"] boolValue];
+    
+    int isAut = [[obj objectForKeyMy:@"isHousingAuthentication"] boolValue];
+    
+    self.mIsRegist = isregist?1:0;
+    
+    self.mIsBundle = isbind?1:0;
+    
+    self.mIsHousingAuthentication = isAut?1:0;
+
+    
     self.mPhone = [obj objectForKeyMy:@"moblie"];
     self.mPwd = [obj objectForKeyMy:@"mPwd"];
     self.muuid = @"";
@@ -257,28 +269,45 @@ bool g_bined = NO;
     if (!mRcc) {
         return;
     }
+    
+    RCUserInfo *mUser =  [[RCUserInfo alloc] initWithUserId:mRcc.mRCCUserId name:mRcc.mRCCUserName portrait:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl]];
+    [RCIMClient sharedRCIMClient].currentUserInfo = mUser;
+    
     //初始化融云SDK
     [[RCIMClient sharedRCIMClient] initWithAppKey:RCCAPP_KEY];
     
     
+        [[RCIM sharedRCIM] connectWithToken:mRcc.mRCCToken success:^(NSString *userId) {
+            NSLog(@"rc ok:%@",userId);
+
+        } error:^(RCConnectErrorCode status) {
+            NSLog(@"rcerrcccrr:%ld",(long)status);
+
+        } tokenIncorrect:^{
+            NSLog(@"rcerrrr:");
+
+        }];
     
-    //连接服务器
-    [[RCIMClient sharedRCIMClient] connectWithToken:mRcc.mRCCToken success:^(NSString *userId) {
-        
-        NSLog(@"rc ok:%@",userId);
-        
-    } error:^(RCConnectErrorCode status) {
-        NSLog(@"rcerrcccrr:%ld",status);
-        
-    } tokenIncorrect:^{
-        
-        NSLog(@"rcerrrr:");
-        
-    }];
+    
+//    //连接服务器
+//    [[RCIMClient sharedRCIMClient] connectWithToken:mRcc.mRCCToken success:^(NSString *userId) {
+//        
+//        NSLog(@"rc ok:%@",userId);
+//        
+//    } error:^(RCConnectErrorCode status) {
+//        NSLog(@"rcerrcccrr:%ld",(long)status);
+//        
+//    } tokenIncorrect:^{
+//        
+//        NSLog(@"rcerrrr:");
+//        
+//    }];
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
 
     [RCIMClient sharedRCIMClient].currentUserInfo = [[RCUserInfo alloc]initWithUserId:mRcc.mRCCUserId  name:mRcc.mRCCUserName portrait:url];
 
+    
+    
     
     
 }
@@ -348,7 +377,7 @@ bool g_bined = NO;
 
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mLoginName forKey:@"userName"];
+    [para setObject:mLoginName forKey:@"loginName"];
     [para setObject:mPwd forKey:@"passWord"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
@@ -431,7 +460,6 @@ bool g_bined = NO;
     
 #warning 返回的数据是整个用户信息对象
     if ( info.mSucess || info.mState == 200011) {
-        [mUserInfo openPush];
         NSDictionary* tmpdic = info.mData;
         
         NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
@@ -459,7 +487,8 @@ bool g_bined = NO;
             
         }
         
-        
+        [mUserInfo openPush];
+
 
     }
     
@@ -1951,7 +1980,11 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mCard = [obj objectForKeyMy:@"card"];
     self.mReal_name = [obj objectForKeyMy:@"real_name"];
     self.mWebsite = [obj objectForKeyMy:@"website"];
+    self.mCommunityName = [obj objectForKeyMy:@"communityName"];
+    self.mAddr = [obj objectForKeyMy:@"addr"];
 
+    
+    
 }
 
 @end

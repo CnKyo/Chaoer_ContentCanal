@@ -63,7 +63,7 @@
 
     [super viewWillAppear:YES];
 
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
 }
 
 - (void)viewDidLoad {
@@ -196,12 +196,12 @@
 }
 - (void)headerBeganRefresh{
 
-    if ([mUserInfo backNowUser].mId == 0) {
-        [self headerEndRefresh];
-
-        [self initData];
-
-    }else{
+//    if ([mUserInfo backNowUser].mId == 0) {
+//        [self headerEndRefresh];
+//
+//        [self initData];
+//
+//    }else{
         [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
             [self headerEndRefresh];
             if (resb.mSucess) {
@@ -210,7 +210,7 @@
                 
             }
         }];
-    }
+//    }
     
 }
 
@@ -335,14 +335,13 @@
 
             }else{
             
-                if ([mUserInfo backNowUser].mIsRegist != 0) {
+                if ([mUserInfo backNowUser].mIsRegist) {
                     hasCodeViewController *hhh = [hasCodeViewController new];
                     [self pushViewController:hhh];
-                }else if([mUserInfo backNowUser].mIsBundle != 0){
+                }else if([mUserInfo backNowUser].mIsHousingAuthentication){
                     
                     verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
                     [self pushViewController:vvv];
-                    
                     
                     
                 }else{

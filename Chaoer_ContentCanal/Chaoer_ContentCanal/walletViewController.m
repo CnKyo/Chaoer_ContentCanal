@@ -160,7 +160,7 @@
     }
     
     valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
-    vvv.mType = 1;
+    vvv.mType = 2;
     [self pushViewController:vvv];
 }
 #pragma mark----我的红包
@@ -182,7 +182,7 @@
     }
     
     valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
-    vvv.mType = 2;
+    vvv.mType = 1;
     [self pushViewController:vvv];
 }
 

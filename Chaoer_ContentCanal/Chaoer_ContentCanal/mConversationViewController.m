@@ -58,7 +58,6 @@
     UINib   *nib = [UINib nibWithNibName:@"mConversationCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-    
     [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsgNotif) name:@"msgunread" object:nil];

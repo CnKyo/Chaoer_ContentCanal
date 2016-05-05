@@ -37,7 +37,7 @@
 #import <RongIMKit/RongIMKit.h>
 
 
-@interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate>
+@interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 
 @end
 @interface myalert : UIAlertView
@@ -132,13 +132,35 @@
      }];
 
 }
+#pragma mark----加载融云
+- (void)loadRongCloud{
+    // 注册自定义测试消息
+    [[RCIM sharedRCIM] registerMessageType:[RCTextMessage class]];
+    
+    
+    //设置接收消息代理
+    [RCIM sharedRCIM].receiveMessageDelegate=self;
+    //    [RCIM sharedRCIM].globalMessagePortraitSize = CGSizeMake(46, 46);
+    //开启输入状态监听
+    [RCIM sharedRCIM].enableTypingStatus=YES;
+    //开启发送已读回执（只支持单聊）
+    [RCIM sharedRCIM].enableReadReceipt=YES;
+    //设置显示未注册的消息
+    //如：新版本增加了某种自定义消息，但是老版本不能识别，开发者可以在旧版本中预先自定义这种未识别的消息的显示
+    [RCIM sharedRCIM].showUnkownMessage = YES;
+    [RCIM sharedRCIM].showUnkownMessageNotificaiton = YES;
+    
+    [mUserInfo OpenRCConnect];
 
+    
+
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Override point for customization after application launch.
     
     [self initExtComp];
-    
+    [self loadRongCloud];
     
     [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                    UIRemoteNotificationTypeSound |
@@ -150,18 +172,7 @@
     
     [mUserInfo OpenRCConnect];
 
-//    [mUserInfo openPush];
-    
-//    [SUser relTokenWithPush];
-//    
-//    
-//    [Ginfo getGinfo:^(mBaseData *resb) {
-//        if (resb.mSucess) {
-//            
-//        }else{
-//        
-//        }
-//    }];
+    [mUserInfo openPush];
     
     
     [self dealFuncTab];
@@ -316,6 +327,33 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    int unreadMsgCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
+                                                                         @(ConversationType_PRIVATE),
+                                                                         @(ConversationType_DISCUSSION),
+                                                                         @(ConversationType_APPSERVICE),
+                                                                         @(ConversationType_PUBLICSERVICE),
+                                                                         @(ConversationType_GROUP)
+                                                                         ]];
+    application.applicationIconBadgeNumber = unreadMsgCount;
+}
+- (void)redirectNSlogToDocumentFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"MMddHHmmss"];
+    NSString *formattedDate = [dateformatter stringFromDate:currentDate];
+    
+    NSString *fileName = [NSString stringWithFormat:@"rc%@.log", formattedDate];
+    NSString *logFilePath =
+    [documentDirectory stringByAppendingPathComponent:fileName];
+    
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+",
+            stdout);
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+",
+            stderr);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -377,6 +415,7 @@
                       withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -396,9 +435,9 @@
     
     if( !bopenwith )
     {//当前用户正在APP内部,,
-        myalert *alertVC = [[myalert alloc]initWithTitle:@"提示" message:@"有新的消息是否查看?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
-//        alertVC.obj = pushobj;
-        [alertVC show];
+//        myalert *alertVC = [[myalert alloc]initWithTitle:@"提示" message:@"有新的消息是否查看?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
+////        alertVC.obj = pushobj;
+//        [alertVC show];
     }
     else
     {
@@ -494,10 +533,12 @@
 
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
     
-    [UIApplication sharedApplication].applicationIconBadgeNumber =
-    
-    [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
-    
+    RCMessage *message = notification.object;
+    if (message.messageDirection == MessageDirection_RECEIVE) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber =
+        [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    }
+
 }
 
 

@@ -521,11 +521,11 @@
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = YES;
                 mView.mVisitorBtn.selected = NO;
-                [mIdentify addObject:NumberWithFloat(sender.tag)];
+                [mIdentify addObject:NumberWithFloat(2)];
 
             }else{
                 sender.selected = NO;
-                [mIdentify removeObject:NumberWithFloat(sender.tag)];
+                [mIdentify removeObject:NumberWithFloat(2)];
 
             }
         }
@@ -535,11 +535,11 @@
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = NO;
                 mView.mVisitorBtn.selected = YES;
-                [mIdentify addObject:NumberWithFloat(sender.tag)];
+                [mIdentify addObject:NumberWithFloat(1)];
 
             }else{
                 sender.selected = NO;
-                [mIdentify removeObject:NumberWithFloat(sender.tag)];
+                [mIdentify removeObject:NumberWithFloat(1)];
 
             }
         }

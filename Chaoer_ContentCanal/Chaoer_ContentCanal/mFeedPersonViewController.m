@@ -118,6 +118,8 @@
         
         [mUserInfo getBuilNum:mCommunityId block:^(mBaseData *resb, NSArray *mArr) {
             [self.tempArray removeAllObjects];
+            [SVProgressHUD dismiss];
+
             if (resb.mSucess) {
                 
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
@@ -133,6 +135,8 @@
     }else if (mType == 5){
         
         [mUserInfo getDoorNum:mCommunityId andBuildName:mBan block:^(mBaseData *resb, NSArray *mArr) {
+            [SVProgressHUD dismiss];
+
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
                 
@@ -204,16 +208,16 @@
         for (int i = 0 ;i < self.tempArray.count ; i++) {
             
             GdoorNum *door = self.tempArray[i];
-            [mUnitArr addObject:[NSString stringWithFormat:@"%d单元",door.mUnit]];
+            [mUnitArr addObject:[NSString stringWithFormat:@"%@单元",door.mUnit]];
             
             NSMutableArray *floor = [NSMutableArray new];
             NSMutableArray *doorArr = [NSMutableArray new];
-            for (int j =1; j<door.mFloor; j++) {
+            for (int j =1; j<[[NSString stringWithFormat:@"%@",door.mFloor] intValue]; j++) {
                 [floor addObject:[NSString stringWithFormat:@"%d楼",j]];
                 
          
             }
-            for (int k = 1; k<door.mRoomNumber; k++) {
+            for (int k = 1; k<[[NSString stringWithFormat:@"%@",door.mRoomNumber] intValue]; k++) {
                 [doorArr addObject:[NSString stringWithFormat:@"%d号",k]];
             }
             [mFloorArr addObject:floor];

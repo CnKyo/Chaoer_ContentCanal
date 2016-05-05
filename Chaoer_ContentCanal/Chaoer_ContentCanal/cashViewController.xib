@@ -138,7 +138,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-zj-KOY">
                             <rect key="frame" x="93" y="8" width="219" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="24小时内到账">
+                            <state key="normal" title="请选择到账时间">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.83418642241379315" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>

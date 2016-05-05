@@ -315,7 +315,7 @@
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
-            if ([mUserInfo backNowUser].mIsBundle == 1) {
+            if ([mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self popViewController];
             }else{
                 [self popViewController_2];
@@ -325,6 +325,7 @@
 
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            
         }
     }];
 

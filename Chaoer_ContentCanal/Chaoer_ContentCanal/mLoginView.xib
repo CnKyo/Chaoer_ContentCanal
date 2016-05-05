@@ -52,7 +52,7 @@
                         <constraint firstItem="wdg-S7-0vG" firstAttribute="centerY" secondItem="2ie-6o-ult" secondAttribute="centerY" id="sEz-Ts-jCO"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" alpha="0.45000000000000001" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="请输入账户名" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="p1o-ZB-sCh" customClass="JVFloatLabeledTextField">
+                <textField opaque="NO" clipsSubviews="YES" alpha="0.45000000000000001" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入账户名" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="p1o-ZB-sCh">
                     <rect key="frame" x="60" y="261" width="240" height="40"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -82,10 +82,10 @@
                         <constraint firstItem="hM9-aV-xSf" firstAttribute="centerX" secondItem="3Dd-ue-VfF" secondAttribute="centerX" id="jIb-YH-lde"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" alpha="0.45000000000000001" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="请输入密码" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cd0-vw-3Br" customClass="JVFloatLabeledTextField">
+                <textField opaque="NO" clipsSubviews="YES" alpha="0.45000000000000001" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cd0-vw-3Br">
                     <rect key="frame" x="60" y="311" width="240" height="40"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="n1i-ss-913"/>
                     </constraints>

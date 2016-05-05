@@ -35,7 +35,7 @@
     self.mBgkView.layer.borderWidth = 0.5;
     
     
-    if ([mUserInfo backNowUser].mIsRegist) {
+    if ([mUserInfo backNowUser].mIsHousingAuthentication) {
         
         self.mStatus.text = @"";
     }else{
@@ -50,7 +50,7 @@
 }
 - (IBAction)mCode:(id)sender {
 
-    if ([mUserInfo backNowUser].mIsRegist) {
+    if ([mUserInfo backNowUser].mIsHousingAuthentication) {
         hasCodeViewController *hhh = [hasCodeViewController new];
         [self pushViewController:hhh];
     }else if([mUserInfo backNowUser].mIsBundle == 1){

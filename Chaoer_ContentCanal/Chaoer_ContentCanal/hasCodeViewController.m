@@ -59,13 +59,12 @@
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo getBundleMsg:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, SVerifyMsg *info) {
         [self headerEndRefresh];
-        if (resb.mData) {
+        if (resb.mSucess) {
             [SVProgressHUD dismiss];
-//            [SVProgressHUD showSuccessWithStatus:@"加载成功！"];
             mVerify = info;
             [self.tableView reloadData];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"数据加载错误！"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self performSelector:@selector(leftBtnTouched:) withObject:self afterDelay:1];
 
         };
@@ -117,7 +116,7 @@
     }
     if (indexPath.row == 1) {
         cell.mName.text = @"姓名";
-        cell.mContent.text = [mUserInfo backNowUser].mNickName;
+        cell.mContent.text = mVerify.mReal_name;
     }
     if (indexPath.row == 2) {
         cell.mName.text = @"身份证";
@@ -128,8 +127,8 @@
         cell.mContent.text = mVerify.mBankCard;
     }
     if (indexPath.row == 4) {
-        cell.mName.text = @"物管公司";
-        cell.mContent.text = mVerify.mCompanyName;
+        cell.mName.text = @"我的小区";
+        cell.mContent.text = mVerify.mCommunityName;
     }
     if (indexPath.row == 5) {
         cell.mName.text = @"居住关系";
@@ -137,7 +136,7 @@
     }
     if (indexPath.row == 6) {
         cell.mName.text = @"地址信息";
-        cell.mContent.text = mVerify.mVillageName;
+        cell.mContent.text = mVerify.mAddr;
     }
     
     

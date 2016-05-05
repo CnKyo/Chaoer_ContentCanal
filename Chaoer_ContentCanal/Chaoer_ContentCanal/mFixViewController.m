@@ -386,7 +386,7 @@
         }
     }];
   }
-
+#pragma mark----上传视频
 - (void)upLoadVideo{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -419,7 +419,7 @@
         
         if (resb.mSucess) {
             
-            [LCProgressHUD showSuccess:resb.mMessage];
+            [LCProgressHUD showSuccess:@"视频上传成功！"];
 
             mVideoUrlString = [resb.mData objectForKey:@"video"];
             
@@ -465,6 +465,7 @@
     [self.view addSubview:_pikerView];
     
 }
+#pragma mark----时间选择
 - (void)getSelectDate:(NSString *)date type:(DateType)type {
     NSLog(@"%d - %@", type, date);
     

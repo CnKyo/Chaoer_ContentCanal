@@ -13,6 +13,11 @@
 @end
 
 @implementation cashViewController
+
+{
+    NSString *mPayType;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -86,15 +91,14 @@
 */
 - (IBAction)mTimeAction:(id)sender {
     
-    return;
     
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择到账时间" style:MHSheetStyleWeiChat itemTitles:@[@"24小时内到账",@"2小时内到账",@"2小时内到账"]];
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"请选择到账时间" style:MHSheetStyleWeiChat itemTitles:@[@"T+1",@"T+0"]];
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
         NSString *text = title;
         NSLog(@"%@",text);
-       
+        mPayType = [NSString stringWithFormat:@"%ld",(long)index];
         [self.mTimeBtn setTitle:text forState:0];
         
     }];
@@ -109,10 +113,12 @@
     
     [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo  getCash:[mUserInfo backNowUser].mUserId andMoney:self.mMoneyTx.text andPresentManner:@"0" block:^(mBaseData *resb) {
+    [mUserInfo  getCash:[mUserInfo backNowUser].mUserId andMoney:self.mMoneyTx.text andPresentManner:mPayType block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
+
         }else{
         
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

@@ -169,13 +169,17 @@
 @property (nonatomic,strong) NSString   *mSex;
 
 /**
- *  是否银行实名认证
+ *  是否实名认证
  */
 @property (nonatomic,assign) BOOL        mIsRegist;
 /**
  *  是否绑定住户信息
  */
 @property (nonatomic,assign) BOOL        mIsBundle;
+/**
+ *  是否房屋认证:0:未认证；1：认证
+ */
+@property (nonatomic,assign) BOOL mIsHousingAuthentication;
 /**
  *  密码
  */
@@ -929,6 +933,8 @@
 @property (nonatomic,strong)    NSString       *mWebsite;
 @property (nonatomic,strong)    NSString       *mReal_name;
 
+@property (nonatomic,strong)    NSString       *mCommunityName;
+@property (nonatomic,strong)    NSString       *mAddr;
 
 @end
 
