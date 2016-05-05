@@ -105,8 +105,7 @@
         case 2:
         {
 
-            [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
-            return;
+ 
             [mTT removeAllObjects];
 
             if (sender.selected == NO) {
@@ -124,8 +123,7 @@
         case 3:
         {
 
-            [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
-            return;
+ 
             [mTT removeAllObjects];
 
             if (sender.selected == NO) {
@@ -160,9 +158,35 @@
         return;
         
     }
-    mUserTopupViewController *ppp = [[mUserTopupViewController alloc] initWithNibName:@"mUserTopupViewController" bundle:nil];
-    ppp.mPayMoney = [[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue];
-    [self pushViewController:ppp];
+    
+    int type = [[NSString stringWithFormat:@"%@",mTT[0]] intValue];
+    
+    if (type == 1) {
+        mUserTopupViewController *ppp = [[mUserTopupViewController alloc] initWithNibName:@"mUserTopupViewController" bundle:nil];
+        ppp.mPayMoney = [[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue];
+        [self pushViewController:ppp];
+    }else if (type == 2){
+        [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
+        return;
+    }else{
+        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] block:^(mBaseData *resb) {
+            if( resb.mSucess )
+            {
+                [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
+            }
+            else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                
+            }
+            
+            
+        }];
+        
+    }
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -178,5 +202,7 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)leftBtnTouched:(id)sender{
+    [self popViewController];
+}
 @end

@@ -250,6 +250,11 @@
 -(void)fetchIt:(NSDictionary*)obj;
 
 
+/**
+ *  支付需要跳出到APP,这里记录回调
+ */
+@property (nonatomic,strong)    void(^mPayBlock)(mBaseData* resb);
+
 
 /**
  *  是否是一个合法的用户对象
@@ -338,6 +343,14 @@
  *  @param block 返回值
  */
 + (void)mWechatRegist:(NSDictionary *)mPara block:(void(^)(mBaseData *resb))block;
+#pragma mark----支付方式（微信，支付宝）
+/**
+ *  支付
+ *
+ *  @param paytype 支付方式
+ *  @param block   返回值
+ */
+-(void)payIt:(NSString*)paytype block:(void(^)(mBaseData* resb))block;
 
 
 /**
@@ -1611,3 +1624,14 @@
 
 @end
 
+@interface SWxPayInfo : NSObject
+
+@property (nonatomic,strong) NSString*  mpartnerId;//	string	是			商户号
+@property (nonatomic,strong) NSString*  mprepayId;//	string	是			预支付交易会话标识
+@property (nonatomic,strong) NSString*  mpackage;//	string	是			扩展字段
+@property (nonatomic,strong) NSString*  mnonceStr;//	string	是			随机字符串
+@property (nonatomic,assign) int        mtimeStamp;//	int	是			时间戳
+@property (nonatomic,strong) NSString*  msign;//	string	是			签名
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end

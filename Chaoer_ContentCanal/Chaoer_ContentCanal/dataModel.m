@@ -13,6 +13,9 @@
 #import <MobileCoreServices/UTType.h>
 #import <RongIMLib/RongIMLib.h>
 #import <RongIMKit/RongIMKit.h>
+
+#import "WXApi.h"
+#import "WXApiObject.h"
 @implementation dataModel{
     NSMutableURLRequest *request;
     NSOperationQueue *queue;
@@ -328,6 +331,62 @@ bool g_bined = NO;
 }
 
 
+#pragma mark----微信支付
+//=======================微信支付===================================
+-(void)wxPay:(void(^)(mBaseData* retobj))block
+{
+    NSMutableDictionary* param =    NSMutableDictionary.new;
+    [param setObject:NumberWithInt(_mId) forKey:@"id"];
+    [param setObject:@"weixin" forKey:@"payment"];
+    [[HTTPrequest sharedClient] postUrl:@"order.pay" parameters:param call:^(mBaseData *info) {
+        
+        if( info.mSucess )
+        {
+            // self.mPayedSn = [info.mdata objectForKeyMy:@"sn"];
+            // self.mPayMoney = [[info.mdata objectForKeyMy:@"money"] floatValue];
+            
+            NSString* typestr = [info.mData objectForKeyMy:@"paymentType"];
+            if( [typestr isEqualToString:@"weixin"] )
+            {
+                [SVProgressHUD dismiss];
+                SWxPayInfo* wxpayinfo = [[SWxPayInfo alloc]initWithObj:[info.mData objectForKeyMy:@"payRequest"]];
+                [mUserInfo backRCCInfo].mPayBlock = ^(mBaseData *retobj) {
+                    
+                    if( retobj.mSucess )
+                    {//如果成功了,就更新下
+                        block(retobj);//再回调获取
+
+                    }else
+                        block(retobj);//再回调获取
+                    [mUserInfo backRCCInfo].mPayBlock = nil;
+                    
+                };
+                [self gotoWXPayWithSRV:wxpayinfo];
+            }
+            else
+            {
+                mBaseData* itretobj = [mBaseData infoWithError:@"支付出现异常,请稍后再试"];
+                block(itretobj);//再回调获取
+            }
+        }
+        else
+            block( info );
+    }];
+}
+
+-(void)gotoWXPayWithSRV:(SWxPayInfo*)payinfo
+{
+    PayReq * payobj = [[PayReq alloc]init];
+    payobj.partnerId = payinfo.mpartnerId;
+    payobj.prepayId = payinfo.mprepayId;
+    payobj.nonceStr = payinfo.mnonceStr;
+    payobj.timeStamp = payinfo.mtimeStamp;
+    payobj.package = @"Sign=WXPay";
+    payobj.sign = payinfo.msign;
+    [WXApi sendReq:payobj];
+    
+}
+
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"moblie"];
@@ -372,7 +431,19 @@ bool g_bined = NO;
     }];
     
 }
+#pragma mark----支付方式（微信，支付宝）
+-(void)payIt:(NSString*)paytype block:(void(^)(mBaseData* resb))block{
 
+    if( [paytype isEqualToString:@"wxpay"] )
+    {
+        [self wxPay:block];
+    }
+    else{
+        block( [mBaseData infoWithError:@"不支持的支付方式!"] );
+
+    }
+
+}
 
 
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
@@ -2650,5 +2721,25 @@ bool g_rccbined = NO;
     self.portraitUri = [obj objectForKeyMy:@"portraitUri"];
     self.mList = [obj objectForKeyMy:@"list"];
 }
+
+@end
+
+@implementation SWxPayInfo
+-(id)initWithObj:(NSDictionary*)obj
+{
+    self = [super init];
+    if( self && obj )
+    {
+        self.mpartnerId = [obj objectForKeyMy:@"partnerid"];//	string	是			商户号
+        self.mprepayId = [obj objectForKeyMy:@"prepayid"];//	string	是			预支付交易会话标识
+        self.mpackage = [obj objectForKeyMy:@"packages"];//	string	是			扩展字段
+        self.mnonceStr = [obj objectForKeyMy:@"noncestr"];//	string	是			随机字符串
+        self.mtimeStamp = [[obj objectForKeyMy:@"timestamp"] intValue];//	int	是			时间戳
+        self.msign = [obj objectForKeyMy:@"sign"];//	string	是			签名
+        
+    }
+    return self;
+}
+
 
 @end

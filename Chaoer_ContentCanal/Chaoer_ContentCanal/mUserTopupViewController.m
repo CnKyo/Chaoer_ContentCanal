@@ -59,7 +59,7 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
-    self.Title = self.mPageName = @"余额充值";
+    self.Title = self.mPageName = @"银行卡充值";
     [self initView];
     [self loadData];
 }

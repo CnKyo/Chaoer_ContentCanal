@@ -13,7 +13,7 @@
 
 #import "RCChatViewController.h"
 
-@interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,RCIMClientReceiveMessageDelegate,RCIMUserInfoDataSource>
+@interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,RCIMClientReceiveMessageDelegate,RCIMUserInfoDataSource,RCIMReceiveMessageDelegate>
 
 
 @end
@@ -57,12 +57,14 @@
     
     UINib   *nib = [UINib nibWithNibName:@"mConversationCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-    
-    [[RCIMClient sharedRCIMClient] setReceiveMessageDelegate:self object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsgNotif) name:@"msgunread" object:nil];
+    /**
+     *  这里要将lib的代理方法替换为kit的代理方法
+     */
+    [RCIM sharedRCIM].receiveMessageDelegate = self;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMsg) name:@"showMsg" object:nil];
     
     [RCIM sharedRCIM].userInfoDataSource = self;//这个代理设置到这里,这个VC一直存在,,,,
+
 
     
 }
@@ -74,17 +76,21 @@
 
 }
 
-//收到融云的消息
-- (void)onReceived:(RCMessage *)message
-              left:(int)nLeft
-            object:(id)object
-{
-    [self showMsgNotif];
+/**
+ *  收到融云的消息
+ *
+ *  @param message <#message description#>
+ *  @param nLeft   <#nLeft description#>
+ *  @param object  <#object description#>
+ */
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left{
+    [self showMsg];
+    
 }
-
--(void)showMsgNotif
+-(void)showMsg
 {
-    UITabBarItem* it = self.tabBarController.viewControllers[0].tabBarItem;
+    UITabBarItem* it = self.tabBarController.viewControllers[3].tabBarItem;
     //收到消息,,,
     int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
     if( allunread > 0 )
@@ -96,6 +102,7 @@
         it.badgeValue = nil;
     }
 }
+
 
 - (void)headerBeganRefresh{
 
@@ -301,21 +308,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     RCCUserInfo *mRccUser = self.tempArray[indexPath.row];
+    
+    __weak typeof(&*self)  weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RCChatViewController *rcc = [[RCChatViewController alloc] init];
+        
+        rcc.conversationType = ConversationType_PRIVATE;
+        
+        rcc.targetId = mRccUser.userId;
+        rcc.title = mRccUser.userName;
 
-    RCChatViewController *rcc = [[RCChatViewController alloc] init];
+        UITabBarController *tabbarVC = weakSelf.navigationController.viewControllers[0];
+        [tabbarVC.navigationController  pushViewController:rcc animated:YES];
+    });
 
-    rcc.conversationType = ConversationType_PRIVATE;
-    
-    rcc.targetId = mRccUser.userId; //这里模拟自己给自己发消息，您可以替换成其他登录的用户的UserId
-    rcc.title = mRccUser.userName;
-    
-    
-    rcc.mHeaderUrl = mRccUser.portraitUri;
-    rcc.mUserId =mRccUser.userId;
-    rcc.mName =mRccUser.userName;
-    
-    [self pushViewController:rcc];
-    
     
     
 }

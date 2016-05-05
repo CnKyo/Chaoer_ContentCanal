@@ -8,7 +8,7 @@
 
 #import "RCChatViewController.h"
 #import <RongIMKit/RongIMKit.h>
-@interface RCChatViewController ()
+@interface RCChatViewController ()<RCIMReceiveMessageDelegate,RCIMUserInfoDataSource>
 
 @end
 
@@ -47,6 +47,34 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+   
+}
+/**
+ *  收到融云的消息
+ *
+ *  @param message <#message description#>
+ *  @param nLeft   <#nLeft description#>
+ *  @param object  <#object description#>
+ */
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left{
+    [self showMsg];
+
+}
+-(void)showMsg
+{
+    UITabBarItem* it = self.tabBarController.viewControllers[3].tabBarItem;
+    //收到消息,,, 
+    int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
+    if( allunread > 0 )
+    {//如果有 没有读的消息
+        it.badgeValue = [NSString stringWithFormat:@"%d",allunread];
+    }
+    else
+    {
+        it.badgeValue = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,17 +122,38 @@
 
 
 #pragma mark----发送消息(除图片消息外的所有消息)，会自动更新UI
-- (RCMessage *)sendMessage:(RCConversationType)conversationType
-                  targetId:(NSString *)targetId
-                   content:(RCMessageContent *)content
-               pushContent:(NSString *)pushContent
-                  pushData:(NSString *)pushData
-                   success:(void (^)(long messageId))successBlock
-                     error:(void (^)(RCErrorCode nErrorCode, long messageId))errorBlock{
+//- (void)sendMessage:(RCMessageContent *)messageContent
+//        pushContent:(NSString *)pushContent{
+//
+//}
+//- (void)sendImageMessage:(RCImageMessage *)imageMessage
+//             pushContent:(NSString *)pushContent{
+//
+//    
+//}
+//- (void)appendAndDisplayMessage:(RCMessage *)message{
+//    BOOL saveToDB = NO;
+//    
+//    RCMessage *insertMessage;
+//    if (saveToDB) {
+//        // 如果保存到本地数据库，需要调用insertMessage生成消息实体并插入数据库。
+//        insertMessage = [[RCIMClient sharedRCIMClient] insertMessage:self.conversationType
+//                                                            targetId:self.targetId
+//                                                        senderUserId:[RCIM sharedRCIM].currentUserInfo.userId
+//                                                          sendStatus:SentStatus_SENT
+//                                                             content:nil];
+//    } else {
+//        // 如果不保存到本地数据库，需要初始化消息实体并将messageId要设置为－1。
+//        insertMessage =[[RCMessage alloc] initWithType:self.conversationType
+//                                              targetId:self.targetId
+//                                             direction:MessageDirection_SEND
+//                                             messageId:-1
+//                                               content:nil];
+//        
+//    }
+//    
+//    // 在当前聊天界面插入该消息
+//    [self appendAndDisplayMessage:insertMessage];
+//}
 
-   
-    
-    
-    
-}
 @end

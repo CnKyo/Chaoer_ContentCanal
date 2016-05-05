@@ -284,23 +284,23 @@
         NSString *strMsg    =   [NSString stringWithFormat:@"errcode:%d errmsg:%@ payinfo:%@", resp.errCode,resp.errStr,((PayResp*)resp).returnKey];
         MLLog(@"payresp:%@",strMsg);
         
-//        SResBase* retobj = SResBase.new;
-//        if( resp.errCode == -1 )
-//        {//
-//            retobj.msuccess = NO;
-//            retobj.mmsg = @"支付出现异常";
-//        }
-//        else if( resp.errCode == -2 )
-//        {
-//            retobj.msuccess = NO;
-//            retobj.mmsg = @"用户取消了支付";
-//        }
-//        else
-//        {
-//            retobj.msuccess = YES;
-//            retobj.mmsg = @"支付成功";
-//        }
-//        
+        mBaseData* retobj = mBaseData.new;
+        if( resp.errCode == -1 )
+        {//
+            retobj.mSucess = NO;
+            retobj.mMessage = @"支付出现异常";
+        }
+        else if( resp.errCode == -2 )
+        {
+            retobj.mSucess = NO;
+            retobj.mMessage = @"用户取消了支付";
+        }
+        else
+        {
+            retobj.mSucess = YES;
+            retobj.mMessage = @"支付成功";
+        }
+        
 //        if( [SAppInfo shareClient].mPayBlock )
 //        {
 //            [SAppInfo shareClient].mPayBlock(retobj);
@@ -316,8 +316,21 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
+        
+        return  [WXApi handleOpenURL:url delegate:self];
+    }
+    
+    return YES;
+}
 
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    MLLog(@"hhhhhhurl:%@",url);
+    return  [WXApi handleOpenURL:url delegate:self];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -369,7 +382,7 @@
 
 -(void)ddddoti:(id)sender
 {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"msgunread" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"showMsg" object:nil];
 }
 
 
