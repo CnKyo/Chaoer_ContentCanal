@@ -130,11 +130,12 @@
                 mView.bankBtn.selected = NO;
                 mView.alipayBtn.selected = NO;
                 mView.wechatBtn.selected = YES;
-                [mTT addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+                [mTT addObject:[NSString stringWithFormat:@"wx"]];
+
             }else{
                 sender.selected = NO;
-                [mTT removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
-                
+                [mTT removeObject:[NSString stringWithFormat:@"wx"]];
+
             }
             
         }
@@ -169,8 +170,10 @@
         [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
         return;
     }else{
-        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] block:^(mBaseData *resb) {
-            if( resb.mSucess )
+        
+        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
+            
+                if( resb.mSucess )
             {
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
                 [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];

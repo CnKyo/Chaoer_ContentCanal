@@ -31,6 +31,8 @@
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mBarCode;
 
+@property (weak, nonatomic) IBOutlet UIView *mMainView;
 
+@property (weak, nonatomic) IBOutlet UIView *mSmallView;
 
 @end

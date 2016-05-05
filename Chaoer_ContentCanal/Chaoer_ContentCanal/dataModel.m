@@ -333,24 +333,25 @@ bool g_bined = NO;
 
 #pragma mark----微信支付
 //=======================微信支付===================================
--(void)wxPay:(void(^)(mBaseData* retobj))block
+-(void)wxPay:(int)Price block:(void(^)(mBaseData* retobj))block
 {
     NSMutableDictionary* param =    NSMutableDictionary.new;
-    [param setObject:NumberWithInt(_mId) forKey:@"id"];
-    [param setObject:@"weixin" forKey:@"payment"];
-    [[HTTPrequest sharedClient] postUrl:@"order.pay" parameters:param call:^(mBaseData *info) {
+    [param setObject:NumberWithInt(Price) forKey:@"price"];
+    [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [param setObject:@"wx" forKey:@"channel"];
+    [[HTTPrequest sharedClient] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
         {
             // self.mPayedSn = [info.mdata objectForKeyMy:@"sn"];
             // self.mPayMoney = [[info.mdata objectForKeyMy:@"money"] floatValue];
             
-            NSString* typestr = [info.mData objectForKeyMy:@"paymentType"];
-            if( [typestr isEqualToString:@"weixin"] )
+            NSString* typestr = [info.mData objectForKeyMy:@"channel"];
+            if( [typestr isEqualToString:@"wx"] )
             {
                 [SVProgressHUD dismiss];
-                SWxPayInfo* wxpayinfo = [[SWxPayInfo alloc]initWithObj:[info.mData objectForKeyMy:@"payRequest"]];
-                [mUserInfo backRCCInfo].mPayBlock = ^(mBaseData *retobj) {
+                SWxPayInfo* wxpayinfo = [[SWxPayInfo alloc]initWithObj:info.mData];
+                [mUserInfo backNowUser].mPayBlock = ^(mBaseData *retobj) {
                     
                     if( retobj.mSucess )
                     {//如果成功了,就更新下
@@ -358,7 +359,7 @@ bool g_bined = NO;
 
                     }else
                         block(retobj);//再回调获取
-                    [mUserInfo backRCCInfo].mPayBlock = nil;
+                    [mUserInfo backNowUser].mPayBlock = nil;
                     
                 };
                 [self gotoWXPayWithSRV:wxpayinfo];
@@ -377,12 +378,12 @@ bool g_bined = NO;
 -(void)gotoWXPayWithSRV:(SWxPayInfo*)payinfo
 {
     PayReq * payobj = [[PayReq alloc]init];
-    payobj.partnerId = payinfo.mpartnerId;
-    payobj.prepayId = payinfo.mprepayId;
-    payobj.nonceStr = payinfo.mnonceStr;
+    payobj.partnerId = payinfo.partnerid;
+    payobj.prepayId = payinfo.prepay_id;
+    payobj.nonceStr = payinfo.nonce_str;
     payobj.timeStamp = payinfo.mtimeStamp;
     payobj.package = @"Sign=WXPay";
-    payobj.sign = payinfo.msign;
+    payobj.sign = payinfo.sign;
     [WXApi sendReq:payobj];
     
 }
@@ -402,7 +403,7 @@ bool g_bined = NO;
 + (void)mUserRegist:(NSString *)mPhoneNum andCode:(NSString *)mCode andPwd:(NSString *)mPwd andIdentity:(NSString *)mId block:(void (^)(mBaseData *))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mPhoneNum forKey:@"userName"];
+    [para setObject:mPhoneNum forKey:@"loginName"];
     [para setObject:mCode forKey:@"verfyCode"];
     [para setObject:mPwd forKey:@"passWord"];
     if (mId) {
@@ -432,11 +433,11 @@ bool g_bined = NO;
     
 }
 #pragma mark----支付方式（微信，支付宝）
--(void)payIt:(NSString*)paytype block:(void(^)(mBaseData* resb))block{
+-(void)payIt:(NSString*)paytype andPrice:(int)mPrice block:(void(^)(mBaseData* resb))block{
 
-    if( [paytype isEqualToString:@"wxpay"] )
+    if( [paytype isEqualToString:@"wx"] )
     {
-        [self wxPay:block];
+        [self wxPay:mPrice block:block];
     }
     else{
         block( [mBaseData infoWithError:@"不支持的支付方式!"] );
@@ -2732,13 +2733,16 @@ bool g_rccbined = NO;
     self = [super init];
     if( self && obj )
     {
-        self.mpartnerId = [obj objectForKeyMy:@"partnerid"];//	string	是			商户号
-        self.mprepayId = [obj objectForKeyMy:@"prepayid"];//	string	是			预支付交易会话标识
-        self.mpackage = [obj objectForKeyMy:@"packages"];//	string	是			扩展字段
-        self.mnonceStr = [obj objectForKeyMy:@"noncestr"];//	string	是			随机字符串
-        self.mtimeStamp = [[obj objectForKeyMy:@"timestamp"] intValue];//	int	是			时间戳
-        self.msign = [obj objectForKeyMy:@"sign"];//	string	是			签名
+        self.mPayType = [obj objectForKeyMy:@"type"];
+        self.nonce_str = [obj objectForKeyMy:@"nonce_str"];
+        self.out_trade_no = [obj objectForKeyMy:@"out_trade_no"];
+        self.prepay_id = [obj objectForKeyMy:@"prepay_id"];
+        self.sign = [obj objectForKeyMy:@"sign"];
+        self.mtimeStamp = [[obj objectForKeyMy:@"timestamp"] intValue];
+        self.partnerid = [obj objectForKeyMy:@"partnerid"];
         
+        self.mpackage = @"Sign=WXPay";
+        self.appid = [obj objectForKeyMy:@"appid"];
     }
     return self;
 }

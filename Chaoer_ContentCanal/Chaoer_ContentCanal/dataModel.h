@@ -350,7 +350,7 @@
  *  @param paytype 支付方式
  *  @param block   返回值
  */
--(void)payIt:(NSString*)paytype block:(void(^)(mBaseData* resb))block;
+-(void)payIt:(NSString*)paytype andPrice:(int)mPrice block:(void(^)(mBaseData* resb))block;
 
 
 /**
@@ -1627,13 +1627,40 @@
 @end
 
 @interface SWxPayInfo : NSObject
+/**
+ *  支付方式
+ */
+@property (nonatomic,strong) NSString*  mPayType;
+/**
+ *  随机字符串
+ */
+@property (nonatomic,strong) NSString*  nonce_str;
+/**
+ *  商户号
+ */
+@property (nonatomic,strong) NSString*  partnerid;
 
-@property (nonatomic,strong) NSString*  mpartnerId;//	string	是			商户号
-@property (nonatomic,strong) NSString*  mprepayId;//	string	是			预支付交易会话标识
-@property (nonatomic,strong) NSString*  mpackage;//	string	是			扩展字段
-@property (nonatomic,strong) NSString*  mnonceStr;//	string	是			随机字符串
-@property (nonatomic,assign) int        mtimeStamp;//	int	是			时间戳
-@property (nonatomic,strong) NSString*  msign;//	string	是			签名
+/**
+ *  商户订单号
+ */
+@property (nonatomic,strong) NSString*  out_trade_no;
+/**
+ *  预支付交易会话ID
+ */
+@property (nonatomic,strong) NSString*  prepay_id;
+/**
+ *  签名
+ */
+@property (nonatomic,strong) NSString*  sign;
+/**
+ *  时间戳
+ */
+@property (nonatomic,assign) int        mtimeStamp;
+
+@property (nonatomic,strong) NSString*  appid;
+@property (nonatomic,strong) NSString*  mpackage;
+
+
 -(id)initWithObj:(NSDictionary*)obj;
 
 @end

@@ -226,7 +226,6 @@
     [self.mCodeBtn setTitle:@"重新获取" forState:UIControlStateNormal];//倒计时结束后按钮名称改为"发送验证码"
     [timer_show removeFromSuperview];//移除倒计时模块
     self.mCodeBtn.userInteractionEnabled = YES;//按钮可以点击
-    [self.mCodeBtn setBackgroundImage:[UIImage imageNamed:@"3-1"] forState:0];
     
 }
 /*

@@ -61,6 +61,7 @@
     [AMapLocationServices sharedServices].apiKey = AMAP_KEY;
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
+    
     [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
     /**
@@ -269,7 +270,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     // url:wx206e0a3244b4e469://pay/?returnKey=&ret=0 withsouce url:com.tencent.xin
-    MLLog(@"url:%@ withsouce url:%@",url,sourceApplication);
+    NSLog(@"url:%@ withsouce url:%@",url,sourceApplication);
     if( [sourceApplication isEqualToString:@"com.tencent.xin"] )
     {
         return  [WXApi handleOpenURL:url delegate:self];
@@ -282,7 +283,7 @@
     if( [resp isKindOfClass: [PayResp class]] )
     {
         NSString *strMsg    =   [NSString stringWithFormat:@"errcode:%d errmsg:%@ payinfo:%@", resp.errCode,resp.errStr,((PayResp*)resp).returnKey];
-        MLLog(@"payresp:%@",strMsg);
+        NSLog(@"payresp:%@",strMsg);
         
         mBaseData* retobj = mBaseData.new;
         if( resp.errCode == -1 )
@@ -301,18 +302,18 @@
             retobj.mMessage = @"支付成功";
         }
         
-//        if( [SAppInfo shareClient].mPayBlock )
-//        {
-//            [SAppInfo shareClient].mPayBlock(retobj);
-//        }
-//        else
-//        {
-//            MLLog(@"may be err no block to back");
-//        }
+        if( [mUserInfo backNowUser].mPayBlock )
+        {
+            [mUserInfo backNowUser].mPayBlock(retobj);
+        }
+        else
+        {
+            NSLog(@"may be err no block to back");
+        }
     }
     else
     {
-        MLLog(@"may be err what class one onResp");
+        NSLog(@"may be err what class one onResp");
     }
 }
 
@@ -328,7 +329,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    MLLog(@"hhhhhhurl:%@",url);
+    NSLog(@"hhhhhhurl:%@",url);
     return  [WXApi handleOpenURL:url delegate:self];
 }
 

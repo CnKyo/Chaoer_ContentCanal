@@ -158,8 +158,10 @@
                 <outlet property="mBarCode" destination="Kj5-1K-KRm" id="ffR-V3-2to"/>
                 <outlet property="mHeader" destination="y6n-uf-led" id="cKs-Tn-jsp"/>
                 <outlet property="mIdentify" destination="hrk-Ca-dge" id="V96-3k-8l7"/>
+                <outlet property="mMainView" destination="bPb-Wm-2TR" id="TQv-AW-o5n"/>
                 <outlet property="mNickName" destination="6uK-al-vkU" id="Ies-Bz-NqW"/>
                 <outlet property="mPhone" destination="4qw-KL-Wzi" id="gmh-eb-1CL"/>
+                <outlet property="mSmallView" destination="YZj-My-5Mc" id="YWB-xq-g21"/>
             </connections>
             <point key="canvasLocation" x="251" y="329.5"/>
         </tableViewCell>

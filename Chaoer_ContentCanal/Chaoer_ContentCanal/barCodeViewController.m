@@ -28,10 +28,11 @@
     // Do any additional setup after loading the view from its nib.
     self.Title = self.mPageName = @"我的二维码名片";
     self.hiddenlll = YES;
-//    self.hiddenRightBtn = YES;
     self.hiddenTabBar = YES;
     self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
+    
 //    [self initView];
+    
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.allowsSelection = YES;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
