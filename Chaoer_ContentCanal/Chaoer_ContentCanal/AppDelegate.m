@@ -128,7 +128,7 @@
          }
      }];
 
-    [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:@"0生活"];// 配置info.plist的 Scheme,
+    [WXApi registerApp:WXPAYKEY withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
 
 }
 #pragma mark----加载融云
@@ -296,6 +296,7 @@
         {
             retobj.mSucess = NO;
             retobj.mMessage = @"用户取消了支付";
+//            retobj.mMessage = strMsg;
         }
         else
         {

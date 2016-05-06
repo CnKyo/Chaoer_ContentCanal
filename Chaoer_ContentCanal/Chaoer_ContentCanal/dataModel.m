@@ -382,7 +382,8 @@ bool g_bined = NO;
 {
     
     PayReq * payobj = [[PayReq alloc]init];
-    payobj.partnerId = payinfo.partnerid;
+    
+    payobj.partnerId = @"1336953201";
     payobj.prepayId = payinfo.prepayid;
     payobj.nonceStr = payinfo.noncestr;
     payobj.timeStamp = payinfo.mtimeStamp;
@@ -2756,7 +2757,7 @@ bool g_rccbined = NO;
         self.noncestr = [obj objectForKeyMy:@"nonce_str"];
         self.out_trade_no = [obj objectForKeyMy:@"out_trade_no"];
         self.prepayid = [obj objectForKeyMy:@"prepay_id"];
-        self.mtimeStamp = [[obj objectForKeyMy:@"timestamp"] intValue];
+        self.mtimeStamp = [[obj objectForKeyMy:@"timeStamp"] intValue];
         self.partnerid = [obj objectForKeyMy:@"partnerid"];
         
         self.package = @"Sign=WXPay";
@@ -2764,7 +2765,9 @@ bool g_rccbined = NO;
         
         self.sign = [obj objectForKeyMy:@"sign"];
         
-//        self.sign = [Util getMd5_32Bit:@"appid=wxf8feb845b3a4d04e&noncestr=B06DB08858D945D2A36C679ACB011AD2&package=Sign=WXPay&partnerid=1336953201&prepayid=wx201605061607179087849a810538852118&timestamp=1462522036057&key=CHAOer68190809PAYCHAOer68190809P"];
+        
+        
+//        self.sign = [Util getMd5_32Bit:[NSString stringWithFormat:@"appid=%@&noncestr=%@&package=%@&partnerid=%@&prepayid=%@&timestamp=%d&key=%@",WXPAYKEY,[obj objectForKeyMy:@"nonce_str"],@"Sign=WXPay",[obj objectForKeyMy:@"partnerid"],[obj objectForKeyMy:@"prepay_id"],[[obj objectForKeyMy:@"timeStamp"] intValue],@"CHAOer68190809PAYCHAOer68190809P"]];
         
         NSLog(@"sig:%@",self.sign);
     }

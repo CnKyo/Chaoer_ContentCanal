@@ -24,7 +24,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>wx</string>
+			<string>weixinShare</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wxf8feb845b3a4d04e</string>
@@ -44,7 +44,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>weixinShare</string>
+			<string>weixinPay</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wxf8feb845b3a4d04e</string>
