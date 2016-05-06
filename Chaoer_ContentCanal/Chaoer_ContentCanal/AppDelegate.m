@@ -27,9 +27,6 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
-//微信SDK头文件
-#import "WXApi.h"
-
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
@@ -62,7 +59,6 @@
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
     [QMapServices sharedServices].apiKey = QQMAPKEY;
     
-    [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:[Util getAPPName]];// 配置info.plist的 Scheme,
     
     /**
      融云
@@ -132,6 +128,8 @@
          }
      }];
 
+    [WXApi registerApp:@"wxf8feb845b3a4d04e" withDescription:@"0生活"];// 配置info.plist的 Scheme,
+
 }
 #pragma mark----加载融云
 - (void)loadRongCloud{
@@ -159,7 +157,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Override point for customization after application launch.
-    
+
     [self initExtComp];
     [self loadRongCloud];
     
@@ -271,7 +269,10 @@
 {
     // url:wx206e0a3244b4e469://pay/?returnKey=&ret=0 withsouce url:com.tencent.xin
     NSLog(@"url:%@ withsouce url:%@",url,sourceApplication);
-    if( [sourceApplication isEqualToString:@"com.tencent.xin"] )
+    if ([url.host isEqualToString:@"safepay"]) {
+        return YES;
+    }
+    else if( [sourceApplication isEqualToString:@"com.tencent.xin"] )
     {
         return  [WXApi handleOpenURL:url delegate:self];
     }
@@ -319,7 +320,10 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
-    if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
+    if ([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.alipay.iphoneclient"]) {
+        return YES;
+    }
+    else if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
         
         return  [WXApi handleOpenURL:url delegate:self];
     }

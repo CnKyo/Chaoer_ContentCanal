@@ -170,10 +170,12 @@
         [LCProgressHUD showInfoMsg:@"暂不支持此充值类型！"];
         return;
     }else{
-        
+        [LBProgressHUD showHUDto:self.view withTips:@"正在操作中..." animated:YES];
+
         [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
-            
-                if( resb.mSucess )
+            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+            if( resb.mSucess )
             {
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
                 [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];

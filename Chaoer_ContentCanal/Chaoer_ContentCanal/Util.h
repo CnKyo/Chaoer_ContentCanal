@@ -111,7 +111,14 @@ typedef enum _RelDic
 
 + (NSString *)md5_16:(NSString *)str;
 
+
++ (NSString *)md5_16Max:(NSString *)str;
+
+
 +(void)md5_16_b:(NSString*)str outbuffer:(char*)outbuffer;
+
+
++ (NSString *)getMd5_32Bit:(NSString *)str;
 
 //把nsnull字段干掉
 +(NSDictionary*)delNUll:(NSDictionary*)dic;

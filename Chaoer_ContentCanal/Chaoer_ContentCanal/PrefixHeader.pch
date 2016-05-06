@@ -23,6 +23,9 @@
 
 #define RCCAPP_KEY @"cpj2xarljnyun"
 
+#define WXPAYKEY @"wxf8feb845b3a4d04e"
+
+
 #define RCCAPP_SECRET @"c1KUCfjxCNTD"
 
 

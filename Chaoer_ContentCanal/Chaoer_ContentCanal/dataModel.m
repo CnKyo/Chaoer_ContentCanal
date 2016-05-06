@@ -349,6 +349,9 @@ bool g_bined = NO;
             NSString* typestr = [info.mData objectForKeyMy:@"channel"];
             if( [typestr isEqualToString:@"wx"] )
             {
+                
+    
+                
                 [SVProgressHUD dismiss];
                 SWxPayInfo* wxpayinfo = [[SWxPayInfo alloc]initWithObj:info.mData];
                 [mUserInfo backNowUser].mPayBlock = ^(mBaseData *retobj) {
@@ -377,10 +380,11 @@ bool g_bined = NO;
 
 -(void)gotoWXPayWithSRV:(SWxPayInfo*)payinfo
 {
+    
     PayReq * payobj = [[PayReq alloc]init];
     payobj.partnerId = payinfo.partnerid;
-    payobj.prepayId = payinfo.prepay_id;
-    payobj.nonceStr = payinfo.nonce_str;
+    payobj.prepayId = payinfo.prepayid;
+    payobj.nonceStr = payinfo.noncestr;
     payobj.timeStamp = payinfo.mtimeStamp;
     payobj.package = @"Sign=WXPay";
     payobj.sign = payinfo.sign;
@@ -500,7 +504,22 @@ bool g_bined = NO;
 - (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    if (![mUserInfo backNowUser].mUserId) {
+        
+        [para setObject:@"0" forKey:@"identity"];
+
+    }else{
+        [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    }
+    if([mUserInfo backNowUser].mLoginType){
+        [para setObject:NumberWithInt([mUserInfo backNowUser].mLoginType) forKey:@"loginType"];
+    }
+    
+    if ([mUserInfo backNowUser].mOpenId) {
+        [para setObject:[mUserInfo backNowUser].mOpenId forKey:@"openid"];
+
+    }
     
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
@@ -2734,15 +2753,20 @@ bool g_rccbined = NO;
     if( self && obj )
     {
         self.mPayType = [obj objectForKeyMy:@"type"];
-        self.nonce_str = [obj objectForKeyMy:@"nonce_str"];
+        self.noncestr = [obj objectForKeyMy:@"nonce_str"];
         self.out_trade_no = [obj objectForKeyMy:@"out_trade_no"];
-        self.prepay_id = [obj objectForKeyMy:@"prepay_id"];
-        self.sign = [obj objectForKeyMy:@"sign"];
+        self.prepayid = [obj objectForKeyMy:@"prepay_id"];
         self.mtimeStamp = [[obj objectForKeyMy:@"timestamp"] intValue];
         self.partnerid = [obj objectForKeyMy:@"partnerid"];
         
-        self.mpackage = @"Sign=WXPay";
+        self.package = @"Sign=WXPay";
         self.appid = [obj objectForKeyMy:@"appid"];
+        
+        self.sign = [obj objectForKeyMy:@"sign"];
+        
+//        self.sign = [Util getMd5_32Bit:@"appid=wxf8feb845b3a4d04e&noncestr=B06DB08858D945D2A36C679ACB011AD2&package=Sign=WXPay&partnerid=1336953201&prepayid=wx201605061607179087849a810538852118&timestamp=1462522036057&key=CHAOer68190809PAYCHAOer68190809P"];
+        
+        NSLog(@"sig:%@",self.sign);
     }
     return self;
 }

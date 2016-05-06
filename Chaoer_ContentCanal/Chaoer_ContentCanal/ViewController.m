@@ -243,7 +243,7 @@
                                        [para setObject:mNickName forKey:@"nickname"];
                                        [para setObject:mSex forKey:@"sex"];
                                        [para setObject:mHeaderUrl forKey:@"headimgurl"];
-                                       
+                                       [para setObject:NumberWithInt(0) forKey:@"identity"];
                                        
                                        [mUserInfo mVerifyOpenId:para block:^(mBaseData *resb, mUserInfo *mUser) {
                                            if (resb.mState == 200011) {

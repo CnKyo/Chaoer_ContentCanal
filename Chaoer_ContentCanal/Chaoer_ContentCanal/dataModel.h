@@ -1634,7 +1634,7 @@
 /**
  *  随机字符串
  */
-@property (nonatomic,strong) NSString*  nonce_str;
+@property (nonatomic,strong) NSString*  noncestr;
 /**
  *  商户号
  */
@@ -1647,7 +1647,7 @@
 /**
  *  预支付交易会话ID
  */
-@property (nonatomic,strong) NSString*  prepay_id;
+@property (nonatomic,strong) NSString*  prepayid;
 /**
  *  签名
  */
@@ -1658,7 +1658,7 @@
 @property (nonatomic,assign) int        mtimeStamp;
 
 @property (nonatomic,strong) NSString*  appid;
-@property (nonatomic,strong) NSString*  mpackage;
+@property (nonatomic,strong) NSString*  package;
 
 
 -(id)initWithObj:(NSDictionary*)obj;

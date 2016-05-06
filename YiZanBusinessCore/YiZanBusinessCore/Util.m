@@ -576,6 +576,19 @@
             ];
 }
 
++ (NSString *)md5_16Max:(NSString *)str{
+    const char *cStr = [str UTF8String];
+    unsigned char result[16];
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result); // This is the md5 call
+    return [NSString stringWithFormat:
+            @"%02X%02X%02X%02X%02X%02X%02X%02X",
+            result[0+4], result[1+4], result[2+4], result[3+4],
+            result[4+4], result[5+4], result[6+4], result[7+4]
+            ];
+    
+}
+
+
 +(void)md5_16_b:(NSString*)str outbuffer:(char*)outbuffer
 {
     const char *cStr = [str UTF8String];
@@ -584,7 +597,15 @@
     memcpy(outbuffer, &result[4], 8);
 }
 
-
++ (NSString *)getMd5_32Bit:(NSString *)str{
+    const char *cStr = [str UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5( cStr, 32, digest );
+    NSMutableString *result = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [result appendFormat:@"%02X", digest[i]];
+    return result;
+}
 +(NSDictionary*)delNUll:(NSDictionary*)dic
 {
     NSArray* allk = dic.allKeys;
