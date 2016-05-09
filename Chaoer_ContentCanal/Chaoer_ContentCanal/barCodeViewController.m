@@ -30,7 +30,7 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
-    
+    [SVProgressHUD dismiss];
 //    [self initView];
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
