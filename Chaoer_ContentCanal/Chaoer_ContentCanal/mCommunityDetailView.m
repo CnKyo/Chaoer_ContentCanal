@@ -18,4 +18,12 @@
 }
 */
 
++ (mCommunityDetailView *)shareView{
+
+    
+    mCommunityDetailView *view = [[[NSBundle mainBundle] loadNibNamed:@"mCommunityDetailView" owner:self options:nil] objectAtIndex:0];
+    return view;
+    
+}
+
 @end

@@ -1980,6 +1980,65 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [APService setTags:[NSSet set] alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
 
 }
+
+- (void)getCommunityClass:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    [[HTTPrequest sharedClient] postUrl:@"app/newsType/getNewsTypeList" parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                
+                [tempArr addObject:[[GCommunityClass alloc] initWithObj:dic]];
+                
+            }
+            block (info,tempArr);
+            
+        }else{
+            
+            block (info,nil);
+        }
+        
+    }];
+}
+
+
+#pragma mark----获取社区动态
+- (void)getCommunityStatus:(int)mCommunityId andPage:(int)mPage andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mCommunityId) forKey:@"communityId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageIndex"];
+    [para setObject:NumberWithInt(10) forKey:@"pageSize"];
+    [para setObject:NumberWithInt(mType) forKey:@"newsType"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/news/getNewSContentList" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [info.mData objectForKeyMy:@"list"]) {
+                
+                [tempArr addObject:[[GCommunityNews alloc] initWithObj:dic]];
+                
+            }
+            
+            block (info,tempArr);
+        }else{
+        
+            block (info,nil);
+            
+        }
+        
+    }];
+
+    
+}
+
+
 @end
 
 @implementation SMessage
@@ -2774,5 +2833,59 @@ bool g_rccbined = NO;
     return self;
 }
 
+
+@end
+
+@implementation GCommunityClass
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mName = [obj objectForKeyMy:@"typeName"];
+    
+}
+
+@end
+
+@implementation GCommunityNews
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mContent = [obj objectForKeyMy:@"content"];
+    self.mDateTime = [obj objectForKeyMy:@"dateTime"];
+    self.mNewsImage = [obj objectForKeyMy:@"newsImage"];
+    self.mNewTypeId = [[obj objectForKeyMy:@"newsTypeId"] intValue];
+    self.mSource = [obj objectForKeyMy:@"source"];
+    
+    self.mStatus = [[obj objectForKeyMy:@"state"] intValue];
+    self.mSubContent = [obj objectForKeyMy:@"subContent"];
+    self.mTitel = [obj objectForKeyMy:@"title"];
+    self.mTypeName = [obj objectForKeyMy:@"type_name"];
+    self.mWriter = [obj objectForKeyMy:@"writer"];
+    
+    self.mSubTitel = [obj objectForKeyMy:@"subTitle"];
+    
+}
 
 @end

@@ -15,6 +15,12 @@
     // Initialization code
 }
 
+- (void)layoutSubviews{
+
+    self.mImage.layer.masksToBounds = YES;
+    self.mImage.layer.cornerRadius = 3;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

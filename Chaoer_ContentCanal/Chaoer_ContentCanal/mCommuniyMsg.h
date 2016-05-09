@@ -9,5 +9,9 @@
 #import "BaseVC.h"
 
 @interface mCommuniyMsg : BaseVC
+/**
+ *  新闻对象
+ */
+@property (nonatomic,strong) GCommunityNews *mGC;
 
 @end

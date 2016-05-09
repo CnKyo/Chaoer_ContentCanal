@@ -177,7 +177,7 @@
     
     
     mNavView.mBadge.hidden = YES;
-    
+    mNavView.mSetupBtn.hidden = YES;
     [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mNavView];
@@ -199,9 +199,46 @@
     [mHeaderView.mHeaderBtn addTarget:self action:@selector(mHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView setTableHeaderView:mHeaderView];
 
+    UIView *mFooter = [UIView new];
+    mFooter.frame = CGRectMake(0, 10, DEVICE_Width, 60);
+    mFooter.backgroundColor = [UIColor clearColor];
+    
+    UIButton *mLogout = [UIButton new];
+    mLogout.frame = CGRectMake(15, 10, DEVICE_Width-30, 40);
+    mLogout.backgroundColor = M_CO;
+    mLogout.layer.masksToBounds = YES;
+    mLogout.layer.cornerRadius = 3;
+    [mLogout setTitle:@"退出" forState:0];
+    [mLogout setTitleColor:[UIColor whiteColor] forState:0];
+    [mLogout addTarget:self action:@selector(logoutAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mFooter addSubview:mLogout];
+    [self.tableView setTableFooterView:mFooter];
     
 
 }
+
+- (void)logoutAction:(UIButton *)sender{
+
+    [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:10];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        [mUserInfo logOut];
+        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+        [self gotoLoginVC];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
+
 - (void)headerBeganRefresh{
 
 //    if ([mUserInfo backNowUser].mId == 0) {
@@ -389,7 +426,7 @@
         {
 
             NSLog(@"我的二维码");
-            
+            [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
             barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
             
             [self pushViewController:bbb];

@@ -824,6 +824,22 @@
  */
 + (void)closePush;
 
+#pragma mark----社区动态
+/**
+ *  获取社区动态分类
+ *
+ *  @param block 返回值
+ */
+- (void)getCommunityClass:(void(^)(mBaseData *resb,NSArray *mArr))block;
+/**
+ *  获取社区动态
+ *
+ *  @param mCommunityId 社区id
+ *  @param mPage        分页
+ *  @param mType        类型
+ *  @param block        返回值
+ */
+- (void)getCommunityStatus:(int)mCommunityId andPage:(int)mPage andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 @end
 
 @interface SMessage : NSObject
@@ -1662,5 +1678,73 @@
 
 
 -(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+
+@interface GCommunityClass : NSObject
+
+@property (nonatomic,assign) int        mId;
+
+@property (nonatomic,strong) NSString*  mName;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+@interface GCommunityNews: NSObject
+/**
+ *  新闻内容ID
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  主标题
+ */
+@property (nonatomic,strong) NSString*  mTitel;
+/**
+ *  类型名字
+ */
+@property (nonatomic,strong) NSString*  mTypeName;
+/**
+ *  发布者
+ */
+@property (nonatomic,strong) NSString*  mWriter;
+/**
+ *  主内容
+ */
+@property (nonatomic,strong) NSString*  mContent;
+/**
+ *  发布时间
+ */
+@property (nonatomic,strong) NSString*  mDateTime;
+/**
+ *  新闻图片
+ */
+@property (nonatomic,strong) NSString*  mNewsImage;
+/**
+ *  状态
+ */
+@property (nonatomic,assign) int        mStatus;
+/**
+ *  类型ID
+ */
+@property (nonatomic,assign) int        mNewTypeId;
+/**
+ *  新闻来源
+ */
+@property (nonatomic,strong) NSString*  mSource;
+/**
+ *  次内容
+ */
+@property (nonatomic,strong) NSString*  mSubContent;
+/**
+ *  次标题
+ */
+@property (nonatomic,strong) NSString*  mSubTitel;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
 
 @end

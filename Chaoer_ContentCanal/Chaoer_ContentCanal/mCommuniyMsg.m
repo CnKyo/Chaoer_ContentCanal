@@ -7,16 +7,52 @@
 //
 
 #import "mCommuniyMsg.h"
-
+#import "mCommunityDetailView.h"
 @interface mCommuniyMsg ()
 
 @end
 
 @implementation mCommuniyMsg
+{
 
+    UIScrollView *mScrollerView;
+    
+    mCommunityDetailView *mView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.Title = self.mPageName = @"新闻详情";
+    self.hiddenRightBtn = YES;
+    self.hiddenlll = YES;
+    self.hiddenTabBar = YES;
+    
+    [self initView];
+
+}
+
+
+- (void)initView{
+
+    mScrollerView = [UIScrollView new];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
+    mScrollerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:mScrollerView];
+    
+    
+    
+    mView = [mCommunityDetailView shareView];
+    
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+    [mScrollerView addSubview:mView];
+    
+    
+}
+
+- (void)loadData{
+
+    mView.mTitle.text = self.mGC.mTitel;
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -483,9 +483,9 @@
         case 5:
         {
 //            
-//            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
-//            [self pushViewController:ccc];
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
+            [self pushViewController:ccc];
+//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 
 
         }

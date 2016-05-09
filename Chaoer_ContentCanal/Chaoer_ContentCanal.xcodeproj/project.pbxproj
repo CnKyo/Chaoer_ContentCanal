@@ -69,6 +69,10 @@
 		04678F531CB7916A0074AA80 /* keyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04678F521CB7916A0074AA80 /* keyChain.m */; };
 		047125881CCDEC330022BF77 /* mServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047125861CCDEC330022BF77 /* mServiceCell.m */; };
 		047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047125871CCDEC330022BF77 /* mServiceCell.xib */; };
+		047695F91CE067F200D282C5 /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047695F81CE067F200D282C5 /* LiuXSegmentView.m */; };
+		047695FC1CE094C900D282C5 /* mCommunityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047695FB1CE094C900D282C5 /* mCommunityDetailView.m */; };
+		047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047695FD1CE094D200D282C5 /* mCommunityDetailView.xib */; };
+		047696011CE096F600D282C5 /* mCommuniyMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 047696001CE096F600D282C5 /* mCommuniyMsg.m */; };
 		048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD82F1CB62EB600383DF8 /* UICountingLabel.m */; };
 		048FD8341CB63B6800383DF8 /* MovieAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8321CB63B6800383DF8 /* MovieAddComment.m */; };
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
@@ -675,6 +679,13 @@
 		047125851CCDEC330022BF77 /* mServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceCell.h; sourceTree = "<group>"; };
 		047125861CCDEC330022BF77 /* mServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceCell.m; sourceTree = "<group>"; };
 		047125871CCDEC330022BF77 /* mServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceCell.xib; sourceTree = "<group>"; };
+		047695F71CE067F200D282C5 /* LiuXSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuXSegmentView.h; sourceTree = "<group>"; };
+		047695F81CE067F200D282C5 /* LiuXSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentView.m; sourceTree = "<group>"; };
+		047695FA1CE094C900D282C5 /* mCommunityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCommunityDetailView.h; sourceTree = "<group>"; };
+		047695FB1CE094C900D282C5 /* mCommunityDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCommunityDetailView.m; sourceTree = "<group>"; };
+		047695FD1CE094D200D282C5 /* mCommunityDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCommunityDetailView.xib; sourceTree = "<group>"; };
+		047695FF1CE096F600D282C5 /* mCommuniyMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCommuniyMsg.h; sourceTree = "<group>"; };
+		047696001CE096F600D282C5 /* mCommuniyMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCommuniyMsg.m; sourceTree = "<group>"; };
 		048FD82E1CB62EB600383DF8 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		048FD82F1CB62EB600383DF8 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		048FD8311CB63B6800383DF8 /* MovieAddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieAddComment.h; sourceTree = "<group>"; };
@@ -1762,6 +1773,11 @@
 				04F2DDF91CBE2C460088C90F /* communityStatusTableViewCell.h */,
 				04F2DDFA1CBE2C460088C90F /* communityStatusTableViewCell.m */,
 				04F2DDFB1CBE2C460088C90F /* communityStatusTableViewCell.xib */,
+				047695FA1CE094C900D282C5 /* mCommunityDetailView.h */,
+				047695FB1CE094C900D282C5 /* mCommunityDetailView.m */,
+				047695FD1CE094D200D282C5 /* mCommunityDetailView.xib */,
+				047695FF1CE096F600D282C5 /* mCommuniyMsg.h */,
+				047696001CE096F600D282C5 /* mCommuniyMsg.m */,
 			);
 			name = "社区动态";
 			sourceTree = "<group>";
@@ -2546,6 +2562,8 @@
 			children = (
 				31EEB3121C93AC8000B61A86 /* WKSegmentControl.h */,
 				31EEB3131C93AC8000B61A86 /* WKSegmentControl.m */,
+				047695F71CE067F200D282C5 /* LiuXSegmentView.h */,
+				047695F81CE067F200D282C5 /* LiuXSegmentView.m */,
 			);
 			name = segment;
 			sourceTree = "<group>";
@@ -3645,6 +3663,7 @@
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
+				047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */,
 				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
 				040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */,
 				749BEA0A1B32779800BABCA6 /* MBProgressHUD.bundle in Resources */,
@@ -3917,6 +3936,7 @@
 				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
 				740089751B38F2C300618BA0 /* AFURLResponseSerialization.m in Sources */,
 				310EB5E11CA241B0005C61F4 /* choiseServicerTableViewCell.m in Sources */,
+				047695FC1CE094C900D282C5 /* mCommunityDetailView.m in Sources */,
 				749BE9671B3272E700BABCA6 /* MJRefreshFooterView.m in Sources */,
 				749BE9A01B32756800BABCA6 /* IQToolbar.m in Sources */,
 				310EB5F51CA258A8005C61F4 /* CWStarRateView.m in Sources */,
@@ -3955,6 +3975,7 @@
 				741B8D971B326EFA002104A0 /* ViewController.m in Sources */,
 				7400896E1B38F2C300618BA0 /* AFHTTPRequestOperation.m in Sources */,
 				749BE9AB1B32758100BABCA6 /* README.md in Sources */,
+				047695F91CE067F200D282C5 /* LiuXSegmentView.m in Sources */,
 				31B9901F1C968971002E34A5 /* wAndSTableViewCell.m in Sources */,
 				749BE99F1B32756800BABCA6 /* IQTitleBarButtonItem.m in Sources */,
 				31BBE29B1C9142C9006C553D /* homeTableViewCell.m in Sources */,
@@ -4036,6 +4057,7 @@
 				313D76E51C99507D004D5679 /* mJoinActivityViewController.m in Sources */,
 				749BEA0B1B32779800BABCA6 /* MBProgressHUD.m in Sources */,
 				74D292E91B96DA7A00A57977 /* moreView.m in Sources */,
+				047696011CE096F600D282C5 /* mCommuniyMsg.m in Sources */,
 				749BEA421B3277AA00BABCA6 /* SDWebImageDownloaderOperation.m in Sources */,
 				31E1A7271CA3951700D3496F /* popMessageView.m in Sources */,
 				31B9902E1C96A4BD002E34A5 /* CircleLHQView.m in Sources */,

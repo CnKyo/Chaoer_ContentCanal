@@ -56,7 +56,16 @@
         
         for (int i=0; i<titleArray.count; i++) {
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame=CGRectMake(10+_btn_w*i, 15, _btn_w+10, self.frame.size.height-30);
+            
+            CGFloat BW;
+            if (titleArray.count <= 3) {
+                BW = _btn_w-10;
+            }else{
+                BW = _btn_w+10;
+
+            }
+            
+            btn.frame=CGRectMake(10+_btn_w*i, 15, BW, self.frame.size.height-30);
             btn.tag=i+1;
             [btn setTitle:titleArray[i] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1.00] forState:UIControlStateNormal];

@@ -65,7 +65,7 @@
             
             
             mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
-            mView.mBalanceLb.format = @"¥%.2f";
+            mView.mBalanceLb.format = @"¥%.1f";
             [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
             
             
@@ -95,7 +95,7 @@
     [self.view addSubview:mView];
 
     mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
-    mView.mBalanceLb.format = @"¥%.2f";
+    mView.mBalanceLb.format = @"¥%.1f";
     [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
     
     
