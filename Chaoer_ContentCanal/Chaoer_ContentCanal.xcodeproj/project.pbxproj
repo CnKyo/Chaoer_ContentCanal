@@ -71,6 +71,7 @@
 		046B12E31CE184BC00A8FB76 /* MHSelectPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B12E01CE184BC00A8FB76 /* MHSelectPickerView.m */; };
 		046B12E41CE184BC00A8FB76 /* MHSelectPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046B12E11CE184BC00A8FB76 /* MHSelectPickerView.xib */; };
 		046B12E81CE18CD300A8FB76 /* BlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B12E71CE18CD300A8FB76 /* BlockButton.m */; };
+		046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B12EA1CE1C62100A8FB76 /* WKLeftView.m */; };
 		047125881CCDEC330022BF77 /* mServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047125861CCDEC330022BF77 /* mServiceCell.m */; };
 		047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047125871CCDEC330022BF77 /* mServiceCell.xib */; };
 		047695F91CE067F200D282C5 /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047695F81CE067F200D282C5 /* LiuXSegmentView.m */; };
@@ -687,6 +688,8 @@
 		046B12E11CE184BC00A8FB76 /* MHSelectPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHSelectPickerView.xib; sourceTree = "<group>"; };
 		046B12E61CE18CD300A8FB76 /* BlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockButton.h; sourceTree = "<group>"; };
 		046B12E71CE18CD300A8FB76 /* BlockButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockButton.m; sourceTree = "<group>"; };
+		046B12E91CE1C62100A8FB76 /* WKLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKLeftView.h; sourceTree = "<group>"; };
+		046B12EA1CE1C62100A8FB76 /* WKLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLeftView.m; sourceTree = "<group>"; };
 		047125851CCDEC330022BF77 /* mServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceCell.h; sourceTree = "<group>"; };
 		047125861CCDEC330022BF77 /* mServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceCell.m; sourceTree = "<group>"; };
 		047125871CCDEC330022BF77 /* mServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceCell.xib; sourceTree = "<group>"; };
@@ -2596,6 +2599,8 @@
 				31EEB3131C93AC8000B61A86 /* WKSegmentControl.m */,
 				047695F71CE067F200D282C5 /* LiuXSegmentView.h */,
 				047695F81CE067F200D282C5 /* LiuXSegmentView.m */,
+				046B12E91CE1C62100A8FB76 /* WKLeftView.h */,
+				046B12EA1CE1C62100A8FB76 /* WKLeftView.m */,
 			);
 			name = segment;
 			sourceTree = "<group>";
@@ -4026,6 +4031,7 @@
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
 				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
 				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
+				046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */,
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
@@ -4345,7 +4351,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
+				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
 			};
 			name = Debug;
 		};
@@ -4355,8 +4361,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ping Tang (5FKH22H2X2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ping Tang (5FKH22H2X2)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4398,7 +4404,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
+				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
 			};
 			name = Release;
 		};

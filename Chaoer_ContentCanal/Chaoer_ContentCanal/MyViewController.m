@@ -106,11 +106,11 @@
     
     UIImage *img1 = [UIImage imageNamed:@"icon_verify"];
     UIImage *img2 = [UIImage imageNamed:@"icon_getorder"];
-    UIImage *img3 = [UIImage imageNamed:@"icon_activity"];
+    UIImage *img3 = [UIImage imageNamed:@"bar_code"];
     UIImage *img4 = [UIImage imageNamed:@"icon_order"];
     UIImage *img5 = [UIImage imageNamed:@"icon_rent"];
     UIImage *img6 = [UIImage imageNamed:@"add_hourse"];
-    UIImage *img7 = [UIImage imageNamed:@"bar_code"];
+    UIImage *img7 = [UIImage imageNamed:@"icon_activity"];
 
 
     NSMutableDictionary *dic = [NSMutableDictionary new];
@@ -126,42 +126,42 @@
     [dic2 setObject:NumberWithInt(2) forKey:@"ppp"];
     [dic2 setObject:NumberWithInt(1) forKey:@"hidden"];
     
-    NSMutableDictionary *dic7 = [NSMutableDictionary new];
-    [dic7 setObject:@"我的二维码名片" forKey:@"name"];
-    [dic7 setObject:img7 forKey:@"img"];
-    [dic7 setObject:NumberWithInt(3) forKey:@"ppp"];
-    [dic7 setObject:NumberWithInt(2) forKey:@"hidden"];
-    
-    mArr1 = @[dic,dic2,dic7];
-    
-    
     NSMutableDictionary *dic3 = [NSMutableDictionary new];
-    [dic3 setObject:@"活动中心" forKey:@"name"];
+    [dic3 setObject:@"我的二维码名片" forKey:@"name"];
     [dic3 setObject:img3 forKey:@"img"];
-    [dic3 setObject:NumberWithInt(4) forKey:@"ppp"];
+    [dic3 setObject:NumberWithInt(3) forKey:@"ppp"];
     [dic3 setObject:NumberWithInt(2) forKey:@"hidden"];
-
-
+    
+    mArr1 = @[dic,dic2,dic3];
+    
+    
     NSMutableDictionary *dic4 = [NSMutableDictionary new];
-    [dic4 setObject:@"我的订单" forKey:@"name"];
+    [dic4 setObject:@"活动中心" forKey:@"name"];
     [dic4 setObject:img4 forKey:@"img"];
-    [dic4 setObject:NumberWithInt(5) forKey:@"ppp"];
+    [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
     [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
 
+
     NSMutableDictionary *dic5 = [NSMutableDictionary new];
-    [dic5 setObject:@"出租房" forKey:@"name"];
+    [dic5 setObject:@"我的订单" forKey:@"name"];
     [dic5 setObject:img5 forKey:@"img"];
-    [dic5 setObject:NumberWithInt(6) forKey:@"ppp"];
+    [dic5 setObject:NumberWithInt(5) forKey:@"ppp"];
     [dic5 setObject:NumberWithInt(2) forKey:@"hidden"];
 
-    
     NSMutableDictionary *dic6 = [NSMutableDictionary new];
-    [dic6 setObject:@"房屋添加" forKey:@"name"];
+    [dic6 setObject:@"出租房" forKey:@"name"];
     [dic6 setObject:img6 forKey:@"img"];
-    [dic6 setObject:NumberWithInt(7) forKey:@"ppp"];
+    [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
     [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
+
     
-    mArr2 = @[dic3,dic4,dic5,dic6];
+    NSMutableDictionary *dic7 = [NSMutableDictionary new];
+    [dic7 setObject:@"房屋添加" forKey:@"name"];
+    [dic7 setObject:img7 forKey:@"img"];
+    [dic7 setObject:NumberWithInt(7) forKey:@"ppp"];
+    [dic7 setObject:NumberWithInt(2) forKey:@"hidden"];
+    
+    mArr2 = @[dic4,dic5,dic6,dic7];
     
     [self.tempArray addObject:mArr1];
     [self.tempArray addObject:mArr2];
@@ -429,10 +429,11 @@
         {
 
             NSLog(@"我的二维码");
-            [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
-            
-            [self pushViewController:bbb];
+            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+
+//            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
+//            
+//            [self pushViewController:bbb];
 
             
         }

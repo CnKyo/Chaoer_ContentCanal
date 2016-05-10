@@ -30,7 +30,7 @@
 #import "MHDatePicker.h"
 
 #define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate>{
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>{
     HZQDatePickerView *_pikerView;
 
 }
@@ -126,10 +126,106 @@
 
     mSelecte = 1;
     
-    
+//    [self initTableView];
     [self initView];
     
 }
+
+- (void)initTableView{
+    
+    NSArray *tt=  @[@"家电类",@"清洁类",@"管道类"];
+    mSuperID = @"1";
+    WKLeftView *mLeftView = [[WKLeftView alloc] initWithFrame:CGRectMake(0, 64, 80, DEVICE_Height) titles:tt clickBlick:^(NSInteger index) {
+        NSLog(@"点击了%ld",index);
+        mType = tt[index-1];
+        mSuperID = [NSString stringWithFormat:@"%ld",index];
+
+        [self.tableView headerBeginRefreshing];
+
+    }];
+    mLeftView.layer.masksToBounds = YES;
+    mLeftView.layer.borderColor = [UIColor colorWithRed:0.67 green:0.67 blue:0.67 alpha:0.45].CGColor;
+    mLeftView.layer.borderWidth = 0.5;
+    [self.view addSubview:mLeftView];
+    
+    [self loadTableView:CGRectMake(mLeftView.mright, 64, DEVICE_Width-80, DEVICE_Height-64) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
+    UINib   *nib = [UINib nibWithNibName:@"fixTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+
+    
+}
+
+- (void)headerBeganRefresh{
+
+    [mUserInfo getFixDetail:mSuperID andLevel:@"2" block:^(mBaseData *resb, NSArray *marr) {
+        [self headerEndRefresh];
+        
+        [self.tempArray removeAllObjects];
+        
+        if (resb.mSucess) {
+            [self.tempArray addObjectsFromArray:marr];
+            [self.tableView reloadData];
+            
+        }else{
+            [LCProgressHUD showFailure:@"数据加载错误!"];
+            
+        }
+    }];
+
+    
+}
+
+#pragma mark -- tableviewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
+{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return self.tempArray.count;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+    
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *reuseCellId = @"cell";
+    
+    fixTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    GFix *GF = self.tempArray[indexPath.row];
+    cell.mName.text = GF.mClassName;
+    
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GCommunityNews *GC = self.tempArray[indexPath.row];
+    
+    
+    
+    
+}
+
+
+
+
+
+
 - (void)initView{
     
     

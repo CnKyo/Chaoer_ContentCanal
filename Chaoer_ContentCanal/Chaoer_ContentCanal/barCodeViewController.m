@@ -31,9 +31,9 @@
     self.hiddenTabBar = YES;
     self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
     [SVProgressHUD dismiss];
-  
-    [self loadShareView];
     [self initView];
+
+    [self loadShareView];
     
     UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
     [self.view addGestureRecognizer:ttt];

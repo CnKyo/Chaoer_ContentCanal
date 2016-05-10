@@ -59,16 +59,15 @@
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     
     [[mUserInfo backNowUser] getCommunityClass:^(mBaseData *resb, NSArray *mArr) {
-        [SVProgressHUD dismiss];
         [mClassArr removeAllObjects];
         
         if (resb.mSucess) {
             
             
             if (mArr.count <= 0) {
-                [SVProgressHUD showErrorWithStatus:@"没有找到小区！暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
                 
-                [self popViewController];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
                 return ;
 
             }else{
@@ -85,9 +84,9 @@
             
             
         }else{
-            [SVProgressHUD showErrorWithStatus:@"没有找到小区！暂无数据"];
+            [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
             
-            [self popViewController];
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
         }
     }];
 }
@@ -95,16 +94,15 @@
 - (void)loadCommunity{
 
     [[mUserInfo backNowUser] getArear:^(mBaseData *resb, NSArray *mArr) {
-        [SVProgressHUD dismiss];
         [self.tempArray removeAllObjects];
         if (resb.mSucess) {
             
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             if (mArr.count <= 0) {
-                [SVProgressHUD showErrorWithStatus:@"没有找到小区！暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
 
-                [self popViewController];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
                 return ;
             }else{
             
@@ -119,7 +117,7 @@
 
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self popViewController];
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
             
         }
         
@@ -277,4 +275,10 @@
     
     
 }
+
+- (void)leftBtnTouched:(id)sender{
+    [self popViewController];
+
+}
+
 @end
