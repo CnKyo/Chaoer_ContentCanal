@@ -182,7 +182,6 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:self.tableView];
     self.haveHeader = YES;
     [self.tableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"homeTableViewCell" bundle:nil];

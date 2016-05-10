@@ -252,11 +252,12 @@
                               
                               @"的帐号在别的设备上登录，您被迫下线！"
                               
-                              delegate:nil
+                              delegate:self
                               
-                              cancelButtonTitle:@"知道了"
+                              cancelButtonTitle:@"重新登录！"
                               
                               otherButtonTitles:nil, nil];
+        alert.tag = 10000;
         
         [alert show];
         
@@ -396,23 +397,23 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
--(void)gotoLogin
-{
-    UINavigationController* navvc = (UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController;
-    
-    if( [navvc.topViewController isKindOfClass:[ViewController class]] )
-    {
-        return;
-    }
-    
-    
-//    [SUser logout];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
-    
-    [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:viewController animated:YES];
-}
+//-(void)gotoLogin
+//{
+//    UINavigationController* navvc = (UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController;
+//    
+//    if( [navvc.topViewController isKindOfClass:[ViewController class]] )
+//    {
+//        return;
+//    }
+//    
+//    
+////    [SUser logout];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
+//    
+//    [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:viewController animated:YES];
+//}
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     [application registerForRemoteNotifications];
@@ -495,31 +496,64 @@
     
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
+    if (alertView.tag == 10000) {
         
-//        SMessageInfo* pushobj = ((myalert *)alertView).obj;
+        if (buttonIndex == 0) {
+            [mUserInfo logOut];
+            [self gotoLogin];
+
+        }
+    }else{
+        if (buttonIndex == 1) {
+            
+            //        SMessageInfo* pushobj = ((myalert *)alertView).obj;
+            
+            //        if( pushobj.mType == 1 )
+            //        {
+            //            myMessageViewController* vc = [[myMessageViewController alloc]init];
+            //            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
+            //        }
+            //        else if( pushobj.mType == 2 )
+            //        {
+            //            WebVC* vc = [[WebVC alloc]init];
+            //            vc.mName = @"详情";
+            //            vc.mUrl = pushobj.mArgs;
+            //        }
+            //        else if( pushobj.mType == 3 )
+            //        {
+            //
+            //            orderDetail *order = [[orderDetail alloc] initWithNibName:@"orderDetail" bundle:nil];
+            //            SOrder *s = [[SOrder alloc] init];
+            //            s.mId = [pushobj.mArgs intValue];
+            //            order.mtagOrder = s;
+            //            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:order animated:YES];
+            //        }
+            //
+        }
         
-//        if( pushobj.mType == 1 )
-//        {
-//            myMessageViewController* vc = [[myMessageViewController alloc]init];
-//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:vc animated:YES];
-//        }
-//        else if( pushobj.mType == 2 )
-//        {
-//            WebVC* vc = [[WebVC alloc]init];
-//            vc.mName = @"详情";
-//            vc.mUrl = pushobj.mArgs;
-//        }
-//        else if( pushobj.mType == 3 )
-//        {
-//            
-//            orderDetail *order = [[orderDetail alloc] initWithNibName:@"orderDetail" bundle:nil];
-//            SOrder *s = [[SOrder alloc] init];
-//            s.mId = [pushobj.mArgs intValue];
-//            order.mtagOrder = s;
-//            [(UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController pushViewController:order animated:YES];
-//        }
-//        
+    }
+}
+-(void)gotoLogin
+{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
+    UINavigationController* nownav = (UINavigationController*)((UITabBarController*)self.window.rootViewController).selectedViewController;
+    
+    UIViewController* vcvc = [nownav topViewController];
+    
+    if( [vcvc isKindOfClass:[ViewController class]] )
+    {//如果顶层是 LoginVC 就不去了
+        
+    }
+    else
+    {
+        //这里还处理一个事情,就是退出登陆,,要把无效的token,去除..
+        
+        [mUserInfo logOut];
+        [vcvc presentViewController:viewController animated:YES completion:nil];
+        
     }
 }
 

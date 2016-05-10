@@ -17,10 +17,10 @@
 @implementation barCodeViewController
 {
 
-    UIScrollView *mScrollerView;
-    
     mBarCodeView *mView;
     mBarCodeView *mShareView;
+    
+    BOOL isYes;
 
 }
 - (void)viewDidLoad {
@@ -31,55 +31,28 @@
     self.hiddenTabBar = YES;
     self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
     [SVProgressHUD dismiss];
-//    [self initView];
-    
-    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
-    self.tableView.allowsSelection = YES;
-    self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
-    [self.view addSubview:self.tableView];
-
-    UINib   *nib = [UINib nibWithNibName:@"barCodeCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-
-    
+  
     [self loadShareView];
+    [self initView];
     
     UITapGestureRecognizer *ttt = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
     [self.view addGestureRecognizer:ttt];
     
 
 }
-#pragma mark----构造主页面
 - (void)initView{
     
-    mScrollerView = [UIScrollView new];
-    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
-    mScrollerView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:mScrollerView];
-
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    mView = [mBarCodeView shareView];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, 600);
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
-
-    [mView.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
-    
-    mView.mNickName.text = [mUserInfo backNowUser].mNickName;
-    mView.mIdentify.text = [mUserInfo backNowUser].mIdentity;
-    mView.mPhone.text = [mUserInfo backNowUser].mPhone;
-    
-    [mScrollerView addSubview:mView];
-    
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 590);
-    
-    
+    UINib   *nib = [UINib nibWithNibName:@"barCodeCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 }
-
 - (void)loadShareView{
  
     
     mShareView = [mBarCodeView shareBottomView];
-    mShareView.frame = CGRectMake(0, DEVICE_Height, DEVICE_Width, 80);
     
     [mShareView.mShareWechat addTarget:self action:@selector(mWechat:) forControlEvents:UIControlEventTouchUpInside];
     [mShareView.mShareTencent addTarget:self action:@selector(mTencent:) forControlEvents:UIControlEventTouchUpInside];
@@ -121,18 +94,31 @@
 */
 
 - (void)rightBtnTouched:(id)sender{
-    [self shaowShareView];
+    
+    UIButton *btn = sender;
+    btn.selected = !btn.selected;
+    btn.selected = !isYes;
+    if (btn.selected) {
+        [self shaowShareView];
+        isYes = YES;
+    }else{
+        [self hiddenSahreView];
+        isYes = NO;
+    }
+    
+    
     
 }
 
 - (void)tap{
 
     [self hiddenSahreView];
+    isYes = NO;
 }
 
 - (void)shaowShareView{
 
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
         
         CGRect rrr = mShareView.frame;
         rrr.origin.y = DEVICE_Height-80;

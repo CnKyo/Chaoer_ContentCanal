@@ -27,6 +27,7 @@
 #import "addAddressViewController.h"
 #import "TFFileUploadManager.h"
 #import "needCodeViewController.h"
+#import "MHDatePicker.h"
 
 #define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
 @interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate>{
@@ -451,8 +452,28 @@
 
 #pragma mark----时间选择
 - (void)mTimeAction:(UIButton *)sender{
-    [self setupDateView:DateTypeOfStart];
+//    [self setupDateView:DateTypeOfStart];
+    
+   MHDatePicker *selectTimePicker = [[MHDatePicker alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [selectTimePicker didFinishSelectedDate:^(NSDate *selectedDate) {
 
+        
+        mTime = [weakSelf dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
+        
+        [mView.mTimeBtn setTitle:[NSString stringWithFormat:@"选择时间:%@", mTime] forState:0];
+    }];
+
+
+}
+
+- (NSString *)dateStringWithDate:(NSDate *)date DateFormat:(NSString *)dateFormat
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:dateFormat];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    NSString *str = [dateFormatter stringFromDate:date];
+    return str ? str : @"";
 }
 - (void)setupDateView:(DateType)type {
     

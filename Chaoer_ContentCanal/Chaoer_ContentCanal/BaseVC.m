@@ -333,7 +333,7 @@
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 43, 43)];
     image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
-    image.image = [UIImage imageNamed:@"ic_empty"];
+    image.image = [UIImage imageNamed:@"without_order"];
     [emptyView addSubview:image];
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
     [addBtn setCenter:CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2+20)];
@@ -346,7 +346,7 @@
 -(void)addEmptyViewWithImg:(NSString *)img
 {
     if( img == nil )
-        img = @"ic_empty";
+        img = @"without_order";
     
     if (emptyView) {
         [self.tableView addSubview:emptyView];
@@ -378,7 +378,7 @@
 - (void)addKEmptyView:(NSString *)view{
     if ( view == nil) {
         
-        view = @"ic_empty";
+        view = @"without_order";
 
     }
     

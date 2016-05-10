@@ -59,7 +59,6 @@
 
     
     [self loadTableView:CGRectMake(0, 124, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
-    [self.view addSubview:self.tableView];
 
     UINib   *nib = [UINib nibWithNibName:@"wpgTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

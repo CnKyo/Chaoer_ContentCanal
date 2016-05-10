@@ -73,8 +73,9 @@
     self.hiddenBackBtn = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
-    self.navBar.hidden = YES;
-    
+    self.navBar.alpha = 0;
+    self.navigationController.navigationBar.barTintColor=M_CO;
+
     
     [self initView];
 }
@@ -172,21 +173,9 @@
 #pragma mark----构造主页面
 - (void)initView{
 
-    mNavView = [homeNavView sharePersonNav];
-    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
-    
-    
-    mNavView.mBadge.hidden = YES;
-    mNavView.mSetupBtn.hidden = YES;
-    [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:mNavView];
-
-    
-    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-50) delegate:self dataSource:self];
    self.tableView.allowsSelection = YES;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
-    [self.view addSubview:self.tableView];
 
     self.haveHeader = YES;
     [self.tableView headerBeginRefreshing];
@@ -194,10 +183,24 @@
     UINib   *nib = [UINib nibWithNibName:@"myViewTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
+    
+    UIView *hhh = [UIView new];
+    hhh.frame = CGRectMake(0, 0, DEVICE_Width, 226);
+    
+    mNavView = [homeNavView sharePersonNav];
+    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    
+    mNavView.mBadge.hidden = YES;
+    mNavView.mSetupBtn.hidden = YES;
+    [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
+    [hhh addSubview:mNavView];
+    
     mHeaderView = [mPersonView shareView];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 162);
+    mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 162);
     [mHeaderView.mHeaderBtn addTarget:self action:@selector(mHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView setTableHeaderView:mHeaderView];
+    [hhh addSubview:mHeaderView];
+    [self.tableView setTableHeaderView:hhh];
 
     UIView *mFooter = [UIView new];
     mFooter.frame = CGRectMake(0, 10, DEVICE_Width, 60);
@@ -489,4 +492,11 @@
     
 }
 
+#pragma mark----导航条渐变
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    self.navigationController.navigationBar.alpha=scrollView.contentOffset.y/200;
+    
+}
 @end

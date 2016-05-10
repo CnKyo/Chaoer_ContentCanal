@@ -116,4 +116,6 @@
 #import "WJStatusBarHUD.h"
 
 
+#import "BlockButton.h"
+
 #endif

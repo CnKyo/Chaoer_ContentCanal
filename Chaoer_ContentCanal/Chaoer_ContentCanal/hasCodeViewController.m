@@ -42,10 +42,9 @@
     [self.view addSubview:header];
     
     
-    [self loadTableView:CGRectMake(0, header.mbottom, DEVICE_Width, DEVICE_Height-79) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 15, DEVICE_Width, DEVICE_Height-79) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:self.tableView];
     self.haveHeader = YES;
     [self.tableView headerBeginRefreshing];
     
