@@ -118,4 +118,8 @@
 
 #import "BlockButton.h"
 #import "WKLeftView.h"
+
+#import "DCPicScrollView.h"
+#import "DCWebImageManager.h"
+
 #endif

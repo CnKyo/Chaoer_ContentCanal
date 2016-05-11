@@ -471,9 +471,9 @@
             break;
         case 4:
         {
-//            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
-//            [self pushViewController:mmm];
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+            [self pushViewController:mmm];
+//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 
             
 

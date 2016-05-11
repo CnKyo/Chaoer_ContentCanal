@@ -7,24 +7,35 @@
 //
 
 #import "mSenderViewController.h"
-#import "mAddressView.h"
-#import "senderTableViewCell.h"
 
 
 #import "senderDetailViewController.h"
 
 #import "evolutionViewController.h"
-@interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
+
+#import "pptTableViewCell.h"
+#import "pptHeaderView.h"
+
+@interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
 
 @end
 
 @implementation mSenderViewController
 {
-    mAddressView *mTopView;
-
     AMapLocationManager *mLocation;
     
     int     mType;
+    /**
+     *  tableViewHeader
+     */
+    pptHeaderView *mHeaderView;
+    /**
+     *  section
+     */
+    WKSegmentControl    *mSegmentView;
+
+    DCPicScrollView  *mScrollerView;
+
 
 }
 - (void)viewDidLoad {
@@ -32,10 +43,9 @@
     // Do any additional setup after loading the view from its nib.
     
     self.Title = self.mPageName = @"跑跑腿";
-    self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    
+    self.rightBtnTitle = @"筛选";
     mType =0;
     
     [self initView];
@@ -44,28 +54,22 @@
 
 - (void)initView{
 
-    [self loadTableView:CGRectMake(0, 144, DEVICE_Width, DEVICE_Height-144) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    UINib   *nib = [UINib nibWithNibName:@"senderTableViewCell" bundle:nil];
+    UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-    nib = [UINib nibWithNibName:@"mySenderCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell1"];
-
-    nib = [UINib nibWithNibName:@"senderStausCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    
 }
 - (void)initHeaderView{
     
-    mTopView = [mAddressView shareView];
-    [self.view addSubview:mTopView];
-    [mTopView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(@0);
-        make.top.equalTo(self.view).offset(@64);
-        make.height.offset(@50);
-    }];
+    mHeaderView = [pptHeaderView shareView];
+
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 270);
+    
+    [self.tableView setTableHeaderView:mHeaderView];
     
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
@@ -78,7 +82,7 @@
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
-            mTopView.mAddress.text = eee;
+            mHeaderView.mAddress.text = eee;
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
@@ -90,33 +94,12 @@
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             NSLog(@"reGeocode:%@", regeocode);
-            mTopView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            mHeaderView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             
         }
     }];
     
-    DVSwitch *secondSwitch = [DVSwitch switchWithStringsArray:@[@"我来跑腿", @"我的跑单"]];
-    secondSwitch.frame = CGRectMake(0, 114, DEVICE_Width, 30);
-    
-    secondSwitch.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
-    secondSwitch.sliderColor = [UIColor colorWithRed:0.91 green:0.54 blue:0.16 alpha:1];
-    secondSwitch.labelTextColorInsideSlider = [UIColor whiteColor];
-    secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
-    secondSwitch.cornerRadius = 0;
-    secondSwitch.font = [UIFont systemFontOfSize:14];
-    [secondSwitch setPressedHandler:^(NSUInteger index) {
-        NSLog(@"点击了%lu",(unsigned long)index);
-        if (index == 0) {
-            mType = 0;
-        }else{
-            mType = 1;
-        }
-        [self.tableView reloadData];
-
-    }];
-    
-    [self.view addSubview:secondSwitch];
-
+   
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -140,55 +123,41 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (mType == 0) {
-        return 1;
-        
-    }
-   else if (mType == 2) {
-        return 1;
-        
-    }else{
-        return 5;
-    }
+    return 15;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO];
+    return mSegmentView;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 40;
+}
+
+- (void)WKDidSelectedIndex:(NSInteger)mIndex{
+    NSLog(@"点击了%lu",(unsigned long)mIndex);
+    
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    if (mType == 0) {
-        return 400;
-
-    }
-   else if (mType == 2) {
-        return 480;
-        
-    }else{
-        return 60;
-    }
-    
-    
-    
+    return 100;
     
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuseCellId = nil;
+    NSString *reuseCellId = @"cell";
     
-    if (mType == 0) {
-        reuseCellId = @"cell";
-    }else if (mType == 2) {
-        reuseCellId = @"cell2";
-    }else{
-        reuseCellId = @"cell1";
-    }
     
-    senderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    [cell.mComfirBtn addTarget:self action:@selector(mComfirAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [cell.mFinishBtn addTarget:self action:@selector(mfinishAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
 }
@@ -197,29 +166,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (mType == 0) {
-
-    }else if (mType == 2) {
-        
-    }else{
-        senderDetailViewController *sss = [[senderDetailViewController alloc] initWithNibName:@"senderDetailViewController" bundle:nil];
-        [self pushViewController:sss];
-    }
     
 }
 
 
-- (void)mComfirAction:(UIButton *)sender{
-
-    mType = 2;
-    [self.tableView reloadData];
-}
-
-- (void)mfinishAction:(UIButton *)sender{
-    
-    evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
-    [self pushViewController:eee];
-    
-
-}
 @end

@@ -27,8 +27,6 @@
 
 #import "msgViewController.h"
 
-#import "paotuiViewController.h"
-
 #import "orderTongjiViewController.h"
 
 #import "mUserInfoViewController.h"
@@ -39,6 +37,10 @@
 #import "barCodeViewController.h"
 
 #import "otherLoginViewController.h"
+
+#import "openPPTViewController.h"
+
+
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
@@ -418,10 +420,8 @@
         case 2:
         {
             NSLog(@"我的跑腿");
-//            paotuiViewController *ppp = [[paotuiViewController alloc] initWithNibName:@"paotuiViewController" bundle:nil];
-//            ppp.mType = 2;
-//            [self pushViewController:ppp];
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+            [self pushViewController:ppp];
 
         }
             break;
