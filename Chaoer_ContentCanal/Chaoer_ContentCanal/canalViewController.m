@@ -86,6 +86,7 @@
         }else{
         
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self popViewController];
         }
         
     }];

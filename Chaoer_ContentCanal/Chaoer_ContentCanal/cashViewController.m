@@ -111,6 +111,18 @@
 
 - (IBAction)okbtn:(UIButton *)sender {
     
+    
+    if (self.mMoneyTx.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入您要提现的金额！"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+        
+    }
+    if ([self.mTimeBtn.titleLabel.text isEqualToString:@"请选择到账时间"]) {
+        [SVProgressHUD showErrorWithStatus:@"请选择到账时间！"];
+        return;
+    }
+    
     [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
     
     [mUserInfo  getCash:[mUserInfo backNowUser].mUserId andMoney:self.mMoneyTx.text andPresentManner:mPayType block:^(mBaseData *resb) {

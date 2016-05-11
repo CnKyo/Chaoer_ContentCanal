@@ -1779,6 +1779,14 @@
 			name = WJAdsView;
 			sourceTree = "<group>";
 		};
+		04AD8A861CE2CE4A00A3F87F /* 跑跑腿 */ = {
+			isa = PBXGroup;
+			children = (
+				04648C551CB4E5DD006823C9 /* 跑腿 */,
+			);
+			name = "跑跑腿";
+			sourceTree = "<group>";
+		};
 		04F1E3AA1CD217AE00222946 /* 邻里圈 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3435,6 +3443,7 @@
 		749BEA611B32B26200BABCA6 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				04AD8A861CE2CE4A00A3F87F /* 跑跑腿 */,
 				31462CDD1CB38D4D00E67836 /* 钱包 */,
 				31F544781CAE0BE100307B83 /* 厨房 */,
 				318D564B1C9BE1FF0045B5FB /* 关于我们 */,
@@ -3459,7 +3468,6 @@
 		749BEA641B32B32700BABCA6 /* 管家 */ = {
 			isa = PBXGroup;
 			children = (
-				04648C551CB4E5DD006823C9 /* 跑腿 */,
 				044A247B1CB4B23100A6379C /* 消息 */,
 				313D76A81C98ED49004D5679 /* 设置 */,
 				3135F84B1C980A0E00EF9569 /* 我的订单 */,
@@ -4351,7 +4359,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
+				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
 			};
 			name = Debug;
 		};
@@ -4404,7 +4412,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d73af92-0255-4736-8648-1b4122d2af10";
+				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
 			};
 			name = Release;
 		};
