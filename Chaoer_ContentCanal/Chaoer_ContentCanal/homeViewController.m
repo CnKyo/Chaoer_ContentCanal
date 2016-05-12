@@ -41,6 +41,9 @@
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
 
+@property (nonatomic,strong)    NSMutableArray  *mBanerArr;
+
+
 @end
 
 @implementation homeViewController
@@ -49,9 +52,6 @@
     UIView  *mHeaderView;
     
     DCPicScrollView  *mScrollerView;
-    
-    NSMutableArray  *mTempArr;
-    
     
     
     mCustomHomeView *mCustomBtn;
@@ -86,7 +86,7 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.navBar.hidden = YES;
-    mTempArr = [NSMutableArray new];
+    self.mBanerArr = [NSMutableArray new];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
     
@@ -241,14 +241,14 @@
 - (void)headerBeganRefresh{
     [self loadAddress];
 
-    [mTempArr removeAllObjects];
+    [self.mBanerArr removeAllObjects];
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
 
             
-            [mTempArr addObjectsFromArray:mBaner];
+            [self.mBanerArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
             [self loadScrollerView];
 
@@ -512,7 +512,7 @@
     
     NSMutableArray *arrtemp = [NSMutableArray new];
     [arrtemp removeAllObjects];
-    for (MBaner *banar in mTempArr) {
+    for (MBaner *banar in self.mBanerArr) {
         [arrtemp addObject:banar.mImgUrl];
     }
     
@@ -528,16 +528,17 @@
     mScrollerView.placeImage = [UIImage imageNamed:@"place.png"];
     
     //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
-    
+    __weak __typeof(self)weakSelf = self;
+
     [mScrollerView setImageViewDidTapAtIndex:^(NSInteger index) {
         printf("第%zd张图片\n",index);
-        return;
-        MBaner *banar = mTempArr[index];
+        return ;
+        MBaner *banar = weakSelf.mBanerArr[index];
         
         WebVC *w = [WebVC new];
         w.mName = banar.mName;
         w.mUrl = [NSString stringWithFormat:@"http://%@",banar.mContentUrl];
-        [self pushViewController:w];
+        [weakSelf pushViewController:w];
 
         
     }];

@@ -122,4 +122,6 @@
 #import "DCPicScrollView.h"
 #import "DCWebImageManager.h"
 
+#import "AttributeView.h"
+#import "UIView+Extnesion.h"
 #endif

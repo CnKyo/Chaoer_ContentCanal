@@ -1,14 +1,14 @@
 //
-//  barCodeCell.m
+//  releaseCell.m
 //  Chaoer_ContentCanal
 //
-//  Created by Mac on 16/5/5.
+//  Created by Mac on 16/5/12.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "barCodeCell.h"
+#import "releaseCell.h"
 
-@implementation barCodeCell
+@implementation releaseCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -17,18 +17,15 @@
 
 - (void)layoutSubviews{
 
-    self.mMainView.layer.masksToBounds = self.mSmallView.layer.masksToBounds = YES;
-    self.mMainView.layer.cornerRadius = self.mSmallView.layer.cornerRadius = 5;
-    
-    self.mHeader.layer.masksToBounds = YES;
-    self.mHeader.layer.cornerRadius = 3;
+    [self.mContentTx setPlaceholder:@"请填写需求和添加标签"];
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
 
 @end

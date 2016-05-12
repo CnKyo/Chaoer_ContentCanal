@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="156" id="piu-2M-HMG" customClass="releaseCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="piu-2M-HMG" id="rnn-Oo-qHc">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酬劳金额:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAZ-aM-cYa">
+                        <rect key="frame" x="8" y="12" width="70" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="G5g-1a-YbU"/>
+                            <constraint firstAttribute="width" constant="70" id="GUu-ws-78P"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbo-V6-aBa">
+                        <rect key="frame" x="0.0" y="40" width="320" height="10"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="hUK-Id-0TH"/>
+                        </constraints>
+                    </view>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入酬劳金额" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TLk-OW-z9l">
+                        <rect key="frame" x="80" y="12" width="232" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="232" id="HRe-Zz-6j9"/>
+                            <constraint firstAttribute="height" constant="20" id="yaH-Mi-6Ik"/>
+                        </constraints>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="hbo-V6-aBa" secondAttribute="trailing" constant="-8" id="Xqn-T6-HnA"/>
+                    <constraint firstItem="hbo-V6-aBa" firstAttribute="leading" secondItem="rnn-Oo-qHc" secondAttribute="leadingMargin" constant="-8" id="YOD-Zg-KLE"/>
+                    <constraint firstItem="hbo-V6-aBa" firstAttribute="top" secondItem="TLk-OW-z9l" secondAttribute="bottom" constant="8" id="YUm-Ei-PfX"/>
+                    <constraint firstItem="TLk-OW-z9l" firstAttribute="top" secondItem="rnn-Oo-qHc" secondAttribute="topMargin" constant="4" id="dNy-vI-har"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="IAZ-aM-cYa" secondAttribute="leading" id="e84-Et-npy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TLk-OW-z9l" secondAttribute="trailing" id="edy-IR-EVn"/>
+                    <constraint firstItem="TLk-OW-z9l" firstAttribute="leading" secondItem="IAZ-aM-cYa" secondAttribute="trailing" constant="2" id="hi2-vz-OHz"/>
+                    <constraint firstItem="IAZ-aM-cYa" firstAttribute="top" secondItem="rnn-Oo-qHc" secondAttribute="topMargin" constant="4" id="q8i-Qg-owp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mMoneyTx" destination="TLk-OW-z9l" id="EjL-NP-LlM"/>
+            </connections>
+            <point key="canvasLocation" x="217" y="315"/>
+        </tableViewCell>
+    </objects>
+</document>

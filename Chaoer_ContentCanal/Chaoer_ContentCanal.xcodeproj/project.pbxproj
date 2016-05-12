@@ -30,6 +30,23 @@
 		040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E51CDB28F200270D4F /* mSahreView.xib */; };
 		040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0E81CDB39E400270D4F /* barCodeCell.m */; };
 		040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E91CDB39E400270D4F /* barCodeCell.xib */; };
+		04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E081CE41A17006F82E2 /* pptChartsViewController.m */; };
+		04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E091CE41A17006F82E2 /* pptChartsViewController.xib */; };
+		04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E0D1CE41A3D006F82E2 /* pptChartsTableViewCell.m */; };
+		04102E101CE41A3D006F82E2 /* pptChartsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E0E1CE41A3D006F82E2 /* pptChartsTableViewCell.xib */; };
+		04102E141CE42C35006F82E2 /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E131CE42C35006F82E2 /* AttributeView.m */; };
+		04102E191CE42CA7006F82E2 /* bolterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E171CE42CA7006F82E2 /* bolterViewController.m */; };
+		04102E1A1CE42CA7006F82E2 /* bolterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E181CE42CA7006F82E2 /* bolterViewController.xib */; };
+		04102E1D1CE431CF006F82E2 /* UIView+Extnesion.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E1C1CE431CF006F82E2 /* UIView+Extnesion.m */; };
+		04102E211CE44241006F82E2 /* releasePPtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E1F1CE44241006F82E2 /* releasePPtViewController.m */; };
+		04102E221CE44241006F82E2 /* releasePPtViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E201CE44241006F82E2 /* releasePPtViewController.xib */; };
+		04102E261CE453D3006F82E2 /* pptReleaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E251CE453D3006F82E2 /* pptReleaseView.m */; };
+		04102E281CE453DE006F82E2 /* pptReleaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E271CE453DE006F82E2 /* pptReleaseView.xib */; };
+		04102E2C1CE46215006F82E2 /* releaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E2A1CE46215006F82E2 /* releaseCell.m */; };
+		04102E2D1CE46215006F82E2 /* releaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E2B1CE46215006F82E2 /* releaseCell.xib */; };
+		04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E2E1CE465CF006F82E2 /* releaseCell2.xib */; };
+		04102E311CE4683F006F82E2 /* releaseCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E301CE4683F006F82E2 /* releaseCell3.xib */; };
+		04102E331CE46893006F82E2 /* releaseCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E321CE46893006F82E2 /* releaseCell4.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
 		042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042238EB1CD3046D00D1784B /* RCChatViewController.m */; };
 		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
@@ -635,6 +652,31 @@
 		040FE0E71CDB39E400270D4F /* barCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barCodeCell.h; sourceTree = "<group>"; };
 		040FE0E81CDB39E400270D4F /* barCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barCodeCell.m; sourceTree = "<group>"; };
 		040FE0E91CDB39E400270D4F /* barCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barCodeCell.xib; sourceTree = "<group>"; };
+		04102E071CE41A17006F82E2 /* pptChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptChartsViewController.h; sourceTree = "<group>"; };
+		04102E081CE41A17006F82E2 /* pptChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptChartsViewController.m; sourceTree = "<group>"; };
+		04102E091CE41A17006F82E2 /* pptChartsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptChartsViewController.xib; sourceTree = "<group>"; };
+		04102E0C1CE41A3D006F82E2 /* pptChartsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptChartsTableViewCell.h; sourceTree = "<group>"; };
+		04102E0D1CE41A3D006F82E2 /* pptChartsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptChartsTableViewCell.m; sourceTree = "<group>"; };
+		04102E0E1CE41A3D006F82E2 /* pptChartsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptChartsTableViewCell.xib; sourceTree = "<group>"; };
+		04102E121CE42C35006F82E2 /* AttributeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeView.h; sourceTree = "<group>"; };
+		04102E131CE42C35006F82E2 /* AttributeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeView.m; sourceTree = "<group>"; };
+		04102E161CE42CA7006F82E2 /* bolterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bolterViewController.h; sourceTree = "<group>"; };
+		04102E171CE42CA7006F82E2 /* bolterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bolterViewController.m; sourceTree = "<group>"; };
+		04102E181CE42CA7006F82E2 /* bolterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = bolterViewController.xib; sourceTree = "<group>"; };
+		04102E1B1CE431CF006F82E2 /* UIView+Extnesion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extnesion.h"; sourceTree = "<group>"; };
+		04102E1C1CE431CF006F82E2 /* UIView+Extnesion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extnesion.m"; sourceTree = "<group>"; };
+		04102E1E1CE44241006F82E2 /* releasePPtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = releasePPtViewController.h; sourceTree = "<group>"; };
+		04102E1F1CE44241006F82E2 /* releasePPtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = releasePPtViewController.m; sourceTree = "<group>"; };
+		04102E201CE44241006F82E2 /* releasePPtViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releasePPtViewController.xib; sourceTree = "<group>"; };
+		04102E241CE453D3006F82E2 /* pptReleaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptReleaseView.h; sourceTree = "<group>"; };
+		04102E251CE453D3006F82E2 /* pptReleaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptReleaseView.m; sourceTree = "<group>"; };
+		04102E271CE453DE006F82E2 /* pptReleaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptReleaseView.xib; sourceTree = "<group>"; };
+		04102E291CE46215006F82E2 /* releaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = releaseCell.h; sourceTree = "<group>"; };
+		04102E2A1CE46215006F82E2 /* releaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = releaseCell.m; sourceTree = "<group>"; };
+		04102E2B1CE46215006F82E2 /* releaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell.xib; sourceTree = "<group>"; };
+		04102E2E1CE465CF006F82E2 /* releaseCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell2.xib; sourceTree = "<group>"; };
+		04102E301CE4683F006F82E2 /* releaseCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell3.xib; sourceTree = "<group>"; };
+		04102E321CE46893006F82E2 /* releaseCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell4.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
 		042238EA1CD3046D00D1784B /* RCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatViewController.h; sourceTree = "<group>"; };
 		042238EB1CD3046D00D1784B /* RCChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatViewController.m; sourceTree = "<group>"; };
@@ -1708,6 +1750,59 @@
 			name = "二维码";
 			sourceTree = "<group>";
 		};
+		04102E061CE419ED006F82E2 /* 跑腿榜 */ = {
+			isa = PBXGroup;
+			children = (
+				04102E071CE41A17006F82E2 /* pptChartsViewController.h */,
+				04102E081CE41A17006F82E2 /* pptChartsViewController.m */,
+				04102E091CE41A17006F82E2 /* pptChartsViewController.xib */,
+				04102E0C1CE41A3D006F82E2 /* pptChartsTableViewCell.h */,
+				04102E0D1CE41A3D006F82E2 /* pptChartsTableViewCell.m */,
+				04102E0E1CE41A3D006F82E2 /* pptChartsTableViewCell.xib */,
+			);
+			name = "跑腿榜";
+			sourceTree = "<group>";
+		};
+		04102E111CE42C24006F82E2 /* AttributeView */ = {
+			isa = PBXGroup;
+			children = (
+				04102E1B1CE431CF006F82E2 /* UIView+Extnesion.h */,
+				04102E1C1CE431CF006F82E2 /* UIView+Extnesion.m */,
+				04102E121CE42C35006F82E2 /* AttributeView.h */,
+				04102E131CE42C35006F82E2 /* AttributeView.m */,
+			);
+			name = AttributeView;
+			sourceTree = "<group>";
+		};
+		04102E151CE42C6F006F82E2 /* 筛选 */ = {
+			isa = PBXGroup;
+			children = (
+				04102E161CE42CA7006F82E2 /* bolterViewController.h */,
+				04102E171CE42CA7006F82E2 /* bolterViewController.m */,
+				04102E181CE42CA7006F82E2 /* bolterViewController.xib */,
+			);
+			name = "筛选";
+			sourceTree = "<group>";
+		};
+		04102E231CE4424B006F82E2 /* 发布 */ = {
+			isa = PBXGroup;
+			children = (
+				04102E1E1CE44241006F82E2 /* releasePPtViewController.h */,
+				04102E1F1CE44241006F82E2 /* releasePPtViewController.m */,
+				04102E201CE44241006F82E2 /* releasePPtViewController.xib */,
+				04102E241CE453D3006F82E2 /* pptReleaseView.h */,
+				04102E251CE453D3006F82E2 /* pptReleaseView.m */,
+				04102E271CE453DE006F82E2 /* pptReleaseView.xib */,
+				04102E291CE46215006F82E2 /* releaseCell.h */,
+				04102E2A1CE46215006F82E2 /* releaseCell.m */,
+				04102E2B1CE46215006F82E2 /* releaseCell.xib */,
+				04102E2E1CE465CF006F82E2 /* releaseCell2.xib */,
+				04102E301CE4683F006F82E2 /* releaseCell3.xib */,
+				04102E321CE46893006F82E2 /* releaseCell4.xib */,
+			);
+			name = "发布";
+			sourceTree = "<group>";
+		};
 		044A247B1CB4B23100A6379C /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1731,6 +1826,9 @@
 		04648C5D1CB4F116006823C9 /* 跑跑腿 */ = {
 			isa = PBXGroup;
 			children = (
+				04102E231CE4424B006F82E2 /* 发布 */,
+				04102E151CE42C6F006F82E2 /* 筛选 */,
+				04102E061CE419ED006F82E2 /* 跑腿榜 */,
 				04AD8A871CE304D500A3F87F /* 申请跑跑腿 */,
 				04648C5E1CB4F1A4006823C9 /* mSenderViewController.h */,
 				04648C5F1CB4F1A4006823C9 /* mSenderViewController.m */,
@@ -3248,6 +3346,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04102E111CE42C24006F82E2 /* AttributeView */,
 				046B12E51CE18CC400A8FB76 /* BlockBtn */,
 				046B12DC1CE184AD00A8FB76 /* MHDatePicker */,
 				04AB1D701CD09F0E00870617 /* WJAdsView */,
@@ -3702,6 +3801,7 @@
 				040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */,
 				310EB6041CA26E47005C61F4 /* makeServiceView.xib in Resources */,
 				318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */,
+				04102E1A1CE42CA7006F82E2 /* bolterViewController.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
 				040B800F1CC4FD11006A9489 /* emptyView.xib in Resources */,
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
@@ -3714,6 +3814,7 @@
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				04AD8A9B1CE323B300A3F87F /* pptStatusViewController.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
+				04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */,
 				040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
@@ -3726,6 +3827,7 @@
 				312D08B51CAA1C560006F0FA /* WeiboSDK.bundle in Resources */,
 				3135F8401C9801D700EF9569 /* myRedBagViewController.xib in Resources */,
 				31EEB3241C93BF8700B61A86 /* mSuperMarketTableViewCell.xib in Resources */,
+				04102E311CE4683F006F82E2 /* releaseCell3.xib in Resources */,
 				749529AC1BF72DBE00E934D0 /* music1.caf in Resources */,
 				04648C541CB4E0C0006823C9 /* msgDetailViewController.xib in Resources */,
 				3123CC391C92B04A00C3B928 /* mBalanceViewController.xib in Resources */,
@@ -3733,9 +3835,11 @@
 				041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */,
 				313D76E11C994740004D5679 /* mPublicWalerViewController.xib in Resources */,
 				B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */,
+				04102E281CE453DE006F82E2 /* pptReleaseView.xib in Resources */,
 				040B80061CC47875006A9489 /* payFeeViewController.xib in Resources */,
 				746F8ACE1BEC330900C87992 /* HZQDatePickerView.xib in Resources */,
 				315442841C9A4A720047E52A /* mFeedCompanyViewController.xib in Resources */,
+				04102E2D1CE46215006F82E2 /* releaseCell.xib in Resources */,
 				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,
 				040B800D1CC4DFCC006A9489 /* mGoPayViewController.xib in Resources */,
 				310EB5DD1CA24107005C61F4 /* choiseServicerViewController.xib in Resources */,
@@ -3757,6 +3861,7 @@
 				31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */,
 				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
 				313D76B31C98F03E004D5679 /* mBundleViewController.xib in Resources */,
+				04102E101CE41A3D006F82E2 /* pptChartsTableViewCell.xib in Resources */,
 				04648C5C1CB4EC57006823C9 /* CustomAlertView.xib in Resources */,
 				04648C7A1CB51DD0006823C9 /* valleteHistoryViewController.xib in Resources */,
 				746907E81BABEFCB00A4589A /* footView.xib in Resources */,
@@ -3780,6 +3885,7 @@
 				04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */,
 				04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */,
 				044A24801CB4B25700A6379C /* msgViewController.xib in Resources */,
+				04102E331CE46893006F82E2 /* releaseCell4.xib in Resources */,
 				31B9901B1C9686E7002E34A5 /* washAndSendViewController.xib in Resources */,
 				04E5BD321CC61F6700E62795 /* WJ_error@2x.png in Resources */,
 				741C85151BABFA0B00CEFD18 /* headerView.xib in Resources */,
@@ -3789,6 +3895,7 @@
 				3122890F1C9662EA009C315F /* mLeftTableViewCell.xib in Resources */,
 				31EEB32F1C94135700B61A86 /* mGoodsDetailView.xib in Resources */,
 				3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */,
+				04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */,
 				31E1A72F1CA3C04A00D3496F /* cashViewController.xib in Resources */,
 				313413601CA28DC3003972E2 /* XMNPhotoPicker.xib in Resources */,
 				31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */,
@@ -3809,6 +3916,7 @@
 				046B12E41CE184BC00A8FB76 /* MHSelectPickerView.xib in Resources */,
 				312D08C61CAA1ECD0006F0FA /* loading.gif in Resources */,
 				31EEB31E1C93B6E700B61A86 /* communityTableViewCell.xib in Resources */,
+				04102E221CE44241006F82E2 /* releasePPtViewController.xib in Resources */,
 				74DE206C1BCE527E003C03E7 /* changePhoneViewController.xib in Resources */,
 				312289111C96638B009C315F /* mRightShopTableCell.xib in Resources */,
 				313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */,
@@ -3989,6 +4097,7 @@
 				04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */,
 				31EEB3141C93AC8000B61A86 /* WKSegmentControl.m in Sources */,
 				742FB9041B5CDEB3005A1AFA /* NSString+WPAttributedMarkup.m in Sources */,
+				04102E211CE44241006F82E2 /* releasePPtViewController.m in Sources */,
 				318D56511C9BE28E0045B5FB /* aboutusView.m in Sources */,
 				310EB5FD1CA2680F005C61F4 /* choiceServicerViewController.m in Sources */,
 				749BE96B1B3272E700BABCA6 /* UIView+MJExtension.m in Sources */,
@@ -3998,8 +4107,10 @@
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
 				7445C0931B33A39000F330EA /* UIViewExt.m in Sources */,
 				048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */,
+				04102E261CE453D3006F82E2 /* pptReleaseView.m in Sources */,
 				04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */,
 				749BE9681B3272E700BABCA6 /* MJRefreshHeaderView.m in Sources */,
+				04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
 				04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */,
@@ -4037,6 +4148,8 @@
 				040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */,
 				04F2DDFC1CBE2C460088C90F /* communityStatusTableViewCell.m in Sources */,
 				7400896D1B38F2C300618BA0 /* AFAppDotNetAPIClient.m in Sources */,
+				04102E191CE42CA7006F82E2 /* bolterViewController.m in Sources */,
+				04102E2C1CE46215006F82E2 /* releaseCell.m in Sources */,
 				318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */,
 				749BEA3F1B3277AA00BABCA6 /* SDWebImageCompat.m in Sources */,
 				3135F82D1C97EB7300EF9569 /* activityCenterViewController.m in Sources */,
@@ -4081,7 +4194,9 @@
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
 				040FE0E21CDB20DA00270D4F /* mBarCodeView.m in Sources */,
+				04102E141CE42C35006F82E2 /* AttributeView.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,
+				04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */,
 				310EB5E61CA24445005C61F4 /* HCSStarRatingView.m in Sources */,
 				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,
 				31B990331C96A535002E34A5 /* serviceViewController.m in Sources */,
@@ -4161,6 +4276,7 @@
 				042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,
 				742739CE1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.m in Sources */,
+				04102E1D1CE431CF006F82E2 /* UIView+Extnesion.m in Sources */,
 				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
 				04AD8A901CE3103200A3F87F /* openPPTViewController.m in Sources */,
 				74B486A71BE88F200023E839 /* PPiFlatSegmentedControl.m in Sources */,
