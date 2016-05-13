@@ -423,7 +423,7 @@
 }
 -(void)setRightBtnWidth:(CGFloat)size              //setRightBtnWidth Set方法
 {
-    self.navBar.rightBtn.frame = CGRectMake(220, 27, 123, 31);
+    self.navBar.rightBtn.frame = CGRectMake(DEVICE_Width-size+10, 27, size, 31);
 }
 -(void)popViewController
 {

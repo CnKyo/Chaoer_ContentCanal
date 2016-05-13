@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="pptMyAddressCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆市渝中区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PV-bX-hu3">
+                        <rect key="frame" x="8" y="8" width="304" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="ILT-p4-DgY"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiantou1" translatesAutoresizingMaskIntoConstraints="NO" id="bZ1-Nq-ulN">
+                        <rect key="frame" x="305" y="28" width="7" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="3Tu-9f-S6X"/>
+                            <constraint firstAttribute="height" constant="13" id="jX8-TU-J9D"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="4Ab-ys-PAL">
+                        <rect key="frame" x="8" y="41" width="40" height="20"/>
+                        <color key="backgroundColor" red="0.31372549019607843" green="0.58823529411764708" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="JrO-hm-wWn"/>
+                            <constraint firstAttribute="height" constant="20" id="acW-fp-gnb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82p-ce-dhn">
+                        <rect key="frame" x="56" y="41" width="256" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="wfC-eM-b36"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYK-v6-nj5">
+                        <rect key="frame" x="0.0" y="69" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44876077586206897" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="fYS-GH-E27"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4Ab-ys-PAL" firstAttribute="top" secondItem="bZ1-Nq-ulN" secondAttribute="bottom" id="3G2-aY-Gbf"/>
+                    <constraint firstAttribute="topMargin" secondItem="1PV-bX-hu3" secondAttribute="top" id="5fz-ec-brz"/>
+                    <constraint firstItem="aYK-v6-nj5" firstAttribute="top" secondItem="82p-ce-dhn" secondAttribute="bottom" constant="8" id="7rv-TJ-UyI"/>
+                    <constraint firstItem="82p-ce-dhn" firstAttribute="leading" secondItem="4Ab-ys-PAL" secondAttribute="trailing" constant="8" id="CRF-ea-0r2"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="1PV-bX-hu3" secondAttribute="leading" id="CqJ-l3-H7G"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aYK-v6-nj5" secondAttribute="trailing" constant="-8" id="D8e-9p-UHy"/>
+                    <constraint firstItem="bZ1-Nq-ulN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IAl-Ui-fSA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="82p-ce-dhn" secondAttribute="trailing" id="MYi-ji-6Rq"/>
+                    <constraint firstItem="aYK-v6-nj5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="VQ2-YG-Day"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1PV-bX-hu3" secondAttribute="trailing" id="ZHD-2n-95h"/>
+                    <constraint firstItem="4Ab-ys-PAL" firstAttribute="top" secondItem="1PV-bX-hu3" secondAttribute="bottom" constant="13" id="gtz-bM-2OH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bZ1-Nq-ulN" secondAttribute="trailing" id="qFk-EC-iXn"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="4Ab-ys-PAL" secondAttribute="leading" id="xQd-qp-4g1"/>
+                    <constraint firstItem="82p-ce-dhn" firstAttribute="top" secondItem="bZ1-Nq-ulN" secondAttribute="bottom" id="xbf-nR-9jD"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="gtz-bM-2OH"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mAddress" destination="1PV-bX-hu3" id="fS3-ld-rpq"/>
+                <outlet property="mContent" destination="82p-ce-dhn" id="HHV-ZG-gcI"/>
+                <outlet property="mTag" destination="4Ab-ys-PAL" id="VT7-7K-3KK"/>
+            </connections>
+            <point key="canvasLocation" x="203" y="100"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="jiantou1" width="15" height="26"/>
+    </resources>
+</document>

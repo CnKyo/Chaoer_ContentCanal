@@ -124,4 +124,6 @@
 
 #import "AttributeView.h"
 #import "UIView+Extnesion.h"
+
+#import "CustomProgress.h"
 #endif

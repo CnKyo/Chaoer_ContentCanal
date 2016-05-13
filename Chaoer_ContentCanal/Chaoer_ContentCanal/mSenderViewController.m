@@ -25,7 +25,9 @@
 #import "pptReleaseView.h"
 
 #import "releasePPtViewController.h"
+#import "pptHistoryViewController.h"
 
+#import "pptMyViewController.h"
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
@@ -232,6 +234,9 @@
 #pragma mark----我的
 - (void)pptMyAction:(UIButton *)sender{
 
+    pptMyViewController *ppt = [[pptMyViewController alloc] initWithNibName:@"pptMyViewController" bundle:nil];
+    [self pushViewController:ppt];
+    
 }
 #pragma mark----榜单
 - (void)pptseniorityAction:(UIButton *)sender{
@@ -242,7 +247,9 @@
 }
 #pragma mark----纪录
 - (void)pptHistoryAction:(UIButton *)sender{
-    
+    pptHistoryViewController *ppt = [[pptHistoryViewController alloc]initWithNibName:@"pptHistoryViewController" bundle:nil];
+    ppt.mType = 1;
+    [self pushViewController:ppt];
 }
 #pragma mark----发布
 - (void)pptReleaseAction:(UIButton *)sender{

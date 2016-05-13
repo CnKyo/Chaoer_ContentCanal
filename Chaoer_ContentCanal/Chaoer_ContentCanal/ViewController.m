@@ -351,6 +351,7 @@
     }
     if (![Util isMobileNumber:mLoginV.phoneTx.text]) {
         [LCProgressHUD showInfoMsg:@"请输入合法的手机号码"];
+        [mLoginV.phoneTx becomeFirstResponder];
 
         return;
     }
