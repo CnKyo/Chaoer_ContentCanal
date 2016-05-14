@@ -11,7 +11,7 @@
 
 @implementation CustomProgress
 @synthesize bgimg,leftimg,presentlab;
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andType:(int)mType
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -19,14 +19,28 @@
         bgimg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         bgimg.layer.borderColor = [UIColor clearColor].CGColor;
         bgimg.layer.borderWidth =  1;
-        bgimg.layer.cornerRadius = 8;
+        
+        if (mType == 1) {
+            bgimg.layer.cornerRadius = 8;
+
+        }else{
+            bgimg.layer.cornerRadius = 4;
+
+        }
         [bgimg.layer setMasksToBounds:YES];
 
         [self addSubview:bgimg];
         leftimg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, self.frame.size.height)];
         leftimg.layer.borderColor = [UIColor clearColor].CGColor;
         leftimg.layer.borderWidth =  1;
-        leftimg.layer.cornerRadius = 8;
+        if (mType == 1) {
+            leftimg.layer.cornerRadius = 8;
+            
+        }else{
+            leftimg.layer.cornerRadius = 4;
+            
+        }
+
         [leftimg.layer setMasksToBounds:YES];
         [self addSubview:leftimg];
         

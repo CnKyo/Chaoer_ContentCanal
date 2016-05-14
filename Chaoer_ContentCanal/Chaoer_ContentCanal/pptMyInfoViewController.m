@@ -79,7 +79,9 @@
     mLevelLb.textAlignment = NSTextAlignmentCenter;
     [mHeaderView addSubview:mLevelLb];
     
-    mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15)];
+//    mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15)];
+        mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
+    mLevelProgress.mType = 1;
     mLevelProgress.maxValue = 100;
     //设置背景色
     mLevelProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
@@ -111,7 +113,9 @@
     [mHeaderView addSubview:mMoneyLb];
 
     
-    mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15)];
+//    mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15)];
+    mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
+    mMoneyProgress.mType = 1;
     mMoneyProgress.maxValue = 100;
     //设置背景色
     mMoneyProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];

@@ -8,7 +8,7 @@
 
 #import "evolutionViewController.h"
 #import "MovieAddComment.h"
-
+#import "complaintViewController.h"
 @interface evolutionViewController ()
 
 @end
@@ -44,10 +44,9 @@
     // Do any additional setup after loading the view from its nib.
     
     self.Title = self.mPageName = @"评价";
-    self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    
+    self.rightBtnTitle = @"投诉";
     [self initView];
 }
 - (void)initView{
@@ -79,5 +78,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)rightBtnTouched:(id)sender{
+    complaintViewController *ccc = [[complaintViewController alloc] initWithNibName:@"complaintViewController" bundle:nil];
+    [self pushViewController:ccc];
+    
+}
 @end

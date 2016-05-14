@@ -18,6 +18,7 @@
 #import "pptMyInfoViewController.h"
 #import "pptMyAddressViewController.h"
 #import "pptMyRateViewController.h"
+#import "pptMyMsgViewController.h"
 @interface pptMyViewController ()<UITableViewDelegate,UITableViewDataSource
 >
 
@@ -109,7 +110,8 @@
 }
 #pragma mark----消息
 - (void)msgAction:(UIButton *)sender{
-    
+    pptMyMsgViewController *ppp = [[pptMyMsgViewController alloc] initWithNibName:@"pptMyMsgViewController" bundle:nil];
+    [self pushViewController:ppp];
 }
 #pragma mark----评价
 - (void)rateAction:(UIButton *)sender{

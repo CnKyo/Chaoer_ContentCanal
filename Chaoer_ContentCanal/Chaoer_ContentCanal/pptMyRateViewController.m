@@ -10,7 +10,7 @@
 #import "pptMyRateCell.h"
 
 #import "pptMyRateHeaderView.h"
-@interface pptMyRateViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface pptMyRateViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
 
 @end
 
@@ -36,25 +36,24 @@
     
     int mBad;
     
-    UIButton *mSelectBtn;
+    WKSegmentControl    *mSegmentView;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.Title = self.mPageName = @"我的地址";
+    self.Title = self.mPageName = @"我的评价";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
-    [self initHeaderView];
 
     [self initView];
 }
 - (void)initView{
     
     
-    [self loadTableView:CGRectMake(0, 244, DEVICE_Width, DEVICE_Height-244) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
@@ -63,14 +62,17 @@
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyRateCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-    
+    [self initHeaderView];
+
 }
 - (void)initHeaderView{
 
     mHeaderView = [pptMyRateHeaderView shareView];
-//    mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 180);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     
-    mGoodProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 0, mHeaderView.mGoodRateView.mwidth+50, 15)];
+    mGoodProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 2, mHeaderView.mGoodRateView.mwidth+50, 10) andType:2];
+
+    mGoodProgress.mType = 2;
     mGoodProgress.maxValue = 100;
     //设置背景色
     mGoodProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
@@ -79,7 +81,10 @@
     mGoodProgress.presentlab.textColor = [UIColor redColor];
     [mHeaderView.mGoodRateView addSubview:mGoodProgress];
 
-    mMidProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 0, mHeaderView.mMidRateView.mwidth+50, 15)];
+    mMidProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 2, mHeaderView.mMidRateView.mwidth+50, 10) andType:2];
+
+    mMidProgress.mType = 2;
+
     mMidProgress.maxValue = 100;
     //设置背景色
     mMidProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
@@ -88,7 +93,10 @@
     mMidProgress.presentlab.textColor = [UIColor redColor];
     [mHeaderView.mMidRateView addSubview:mMidProgress];
     
-    mBadProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 0, mHeaderView.mBadRateView.mwidth+50, 15)];
+    mBadProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 2, mHeaderView.mBadRateView.mwidth+50, 10) andType:2];
+
+    mBadProgress.mType = 2;
+
     mBadProgress.maxValue = 100;
     //设置背景色
     mBadProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
@@ -97,14 +105,14 @@
     mBadProgress.presentlab.textColor = [UIColor redColor];
     [mHeaderView.mBadRateView addSubview:mBadProgress];
     
-    
-    [self.view addSubview:mHeaderView];
-    
-    [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(@0);
-        make.top.equalTo(self.view).offset(@64);
-        make.height.offset(@180);
-    }];
+    [self.tableView setTableHeaderView:mHeaderView];
+//    [self.view addSubview:mHeaderView];
+//    
+//    [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view).offset(@0);
+//        make.top.equalTo(self.view).offset(@64);
+//        make.height.offset(@180);
+//    }];
     
     mGoodTimer =[NSTimer scheduledTimerWithTimeInterval:0.02
                                             target:self
@@ -124,87 +132,9 @@
 
     
     
-    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
-    
-    CGFloat btnW = DEVICE_Width/4-10;
-    
-    for (UIButton *bbb in mHeaderView.mSectionBtnView.subviews) {
-        [bbb removeFromSuperview];
-    }
-    
-    for (int i = 0; i<mTT.count; i++) {
-        
-        UIButton *btn = [UIButton new];
-        btn.frame = CGRectMake(20+btnW*i, 10, btnW, 30);
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitle:mTT[i] forState:0];
-        [btn setBackgroundImage:[UIImage imageNamed:@"ppt_my_rate_normal"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"ppt_my_rate_selected"] forState:UIControlStateSelected];
-        
-        [btn setTitleColor:M_CO forState:UIControlStateSelected];
-        [btn setTitleColor:[UIColor colorWithRed:0.50 green:0.50 blue:0.50 alpha:1.00] forState:UIControlStateNormal];
-        btn.tag = i;
-        [btn addTarget:self action:@selector(mSectionAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        if (i == 0) {
-            btn.selected = YES;
-        }
-        
-        [mHeaderView.mSectionBtnView addSubview:btn];
-        
-    }
     
     
     
-}
-- (void)mSectionAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    switch (sender.tag) {
-        case 0:
-        {
-        
-            if (sender.selected == NO) {
-                
-                mSelectBtn = sender;
-            }else{
-                mSelectBtn = nil;
-            }
-            
-        }
-            break;
-        case 1:
-        {
-            if (sender.selected == NO) {
-                
-                mSelectBtn = sender;
-            }else{
-                mSelectBtn = nil;
-            }
-        }
-            break;
-        case 2:
-        {
-            if (sender.selected == NO) {
-                
-                mSelectBtn = sender;
-            }else{
-                mSelectBtn = nil;
-            }
-        }
-            break;
-        case 3:
-        {
-            if (sender.selected == NO) {
-                
-                mSelectBtn = sender;
-            }else{
-                mSelectBtn = nil;
-            }
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 -(void)goodtimer
@@ -284,9 +214,25 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return 8;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
+
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
+    return mSegmentView;
+    
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 40;
+}
+- (void)WKDidSelectedIndex:(NSInteger)mIndex{
+    NSLog(@"点击了%lu",(unsigned long)mIndex);
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     

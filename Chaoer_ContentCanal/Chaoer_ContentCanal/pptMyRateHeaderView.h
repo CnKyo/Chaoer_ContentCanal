@@ -25,10 +25,7 @@
  *  差评
  */
 @property (weak, nonatomic) IBOutlet UIView *mBadRateView;
-/**
- *  分组按钮
- */
-@property (weak, nonatomic) IBOutlet UIView *mSectionBtnView;
+
 /**
  *  初始化方法
  *

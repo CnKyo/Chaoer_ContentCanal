@@ -66,7 +66,7 @@
 }
 - (void)initView{
     
-    mHeaderView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"最快送达",@"价格实惠",@"销量最高",@"打折活动"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1] andBtnTitleColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.56 alpha:1] andUndeLineColor:M_CO andBtnTitleFont:[UIFont fontWithName:@".Helvetica Neue Interface" size:14.0f] andInterval:0 delegate:self andIsHiddenLine:NO];
+    mHeaderView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"最快送达",@"价格实惠",@"销量最高",@"打折活动"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:[UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1] andBtnTitleColor:[UIColor colorWithRed:0.56 green:0.56 blue:0.56 alpha:1] andUndeLineColor:M_CO andBtnTitleFont:[UIFont fontWithName:@".Helvetica Neue Interface" size:14.0f] andInterval:0 delegate:self andIsHiddenLine:NO andType:1];
     [self.view addSubview:mHeaderView];
     
     mTableView = [UITableView new];

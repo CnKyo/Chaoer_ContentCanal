@@ -13,5 +13,9 @@
 @property(nonatomic, retain)UIImageView *leftimg;
 @property(nonatomic, retain)UILabel *presentlab;
 @property(nonatomic)float maxValue;
+
+@property (assign,nonatomic) int mType;
+- (id)initWithFrame:(CGRect)frame andType:(int)mType;
+
 -(void)setPresent:(int)present;
 @end

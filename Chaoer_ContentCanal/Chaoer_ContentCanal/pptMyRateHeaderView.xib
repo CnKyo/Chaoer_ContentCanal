@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="pptMyRateHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-r4-OHY">
@@ -79,13 +79,6 @@
                         <constraint firstAttribute="height" constant="10" id="Jpl-xn-Zpl"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WG0-as-alu">
-                    <rect key="frame" x="0.0" y="130" width="320" height="50"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="sqP-Q2-YIa"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="差评" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N96-OF-Jjx">
                     <rect key="frame" x="103" y="75" width="40" height="20"/>
                     <constraints>
@@ -110,8 +103,6 @@
                 <constraint firstItem="vCs-Rx-NHI" firstAttribute="top" secondItem="0Df-aS-yNi" secondAttribute="bottom" constant="18" id="J1L-oR-PbD"/>
                 <constraint firstItem="aW3-Gh-NwX" firstAttribute="top" secondItem="vCs-Rx-NHI" secondAttribute="bottom" constant="19" id="KXj-Hd-KPp"/>
                 <constraint firstAttribute="trailing" secondItem="vCs-Rx-NHI" secondAttribute="trailing" constant="6" id="OQX-ea-d8L"/>
-                <constraint firstAttribute="trailing" secondItem="WG0-as-alu" secondAttribute="trailing" id="Ofj-Fv-XDR"/>
-                <constraint firstItem="WG0-as-alu" firstAttribute="top" secondItem="lmV-ln-5MG" secondAttribute="bottom" id="Pcy-Tp-aKJ"/>
                 <constraint firstItem="aW3-Gh-NwX" firstAttribute="leading" secondItem="N96-OF-Jjx" secondAttribute="trailing" constant="8" id="aMd-WG-tBJ"/>
                 <constraint firstItem="S3E-r4-OHY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ePv-P0-55H"/>
                 <constraint firstItem="lmV-ln-5MG" firstAttribute="top" secondItem="aW3-Gh-NwX" secondAttribute="bottom" constant="28" id="kQ7-HF-iGn"/>
@@ -122,7 +113,6 @@
                 <constraint firstItem="Wom-hV-ies" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="sGO-Qc-VkO"/>
                 <constraint firstItem="0Df-aS-yNi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="taO-hd-5HA"/>
                 <constraint firstAttribute="trailing" secondItem="0Df-aS-yNi" secondAttribute="trailing" constant="6" id="tal-XB-YY0"/>
-                <constraint firstItem="WG0-as-alu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uev-Vn-ZPy"/>
                 <constraint firstItem="Wom-hV-ies" firstAttribute="top" secondItem="S3E-r4-OHY" secondAttribute="bottom" constant="8" id="xvN-zg-iA2"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -132,9 +122,8 @@
                 <outlet property="mGoodRateView" destination="0Df-aS-yNi" id="uCi-B8-dwI"/>
                 <outlet property="mMidRateView" destination="vCs-Rx-NHI" id="9s7-el-gxw"/>
                 <outlet property="mRatePoint" destination="S3E-r4-OHY" id="6Zu-2a-byd"/>
-                <outlet property="mSectionBtnView" destination="WG0-as-alu" id="pae-Ba-408"/>
             </connections>
-            <point key="canvasLocation" x="231" y="337"/>
+            <point key="canvasLocation" x="231" y="312"/>
         </view>
     </objects>
 </document>

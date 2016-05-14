@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="355" id="KGk-i7-Jjw" customClass="complaintTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-5E-EMz">
+                        <rect key="frame" x="0.0" y="10" width="320" height="140"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er eliusmod tempor incididuodioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OfF-xt-6R2" customClass="IQTextView">
+                                <rect key="frame" x="10" y="10" width="300" height="120"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="140" id="AB6-PK-i4r"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psy-ls-Oo1">
+                        <rect key="frame" x="0.0" y="150" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44973060344827587" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="EXb-ib-utB"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉理由：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oax-Pd-yZZ">
+                        <rect key="frame" x="8" y="161" width="70" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Swr-4g-sPV"/>
+                            <constraint firstAttribute="width" constant="70" id="axQ-4e-Thm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择投诉理由" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8B-3v-P4t">
+                        <rect key="frame" x="79" y="161" width="233" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="D0i-4i-qe9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lsw-iv-UPg">
+                        <rect key="frame" x="79" y="161" width="233" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="PAT-jX-KBt"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpQ-rK-ZoF">
+                        <rect key="frame" x="0.0" y="192" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44973060339999998" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="0Sb-W6-zxM"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-uZ-RLe">
+                        <rect key="frame" x="20" y="214" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="ReP-xZ-qTe"/>
+                            <constraint firstAttribute="height" constant="80" id="yIY-GH-Y6u"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="ppt_complain_addimg">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwy-Ep-o0W">
+                        <rect key="frame" x="220" y="214" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="3dA-lR-stD"/>
+                            <constraint firstAttribute="height" constant="80" id="mEa-do-7bT"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="ppt_complain_addimg">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传几张真实图片，您的投诉更有说服力" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G0-ke-2bM">
+                        <rect key="frame" x="8" y="314" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9M9-CN-Ggk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pk-sL-BNK">
+                        <rect key="frame" x="120" y="214" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="ZZU-jZ-DIN"/>
+                            <constraint firstAttribute="width" constant="80" id="bc6-a9-qAU"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="ppt_complain_addimg">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="O8B-3v-P4t" firstAttribute="top" secondItem="psy-ls-Oo1" secondAttribute="bottom" constant="10" id="13c-Hd-T20"/>
+                    <constraint firstItem="oax-Pd-yZZ" firstAttribute="top" secondItem="psy-ls-Oo1" secondAttribute="bottom" constant="10" id="8go-jM-9j9"/>
+                    <constraint firstItem="psy-ls-Oo1" firstAttribute="top" secondItem="h2i-5E-EMz" secondAttribute="bottom" id="8rT-t0-mmg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="h2i-5E-EMz" secondAttribute="trailing" constant="-8" id="CpD-ov-Pwh"/>
+                    <constraint firstItem="mpQ-rK-ZoF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="CrQ-Nb-V8E"/>
+                    <constraint firstItem="Lsw-iv-UPg" firstAttribute="leading" secondItem="oax-Pd-yZZ" secondAttribute="trailing" constant="1" id="Ev4-mi-Vz3"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="oax-Pd-yZZ" secondAttribute="leading" id="J0q-df-AWw"/>
+                    <constraint firstItem="7Xl-uZ-RLe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="Kz9-iT-Osf"/>
+                    <constraint firstItem="Bwy-Ep-o0W" firstAttribute="top" secondItem="mpQ-rK-ZoF" secondAttribute="bottom" constant="21" id="LQS-nq-Mi4"/>
+                    <constraint firstItem="5G0-ke-2bM" firstAttribute="top" secondItem="Bwy-Ep-o0W" secondAttribute="bottom" constant="20" id="LX2-AP-6OL"/>
+                    <constraint firstItem="O8B-3v-P4t" firstAttribute="leading" secondItem="oax-Pd-yZZ" secondAttribute="trailing" constant="1" id="LXa-j2-Zpr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="O8B-3v-P4t" secondAttribute="trailing" id="M8d-l8-I0l"/>
+                    <constraint firstItem="Lsw-iv-UPg" firstAttribute="top" secondItem="psy-ls-Oo1" secondAttribute="bottom" constant="10" id="OTX-4r-ngK"/>
+                    <constraint firstItem="3Pk-sL-BNK" firstAttribute="top" secondItem="mpQ-rK-ZoF" secondAttribute="bottom" constant="21" id="PUN-ry-S8x"/>
+                    <constraint firstItem="h2i-5E-EMz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="QVq-Tr-YaS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5G0-ke-2bM" secondAttribute="trailing" id="Qua-Kx-M99"/>
+                    <constraint firstItem="mpQ-rK-ZoF" firstAttribute="top" secondItem="Lsw-iv-UPg" secondAttribute="bottom" constant="10" id="S3U-nd-S4u"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Lsw-iv-UPg" secondAttribute="trailing" id="X6e-Ql-66l"/>
+                    <constraint firstItem="psy-ls-Oo1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Xfv-fj-4CY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mpQ-rK-ZoF" secondAttribute="trailing" constant="-8" id="bUF-4b-Ge0"/>
+                    <constraint firstItem="7Xl-uZ-RLe" firstAttribute="top" secondItem="mpQ-rK-ZoF" secondAttribute="bottom" constant="21" id="cRF-QO-zW5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="psy-ls-Oo1" secondAttribute="trailing" constant="-8" id="fap-91-PR5"/>
+                    <constraint firstItem="3Pk-sL-BNK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ktn-9k-viy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Bwy-Ep-o0W" secondAttribute="trailing" constant="12" id="nUR-JC-I3J"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="5G0-ke-2bM" secondAttribute="leading" id="xq9-uE-c0I"/>
+                    <constraint firstItem="h2i-5E-EMz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="yzg-Ii-uce"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mContent" destination="OfF-xt-6R2" id="NOp-VE-42M"/>
+                <outlet property="mPickImg1" destination="7Xl-uZ-RLe" id="EgD-5P-Mnh"/>
+                <outlet property="mPickImg2" destination="3Pk-sL-BNK" id="PBm-Rl-npT"/>
+                <outlet property="mPickImg3" destination="Bwy-Ep-o0W" id="mUi-Zk-vDU"/>
+                <outlet property="mResonBtn" destination="Lsw-iv-UPg" id="wUE-iR-WIt"/>
+                <outlet property="mResonLb" destination="O8B-3v-P4t" id="6IZ-pq-oJU"/>
+            </connections>
+            <point key="canvasLocation" x="212" y="278.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ppt_complain_addimg" width="146" height="142"/>
+    </resources>
+</document>

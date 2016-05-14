@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="pptMyMsgCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ppt_my_msg_img" translatesAutoresizingMaskIntoConstraints="NO" id="Bts-rA-fdx">
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="V7f-h5-s5H"/>
+                            <constraint firstAttribute="width" constant="40" id="j4R-Ju-m8X"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="投诉消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYa-5j-Ogo">
+                        <rect key="frame" x="58" y="9" width="119" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-05-05-05-05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L99-tC-89O">
+                        <rect key="frame" x="185" y="9" width="127" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超市了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMn-HQ-vBn">
+                        <rect key="frame" x="58" y="32" width="254" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAo-uk-rh2">
+                        <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="se7-ZY-vXu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="L99-tC-89O" firstAttribute="leading" secondItem="xYa-5j-Ogo" secondAttribute="trailing" constant="8" id="0t8-l0-Sea"/>
+                    <constraint firstItem="Bts-rA-fdx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="2Q1-ey-Aar"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="L99-tC-89O" secondAttribute="trailing" id="J5C-Un-WUQ"/>
+                    <constraint firstItem="wMn-HQ-vBn" firstAttribute="top" secondItem="xYa-5j-Ogo" secondAttribute="bottom" constant="5" id="S75-uT-Jio"/>
+                    <constraint firstItem="xYa-5j-Ogo" firstAttribute="leading" secondItem="Bts-rA-fdx" secondAttribute="trailing" constant="8" id="T3Z-xG-vrc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fAo-uk-rh2" secondAttribute="trailing" constant="-8" id="Tjg-HR-qVr"/>
+                    <constraint firstItem="fAo-uk-rh2" firstAttribute="top" secondItem="Bts-rA-fdx" secondAttribute="bottom" constant="9" id="WD9-jh-fzr"/>
+                    <constraint firstItem="fAo-uk-rh2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="WZf-yr-hiL"/>
+                    <constraint firstItem="L99-tC-89O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="YNd-lZ-cG6"/>
+                    <constraint firstItem="Bts-rA-fdx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="emu-6l-GEA"/>
+                    <constraint firstItem="wMn-HQ-vBn" firstAttribute="leading" secondItem="Bts-rA-fdx" secondAttribute="trailing" constant="8" id="m31-XE-fw4"/>
+                    <constraint firstItem="xYa-5j-Ogo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="mhz-fY-wlk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wMn-HQ-vBn" secondAttribute="trailing" id="rXr-gS-PEf"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ppt_my_msg_img" width="80" height="80"/>
+    </resources>
+</document>

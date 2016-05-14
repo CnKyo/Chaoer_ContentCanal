@@ -10,6 +10,9 @@
 #import "pptHistoryTableViewCell.h"
 #import "MCMenuButton.h"
 #import "MCPopMenuViewController.h"
+#import "pptOrderDetailViewController.h"
+
+#import "evolutionViewController.h"
 @interface pptHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  *  头部筛选模块
@@ -199,10 +202,20 @@
     }
     
     pptHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.mRateBtn addTarget:self action:@selector(mRateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
+    
 
+
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
+    ppp.mOrderType = 2;
+    ppp.mType = 3;
+    [self pushViewController:ppp];
 }
 
 - (void)rightBtnTouched:(id)sender{
@@ -211,5 +224,11 @@
     ppt.mType = 2;
     [self pushViewController:ppt];
     
+}
+
+- (void)mRateAction:(UIButton *)sender{
+
+    evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
+    [self pushViewController:eee];
 }
 @end

@@ -51,5 +51,5 @@
  *
  *  @return 返回的view
  */
-+ (WKSegmentControl *)initWithSegmentControlFrame:(CGRect)frame andTitleWithBtn:(NSArray *)btnTitleArr andBackgroudColor:(UIColor *)mBackgroudColor andBtnSelectedColor:(UIColor *)btnSelectedColor andBtnTitleColor:(UIColor *)btnTitleColor andUndeLineColor:(UIColor *)btnUndeLineColor andBtnTitleFont:(UIFont *)btnTitleFont andInterval:(int)mInterVal delegate:(id)delegate andIsHiddenLine:(BOOL)mHidden;
++ (WKSegmentControl *)initWithSegmentControlFrame:(CGRect)frame andTitleWithBtn:(NSArray *)btnTitleArr andBackgroudColor:(UIColor *)mBackgroudColor andBtnSelectedColor:(UIColor *)btnSelectedColor andBtnTitleColor:(UIColor *)btnTitleColor andUndeLineColor:(UIColor *)btnUndeLineColor andBtnTitleFont:(UIFont *)btnTitleFont andInterval:(int)mInterVal delegate:(id)delegate andIsHiddenLine:(BOOL)mHidden andType:(int)mtype;
 @end

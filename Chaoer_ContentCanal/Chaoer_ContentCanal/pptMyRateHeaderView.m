@@ -21,14 +21,7 @@
 + (pptMyRateHeaderView *)shareView{
 
     pptMyRateHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"pptMyRateHeaderView" owner:self options:nil] objectAtIndex:0];
-    
-    
-    view.mSectionBtnView.layer.masksToBounds = YES;
-    view.mSectionBtnView.layer.borderColor = [UIColor colorWithRed:0.84 green:0.84 blue:0.84 alpha:1.00].CGColor;
-    
-    view.mSectionBtnView.layer.borderWidth = 0.5;
-    
-    
+
     return view;
 }
 @end

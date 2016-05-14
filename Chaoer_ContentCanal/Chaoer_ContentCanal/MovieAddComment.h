@@ -12,18 +12,6 @@
 
 @property (strong,nonatomic) UIView *v_addcomment;
 /**
- *  状态logo
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mStatusLogo;
-/**
- *  状态标签
- */
-@property (weak, nonatomic) IBOutlet UILabel *mStatusLb;
-/**
- *  状态主图
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mStatusImg;
-/**
  *  提交按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mCommitBtn;
@@ -32,19 +20,65 @@
  */
 @property (weak, nonatomic) IBOutlet IQTextView *mContent;
 
-
+/**
+ *  总体评价
+ */
 @property(strong,nonatomic) IBOutlet UIView *v_star;
+/**
+ *  速度
+ */
+@property (weak, nonatomic) IBOutlet UIView *mSpeedView;
+/**
+ *  质量
+ */
+@property (weak, nonatomic) IBOutlet UIView *mMassView;
+
+
 @property(strong,nonatomic) IBOutlet UIView *v_count;
 @property(strong,nonatomic) IBOutlet UIView *v_main;
 @property(strong,nonatomic) IBOutlet UILabel *lbl_count;
+/**
+ *  总体评价
+ */
 @property(strong,nonatomic) IBOutlet UILabel *lbl_counttext;
+/**
+ *  速度
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mSpeedLb;
+/**
+ *  质量
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mMassLb;
+@property (weak, nonatomic) IBOutlet UIView *mCancle;
 
-
+/**
+ *总体评价
+ */
 @property(strong,nonatomic) IBOutlet UIImageView *img_star1;
 @property(strong,nonatomic) IBOutlet UIImageView *img_star2;
 @property(strong,nonatomic) IBOutlet UIImageView *img_star3;
 @property(strong,nonatomic) IBOutlet UIImageView *img_star4;
 @property(strong,nonatomic) IBOutlet UIImageView *img_star5;
+
+/**
+ *  速度
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mSpeed1;
+@property (weak, nonatomic) IBOutlet UIImageView *mSpeed2;
+@property (weak, nonatomic) IBOutlet UIImageView *mSpeed3;
+@property (weak, nonatomic) IBOutlet UIImageView *mSpeed4;
+@property (weak, nonatomic) IBOutlet UIImageView *mSpeed5;
+
+
+/**
+ *  质量
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mMass1;
+@property (weak, nonatomic) IBOutlet UIImageView *mMass2;
+@property (weak, nonatomic) IBOutlet UIImageView *mMass3;
+@property (weak, nonatomic) IBOutlet UIImageView *mMass4;
+@property (weak, nonatomic) IBOutlet UIImageView *mMass5;
+
 
 
 @property NSInteger count;

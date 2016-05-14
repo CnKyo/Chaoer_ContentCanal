@@ -37,7 +37,7 @@
     return self;
 }
 
-+ (WKSegmentControl *)initWithSegmentControlFrame:(CGRect)frame andTitleWithBtn:(NSArray *)btnTitleArr andBackgroudColor:(UIColor *)mBackgroudColor andBtnSelectedColor:(UIColor *)btnSelectedColor andBtnTitleColor:(UIColor *)btnTitleColor andUndeLineColor:(UIColor *)btnUndeLineColor andBtnTitleFont:(UIFont *)btnTitleFont andInterval:(int)mInterVal delegate:(id)delegate andIsHiddenLine:(BOOL)mHidden{
++ (WKSegmentControl *)initWithSegmentControlFrame:(CGRect)frame andTitleWithBtn:(NSArray *)btnTitleArr andBackgroudColor:(UIColor *)mBackgroudColor andBtnSelectedColor:(UIColor *)btnSelectedColor andBtnTitleColor:(UIColor *)btnTitleColor andUndeLineColor:(UIColor *)btnUndeLineColor andBtnTitleFont:(UIFont *)btnTitleFont andInterval:(int)mInterVal delegate:(id)delegate andIsHiddenLine:(BOOL)mHidden andType:(int)mtype{
     
     WKSegmentControl    *mSegment = [[self alloc] initWithFrame:frame];
     mSegment.backgroundColor = mBackgroudColor;
@@ -49,13 +49,14 @@
     mSegment.FWHBtnSelectedColor = btnSelectedColor;
     mSegment.delegate = delegate;
     mSegment.FWHHiddenLine = mHidden;
-    [mSegment loadArrWithView:btnTitleArr];
+    [mSegment loadArrWithView:btnTitleArr andType:mtype];
     return mSegment;
     
 }
 #pragma mark----通过数组构造view
-- (void)loadArrWithView:(NSArray *)mArray{
+- (void)loadArrWithView:(NSArray *)mArray andType:(int)mType{
     
+   
     // 1.按钮的个数
     mTotleCount = mArray.count;
     
@@ -66,28 +67,66 @@
     // 3.创建按钮
     for (int i = 0; i < mArray.count; i++) {
         
-        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(i * mBtnWith, 0, mBtnWith, self.bounds.size.height - 2)];
-        [btn setTitle:mArray[i] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:self.FWHBtnFont];
-        [btn setTitleColor:self.FWHBtnTitelColor forState:UIControlStateNormal];
-        [btn setTitleColor:self.FWHBtnSelectedColor forState:UIControlStateSelected];
-    
-
+        UIButton * btn = [UIButton new];
         
-        btn.tag = i + 1;
-        [btn addTarget:self action:@selector(changeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        if (i == 0) {
+        
+        if (mType == 2) {
             
-            if (mTotleCount==2) {
-                y = _FWHInterVal*2;
-            }else if (mTotleCount>2){
-                y = _FWHInterVal;
+            btn.frame =  CGRectMake(10+i * mBtnWith, 8, mBtnWith-20, self.bounds.size.height - 16);
+            
+            
+            [btn setTitle:mArray[i] forState:UIControlStateNormal];
+            [btn.titleLabel setFont:self.FWHBtnFont];
+            
+            
+            
+            btn.tag = i + 1;
+            [btn addTarget:self action:@selector(changeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitleColor:self.FWHBtnTitelColor forState:UIControlStateNormal];
+            [btn setTitleColor:self.FWHBtnSelectedColor forState:UIControlStateSelected];
+            
+            [btn setBackgroundImage:[UIImage imageNamed:@"ppt_my_rate_normal"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"ppt_my_rate_selected"] forState:UIControlStateSelected];
+            if (i == 0) {
+                
+                if (mTotleCount==2) {
+                    y = _FWHInterVal*2;
+                }else if (mTotleCount>2){
+                    y = _FWHInterVal;
+                }
+                
             }
-            mUnderLine =[[UIView alloc]initWithFrame:CGRectMake(i * mBtnWith+y, self.bounds.size.height - 2, mBtnWith-2*y, 2)];
-            [mUnderLine setBackgroundColor:self.FWHUnderLineColor];
             
-            [self addSubview:mUnderLine];
+            
+        }else{
+            
+            btn.frame =  CGRectMake(i * mBtnWith, 0, mBtnWith, self.bounds.size.height - 2);
+            
+            
+            [btn setTitle:mArray[i] forState:UIControlStateNormal];
+            [btn.titleLabel setFont:self.FWHBtnFont];
+            
+            
+            
+            btn.tag = i + 1;
+            [btn addTarget:self action:@selector(changeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitleColor:self.FWHBtnTitelColor forState:UIControlStateNormal];
+            [btn setTitleColor:self.FWHBtnSelectedColor forState:UIControlStateSelected];
+            
+            if (i == 0) {
+                
+                if (mTotleCount==2) {
+                    y = _FWHInterVal*2;
+                }else if (mTotleCount>2){
+                    y = _FWHInterVal;
+                }
+                mUnderLine =[[UIView alloc]initWithFrame:CGRectMake(i * mBtnWith+y, self.bounds.size.height - 2, mBtnWith-2*y, 2)];
+                [mUnderLine setBackgroundColor:self.FWHUnderLineColor];
+                
+                [self addSubview:mUnderLine];
+            }
         }
+     
         [self addSubview:btn];
         
         UIView  *mline = [UIView new];
