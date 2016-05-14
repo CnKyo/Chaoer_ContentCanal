@@ -17,6 +17,7 @@
 #import "pptChoulaoViewController.h"
 #import "pptMyInfoViewController.h"
 #import "pptMyAddressViewController.h"
+#import "pptMyRateViewController.h"
 @interface pptMyViewController ()<UITableViewDelegate,UITableViewDataSource
 >
 
@@ -66,6 +67,11 @@
     mHeaderView = [pptMyHeaderView shareViuew];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 260);
     
+    [mHeaderView.mMyTagBtn addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [mHeaderView.mMyMsgBtn addTarget:self action:@selector(msgAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [mHeaderView.mMyRateBtn addTarget:self action:@selector(rateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *mBottomView = [UIView new];
     mBottomView.frame = CGRectMake(0, DEVICE_Height-60, DEVICE_Width, 60);
@@ -97,7 +103,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark----标签
+- (void)tagAction:(UIButton *)sender{
 
+}
+#pragma mark----消息
+- (void)msgAction:(UIButton *)sender{
+    
+}
+#pragma mark----评价
+- (void)rateAction:(UIButton *)sender{
+    pptMyRateViewController *ppp = [[pptMyRateViewController alloc] initWithNibName:@"pptMyRateViewController" bundle:nil];
+    [self pushViewController:ppp];
+}
 /*
 #pragma mark - Navigation
 

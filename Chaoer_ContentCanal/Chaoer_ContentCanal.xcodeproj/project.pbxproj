@@ -130,6 +130,12 @@
 		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
 		04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D5041CC8BBC90090EC1E /* mCookDetail.m */; };
 		04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */; };
+		04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */; };
+		04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E491CE6B46E00220D54 /* pptMyRateViewController.xib */; };
+		04E02E4F1CE6B4C900220D54 /* pptMyRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E4D1CE6B4C900220D54 /* pptMyRateCell.m */; };
+		04E02E501CE6B4C900220D54 /* pptMyRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E4E1CE6B4C900220D54 /* pptMyRateCell.xib */; };
+		04E02E531CE6B70F00220D54 /* pptMyRateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E521CE6B70F00220D54 /* pptMyRateHeaderView.m */; };
+		04E02E551CE6B71700220D54 /* pptMyRateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E541CE6B71700220D54 /* pptMyRateHeaderView.xib */; };
 		04E5A7C91CE56A3C00A2D111 /* pptHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */; };
 		04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */; };
 		04E5A7CE1CE56A5100A2D111 /* pptHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7CC1CE56A5100A2D111 /* pptHistoryTableViewCell.m */; };
@@ -843,6 +849,15 @@
 		04D9D5031CC8BBC90090EC1E /* mCookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetail.h; sourceTree = "<group>"; };
 		04D9D5041CC8BBC90090EC1E /* mCookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetail.m; sourceTree = "<group>"; };
 		04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSmallSubView.xib; sourceTree = "<group>"; };
+		04E02E471CE6B46E00220D54 /* pptMyRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateViewController.h; sourceTree = "<group>"; };
+		04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptMyRateViewController.m; sourceTree = "<group>"; };
+		04E02E491CE6B46E00220D54 /* pptMyRateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptMyRateViewController.xib; sourceTree = "<group>"; };
+		04E02E4C1CE6B4C900220D54 /* pptMyRateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateCell.h; sourceTree = "<group>"; };
+		04E02E4D1CE6B4C900220D54 /* pptMyRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptMyRateCell.m; sourceTree = "<group>"; };
+		04E02E4E1CE6B4C900220D54 /* pptMyRateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptMyRateCell.xib; sourceTree = "<group>"; };
+		04E02E511CE6B70F00220D54 /* pptMyRateHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateHeaderView.h; sourceTree = "<group>"; };
+		04E02E521CE6B70F00220D54 /* pptMyRateHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptMyRateHeaderView.m; sourceTree = "<group>"; };
+		04E02E541CE6B71700220D54 /* pptMyRateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptMyRateHeaderView.xib; sourceTree = "<group>"; };
 		04E5A7C61CE56A3C00A2D111 /* pptHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptHistoryViewController.h; sourceTree = "<group>"; };
 		04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptHistoryViewController.m; sourceTree = "<group>"; };
 		04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptHistoryViewController.xib; sourceTree = "<group>"; };
@@ -2008,6 +2023,22 @@
 			name = "申请跑跑腿";
 			sourceTree = "<group>";
 		};
+		04E02E461CE6B45F00220D54 /* 我的评价 */ = {
+			isa = PBXGroup;
+			children = (
+				04E02E471CE6B46E00220D54 /* pptMyRateViewController.h */,
+				04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */,
+				04E02E491CE6B46E00220D54 /* pptMyRateViewController.xib */,
+				04E02E4C1CE6B4C900220D54 /* pptMyRateCell.h */,
+				04E02E4D1CE6B4C900220D54 /* pptMyRateCell.m */,
+				04E02E4E1CE6B4C900220D54 /* pptMyRateCell.xib */,
+				04E02E511CE6B70F00220D54 /* pptMyRateHeaderView.h */,
+				04E02E521CE6B70F00220D54 /* pptMyRateHeaderView.m */,
+				04E02E541CE6B71700220D54 /* pptMyRateHeaderView.xib */,
+			);
+			name = "我的评价";
+			sourceTree = "<group>";
+		};
 		04E5A7C51CE56A2000A2D111 /* 跑单纪录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2070,6 +2101,7 @@
 				04E5A7F41CE5892300A2D111 /* pptMyCell.h */,
 				04E5A7F51CE5892300A2D111 /* pptMyCell.m */,
 				04E5A7F61CE5892300A2D111 /* pptMyCell.xib */,
+				04E02E461CE6B45F00220D54 /* 我的评价 */,
 				04E5A8131CE5C38600A2D111 /* 我的地址 */,
 				04E5A80D1CE5B3F200A2D111 /* 我的信息 */,
 				04E5A7F91CE5AB2500A2D111 /* 累计酬劳 */,
@@ -4100,9 +4132,11 @@
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
 				31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */,
 				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
+				04E02E551CE6B71700220D54 /* pptMyRateHeaderView.xib in Resources */,
 				313D76B31C98F03E004D5679 /* mBundleViewController.xib in Resources */,
 				04102E101CE41A3D006F82E2 /* pptChartsTableViewCell.xib in Resources */,
 				04648C5C1CB4EC57006823C9 /* CustomAlertView.xib in Resources */,
+				04E02E501CE6B4C900220D54 /* pptMyRateCell.xib in Resources */,
 				04648C7A1CB51DD0006823C9 /* valleteHistoryViewController.xib in Resources */,
 				746907E81BABEFCB00A4589A /* footView.xib in Resources */,
 				31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */,
@@ -4151,6 +4185,7 @@
 				3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */,
 				312D08B71CAA1C560006F0FA /* read_me.txt in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
+				04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
 				040B80261CC50D50006A9489 /* WJStatusBarHUD_success@2x.png in Resources */,
@@ -4261,6 +4296,7 @@
 				749BEA671B32B33B00BABCA6 /* MyViewController.m in Sources */,
 				31F5447E1CAE12B900307B83 /* homeNavView.m in Sources */,
 				311BE2281CA14160006757E8 /* needCodeView.m in Sources */,
+				04E02E531CE6B70F00220D54 /* pptMyRateHeaderView.m in Sources */,
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
 				313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */,
 				313413611CA28DC3003972E2 /* XMNPhotoPickerController.m in Sources */,
@@ -4336,6 +4372,7 @@
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				318D56681C9C012B0045B5FB /* MHSheetHead.m in Sources */,
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
+				04E02E4F1CE6B4C900220D54 /* pptMyRateCell.m in Sources */,
 				318D56641C9C012B0045B5FB /* MHSheetCell.m in Sources */,
 				749BEA401B3277AA00BABCA6 /* SDWebImageDecoder.m in Sources */,
 				31BBE2961C914174006C553D /* DCWebImageManager.m in Sources */,
@@ -4600,6 +4637,7 @@
 				3122890E1C9662EA009C315F /* mShopTableViewCell.m in Sources */,
 				3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */,
 				740089711B38F2C300618BA0 /* AFNetworkReachabilityManager.m in Sources */,
+				04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */,
 				741B8D911B326EFA002104A0 /* main.m in Sources */,
 				04E5A8071CE5B27800A2D111 /* CustomProgress.m in Sources */,
 				04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */,
