@@ -840,6 +840,72 @@
  *  @param block        返回值
  */
 - (void)getCommunityStatus:(int)mCommunityId andPage:(int)mPage andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----跑跑腿数据
+/**
+ *  查询常用地址
+ *
+ *  @param block 返回值
+ */
+- (void)getPPTaddressList:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+
+#pragma mark----获取附近跑跑腿我想买订单
+/**
+ *  查询附近跑跑腿（我想买）订单
+ *
+ *  @param mType 类型
+ *  @param mLat  纬度
+ *  @param mLng  经度
+ *  @param mPage 分页
+ *  @param mNum  分页条数
+ *  @param block 返回值
+ */
+- (void)getPPTNeaerbyOrder:(int)mType andMlat:(NSString *)mLat andLng:(NSString *)mLng andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----获取买东西 标签
+/**
+ *  获取发布跑腿标签
+ *
+ *  @param mType 类型
+ *  @param block 返回值
+ */
+- (void)getReleaseTags:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----获取地址标签
+/**
+ *  获取添加地址标签
+ *
+ *  @param block 返回值
+ */
+- (void)getPPTaddressTag:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----添加地址
+/**
+ *  添加地址
+ *
+ *  @param mName          姓名
+ *  @param mSex           性别
+ *  @param mAddress       地址
+ *  @param mPhone         电话
+ *  @param mDetailAddress 详细地址
+ *  @param mTag           标签
+ *  @param block          返回值
+ */
+- (void)gPPtaddAddress:(NSString *)mName andSex:(NSString *)mSex andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andDetailAddress:(NSString *)mDetailAddress andTag:(NSString *)mTag block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----发布跑腿
+/**
+ *  发布订单
+ *
+ *  @param mLat     纬度
+ *  @param mLng     经度
+ *  @param mContent 内容
+ *  @param mMoney   酬金
+ *  @param mAddress 地址
+ *  @param mPhone   电话
+ *  @param mNote    备注
+ *  @param block    返回值
+ */
+- (void)releasePPTorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime block:(void(^)(mBaseData *resb))block;
+
 @end
 
 @interface SMessage : NSObject
@@ -1743,6 +1809,127 @@
  *  次标题
  */
 @property (nonatomic,strong) NSString*  mSubTitel;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+@interface GPPTaddress : NSObject
+/**
+ *  地址id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  地址名称
+ */
+@property (nonatomic,strong) NSString*  mAddressName;
+/**
+ *  地址
+ */
+@property (nonatomic,strong) NSString*  mAddress;
+/**
+ *  电话
+ */
+@property (nonatomic,strong) NSString*  mAlternativePhone;
+/**
+ *  详细地址
+ */
+@property (nonatomic,strong) NSString*  mDetailsAddr;
+/**
+ *  电话
+ */
+@property (nonatomic,strong) NSString*  mPhone;
+/**
+ *  性别
+ */
+@property (nonatomic,strong) NSString*  mUserSex;
+/**
+ *  姓名
+ */
+@property (nonatomic,strong) NSString*  mUserName;
+/**
+ *  用户id
+ */
+@property (nonatomic,strong) NSString*  mUserId;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+#pragma mark----标签对象
+@interface GPPTaddressTag : NSObject
+
+/**
+ *  地址id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  标签名称
+ */
+@property (nonatomic,strong) NSString*  mTagName;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+@interface GReleaseTag : NSObject
+
+/**
+ *  标签id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  标签名称
+ */
+@property (nonatomic,strong) NSString*  mTagName;
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+@interface GPPTOrder : NSObject
+/**
+ *  订单id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  到达时间
+ */
+@property (nonatomic,strong) NSString*  mArrivedTime;
+/**
+ *  内容
+ */
+@property (nonatomic,strong) NSString*  mContext;
+/**
+ *  距离
+ */
+@property (nonatomic,strong) NSString*  mDistance;
+/**
+ *  时间？
+ */
+@property (nonatomic,strong) NSString*  mGenTime;
+/**
+ *  酬金
+ */
+@property (nonatomic,strong) NSString*  mLegworkMoney;
+/**
+ *  最高价
+ */
+@property (nonatomic,strong) NSString*  mMaxPrice;
+/**
+ *  订单号
+ */
+@property (nonatomic,strong) NSString*  mOrderCode;
+/**
+ *  最低价
+ */
+@property (nonatomic,strong) NSString*  mStartPrice;
+/**
+ *  用户id
+ */
+@property (nonatomic,strong) NSString*  mUserId;
+
 
 -(id)initWithObj:(NSDictionary*)obj;
 

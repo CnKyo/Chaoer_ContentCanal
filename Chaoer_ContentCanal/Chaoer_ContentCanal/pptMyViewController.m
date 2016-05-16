@@ -173,6 +173,7 @@
     }else if (indexPath.row == 2){
     
         pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
+        ppt.mType = 2;
         [self pushViewController:ppt];
     }else{
     

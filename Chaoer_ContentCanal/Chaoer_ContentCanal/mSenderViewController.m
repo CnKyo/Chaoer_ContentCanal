@@ -30,6 +30,8 @@
 #import "pptMyViewController.h"
 
 #import "pptOrderDetailViewController.h"
+
+
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
@@ -56,13 +58,20 @@
      *  发布view
      */
     pptReleaseView *mReleaseView;
+    
+    UIScrollView *SectionView;
+    UIView *lineView;
+    UIButton *tempBT;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    [self initAddress];
+
     [self hiddenReleaseView];
+    [self headRefresh];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,10 +81,12 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.rightBtnTitle = @"筛选";
-    
 
-    mType =0;
+
+    mType =1;
     self.mBanerArr = [NSMutableArray new];
+    [self loadData];
+
     [self initView];
     [self initReleaseView];
 }
@@ -86,7 +97,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    self.haveFooter = YES;
 
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -112,8 +123,12 @@
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
-        
-        NSLog(@"location:%@", location);
+        if (location) {
+            NSLog(@"location:%@", location);
+            self.mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            self.mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+        }
+
         
         if (regeocode)
         {
@@ -144,14 +159,62 @@
     }];
 
 }
+- (void)headRefresh{
+    self.page = 1;
+    
+    [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self.tableView headerEndRefreshing];
+        [self.tempArray removeAllObjects];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            if (mArr.count<=0) {
+                [self addEmptyView:nil];
+            }
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            [self.tableView reloadData];
+            
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
 
-- (void)headerBeganRefresh{
-    [self headerEndRefresh];
-    [self loadData];
+}
 
-    [self initAddress];
+
+- (void)footetBeganRefresh{
+    
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self footetEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            if (mArr.count<=0) {
+                [self addEmptyView:nil];
+            }
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            [self.tableView reloadData];
+            
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+    
+    
+    
     
 }
+
+
 - (void)loadScrollerView{
     [mHeaderView removeFromSuperview];
     
@@ -279,15 +342,87 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 15;
+    return self.tempArray.count;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
-    return mSegmentView;
+//     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
+//    return mSegmentView;
+
+    
+    SectionView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 40)];
+    SectionView.showsVerticalScrollIndicator = NO;
+    SectionView.showsHorizontalScrollIndicator = NO;
+    SectionView.backgroundColor = [UIColor whiteColor];
+    
+    
+    for (UIView *view in SectionView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 38, DEVICE_Width/3-20, 2)];
+    lineView.backgroundColor = M_CO;
+    [SectionView addSubview:lineView];
+    
+    
+    NSArray *mTT=  @[@"收商品买送", @"事情办理",@"送东西"];
+    //可滚动选择类型
+    for (int i = 0; i < mTT.count; i++) {
+        
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*DEVICE_Width/3, 0, DEVICE_Width/3-1, 40)];
+        [btn setTitle:mTT[i] forState:UIControlStateNormal];
+        [btn setTitleColor:M_TCO forState:UIControlStateNormal];
+        btn.font = [UIFont systemFontOfSize:14];
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btn.tag = i;
+        [btn addTarget:self action:@selector(SectionClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(i*(DEVICE_Width/3-1), 10, 0.5, 20)];
+        line.backgroundColor = M_LINECO;
+        
+        if (i == 0) {
+            tempBT = btn;
+            [btn setTitleColor:M_CO forState:UIControlStateNormal];
+        }
+        
+        [SectionView addSubview:btn];
+        
+        if(i != 0){
+            [SectionView addSubview:line];
+        }
+        
+    }
+    
+    SectionView.contentSize = CGSizeMake(DEVICE_Width/3*mTT.count, 40);
+
+    
+    return SectionView;
     
 }
+
+- (void)SectionClick:(UIButton *)sender{
+    
+    [self removeEmptyView];
+    
+    [tempBT setTitleColor:M_TCO forState:UIControlStateNormal];
+    [sender setTitleColor:M_CO forState:UIControlStateNormal];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        lineView.center = sender.center;
+        CGRect rect = lineView.frame;
+        rect.origin.y = 38;
+        lineView.frame = rect;
+    }];
+    
+    mType = (int)sender.tag+1;
+    tempBT = sender;
+
+    [self headRefresh];
+    
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
@@ -297,13 +432,16 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     NSLog(@"点击了%lu",(unsigned long)mIndex);
     
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
+    [self.tableView headerBeginRefreshing];
+    
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 130;
+    return 80;
     
 }
 
@@ -312,8 +450,14 @@
     NSString *reuseCellId = @"cell";
     
     
+    GPPTOrder *mOrder = self.tempArray[indexPath.row];
+    
     pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
+    cell.mTitle.text = mOrder.mContext;
+    cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
+    
+    cell.mMoney.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];
     return cell;
     
 }
@@ -331,6 +475,7 @@
 - (void)rightBtnTouched:(id)sender{
 
     bolterViewController *bbb =[[bolterViewController alloc] initWithNibName:@"bolterViewController" bundle:nil];
+    bbb.mType = 2;
     [self pushViewController:bbb];
 }
 
@@ -346,6 +491,7 @@
         NSLog(@"买东西");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 1;
+        rrr.mSubType = 1;
         [self pushViewController:rrr];
     
     }];
@@ -354,6 +500,7 @@
         NSLog(@"办事情");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 2;
+        rrr.mSubType = 2;
         [self pushViewController:rrr];
     }];
     
@@ -361,6 +508,7 @@
         NSLog(@"送东西");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 3;
+        rrr.mSubType = 3;
         [self pushViewController:rrr];
     }];
     

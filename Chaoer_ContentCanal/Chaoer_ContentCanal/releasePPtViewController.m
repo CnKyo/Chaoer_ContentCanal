@@ -11,16 +11,84 @@
 
 #import "releaseCell.h"
 #import "BlockButton.h"
-@interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "pptMyAddressViewController.h"
+#import "bolterViewController.h"
+
+
+#import "mPriceView.h"
+@interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,UITextFieldDelegate>
 
 @end
 
 @implementation releasePPtViewController
+{
+    
+    mPriceView *mPopView;
+    
+    
+    NSString *mMin;
+    NSString *mMax;
+    
+    
+    /**
+     *  地址
+     */
+    NSString *mAddressStr;
+    NSString *mAddressId;
+    /**
+     *  纬度
+     */
+    NSString *mLat;
+    /**
+     *  经度
+     */
+    NSString *mLng;
+    AMapLocationManager *mLocation;
+    
+    
+    /**
+     *  需求内容
+     */
+    NSString *mContentStr;
+    /**
+     *  价格
+     */
+    NSString *mPrice;
+    NSString *mPriceTT;
+    /**
+     *  酬金
+     */
+    NSString *mMoney;
+    NSString *mMoneyTT;
+    /**
+     *  时间
+     */
+    NSString *mTimeStr;
+    NSString *mTTStr;
 
+    /**
+     *  电话
+     */
+    NSString *mPhoneStr;
+    /**
+     *  回调地址
+     */
+    NSString *mBlockAddressStr;
+    /**
+     *  备注
+     */
+    NSString *mNoteStr;
+    /**
+     *  标签
+     */
+    NSString *mTagStr;
+    
+    NSString *mTagIds;
+
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -44,6 +112,25 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
+    mTagIds = nil;
+    mMin = nil;
+    mMax = nil;
+    mLat = nil;
+    mLng = nil;
+    mAddressId = nil;
+    mTagStr = nil;
+    mTTStr = nil;
+    mAddressStr = nil;
+    mContentStr = nil;
+    mPriceTT = nil;
+    mPrice = nil;
+    mMoneyTT = nil;
+    mMoney = nil;
+    mTimeStr = nil;
+    mPhoneStr = nil;
+    mBlockAddressStr = nil;
+    mNoteStr = nil;
+    
     
     [self initView];
     
@@ -52,27 +139,91 @@
     mBottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:mBottomView];
     
-    BlockButton *mBtn = [BlockButton new];
+    UIButton *mBtn = [UIButton new];
     mBtn.frame = CGRectMake(15, 10, DEVICE_Width-30, 40);
     mBtn.layer.masksToBounds = YES;
     mBtn.layer.cornerRadius = 3;
     mBtn.backgroundColor = M_CO;
     [mBtn setTitle:@"发布" forState:0];
     [mBtn setTitleColor:[UIColor whiteColor] forState:0];
-    [mBtn btnClick:^{
-        
-        NSLog(@"发布");
+    
+    [mBtn addTarget:self action:@selector(mReleaseAction:) forControlEvents:UIControlEventTouchUpInside];
+  
+    [mBottomView addSubview:mBtn];
+    
+    [self loadPopView];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [self.view addGestureRecognizer:tap];
+    
+}
+
+- (void)tap{
+    [self hiddenPopView];
+}
+- (void)loadPopView{
+
+    mPopView = [mPriceView shareView];
+    mPopView.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.75];
+    mPopView.alpha = 0;
+    [mPopView.mCancelBtn addTarget:self action:@selector(mCancelAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [mPopView.mOkBtn addTarget:self action:@selector(mOkAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:mPopView];
+    
+    [mPopView makeConstraints:^(MASConstraintMaker *make) {
+        make.right.left.top.bottom.equalTo(self.view).offset(@0);
+    }];
+    
+    
+}
+- (void)mCancelAction:(UIButton *)sender{
+    [self hiddenPopView];
+}
+- (void)mOkAction:(UIButton *)sender{
+
+    if (mPopView.mMin.text.length == 0) {
+        [self showErrorStatus:@"请输入最低价!"];
+        [mPopView.mMin becomeFirstResponder];
+        return;
+    }
+    if (mPopView.mMax.text.length == 0) {
+        [self showErrorStatus:@"请输入最高价!"];
+        [mPopView.mMax becomeFirstResponder];
+        return;
+    }
+    mMin = mPopView.mMin.text;
+    mMax = mPopView.mMax.text;
+    [self hiddenPopView];
+
+    [self.tableView reloadData];
+    
+}
+- (void)showPopView{
+
+    [UIView animateWithDuration:0.25 animations:^{
+        mPopView.alpha = 1;
         
     }];
-    [mBottomView addSubview:mBtn];
+    
+}
+
+- (void)hiddenPopView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mPopView.alpha = 0;
+        
+    }];
+    
 }
 
 - (void)initView{
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-//    self.haveHeader = YES;
-//    [self.tableView headerBeginRefreshing];
+
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"releaseCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -85,6 +236,44 @@
     
 }
 
+- (void)headerBeganRefresh{
+
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    [WJStatusBarHUD showLoading:@"正在定位中..."];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        [self headerEndRefresh];
+        if (error)
+        {
+            
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [WJStatusBarHUD showErrorImageName:nil text:eee];
+            mAddressStr = eee;
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+        }
+        if (location) {
+            NSLog(@"location:%@", location);
+            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+        }
+    
+        if (regeocode)
+        {
+            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
+            
+            NSLog(@"reGeocode:%@", regeocode);
+            mAddressStr = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            
+        }
+        [self.tableView reloadData];
+    }];
+    
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -114,58 +303,28 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.mType == 1) {
+    if (indexPath.row == 0) {
         
-        if (indexPath.row == 0) {
-            
-            
-            return 210;
-        }else if (indexPath.row == 1){
-            
-            
-            return 110;
-        }else{
-            
-            
-            return 215;
-        }
+        return 210;
+    }else if (indexPath.row == 1){
         
-        
-    }else if (self.mType == 2)
-    {
-        
-        if (indexPath.row == 0) {
-            
-            
-            return 210;
-        }else if (indexPath.row == 1){
-            
+        if (self.mType == 2) {
             
             return 50;
+
+            
         }else{
-            
-            
-            return 215;
-        }
-        
-    }else{
-        
-        if (indexPath.row == 0) {
-            
-            
-            return 210;
-        }else if (indexPath.row == 1){
-            
-            
             return 110;
-        }else{
+
             
-            
-            return 215;
         }
+    }else{
+        return 215;
+        
         
     }
     
+
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,89 +332,290 @@
     
     NSString *reuseCellId = nil;
 
-    if (self.mType == 1) {
+    if (indexPath.row == 0) {
         
-        if (indexPath.row == 0) {
-            
-            reuseCellId = @"cell";
-
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
-        }else if (indexPath.row == 1){
-            reuseCellId = @"cell2";
-
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
+        reuseCellId = @"cell";
+        
+        releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.mAddress.text = mAddressStr;
+        
+        mContentStr = cell.mContentTx.text;
+        
+        if (self.mType == 2) {
+            cell.mAddTagBtn.hidden = YES;
         }else{
-            reuseCellId = @"cell4";
+            cell.mAddTagBtn.hidden = NO;
 
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
         }
         
+        [cell.mAddTagBtn addTarget:self action:@selector(mTagAction:) forControlEvents:UIControlEventTouchUpInside];
         
-    }else if (self.mType == 2)
-    {
-        if (indexPath.row == 0) {
-            reuseCellId = @"cell";
-
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
-        }else if (indexPath.row == 1){
+        
+        if (mTagStr == nil || mTagStr.length == 0 || [mTagStr isEqualToString:@""]) {
+            
+        }else{
+        
+            
+            for (UILabel *lb in cell.mTagiew.subviews) {
+                [lb removeFromSuperview];
+            }
+            
+            
+            CGFloat W = [Util labelTextWithWidth:mTagStr]+20;
+            
+            UILabel *lll = [UILabel new];
+            lll.frame = CGRectMake(15, 5, W, 30);
+            lll.text = mTagStr;
+            lll.textAlignment = NSTextAlignmentCenter;
+            lll.font = [UIFont systemFontOfSize:13];
+            lll.textColor = [UIColor whiteColor];
+            lll.backgroundColor = [UIColor colorWithRed:0.60 green:0.78 blue:0.96 alpha:1.00];
+            lll.layer.masksToBounds = YES;
+            lll.layer.cornerRadius = 15;
+            [cell.mTagiew addSubview:lll];
+            
+        }
+        
+        return cell;
+        
+    }else if (indexPath.row == 1){
+        
+        if (self.mType == 2) {
             reuseCellId = @"cell3";
-
+            
             releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
+            cell.mMoneyTx.delegate = self;
+            mMoney = cell.mMoneyTx.text;
+//            if (mMoneyTT != nil) {
+//                cell.mMoneyTx.text = mMoneyTT;
+//            }
+            
             return cell;
+       
         }else{
-            reuseCellId = @"cell4";
-
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
-        }
-
-    }else{
-        if (indexPath.row == 0) {
-            
-            reuseCellId = @"cell";
-            
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
-        }else if (indexPath.row == 1){
+    
             reuseCellId = @"cell2";
             
             releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            return cell;
-        }else{
-            reuseCellId = @"cell4";
+            mMoney = cell.mMoneyTx.text;
             
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.mMoneyTx.delegate = self;
+            
+            if (mMin != nil || mMax != nil) {
+                
+                [cell.mPriceBtn setTitle:[NSString stringWithFormat:@"%@元至%@元",mMin,mMax] forState:0];
+                
+                
+            }
+//            if (mPriceTT != nil) {
+//                cell.mPriceTx.text = mPriceTT;
+//            }
+            
+            [cell.mPriceBtn addTarget:self action:@selector(mPriceAction:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell;
         }
+    }else{
+        reuseCellId = @"cell4";
+        
+        releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [cell.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        mTimeStr = cell.mTime.text;
+        
+//        if (mTTStr != nil) {
+//            cell.mTime.text = mTTStr;
+//        }
+
+        mPhoneStr = cell.mPhone.text;
+        mNoteStr = cell.mNoteTX.text;
+   
+        cell.mPhone.delegate = self;
+        cell.mTime.delegate = self;
+        cell.mNoteTX.delegate = self;
+        return cell;
+    }
+
+    
+}
+- (void)mPriceAction:(UIButton *)sender{
+
+    [self showPopView];
+}
+- (void)mTagAction:(UIButton *)sender{
+    bolterViewController *bbb =[[bolterViewController alloc] initWithNibName:@"bolterViewController" bundle:nil];
+    bbb.mType = 1;
+    bbb.mSubType = self.mSubType;
+    
+    bbb.block = ^(NSString *content,NSString *mTagId){
+        mTagStr = content;
+        mTagIds = mTagId;
+        [self.tableView reloadData];
+    };
+
+    
+    [self pushViewController:bbb];
+
+}
+- (void)addressAction:(UIButton *)sender{
+
+    
+    pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
+    ppt.mType = 1;
+    ppt.block = ^(NSString *content ,NSString *mId){
+        mBlockAddressStr = content;
+        mAddressId = mId;
+        [sender setTitle:content forState:0];
+    };
+    [self pushViewController:ppt];
+
+    
+}
+
+///限制电话号码输入长度
+#define TEXT_MAXLENGTH 11
+///限制验证码输入长度
+#define PASS_LENGHT 20
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==11) {
+        res= TEXT_MAXLENGTH-[new length];
+        
+    }else
+    {
+        res= PASS_LENGHT-[new length];
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.tag == 200) {
+        mTTStr = [NSString stringWithFormat:@"%@分钟",textField.text];
+        [self.tableView reloadData];
+    }else if (textField.tag == 1){
+        mPriceTT = [NSString stringWithFormat:@"%@元",textField.text];
+        [self.tableView reloadData];
+    }else if(textField.tag == 2){
+        mMoneyTT = [NSString stringWithFormat:@"%@元",textField.text];
+        [self.tableView reloadData];
+    }else{
+        [self.tableView reloadData];
 
     }
     
     
+}
+#pragma mark----发布
+/**
+ *  发布
+ *
+ *  @param sender 
+ */
+- (void)mReleaseAction:(UIButton *)sender{
+
+
+    if (mLat == nil || mLat.length == 0 || [mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须开启定位才能发布订单！"];
+        [self.tableView headerBeginRefreshing];
+        
+        return ;
+    }
+    if (mLng == nil || mLng.length == 0 || [mLng isEqualToString:@""]) {
+        [self showErrorStatus:@"必须开启定位才能发布订单！"];
+        [self.tableView headerBeginRefreshing];
+        
+        return ;
+    }
+    if (mContentStr == nil || mContentStr.length == 0) {
+        [self showErrorStatus:@"需求不能为空！"];
+        return;
+    }
+//    if (mTagStr == nil || mTagStr.length == 0) {
+//        [self showErrorStatus:@"标签不能为空！"];
+//        return;
+//    }
+    if (mMoney == nil || mMoney.length == 0) {
+        [self showErrorStatus:@"酬劳金额不能为空！"];
+        return;
+    }
+    if (mTimeStr == nil || mTimeStr.length == 0) {
+        [self showErrorStatus:@"时间不能为空！"];
+        return;
+    }
+    if(![Util isMobileNumber:mPhoneStr]){
+        [self showErrorStatus:@"请输入合法的手机号码"];
+        return;
+    }
+    if (mBlockAddressStr == nil || mBlockAddressStr.length == 0) {
+        [self showErrorStatus:@"地址不能为空！"];
+        return;
+    }
+    if (mNoteStr == nil || mNoteStr.length == 0) {
+        [self showErrorStatus:@"备注不能为空！"];
+        return;
+    }
+    
+    NSLog(@"发布");
+    if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
+        [self showErrorStatus:@"余额不足，发布失败！"];
+        return;
+    }
+    
+    //        mLng = @"106.51594";
+    //        mLat = @"29.539027";
+    [self showWithStatus:@"正在发布..."];
+    
+    if (self.mType == 1) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mTimeStr block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+        
+        
+    }else if(self.mType == 2){
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mTimeStr block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+    }else{
+    
+        
+    }
     
 
-    
 }
 
 @end

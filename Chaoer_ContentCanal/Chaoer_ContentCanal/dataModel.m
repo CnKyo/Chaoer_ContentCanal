@@ -2037,7 +2037,213 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+#pragma mark----获取地址标签
+- (void)getPPTaddressTag:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appSysAddressTag" parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTaddressTag alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+        }else{
+            
+            block (info,nil);
+            
+        }
+        
+    }];
+
+}
+
+#pragma mark----查询常用地址
+- (void)getPPTaddressList:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appUserAddrList" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTaddress alloc] initWithObj:dic]];
+            }
+                       
+            block (info,tempArr);
+        }else{
+            
+            block (info,nil);
+            
+        }
+        
+    }];
+
+
+}
+
+#pragma mark----获取附近跑跑腿我想买订单
+- (void)getPPTNeaerbyOrder:(int)mType andMlat:(NSString *)mLat andLng:(NSString *)mLng andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    if (mLat) {
+        [para setObject:mLat forKey:@"lat"];
+
+    }if (mLng) {
+        [para setObject:mLng forKey:@"lng"];
+
+    }
+    
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(mNum) forKey:@"rows"];
+
+    
+    NSString *mUrl = nil;
+    
+    if (mType == 1) {
+        mUrl = @"app/legwork/user/appOrderBuyList";
+    }else if (mType == 2){
+        mUrl = @"app/legwork/user/appOrderTransactList";
+    }else{
+        mUrl = @"app/legwork/user/appOrderCarryList";
+
+    }
+
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTOrder alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+        }else{
+            
+            block (info,nil);
+            
+        }
+        
+    }];
+}
+
+
+#pragma mark----获取买东西 标签
+- (void)getReleaseTags:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    
+    NSString *mUrl = nil;
+    
+    if (mType == 1) {
+        mUrl = @"app/legwork/user/appBuyType";
+    }else if (mType == 2){
+    
+    }else{
+    
+    }
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GReleaseTag alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+        }else{
+            
+            block (info,nil);
+            
+        }
+        
+    }];
+
+}
+
+#pragma mark----添加常用地址
+- (void)gPPtaddAddress:(NSString *)mName andSex:(NSString *)mSex andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andDetailAddress:(NSString *)mDetailAddress andTag:(NSString *)mTag block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mName forKey:@"userName"];
+    [para setObject:mSex forKey:@"sex"];
+    [para setObject:mAddress forKey:@"address"];
+    [para setObject:mDetailAddress forKey:@"detailsAddr"];
+    [para setObject:mPhone forKey:@"phone"];
+    [para setObject:mTag forKey:@"addrTagId"];
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appUserAddr" parameters:para call:^(mBaseData *info) {
+
+        if (info.mSucess) {
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+
+}
+#pragma mark----发布跑单
+- (void)releasePPTorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mContent forKey:@"context"];
+    [para setObject:mMoney forKey:@"legworkMoney"];
+    [para setObject:mNote forKey:@"comments"];
+    [para setObject:mPhone forKey:@"phone"];
+    [para setObject:mLng forKey:@"lng"];
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mTime forKey:@"arrivedTime"];
+    
+    NSString *mUrlStr = nil;
+    
+    if (mType == 1) {
+        mUrlStr = @"app/legwork/user/appOrderBuy";
+        
+        [para setObject:mMin forKey:@"startPrice"];
+        [para setObject:mMax forKey:@"maxPrice"];
+        [para setObject:mAddress forKey:@"arrivedId"];
+        [para setObject:mTagId forKey:@"orderType"];
+
+    }else if (mType == 2) {
+        mUrlStr = @"app/legwork/user/appOrderTransact";
+        [para setObject:mAddress forKey:@"address"];
+
+
+    }else{
+        mUrlStr = @"app/legwork/user/appOrderCarry";
+
+    }
+
+    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+    
+    
+}
 
 @end
 
@@ -2887,5 +3093,108 @@ bool g_rccbined = NO;
     self.mSubTitel = [obj objectForKeyMy:@"subTitle"];
     
 }
+
+@end
+
+@implementation GPPTaddress
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mAddress = [obj objectForKeyMy:@"address"];
+    self.mAddressName = [obj objectForKeyMy:@"addrName"];
+    self.mAlternativePhone = [obj objectForKeyMy:@"alternativePhone"];
+    self.mPhone = [obj objectForKeyMy:@"phone"];
+    self.mDetailsAddr = [obj objectForKeyMy:@"detailsAddr"];
+    self.mUserId = [obj objectForKeyMy:@"userId"];
+    self.mUserSex = [obj objectForKeyMy:@"userSex"];
+    self.mUserName = [obj objectForKeyMy:@"userName"];
+
+
+}
+
+@end
+#pragma mark----标签对象
+@implementation GPPTaddressTag
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mTagName = [obj objectForKeyMy:@"addrName"];
+    
+}
+
+
+@end
+
+@implementation GReleaseTag
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mTagName = [obj objectForKeyMy:@"typeName"];
+    
+}
+
+
+
+
+@end
+
+@implementation GPPTOrder
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+
+    self.mUserId = [obj objectForKeyMy:@"userId"];
+    self.mArrivedTime = [obj objectForKeyMy:@"arrivedTime"];
+    self.mContext = [obj objectForKeyMy:@"context"];
+    self.mDistance = [obj objectForKeyMy:@"distance"];
+    self.mGenTime = [obj objectForKeyMy:@"genTime"];
+    self.mLegworkMoney = [obj objectForKeyMy:@"legworkMoney"];
+    self.mMaxPrice = [obj objectForKeyMy:@"maxPrice"];
+    self.mOrderCode = [obj objectForKeyMy:@"orderCode"];
+    self.mStartPrice = [obj objectForKeyMy:@"startPrice"];
+    
+}
+
+
 
 @end

@@ -36,7 +36,7 @@
  *
  *  @return attributeView
  */
-+ (AttributeView *)attributeViewWithTitle:(NSString *)title titleFont:(UIFont *)font attributeTexts:(NSArray *)texts viewWidth:(CGFloat)viewWidth{
++ (AttributeView *)attributeViewWithTitle:(NSString *)title titleFont:(UIFont *)font attributeTexts:(NSArray *)texts viewWidth:(CGFloat)viewWidth andTag:(NSArray *)mTagArr{
     int count = 0;
     float btnW = 0;
     
@@ -66,7 +66,10 @@
     
     for (int i = 0; i<texts.count; i++) {
         UIButton *btn = [[UIButton alloc]init];
-        btn.tag = i;
+        
+        NSString *mtag = mTagArr[i];
+        
+        btn.tag = [mtag integerValue];
         [btn addTarget:view action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
         NSString *str = texts[i];
@@ -116,7 +119,6 @@
         btn.layer.borderColor = [UIColor colorWithRed:0.70 green:0.70 blue:0.70 alpha:1.00].CGColor;
         btn.layer.borderWidth = 0.5;
         btn.clipsToBounds = YES;
-        btn.tag = i;
         [view addSubview:btn];
         if (i == texts.count - 1) {
             
@@ -147,8 +149,8 @@
     }else{
         
     }
-    if ([self.Attribute_delegate respondsToSelector:@selector(Attribute_View:didClickBtn:)] ) {
-        [self.Attribute_delegate Attribute_View:self didClickBtn:sender];
+    if ([self.Attribute_delegate respondsToSelector:@selector(Attribute_View:didClickBtn:andTag:)] ) {
+        [self.Attribute_delegate Attribute_View:self didClickBtn:sender andTag:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
     }
     self.btn = sender;
     

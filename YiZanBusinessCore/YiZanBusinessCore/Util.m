@@ -1179,6 +1179,12 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
 }
+
++ (CGFloat)labelTextWithWidth:(NSString *)str{
+    CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:13]];
+    return strsize.width;
+}
+
 @end
 
 

@@ -152,6 +152,8 @@
 		04E02E501CE6B4C900220D54 /* pptMyRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E4E1CE6B4C900220D54 /* pptMyRateCell.xib */; };
 		04E02E531CE6B70F00220D54 /* pptMyRateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E521CE6B70F00220D54 /* pptMyRateHeaderView.m */; };
 		04E02E551CE6B71700220D54 /* pptMyRateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E541CE6B71700220D54 /* pptMyRateHeaderView.xib */; };
+		04E092FB1CE9DACA00D3090E /* mPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E092FA1CE9DACA00D3090E /* mPriceView.m */; };
+		04E092FF1CE9DAE000D3090E /* mPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E092FE1CE9DAE000D3090E /* mPriceView.xib */; };
 		04E5A7C91CE56A3C00A2D111 /* pptHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */; };
 		04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */; };
 		04E5A7CE1CE56A5100A2D111 /* pptHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7CC1CE56A5100A2D111 /* pptHistoryTableViewCell.m */; };
@@ -908,6 +910,9 @@
 		04E02E511CE6B70F00220D54 /* pptMyRateHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateHeaderView.h; sourceTree = "<group>"; };
 		04E02E521CE6B70F00220D54 /* pptMyRateHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptMyRateHeaderView.m; sourceTree = "<group>"; };
 		04E02E541CE6B71700220D54 /* pptMyRateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptMyRateHeaderView.xib; sourceTree = "<group>"; };
+		04E092F91CE9DACA00D3090E /* mPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPriceView.h; sourceTree = "<group>"; };
+		04E092FA1CE9DACA00D3090E /* mPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPriceView.m; sourceTree = "<group>"; };
+		04E092FE1CE9DAE000D3090E /* mPriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPriceView.xib; sourceTree = "<group>"; };
 		04E5A7C61CE56A3C00A2D111 /* pptHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptHistoryViewController.h; sourceTree = "<group>"; };
 		04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptHistoryViewController.m; sourceTree = "<group>"; };
 		04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptHistoryViewController.xib; sourceTree = "<group>"; };
@@ -1977,6 +1982,9 @@
 				04102E2E1CE465CF006F82E2 /* releaseCell2.xib */,
 				04102E301CE4683F006F82E2 /* releaseCell3.xib */,
 				04102E321CE46893006F82E2 /* releaseCell4.xib */,
+				04E092F91CE9DACA00D3090E /* mPriceView.h */,
+				04E092FA1CE9DACA00D3090E /* mPriceView.m */,
+				04E092FE1CE9DAE000D3090E /* mPriceView.xib */,
 			);
 			name = "发布";
 			sourceTree = "<group>";
@@ -4230,6 +4238,7 @@
 				040B800F1CC4FD11006A9489 /* emptyView.xib in Resources */,
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				04D49C741CE7189600BAD649 /* pptDetailCell4.xib in Resources */,
+				04E092FF1CE9DAE000D3090E /* mPriceView.xib in Resources */,
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
@@ -4557,6 +4566,7 @@
 				04648C611CB4F1A4006823C9 /* mSenderViewController.m in Sources */,
 				040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
+				04E092FB1CE9DACA00D3090E /* mPriceView.m in Sources */,
 				31B990231C969780002E34A5 /* washDetailViewController.m in Sources */,
 				04D49C811CE730EF00BAD649 /* complaintTableViewCell.m in Sources */,
 				04D49C621CE7059500BAD649 /* pptOrderDetailViewController.m in Sources */,
@@ -4985,6 +4995,7 @@
 					"$(PROJECT_DIR)/Chaoer_ContentCanal/Rong_Cloud_iOS_IMLib_SDK_v2_4_10_dev",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chaoer_ContentCanal/PrefixHeader.pch";
 				INFOPLIST_FILE = Chaoer_ContentCanal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -5037,6 +5048,7 @@
 					"$(PROJECT_DIR)/Chaoer_ContentCanal/Rong_Cloud_iOS_IMLib_SDK_v2_4_10_dev",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chaoer_ContentCanal/PrefixHeader.pch";
 				INFOPLIST_FILE = Chaoer_ContentCanal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

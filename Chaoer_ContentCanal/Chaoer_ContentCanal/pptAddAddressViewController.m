@@ -19,12 +19,16 @@
     NSMutableArray *mSexArr;
     
     AddressPickView *addressPickView;
+    
+    NSString *mTagName;
+    
+    NSString *mAddressStr;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self loadTagData];
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -40,6 +44,21 @@
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
 }
+-(void)loadTagData{
+
+    [[mUserInfo backNowUser] getPPTaddressTag:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self.tempArray removeAllObjects];
+        
+        if (resb.mSucess) {
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +68,9 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
+    mTagName = nil;
+    mAddressStr = nil;
+
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
     
     mSexArr = [NSMutableArray new];
@@ -70,11 +92,11 @@
             if (sender.selected == NO) {
                 self.mManBtn.selected = YES;
                 self.mWomenBtn.selected = NO;
-                [mSexArr addObject:NumberWithInt(1)];
+                [mSexArr addObject:NumberWithInt(0)];
                 
             }else{
                 sender.selected = NO;
-                [mSexArr removeObject:NumberWithInt(1)];
+                [mSexArr removeObject:NumberWithInt(0)];
                 
             }
         }
@@ -84,11 +106,11 @@
             if (sender.selected == NO) {
                 self.mManBtn.selected = NO;
                 self.mWomenBtn.selected = YES;
-                [mSexArr addObject:NumberWithInt(2)];
+                [mSexArr addObject:NumberWithInt(1)];
                 
             }else{
                 sender.selected = NO;
-                [mSexArr removeObject:NumberWithInt(2)];
+                [mSexArr removeObject:NumberWithInt(1)];
                 
             }
         }
@@ -118,6 +140,7 @@
     
     addressPickView.block = ^(NSString *province,NSString *city,NSString *town){
         
+        mAddressStr = [NSString stringWithFormat:@"%@%@%@",province,city,town ];
         weakSelf.mAddressLb.text = [NSString stringWithFormat:@"%@ %@ %@",province,city,town ];
         
     };
@@ -130,13 +153,25 @@
     
 }
 - (void)loadTag{
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择标签" style:MHSheetStyleWeiChat itemTitles:@[@"请闹",@"速度",@"阳光",@"美女"]];
+    
+    NSMutableArray *mTT = [NSMutableArray new];
+    
+    for (GPPTaddressTag *mTag in self.tempArray) {
+        [mTT addObject:mTag.mTagName];
+    }
+    
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择标签" style:MHSheetStyleWeiChat itemTitles:mTT];
     actionSheet.cancleTitle = @"取消选择";
     __weak __typeof(self)weakSelf = self;
 
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSLog(@"选择了%@",title);
-        [weakSelf.mTagBtn setTitle:title forState:0];
+        GPPTaddressTag *mTag = self.tempArray[index];
+        
+        mTagName = [NSString stringWithFormat:@"%d",mTag.mId];
+        
+        NSLog(@"选择了%@",mTagName);
+        [weakSelf.mTagBtn setTitle:mTag.mTagName forState:0];
     }];
 }
 #pragma mark----保存按钮
@@ -170,6 +205,21 @@
         [self loadTag];
         return;
     }
+    
+    [self showWithStatus:@"正在保存..."];
+    
+    [[mUserInfo backNowUser] gPPtaddAddress:self.mNameTx.text andSex:mSexArr[0] andAddress:mAddressStr andPhone:self.mPhoneTx.text andDetailAddress:self.mAddressDetailTx.text andTag:mTagName block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            [self popViewController];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -186,5 +236,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+///限制电话号码输入长度
+#define TEXT_MAXLENGTH 11
+///限制验证码输入长度
+#define PASS_LENGHT 20
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==11) {
+        res= TEXT_MAXLENGTH-[new length];
+        
+        
+    }else
+    {
+        res= PASS_LENGHT-[new length];
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
 
 @end

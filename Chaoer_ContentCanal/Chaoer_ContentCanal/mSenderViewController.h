@@ -10,4 +10,9 @@
 
 @interface mSenderViewController : BaseVC
 
+
+@property (strong,nonatomic)NSString *mLng;
+
+@property (strong,nonatomic)NSString *mLat;
+
 @end

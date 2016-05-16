@@ -171,7 +171,8 @@ typedef enum _RelDic
 
 #pragma mark----根据文字计算高度
 + (CGFloat)labelText:(NSString *)s fontSize:(NSInteger)fsize labelWidth:(CGFloat)width;
-
+#pragma mark----根据文字计算宽度
++ (CGFloat)labelTextWithWidth:(NSString *)str;
 #pragma mark----2015-09-01 14:30－16:30转 9月1日 14:30-16:30
 + (NSString *)mFirstStr:(NSString *)mFirstStr andSecondStr:(NSString *)secondStr;
 #pragma mark----时间转时间戳（utc时间戳） 2015-09-01 14:30 转14478212545

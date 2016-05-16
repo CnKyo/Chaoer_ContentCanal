@@ -10,4 +10,11 @@
 
 @interface pptMyAddressViewController : BaseVC
 
+/**
+ *  1是发布  2是添加
+ */
+@property (assign,nonatomic) int mType;
+
+@property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId);
+
 @end

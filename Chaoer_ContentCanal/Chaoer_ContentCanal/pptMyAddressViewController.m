@@ -15,7 +15,12 @@
 @end
 
 @implementation pptMyAddressViewController
+- (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:YES];
+    [self.tableView headerBeginRefreshing];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -34,15 +39,40 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyAddressCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
 }
+- (void)headerBeganRefresh{
 
+    [[mUserInfo backNowUser] getPPTaddressList:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            if (mArr.count<=0) {
+                [self addEmptyView:nil];
+            }else{
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+        
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+         
+            
+        }
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,7 +95,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return self.tempArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,9 +109,14 @@
 {
     NSString *reuseCellId = @"cell";
     
+    GPPTaddress *mAddress = self.tempArray[indexPath.row];
     
     pptMyAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
+    
+    cell.mAddress.text = [NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr];
+    cell.mContent.text = [NSString stringWithFormat:@"%@-%@",mAddress.mUserName,mAddress.mPhone];
+    cell.mTag.text = mAddress.mAddressName;
     
     return cell;
     
@@ -92,8 +127,16 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    GPPTaddress *mAddress = self.tempArray[indexPath.row];
+    if (self.mType == 1) {
+        self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%d",mAddress.mId]);
+        [self popViewController];
+    }else{
+    
+    }
+    
+    
 }
-
 
 - (void)rightBtnTouched:(id)sender{
     pptAddAddressViewController *ppp = [[pptAddAddressViewController alloc] initWithNibName:@"pptAddAddressViewController" bundle:nil];

@@ -472,6 +472,9 @@
         case 4:
         {
             mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+            
+            mmm.mLng = mLng;
+            mmm.mLat = mLat;
             [self pushViewController:mmm];
 //            [LCProgressHUD showInfoMsg:@"正在建设中..."];
 

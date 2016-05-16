@@ -12,7 +12,7 @@
 
 @protocol AttributeViewDelegate<NSObject>
 @optional
--(void)Attribute_View:(AttributeView *)view didClickBtn:(UIButton *)btn;
+-(void)Attribute_View:(AttributeView *)view didClickBtn:(UIButton *)btn andTag:(NSString *)mTag;
 @end
 
 @interface AttributeView : UIView
@@ -24,5 +24,5 @@
  *
  *  @return attributeView
  */
-+ (AttributeView *)attributeViewWithTitle:(NSString *)title titleFont:(UIFont *)font attributeTexts:(NSArray *)texts viewWidth:(CGFloat)viewWidth;
++ (AttributeView *)attributeViewWithTitle:(NSString *)title titleFont:(UIFont *)font attributeTexts:(NSArray *)texts viewWidth:(CGFloat)viewWidth andTag:(NSArray *)mTagArr;
 @end

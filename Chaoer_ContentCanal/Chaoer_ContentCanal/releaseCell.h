@@ -37,15 +37,13 @@
  *  价格lb
  */
 @property (weak, nonatomic) IBOutlet UILabel *mPriceLb;
-/**
- *  价格text
- */
-@property (weak, nonatomic) IBOutlet UITextField *mPriceTx;
+
 /**
  *  金额text
  */
 @property (weak, nonatomic) IBOutlet UITextField *mMoneyTx;
 
+@property (weak, nonatomic) IBOutlet UIButton *mPriceBtn;
 #pragma mark----cell第三种样式
 /**
  *  时间

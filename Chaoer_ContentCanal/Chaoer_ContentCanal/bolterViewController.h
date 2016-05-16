@@ -9,5 +9,15 @@
 #import "BaseVC.h"
 
 @interface bolterViewController : BaseVC
+/**
+ *  类型  1是发布  2是筛选
+ */
+@property (assign,nonatomic) int mType;
+/**
+ *  1是买东西 2是办事情 3是跑腿
+ */
+@property (assign,nonatomic) int mSubType;
+
+@property (nonatomic,strong) void(^block)(NSString *block,NSString *mTagId);
 
 @end
