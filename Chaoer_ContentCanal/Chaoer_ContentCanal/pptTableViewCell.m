@@ -20,6 +20,12 @@
     self.mHeader.layer.masksToBounds = YES;
     self.mHeader.layer.cornerRadius = 3;
     
+    
+    self.mDoneBtn.layer.masksToBounds = YES;
+    self.mDoneBtn.layer.cornerRadius = 3;
+    self.mDoneBtn.layer.borderColor = M_CO.CGColor;
+    self.mDoneBtn.layer.borderWidth = 0.5;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -10,11 +10,28 @@
 
 #import "BlockButton.h"
 #import "complaintTableViewCell.h"
-@interface complaintViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#import "RSKImageCropper.h"
+
+@interface complaintViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate>
 
 @end
 
 @implementation complaintViewController
+{
+    UIImage *tempImage;
+    
+    UIImage *tempImage1;
+    UIImage *tempImage2;
+
+    UIImage *tempImage3;
+
+    /**
+     *  当前选择的哪一个
+     */
+    int mNowSelected;
+}
+ 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -43,6 +60,11 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
+    
+    tempImage1 = [UIImage imageNamed:@"ppt_complain_addimg"];
+    tempImage2 = [UIImage imageNamed:@"ppt_complain_addimg"];
+    tempImage3 = [UIImage imageNamed:@"ppt_complain_addimg"];
+    
     UIView *bbb = [UIView new];
     bbb.frame = CGRectMake(0, DEVICE_Height-60,  DEVICE_Width, 60);
     bbb.backgroundColor = [UIColor clearColor];
@@ -67,6 +89,8 @@
     [self initView];
 }
 - (void)initView{
+    
+    
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
@@ -123,11 +147,159 @@
     
     complaintTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
+    [cell.mPickImg1 addTarget:self action:@selector(pickAction1) forControlEvents:UIControlEventTouchUpInside];
+    [cell.mPickImg2 addTarget:self action:@selector(pickAction2) forControlEvents:UIControlEventTouchUpInside];
+    [cell.mPickImg3 addTarget:self action:@selector(pickAction3) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.mPickImg1 setBackgroundImage:tempImage1 forState:0];
+    [cell.mPickImg2 setBackgroundImage:tempImage2 forState:0];
+    [cell.mPickImg3 setBackgroundImage:tempImage3 forState:0];
     return cell;
     
 }
 
+- (void)pickAction1{
+    mNowSelected = 1;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
+}
+- (void)pickAction2{
+    mNowSelected = 2;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
+}
+- (void)pickAction3{
+    mNowSelected = 3;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
+}
+
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (actionSheet.tag == 1001) {
+        if ( buttonIndex != 1 ) {
+            
+            [self startImagePickerVCwithButtonIndex:buttonIndex];
+        }
+    }else{
+        
+    }
+    
+}
+- (void)startImagePickerVCwithButtonIndex:(NSInteger )buttonIndex
+{
+    int type;
+    
+    
+    if (buttonIndex == 0) {
+        type = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing =NO;
+        
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+        
+    }
+    else if(buttonIndex == 1){
+        type = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:NULL];
+        
+        
+    }
+    
+    
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)imagePickerController didFinishPickingMediaWithInfo:(id)info
+{
+    
+    UIImage* tempimage1 = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self gotCropIt:tempimage1];
+    
+    [imagePickerController dismissViewControllerAnimated:YES completion:^() {
+        
+    }];
+    
+}
+-(void)gotCropIt:(UIImage*)photo
+{
+    RSKImageCropViewController *imageCropVC = nil;
+    
+    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    [self.navigationController pushViewController:imageCropVC animated:YES];
+    
+}
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+{
+    return   CGRectMake(self.view.center.x-1, self.view.center.y-1, 80, 80);
+    
+}
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+{
+    return [UIBezierPath bezierPathWithRect:CGRectMake(self.view.center.x-1, self.view.center.y-1, 80, 80)];
+    
+}
+- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    
+    if (mNowSelected == 1) {
+        tempImage1 = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    }else if (mNowSelected == 2){
+        
+        tempImage2 = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    }else{
+        tempImage3 = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    }
+    [self.tableView reloadData];
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    NSData *imageData = UIImagePNGRepresentation(tempImage);
+    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    [imageData writeToFile:aPath atomically:YES];
+    
+    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+    UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+    
+    
+    tempImage = [Util scaleImg:imageView3.image maxsize:150];
+    
+    NSData *mmm = UIImagePNGRepresentation(tempImage);
+    
+    
+    
+}
 
 
 @end

@@ -8,20 +8,13 @@
 
 #import "openPPTViewController.h"
 #import "applyPPTView.h"
-#import "XMNPhotoPickerFramework.h"
-#import "XMNPhotoCollectionController.h"
 
-#import "XMNAssetCell.h"
 
 #import "depositViewController.h"
 
-@interface openPPTViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "RSKImageCropper.h"
 
-@property (nonatomic, copy)   NSArray<XMNAssetModel *> *mHandassets;
-
-@property (nonatomic, copy)   NSArray<XMNAssetModel *> *mFrontassets;
-
-@property (nonatomic, copy)   NSArray<XMNAssetModel *> *mForwordassets;
+@interface openPPTViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate>
 
 @end
 
@@ -53,6 +46,12 @@
     NSString *mForwordImgPath;
     
     SVerifyMsg  *mVerify;
+    
+    UIImage *tempImage;
+    /**
+     *  当前选择的哪一个
+     */
+    int mNowSelected;
 
     
 }
@@ -164,64 +163,10 @@
  *  @param sender
  */
 - (void)handAction:(UIButton *)sender{
-    //1. 推荐使用XMNPhotoPicker 的单例
-    //2. 设置选择完照片的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
-        
-        if (images.count > 1 || assets.count > 1) {
-            [LCProgressHUD showFailure:@"只能选择1张图片!"];
-            
-            NSLog(@"选择的图片超过3张!");
-            return ;
-        }
-        
-        NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        
-        
-        if (assets) {
-            for (XMNAssetModel *model in assets) {
-                mHandImg = [Util scaleImg:model.previewImage maxsize:150];
-                [mView.mHandBtn setBackgroundImage:model.thumbnail forState:0];
-                
-            }
-        }else{
-            
-            for (UIImage *img in images) {
-                mHandImg = [Util scaleImg:img maxsize:150];
-                [mView.mHandBtn setBackgroundImage:mHandImg forState:0];
-            }
-        }
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        NSData *imageData = UIImagePNGRepresentation(mHandImg);
-        NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        [imageData writeToFile:aPath atomically:YES];
-        
-        
-        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
-        UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
-        
-        mHandImgPath = aPath;
-        
-        mHandImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
-        
-        
-        self.mHandassets = [assets copy];
-        
-        
-    }];
-    //3. 设置选择完视频的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
-        NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
-        self.mHandassets = @[asset];
-        
-    }];
-    //4. 显示XMNPhotoPicker
-    [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
+    mNowSelected = 1;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
 }
 /**
  *  正面
@@ -229,64 +174,10 @@
  *  @param sender
  */
 - (void)frontAction:(UIButton *)sender{
-    //1. 推荐使用XMNPhotoPicker 的单例
-    //2. 设置选择完照片的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
-        
-        if (images.count > 1 || assets.count > 1) {
-            [LCProgressHUD showFailure:@"只能选择1张图片!"];
-            
-            NSLog(@"选择的图片超过3张!");
-            return ;
-        }
-        
-        NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        
-        
-        if (assets) {
-            for (XMNAssetModel *model in assets) {
-                mFrontImg = [Util scaleImg:model.previewImage maxsize:150];
-                [mView.mFrontBtn setBackgroundImage:model.thumbnail forState:0];
-                
-            }
-        }else{
-            
-            for (UIImage *img in images) {
-                mFrontImg = [Util scaleImg:img maxsize:150];
-                [mView.mFrontBtn setBackgroundImage:mFrontImg forState:0];
-            }
-        }
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        NSData *imageData = UIImagePNGRepresentation(mFrontImg);
-        NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        [imageData writeToFile:aPath atomically:YES];
-        
-        
-        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
-        UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
-        
-        mFrontImgPath = aPath;
-        
-        mFrontImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
-        
-        
-        self.mFrontassets = [assets copy];
-        
-        
-    }];
-    //3. 设置选择完视频的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
-        NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
-        self.mFrontassets = @[asset];
-        
-    }];
-    //4. 显示XMNPhotoPicker
-    [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
+    mNowSelected = 2;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
 }
 /**
  *  反面
@@ -294,66 +185,24 @@
  *  @param sender   
  */
 - (void)forwordAction:(UIButton *)sender{
-    //1. 推荐使用XMNPhotoPicker 的单例
-    //2. 设置选择完照片的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
-        
-        if (images.count > 1 || assets.count > 1) {
-            [LCProgressHUD showFailure:@"只能选择1张图片!"];
-            
-            NSLog(@"选择的图片超过3张!");
-            return ;
-        }
-        
-        NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        
-        
-        if (assets) {
-            for (XMNAssetModel *model in assets) {
-                mForwordImg = [Util scaleImg:model.previewImage maxsize:150];
-                [mView.mForwordBtn setBackgroundImage:model.thumbnail forState:0];
-                
-            }
-        }else{
-            
-            for (UIImage *img in images) {
-                mForwordImg = [Util scaleImg:img maxsize:150];
-                [mView.mForwordBtn setBackgroundImage:mForwordImg forState:0];
-            }
-        }
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        NSData *imageData = UIImagePNGRepresentation(mForwordImg);
-        NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        [imageData writeToFile:aPath atomically:YES];
-        
-        
-        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
-        UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
-        
-        mForwordImgPath = aPath;
-        
-        mForwordImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
-        
-        
-        self.mForwordassets = [assets copy];
-        
-        
-    }];
-    //3. 设置选择完视频的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
-        NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
-        self.mForwordassets = @[asset];
-        
-    }];
-    //4. 显示XMNPhotoPicker
-    [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
+    mNowSelected = 3;
+    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", nil];
+    ac.tag = 1001;
+    [ac showInView:[self.view window]];
 }
 
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (actionSheet.tag == 1001) {
+        if ( buttonIndex != 1 ) {
+            
+            [self startImagePickerVCwithButtonIndex:buttonIndex];
+        }
+    }else{
+        
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -369,5 +218,115 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)startImagePickerVCwithButtonIndex:(NSInteger )buttonIndex
+{
+    int type;
+    
+    
+    if (buttonIndex == 0) {
+        type = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing =NO;
+        
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+        
+    }
+    else if(buttonIndex == 1){
+        type = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = type;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:NULL];
+        
+        
+    }
+    
+    
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)imagePickerController didFinishPickingMediaWithInfo:(id)info
+{
+    
+    UIImage* tempimage1 = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self gotCropIt:tempimage1];
+    
+    [imagePickerController dismissViewControllerAnimated:YES completion:^() {
+        
+    }];
+    
+}
+-(void)gotCropIt:(UIImage*)photo
+{
+    RSKImageCropViewController *imageCropVC = nil;
+    
+    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    [self.navigationController pushViewController:imageCropVC animated:YES];
+    
+}
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+{
+    return   CGRectMake(self.view.center.x-1, self.view.center.y-1, mView.mHandBtn.frame.size.width, mView.mHandBtn.frame.size.height);
+    
+}
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+{
+    return [UIBezierPath bezierPathWithRect:CGRectMake(self.view.center.x-1, self.view.center.y-1, mView.mHandBtn.frame.size.width, mView.mHandBtn.frame.size.height)];
+    
+}
+- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    
+    if (mNowSelected == 1) {
+        [mView.mHandBtn setBackgroundImage:tempImage forState:0];
+    }else if (mNowSelected == 2){
+        
+        [mView.mFrontBtn setBackgroundImage:tempImage forState:0];
+    }else{
+        [mView.mForwordBtn setBackgroundImage:tempImage forState:0];
+    }
+    
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    NSData *imageData = UIImagePNGRepresentation(tempImage);
+    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    [imageData writeToFile:aPath atomically:YES];
+    
+    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+    UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+    
+    
+    tempImage = [Util scaleImg:imageView3.image maxsize:150];
+    
+    NSData *mmm = UIImagePNGRepresentation(tempImage);
+    
+    
+
+}
 
 @end
