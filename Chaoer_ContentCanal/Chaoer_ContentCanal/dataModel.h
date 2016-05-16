@@ -100,7 +100,7 @@
 @class JHProvince;
 @class GCanal;
 @class GCanalList;
-
+@class GPPTOrder;
 
 /**
  *  用户信息
@@ -905,6 +905,17 @@
  *  @param block    返回值
  */
 - (void)releasePPTorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----获取订单详情
+/**
+ *  获取订单详情
+ *
+ *  @param block 返回值
+ */
+- (void)getOrderDetail:(int)mType andMorderID:(NSString *)mOrderId andOrderCode:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GPPTOrder *mOrder))block;
+
+#pragma mark----获取跑跑腿个人信息
+- (void)getPPTPersonMsg:(void(^)(mBaseData *resb))block;
 
 @end
 
@@ -1929,9 +1940,23 @@
  *  用户id
  */
 @property (nonatomic,strong) NSString*  mUserId;
+/**
+ *  地址
+ */
+@property (nonatomic,strong) NSString*  mAdress;
+/**
+ *  商品价格
+ */
+@property (nonatomic,strong) NSString*  mGoodsPrice;
+/**
+ *  商品名称
+ */
+@property (nonatomic,strong) NSString*  mGoodsName;
 
 
 -(id)initWithObj:(NSDictionary*)obj;
+
+
 
 
 @end

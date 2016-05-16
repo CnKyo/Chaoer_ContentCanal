@@ -15,8 +15,12 @@
 @property (nonatomic,assign) int mOrderType;
 
 /**
- *  跑腿类型 1是出力事情 2是送东西
+ *  跑腿类型 1是商品买送 2是事情办理 3是送东西
  */
 @property (nonatomic,assign) int mType;
 
+/**
+ *  订单对象
+ */
+@property (strong,nonatomic) GPPTOrder *mOrder;
 @end

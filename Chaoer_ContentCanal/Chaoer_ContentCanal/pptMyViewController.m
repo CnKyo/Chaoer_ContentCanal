@@ -59,8 +59,8 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -100,6 +100,27 @@
     
 }
 
+- (void)headerBeganRefresh{
+
+    [[mUserInfo backNowUser]getPPTPersonMsg:^(mBaseData *resb) {
+        
+        [self headerEndRefresh];
+        
+        if (resb.mSucess) {
+      
+            [self.tableView reloadData];
+            
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+}
+- (void)upLoadPage{
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

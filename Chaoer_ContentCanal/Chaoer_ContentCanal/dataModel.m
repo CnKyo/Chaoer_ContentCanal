@@ -2244,6 +2244,66 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+#pragma mark----获取订单详情
+- (void)getOrderDetail:(int)mType andMorderID:(NSString *)mOrderId andOrderCode:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GPPTOrder *mOrder))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:mOrderId forKey:@"id"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    NSString *mUrlStr = nil;
+
+    if (mType == 1) {
+        mUrlStr = @"app/legwork/appOrderBuyInfo";
+        
+        
+    }else if (mType == 2) {
+        mUrlStr = @"app/legwork/appOrderTransactInfo";
+        
+        
+    }else{
+        mUrlStr = @"app/legwork/appOrderCarryInfo";
+        
+    }
+
+    
+    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            GPPTOrder *mOrder = [[GPPTOrder alloc] initWithObj:info.mData];
+            
+            block (info ,mOrder);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+}
+#pragma mark----获取跑跑腿个人信息
+- (void)getPPTPersonMsg:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"legworkUserId"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+    
+    
+}
+
 
 @end
 
@@ -3192,9 +3252,11 @@ bool g_rccbined = NO;
     self.mMaxPrice = [obj objectForKeyMy:@"maxPrice"];
     self.mOrderCode = [obj objectForKeyMy:@"orderCode"];
     self.mStartPrice = [obj objectForKeyMy:@"startPrice"];
+    self.mAdress = [obj objectForKeyMy:@"address"];
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    self.mGoodsPrice = [obj objectForKeyMy:@"goodsPrice"];
+
     
 }
-
-
 
 @end

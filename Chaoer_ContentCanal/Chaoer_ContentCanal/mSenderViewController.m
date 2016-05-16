@@ -30,8 +30,6 @@
 #import "pptMyViewController.h"
 
 #import "pptOrderDetailViewController.h"
-
-
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
@@ -59,9 +57,7 @@
      */
     pptReleaseView *mReleaseView;
     
-    UIScrollView *SectionView;
-    UIView *lineView;
-    UIButton *tempBT;
+ 
 
 }
 
@@ -71,7 +67,7 @@
     [self initAddress];
 
     [self hiddenReleaseView];
-    [self headRefresh];
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,11 +94,12 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
     self.haveFooter = YES;
+    [self.tableView headerBeginRefreshing];
 
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-
+     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
 
 }
 - (void)initAddress{
@@ -159,12 +156,14 @@
     }];
 
 }
-- (void)headRefresh{
+
+- (void)headerBeganRefresh{
+    
     self.page = 1;
     
     [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
         
-        [self.tableView headerEndRefreshing];
+        [self headerEndRefresh];
         [self.tempArray removeAllObjects];
         [self removeEmptyView];
         if (resb.mSucess) {
@@ -181,9 +180,9 @@
             [self showErrorStatus:resb.mMessage];
         }
     }];
-
+    
+    
 }
-
 
 - (void)footetBeganRefresh{
     
@@ -347,82 +346,10 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-//     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"收商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
-//    return mSegmentView;
 
-    
-    SectionView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 40)];
-    SectionView.showsVerticalScrollIndicator = NO;
-    SectionView.showsHorizontalScrollIndicator = NO;
-    SectionView.backgroundColor = [UIColor whiteColor];
-    
-    
-    for (UIView *view in SectionView.subviews) {
-        [view removeFromSuperview];
-    }
-    
-    lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 38, DEVICE_Width/3-20, 2)];
-    lineView.backgroundColor = M_CO;
-    [SectionView addSubview:lineView];
-    
-    
-    NSArray *mTT=  @[@"收商品买送", @"事情办理",@"送东西"];
-    //可滚动选择类型
-    for (int i = 0; i < mTT.count; i++) {
-        
-        
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*DEVICE_Width/3, 0, DEVICE_Width/3-1, 40)];
-        [btn setTitle:mTT[i] forState:UIControlStateNormal];
-        [btn setTitleColor:M_TCO forState:UIControlStateNormal];
-        btn.font = [UIFont systemFontOfSize:14];
-        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        btn.tag = i;
-        [btn addTarget:self action:@selector(SectionClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(i*(DEVICE_Width/3-1), 10, 0.5, 20)];
-        line.backgroundColor = M_LINECO;
-        
-        if (i == 0) {
-            tempBT = btn;
-            [btn setTitleColor:M_CO forState:UIControlStateNormal];
-        }
-        
-        [SectionView addSubview:btn];
-        
-        if(i != 0){
-            [SectionView addSubview:line];
-        }
-        
-    }
-    
-    SectionView.contentSize = CGSizeMake(DEVICE_Width/3*mTT.count, 40);
-
-    
-    return SectionView;
+    return mSegmentView;
     
 }
-
-- (void)SectionClick:(UIButton *)sender{
-    
-    [self removeEmptyView];
-    
-    [tempBT setTitleColor:M_TCO forState:UIControlStateNormal];
-    [sender setTitleColor:M_CO forState:UIControlStateNormal];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        lineView.center = sender.center;
-        CGRect rect = lineView.frame;
-        rect.origin.y = 38;
-        lineView.frame = rect;
-    }];
-    
-    mType = (int)sender.tag+1;
-    tempBT = sender;
-
-    [self headRefresh];
-    
-}
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
@@ -454,8 +381,19 @@
     
     pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    cell.mTitle.text = mOrder.mContext;
-    cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
+    
+    if (mType == 3) {
+        cell.mTitle.text = mOrder.mGoodsName;
+        cell.mDistance.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
+
+    }else if(mType ==2){
+        cell.mTitle.text = mOrder.mContext;
+        cell.mDistance.text = [NSString stringWithFormat:@"%@/%@m",mOrder.mAdress,mOrder.mDistance];
+
+    }else{
+        cell.mTitle.text = mOrder.mContext;
+        cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
+    }
     
     cell.mMoney.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];
     return cell;
@@ -466,9 +404,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GPPTOrder *mPPtOrder = self.tempArray[indexPath.row];
+
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 1;
     ppp.mType = 2;
+    ppp.mOrder = GPPTOrder.new;
+    ppp.mOrder = mPPtOrder;
     [self pushViewController:ppp];
 }
 

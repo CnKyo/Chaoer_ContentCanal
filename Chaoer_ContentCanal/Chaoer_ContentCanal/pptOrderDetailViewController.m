@@ -50,8 +50,9 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptDetailCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -63,6 +64,29 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell4"];
     nib = [UINib nibWithNibName:@"pptDetailCell5" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell5"];
+}
+
+
+- (void)headerBeganRefresh{
+
+    [[mUserInfo backNowUser] getOrderDetail:self.mType andMorderID:[NSString stringWithFormat:@"%d",self.mOrder.mId] andOrderCode:self.mOrder.mOrderCode block:^(mBaseData *resb, GPPTOrder *mOrder) {
+        
+        [self headerEndRefresh];
+        [self addEmptyView:nil];
+        
+        if (resb.mSucess) {
+            
+            self.mOrder = mOrder;
+            [self.tableView reloadData];
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+            [self popViewController];
+        }
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,6 +165,11 @@
     
     pptDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    
+    
+    
     
     return cell;
     
