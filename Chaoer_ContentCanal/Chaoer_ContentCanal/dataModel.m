@@ -3260,3 +3260,139 @@ bool g_rccbined = NO;
 }
 
 @end
+
+@implementation GPPTer
+static GPPTer *pptuser = nil;
+bool pptbined = NO;
+
++ (GPPTer *)backPPTUser{
+    if (pptuser) {
+        return pptuser;
+    }
+    if (pptbined) {
+        NSLog(@"警告！递归错误！");
+        return nil;
+    }
+    pptbined = YES;
+    @synchronized (self) {
+        if (!pptuser) {
+            pptuser = [GPPTer loadpptUserInfo];
+        }
+    }
+    pptbined = NO;
+    return pptuser;
+}
++(GPPTer*)loadpptUserInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSDictionary* dat = [def objectForKey:@"pptuserInfo"];
+    if( dat )
+    {
+        GPPTer* tu = [[GPPTer alloc]initWithObj:dat];
+        return tu;
+    }
+    return nil;
+}
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mUserId = [[obj objectForKeyMy:@"user_id"] intValue];
+    self.mPPTerId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mLevel = [obj objectForKeyMy:@"user_level"];
+    self.mFAQUrl = [obj objectForKeyMy:@"url"];
+    
+    self.mInfoId = [obj objectForKeyMy:@"info_id"];
+    
+    self.mRateNum = [obj objectForKeyMy:@"praise_num"];
+    
+    int mCancel = [[obj objectForKeyMy:@"is_cancel"] intValue];
+    if (mCancel == 0) {
+        self.mIscancel = NO;
+    }else{
+        self.mIscancel = YES;
+    }
+    
+    mCancel = [[obj objectForKeyMy:@"is_off"] intValue];
+    if (mCancel == 0) {
+        self.mIsOff = NO;
+    }else{
+        self.mIsOff = YES;
+    }
+    
+    
+    self.mFeedNum = [obj objectForKeyMy:@"complaints_count"];
+    
+    self.mHeaderImg = [obj objectForKeyMy:@"user_level"];
+    
+    self.mTotleMoney = [obj objectForKeyMy:@"pile_money"];
+    
+    self.mCreateTime = [obj objectForKeyMy:@"gen_time"];
+    
+    self.mGetOrderNum = [obj objectForKeyMy:@"order_take_num"];
+    
+    self.mDepositMoney = [obj objectForKeyMy:@"legwork_deposit"];
+
+    
+}
+- (BOOL)isVaildpptUser{
+    return NO;
+}
+
++ (void)getPPTerInfo:(int)mUserId block:(void (^)(mBaseData *resb, GPPTer *mUser))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUser" parameters:para call:^(mBaseData *info) {
+        
+        [self dealpptUserSession:info block:block];
+    }];
+
+    
+}
++(void)dealpptUserSession:(mBaseData*)info block:(void(^)(mBaseData* resb, GPPTer*user))block{
+
+#warning 返回的数据是整个用户信息对象
+    if ( info.mSucess || info.mState == 200011) {
+        NSDictionary* tmpdic = info.mData;
+        
+        NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
+        
+        GPPTer* tu = [[GPPTer alloc]initWithObj:tdic];
+        tmpdic = tdic;
+        if ([tu isVaildpptUser]) {
+            [GPPTer savepptUserInfo:tmpdic];
+            pptuser = nil;
+            
+        }
+        
+        
+        
+    }
+    
+    
+    block( info , [GPPTer backPPTUser] );
+}
++(void)savepptUserInfo:(NSDictionary *)dccat{
+    dccat = [Util delNUll:dccat];
+    
+    NSMutableDictionary *dcc = [[NSMutableDictionary alloc] initWithDictionary:dccat];
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    
+    [def setObject:dcc forKey:@"pptuserInfo"];
+    
+    
+    
+    [def synchronize];
+}
+
+
+@end

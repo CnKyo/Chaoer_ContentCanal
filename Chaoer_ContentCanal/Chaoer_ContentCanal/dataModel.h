@@ -1956,7 +1956,91 @@
 
 -(id)initWithObj:(NSDictionary*)obj;
 
+@end
+
+#pragma mark----跑跑腿对象
+@interface GPPTer : NSObject
+/**
+ *  平台用户id
+ */
+@property (nonatomic,assign) int        mUserId;
+/**
+ *  跑跑腿用户id
+ */
+@property (nonatomic,assign) int        mPPTerId;
+/**
+ *  是否已注销身份
+ */
+@property (nonatomic,assign) BOOL        mIscancel;
+/**
+ *  是否关闭？
+ */
+@property (nonatomic,assign) BOOL        mIsOff;
+
+/**
+ *  累计收益
+ */
+@property (nonatomic,strong) NSString*  mTotleMoney;
+/**
+ *  押金
+ */
+@property (nonatomic,strong) NSString*  mDepositMoney;
+/**
+ *  赞扬次数
+ */
+@property (nonatomic,strong) NSString*  mRateNum;
+/**
+ *  投诉次数
+ */
+@property (nonatomic,strong) NSString*  mFeedNum;
+/**
+ *  提交的资料信息
+ */
+@property (nonatomic,strong) NSString*  mInfoId;
+/**
+ *  创建时间
+ */
+@property (nonatomic,strong) NSString*  mCreateTime;
+/**
+ *  用户等级
+ */
+@property (nonatomic,strong) NSString*  mLevel;
+/**
+ *  用户头像
+ */
+@property (nonatomic,strong) NSString*  mHeaderImg;
+/**
+ *  接单次数
+ */
+@property (nonatomic,strong) NSString*  mGetOrderNum;
+/**
+ *  常见问题url
+ */
+@property (nonatomic,strong) NSString*  mFAQUrl;
 
 
+-(id)initWithObj:(NSDictionary*)obj;
+
+-(void)fetchIt:(NSDictionary*)obj;
+
+/**
+ *  是否是一个合法的用户对象
+ *
+ *  @return
+ */
+-(BOOL)isVaildpptUser;
+
+
+/**
+ *  返回当前用户
+ *
+ *  @return
+ */
++ (GPPTer *)backPPTUser;
+
++ (void)getPPTerInfo:(int)mUserId block:(void (^)(mBaseData *resb, GPPTer *mUser))block;
+
++(void)dealpptUserSession:(mBaseData*)info block:(void(^)(mBaseData* resb, GPPTer*user))block;
++(void)savepptUserInfo:(NSDictionary *)dccat;
 
 @end

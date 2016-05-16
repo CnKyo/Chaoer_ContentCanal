@@ -30,6 +30,9 @@
 
     pptMyHeaderView *mHeaderView;
     
+    GPPTer *mPPTUser;
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,12 +105,13 @@
 
 - (void)headerBeganRefresh{
 
-    [[mUserInfo backNowUser]getPPTPersonMsg:^(mBaseData *resb) {
+    [GPPTer getPPTerInfo:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, GPPTer *mUser) {
+
         
         [self headerEndRefresh];
         
         if (resb.mSucess) {
-      
+            mPPTUser = mUser;
             [self.tableView reloadData];
             
         }else{
