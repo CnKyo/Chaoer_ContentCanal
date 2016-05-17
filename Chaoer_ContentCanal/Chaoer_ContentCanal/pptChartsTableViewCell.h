@@ -34,5 +34,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIView *mTagView;
 
+@property (nonatomic,strong) NSArray *mTagArr;
+
 
 @end

@@ -85,6 +85,16 @@
     
     NSString *mTagIds;
 
+    NSString *mToolStr;
+    NSString *mToolId;
+    
+    NSString *mGoodsName;
+    NSString *mGoodsPrice;
+    NSString *mSendAddress;
+    NSString *mArriveAddress;
+
+
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -131,6 +141,12 @@
     mBlockAddressStr = nil;
     mNoteStr = nil;
     
+    mToolStr = nil;
+    mToolId = nil;
+    mGoodsName = nil;
+    mGoodsPrice = nil;
+    mArriveAddress = nil;
+    mSendAddress = nil;
     
     [self initView];
     
@@ -233,6 +249,10 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
     nib = [UINib nibWithNibName:@"releaseCell4" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell4"];
+    nib = [UINib nibWithNibName:@"releaseCell5" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell5"];
+    nib = [UINib nibWithNibName:@"releaseCell6" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell6"];
     
 }
 
@@ -307,19 +327,27 @@
         
         return 210;
     }else if (indexPath.row == 1){
-        
-        if (self.mType == 2) {
+        if (self.mType == 1) {
+            return 110;
+            
+        }
+        else if (self.mType == 2) {
             
             return 50;
-
+            
             
         }else{
-            return 110;
-
+            return 160;
+            
             
         }
     }else{
-        return 215;
+        if (self.mType == 3) {
+            return 360;
+        }else{
+            return 215;
+        }
+        
         
         
     }
@@ -381,22 +409,7 @@
         
     }else if (indexPath.row == 1){
         
-        if (self.mType == 2) {
-            reuseCellId = @"cell3";
-            
-            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            cell.mMoneyTx.delegate = self;
-            mMoney = cell.mMoneyTx.text;
-//            if (mMoneyTT != nil) {
-//                cell.mMoneyTx.text = mMoneyTT;
-//            }
-            
-            return cell;
-       
-        }else{
-    
+        if (self.mType == 1) {
             reuseCellId = @"cell2";
             
             releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
@@ -411,38 +424,133 @@
                 
                 
             }
-//            if (mPriceTT != nil) {
-//                cell.mPriceTx.text = mPriceTT;
-//            }
+     
             
             [cell.mPriceBtn addTarget:self action:@selector(mPriceAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            return cell;
+            
+        }
+        
+        else  if (self.mType == 2) {
+            reuseCellId = @"cell3";
+            
+            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.mMoneyTx.delegate = self;
+            mMoney = cell.mMoneyTx.text;
+         
+            
+            return cell;
+            
+        }else{
+            
+            reuseCellId = @"cell6";
+            
+            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            mMoney = cell.mMoneyTx.text;
+            mGoodsName = cell.mGoodsName.text;
 
+            cell.mMoneyTx.delegate = self;
+            mGoodsPrice = cell.mGoodsPriceTx.text;
+            
             return cell;
         }
     }else{
-        reuseCellId = @"cell4";
         
-        releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [cell.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        mTimeStr = cell.mTime.text;
-        
-//        if (mTTStr != nil) {
-//            cell.mTime.text = mTTStr;
-//        }
+        if (self.mType == 3) {
+            reuseCellId = @"cell5";
+            
+            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell.mChoiceTool addTarget:self action:@selector(choiceToolAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if (mToolStr != nil) {
+                [cell.mChoiceTool setTitle:mToolStr forState:0];
 
-        mPhoneStr = cell.mPhone.text;
-        mNoteStr = cell.mNoteTX.text;
-   
-        cell.mPhone.delegate = self;
-        cell.mTime.delegate = self;
-        cell.mNoteTX.delegate = self;
-        return cell;
+            }
+            mTimeStr = cell.mTime.text;
+            
+            mPhoneStr = cell.mPhone.text;
+            mNoteStr = cell.mNoteTX.text;
+            mSendAddress = cell.mSndAddressTx.text;
+            mArriveAddress = cell.mArriveAddressTx.text;
+            cell.mPhone.delegate = self;
+            cell.mTime.delegate = self;
+            cell.mNoteTX.delegate = self;
+            
+            
+            return cell;
+        }else{
+            reuseCellId = @"cell4";
+            
+            releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            mTimeStr = cell.mTime.text;
+            
+            mPhoneStr = cell.mPhone.text;
+            mNoteStr = cell.mNoteTX.text;
+            
+            cell.mPhone.delegate = self;
+            cell.mTime.delegate = self;
+            cell.mNoteTX.delegate = self;
+            return cell;
+        }
+        
+
     }
 
     
+}
+- (void)choiceToolAction:(UIButton *)sender{
+
+    [self LoadTool];
+    
+}
+- (void)LoadTool{
+
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getTool:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        if (resb.mSucess) {
+            
+            [self loadActionSheet:mArr];
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+}
+- (void)loadActionSheet:(NSArray *)mARR{
+ 
+    NSMutableArray *mTT = [NSMutableArray new];
+    
+    
+    for (GPPTools *mTool in mARR) {
+    
+        [mTT addObject:mTool.mToolName];
+        
+    }
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择交通工具" style:MHSheetStyleWeiChat itemTitles:mTT];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+        GPPTools *mTool = mARR[index];
+    
+        mToolStr = mTool.mToolName;
+        mToolId = [NSString stringWithFormat:@"%d",mTool.mId];
+        
+        [self.tableView reloadData];
+    }];
+
 }
 - (void)mPriceAction:(UIButton *)sender{
 
@@ -551,26 +659,62 @@
         [self showErrorStatus:@"需求不能为空！"];
         return;
     }
-//    if (mTagStr == nil || mTagStr.length == 0) {
-//        [self showErrorStatus:@"标签不能为空！"];
-//        return;
-//    }
+    if (self.mType == 3) {
+        if (mGoodsName == nil || mGoodsName.length == 0 || [mGoodsName isEqualToString:@""]) {
+            [self showErrorStatus:@"请输入商品名称！"];
+            return;
+        }
+    }
+    if (self.mType == 2 || self.mType == 1) {
+        if (mBlockAddressStr == nil || mBlockAddressStr.length == 0) {
+            [self showErrorStatus:@"地址不能为空！"];
+            return;
+        }
+    }
+    
+    if (self.mType == 1 || self.mType == 3) {
+        if (mTagStr == nil || mTagStr.length == 0) {
+            [self showErrorStatus:@"标签不能为空！"];
+            return;
+        }
+    }
+    
+    if (self.mType == 2 || self.mType == 3) {
+        
+    
+    }else{
+        
+        if (mMin == nil) {
+            [self showErrorStatus:@"请输入最低价!"];
+            return;
+        }
+        if (mMax == nil) {
+            [self showErrorStatus:@"请输入最高价!"];
+            return;
+        }
+
+        
+    }
     if (mMoney == nil || mMoney.length == 0) {
         [self showErrorStatus:@"酬劳金额不能为空！"];
         return;
     }
-    if (mTimeStr == nil || mTimeStr.length == 0) {
-        [self showErrorStatus:@"时间不能为空！"];
-        return;
+    
+    if (self.mType == 3) {
+        
+    }else{
+        if (mTimeStr == nil || mTimeStr.length == 0) {
+            [self showErrorStatus:@"时间不能为空！"];
+            return;
+        }
     }
+    
+  
     if(![Util isMobileNumber:mPhoneStr]){
         [self showErrorStatus:@"请输入合法的手机号码"];
         return;
     }
-    if (mBlockAddressStr == nil || mBlockAddressStr.length == 0) {
-        [self showErrorStatus:@"地址不能为空！"];
-        return;
-    }
+
     if (mNoteStr == nil || mNoteStr.length == 0) {
         [self showErrorStatus:@"备注不能为空！"];
         return;
@@ -612,7 +756,17 @@
         }];
     }else{
     
-        
+        [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:mTagIds andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:nil andMoney:mMoney andAddress:nil andPhone:mPhoneStr andNote:mNoteStr andArriveTime:nil andGoodsName:mGoodsName andGoodsPrice:mGoodsPrice andSendAddress:mSendAddress andArriveAddress:mArriveAddress andTool:mToolId block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+            
+        }];
     }
     
 

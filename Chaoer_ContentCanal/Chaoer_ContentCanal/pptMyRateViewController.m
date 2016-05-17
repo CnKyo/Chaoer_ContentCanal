@@ -37,6 +37,8 @@
     int mBad;
     
     WKSegmentControl    *mSegmentView;
+    
+    int mType;
 
 }
 - (void)viewDidLoad {
@@ -47,18 +49,20 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
-
+    mType = 0;
     [self initView];
 }
 - (void)initView{
+    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
     
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveFooter = YES;
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyRateCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -132,9 +136,7 @@
 
     
     
-    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
-    
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
+  
     
     
 }
@@ -194,6 +196,62 @@
     
 }
 
+
+- (void)headerBeganRefresh{
+    
+    self.page = 1;
+    
+    [[GPPTer backPPTUser] getPPTRateList:mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+    
+    
+    
+}
+
+- (void)footetBeganRefresh{
+    self.page ++;
+    
+    [[GPPTer backPPTUser] getPPTRateList:mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self footetEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -231,6 +289,9 @@
 }
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     NSLog(@"点击了%lu",(unsigned long)mIndex);
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
+    [self.tableView headerBeginRefreshing];
+    
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -244,9 +305,14 @@
 {
     NSString *reuseCellId = @"cell";
     
+    GPPTRateList *mRate = self.tempArray[indexPath.row];
     
     pptMyRateCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
+    cell.mName.text = mRate.mNickName;
+    cell.mContent.text = mRate.mContent;
+    cell.mTime.text = mRate.mGenTime;
+    cell.mPoint.text = [NSString stringWithFormat:@"%d分",mRate.mService_efficiency];
     
     return cell;
     

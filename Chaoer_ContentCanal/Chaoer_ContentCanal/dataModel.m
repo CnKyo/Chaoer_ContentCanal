@@ -2151,7 +2151,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }else if (mType == 2){
     
     }else{
-    
+        mUrl = @"app/legwork/user/appGoodsType";
     }
     
     [[HTTPrequest sharedClient] postUrl:mUrl parameters:nil call:^(mBaseData *info) {
@@ -2244,6 +2244,42 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+
+
+- (void)releasePPTSendorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime andGoodsName:(NSString *)mGoodsName andGoodsPrice:(NSString *)mGoodsPrice andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andTool:(NSString *)mTool block:(void(^)(mBaseData *resb))block{
+
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mGoodsName forKey:@"goodsName"];
+    [para setObject:mMoney forKey:@"legworkMoney"];
+    [para setObject:mTagId forKey:@"goodsTypeId"];
+    [para setObject:mGoodsPrice forKey:@"goodsPrice"];
+
+    [para setObject:mSendAddress forKey:@"sendAddress"];
+    [para setObject:mArriveAddress forKey:@"arrivedAddress"];
+    [para setObject:mPhone forKey:@"phone"];
+    [para setObject:mTool forKey:@"trafficId"];
+
+    [para setObject:mNote forKey:@"comments"];
+    [para setObject:mLng forKey:@"lng"];
+    [para setObject:mLat forKey:@"lat"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appOrderCarry" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+}
+
+
 #pragma mark----获取订单详情
 - (void)getOrderDetail:(int)mType andMorderID:(NSString *)mOrderId andOrderCode:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GPPTOrder *mOrder))block{
 
@@ -2304,6 +2340,53 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+- (void)getPPTRoll:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+//    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(10) forKey:@"pageSize"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/rankingList" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [info.mData objectForKeyMy:@"list"]) {
+                [tempArr addObject:[[GPPTRankList alloc] initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+}
+
+
+- (void)getTool:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appTrafficMethod" parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTools alloc] initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+
+}
 
 @end
 
@@ -3220,7 +3303,7 @@ bool g_rccbined = NO;
     
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     self.mTagName = [obj objectForKeyMy:@"typeName"];
-    
+    self.mTypeName = [obj objectForKeyMy:@"typeName"];
 }
 
 
@@ -3309,7 +3392,7 @@ bool pptbined = NO;
     self.mPPTerId = [[obj objectForKeyMy:@"id"] intValue];
     self.mLevel = [obj objectForKeyMy:@"user_level"];
     self.mFAQUrl = [obj objectForKeyMy:@"url"];
-    
+    self.mName = [obj objectForKeyMy:@"real_name"];
     self.mInfoId = [obj objectForKeyMy:@"info_id"];
     
     self.mRateNum = [obj objectForKeyMy:@"praise_num"];
@@ -3331,7 +3414,7 @@ bool pptbined = NO;
     
     self.mFeedNum = [obj objectForKeyMy:@"complaints_count"];
     
-    self.mHeaderImg = [obj objectForKeyMy:@"user_level"];
+    self.mHeaderImg = [obj objectForKeyMy:@"portrait"];
     
     self.mTotleMoney = [obj objectForKeyMy:@"pile_money"];
     
@@ -3344,7 +3427,7 @@ bool pptbined = NO;
     
 }
 - (BOOL)isVaildpptUser{
-    return NO;
+    return YES;
 }
 
 + (void)getPPTerInfo:(int)mUserId block:(void (^)(mBaseData *resb, GPPTer *mUser))block{
@@ -3394,5 +3477,356 @@ bool pptbined = NO;
     [def synchronize];
 }
 
+- (void)getPPTBaseUserInfo:(void(^)(mBaseData* resb, GPPTUserInfo*user))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
+        
+        block (info ,[[GPPTUserInfo alloc] initWithObj:info.mData]);
+    }];
+}
+
+- (void)getPPTMsgList:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserMsg" parameters:para call:^(mBaseData *info) {
+        
+
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"list"]) {
+                [tempArr addObject:[[GPPTMsgInfo alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+            
+        }else{
+        
+            block (info,nil);
+        }
+    }];
+
+}
+
+
+- (void)getPPTTotleMoney:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserPile" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [info.mData objectForKeyMy:@"list"]) {
+                [tempArr addObject:[[GPPTReward alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+            
+        }else{
+            
+            block (info,nil);
+        }
+    }];
+}
+- (void)getPPTRateList:(int)mType andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
+
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserEvaluate" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"list"]) {
+                [tempArr addObject:[[GPPTRateList alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+            
+        }else{
+            
+            block (info,nil);
+        }
+    }];
+    
+}
+
+- (void)getMyTags:(void(^)(mBaseData* resb, NSArray*mArr))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserTags" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTMyTag alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+            
+        }else{
+            
+            block (info,nil);
+        }
+    }];
+}
+
+- (void)pptDeleteMessages:(NSString *)mMessageIds block:(void(^)(mBaseData *resb))block{
+
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    [para setObject:mMessageIds forKey:@"ids"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/deleteUserMsg" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            block (info);
+            
+        }else{
+            
+            block (info);
+        }
+    }];
+    
+    
+    
+    
+}
+
+
+
+
+@end
+@implementation GPPTUserInfo
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mLevel = [[obj objectForKeyMy:@"level"] intValue];
+    self.mPile = [[obj objectForKeyMy:@"pile"] intValue];
+    self.mCardID = [obj objectForKeyMy:@"cardID"];
+    
+    self.mComplaints = [[obj objectForKeyMy:@"complaints"] intValue];
+    
+    self.mName = [obj objectForKeyMy:@"name"];
+    
+    int sex = [[obj objectForKeyMy:@"sex"] intValue];
+    if (sex == 0) {
+        self.mSex = @"女";
+    }else{
+        self.mSex = @"男";
+    }
+    
+
+    
+    self.mDeposit = [[obj objectForKeyMy:@"deposit"] intValue];
+    
+    self.mOrders = [obj objectForKeyMy:@"orders"];
+    
+    self.mTel = [obj objectForKeyMy:@"tel"];
+    
+    self.mGen_time = [obj objectForKeyMy:@"gen_time"];
+    
+    self.mPraise = [obj objectForKeyMy:@"praise"];
+    
+    
+    
+}
+
+
+
+@end
+@implementation GPPTRankList
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mLevel = [[obj objectForKeyMy:@"user_level"] intValue];
+    
+    self.mName = [obj objectForKeyMy:@"real_name"];
+    
+    int sex = [[obj objectForKeyMy:@"real_sex"] intValue];
+    if (sex == 0) {
+        self.mSex = @"女";
+    }else{
+        self.mSex = @"男";
+    }
+    
+    self.mId = [[obj objectForKeyMy:@"user_id"] intValue];
+    
+    self.mHeaderImg = [obj objectForKeyMy:@"portrait"];
+    
+    
+    self.mTel = [obj objectForKeyMy:@"real_tel"];
+    
+    self.mOrderNum = [[obj objectForKeyMy:@"order_take_num"] intValue];
+    
+    self.mTags = [obj objectForKeyMy:@"tags"];
+}
+
+
+@end
+
+@implementation GPPTMyTag
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mTagNum = [[obj objectForKeyMy:@"count"] intValue];
+    
+    self.mTagName = [obj objectForKeyMy:@"tag_name"];
+
+}
+
+
+@end
+
+@implementation GPPTReward
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mOrderType = [[obj objectForKeyMy:@"order_type"] intValue];
+    
+    self.mPileMoney = [[obj objectForKeyMy:@"pile_money"] intValue];
+    
+    self.mGenTime = [obj objectForKeyMy:@"gen_time"];
+    self.mPileTitle = [obj objectForKeyMy:@"pile_title"];
+    self.mOrderCode = [obj objectForKeyMy:@"order_code"];
+
+}
+
+
+@end
+
+@implementation GPPTMsgInfo
+
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mMsgType = [[obj objectForKeyMy:@"msg_type"] intValue];
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    
+    self.mGenTime = [obj objectForKeyMy:@"gen_time"];
+    self.mContent = [obj objectForKeyMy:@"msg_content"];
+    self.mTitle = [obj objectForKeyMy:@"msg_title"];
+    
+}
+@end
+
+@implementation GPPTools
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+
+    self.mToolName = [obj objectForKeyMy:@"trafficName"];
+    
+}
+
+
+@end
+
+@implementation GPPTRateList
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mService_efficiency = [[obj objectForKeyMy:@"service_efficiency"] intValue];
+    self.mService_satisfaction = [[obj objectForKeyMy:@"service_satisfaction"] intValue];
+    
+    self.mContent = [obj objectForKeyMy:@"evaluate_context"];
+    self.mNickName = [obj objectForKeyMy:@"nick_name"];
+    self.mGenTime = [obj objectForKeyMy:@"gen_time"];
+
+    
+}
 
 @end

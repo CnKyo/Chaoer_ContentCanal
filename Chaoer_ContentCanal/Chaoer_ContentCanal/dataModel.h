@@ -906,6 +906,7 @@
  */
 - (void)releasePPTorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime block:(void(^)(mBaseData *resb))block;
 
+- (void)releasePPTSendorder:(int)mType andTagId:(NSString *)mTagId andMin:(NSString *)mMin andMAx:(NSString *)mMax andLat:(NSString *)mLat andLng:(NSString *)mLng andContent:(NSString *)mContent andMoney:(NSString *)mMoney andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andNote:(NSString *)mNote andArriveTime:(NSString *)mTime andGoodsName:(NSString *)mGoodsName andGoodsPrice:(NSString *)mGoodsPrice andSendAddress:(NSString *)mSendAddress andArriveAddress:(NSString *)mArriveAddress andTool:(NSString *)mTool block:(void(^)(mBaseData *resb))block;
 #pragma mark----获取订单详情
 /**
  *  获取订单详情
@@ -916,7 +917,22 @@
 
 #pragma mark----获取跑跑腿个人信息
 - (void)getPPTPersonMsg:(void(^)(mBaseData *resb))block;
+/**
+ *  获取跑腿榜单
+ *
+ *  @param mPage 分页
+ *  @param mNum  数量
+ *  @param block 返回值
+ */
+- (void)getPPTRoll:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
+#pragma matk----获取交通工具
+/**
+ *  获取交通工具
+ *
+ *  @param block 返回值
+ */
+- (void)getTool:(void(^)(mBaseData *resb,NSArray *mArr))block;
 @end
 
 @interface SMessage : NSObject
@@ -1895,6 +1911,8 @@
  *  标签名称
  */
 @property (nonatomic,strong) NSString*  mTagName;
+
+@property (nonatomic,strong) NSString*  mTypeName;
 -(id)initWithObj:(NSDictionary*)obj;
 
 @end
@@ -1958,6 +1976,8 @@
 
 @end
 
+
+@class GPPTUserInfo;
 #pragma mark----跑跑腿对象
 @interface GPPTer : NSObject
 /**
@@ -1976,6 +1996,10 @@
  *  是否关闭？
  */
 @property (nonatomic,assign) BOOL        mIsOff;
+/**
+ *  姓名
+ */
+@property (nonatomic,strong) NSString*  mName;
 
 /**
  *  累计收益
@@ -2042,5 +2066,183 @@
 
 +(void)dealpptUserSession:(mBaseData*)info block:(void(^)(mBaseData* resb, GPPTer*user))block;
 +(void)savepptUserInfo:(NSDictionary *)dccat;
+/**
+ *  获取跑跑腿用户基本信息
+ *
+ *  @param block 返回值
+ */
+- (void)getPPTBaseUserInfo:(void(^)(mBaseData* resb, GPPTUserInfo*user))block;
+
+/**
+ *  获取跑跑腿消息列表
+ *
+ *  @param mPage 分页
+ *  @param mNum  数量
+ *  @param block 返回值
+ */
+- (void)getPPTMsgList:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block;
+
+/**
+ *  获取收益
+ *
+ *  @param mPage 分页
+ *  @param mNum  数量
+ *  @param block 返回值
+ */
+- (void)getPPTTotleMoney:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block;
+
+/**
+ *  获取跑跑腿评价列表
+ *  @param mtype 评价类型  
+ *  @param mPage 分页
+ *  @param mNum  数量
+ *  @param block 返回值
+ */
+- (void)getPPTRateList:(int)mType andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData* resb, NSArray*mArr))block;
+/**
+ *  获取标签
+ *
+ *  @param block 返回值
+ */
+- (void)getMyTags:(void(^)(mBaseData* resb, NSArray*mArr))block;
+
+#pragma mark----删除消息
+/**
+ *  删除消息
+ *
+ *  @param mMessageIds 消息id
+ *  @param block       返回值
+ */
+- (void)pptDeleteMessages:(NSString *)mMessageIds block:(void(^)(mBaseData *resb))block;
+
+@end
+
+@interface GPPTUserInfo : NSObject
+
+@property (nonatomic,assign) int        mLevel;
+
+@property (nonatomic,assign) int        mPile;
+
+@property (nonatomic,strong) NSString*        mCardID;
+
+@property (nonatomic,assign) int        mComplaints;
+
+@property (nonatomic,strong) NSString*  mSex;
+
+@property (nonatomic,strong) NSString*  mName;
+
+@property (nonatomic,assign) int  mDeposit;
+
+@property (nonatomic,strong) NSString*  mOrders;
+
+@property (nonatomic,strong) NSString*  mTel;
+
+@property (nonatomic,strong) NSString*  mGen_time;
+
+@property (nonatomic,strong) NSString*  mPraise;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+#pragma mark----跑跑腿排行榜
+@interface GPPTRankList : NSObject
+
+@property (nonatomic,assign) int        mLevel;
+
+@property (nonatomic,assign) int        mOrderNum;
+
+@property (nonatomic,assign) int        mId;
+
+@property (nonatomic,strong) NSString*  mSex;
+
+@property (nonatomic,strong) NSString*  mName;
+
+@property (nonatomic,strong) NSString*  mHeaderImg;
+
+@property (nonatomic,strong) NSString*  mTel;
+
+@property (nonatomic,strong) NSArray* mTags;
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+
+@interface GPPTMyTag : NSObject
+
+@property (nonatomic,assign) int        mTagNum;
+
+@property (nonatomic,strong) NSString*  mTagName;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+/**
+ *  酬劳
+ */
+@interface GPPTReward : NSObject
+
+@property (nonatomic,assign) int        mOrderType;
+
+@property (nonatomic,assign) int        mPileMoney;
+
+@property (nonatomic,strong) NSString*  mGenTime;
+
+@property (nonatomic,strong) NSString*  mPileTitle;
+
+@property (nonatomic,strong) NSString*  mOrderCode;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+#pragma mark----跑跑腿消息列表
+/**
+ *  跑跑腿消息列表
+ */
+@interface GPPTMsgInfo : NSObject
+
+@property (nonatomic,assign) int        mMsgType;
+
+@property (nonatomic,assign) int        mId;
+
+@property (nonatomic,strong) NSString*  mGenTime;
+
+@property (nonatomic,strong) NSString*  mContent;
+
+@property (nonatomic,strong) NSString*  mTitle;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+@interface GPPTools : NSObject
+
+@property (nonatomic,assign) int        mId;
+
+@property (nonatomic,strong) NSString*  mToolName;
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+@interface GPPTRateList : NSObject
+
+
+@property (nonatomic,assign) int        mService_efficiency;
+
+@property (nonatomic,assign) int        mService_satisfaction;
+
+@property (nonatomic,strong) NSString*  mGenTime;
+
+@property (nonatomic,strong) NSString*  mNickName;
+
+@property (nonatomic,strong) NSString*  mContent;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
 
 @end

@@ -33,8 +33,9 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    self.haveFooter = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"choulaoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -42,6 +43,63 @@
 
     
 }
+
+
+- (void)headerBeganRefresh{
+    
+    self.page = 1;
+    
+    [[GPPTer backPPTUser] getPPTTotleMoney:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+    
+    
+    
+}
+
+- (void)footetBeganRefresh{
+    self.page ++;
+    
+    [[GPPTer backPPTUser] getPPTTotleMoney:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self footetEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -65,7 +123,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 4;
+    return self.tempArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,10 +137,13 @@
 {
     NSString *reuseCellId = @"cell";
     
+    GPPTReward *mReward = self.tempArray[indexPath.row];
     
     choulaoCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-
+    cell.mTime.text = mReward.mGenTime;
+    cell.mTitle.text = mReward.mPileTitle;
+    cell.mContent.text = [NSString stringWithFormat:@"酬金:%d元",mReward.mPileMoney];
     return cell;
     
 }

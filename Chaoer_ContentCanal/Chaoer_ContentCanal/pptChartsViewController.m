@@ -29,14 +29,69 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-//    self.haveHeader = YES;
-//    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    self.haveFooter = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptChartsTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
     
+}
+- (void)headerBeganRefresh{
+
+    self.page = 1;
+    
+    [[mUserInfo backNowUser] getPPTRoll:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+            
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+    
+    
+
+}
+
+- (void)footetBeganRefresh{
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getPPTRoll:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self footetEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +116,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 15;
+    return self.tempArray.count;
 }
 
 
@@ -76,10 +131,22 @@
 {
     NSString *reuseCellId = @"cell";
     
+    GPPTRankList *mRank = self.tempArray[indexPath.row];
     
     pptChartsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mRank.mHeaderImg];
+    
+    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+    
+    cell.mName.text = mRank.mName;
+    cell.mLevel.text = [NSString stringWithFormat:@"V%d",mRank.mLevel];
+    cell.mPhone.text = mRank.mTel;
+    cell.mOrderNum.text = [NSString stringWithFormat:@"月接单:%d单",mRank.mOrderNum];
+    
+    cell.mTagArr = mRank.mTags;
+    
     return cell;
     
 }

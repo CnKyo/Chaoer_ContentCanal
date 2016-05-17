@@ -27,19 +27,23 @@
     self.mHeader.layer.cornerRadius = 3;
     
     
+    NSMutableArray *mTT = [NSMutableArray new];
+    
+    for (NSDictionary *dic in self.mTagArr) {
+        [mTT addObject:[dic objectForKey:@"tag_name"]];
+    }
+    
     for (UILabel *lll in self.mTagView.subviews) {
         [lll removeFromSuperview];
     }
     
-    NSArray *tt = @[@"帅气",@"阳光",@"速度"];
-    
     CGFloat LW = self.mTagView.mwidth/3-15;
     
-    for ( int i = 0; i<tt.count; i++) {
+    for ( int i = 0; i<mTT.count; i++) {
         
         UILabel *lll = [UILabel new];
         lll.frame = CGRectMake(5+LW*i, 2, LW-10, 25);
-        lll.text = tt[i];
+        lll.text = mTT[i];
         lll.font = [UIFont systemFontOfSize:13];
         lll.textColor = [UIColor whiteColor];
         lll.textAlignment = NSTextAlignmentCenter;

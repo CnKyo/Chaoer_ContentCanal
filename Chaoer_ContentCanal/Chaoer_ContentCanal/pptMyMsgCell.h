@@ -10,4 +10,10 @@
 
 @interface pptMyMsgCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *mTitle;
+
+@property (weak, nonatomic) IBOutlet UILabel *mTime;
+
+@property (weak, nonatomic) IBOutlet UILabel *mcontent;
+
 @end

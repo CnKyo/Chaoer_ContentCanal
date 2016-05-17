@@ -61,5 +61,27 @@
  *  备注
  */
 @property (weak, nonatomic) IBOutlet UITextField *mNoteTX;
+#pragma mark----cell第四种样式
+/**
+ *  发货地址
+ */
+@property (weak, nonatomic) IBOutlet UITextField *mSndAddressTx;
+/**
+ *  送达地址
+ */
+@property (weak, nonatomic) IBOutlet UITextField *mArriveAddressTx;
+/**
+ *  选择工具
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChoiceTool;
+
+#pragma mark----cell第四种样式
+/**
+ *  商品名称
+ */
+@property (weak, nonatomic) IBOutlet UITextField *mGoodsName;
+@property (weak, nonatomic) IBOutlet UITextField *mGoodsPriceTx;
+
+
 
 @end

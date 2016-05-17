@@ -32,6 +32,8 @@
     int level;
     
     int money;
+    
+    GPPTUserInfo *mPPTUser;
 }
 
 
@@ -50,15 +52,19 @@
 #pragma mark----初始化headerview 
 - (void)initHeaderView{
 
-    mHeaderView = [UIView new];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 140);
-    mHeaderView.backgroundColor = [UIColor whiteColor];
+    if (mHeaderView == nil) {
+        mHeaderView = [UIView new];
+        mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 140);
+        mHeaderView.backgroundColor = [UIColor whiteColor];
+     
+    }
+    
     UIView *line = [UIView new];
     line.frame = CGRectMake(0, 0, DEVICE_Width, 2);
     line.backgroundColor = [UIColor whiteColor];
-//    line.layer.masksToBounds = YES;
-//    line.layer.borderColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.89 alpha:1.00].CGColor;
-//    line.layer.borderWidth = 0.5;
+    //    line.layer.masksToBounds = YES;
+    //    line.layer.borderColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.89 alpha:1.00].CGColor;
+    //    line.layer.borderWidth = 0.5;
     [mHeaderView addSubview:line];
     
     
@@ -69,26 +75,30 @@
     lll.text = @"跑跑腿等级";
     lll.textAlignment = NSTextAlignmentLeft;
     [mHeaderView addSubview:lll];
-    
-    
-    mLevelLb = [UILabel new];
-    mLevelLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line.mbottom+10, 120, 20);
-    mLevelLb.textColor = [UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
-    mLevelLb.font = [UIFont systemFontOfSize:15];
-    mLevelLb.text = @"V2";
-    mLevelLb.textAlignment = NSTextAlignmentCenter;
-    [mHeaderView addSubview:mLevelLb];
-    
-//    mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15)];
-        mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
-    mLevelProgress.mType = 1;
-    mLevelProgress.maxValue = 100;
-    //设置背景色
-    mLevelProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
-    mLevelProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
+    if (mLevelLb == nil) {
+        mLevelLb = [UILabel new];
+        mLevelLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line.mbottom+10, 120, 20);
+        mLevelLb.textColor = [UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
+        mLevelLb.font = [UIFont systemFontOfSize:15];
+        mLevelLb.text = @"V2";
+        mLevelLb.textAlignment = NSTextAlignmentCenter;
+        [mHeaderView addSubview:mLevelLb];
 
-    mLevelProgress.presentlab.textColor = [UIColor redColor];
-    [mHeaderView addSubview:mLevelProgress];
+    }
+    
+    
+    if (mLevelProgress == nil) {
+        mLevelProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mLevelLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
+        mLevelProgress.mType = 1;
+        mLevelProgress.maxValue = 100;
+        //设置背景色
+        mLevelProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
+        mLevelProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
+        
+        mLevelProgress.presentlab.textColor = [UIColor redColor];
+        [mHeaderView addSubview:mLevelProgress];
+    }
+
     
     UIView *line2 = [UIView new];
     line2.frame = CGRectMake(0, mLevelProgress.mbottom+15, DEVICE_Width, 1);
@@ -100,28 +110,33 @@
     mmm.frame = CGRectMake(15, line2.mbottom+10, 120, 20);
     mmm.textColor = [UIColor colorWithRed:0.18 green:0.18 blue:0.18 alpha:1.00];
     mmm.font = [UIFont systemFontOfSize:15];
-    mmm.text = @"跑跑腿等级";
+    mmm.text = @"累计收益";
     mmm.textAlignment = NSTextAlignmentLeft;
     [mHeaderView addSubview:mmm];
 
-    mMoneyLb = [UILabel new];
-    mMoneyLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line2.mbottom+10, 120, 20);
-    mMoneyLb.textColor = [UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
-    mMoneyLb.font = [UIFont systemFontOfSize:15];
-    mMoneyLb.text = @"跑跑腿等级";
-    mMoneyLb.textAlignment = NSTextAlignmentCenter;
-    [mHeaderView addSubview:mMoneyLb];
-
+    if (mMoneyLb == nil) {
+        mMoneyLb = [UILabel new];
+        mMoneyLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line2.mbottom+10, 120, 20);
+        mMoneyLb.textColor = [UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
+        mMoneyLb.font = [UIFont systemFontOfSize:15];
+        mMoneyLb.text = [NSString stringWithFormat:@"累计收益：%d元",mPPTUser.mDeposit];
+        mMoneyLb.textAlignment = NSTextAlignmentCenter;
+        [mHeaderView addSubview:mMoneyLb];
+    }
     
-//    mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15)];
-    mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
-    mMoneyProgress.mType = 1;
-    mMoneyProgress.maxValue = 100;
-    //设置背景色
-    mMoneyProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
-    mMoneyProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
-    mMoneyProgress.presentlab.textColor = [UIColor redColor];
-    [mHeaderView addSubview:mMoneyProgress];
+
+    if (mMoneyProgress == nil) {
+        mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
+        mMoneyProgress.mType = 1;
+        mMoneyProgress.maxValue = mPPTUser.mDeposit*5;
+        //设置背景色
+        mMoneyProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
+        mMoneyProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
+        mMoneyProgress.presentlab.textColor = [UIColor redColor];
+        [mHeaderView addSubview:mMoneyProgress];
+
+    }
+    
     
     [self.tableView setTableHeaderView:mHeaderView];
     
@@ -141,7 +156,7 @@
 -(void)timer
 {
     level++;
-    if (level<=64) {
+    if (level<=mPPTUser.mLevel) {
         
         [mLevelProgress setPresent:level];
         
@@ -159,7 +174,7 @@
 -(void)timer22
 {
     money++;
-    if (money <= 87){
+    if (money <= mPPTUser.mDeposit){
         [mMoneyProgress setPresent:money];
     }
     else
@@ -180,14 +195,34 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyInfoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-    [self initHeaderView];
     
+}
+
+
+- (void)headerBeganRefresh{
+
+    [[GPPTer backPPTUser] getPPTBaseUserInfo:^(mBaseData *resb, GPPTUserInfo *user) {
+        
+        [self headerEndRefresh];
+        if (resb.mSucess) {
+            
+            mPPTUser = user;
+            [self initHeaderView];
+            [self.tableView reloadData];
+            
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+            [self popViewController];
+        }
+        
+    }];
 }
 
 
@@ -230,7 +265,12 @@
     
     pptMyInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    
+    cell.mName.text = mPPTUser.mName;
+    cell.mSex.text = mPPTUser.mSex;
+    cell.mIdentify.text = [NSString stringWithFormat:@"%@",mPPTUser.mCardID];
+    cell.mConnect.text = mPPTUser.mTel;
+    cell.mAcount.text = mPPTUser.mTel;
+    cell.mMoney.text = [NSString stringWithFormat:@"%d元",mPPTUser.mDeposit];
     return cell;
     
 }

@@ -64,6 +64,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="wMn-HQ-vBn" secondAttribute="trailing" id="rXr-gS-PEf"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="mTime" destination="L99-tC-89O" id="vr4-Ax-zmg"/>
+                <outlet property="mTitle" destination="xYa-5j-Ogo" id="UFv-O7-Bpl"/>
+                <outlet property="mcontent" destination="wMn-HQ-vBn" id="00c-ZA-FCY"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

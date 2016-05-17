@@ -19,6 +19,8 @@
 #import "pptMyAddressViewController.h"
 #import "pptMyRateViewController.h"
 #import "pptMyMsgViewController.h"
+
+#import "myTagViewController.h"
 @interface pptMyViewController ()<UITableViewDelegate,UITableViewDataSource
 >
 
@@ -111,8 +113,7 @@
         [self headerEndRefresh];
         
         if (resb.mSucess) {
-            mPPTUser = mUser;
-            [self.tableView reloadData];
+            [self upLoadPage];
             
         }else{
         
@@ -124,6 +125,17 @@
 }
 - (void)upLoadPage{
 
+    mHeaderView.mLevel.text = [NSString stringWithFormat:@"%@",[GPPTer backPPTUser].mLevel];
+    mHeaderView.mMoney.text = [NSString stringWithFormat:@"%@¥",[GPPTer backPPTUser].mTotleMoney];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[GPPTer backPPTUser].mHeaderImg];
+
+    [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+
+    mHeaderView.mName.text = [GPPTer backPPTUser].mName;
+    
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -131,7 +143,8 @@
 }
 #pragma mark----标签
 - (void)tagAction:(UIButton *)sender{
-
+    myTagViewController *ppp = [[myTagViewController alloc] initWithNibName:@"myTagViewController" bundle:nil];
+    [self pushViewController:ppp];
 }
 #pragma mark----消息
 - (void)msgAction:(UIButton *)sender{
@@ -202,6 +215,13 @@
         [self pushViewController:ppt];
     }else{
     
+        
+        WebVC* vc = [[WebVC alloc]init];
+        vc.mName = @"常见问题";
+        vc.mUrl = [GPPTer backPPTUser].mFAQUrl;
+        [self pushViewController:vc];
+
+        
     }
     
     

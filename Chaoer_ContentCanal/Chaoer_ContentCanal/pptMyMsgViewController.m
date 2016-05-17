@@ -23,6 +23,7 @@
     
     UIButton *mDeleteBtn;
     
+    NSMutableArray *mDeleteArr;
     
 }
 - (void)viewDidLoad {
@@ -34,11 +35,11 @@
     _isAll = NO;
     self.selectArray = [@[] mutableCopy];
     self.dataSourceArray = [@[] mutableCopy];
-
-    for (int i = 0; i < 8; i++) {
-        NSString *string = [NSString stringWithFormat:@"jack-%d", i];
-        [_dataSourceArray addObject:string];
-    }
+    mDeleteArr = [NSMutableArray new];
+//    for (int i = 0; i < 8; i++) {
+//        NSString *string = [NSString stringWithFormat:@"jack-%d", i];
+//        [_dataSourceArray addObject:string];
+//    }
 
 
     mSelected = 1;
@@ -56,9 +57,9 @@
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
-    
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveFooter = YES;
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyMsgCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -73,15 +74,103 @@
     [self.view addSubview:mDeleteBtn];
     
 }
-- (void)deleteAction:(UIButton *)sender{
+- (void)headerBeganRefresh{
+
+    self.page = 1;
     
+    [[GPPTer backPPTUser] getPPTMsgList:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [_dataSourceArray removeAllObjects];
+        [self removeEmptyView];
+        
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                [_dataSourceArray addObjectsFromArray:mArr];
+            }
+            
+            
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+            
+        }
+        [self.tableView reloadData];
+
+    }];
+    
+}
+
+- (void)footetBeganRefresh{
+    self.page ++;
+    
+    [[GPPTer backPPTUser] getPPTMsgList:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                [_dataSourceArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+            
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+            
+        }
+        
+    }];
+}
+
+- (void)deleteAction:(UIButton *)sender{
+    [mDeleteArr removeAllObjects];
     if (_selectArray.count != 0) {
+        
+        for (GPPTMsgInfo *mMessage in _selectArray) {
+            [mDeleteArr addObject:[NSString stringWithFormat:@"%d",mMessage.mId]];
+        }
+        
+        
+        NSString *message = @"";
+        for (int i =0;i<mDeleteArr.count;i++) {
+            
+            NSString *str = mDeleteArr[i];
+            if (i == mDeleteArr.count-1) {
+                message = [message stringByAppendingString:[NSString stringWithFormat:@"%@",str]];
+            }else{
+                message = [message stringByAppendingString:[NSString stringWithFormat:@"%@,",str]];
+            }
+            
+            
+        }
+        
+        [self showWithStatus:@"正在操作..."];
+        [[GPPTer backPPTUser] pptDeleteMessages:message block:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [self dismiss];
+            }else{
+                [self showErrorStatus:resb.mMessage
+                 ];
+            }
+        }];
+        
         for (int i = 0; i < _selectArray.count; i++) {
             [_dataSourceArray removeObjectsInArray:_selectArray];
             [self.tableView reloadData];
         }
         
         [_selectArray removeAllObjects];
+        
+        
     }
     
     [self.tableView setEditing:NO animated:YES];
@@ -208,8 +297,13 @@
 {
     NSString *reuseCellId = @"cell";
     
+    GPPTMsgInfo *mMsg = self.dataSourceArray[indexPath.row];
     
     pptMyMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    cell.mTitle.text = mMsg.mTitle;
+    cell.mcontent.text = mMsg.mContent;
+    cell.mTime.text = mMsg.mGenTime;
     
     return cell;
     
@@ -218,15 +312,20 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GPPTMsgInfo *mMsg = self.dataSourceArray[indexPath.row];
+
     if (!_isAll) {
         [self.selectArray addObject:_dataSourceArray[indexPath.row]];
+         [mDeleteArr addObject:[NSString stringWithFormat:@"%d",mMsg.mId]];
     }
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    GPPTMsgInfo *mMsg = self.dataSourceArray[indexPath.row];
+
     [self.selectArray removeObject:_dataSourceArray[indexPath.row]];
-    
+    [mDeleteArr removeObject:[NSString stringWithFormat:@"%d",mMsg.mId]];
+
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
