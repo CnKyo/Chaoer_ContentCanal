@@ -2290,11 +2290,12 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSString *mUrlStr = nil;
 
     if (mType == 1) {
-        mUrlStr = @"app/legwork/appOrderBuyInfo";
-        
+        mUrlStr = @"app/legwork/appOrderTransactInfo";
+
         
     }else if (mType == 2) {
-        mUrlStr = @"app/legwork/appOrderTransactInfo";
+        mUrlStr = @"app/legwork/appOrderBuyInfo";
+
         
         
     }else{
@@ -2387,6 +2388,109 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 
 }
+
+- (void)getPPTOrderHisTory:(int)mLeft andRight:(int)mRight and:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(mNum) forKey:@"rows"];
+
+    NSString *mUrl = nil;
+    
+    if (mLeft == 1) {
+        [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
+        if (mRight == 1) {
+            mUrl = @"app/legwork/user/appOrderBuyRecord";
+        }else if (mRight == 2){
+            mUrl = @"app/legwork/user/appOrderTransactRecord";
+
+        }else{
+            mUrl = @"app/legwork/user/appOrderCarryRecord";
+
+        }
+    }else{
+        [para setObject:NumberWithInt([GPPTer backPPTUser].mUserId) forKey:@"legId"];
+
+        if (mRight == 1) {
+            mUrl = @"app/legwork/user/appOrderBuyLegwrokRecord";
+        }else if (mRight == 2){
+            mUrl = @"app/legwork/user/appOrderTransactLegwrokRecord";
+            
+        }else{
+            mUrl = @"app/legwork/user/appOrderCarryLegwrokRecord";
+            
+        }
+    }
+    
+    
+    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GPPTOrder alloc] initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+    
+  
+}
+
+
+- (void)applePPT:(NSString *)mName andSex:(NSString *)mSex andPhone:(NSString *)mPhone andIdentify:(NSString *)mIdentify andHandImg:(NSString *)mHandImg andForntImg:(NSString *)mFrontImg andForwordImg:(NSString *)mForwordImg block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mName forKey:@"realName"];
+    [para setObject:mSex forKey:@"realSex"];
+    [para setObject:mPhone forKey:@"realTel"];
+    [para setObject:mIdentify forKey:@"cardID"];
+    [para setObject:NumberWithFloat(100) forKey:@"money"];
+    [para setObject:mHandImg forKey:@"persons"];
+    [para setObject:mFrontImg forKey:@"cardFace"];
+    [para setObject:mForwordImg forKey:@"cardBack"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/auth/legworkRegUser" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+    
+
+}
+- (void)payPPTAplly:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(100) forKey:@"money"];
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/auth/depositPay" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+}
+
 
 @end
 
@@ -3338,8 +3442,9 @@ bool g_rccbined = NO;
     self.mAdress = [obj objectForKeyMy:@"address"];
     self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
     self.mGoodsPrice = [obj objectForKeyMy:@"goodsPrice"];
+    self.mComments = [obj objectForKeyMy:@"comments"];
+    self.mStatusName = [obj objectForKeyMy:@"statusName"];
 
-    
 }
 
 @end

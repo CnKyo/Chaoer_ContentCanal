@@ -59,23 +59,6 @@
                             <constraint firstAttribute="height" constant="1" id="Crm-cS-tiM"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_delete" translatesAutoresizingMaskIntoConstraints="NO" id="8d6-7I-aDh">
-                        <rect key="frame" x="10" y="115" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="hLv-5L-FbZ"/>
-                            <constraint firstAttribute="height" constant="20" id="uHh-vI-R4h"/>
-                        </constraints>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjg-6P-UwC">
-                        <rect key="frame" x="10" y="110" width="90" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="c06-fe-U8D"/>
-                            <constraint firstAttribute="width" constant="90" id="fZr-xX-P3w"/>
-                        </constraints>
-                        <state key="normal" title="删除">
-                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggl-uG-GSK">
                         <rect key="frame" x="220" y="110" width="87" height="30"/>
                         <constraints>
@@ -97,7 +80,6 @@
                 <constraints>
                     <constraint firstItem="DAF-zf-E8w" firstAttribute="top" secondItem="YZl-Un-APA" secondAttribute="bottom" constant="9" id="3KH-Sx-Xil"/>
                     <constraint firstItem="Pgz-iP-uJW" firstAttribute="leading" secondItem="Ozs-LP-QIf" secondAttribute="leadingMargin" constant="-8" id="8LA-PB-VK3"/>
-                    <constraint firstItem="rjg-6P-UwC" firstAttribute="leading" secondItem="Ozs-LP-QIf" secondAttribute="leadingMargin" constant="2" id="8ee-d7-8I7"/>
                     <constraint firstItem="9vC-s2-PwN" firstAttribute="top" secondItem="b0V-kS-qMB" secondAttribute="bottom" constant="2" id="9dD-qp-kd5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="b0V-kS-qMB" secondAttribute="trailing" id="DUA-uU-2Un"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Krw-sK-myP" secondAttribute="trailing" id="Ijv-Z5-LQ2"/>
@@ -106,7 +88,6 @@
                     <constraint firstItem="9vC-s2-PwN" firstAttribute="leading" secondItem="YZl-Un-APA" secondAttribute="trailing" constant="8" id="N7g-ll-MRP"/>
                     <constraint firstAttribute="topMargin" secondItem="hJH-nd-3qi" secondAttribute="top" id="O1P-f5-w4P"/>
                     <constraint firstItem="b0V-kS-qMB" firstAttribute="top" secondItem="Krw-sK-myP" secondAttribute="bottom" constant="3" id="QGa-mM-mbQ"/>
-                    <constraint firstItem="8d6-7I-aDh" firstAttribute="leading" secondItem="Ozs-LP-QIf" secondAttribute="leadingMargin" constant="2" id="R0M-4A-qDH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Pgz-iP-uJW" secondAttribute="trailing" constant="-8" id="RcL-dF-Tt4"/>
                     <constraint firstItem="H6O-h3-D3v" firstAttribute="top" secondItem="9vC-s2-PwN" secondAttribute="bottom" constant="3" id="VY7-Pc-tNW"/>
                     <constraint firstItem="Krw-sK-myP" firstAttribute="leading" secondItem="hJH-nd-3qi" secondAttribute="trailing" constant="8" id="aUJ-hU-XON"/>
@@ -115,19 +96,16 @@
                     <constraint firstItem="DAF-zf-E8w" firstAttribute="leading" secondItem="Ozs-LP-QIf" secondAttribute="leadingMargin" constant="-8" id="d6n-19-LIQ"/>
                     <constraint firstItem="b0V-kS-qMB" firstAttribute="leading" secondItem="YZl-Un-APA" secondAttribute="trailing" constant="8" id="dIH-Wd-8Oc"/>
                     <constraint firstAttribute="leadingMargin" secondItem="YZl-Un-APA" secondAttribute="leading" id="e1M-VZ-8yN"/>
-                    <constraint firstItem="8d6-7I-aDh" firstAttribute="top" secondItem="DAF-zf-E8w" secondAttribute="bottom" constant="15" id="e92-Zb-leY"/>
                     <constraint firstAttribute="leadingMargin" secondItem="hJH-nd-3qi" secondAttribute="leading" id="hUT-gG-pZb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="DAF-zf-E8w" secondAttribute="trailing" constant="-8" id="k6D-j0-xXQ"/>
                     <constraint firstItem="H6O-h3-D3v" firstAttribute="leading" secondItem="YZl-Un-APA" secondAttribute="trailing" constant="8" id="n9c-df-1Zc"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9vC-s2-PwN" secondAttribute="trailing" id="p71-ks-O5r"/>
                     <constraint firstAttribute="topMargin" secondItem="Krw-sK-myP" secondAttribute="top" id="udU-TW-mOf"/>
                     <constraint firstItem="Pgz-iP-uJW" firstAttribute="top" secondItem="ggl-uG-GSK" secondAttribute="bottom" constant="10" id="wmv-3M-fXe"/>
-                    <constraint firstItem="rjg-6P-UwC" firstAttribute="top" secondItem="DAF-zf-E8w" secondAttribute="bottom" constant="10" id="wxd-4r-dpe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="mContent" destination="b0V-kS-qMB" id="lfm-yN-TRp"/>
-                <outlet property="mDeleteBtn" destination="rjg-6P-UwC" id="6q0-BC-qgR"/>
                 <outlet property="mDistanceAndTime" destination="9vC-s2-PwN" id="0Po-0z-9xd"/>
                 <outlet property="mImg" destination="YZl-Un-APA" id="baw-Tp-2Nl"/>
                 <outlet property="mMoney" destination="H6O-h3-D3v" id="h3E-UT-Z5V"/>
@@ -138,7 +116,4 @@
             <point key="canvasLocation" x="206" y="362"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="order_delete" width="34" height="32"/>
-    </resources>
 </document>

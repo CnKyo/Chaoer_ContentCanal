@@ -2029,6 +2029,7 @@
 				04102E151CE42C6F006F82E2 /* 筛选 */,
 				04102E061CE419ED006F82E2 /* 跑腿榜 */,
 				04AD8A871CE304D500A3F87F /* 申请跑跑腿 */,
+				04D49C641CE7068900BAD649 /* 首页跑单详情 */,
 				04648C5E1CB4F1A4006823C9 /* mSenderViewController.h */,
 				04648C5F1CB4F1A4006823C9 /* mSenderViewController.m */,
 				04648C601CB4F1A4006823C9 /* mSenderViewController.xib */,
@@ -2311,7 +2312,6 @@
 		04E5A8231CE5E21000A2D111 /* 跑单详情 */ = {
 			isa = PBXGroup;
 			children = (
-				04D49C641CE7068900BAD649 /* 首页跑单详情 */,
 			);
 			name = "跑单详情";
 			sourceTree = "<group>";

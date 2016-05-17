@@ -118,6 +118,7 @@
         }else{
         
             [self showErrorStatus:resb.mMessage];
+            [self popViewController];
         }
         
     }];

@@ -10,7 +10,7 @@
 
 @interface pptOrderDetailViewController : BaseVC
 /**
- *  订单类型 1是接单详情 2是订单详情
+ *  订单类型 1是大厅接单详情 2是订单详情
  */
 @property (nonatomic,assign) int mOrderType;
 

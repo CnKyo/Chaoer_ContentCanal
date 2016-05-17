@@ -33,10 +33,7 @@
  *  酬金
  */
 @property (weak, nonatomic) IBOutlet UILabel *mMoney;
-/**
- *  删除按钮
- */
-@property (weak, nonatomic) IBOutlet UIButton *mDeleteBtn;
+
 /**
  *  评价按钮
  */

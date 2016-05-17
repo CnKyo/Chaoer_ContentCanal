@@ -12,8 +12,9 @@
 #import "complaintTableViewCell.h"
 
 #import "RSKImageCropper.h"
+#import "TFFileUploadManager.h"
 
-@interface complaintViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate>
+@interface complaintViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate,THHHTTPDelegate>
 
 @end
 
@@ -30,8 +31,14 @@
      *  当前选择的哪一个
      */
     int mNowSelected;
+    
+    
+    NSString *mImgPath;
+    NSString *mImgPath2;
+    NSString *mImgPath3;
+
 }
- 
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -82,6 +89,9 @@
     [mBtn btnClick:^{
         
         NSLog(@"提交");
+        
+        
+        
         
     }];
     [bbb addSubview:mBtn];
@@ -151,6 +161,8 @@
     [cell.mPickImg1 addTarget:self action:@selector(pickAction1) forControlEvents:UIControlEventTouchUpInside];
     [cell.mPickImg2 addTarget:self action:@selector(pickAction2) forControlEvents:UIControlEventTouchUpInside];
     [cell.mPickImg3 addTarget:self action:@selector(pickAction3) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     [cell.mPickImg1 setBackgroundImage:tempImage1 forState:0];
     [cell.mPickImg2 setBackgroundImage:tempImage2 forState:0];
@@ -298,6 +310,47 @@
     NSData *mmm = UIImagePNGRepresentation(tempImage);
     
     
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:@"complaint" forKey:@"type"];
+    [para setObject:mmm forKey:@"file"];
+    [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/legwork/uploadcomplaintlegwork",[HTTPrequest returnNowURL]];
+    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+    manage.delegate = self;
+    [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError) {
+            NSLog(@"请求出错 %@",connectionError);
+        }else{
+            NSLog(@"请求返回：\n%@",response);
+        }
+    }];
+    
+    
+}
+
+
+- (void)block:(mBaseData *)resb{
+    
+    
+    if (resb.mSucess) {
+        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        
+        if (mNowSelected == 1) {
+            mImgPath = [resb.mData objectForKey:@"pic"];
+        }else if (mNowSelected == 2){
+            mImgPath2 = [resb.mData objectForKey:@"pic"];
+            
+        }else{
+            mImgPath3 = [resb.mData objectForKey:@"pic"];
+            
+        }
+        
+        
+    }else{
+        [SVProgressHUD showErrorWithStatus:resb.mMessage];
+    }
     
 }
 

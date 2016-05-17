@@ -13,8 +13,9 @@
 #import "depositViewController.h"
 
 #import "RSKImageCropper.h"
+#import "TFFileUploadManager.h"
 
-@interface openPPTViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate>
+@interface openPPTViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate,THHHTTPDelegate>
 
 @end
 
@@ -52,9 +53,33 @@
      *  当前选择的哪一个
      */
     int mNowSelected;
+    
+    NSString *mSex;
 
     
+    
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    /**
+     IQKeyboardManager为自定义收起键盘
+     **/
+    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -66,7 +91,7 @@
     mHandImg = nil;
     mFrontImg = nil;
     mForwordImg = nil;
-    
+    mSex = nil;
     [self initView];
     [self initData];
 
@@ -89,11 +114,20 @@
 
     [mView.mForwordBtn addTarget:self action:@selector(forwordAction:) forControlEvents:UIControlEventTouchUpInside];
 
+    [mView.mSexBtn addTarget:self action:@selector(sexAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568+30);
     
 }
+- (void)sexAction:(UIButton *)sender{
+    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"请选择性别！" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+    
+    [acc showInView:self.view];
+}
+
+
 
 - (void)initData{
 
@@ -131,9 +165,8 @@
         [mView.mNameTx becomeFirstResponder];
         return;
     }
-    if (mView.mSexTx.text.length == 0) {
+    if (mSex.length == 0 || mSex == nil) {
         [SVProgressHUD showErrorWithStatus:@"性别不能为空！"];
-        [mView.mSexTx becomeFirstResponder];
         return;
     }
     if (mView.mConnectTx.text.length == 0) {
@@ -146,14 +179,23 @@
         [mView.mIdentifyTx becomeFirstResponder];
         return;
     }
-    if (mHandImg == nil && mFrontImg == nil && mForwordImg == nil) {
+    if (mHandImgPath == nil && mFrontImgPath == nil && mForwordImgPath == nil) {
         [SVProgressHUD showErrorWithStatus:@"必须完善身份证照片！"];
         return;
     }
     
-    
-    depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
-    [self pushViewController:ddd];
+    [self showWithStatus:@"正在操作..."];
+    [[mUserInfo backNowUser] applePPT:mView.mNameTx.text andSex:mSex andPhone:mView.mConnectTx.text andIdentify:mView.mIdentifyTx.text andHandImg:mHandImgPath andForntImg:mFrontImgPath andForwordImg:mForwordImgPath block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [self dismiss];
+            depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+            [self pushViewController:ddd];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
     
 }
 
@@ -199,7 +241,22 @@
             [self startImagePickerVCwithButtonIndex:buttonIndex];
         }
     }else{
+        NSLog(@"选择了第 %ld个", (long)buttonIndex);
         
+        NSString *sex = nil;
+        NSString *text = nil;
+        if (buttonIndex == 0) {
+            sex = @"m";
+            text= @"男";
+            mSex = @"1";
+        }else{
+            text= @"女";
+            sex = @"w";
+            mSex = @"0";
+            
+        }
+        [mView.mSexBtn setTitle:text forState:0];
+
     }
     
 }
@@ -325,8 +382,49 @@
     
     NSData *mmm = UIImagePNGRepresentation(tempImage);
     
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:@"apply" forKey:@"type"];
+    [para setObject:mmm forKey:@"file"];
+    [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/legwork/uploadApplyLegworkImg",[HTTPrequest returnNowURL]];
+    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+    manage.delegate = self;
+    [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (connectionError) {
+            NSLog(@"请求出错 %@",connectionError);
+        }else{
+            NSLog(@"请求返回：\n%@",response);
+        }
+    }];
+
 
 }
+
+
+- (void)block:(mBaseData *)resb{
+    
+    
+    if (resb.mSucess) {
+        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+        
+        if (mNowSelected == 1) {
+            mHandImgPath = [resb.mData objectForKey:@"pic"];
+        }else if (mNowSelected == 2){
+            mFrontImgPath = [resb.mData objectForKey:@"pic"];
+
+        }else{
+            mForwordImgPath = [resb.mData objectForKey:@"pic"];
+
+        }
+
+        
+    }else{
+        [SVProgressHUD showErrorWithStatus:resb.mMessage];
+    }
+    
+}
+
 
 @end

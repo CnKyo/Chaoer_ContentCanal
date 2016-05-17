@@ -62,6 +62,9 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *mOkBtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *mSexBtn;
+
+
 /**
  *  初始化方法
  *

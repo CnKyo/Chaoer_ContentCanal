@@ -40,7 +40,15 @@
     
     int mType;
 
+
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tableView headerBeginRefreshing];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -50,12 +58,11 @@
     self.hiddenRightBtn = YES;
     
     mType = 0;
+    
     [self initView];
 }
 - (void)initView{
-    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
     
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
@@ -136,7 +143,9 @@
 
     
     
-  
+    NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
+    
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:mTT andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:2];
     
     
 }
@@ -230,7 +239,7 @@
 - (void)footetBeganRefresh{
     self.page ++;
     
-    [[GPPTer backPPTUser] getPPTRateList:mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+    [[GPPTer backPPTUser] getPPTTotleMoney:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self footetEndRefresh];
         [self removeEmptyView];
@@ -274,7 +283,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 8;
+    return self.tempArray.count;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -308,7 +317,6 @@
     GPPTRateList *mRate = self.tempArray[indexPath.row];
     
     pptMyRateCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
     cell.mName.text = mRate.mNickName;
     cell.mContent.text = mRate.mContent;
     cell.mTime.text = mRate.mGenTime;

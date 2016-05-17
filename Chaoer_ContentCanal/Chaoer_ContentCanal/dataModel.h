@@ -933,6 +933,37 @@
  *  @param block 返回值
  */
 - (void)getTool:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma matk----获取历史订单
+/**
+ *  获取历史订单
+ *
+ *  @param mLeft  订单状态
+ *  @param mRight 订单类型
+ *  @param mPage  分页
+ *  @param mNum   数量
+ *  @param block  返回值
+ */
+- (void)getPPTOrderHisTory:(int)mLeft andRight:(int)mRight and:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+
+#pragma mark----申请跑跑腿
+/**
+ *  申请跑跑腿
+ *
+ *  @param mName       姓名
+ *  @param mSex        性别
+ *  @param mPhone      电话
+ *  @param mIdentify   身份证
+ *  @param mHandImg    手持照片
+ *  @param mFrontImg   正面
+ *  @param mForwordImg 反面
+ *  @param block       返回值
+ */
+- (void)applePPT:(NSString *)mName andSex:(NSString *)mSex andPhone:(NSString *)mPhone andIdentify:(NSString *)mIdentify andHandImg:(NSString *)mHandImg andForntImg:(NSString *)mFrontImg andForwordImg:(NSString *)mForwordImg block:(void(^)(mBaseData *resb))block;
+#pragma mark----扣除押金
+- (void)payPPTAplly:(void(^)(mBaseData *resb))block;
+
 @end
 
 @interface SMessage : NSObject
@@ -1969,7 +2000,12 @@
 /**
  *  商品名称
  */
+@property (nonatomic,strong) NSString*  mComments;
+
+@property (nonatomic,strong) NSString*  mStatusName;
+
 @property (nonatomic,strong) NSString*  mGoodsName;
+
 
 
 -(id)initWithObj:(NSDictionary*)obj;

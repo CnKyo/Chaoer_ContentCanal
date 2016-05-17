@@ -26,7 +26,14 @@
 @end
 
 @implementation pptHistoryViewController
+{
 
+    int mLeft;
+    int mRight;
+    
+    NSMutableArray *mDataArray;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -34,7 +41,7 @@
     NSString *mTT = nil;
     if (self.mType == 1) {
         mTT = @"跑腿纪录";
-        self.hiddenRightBtn = NO;
+        self.hiddenRightBtn = YES;
         self.rightBtnTitle = @"历史纪录";
         [self setRightBtnWidth:100];
         
@@ -48,8 +55,12 @@
     self.Title = self.mPageName = mTT;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-
- 
+    
+    mLeft = 1;
+    mRight = 1;
+    
+    mDataArray = [NSMutableArray new];
+    
     self.leftArray = @[@"发布跑单",@"接手跑单"];
     self.rightArray = @[@"商品买送",@"办理事情",@"我去跑腿"];
     [self setupTopView];
@@ -97,7 +108,7 @@
         for (int i = 0 ; i < self.leftArray.count ; i++ ) {
             
             MCPopMenuItem *item = [[MCPopMenuItem alloc] init];
-            item.itemid = @"0";
+            item.itemid = [NSString stringWithFormat:@"%d",i+1];
             item.itemtitle = weakSelf.leftArray[i];
             [arrayM addObject:item];
         }
@@ -109,6 +120,9 @@
             [weakSelf.levelButton refreshWithTitle:item.itemtitle];
             weakSelf.levelButton.extend = item;
             
+            mLeft = [[NSString stringWithFormat:@"%@",item.itemid] intValue];
+            [weakSelf.tableView headerBeginRefreshing];
+
         };
         
     };
@@ -121,7 +135,7 @@
         for (int i = 0 ; i < self.rightArray.count ; i++ ) {
             
             MCPopMenuItem *item = [[MCPopMenuItem alloc] init];
-            item.itemid = @"0";
+            item.itemid = [NSString stringWithFormat:@"%d",i+1];
             item.itemtitle = weakSelf.rightArray[i];
             [arrayM addObject:item];
         }
@@ -132,7 +146,9 @@
             
             [weakSelf.groupButton refreshWithTitle:item.itemtitle];
             weakSelf.groupButton.extend = item;
-            
+            mRight = [[NSString stringWithFormat:@"%@",item.itemid] intValue];
+            [weakSelf.tableView headerBeginRefreshing];
+
         };
     };
 }
@@ -141,17 +157,77 @@
     [self loadTableView:CGRectMake(0, 104, DEVICE_Width, DEVICE_Height-104) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    //    self.haveHeader = YES;
-    //    [self.tableView headerBeginRefreshing];
+    self.haveHeader = YES;
+    self.haveFooter = YES;
+    [self.tableView headerBeginRefreshing];
     
-    UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-    nib = [UINib nibWithNibName:@"pptHistoryTableViewCell2" bundle:nil];
+    UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell2" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
 
     
 }
 
+- (void)headerBeganRefresh{
+
+    
+    NSLog(@"左边：%d右边：%d",mLeft,mRight);
+    
+    self.page = 1;
+    
+    [[mUserInfo backNowUser] getPPTOrderHisTory:mLeft andRight:mRight and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        [mDataArray removeAllObjects];
+
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+            
+                [mDataArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+        
+    }];
+    
+    
+}
+
+- (void)footetBeganRefresh{
+
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getPPTOrderHisTory:mLeft andRight:mRight and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [mDataArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+        
+    }];
+
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -174,18 +250,14 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return mDataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if (self.mType == 1) {
-        return 100;
-    }else{
-        return 160;
-    }
     
+    return 160;
   
 }
 
@@ -193,17 +265,35 @@
 {
     
     NSString *reuseCellId = nil;
-    if (self.mType == 1) {
-        reuseCellId = @"cell";
+    reuseCellId = @"cell2";
 
-    }else{
-        reuseCellId = @"cell2";
-
-    }
+    GPPTOrder *mOrder = mDataArray[indexPath.row];
     
     pptHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    [cell.mRateBtn addTarget:self action:@selector(mRateAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.mRateBtn addTarget:self action:@selector(mRateAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    if (mRight == 1) {
+        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mComments,mOrder.mGenTime];
+        cell.mContent.text = mOrder.mContext;
+        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@分钟",mOrder.mArrivedTime];
+        
+    }else if (mRight == 2){
+        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
+        cell.mContent.text = mOrder.mContext;
+        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+        cell.mDistanceAndTime.text = @"";
+    }else{
+        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
+        cell.mContent.text = mOrder.mContext;
+        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
+    }
+    
+    
+
     return cell;
     
 
@@ -212,9 +302,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GPPTOrder *mOrder = mDataArray[indexPath.row];
+
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 2;
-    ppp.mType = 3;
+    ppp.mType = mRight;
+    ppp.mOrder = GPPTOrder.new;
+    ppp.mOrder = mOrder;
     [self pushViewController:ppp];
 }
 

@@ -77,7 +77,7 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.rightBtnTitle = @"筛选";
-
+    self.hiddenRightBtn = YES;
 
     mType =1;
     self.mBanerArr = [NSMutableArray new];
@@ -409,7 +409,7 @@
 
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 1;
-    ppp.mType = 2;
+    ppp.mType = mType;
     ppp.mOrder = GPPTOrder.new;
     ppp.mOrder = mPPtOrder;
     [self pushViewController:ppp];

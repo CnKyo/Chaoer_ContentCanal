@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-5E-EMz">
                         <rect key="frame" x="0.0" y="10" width="320" height="140"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er eliusmod tempor incididuodioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OfF-xt-6R2" customClass="IQTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OfF-xt-6R2" customClass="IQTextView">
                                 <rect key="frame" x="10" y="10" width="300" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

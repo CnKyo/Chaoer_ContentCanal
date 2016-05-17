@@ -69,23 +69,45 @@
 
 - (void)headerBeganRefresh{
 
-    [[mUserInfo backNowUser] getOrderDetail:self.mType andMorderID:[NSString stringWithFormat:@"%d",self.mOrder.mId] andOrderCode:self.mOrder.mOrderCode block:^(mBaseData *resb, GPPTOrder *mOrder) {
-        
-        [self headerEndRefresh];
-        [self addEmptyView:nil];
-        
-        if (resb.mSucess) {
+    
+    if (self.mOrderType == 1) {
+        [[mUserInfo backNowUser] getOrderDetail:self.mType andMorderID:[NSString stringWithFormat:@"%d",self.mOrder.mId] andOrderCode:self.mOrder.mOrderCode block:^(mBaseData *resb, GPPTOrder *mOrder) {
             
-            self.mOrder = mOrder;
-            [self.tableView reloadData];
-            
-        }else{
-            [self showErrorStatus:resb.mMessage];
+            [self headerEndRefresh];
             [self addEmptyView:nil];
-            [self popViewController];
-        }
-        
-    }];
+            
+            if (resb.mSucess) {
+                
+                self.mOrder = mOrder;
+                [self.tableView reloadData];
+                
+            }else{
+                [self showErrorStatus:resb.mMessage];
+                [self addEmptyView:nil];
+                [self popViewController];
+            }
+            
+        }];
+    }else{
+        [[mUserInfo backNowUser] getOrderDetail:self.mType andMorderID:[NSString stringWithFormat:@"%d",self.mOrder.mId] andOrderCode:self.mOrder.mOrderCode block:^(mBaseData *resb, GPPTOrder *mOrder) {
+            
+            [self headerEndRefresh];
+            [self addEmptyView:nil];
+            
+            if (resb.mSucess) {
+                
+                self.mOrder = mOrder;
+                [self.tableView reloadData];
+                
+            }else{
+                [self showErrorStatus:resb.mMessage];
+                [self addEmptyView:nil];
+                [self popViewController];
+            }
+            
+        }];
+    }
+    
     
 }
 

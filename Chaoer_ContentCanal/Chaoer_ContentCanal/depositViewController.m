@@ -49,11 +49,47 @@
 */
 - (IBAction)mOkAction:(id)sender {
     
-    pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
-    [self pushViewController:ppp];
+    [self AlertViewShow:@"确定提交" alertViewMsg:@"提交即会扣除“100元”押金！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+      
+        if ([mUserInfo backNowUser].mMoney < 100) {
+            
+            [LCProgressHUD showInfoMsg:@"您的余额不足！"];
+            return;
+        }else{
+            [self showErrorStatus:@"正在提交...."];
+            [[mUserInfo backNowUser] payPPTAplly:^(mBaseData *resb) {
+                if (resb.mSucess) {
+                    [self dismiss];
+                    
+                    pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
+                    [self pushViewController:ppp];
+                    
+                }else{
+                    [self showErrorStatus:resb.mMessage];
+                }
+            }];
+            
+        }
+
+        
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 
 
 
