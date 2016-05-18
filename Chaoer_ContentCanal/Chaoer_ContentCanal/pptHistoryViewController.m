@@ -161,8 +161,8 @@
     self.haveFooter = YES;
     [self.tableView headerBeginRefreshing];
     
-    UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell2" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
     
 }
@@ -179,7 +179,7 @@
         [self headerEndRefresh];
         [self removeEmptyView];
         [mDataArray removeAllObjects];
-
+        [self.tableView reloadData];
         if (resb.mSucess) {
             
             if (mArr.count <= 0) {
@@ -206,7 +206,7 @@
     
     [[mUserInfo backNowUser] getPPTOrderHisTory:mLeft andRight:mRight and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
         
-        [self headerEndRefresh];
+        [self footetEndRefresh];
         [self removeEmptyView];
         
         if (resb.mSucess) {
@@ -257,7 +257,7 @@
 {
 
     
-    return 160;
+    return 100;
   
 }
 
@@ -265,31 +265,90 @@
 {
     
     NSString *reuseCellId = nil;
-    reuseCellId = @"cell2";
+    reuseCellId = @"cell";
 
     GPPTOrder *mOrder = mDataArray[indexPath.row];
     
     pptHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    [cell.mRateBtn addTarget:self action:@selector(mRateAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (mOrder.mProcessStatus == 0) {
+        /**
+         *  取消
+         */
+        
+        [cell.mRateBtn setTitle:@"取消订单" forState:0];
+        cell.mRateBtn.enabled = NO;
+        
+        
+        
+    }else if (mOrder.mProcessStatus == 1){
+        /**
+         *  发布
+         */
+        [cell.mRateBtn setTitle:@"已发布" forState:0];
+        cell.mRateBtn.enabled = NO;
+        
+    }else if (mOrder.mProcessStatus == 2){
+        /**
+         *  进行中
+         */
+        [cell.mRateBtn setTitle:@"订单进行中" forState:0];
+        
+        cell.mRateBtn.enabled = NO;
+    }else if (mOrder.mProcessStatus == 3){
+        /**
+         *  确认订单
+         */
+        [cell.mRateBtn setTitle:@"订单已被确认" forState:0];
+        cell.mRateBtn.enabled = NO;
+    }else if (mOrder.mProcessStatus == 4){
+        /**
+         *  确定完成
+         */
+        [cell.mRateBtn setTitle:@"确认完成" forState:0];
+        
+        cell.mRateBtn.enabled = YES;
+        [cell.mRateBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }else{
+        /**
+         *  评价
+         */
+        cell.mRateBtn.enabled = NO;
+        [cell.mRateBtn addTarget:self action:@selector(mRateAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
 
     
+
+    if (mOrder.mComments == nil) {
+        mOrder.mComments = @"下单时间";
+    }
+   
+    
     if (mRight == 1) {
-        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mComments,mOrder.mGenTime];
-        cell.mContent.text = mOrder.mContext;
+        
+        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
+        cell.mContent.text = mOrder.mComments;
         cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
         cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@分钟",mOrder.mArrivedTime];
         
     }else if (mRight == 2){
+        if (mOrder.mContext == nil) {
+            mOrder.mContext = @"下单时间";
+        }
         cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
         cell.mContent.text = mOrder.mContext;
         cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
         cell.mDistanceAndTime.text = @"";
     }else{
+        if (mOrder.mGoodsName == nil) {
+            mOrder.mGoodsName = @"下单时间";
+        }
         cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
         cell.mContent.text = mOrder.mContext;
         cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
-        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
+        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"商品类型：%@",mOrder.mGoodsTypeName];
     }
     
     
@@ -324,5 +383,9 @@
 
     evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
     [self pushViewController:eee];
+}
+#pragma mark----完成订单
+- (void)finishOrderAction:(UIButton *)sender{
+    
 }
 @end

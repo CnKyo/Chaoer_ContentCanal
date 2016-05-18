@@ -239,6 +239,9 @@ bool g_bined = NO;
     self.mLoginType = [[obj objectForKeyMy:@"loginType"] intValue];
     self.mOpenId = [obj objectForKeyMy:@"mOpenId"];
     self.mId = [[obj objectForKeyMy:@"identity"] intValue];
+    self.mIs_leg = [[obj objectForKeyMy:@"is_leg"] intValue];
+    self.mLegworkUserId = [[obj objectForKeyMy:@"legworkUserId"] intValue];
+    
     
 }
 
@@ -2290,16 +2293,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSString *mUrlStr = nil;
 
     if (mType == 1) {
-        mUrlStr = @"app/legwork/appOrderTransactInfo";
 
-        
+        mUrlStr = @"app/legwork/user/appOrderBuyInfo";
+
     }else if (mType == 2) {
-        mUrlStr = @"app/legwork/appOrderBuyInfo";
 
-        
+        mUrlStr = @"app/legwork/user/appOrderTransactInfo";
+
         
     }else{
-        mUrlStr = @"app/legwork/appOrderCarryInfo";
+        mUrlStr = @"app/legwork/user/appOrderCarryInfo";
         
     }
 
@@ -2490,6 +2493,46 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 
 }
+
+#pragma mark----跑跑腿接单
+/**
+ *  接单
+ *
+ *  @param mLegUserId 跑跑腿id
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)getPPTOrder:(int)mLegUserId andOrderCode:(NSString *)mOrderCode andOrderType:(NSString *)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block{
+
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"legworkUserId"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    [para setObject:mOrderType forKey:@"orderType"];
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLng forKey:@"lon"];
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/order/grabOrder" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+    
+    
+    
+    
+    
+}
+
 
 
 @end
@@ -3444,6 +3487,32 @@ bool g_rccbined = NO;
     self.mGoodsPrice = [obj objectForKeyMy:@"goodsPrice"];
     self.mComments = [obj objectForKeyMy:@"comments"];
     self.mStatusName = [obj objectForKeyMy:@"statusName"];
+    
+    
+    
+    self.mPhone = [obj objectForKeyMy:@"phone"];
+    self.mPortrait = [obj objectForKeyMy:@"portrait"];
+    self.mTypeName = [obj objectForKeyMy:@"typeName"];
+    self.mAddrName = [obj objectForKeyMy:@"addrName"];
+    self.mSId = [[obj objectForKeyMy:@"sId"] intValue];
+    self.mProcessStatus = [[obj objectForKeyMy:@"processStatus"] intValue];
+    self.mStatusCommet = [obj objectForKeyMy:@"statusCommet"];
+    self.mUserSex = [obj objectForKeyMy:@"userSex"];
+    self.mUserName = [obj objectForKeyMy:@"userName"];
+    
+    int kake = [[obj objectForKeyMy:@"isTake"] intValue];
+    
+    if (kake == 0) {
+        self.mIsTake = NO;
+    }else{
+        self.mIsTake = YES;
+    }
+    self.mSendAddress = [obj objectForKeyMy:@"sendAddress"];
+    self.mArrivedAddress = [obj objectForKeyMy:@"arrivedAddress"];
+    self.mTrafficName = [obj objectForKeyMy:@"trafficName"];
+    self.mGoodsTypeName = [obj objectForKeyMy:@"goodsTypeName"];
+    self.mPayType = [[obj objectForKeyMy:@"payMethod"] intValue];
+
 
 }
 
@@ -3529,6 +3598,17 @@ bool pptbined = NO;
     
     self.mDepositMoney = [obj objectForKeyMy:@"legwork_deposit"];
 
+    
+    
+    self.mGoodRateCount = [[obj objectForKeyMy:@"high_evaluate"] intValue];
+    self.mMidRateCount = [[obj objectForKeyMy:@"medium_evaluate"] intValue];
+    self.mBadRatecount = [[obj objectForKeyMy:@"bad_evaluate"] intValue];
+    
+    
+    
+    self.mTotleRateCount = self.mBadRatecount + self.mGoodRateCount + self.mMidRateCount;
+
+    
     
 }
 - (BOOL)isVaildpptUser{
@@ -3702,6 +3782,32 @@ bool pptbined = NO;
         }
     }];
 }
+/**
+ *  注销身份
+ *
+ *  @param block 返回值
+ */
+- (void)cancelPPTIdentify:(void(^)(mBaseData* resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/cancel" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+  
+            block (info);
+            
+        }else{
+            
+            block (info);
+        }
+    }];
+    
+}
+
 
 - (void)pptDeleteMessages:(NSString *)mMessageIds block:(void(^)(mBaseData *resb))block{
 

@@ -19,6 +19,11 @@
 
     self.mImg.layer.masksToBounds = YES;
     self.mImg.layer.cornerRadius = 3;
+    
+    self.mRateBtn.layer.masksToBounds = YES;
+    self.mRateBtn.layer.cornerRadius = 3;
+    self.mRateBtn.layer.borderColor = M_CO.CGColor;
+    self.mRateBtn.layer.borderWidth = 0.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

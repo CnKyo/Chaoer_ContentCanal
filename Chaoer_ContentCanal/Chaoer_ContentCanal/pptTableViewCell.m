@@ -23,8 +23,6 @@
     
     self.mDoneBtn.layer.masksToBounds = YES;
     self.mDoneBtn.layer.cornerRadius = 3;
-    self.mDoneBtn.layer.borderColor = M_CO.CGColor;
-    self.mDoneBtn.layer.borderWidth = 0.5;
     
 }
 

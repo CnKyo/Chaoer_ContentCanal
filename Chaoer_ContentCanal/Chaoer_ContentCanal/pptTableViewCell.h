@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "mOrderButton.h"
 
 @interface pptTableViewCell : UITableViewCell
 /**
@@ -28,7 +29,7 @@
 /**
  *  接手按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mDoneBtn;
+@property (weak, nonatomic) IBOutlet mOrderButton *mDoneBtn;
 
 
 @end

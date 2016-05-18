@@ -81,10 +81,12 @@
     mHeaderView = [pptMyRateHeaderView shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     
+    
+    mHeaderView.mRatePoint.text = [NSString stringWithFormat:@"%d",[GPPTer backPPTUser].mTotleRateCount];
     mGoodProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(0, 2, mHeaderView.mGoodRateView.mwidth+50, 10) andType:2];
 
     mGoodProgress.mType = 2;
-    mGoodProgress.maxValue = 100;
+    mGoodProgress.maxValue = [GPPTer backPPTUser].mGoodRateCount*10;
     //设置背景色
     mGoodProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
     mGoodProgress.leftimg.backgroundColor =[UIColor colorWithRed:0.93 green:0.22 blue:0.21 alpha:1.00];
@@ -96,7 +98,7 @@
 
     mMidProgress.mType = 2;
 
-    mMidProgress.maxValue = 100;
+    mMidProgress.maxValue = [GPPTer backPPTUser].mMidRateCount*10;
     //设置背景色
     mMidProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
     mMidProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
@@ -108,7 +110,8 @@
 
     mBadProgress.mType = 2;
 
-    mBadProgress.maxValue = 100;
+    
+    mBadProgress.maxValue = [GPPTer backPPTUser].mBadRatecount*10;
     //设置背景色
     mBadProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
     mBadProgress.leftimg.backgroundColor =[UIColor colorWithRed:0.34 green:0.34 blue:0.34 alpha:1.00];
@@ -153,7 +156,7 @@
 -(void)goodtimer
 {
     mGood++;
-    if (mGood<=64) {
+    if (mGood<=[GPPTer backPPTUser].mGoodRateCount) {
         
         [mGoodProgress setPresent:mGood];
         
@@ -171,7 +174,7 @@
 -(void)midtimer
 {
     mMid++;
-    if (mMid<=44) {
+    if (mMid<=[GPPTer backPPTUser].mMidRateCount) {
         
         [mMidProgress setPresent:mMid];
         
@@ -189,7 +192,7 @@
 -(void)badtimer
 {
     mBad++;
-    if (mBad<=25) {
+    if (mBad<=[GPPTer backPPTUser].mBadRatecount) {
         
         [mBadProgress setPresent:mBad];
         

@@ -80,7 +80,7 @@
         mLevelLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line.mbottom+10, 120, 20);
         mLevelLb.textColor = [UIColor colorWithRed:1.00 green:0.56 blue:0.56 alpha:1.00];
         mLevelLb.font = [UIFont systemFontOfSize:15];
-        mLevelLb.text = @"V2";
+        mLevelLb.text = [NSString stringWithFormat:@"V%d",mPPTUser.mLevel];
         mLevelLb.textAlignment = NSTextAlignmentCenter;
         [mHeaderView addSubview:mLevelLb];
 
@@ -201,7 +201,49 @@
     UINib   *nib = [UINib nibWithNibName:@"pptMyInfoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
+    UIView *mFooter = [UIView new];
+    mFooter.frame = CGRectMake(0, 10, DEVICE_Width, 60);
+    mFooter.backgroundColor = [UIColor clearColor];
     
+    UIButton *mLogout = [UIButton new];
+    mLogout.frame = CGRectMake(15, 10, DEVICE_Width-30, 40);
+    mLogout.backgroundColor = M_CO;
+    mLogout.layer.masksToBounds = YES;
+    mLogout.layer.cornerRadius = 3;
+    [mLogout setTitle:@"注销身份" forState:0];
+    [mLogout setTitleColor:[UIColor whiteColor] forState:0];
+    [mLogout addTarget:self action:@selector(logoutAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mFooter addSubview:mLogout];
+    [self.tableView setTableFooterView:mFooter];
+
+    
+}
+- (void)logoutAction:(UIButton *)sender{
+    
+        [self AlertViewShow:@"确定注销！" alertViewMsg:@"注销身份之后将不可撤销，如要申请需再次提交资料！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        [self showWithStatus:@"正在操作..."];
+        [[GPPTer backPPTUser] cancelPPTIdentify:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController_2];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
 }
 
 

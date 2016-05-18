@@ -245,6 +245,19 @@
 @property (nonatomic,strong) NSString   *mOpenId;
 
 
+
+
+#pragma mark----用户跑跑腿状态
+/**
+ *  0（未提交资料，需提交资料审核资质），1（押金未支付，请支付），2（审核中，请耐心等待！），3（已被系统禁用），4（您已注销），5（是跑腿者）
+ */
+@property (nonatomic,assign) int mIs_leg;
+
+/**
+ *  跑跑腿id
+ */
+@property (nonatomic,assign) int mLegworkUserId;
+
 -(id)initWithObj:(NSDictionary*)obj;
 
 -(void)fetchIt:(NSDictionary*)obj;
@@ -963,6 +976,19 @@
 - (void)applePPT:(NSString *)mName andSex:(NSString *)mSex andPhone:(NSString *)mPhone andIdentify:(NSString *)mIdentify andHandImg:(NSString *)mHandImg andForntImg:(NSString *)mFrontImg andForwordImg:(NSString *)mForwordImg block:(void(^)(mBaseData *resb))block;
 #pragma mark----扣除押金
 - (void)payPPTAplly:(void(^)(mBaseData *resb))block;
+
+#pragma mark----跑跑腿接单
+/**
+ *  接单
+ *
+ *  @param mLegUserId 跑跑腿id
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)getPPTOrder:(int)mLegUserId andOrderCode:(NSString *)mOrderCode andOrderType:(NSString *)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
 
 @end
 
@@ -2006,7 +2032,36 @@
 
 @property (nonatomic,strong) NSString*  mGoodsName;
 
+@property (nonatomic,strong) NSString*  mAddrName;
 
+@property (nonatomic,strong) NSString*  mStatusCommet;
+
+@property (nonatomic,strong) NSString*  mUserSex;
+
+@property (nonatomic,strong) NSString*  mUserName;
+
+@property (nonatomic,assign) int        mProcessStatus;
+
+@property (nonatomic,assign) int        mSId;
+
+@property (nonatomic,strong) NSString*  mPortrait;
+
+@property (nonatomic,assign) int        mIsTake;
+
+@property (nonatomic,strong) NSString*  mPhone;
+
+@property (nonatomic,strong) NSString*  mTypeName;
+
+
+@property (nonatomic,strong) NSString*  mSendAddress;
+
+@property (nonatomic,strong) NSString*  mArrivedAddress;
+
+@property (nonatomic,strong) NSString*  mTrafficName;
+
+@property (nonatomic,strong) NSString*  mGoodsTypeName;
+
+@property (nonatomic,assign) int        mPayType;
 
 -(id)initWithObj:(NSDictionary*)obj;
 
@@ -2078,6 +2133,22 @@
  */
 @property (nonatomic,strong) NSString*  mFAQUrl;
 
+/**
+ *  总体评价
+ */
+@property (nonatomic,assign) int        mTotleRateCount;
+/**
+ *  好评
+ */
+@property (nonatomic,assign) int        mGoodRateCount;
+/**
+ *  中评
+ */
+@property (nonatomic,assign) int        mMidRateCount;
+/**
+ *  差评
+ */
+@property (nonatomic,assign) int        mBadRatecount;
 
 -(id)initWithObj:(NSDictionary*)obj;
 
@@ -2141,7 +2212,13 @@
  *  @param block 返回值
  */
 - (void)getMyTags:(void(^)(mBaseData* resb, NSArray*mArr))block;
-
+#pragma mark----注销身份
+/**
+ *  注销身份
+ *
+ *  @param block 返回值
+ */
+- (void)cancelPPTIdentify:(void(^)(mBaseData* resb))block;
 #pragma mark----删除消息
 /**
  *  删除消息

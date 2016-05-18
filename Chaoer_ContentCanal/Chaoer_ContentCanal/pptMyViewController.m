@@ -45,7 +45,6 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
-    
     NSArray *mArrar = @[@"基本信息",@"酬金记录",@"我的地址",@"常见问题"];
     NSArray *mImgar = @[[UIImage imageNamed:@"ppt_my_info"],[UIImage imageNamed:@"ppt_my_choujin"],[UIImage imageNamed:@"ppt_my_address"],[UIImage imageNamed:@"ppt_my_faq"]];
     
@@ -228,5 +227,37 @@
     
     
 }
+
+- (void)rightBtnTouched:(id)sender{
+
+    [self AlertViewShow:@"确定注销！" alertViewMsg:@"注销身份之后将不可撤销，如要申请需再次提交资料！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        [self showWithStatus:@"正在操作..."];
+        [[GPPTer backPPTUser] cancelPPTIdentify:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
+
 
 @end

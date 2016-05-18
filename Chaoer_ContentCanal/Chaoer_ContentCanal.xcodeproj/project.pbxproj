@@ -117,6 +117,7 @@
 		04AD8AA01CE326CC00A3F87F /* pptHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD8A9F1CE326CC00A3F87F /* pptHeaderView.xib */; };
 		04AD8AA61CE3319200A3F87F /* pptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */; };
 		04AD8AA71CE3319200A3F87F /* pptTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */; };
+		04B648241CEC44EB007A465B /* mOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B648231CEC44EB007A465B /* mOrderButton.m */; };
 		04BBA2E11CBD1B2000BD1420 /* addAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */; };
 		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
 		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
@@ -860,6 +861,8 @@
 		04AD8AA31CE3319200A3F87F /* pptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptTableViewCell.h; sourceTree = "<group>"; };
 		04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptTableViewCell.m; sourceTree = "<group>"; };
 		04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptTableViewCell.xib; sourceTree = "<group>"; };
+		04B648221CEC44EB007A465B /* mOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mOrderButton.h; sourceTree = "<group>"; };
+		04B648231CEC44EB007A465B /* mOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mOrderButton.m; sourceTree = "<group>"; };
 		04BBA2DE1CBD1B2000BD1420 /* addAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addAddressViewController.h; sourceTree = "<group>"; };
 		04BBA2DF1CBD1B2000BD1420 /* addAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addAddressViewController.m; sourceTree = "<group>"; };
 		04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addAddressViewController.xib; sourceTree = "<group>"; };
@@ -2033,6 +2036,8 @@
 				04648C5E1CB4F1A4006823C9 /* mSenderViewController.h */,
 				04648C5F1CB4F1A4006823C9 /* mSenderViewController.m */,
 				04648C601CB4F1A4006823C9 /* mSenderViewController.xib */,
+				04B648221CEC44EB007A465B /* mOrderButton.h */,
+				04B648231CEC44EB007A465B /* mOrderButton.m */,
 				04AD8A9C1CE326C300A3F87F /* pptHeaderView.h */,
 				04AD8A9D1CE326C300A3F87F /* pptHeaderView.m */,
 				04AD8A9F1CE326CC00A3F87F /* pptHeaderView.xib */,
@@ -2097,7 +2102,6 @@
 		04AD8A871CE304D500A3F87F /* 申请跑跑腿 */ = {
 			isa = PBXGroup;
 			children = (
-				04E5A8231CE5E21000A2D111 /* 跑单详情 */,
 				04AD8A881CE3051500A3F87F /* applyPPTView.h */,
 				04AD8A891CE3051500A3F87F /* applyPPTView.m */,
 				04AD8A8B1CE3052300A3F87F /* applyPPTView.xib */,
@@ -2307,13 +2311,6 @@
 				04E5A8201CE5CA1D00A2D111 /* pptAddAddressViewController.xib */,
 			);
 			name = "我的地址";
-			sourceTree = "<group>";
-		};
-		04E5A8231CE5E21000A2D111 /* 跑单详情 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "跑单详情";
 			sourceTree = "<group>";
 		};
 		04E5A8241CE5E56500A2D111 /* AddressChoice */ = {
@@ -4705,6 +4702,7 @@
 				312289091C966237009C315F /* shopViewController.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
+				04B648241CEC44EB007A465B /* mOrderButton.m in Sources */,
 				040FE0E21CDB20DA00270D4F /* mBarCodeView.m in Sources */,
 				04102E141CE42C35006F82E2 /* AttributeView.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,

@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Sh-3Q-zkY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                                <rect key="frame" x="5" y="5" width="310" height="120"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑单详情" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH5-WH-fZ0">
                                 <rect key="frame" x="10" y="8" width="302" height="71"/>
@@ -42,15 +42,15 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="130" id="2Wo-O1-WKb"/>
                             <constraint firstItem="TgD-Ue-byZ" firstAttribute="leading" secondItem="x8E-pN-1fn" secondAttribute="leading" constant="10" id="4I5-VE-UAz"/>
-                            <constraint firstItem="9Sh-3Q-zkY" firstAttribute="top" secondItem="x8E-pN-1fn" secondAttribute="top" id="4Ur-Mt-v87"/>
+                            <constraint firstItem="9Sh-3Q-zkY" firstAttribute="top" secondItem="x8E-pN-1fn" secondAttribute="top" constant="5" id="4Ur-Mt-v87"/>
                             <constraint firstItem="hH5-WH-fZ0" firstAttribute="top" secondItem="x8E-pN-1fn" secondAttribute="top" constant="8" id="6pD-CQ-gOh"/>
-                            <constraint firstItem="9Sh-3Q-zkY" firstAttribute="leading" secondItem="x8E-pN-1fn" secondAttribute="leading" id="82E-Gp-Tgb"/>
-                            <constraint firstAttribute="bottom" secondItem="9Sh-3Q-zkY" secondAttribute="bottom" id="Cv6-Pk-rWG"/>
+                            <constraint firstItem="9Sh-3Q-zkY" firstAttribute="leading" secondItem="x8E-pN-1fn" secondAttribute="leading" constant="5" id="82E-Gp-Tgb"/>
+                            <constraint firstAttribute="bottom" secondItem="9Sh-3Q-zkY" secondAttribute="bottom" constant="5" id="Cv6-Pk-rWG"/>
                             <constraint firstItem="TgD-Ue-byZ" firstAttribute="top" secondItem="hH5-WH-fZ0" secondAttribute="bottom" constant="8" id="Flw-Lv-R7n"/>
                             <constraint firstAttribute="trailing" secondItem="hH5-WH-fZ0" secondAttribute="trailing" constant="8" id="LEH-sS-Xkp"/>
                             <constraint firstAttribute="trailing" secondItem="TgD-Ue-byZ" secondAttribute="trailing" constant="10" id="Yca-dx-Nu9"/>
                             <constraint firstItem="hH5-WH-fZ0" firstAttribute="leading" secondItem="x8E-pN-1fn" secondAttribute="leading" constant="10" id="e4t-Zm-tfE"/>
-                            <constraint firstAttribute="trailing" secondItem="9Sh-3Q-zkY" secondAttribute="trailing" id="q0i-IN-NUa"/>
+                            <constraint firstAttribute="trailing" secondItem="9Sh-3Q-zkY" secondAttribute="trailing" constant="5" id="q0i-IN-NUa"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-9X-Igh">
@@ -106,7 +106,7 @@
                                     <constraint firstAttribute="height" constant="21" id="BEG-mw-Qpc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号：23424323231231132" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3t-MU-QE0">
@@ -408,6 +408,7 @@
             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.92549019610000005" alpha="0.75153556030000002" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="mArriveAddress" destination="AJm-8H-byA" id="Xgk-wb-vh8"/>
+                <outlet property="mBgkImg" destination="9Sh-3Q-zkY" id="Amd-18-86r"/>
                 <outlet property="mDoBtn" destination="6Ce-MK-5W3" id="fbz-sk-iRE"/>
                 <outlet property="mHeaderImg" destination="7LK-aW-gom" id="bqF-Cz-QWJ"/>
                 <outlet property="mNote" destination="hkv-jo-LA6" id="nJn-Qj-Zro"/>

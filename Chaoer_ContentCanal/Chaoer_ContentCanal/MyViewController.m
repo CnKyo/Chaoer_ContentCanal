@@ -40,6 +40,7 @@
 
 #import "openPPTViewController.h"
 
+#import "depositViewController.h"
 
 @interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -345,7 +346,32 @@
                 cell.mDetail.hidden = NO;
             }
         
-        }else if (indexPath.row == 2){
+        }else if (indexPath.row == 1){
+            int m_leg = [mUserInfo backNowUser].mIs_leg;
+            
+            if ( m_leg == 0) {
+                cell.mDetail.text = @"立即申请";
+            }else if (m_leg == 1){
+                cell.mDetail.text = @"未支付押金";
+            }
+            else if (m_leg == 2){
+                cell.mDetail.text = @"审核中";
+            }else if (m_leg == 3){
+                cell.mDetail.text = @"被系统禁用";
+                
+            }else if (m_leg == 4){
+                [self showErrorStatus:@"您已注销!"];
+                cell.mDetail.text = @"立即申请";
+                
+            }
+            else{
+                cell.mDetail.hidden = YES;
+                
+            }
+            
+
+        }
+        else {
             if ([[dic objectForKey:@"hidden"] intValue]  == 1) {
                 
                 cell.mDetail.hidden = NO;
@@ -420,9 +446,36 @@
         case 2:
         {
             NSLog(@"我的跑腿");
-            openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
-            [self pushViewController:ppp];
+            
+            int m_leg = [mUserInfo backNowUser].mIs_leg;
+            
+            if ( m_leg == 0) {
+                openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+                [self pushViewController:ppp];
 
+            }else if (m_leg == 1){
+                depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+                [self pushViewController:ddd];
+
+            }
+            else if (m_leg == 2){
+                [self showSuccessStatus:@"正在审核中，请耐心等待！"];
+            }else if (m_leg == 3){
+                [self showErrorStatus:@"您已被系统禁用!"];
+
+            }else if (m_leg == 4){
+                [self showErrorStatus:@"您已注销!"];
+
+            }
+            else{
+                [self showSuccessStatus:@"您已成为跑腿者，无需再次申请！"];
+
+            }
+            
+            
+            
+            
+           
         }
             break;
         case 3:

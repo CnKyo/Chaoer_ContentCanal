@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q7Z-o3-uni">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                                <rect key="frame" x="5" y="5" width="310" height="120"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑单详情" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-ww-aO0">
                                 <rect key="frame" x="10" y="8" width="302" height="71"/>
@@ -43,14 +43,14 @@
                             <constraint firstItem="kwQ-CP-VaB" firstAttribute="top" secondItem="DX8-ww-aO0" secondAttribute="bottom" constant="8" id="3qX-sy-OrL"/>
                             <constraint firstItem="DX8-ww-aO0" firstAttribute="leading" secondItem="EM3-wo-d12" secondAttribute="leading" constant="10" id="5j9-NI-bwN"/>
                             <constraint firstItem="kwQ-CP-VaB" firstAttribute="leading" secondItem="EM3-wo-d12" secondAttribute="leading" constant="10" id="DKG-3I-TDe"/>
-                            <constraint firstItem="Q7Z-o3-uni" firstAttribute="top" secondItem="EM3-wo-d12" secondAttribute="top" id="Gzd-4n-wWM"/>
-                            <constraint firstAttribute="trailing" secondItem="Q7Z-o3-uni" secondAttribute="trailing" id="LWw-DT-tka"/>
+                            <constraint firstItem="Q7Z-o3-uni" firstAttribute="top" secondItem="EM3-wo-d12" secondAttribute="top" constant="5" id="Gzd-4n-wWM"/>
+                            <constraint firstAttribute="trailing" secondItem="Q7Z-o3-uni" secondAttribute="trailing" constant="5" id="LWw-DT-tka"/>
                             <constraint firstAttribute="trailing" secondItem="kwQ-CP-VaB" secondAttribute="trailing" constant="10" id="Vmi-Dh-CHq"/>
                             <constraint firstItem="DX8-ww-aO0" firstAttribute="top" secondItem="EM3-wo-d12" secondAttribute="top" constant="8" id="Xcn-Pu-9SG"/>
                             <constraint firstAttribute="height" constant="130" id="e3c-Mh-pkF"/>
                             <constraint firstAttribute="trailing" secondItem="DX8-ww-aO0" secondAttribute="trailing" constant="8" id="eju-9f-sYy"/>
-                            <constraint firstItem="Q7Z-o3-uni" firstAttribute="leading" secondItem="EM3-wo-d12" secondAttribute="leading" id="jj2-FO-rqU"/>
-                            <constraint firstAttribute="bottom" secondItem="Q7Z-o3-uni" secondAttribute="bottom" id="uDX-Lk-tYR"/>
+                            <constraint firstItem="Q7Z-o3-uni" firstAttribute="leading" secondItem="EM3-wo-d12" secondAttribute="leading" constant="5" id="jj2-FO-rqU"/>
+                            <constraint firstAttribute="bottom" secondItem="Q7Z-o3-uni" secondAttribute="bottom" constant="5" id="uDX-Lk-tYR"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EA0-nW-GKE">
@@ -84,7 +84,7 @@
                                     <constraint firstAttribute="height" constant="21" id="pIu-8m-FBS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号：23424323231231132" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdu-6J-IvQ">
@@ -356,6 +356,7 @@
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.92549019607843142" alpha="0.7515355603448276" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="mArriveAddress" destination="fO8-wd-9Yk" id="tlX-cR-nH2"/>
+                <outlet property="mBgkImg" destination="Q7Z-o3-uni" id="i10-Qu-vcc"/>
                 <outlet property="mDoBtn" destination="5kS-MK-10Y" id="weB-QW-CvC"/>
                 <outlet property="mHeaderImg" destination="Zk1-Rx-V12" id="Vr4-Hz-GZg"/>
                 <outlet property="mNote" destination="MMf-fS-V1i" id="cZZ-oC-WW5"/>

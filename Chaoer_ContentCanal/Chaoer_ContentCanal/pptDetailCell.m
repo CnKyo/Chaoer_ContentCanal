@@ -26,6 +26,11 @@
 
     self.mHeaderImg.layer.masksToBounds = self.mDoBtn.layer.masksToBounds = self.mBgkView.layer.masksToBounds =  YES;
     self.mHeaderImg.layer.cornerRadius = self.mDoBtn.layer.cornerRadius = self.mBgkView.layer.cornerRadius = 3;
+    
+    self.mBgkImg.layer.masksToBounds = YES;
+    self.mBgkImg.layer.cornerRadius = 4;
+    self.mBgkImg.layer.borderColor = [UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:0.45].CGColor;
+    self.mBgkImg.layer.borderWidth = 0.5;
 
     
     

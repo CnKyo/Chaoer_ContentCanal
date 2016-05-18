@@ -23,4 +23,9 @@
  *  订单对象
  */
 @property (strong,nonatomic) GPPTOrder *mOrder;
+
+@property (strong,nonatomic)NSString *mLng;
+
+@property (strong,nonatomic)NSString *mLat;
+
 @end

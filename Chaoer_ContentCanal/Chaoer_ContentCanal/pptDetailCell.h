@@ -10,6 +10,10 @@
 
 @interface pptDetailCell : UITableViewCell
 #pragma mark----办事情cell样式
+
+@property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
+
+
 /**
  *  订单详情
  */

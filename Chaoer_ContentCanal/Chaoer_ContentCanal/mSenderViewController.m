@@ -67,6 +67,8 @@
     [self initAddress];
 
     [self hiddenReleaseView];
+    [self.tableView headerBeginRefreshing];
+
     
 }
 - (void)viewDidLoad {
@@ -165,6 +167,8 @@
         
         [self headerEndRefresh];
         [self.tempArray removeAllObjects];
+        [self.tableView reloadData];
+
         [self removeEmptyView];
         if (resb.mSucess) {
             
@@ -382,6 +386,14 @@
     pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     
+    if ([mUserInfo backNowUser].mUserId == [mOrder.mUserId intValue]) {
+        cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
+        cell.mDoneBtn.enabled = NO;
+    }else{
+        cell.mDoneBtn.backgroundColor = M_CO;
+        cell.mDoneBtn.enabled = YES;
+    }
+    
     if (mType == 3) {
         cell.mTitle.text = mOrder.mGoodsName;
         cell.mDistance.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
@@ -394,6 +406,9 @@
         cell.mTitle.text = mOrder.mContext;
         cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
     }
+    cell.mDoneBtn.mOrder = mOrder;
+    [cell.mDoneBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
     
     cell.mMoney.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];
     return cell;
@@ -412,6 +427,10 @@
     ppp.mType = mType;
     ppp.mOrder = GPPTOrder.new;
     ppp.mOrder = mPPtOrder;
+    
+    ppp.mLng = self.mLng;
+    ppp.mLat = self.mLat;
+    
     [self pushViewController:ppp];
 }
 
@@ -432,6 +451,12 @@
     
     [mReleaseView.mBuyBtn btnClick:^{
         NSLog(@"买东西");
+        
+        if ([mUserInfo backNowUser].mMoney <= 0) {
+            [self showErrorStatus:@"余额不足，发布失败！"];
+            return ;
+        }
+        
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 1;
         rrr.mSubType = 1;
@@ -440,6 +465,10 @@
     }];
     
     [mReleaseView.mDoBtn btnClick:^{
+        if ([mUserInfo backNowUser].mMoney <= 0) {
+            [self showErrorStatus:@"余额不足，发布失败！"];
+            return ;
+        }
         NSLog(@"办事情");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 2;
@@ -448,6 +477,10 @@
     }];
     
     [mReleaseView.mSendBtn btnClick:^{
+        if ([mUserInfo backNowUser].mMoney <= 0) {
+            [self showErrorStatus:@"余额不足，发布失败！"];
+            return ;
+        }
         NSLog(@"送东西");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 3;
@@ -499,6 +532,33 @@
 
 
 
+#pragma mark----接单
+- (void)getOrderAction:(mOrderButton *)sender{
+    
+    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        return;
+    }
+    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        return;
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            
+            [self showSuccessStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+}
 
 
 @end
