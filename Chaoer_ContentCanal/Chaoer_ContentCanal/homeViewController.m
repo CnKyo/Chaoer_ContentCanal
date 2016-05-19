@@ -88,6 +88,10 @@
     self.navBar.hidden = YES;
     self.mBanerArr = [NSMutableArray new];
     
+    
+    mLat = nil;
+    mLng = nil;
+    
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
     
     if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {

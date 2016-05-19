@@ -271,6 +271,11 @@
     
     pptHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
+    
+    
+    [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+
+    
     if (mOrder.mProcessStatus == 0) {
         /**
          *  取消
@@ -368,6 +373,8 @@
     ppp.mType = mRight;
     ppp.mOrder = GPPTOrder.new;
     ppp.mOrder = mOrder;
+    ppp.mLng = self.mLng;
+    ppp.mLat = self.mLat;
     [self pushViewController:ppp];
 }
 

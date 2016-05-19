@@ -8,6 +8,9 @@
 
 #import "pptOrderDetailViewController.h"
 #import "pptDetailCell.h"
+
+#import "evolutionViewController.h"
+
 @interface pptOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -179,6 +182,11 @@
     
     pptDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.mDoBtn.mOrder = self.mOrder;
+
+    [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],self.mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+
     if (self.mOrderType == 1) {
      
         cell.mOrderDetailName.text = [NSString stringWithFormat:@"下单时间：%@",self.mOrder.mGenTime];
@@ -195,14 +203,22 @@
         
         cell.mSendMoney.text = [NSString stringWithFormat:@"酬金：%@元",self.mOrder.mLegworkMoney];
         
+#pragma mark----判断是否能接单
         if ([mUserInfo backNowUser].mUserId == [self.mOrder.mUserId intValue]) {
             cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
             cell.mDoBtn.enabled = NO;
         }else{
-            cell.mDoBtn.backgroundColor = M_CO;
-            cell.mDoBtn.enabled = YES;
+            if ([mUserInfo backNowUser].mIs_leg != 5) {
+                cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+                cell.mDoBtn.enabled = NO;
+            }else{
+                cell.mDoBtn.backgroundColor = M_CO;
+                cell.mDoBtn.enabled = YES;
+            }
         }
 
+        
+     
         
         [cell.mDoBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -266,6 +282,7 @@
         }
     }else{
         
+        
         UIImage *mStatusImg = nil;
         
         if (self.mOrder.mProcessStatus == 0) {
@@ -274,9 +291,9 @@
              */
             
             [cell.mDoBtn setTitle:@"取消订单" forState:0];
-            cell.mDoBtn.enabled = YES;
+            cell.mDoBtn.enabled = NO;
 
-            [cell.mDoBtn addTarget:self action:@selector(cancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
             
             mStatusImg = [UIImage imageNamed:@"ppt_order_wait"];
             
@@ -301,26 +318,36 @@
             /**
              *  确认订单
              */
-            [cell.mDoBtn setTitle:@"订单已被确认" forState:0];
-            cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
-            cell.mDoBtn.enabled = NO;
-            mStatusImg = [UIImage imageNamed:@"ppt_order_wait"];
-        }else if (self.mOrder.mProcessStatus == 4){
+//            [cell.mDoBtn setTitle:@"订单已被确认" forState:0];
+//            cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+//            cell.mDoBtn.enabled = NO;
+//            mStatusImg = [UIImage imageNamed:@"ppt_order_wait"];
             /**
              *  确定完成
              */
             [cell.mDoBtn setTitle:@"确认完成" forState:0];
-     
+            
             cell.mDoBtn.enabled = YES;
+            cell.mDoBtn.backgroundColor = M_CO;
             [cell.mDoBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
             mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
-        }else{
+        }else if (self.mOrder.mProcessStatus == 4){
             /**
              *  评价
              */
             [cell.mDoBtn setTitle:@"去评价" forState:0];
-            cell.mDoBtn.enabled = NO;
+            cell.mDoBtn.enabled = YES;
+            cell.mDoBtn.backgroundColor = M_CO;
             [cell.mDoBtn addTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
+        }else{
+            /**
+             *  已完成
+             */
+            [cell.mDoBtn setTitle:self.mOrder.mStatusName forState:0];
+            cell.mDoBtn.enabled = NO;
+            cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+
             mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
         }
         
@@ -392,7 +419,7 @@
 
 
 #pragma mark----接单
-- (void)getOrderAction:(UIButton *)sender{
+- (void)getOrderAction:(mOrderButton *)sender{
 
     if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
         [self showErrorStatus:@"必须打开定位才能接单哦！"];
@@ -419,15 +446,51 @@
     
 }
 #pragma mark----取消订单
-- (void)cancelOrderAction:(UIButton *)sender{
+- (void)cancelOrderAction:(mOrderButton *)sender{
 
 }
 #pragma mark----完成订单
-- (void)finishOrderAction:(UIButton *)sender{
+- (void)finishOrderAction:(mOrderButton *)sender{
+    
+    if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
+        [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
+        return;
+    }
+    if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能确认完成！"];
+        return;
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    
+    [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }
+        
+        
+    }];
+    
+    
+    
+    
     
 }
 #pragma mark----评价订单
-- (void)rateOrderAction:(UIButton *)sender{
-    
+- (void)rateOrderAction:(mOrderButton *)sender{
+    evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
+    eee.mOrder = GPPTOrder.new;
+    eee.mOrder = sender.mOrder;
+    eee.mLat = self.mLat;
+    eee.mLng = self.mLng;
+    eee.mType = self.mType;
+    [self pushViewController:eee];
+
 }
 @end

@@ -30,6 +30,7 @@
                 <outlet property="mSpeed5" destination="N9X-Cc-nwJ" id="WcH-bS-Lxr"/>
                 <outlet property="mSpeedLb" destination="htp-M4-o9J" id="i4D-3p-RuH"/>
                 <outlet property="mSpeedView" destination="dKi-P8-MuE" id="WIl-Hl-D4V"/>
+                <outlet property="mTagView" destination="tEg-3f-TiL" id="NHH-ry-Qq8"/>
                 <outlet property="v_main" destination="rip-aY-DGK" id="dUB-Tg-ApN"/>
                 <outlet property="v_star" destination="InN-y4-60k" id="agp-Nr-aln"/>
             </connections>

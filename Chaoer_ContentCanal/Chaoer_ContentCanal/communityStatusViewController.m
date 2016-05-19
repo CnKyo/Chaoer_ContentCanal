@@ -251,7 +251,7 @@
     
     GCommunityNews *GC = self.tempArray[indexPath.row];
     
-    cell.mContent.text = GC.mContent;
+    cell.mContent.text = GC.mSubTitel;
     cell.mTime.text = GC.mDateTime;
     
     cell.mTitle.text = GC.mTitel;
@@ -272,6 +272,13 @@
     GCommunityNews *GC = self.tempArray[indexPath.row];
 
     
+    WebVC* vc = [[WebVC alloc]init];
+    vc.mName = @"社区详情";
+    vc.mUrl = [NSString stringWithFormat:@"%@app/news/getNewSContent?id=%d",[HTTPrequest returnNowURL],GC.mId];
+    [self pushViewController:vc];
+    
+
+
     
     
 }

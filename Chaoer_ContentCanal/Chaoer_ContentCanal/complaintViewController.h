@@ -9,5 +9,9 @@
 #import "BaseVC.h"
 
 @interface complaintViewController : BaseVC
-
+/**
+ *  跑腿类型 1是商品买送 2是事情办理 3是送东西
+ */
+@property (nonatomic,assign) int mType;
+@property (strong,nonatomic) GPPTOrder *mOrder;
 @end

@@ -2040,6 +2040,35 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+
+/**
+ *  获取新闻详情
+ *
+ *  @param mNewsId 新闻ID
+ *  @param block   返回
+ */
+- (void)getCommunityDetail:(int)mNewsId block:(void(^)(mBaseData *resb))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mNewsId) forKey:@"id"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/news/getNewSContent" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            
+            block (info);
+        }else{
+            
+            block (info);
+            
+        }
+        
+    }];
+}
+
+
 #pragma mark----获取地址标签
 - (void)getPPTaddressTag:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
@@ -2413,7 +2442,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
         }
     }else{
-        [para setObject:NumberWithInt([GPPTer backPPTUser].mUserId) forKey:@"legId"];
+        [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legId"];
 
         if (mRight == 1) {
             mUrl = @"app/legwork/user/appOrderBuyLegwrokRecord";
@@ -2510,7 +2539,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
-    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"legworkUserId"];
+    [para setObject:NumberWithInt(mLegUserId) forKey:@"legworkUserId"];
     [para setObject:mOrderCode forKey:@"orderCode"];
     [para setObject:mOrderType forKey:@"orderType"];
     [para setObject:mLat forKey:@"lat"];
@@ -2527,11 +2556,160 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         
     }];
     
+}
+
+#pragma mark----获取系统标签
+/**
+ *  获取系统标签
+ *
+ *  @param block 返回值
+ */
+- (void)getSystemTags:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appSysTag" parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GSystemTags alloc]initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
     
+    
+}
+
+
+#pragma mark----评价订单
+/**
+ *  评价订单
+ *
+ *  @param mUserId    平台用户id
+ *  @param mLegId     跑腿用户id
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param mOrdeCode  订单编号
+ *  @param mOrderType 订单类型
+ *  @param block      返回值
+ */
+- (void)rateOrder:(int)mUserId andLegUserId:(int)mLegId andSpeed:(int)mSpeed andMass:(int)mMass andOrderCode:(NSString *)mOrdeCode andOrderType:(int)mOrderType andContent:(NSString *)mContent andTags:(NSString *)mTags block:(void(^)(mBaseData *resb))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mLegId) forKey:@"legworkUserId"];
+    
+    [para setObject:mOrdeCode forKey:@"orderCode"];
+    [para setObject:NumberWithInt(mOrderType) forKey:@"orderType"];
+    
+    [para setObject:NumberWithInt(mSpeed) forKey:@"speed"];
+    [para setObject:NumberWithInt(mMass) forKey:@"quality"];
+    
+    [para setObject:mTags forKey:@"tags"];
+    [para setObject:mContent forKey:@"content"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appEvaluate" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+         
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
     
     
     
 }
+
+#pragma mark----获取投诉标签
+/**
+ *  获取投诉标签
+ *
+ *  @param block 返回值
+ */
+- (void)getFeedBackTags:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appTreaty" parameters:nil call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GFeedTags alloc] initWithObj:dic]];
+            }
+            
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+    
+    
+}
+#pragma mark----订单投诉
+/**
+ *  订单投诉
+ *
+ *  @param mUserId    平台用户id
+ *  @param mLegId     跑腿用户id
+ *  @param mContent   投诉内容
+ *  @param mTagId     理由id
+ *  @param mOrderType 订单类型
+ *  @param mOrderCode 订单编号
+ *  @param mImages    图片组
+ *  @param block      返回值
+ */
+- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSArray *)mImages block:(void(^)(mBaseData *resb))block{
+
+    
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mLegId) forKey:@"legworkUserId"];
+    
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    [para setObject:NumberWithInt(mOrderType) forKey:@"orderType"];
+    
+    [para setObject:NumberWithInt(mTagId) forKey:@"treatyId"];
+    [para setObject:mContent forKey:@"content"];
+    
+    if (mImages.count > 0 ) {
+        [para setObject:mImages forKey:@"url"];
+    }
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appComplaints" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+    
+}
+
+
 
 
 
@@ -3563,7 +3741,7 @@ bool pptbined = NO;
 - (void)fetchIt:(NSDictionary *)obj{
     
     self.mUserId = [[obj objectForKeyMy:@"user_id"] intValue];
-    self.mPPTerId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mPPTerId = [mUserInfo backNowUser].mLegworkUserId;
     self.mLevel = [obj objectForKeyMy:@"user_level"];
     self.mFAQUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"real_name"];
@@ -3834,7 +4012,41 @@ bool pptbined = NO;
     
 }
 
+#pragma mark----确认完成订单
+/**
+ *  确认完成订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)finishPPTOrder:(int)mUserId andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mOrderType) forKey:@"orderType"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
 
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLng forKey:@"lon"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appComfirmOrder" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            block (info);
+            
+        }else{
+            
+            block (info);
+        }
+    }];
+    
+    
+}
 
 
 @end
@@ -4037,6 +4249,46 @@ bool pptbined = NO;
     self.mNickName = [obj objectForKeyMy:@"nick_name"];
     self.mGenTime = [obj objectForKeyMy:@"gen_time"];
 
+    
+}
+
+@end
+
+@implementation GSystemTags
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+
+    self.mTagId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mTagName = [obj objectForKeyMy:@"sysTagName"];
+    
+}
+
+@end
+
+@implementation GFeedTags
+
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mTagId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mTagName = [obj objectForKeyMy:@"title_alias"];
     
 }
 

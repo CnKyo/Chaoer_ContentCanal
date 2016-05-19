@@ -119,6 +119,7 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             mHeaderView.mAddress.text = eee;
+            [self showErrorStatus:@"需要打开定位才能查询附近的订单！"];
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
@@ -317,6 +318,8 @@
 - (void)pptHistoryAction:(UIButton *)sender{
     pptHistoryViewController *ppt = [[pptHistoryViewController alloc]initWithNibName:@"pptHistoryViewController" bundle:nil];
     ppt.mType = 1;
+    ppt.mLng = self.mLng;
+    ppt.mLat = self.mLat;
     [self pushViewController:ppt];
 }
 #pragma mark----发布
@@ -390,9 +393,19 @@
         cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
         cell.mDoneBtn.enabled = NO;
     }else{
-        cell.mDoneBtn.backgroundColor = M_CO;
-        cell.mDoneBtn.enabled = YES;
+        
+        if ([mUserInfo backNowUser].mIs_leg != 5) {
+            cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
+            cell.mDoneBtn.enabled = NO;
+        }else{
+            cell.mDoneBtn.backgroundColor = M_CO;
+            cell.mDoneBtn.enabled = YES;
+        }
     }
+    
+    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+
+    
     
     if (mType == 3) {
         cell.mTitle.text = mOrder.mGoodsName;

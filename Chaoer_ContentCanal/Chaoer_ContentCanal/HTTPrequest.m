@@ -13,6 +13,9 @@
 #import "Util.h"
 
 #import "dataModel.h"
+
+#import "MJExtension.h"
+
 #pragma mark -
 #pragma mark APIClient
 
@@ -62,10 +65,13 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175
     
     [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        
-        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+//        NSLog(@"去掉字典里的null值之前的数据---URL%@ data:%@",operation.response.URL,responseObject);
 
-        mBaseData   *retob = [[mBaseData alloc]initWithObj:responseObject];
+        NSDictionary *resbObj = [self deleteEmpty:responseObject];
+        
+        NSLog(@"去掉字典里的null值之后的数据---%@",resbObj);
+
+        mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
                 
 //        if( retob.mState == 400301 )
 //        {//需要登陆
@@ -90,7 +96,12 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175
         
         NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
         
-        mBaseData   *retob = [[mBaseData alloc]initWithObj:responseObject];
+        NSDictionary *resbObj = [self deleteEmpty:responseObject];
+        
+        NSLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+        
+        mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
+        
         
         //        if( retob.mState == 400301 )
         //        {//需要登陆
@@ -117,6 +128,95 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175
 
 + (NSString *)returnNowURL{
     return kAFAppDotNetAPIBaseURLString;
+}
+#pragma mark----删除字典里的null值
+- (NSDictionary *)deleteEmpty:(NSDictionary *)dic
+{
+    NSMutableDictionary *mdic = [[NSMutableDictionary alloc] initWithDictionary:dic];
+    NSMutableArray *set = [[NSMutableArray alloc] init];
+    NSMutableDictionary *dicSet = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *arrSet = [[NSMutableDictionary alloc] init];
+    for (id obj in mdic.allKeys)
+    {
+        id value = mdic[obj];
+        if ([value isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary *changeDic = [self deleteEmpty:value];
+            [dicSet setObject:changeDic forKey:obj];
+        }
+        else if ([value isKindOfClass:[NSArray class]])
+        {
+            NSArray *changeArr = [self deleteEmptyArr:value];
+            [arrSet setObject:changeArr forKey:obj];
+        }
+        else
+        {
+            if ([value isKindOfClass:[NSNull class]]) {
+                [set addObject:obj];
+            }
+        }
+    }
+    for (id obj in set)
+    {
+        mdic[obj] = @"";
+    }
+    for (id obj in dicSet.allKeys)
+    {
+        mdic[obj] = dicSet[obj];
+    }
+    for (id obj in arrSet.allKeys)
+    {
+        mdic[obj] = arrSet[obj];
+    }
+    
+    return mdic;
+}
+
+#pragma mark----删除数组中的null值
+- (NSArray *)deleteEmptyArr:(NSArray *)arr
+{
+    NSMutableArray *marr = [NSMutableArray arrayWithArray:arr];
+    NSMutableArray *set = [[NSMutableArray alloc] init];
+    NSMutableDictionary *dicSet = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *arrSet = [[NSMutableDictionary alloc] init];
+    
+    for (id obj in marr)
+    {
+        if ([obj isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary *changeDic = [self deleteEmpty:obj];
+            NSInteger index = [marr indexOfObject:obj];
+            [dicSet setObject:changeDic forKey:@(index)];
+        }
+        else if ([obj isKindOfClass:[NSArray class]])
+        {
+            NSArray *changeArr = [self deleteEmptyArr:obj];
+            NSInteger index = [marr indexOfObject:obj];
+            [arrSet setObject:changeArr forKey:@(index)];
+        }
+        else
+        {
+            if ([obj isKindOfClass:[NSNull class]]) {
+                NSInteger index = [marr indexOfObject:obj];
+                [set addObject:@(index)];
+            }
+        }
+    }
+    for (id obj in set)
+    {
+        marr[(int)obj] = @"";
+    }
+    for (id obj in dicSet.allKeys)
+    {
+        int index = [obj intValue];
+        marr[index] = dicSet[obj];
+    }
+    for (id obj in arrSet.allKeys)
+    {
+        int index = [obj intValue];
+        marr[index] = arrSet[obj];
+    }
+    return marr;
 }
 
 @end

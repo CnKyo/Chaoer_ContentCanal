@@ -11,13 +11,22 @@
 @implementation MovieAddComment
 
 
+{
 
+    int mTotle;
+    int mSpeed;
+    int mMass;
+    
+    
+    NSMutableArray *mIds;
+    
+}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andArray:(NSArray *)mArr
 
 {
     self = [super initWithFrame:frame];
@@ -30,6 +39,7 @@
         self.v_addcomment.frame = self.bounds;
         [self addSubview:self.v_addcomment];
 
+        mIds = [NSMutableArray new];
         
         self.v_count.layer.cornerRadius = self.v_count.frame.size.height/2;
         self.v_count.layer.borderWidth = 1.0;
@@ -41,13 +51,121 @@
         self.mCommitBtn.layer.cornerRadius = 3;
         
         [self.mCommitBtn addTarget:self action:@selector(commitAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        mTotle = 0;
+        mSpeed = 0;
+        mMass = 0;
+        
+        for (UIButton *nnn in self.mTagView.subviews) {
+            [nnn removeFromSuperview];
+        }
+        
+       
+        CGFloat LW = self.mTagView.mwidth/3-15;
+        
+        for ( int i = 0; i<mArr.count; i++) {
+            
+            GSystemTags *mTag = mArr[i];
+            
+      
+            UIButton *lll = [UIButton new];
+            
+            lll.frame = CGRectMake(5+LW*i, 2, LW-10, 25);
+            lll.titleLabel.font = [UIFont systemFontOfSize:14];
+            [lll setTitle:mTag.mTagName forState:0];
+            
+            lll.titleLabel.textAlignment = NSTextAlignmentCenter;
+            
+            lll.layer.masksToBounds = YES;
+            lll.layer.cornerRadius = 12;
+            
+            
+            [lll setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            [lll setTitleColor:[UIColor colorWithRed:0.55 green:0.75 blue:0.94 alpha:1.00] forState:UIControlStateNormal];
+            
+            [lll setBackgroundImage:[UIImage imageNamed:@"ppt_system_tag_nomal"] forState:UIControlStateNormal];
+            [lll setBackgroundImage:[UIImage imageNamed:@"ppt_system_tag_selected"] forState:UIControlStateSelected];
+
+            
+            
+            lll.tag = mTag.mTagId;
+            
+            [lll addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.mTagView addSubview:lll];
+            
+            if (i>=4) {
+                break;
+            }
+            
+        }
+
+        
 
     }
     return self;
 }
+
+- (void)tagAction:(UIButton *)sender{
+
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) {
+        [mIds addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+    }else{
+        
+        [mIds removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+    }
+    
+    
+}
+
+#pragma mark----提交评价
 - (void)commitAction:(UIButton *)sender{
 
+    
+    NSString *mTagIds = @"";
+    for (int i =0;i<mIds.count;i++) {
+        
+        NSString *str = mIds[i];
+        if (i == mIds.count-1) {
+            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%@",str]];
+        }else{
+            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%@,",str]];
+        }
+        
+        
+    }
+    
     NSLog(@"提交");
+    
+    if (mSpeed == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择速度评分！"];
+        return;
+    }
+    if (mMass == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择商品质量评分！"];
+        return;
+    }
+    if (mIds.count<=0) {
+        [SVProgressHUD showErrorWithStatus:@"请选择标签！"];
+        return;
+    }
+    if(self.mContent.text.length == 0){
+        [SVProgressHUD showErrorWithStatus:@"请输入评价内容！"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+    [[mUserInfo backNowUser] rateOrder:[mUserInfo backNowUser].mUserId andLegUserId:[GPPTer backPPTUser].mPPTerId andSpeed:mSpeed andMass:mMass andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andContent:self.mContent.text andTags:mTagIds block:^(mBaseData *resb) {
+        [SVProgressHUD dismiss];
+        [self.delegate isSucess:resb.mSucess];
+        
+    }];
+    
+    
+    
 }
 -(IBAction)hidKeyboard:(id)sender{
     [self endEditing:YES];
@@ -229,35 +347,36 @@
     }
 }
 -(void)checkCount:(NSInteger)count{
+
     switch (count) {
         case 1:
         case 2:
             self.lbl_counttext.text = @"不满意";
- 
+            mTotle = 1;
 
             break;
         case 3:
         case 4:
             self.lbl_counttext.text = @"很差";
-  
-
+            mTotle = 2;
+            
             break;
         case 5:
         case 6:
             self.lbl_counttext.text = @"一般";
-   
-
+            mTotle = 3;
+            
             break;
         case 7:
         case 8:
             self.lbl_counttext.text = @"不错";
-    
-
+            mTotle = 4;
+            
             break;
         case 9:
         case 10:
             self.lbl_counttext.text = @"满意";
-         
+            mTotle = 5;
 
             break;
         default:
@@ -266,31 +385,32 @@
 }
 
 -(void)checkCount1:(NSInteger)count{
+    
     switch (count) {
         case 1:
         case 2:
             self.mSpeedLb.text = @"不满意";
-            
+            mSpeed = 1;
             break;
         case 3:
         case 4:
             self.mSpeedLb.text = @"很差";
-            
+            mSpeed = 2;
             break;
         case 5:
         case 6:
             self.mSpeedLb.text = @"一般";
-            
+            mSpeed = 3;
             break;
         case 7:
         case 8:
             self.mSpeedLb.text = @"不错";
-            
+            mSpeed = 4;
             break;
         case 9:
         case 10:
             self.mSpeedLb.text = @"满意";
-            
+            mSpeed = 5;
             break;
         default:
             break;
@@ -302,29 +422,34 @@
         case 2:
             
             self.mMassLb.text = @"不满意";
-            
+            mMass = 1;
+
             break;
         case 3:
         case 4:
             self.mMassLb.text = @"很差";
-            
+            mMass = 2;
+
             break;
         case 5:
         case 6:
             
             self.mMassLb.text = @"一般";
-            
+            mMass = 3;
+
             break;
         case 7:
         case 8:
             
             self.mMassLb.text = @"不错";
-            
+            mMass = 4;
+
             break;
         case 9:
         case 10:
             self.mMassLb.text = @"满意";
-            
+            mMass = 5;
+
             break;
         default:
             break;

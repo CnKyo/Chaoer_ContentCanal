@@ -36,7 +36,16 @@
     NSString *mImgPath;
     NSString *mImgPath2;
     NSString *mImgPath3;
+    
+    NSString *mContent;
+    
 
+    NSString *mTagString;
+    
+    NSMutableArray *mImgArr;
+    
+    int mTagId;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -67,6 +76,11 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
+    mContent = nil;
+    mTagString = @"请选择投诉理由";
+    mTagId = 100000;
+    mImgArr = [NSMutableArray new];
+    
     
     tempImage1 = [UIImage imageNamed:@"ppt_complain_addimg"];
     tempImage2 = [UIImage imageNamed:@"ppt_complain_addimg"];
@@ -77,7 +91,7 @@
     bbb.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bbb];
     
-    BlockButton *mBtn = [BlockButton new];
+    UIButton *mBtn = [UIButton new];
     mBtn.frame = CGRectMake(15, 10, DEVICE_Width-30, 40);
     mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     mBtn.backgroundColor = M_CO;
@@ -86,18 +100,46 @@
     mBtn.layer.cornerRadius = 3;
     [mBtn setTitle:@"提交" forState:0];
     [mBtn setTitleColor:[UIColor whiteColor] forState:0];
-    [mBtn btnClick:^{
-        
-        NSLog(@"提交");
-        
-        
-        
-        
-    }];
+    [mBtn addTarget:self action:@selector(commitAction:) forControlEvents:UIControlEventTouchUpInside];
+
     [bbb addSubview:mBtn];
     
     [self initView];
 }
+#pragma mark----提交投诉
+- (void)commitAction:(UIButton *)sender{
+    NSLog(@"提交");
+    
+    if (mContent.length == 0) {
+        [self showErrorStatus:@"请完善投诉内容!"];
+        return ;
+    }
+    if (mTagId == 100000) {
+        [self showErrorStatus:@"请输入投诉理由!"];
+        return ;
+    }
+ 
+    
+    [self showWithStatus:@"正在提交..."];
+    
+    [[mUserInfo backNowUser] feedBackOrder:[mUserInfo backNowUser].mUserId andLegUserId:[mUserInfo backNowUser].mLegworkUserId andContent:mContent andFeedTagId:mTagId andOrderType:self.mType andOrderCode:self.mOrder.mOrderCode andImags:mImgArr block:^(mBaseData *resb) {
+        
+        
+        if (resb.mSucess) {
+            
+            [self showSuccessStatus:resb.mMessage];
+            [self popViewController_3];
+            
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+
+}
+
 - (void)initView{
     
     
@@ -112,6 +154,29 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
+    
+}
+
+- (void)headerBeganRefresh{
+
+    [self showWithStatus:@"加载中..."];
+    [[mUserInfo backNowUser] getFeedBackTags:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self headerEndRefresh];
+        
+        if (resb.mSucess) {
+            [self dismiss];
+            
+            [self.tempArray addObjectsFromArray:mArr];
+            
+            
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+            [self popViewController];
+        }
+        
+    }];
     
 }
 
@@ -158,11 +223,15 @@
     complaintTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.mResonLb.text = mTagString;
+    mContent = cell.mContent.text;
+    
     [cell.mPickImg1 addTarget:self action:@selector(pickAction1) forControlEvents:UIControlEventTouchUpInside];
     [cell.mPickImg2 addTarget:self action:@selector(pickAction2) forControlEvents:UIControlEventTouchUpInside];
     [cell.mPickImg3 addTarget:self action:@selector(pickAction3) forControlEvents:UIControlEventTouchUpInside];
     
     
+    [cell.mResonBtn addTarget:self action:@selector(reasonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.mPickImg1 setBackgroundImage:tempImage1 forState:0];
     [cell.mPickImg2 setBackgroundImage:tempImage2 forState:0];
@@ -170,6 +239,11 @@
     return cell;
     
 }
+
+- (void)reasonAction:(UIButton *)sender{
+    [self loadMHActionSheetView];
+}
+
 
 - (void)pickAction1{
     mNowSelected = 1;
@@ -338,13 +412,17 @@
         [SVProgressHUD showSuccessWithStatus:resb.mMessage];
         
         if (mNowSelected == 1) {
+            [mImgArr removeObject:mImgPath];
             mImgPath = [resb.mData objectForKey:@"pic"];
+            [mImgArr addObject:mImgPath];
         }else if (mNowSelected == 2){
+            [mImgArr removeObject:mImgPath2];
             mImgPath2 = [resb.mData objectForKey:@"pic"];
-            
+            [mImgArr addObject:mImgPath2];
         }else{
+            [mImgArr removeObject:mImgPath3];
             mImgPath3 = [resb.mData objectForKey:@"pic"];
-            
+            [mImgArr addObject:mImgPath3];
         }
         
         
@@ -355,4 +433,34 @@
 }
 
 
+- (void)loadMHActionSheetView{
+    
+    NSMutableArray *mTT = [NSMutableArray new];
+    
+    for (GFeedTags *mTags in self.tempArray) {
+        [mTT addObject:mTags.mTagName];
+    }
+    
+    
+    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择投诉标签" style:MHSheetStyleWeiChat itemTitles:mTT];
+    actionSheet.cancleTitle = @"取消选择";
+    
+    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+        
+        GFeedTags *mTags = self.tempArray[index];
+        
+        mTagString = mTags.mTagName;
+        
+        mTagId = mTags.mTagId;
+        
+        [self.tableView reloadData];
+        
+    }];
+   
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+
+    [self.tableView reloadData];
+    
+}
 @end

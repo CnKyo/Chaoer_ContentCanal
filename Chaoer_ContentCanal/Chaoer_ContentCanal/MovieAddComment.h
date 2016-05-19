@@ -8,7 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "IQTextView.h"
+
+///代理方法
+@protocol MoveViewDelagate <NSObject>
+
+@optional
+///是否成功
+- (void)isSucess:(BOOL)mSucess;
+
+@end
+
+
+
 @interface MovieAddComment : UIView
+
+
+@property (nonatomic,strong) id <MoveViewDelagate> delegate;
+
 
 @property (strong,nonatomic) UIView *v_addcomment;
 /**
@@ -80,11 +96,24 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mMass5;
 
 
+/**
+ *  标签view
+ */
+@property (weak, nonatomic) IBOutlet UIView *mTagView;
+
+/**
+ *  跑腿类型 1是商品买送 2是事情办理 3是送东西
+ */
+@property (nonatomic,assign) int mType;
+@property (strong,nonatomic) GPPTOrder *mOrder;
+@property (strong,nonatomic)NSString *mLng;
+
+@property (strong,nonatomic)NSString *mLat;
 
 @property NSInteger count;
 @property BOOL canAddStar;
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame andArray:(NSArray *)mArr;
 -(void)cleamCount;
 
 

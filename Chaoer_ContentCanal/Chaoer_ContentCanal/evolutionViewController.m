@@ -9,7 +9,7 @@
 #import "evolutionViewController.h"
 #import "MovieAddComment.h"
 #import "complaintViewController.h"
-@interface evolutionViewController ()
+@interface evolutionViewController ()<MoveViewDelagate>
 
 @end
 
@@ -57,12 +57,55 @@
     mScrollerView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     [self.view addSubview:mScrollerView];
     
+    [self loadData];
     
-    MovieAddComment *movie = [[MovieAddComment alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width,568)];
+    
+}
+
+- (void)loadData{
+
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getSystemTags:^(mBaseData *resb, NSArray *mArr) {
+        
+        if (resb.mSucess) {
+            
+            [self dismiss];
+            [self updatePage:mArr];
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self popViewController];
+        }
+    }];
+    
+    
+}
+
+- (void)updatePage:(NSArray *)mData{
+    MovieAddComment *movie = [[MovieAddComment alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width,568) andArray:mData];
+    movie.delegate = self;
     movie.mContent.placeholder = @"请输入您的评论";
+    movie.mOrder = GPPTOrder.new;
+    movie.mOrder = self.mOrder;
+    movie.mLng = self.mLng;
+    movie.mLat = self.mLat;
+    movie.mType = self.mType;
     [mScrollerView addSubview:movie];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+
+
+}
+#pragma mark----代理方法
+- (void)isSucess:(BOOL)mSucess{
+
+    if (mSucess) {
+        [self popViewController_2];
+    }else{
+        [self showErrorStatus:@"评价失败，请重试！"];
+        [self popViewController];
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -80,6 +123,11 @@
 */
 - (void)rightBtnTouched:(id)sender{
     complaintViewController *ccc = [[complaintViewController alloc] initWithNibName:@"complaintViewController" bundle:nil];
+    
+    ccc.mType = self.mType;
+    ccc.mOrder = GPPTOrder.new;
+    ccc.mOrder = self.mOrder;
+    
     [self pushViewController:ccc];
     
 }

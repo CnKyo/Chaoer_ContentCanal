@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "mOrderButton.h"
 @interface pptDetailCell : UITableViewCell
 #pragma mark----办事情cell样式
 
@@ -73,7 +73,7 @@
 /**
  *  操作按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mDoBtn;
+@property (weak, nonatomic) IBOutlet mOrderButton *mDoBtn;
 
 #pragma mark----送东西cell样式
 /**

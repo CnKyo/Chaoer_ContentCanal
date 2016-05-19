@@ -14,4 +14,9 @@
  */
 @property (assign,nonatomic) int mType;
 
+
+@property (strong,nonatomic)NSString *mLng;
+
+@property (strong,nonatomic)NSString *mLat;
+
 @end

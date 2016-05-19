@@ -854,6 +854,14 @@
  */
 - (void)getCommunityStatus:(int)mCommunityId andPage:(int)mPage andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
+/**
+ *  获取新闻详情
+ *
+ *  @param mNewsId 新闻ID
+ *  @param block   返回
+ */
+- (void)getCommunityDetail:(int)mNewsId block:(void(^)(mBaseData *resb))block;
+
 #pragma mark----跑跑腿数据
 /**
  *  查询常用地址
@@ -989,6 +997,51 @@
  *  @param block      返回值
  */
 - (void)getPPTOrder:(int)mLegUserId andOrderCode:(NSString *)mOrderCode andOrderType:(NSString *)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----获取系统标签
+/**
+ *  获取系统标签
+ *
+ *  @param block 返回值
+ */
+- (void)getSystemTags:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----评价订单
+/**
+ *  评价订单
+ *
+ *  @param mUserId    平台用户id
+ *  @param mLegId     跑腿用户id
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param mOrdeCode  订单编号
+ *  @param mOrderType 订单类型
+ *  @param block      返回值
+ */
+- (void)rateOrder:(int)mUserId andLegUserId:(int)mLegId andSpeed:(int)mSpeed andMass:(int)mMass andOrderCode:(NSString *)mOrdeCode andOrderType:(int)mOrderType andContent:(NSString *)mContent andTags:(NSString *)mTags block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----获取投诉标签
+/**
+ *  获取投诉标签
+ *
+ *  @param block 返回值
+ */
+- (void)getFeedBackTags:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----订单投诉
+/**
+ *  订单投诉
+ *
+ *  @param mUserId    平台用户id
+ *  @param mLegId     跑腿用户id
+ *  @param mContent   投诉内容
+ *  @param mTagId     理由id
+ *  @param mOrderType 订单类型
+ *  @param mOrderCode 订单编号
+ *  @param mImages    图片组
+ *  @param block      返回值
+ */
+- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSArray *)mImages block:(void(^)(mBaseData *resb))block;
 
 @end
 
@@ -2228,6 +2281,21 @@
  */
 - (void)pptDeleteMessages:(NSString *)mMessageIds block:(void(^)(mBaseData *resb))block;
 
+#pragma mark----确认完成订单
+/**
+ *  确认完成订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)finishPPTOrder:(int)mUserId andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
+
+
+
+
 @end
 
 @interface GPPTUserInfo : NSObject
@@ -2358,4 +2426,40 @@
 
 -(id)initWithObj:(NSDictionary*)obj;
 
+@end
+
+#pragma mark----*  系统标签对象
+/**
+ *  系统标签对象
+ */
+@interface GSystemTags : NSObject
+/**
+ *  标签id
+ */
+@property (nonatomic,assign) int        mTagId;
+/**
+ *  标签名称
+ */
+@property (nonatomic,strong) NSString*  mTagName;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+
+@interface GFeedTags : NSObject
+/**
+ *  标签id
+ */
+@property (nonatomic,assign) int        mTagId;
+/**
+ *  标签名称
+ */
+@property (nonatomic,strong) NSString*  mTagName;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
 @end
