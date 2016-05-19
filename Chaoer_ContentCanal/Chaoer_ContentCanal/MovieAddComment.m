@@ -158,7 +158,7 @@
     }
     
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-    [[mUserInfo backNowUser] rateOrder:[mUserInfo backNowUser].mUserId andLegUserId:[GPPTer backPPTUser].mPPTerId andSpeed:mSpeed andMass:mMass andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andContent:self.mContent.text andTags:mTagIds block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] rateOrder:[mUserInfo backNowUser].mUserId andLegUserId:[mUserInfo backNowUser].mLegworkUserId andSpeed:mSpeed andMass:mMass andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andContent:self.mContent.text andTags:mTagIds block:^(mBaseData *resb) {
         [SVProgressHUD dismiss];
         [self.delegate isSucess:resb.mSucess];
         

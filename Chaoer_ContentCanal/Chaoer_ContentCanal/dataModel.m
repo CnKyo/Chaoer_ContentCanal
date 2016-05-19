@@ -2673,7 +2673,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mImages    图片组
  *  @param block      返回值
  */
-- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSArray *)mImages block:(void(^)(mBaseData *resb))block{
+- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSString *)mImages block:(void(^)(mBaseData *resb))block{
 
     
     
@@ -2689,9 +2689,11 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mTagId) forKey:@"treatyId"];
     [para setObject:mContent forKey:@"content"];
     
-    if (mImages.count > 0 ) {
+    if (mImages) {
         [para setObject:mImages forKey:@"url"];
     }
+    
+    
     
     
     [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appComplaints" parameters:para call:^(mBaseData *info) {

@@ -1041,7 +1041,7 @@
  *  @param mImages    图片组
  *  @param block      返回值
  */
-- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSArray *)mImages block:(void(^)(mBaseData *resb))block;
+- (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSString *)mImages block:(void(^)(mBaseData *resb))block;
 
 @end
 

@@ -122,7 +122,23 @@
     
     [self showWithStatus:@"正在提交..."];
     
-    [[mUserInfo backNowUser] feedBackOrder:[mUserInfo backNowUser].mUserId andLegUserId:[mUserInfo backNowUser].mLegworkUserId andContent:mContent andFeedTagId:mTagId andOrderType:self.mType andOrderCode:self.mOrder.mOrderCode andImags:mImgArr block:^(mBaseData *resb) {
+    
+    NSString *mImages = @"";
+    for (int i =0;i<mImgArr.count;i++) {
+        
+        NSString *str = mImgArr[i];
+        if (i == mImgArr.count-1) {
+            mImages = [mImages stringByAppendingString:[NSString stringWithFormat:@"%@",str]];
+        }else{
+            mImages = [mImages stringByAppendingString:[NSString stringWithFormat:@"%@,",str]];
+        }
+        
+        
+    }
+
+    
+    
+    [[mUserInfo backNowUser] feedBackOrder:[mUserInfo backNowUser].mUserId andLegUserId:[mUserInfo backNowUser].mLegworkUserId andContent:mContent andFeedTagId:mTagId andOrderType:self.mType andOrderCode:self.mOrder.mOrderCode andImags:mImages block:^(mBaseData *resb) {
         
         
         if (resb.mSucess) {
