@@ -11,6 +11,8 @@
 #import "MHActionSheet.h"
 
 #import "verifyBankViewController.h"
+#import "AddressPickView.h"
+
 @interface needCodeViewController ()
 
 @end
@@ -49,6 +51,10 @@
     
     
     NSMutableArray *mIdentify;
+    
+    AddressPickView *addressPickView;
+    NSString *mAddressStr;
+
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -94,8 +100,116 @@
     Arrtemp = [NSMutableArray new];
     mIdentify = [NSMutableArray new];
 
-    [self initview];
+//    [self initview];
+    
+    mAddressStr = nil;
+    
+    [self updatePage];
+    
 }
+
+- (void)updatePage{
+    mScrollerView = [UIScrollView new];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
+    mScrollerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:0.45];
+    [self.view addSubview:mScrollerView];
+    
+    
+    mView = [needCodeView initWithView];
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
+    
+    
+    [mView.mChoiceCityBtn addTarget:self action:@selector(mSelectCityAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mChoiceArearBtn addTarget:self action:@selector(mSelectArearAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mChoiceDetailBtn addTarget:self action:@selector(mSelectDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mOneBtn addTarget:self action:@selector(mOneAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mTwoBtn addTarget:self action:@selector(mOneAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [mScrollerView addSubview:mView];
+    
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+
+    
+}
+#pragma mark----重新设计后的界面⬇️
+- (void)mSelectCityAction:(UIButton *)sender{
+    [self loadAddressPick];
+    
+}
+- (void)loadAddressPick{
+    [addressPickView removeFromSuperview];
+    
+    addressPickView  = [AddressPickView shareInstance];
+    [self.view addSubview:addressPickView];
+    
+    __weak __typeof(mView)weakSelf = mView;
+    
+    addressPickView.block = ^(NSString *province,NSString *city,NSString *town){
+        
+        mAddressStr = [NSString stringWithFormat:@"%@%@%@",province,city,town ];
+        
+        [weakSelf.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",province,city,town ] forState:0];
+        
+    };
+}
+- (void)mSelectArearAction:(UIButton *)sender{
+    
+}
+- (void)mSelectDetailAction:(UIButton *)sender{
+    
+}
+- (void)mOneAction:(UIButton *)sender{
+    [mIdentify removeAllObjects];
+    
+    switch (sender.tag) {
+        case 1:
+        {
+            if (sender.selected == NO) {
+                mView.mMasterBtn.selected = YES;
+                mView.mVisitorBtn.selected = NO;
+                [mIdentify addObject:NumberWithFloat(2)];
+                mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_selected"];
+                mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+
+            }else{
+                sender.selected = NO;
+                [mIdentify removeObject:NumberWithFloat(2)];
+                mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+                mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+
+
+                
+            }
+        }
+            break;
+        case 2:
+        {
+            if (sender.selected == NO) {
+                mView.mMasterBtn.selected = NO;
+                mView.mVisitorBtn.selected = YES;
+                [mIdentify addObject:NumberWithFloat(1)];
+                mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_selected"];
+                mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+
+            }else{
+                sender.selected = NO;
+                [mIdentify removeObject:NumberWithFloat(1)];
+                mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+                mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
+
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+
+}
+
+#pragma mark----重新设计后的界面⬆️
+
 - (void)initview{
     
     UIImageView *iii = [UIImageView new];

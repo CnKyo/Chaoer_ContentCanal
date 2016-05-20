@@ -166,4 +166,47 @@
 + (needCodeView *)shareVerifyBankView;
 
 
+
+#pragma mark----重设实名认证界面
+/**
+ *  城市选择
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChoiceCityBtn;
+/**
+ *  选择小区
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChoiceArearBtn;
+/**
+ *  选择详细地址
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChoiceDetailBtn;
+/**
+ *  房主按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mOneBtn;
+/**
+ *  房主图片
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mOneImg;
+/**
+ *  租客按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mTwoBtn;
+/**
+ *  租客图片
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mTwoImg;
+/**
+ *  提交按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mCommitBtn;
+
+
+/**
+ *  初始化方法
+ *
+ *  @return view
+ */
++ (needCodeView *)initWithView;
+
 @end

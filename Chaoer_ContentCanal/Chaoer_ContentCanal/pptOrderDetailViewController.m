@@ -204,22 +204,25 @@
         cell.mSendMoney.text = [NSString stringWithFormat:@"酬金：%@元",self.mOrder.mLegworkMoney];
         
 #pragma mark----判断是否能接单
-        if ([mUserInfo backNowUser].mUserId == [self.mOrder.mUserId intValue]) {
+        
+        if (self.mOrder.mProcessStatus == 0) {
             cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
             cell.mDoBtn.enabled = NO;
         }else{
-            if ([mUserInfo backNowUser].mIs_leg != 5) {
+            if ([mUserInfo backNowUser].mUserId == [self.mOrder.mUserId intValue]) {
                 cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
                 cell.mDoBtn.enabled = NO;
             }else{
-                cell.mDoBtn.backgroundColor = M_CO;
-                cell.mDoBtn.enabled = YES;
+                if ([mUserInfo backNowUser].mIs_leg != 5) {
+                    cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+                    cell.mDoBtn.enabled = NO;
+                }else{
+                    cell.mDoBtn.backgroundColor = M_CO;
+                    cell.mDoBtn.enabled = YES;
+                }
             }
         }
-
-        
-     
-        
+              
         [cell.mDoBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
 
         NSString *ordertype = nil;

@@ -389,19 +389,26 @@
     pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     
-    if ([mUserInfo backNowUser].mUserId == [mOrder.mUserId intValue]) {
+    if (mOrder.mProcessStatus == 0) {
         cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
         cell.mDoneBtn.enabled = NO;
     }else{
-        
-        if ([mUserInfo backNowUser].mIs_leg != 5) {
+        if ([mUserInfo backNowUser].mUserId == [mOrder.mUserId intValue]) {
             cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
             cell.mDoneBtn.enabled = NO;
         }else{
-            cell.mDoneBtn.backgroundColor = M_CO;
-            cell.mDoneBtn.enabled = YES;
+            
+            if ([mUserInfo backNowUser].mIs_leg != 5) {
+                cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
+                cell.mDoneBtn.enabled = NO;
+            }else{
+                cell.mDoneBtn.backgroundColor = M_CO;
+                cell.mDoneBtn.enabled = YES;
+            }
         }
+
     }
+    
     
     [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 
@@ -547,6 +554,9 @@
 
 #pragma mark----接单
 - (void)getOrderAction:(mOrderButton *)sender{
+    
+    
+    
     
     if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
         [self showErrorStatus:@"必须打开定位才能接单哦！"];

@@ -207,6 +207,7 @@
 		04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3AD1CD217EF00222946 /* mConversationViewController.xib */; };
 		04F1E3B31CD2185700222946 /* mConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1E3B11CD2185700222946 /* mConversationCell.m */; };
 		04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3B21CD2185700222946 /* mConversationCell.xib */; };
+		04F2281D1CEEBD3E004E8702 /* addHouseAndCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */; };
 		04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */; };
 		04F2DDF71CBE2BC80088C90F /* communityStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF51CBE2BC80088C90F /* communityStatusViewController.m */; };
 		04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2DDF61CBE2BC80088C90F /* communityStatusViewController.xib */; };
@@ -1008,6 +1009,7 @@
 		04F1E3B01CD2185700222946 /* mConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mConversationCell.h; sourceTree = "<group>"; };
 		04F1E3B11CD2185700222946 /* mConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mConversationCell.m; sourceTree = "<group>"; };
 		04F1E3B21CD2185700222946 /* mConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mConversationCell.xib; sourceTree = "<group>"; };
+		04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addHouseAndCodeView.xib; sourceTree = "<group>"; };
 		04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUploadManager.h; sourceTree = "<group>"; };
 		04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUploadManager.m; sourceTree = "<group>"; };
 		04F2DDF41CBE2BC80088C90F /* communityStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = communityStatusViewController.h; sourceTree = "<group>"; };
@@ -2859,6 +2861,7 @@
 				311BE2271CA14160006757E8 /* needCodeView.m */,
 				311BE2291CA1416A006757E8 /* needCodeView.xib */,
 				3182A1711CA67B390084E890 /* verifyBankCardView.xib */,
+				04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */,
 				3182A1731CA681300084E890 /* verifyBankViewController.h */,
 				3182A1741CA681300084E890 /* verifyBankViewController.m */,
 				3182A1751CA681300084E890 /* verifyBankViewController.xib */,
@@ -4326,6 +4329,7 @@
 				746907E31BABEC6600A4589A /* moreCell.xib in Resources */,
 				040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */,
 				310EB6041CA26E47005C61F4 /* makeServiceView.xib in Resources */,
+				04F2281D1CEEBD3E004E8702 /* addHouseAndCodeView.xib in Resources */,
 				318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */,
 				04102E1A1CE42CA7006F82E2 /* bolterViewController.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,

@@ -41,4 +41,18 @@
     return view;
     
 }
+
++ (needCodeView *)initWithView{
+    
+    needCodeView *view = [[[NSBundle mainBundle] loadNibNamed:@"addHouseAndCodeView" owner:self options:nil] objectAtIndex:0];
+    
+    
+    view.mCommitBtn.layer.masksToBounds = YES;
+    view.mCommitBtn.layer.cornerRadius = 3;
+    
+    return view;
+    
+    
+}
+
 @end
