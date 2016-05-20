@@ -14,7 +14,7 @@
 #import "AddressPickView.h"
 
 
-
+#import "choiceArearViewController.h"
 
 #import "AbstractActionSheetPicker+Interface.h"//这个是定义取消和确定按钮
 #import "ActionSheetPicker.h"
@@ -22,8 +22,11 @@
 #import "XKPEWeightAndHightActionPickerDelegate.h"
 #define kScreenSize [UIScreen mainScreen].bounds.size
 @interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate>
-@property (nonatomic ,strong) XKPEActionPickersDelegate *actionPicker; //三列
-@property (nonatomic , strong) XKPEWeightAndHightActionPickerDelegate *weightAndHight;//列组
+
+@property (nonatomic ,strong) XKPEActionPickersDelegate *detailAddressPicker; //4列
+
+@property (nonatomic , strong) XKPEWeightAndHightActionPickerDelegate *widthAnHigh;//列组
+
 @end
 
 @implementation needCodeViewController
@@ -63,6 +66,14 @@
     
     AddressPickView *addressPickView;
     NSString *mAddressStr;
+    
+    
+    
+    
+    NSMutableArray *mTT1;
+    NSMutableArray *mTT2;
+    NSMutableArray *mTT3;
+    NSMutableArray *mTT4;
 
 
 }
@@ -109,13 +120,82 @@
     Arrtemp = [NSMutableArray new];
     mIdentify = [NSMutableArray new];
 
-//    [self initview];
+    
+    mTT1 = [NSMutableArray new];
+    mTT2 = [NSMutableArray new];
+    mTT3 = [NSMutableArray new];
+    mTT4 = [NSMutableArray new];
+    [self initViewData];
+    
+    [self initview];
     
     mAddressStr = nil;
     
-    [self updatePage];
+//    [self updatePage];
     
 }
+
+- (void)initViewData{
+
+    NSString *datastr = nil;
+    
+    for (int i=1; i<=51; i++) {
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"楼栋"];
+            [mTT1 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld栋",(long)i];
+            [mTT1 addObject:datastr];
+        }
+        
+        
+        
+    }
+    for (int i=1; i<=41; i++) {
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"单元"];
+            [mTT2 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld单元",(long)i];
+            [mTT2 addObject:datastr];
+        }
+        
+        
+        
+    }
+    for (int i=1; i<=51; i++) {
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"楼层"];
+            [mTT3 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld楼",(long)i];
+            [mTT3 addObject:datastr];
+        }
+        
+        
+        
+    }
+    for (int i=1; i<=51; i++) {
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"门牌号"];
+            [mTT4 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld号",(long)i];
+            [mTT4 addObject:datastr];
+        }
+        
+        
+        
+    }
+}
+
 
 - (void)updatePage{
     mScrollerView = [UIScrollView new];
@@ -164,63 +244,28 @@
 }
 - (void)mSelectArearAction:(UIButton *)sender{
     
+    choiceArearViewController *ccc = [[choiceArearViewController alloc] initWithNibName:@"choiceArearViewController" bundle:nil];
     
+    ccc.block = ^(NSString *content ,NSString *mId){
+        
+        
+        
+        
+        [mView.mChoiceArearBtn setTitle:content forState:0];
+        
+   
+    };
+    
+    [self pushViewController:ccc];
     
 }
 - (void)mSelectDetailAction:(UIButton *)sender{
     
-    NSMutableArray *arr1 = [[NSMutableArray alloc]init];
-    for (int i=0; i<=10; i++) {
-        
-        
-        NSString *datastr = nil;
-        
-        if (i == 0) {
-            datastr = [NSString stringWithFormat:@"选择单元"];
-            [arr1 addObject:datastr];
-        }else{
-            datastr = [NSString stringWithFormat:@"%ld单元",(long)i];
-            [arr1 addObject:datastr];
-        }
-        
-        
-    }
-    NSMutableArray *arr2 = [[NSMutableArray alloc]init];
-    for (int i=0; i<=40; i++) {
-        
-        
-        NSString *datastr = nil;
-        
-        if (i == 0) {
-            datastr = [NSString stringWithFormat:@"选择楼层"];
-            [arr2 addObject:datastr];
-        }else{
-            datastr = [NSString stringWithFormat:@"%ld楼",(long)i];
-            [arr2 addObject:datastr];
-        }
-        
-        
-    }
-    NSMutableArray *arr3 = [[NSMutableArray alloc]init];
-    for (int i=0; i<=50; i++) {
-        
-        
-        NSString *datastr = nil;
-        
-        if (i == 0) {
-            datastr = [NSString stringWithFormat:@"选择门牌号"];
-            [arr3 addObject:datastr];
-        }else{
-            datastr = [NSString stringWithFormat:@"%ld号",(long)i];
-            [arr3 addObject:datastr];
-        }
-        
-    }
+
+    _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT3 title:@"详细住址"];
+    _detailAddressPicker.delegates = self;
     
-    _actionPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:arr1 Arr2:arr2 arr3:arr3 title:@"详细住址"];
-    _actionPicker.delegates = self;
-    
-    ActionSheetCustomPicker *action = [[ActionSheetCustomPicker alloc]initWithTitle:@"录入住址" delegate:_actionPicker showCancelButton:YES origin:self.view];
+    ActionSheetCustomPicker *action = [[ActionSheetCustomPicker alloc]initWithTitle:@"录入住址" delegate:_detailAddressPicker showCancelButton:YES origin:self.view];
     [action customizeInterface];
     [action showActionSheetPicker];
 
@@ -228,39 +273,38 @@
 }
 //三组数据的点击事件
 -(void)xkactionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin{
-    if ([_actionPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
+    if ([_detailAddressPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
     
-        NSLog(@"选择的地址是：%@%@%@",_actionPicker.selectedKey1,_actionPicker.selectedkey2,_actionPicker.selectedkey3);
+        NSLog(@"选择的地址是：%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3);
         
-        if ([_actionPicker.selectedKey1 isEqualToString:@"选择单元"]) {
-            [self showErrorStatus:@"请完善地址信息"];
-            return;
+//        if ([_detailAddressPicker.selectedKey1 isEqualToString:@"楼栋"]) {
+//            [self showErrorStatus:@"请完善地址信息"];
+//            return;
+//        }
+//        if ([_detailAddressPicker.selectedkey2 isEqualToString:@"单元"]) {
+//            [self showErrorStatus:@"请完善地址信息"];
+//            return;
+//        }
+//        if ([_detailAddressPicker.selectedkey3 isEqualToString:@"楼层"]) {
+//            [self showErrorStatus:@"请完善地址信息"];
+//            
+//            return;
+//        }
+//        if ([_detailAddressPicker.selectedkey4 isEqualToString:@"门牌号"]) {
+//            [self showErrorStatus:@"请完善地址信息"];
+//            
+//            return;
+//        }
+        if (_detailAddressPicker.selectedKey1 == nil || _detailAddressPicker.selectedkey2 == nil || _detailAddressPicker.selectedkey3 == nil || _detailAddressPicker.selectedkey4 == nil) {
+            
+            
+            
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mTT1[0],mTT2[0],mTT3[0],mTT4[0]] forState:0];
+            
+            
+        }else{
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
         }
-        if ([_actionPicker.selectedkey2 isEqualToString:@"选择楼层"]) {
-            [self showErrorStatus:@"请完善地址信息"];
-            return;
-        }
-        if ([_actionPicker.selectedkey3 isEqualToString:@"选择单元"]) {
-            [self showErrorStatus:@"请完善地址信息"];
-            
-            return;
-        }
-        
-        if (_actionPicker.selectedKey1 == nil || _actionPicker.selectedkey2 == nil || _actionPicker.selectedkey3 == nil) {
-        
-        
-            
-            [self showErrorStatus:@"请完善地址信息"];
-            
-            return;
-            
-        
-        }
-            
-        
-        
-        [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@",_actionPicker.selectedKey1,_actionPicker.selectedkey2,_actionPicker.selectedkey3] forState:0];
-        
         
     }
 }
@@ -688,7 +732,7 @@
 }
 
 
-
+#pragma mark----实名认证
 - (void)okAction:(UIButton *)sender{
     
     

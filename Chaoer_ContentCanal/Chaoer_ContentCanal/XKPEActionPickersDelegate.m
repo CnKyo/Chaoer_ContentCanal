@@ -9,11 +9,12 @@
 #import "XKPEActionPickersDelegate.h"
 // **********************这个是三列的代理***********
 @implementation XKPEActionPickersDelegate
--(instancetype)initWithArr1:(NSArray *)arr1 Arr2:(NSArray *)arr2 arr3:(NSArray *)arr3 title:(NSString *)title{
+-(instancetype)initWithArr1:(NSArray *)arr1 Arr2:(NSArray *)arr2 arr3:(NSArray *)arr3 arr4:(NSArray *)arr4 title:(NSString *)title{
     if (self = [super init]) {
         _listArr1 = arr1;
         _listArr2 = arr2;
         _listArr3 = arr3;
+        _listArr4 = arr4;
         _title    = title;
     }
     return self;
@@ -45,7 +46,7 @@
 
 // pickerView 列数
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 3;
+    return 4;
 }
 
 // pickerView 每列个数
@@ -56,8 +57,10 @@
     else if(component == 1){
         return [_listArr2 count];
     }
-    else{
+    else if(component == 2){
         return [_listArr3 count];
+    }else{
+        return [_listArr4 count];
     }
 }
 
@@ -65,10 +68,10 @@
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     
     if (component == 1) {
-            return 110;
+            return DEVICE_Width/4;
         }
     else{
-    return 110;
+    return DEVICE_Width/4;
     }
 }
 // 返回选中的行
@@ -80,8 +83,11 @@
     } else if(component == 1){
         _selectedkey2 = [_listArr2 objectAtIndex:row];
     }
-    else{
+    else if(component ==2 ){
         _selectedkey3 = [_listArr3 objectAtIndex:row];
+    }else{
+    
+        _selectedkey4 = [_listArr4 objectAtIndex:row];
     }
 
 }
@@ -95,8 +101,10 @@
         return [_listArr2 objectAtIndex:row];
         
     }
-    else{
+    else if(component == 2){
         return [_listArr3 objectAtIndex:row];
+    }else{
+        return [_listArr4 objectAtIndex:row];
     }
     
 }
