@@ -208,6 +208,22 @@
 		04F1E3B31CD2185700222946 /* mConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1E3B11CD2185700222946 /* mConversationCell.m */; };
 		04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F1E3B21CD2185700222946 /* mConversationCell.xib */; };
 		04F2281D1CEEBD3E004E8702 /* addHouseAndCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */; };
+		04F228371CEEE4EB004E8702 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04F228201CEEE4EB004E8702 /* LICENSE */; };
+		04F228381CEEE4EB004E8702 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228231CEEE4EB004E8702 /* AbstractActionSheetPicker.m */; };
+		04F228391CEEE4EB004E8702 /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228251CEEE4EB004E8702 /* ActionSheetCustomPicker.m */; };
+		04F2283A1CEEE4EB004E8702 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228281CEEE4EB004E8702 /* ActionSheetDatePicker.m */; };
+		04F2283B1CEEE4EB004E8702 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2282A1CEEE4EB004E8702 /* ActionSheetDistancePicker.m */; };
+		04F2283C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2282C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m */; };
+		04F2283D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2282E1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m */; };
+		04F2283E1CEEE4EB004E8702 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228311CEEE4EB004E8702 /* ActionSheetStringPicker.m */; };
+		04F2283F1CEEE4EB004E8702 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228331CEEE4EB004E8702 /* DistancePickerView.m */; };
+		04F228401CEEE4EB004E8702 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228351CEEE4EB004E8702 /* SWActionSheet.m */; };
+		04F228411CEEE4EB004E8702 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 04F228361CEEE4EB004E8702 /* README.md */; };
+		04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228431CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m */; };
+		04F228491CEEE4F6004E8702 /* XKPEActionPickersDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228451CEEE4F6004E8702 /* XKPEActionPickersDelegate.m */; };
+		04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F228471CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m */; };
+		04F2284F1CEEEBD6004E8702 /* choiceArearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2284D1CEEEBD6004E8702 /* choiceArearViewController.m */; };
+		04F228501CEEEBD6004E8702 /* choiceArearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2284E1CEEEBD6004E8702 /* choiceArearViewController.xib */; };
 		04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */; };
 		04F2DDF71CBE2BC80088C90F /* communityStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2DDF51CBE2BC80088C90F /* communityStatusViewController.m */; };
 		04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F2DDF61CBE2BC80088C90F /* communityStatusViewController.xib */; };
@@ -1010,6 +1026,37 @@
 		04F1E3B11CD2185700222946 /* mConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mConversationCell.m; sourceTree = "<group>"; };
 		04F1E3B21CD2185700222946 /* mConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mConversationCell.xib; sourceTree = "<group>"; };
 		04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addHouseAndCodeView.xib; sourceTree = "<group>"; };
+		04F228201CEEE4EB004E8702 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		04F228221CEEE4EB004E8702 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		04F228231CEEE4EB004E8702 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		04F228241CEEE4EB004E8702 /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		04F228251CEEE4EB004E8702 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		04F228261CEEE4EB004E8702 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		04F228271CEEE4EB004E8702 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		04F228281CEEE4EB004E8702 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		04F228291CEEE4EB004E8702 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		04F2282A1CEEE4EB004E8702 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		04F2282B1CEEE4EB004E8702 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		04F2282C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		04F2282D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		04F2282E1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		04F2282F1CEEE4EB004E8702 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		04F228301CEEE4EB004E8702 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		04F228311CEEE4EB004E8702 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		04F228321CEEE4EB004E8702 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
+		04F228331CEEE4EB004E8702 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		04F228341CEEE4EB004E8702 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
+		04F228351CEEE4EB004E8702 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		04F228361CEEE4EB004E8702 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04F228421CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AbstractActionSheetPicker+Interface.h"; sourceTree = "<group>"; };
+		04F228431CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AbstractActionSheetPicker+Interface.m"; sourceTree = "<group>"; };
+		04F228441CEEE4F6004E8702 /* XKPEActionPickersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKPEActionPickersDelegate.h; sourceTree = "<group>"; };
+		04F228451CEEE4F6004E8702 /* XKPEActionPickersDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKPEActionPickersDelegate.m; sourceTree = "<group>"; };
+		04F228461CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKPEWeightAndHightActionPickerDelegate.h; sourceTree = "<group>"; };
+		04F228471CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKPEWeightAndHightActionPickerDelegate.m; sourceTree = "<group>"; };
+		04F2284C1CEEEBD6004E8702 /* choiceArearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = choiceArearViewController.h; sourceTree = "<group>"; };
+		04F2284D1CEEEBD6004E8702 /* choiceArearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = choiceArearViewController.m; sourceTree = "<group>"; };
+		04F2284E1CEEEBD6004E8702 /* choiceArearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = choiceArearViewController.xib; sourceTree = "<group>"; };
 		04F2DDF01CBDFBDE0088C90F /* TFFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFileUploadManager.h; sourceTree = "<group>"; };
 		04F2DDF11CBDFBDE0088C90F /* TFFileUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFFileUploadManager.m; sourceTree = "<group>"; };
 		04F2DDF41CBE2BC80088C90F /* communityStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = communityStatusViewController.h; sourceTree = "<group>"; };
@@ -2380,6 +2427,57 @@
 			name = "邻里圈";
 			sourceTree = "<group>";
 		};
+		04F2281E1CEEE4CA004E8702 /* XKPEActionPicker */ = {
+			isa = PBXGroup;
+			children = (
+				04F228421CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.h */,
+				04F228431CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m */,
+				04F228441CEEE4F6004E8702 /* XKPEActionPickersDelegate.h */,
+				04F228451CEEE4F6004E8702 /* XKPEActionPickersDelegate.m */,
+				04F228461CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.h */,
+				04F228471CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m */,
+				04F2281F1CEEE4EB004E8702 /* ActionSheetPicker-3.0 */,
+			);
+			name = XKPEActionPicker;
+			sourceTree = "<group>";
+		};
+		04F2281F1CEEE4EB004E8702 /* ActionSheetPicker-3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				04F228201CEEE4EB004E8702 /* LICENSE */,
+				04F228211CEEE4EB004E8702 /* Pickers */,
+				04F228361CEEE4EB004E8702 /* README.md */,
+			);
+			path = "ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
+		04F228211CEEE4EB004E8702 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				04F228221CEEE4EB004E8702 /* AbstractActionSheetPicker.h */,
+				04F228231CEEE4EB004E8702 /* AbstractActionSheetPicker.m */,
+				04F228241CEEE4EB004E8702 /* ActionSheetCustomPicker.h */,
+				04F228251CEEE4EB004E8702 /* ActionSheetCustomPicker.m */,
+				04F228261CEEE4EB004E8702 /* ActionSheetCustomPickerDelegate.h */,
+				04F228271CEEE4EB004E8702 /* ActionSheetDatePicker.h */,
+				04F228281CEEE4EB004E8702 /* ActionSheetDatePicker.m */,
+				04F228291CEEE4EB004E8702 /* ActionSheetDistancePicker.h */,
+				04F2282A1CEEE4EB004E8702 /* ActionSheetDistancePicker.m */,
+				04F2282B1CEEE4EB004E8702 /* ActionSheetLocalePicker.h */,
+				04F2282C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m */,
+				04F2282D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.h */,
+				04F2282E1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m */,
+				04F2282F1CEEE4EB004E8702 /* ActionSheetPicker.h */,
+				04F228301CEEE4EB004E8702 /* ActionSheetStringPicker.h */,
+				04F228311CEEE4EB004E8702 /* ActionSheetStringPicker.m */,
+				04F228321CEEE4EB004E8702 /* DistancePickerView.h */,
+				04F228331CEEE4EB004E8702 /* DistancePickerView.m */,
+				04F228341CEEE4EB004E8702 /* SWActionSheet.h */,
+				04F228351CEEE4EB004E8702 /* SWActionSheet.m */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
 		04F2DDF31CBE2BAB0088C90F /* 社区动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2862,6 +2960,9 @@
 				311BE2291CA1416A006757E8 /* needCodeView.xib */,
 				3182A1711CA67B390084E890 /* verifyBankCardView.xib */,
 				04F2281C1CEEBD3E004E8702 /* addHouseAndCodeView.xib */,
+				04F2284C1CEEEBD6004E8702 /* choiceArearViewController.h */,
+				04F2284D1CEEEBD6004E8702 /* choiceArearViewController.m */,
+				04F2284E1CEEEBD6004E8702 /* choiceArearViewController.xib */,
 				3182A1731CA681300084E890 /* verifyBankViewController.h */,
 				3182A1741CA681300084E890 /* verifyBankViewController.m */,
 				3182A1751CA681300084E890 /* verifyBankViewController.xib */,
@@ -3868,6 +3969,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04F2281E1CEEE4CA004E8702 /* XKPEActionPicker */,
 				04F9E5B61CED4D8B00FCA8B7 /* MJExtension */,
 				04F99DAE1CE9577B00FA9390 /* AJGradientPicker */,
 				04E5A8241CE5E56500A2D111 /* AddressChoice */,
@@ -4328,6 +4430,7 @@
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
 				746907E31BABEC6600A4589A /* moreCell.xib in Resources */,
 				040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */,
+				04F228371CEEE4EB004E8702 /* LICENSE in Resources */,
 				310EB6041CA26E47005C61F4 /* makeServiceView.xib in Resources */,
 				04F2281D1CEEBD3E004E8702 /* addHouseAndCodeView.xib in Resources */,
 				318D564A1C9BAD880045B5FB /* mGeneralSubView.xib in Resources */,
@@ -4399,6 +4502,7 @@
 				04648C671CB4F64E006823C9 /* senderTableViewCell.xib in Resources */,
 				31EEB32D1C93F73200B61A86 /* mOrderComform.xib in Resources */,
 				04D49C721CE7144A00BAD649 /* pptDetailCell3.xib in Resources */,
+				04F228501CEEEBD6004E8702 /* choiceArearViewController.xib in Resources */,
 				31F544801CAE12C400307B83 /* homeNavView.xib in Resources */,
 				04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */,
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
@@ -4576,6 +4680,7 @@
 				31F5447E1CAE12B900307B83 /* homeNavView.m in Sources */,
 				311BE2281CA14160006757E8 /* needCodeView.m in Sources */,
 				04E02E531CE6B70F00220D54 /* pptMyRateHeaderView.m in Sources */,
+				04F2283A1CEEE4EB004E8702 /* ActionSheetDatePicker.m in Sources */,
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
 				313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */,
 				313413611CA28DC3003972E2 /* XMNPhotoPickerController.m in Sources */,
@@ -4652,6 +4757,7 @@
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
 				315442941C9A9E010047E52A /* registViewController.m in Sources */,
 				04F1E3B31CD2185700222946 /* mConversationCell.m in Sources */,
+				04F228401CEEE4EB004E8702 /* SWActionSheet.m in Sources */,
 				740089551B38F22A00618BA0 /* TabBar.m in Sources */,
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				318D56681C9C012B0045B5FB /* MHSheetHead.m in Sources */,
@@ -4668,6 +4774,7 @@
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,
 				04648C611CB4F1A4006823C9 /* mSenderViewController.m in Sources */,
 				040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */,
+				04F228391CEEE4EB004E8702 /* ActionSheetCustomPicker.m in Sources */,
 				B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */,
 				04E092FB1CE9DACA00D3090E /* mPriceView.m in Sources */,
 				04F9E5D81CED4D8B00FCA8B7 /* NSObject+MJProperty.m in Sources */,
@@ -4707,6 +4814,7 @@
 				04E5A7F71CE5892300A2D111 /* pptMyCell.m in Sources */,
 				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
+				04F2283F1CEEE4EB004E8702 /* DistancePickerView.m in Sources */,
 				04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */,
 				04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */,
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
@@ -4721,6 +4829,7 @@
 				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
 				740089751B38F2C300618BA0 /* AFURLResponseSerialization.m in Sources */,
 				310EB5E11CA241B0005C61F4 /* choiseServicerTableViewCell.m in Sources */,
+				04F2284F1CEEEBD6004E8702 /* choiceArearViewController.m in Sources */,
 				047695FC1CE094C900D282C5 /* mCommunityDetailView.m in Sources */,
 				749BE9671B3272E700BABCA6 /* MJRefreshFooterView.m in Sources */,
 				749BE9A01B32756800BABCA6 /* IQToolbar.m in Sources */,
@@ -4746,6 +4855,8 @@
 				749BEA3E1B3277AA00BABCA6 /* SDImageCache.m in Sources */,
 				04E5A80B1CE5B3ED00A2D111 /* pptMyInfoViewController.m in Sources */,
 				04F99DB91CE95CCB00FA9390 /* AJPhotoTapDetectingImageView.m in Sources */,
+				04F228411CEEE4EB004E8702 /* README.md in Sources */,
+				04F228381CEEE4EB004E8702 /* AbstractActionSheetPicker.m in Sources */,
 				74B486A41BE88EDD0023E839 /* FAImageView.m in Sources */,
 				74B486A01BE88EA30023E839 /* NSString+FontAwesome.m in Sources */,
 				749BEA101B32779800BABCA6 /* MJPhotoProgressView.m in Sources */,
@@ -4760,6 +4871,7 @@
 				749BEA4C1B3277AA00BABCA6 /* UIImageView+WebCache.m in Sources */,
 				749BEA461B3277AA00BABCA6 /* UIButton+WebCache.m in Sources */,
 				311BE22E1CA14B38006757E8 /* needCodeViewController.m in Sources */,
+				04F228491CEEE4F6004E8702 /* XKPEActionPickersDelegate.m in Sources */,
 				313D76AC1C98ED5D004D5679 /* mSetupViewController.m in Sources */,
 				749BEA0E1B32779800BABCA6 /* MJPhotoBrowser.m in Sources */,
 				7487DC191B4E17F000C40220 /* MASViewAttribute.m in Sources */,
@@ -4793,6 +4905,7 @@
 				04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */,
 				310EB5E61CA24445005C61F4 /* HCSStarRatingView.m in Sources */,
 				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,
+				04F2283E1CEEE4EB004E8702 /* ActionSheetStringPicker.m in Sources */,
 				31B990331C96A535002E34A5 /* serviceViewController.m in Sources */,
 				749BEA481B3277AA00BABCA6 /* UIImage+MultiFormat.m in Sources */,
 				746F8ACD1BEC330900C87992 /* HZQDatePickerView.m in Sources */,
@@ -4841,6 +4954,7 @@
 				31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */,
 				3135F8541C980B3C00EF9569 /* myOrderTableViewCell.m in Sources */,
 				313D76C81C9930A8004D5679 /* InputText.m in Sources */,
+				04F2283D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m in Sources */,
 				04E5A8111CE5B47A00A2D111 /* pptMyInfoCell.m in Sources */,
 				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
 				313413641CA28DC3003972E2 /* XMNVideoPreviewController.m in Sources */,
@@ -4849,6 +4963,7 @@
 				749BE96A1B3272E700BABCA6 /* UIScrollView+MJRefresh.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
 				3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */,
+				04F2283B1CEEE4EB004E8702 /* ActionSheetDistancePicker.m in Sources */,
 				7487DC1B1B4E17F000C40220 /* NSArray+MASAdditions.m in Sources */,
 				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				7400896F1B38F2C300618BA0 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -4925,10 +5040,13 @@
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,
 				31BBE2901C913EF3006C553D /* homeViewController.m in Sources */,
 				749BE9DD1B32775D00BABCA6 /* NSDate+TimeInterval.m in Sources */,
+				04F2283C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m in Sources */,
 				B2D48CA31BEC53FF00482EB8 /* README.md in Sources */,
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				04F9E5D51CED4D8B00FCA8B7 /* NSObject+MJClass.m in Sources */,
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,
+				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
+				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */,

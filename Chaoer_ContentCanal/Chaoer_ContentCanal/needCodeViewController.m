@@ -13,8 +13,17 @@
 #import "verifyBankViewController.h"
 #import "AddressPickView.h"
 
-@interface needCodeViewController ()
 
+
+
+#import "AbstractActionSheetPicker+Interface.h"//这个是定义取消和确定按钮
+#import "ActionSheetPicker.h"
+#import "XKPEActionPickersDelegate.h"
+#import "XKPEWeightAndHightActionPickerDelegate.h"
+#define kScreenSize [UIScreen mainScreen].bounds.size
+@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate>
+@property (nonatomic ,strong) XKPEActionPickersDelegate *actionPicker; //三列
+@property (nonatomic , strong) XKPEWeightAndHightActionPickerDelegate *weightAndHight;//列组
 @end
 
 @implementation needCodeViewController
@@ -155,10 +164,107 @@
 }
 - (void)mSelectArearAction:(UIButton *)sender{
     
+    
+    
 }
 - (void)mSelectDetailAction:(UIButton *)sender{
     
+    NSMutableArray *arr1 = [[NSMutableArray alloc]init];
+    for (int i=0; i<=10; i++) {
+        
+        
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"选择单元"];
+            [arr1 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld单元",(long)i];
+            [arr1 addObject:datastr];
+        }
+        
+        
+    }
+    NSMutableArray *arr2 = [[NSMutableArray alloc]init];
+    for (int i=0; i<=40; i++) {
+        
+        
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"选择楼层"];
+            [arr2 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld楼",(long)i];
+            [arr2 addObject:datastr];
+        }
+        
+        
+    }
+    NSMutableArray *arr3 = [[NSMutableArray alloc]init];
+    for (int i=0; i<=50; i++) {
+        
+        
+        NSString *datastr = nil;
+        
+        if (i == 0) {
+            datastr = [NSString stringWithFormat:@"选择门牌号"];
+            [arr3 addObject:datastr];
+        }else{
+            datastr = [NSString stringWithFormat:@"%ld号",(long)i];
+            [arr3 addObject:datastr];
+        }
+        
+    }
+    
+    _actionPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:arr1 Arr2:arr2 arr3:arr3 title:@"详细住址"];
+    _actionPicker.delegates = self;
+    
+    ActionSheetCustomPicker *action = [[ActionSheetCustomPicker alloc]initWithTitle:@"录入住址" delegate:_actionPicker showCancelButton:YES origin:self.view];
+    [action customizeInterface];
+    [action showActionSheetPicker];
+
+    
 }
+//三组数据的点击事件
+-(void)xkactionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin{
+    if ([_actionPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
+    
+        NSLog(@"选择的地址是：%@%@%@",_actionPicker.selectedKey1,_actionPicker.selectedkey2,_actionPicker.selectedkey3);
+        
+        if ([_actionPicker.selectedKey1 isEqualToString:@"选择单元"]) {
+            [self showErrorStatus:@"请完善地址信息"];
+            return;
+        }
+        if ([_actionPicker.selectedkey2 isEqualToString:@"选择楼层"]) {
+            [self showErrorStatus:@"请完善地址信息"];
+            return;
+        }
+        if ([_actionPicker.selectedkey3 isEqualToString:@"选择单元"]) {
+            [self showErrorStatus:@"请完善地址信息"];
+            
+            return;
+        }
+        
+        if (_actionPicker.selectedKey1 == nil || _actionPicker.selectedkey2 == nil || _actionPicker.selectedkey3 == nil) {
+        
+        
+            
+            [self showErrorStatus:@"请完善地址信息"];
+            
+            return;
+            
+        
+        }
+            
+        
+        
+        [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@",_actionPicker.selectedKey1,_actionPicker.selectedkey2,_actionPicker.selectedkey3] forState:0];
+        
+        
+    }
+}
+
 - (void)mOneAction:(UIButton *)sender{
     [mIdentify removeAllObjects];
     
