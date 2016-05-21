@@ -1569,6 +1569,45 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+
+#pragma mark---提交保修订单
+- (void)commitFixOrder:(NSString *)mSuperId andSubClass:(NSString *)mSubClass andNote:(NSString *)mNote andServiceTime:(NSString *)mServiceTime andAddress:(NSString *)mAddress andCommunityId:(NSString *)mCommunityId andServicerId:(int)mId andImgUrl:(NSString *)mImgUrl andVideoUrl:(NSString *)mVideoUrl block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"uid"];
+    [para setObject:NumberWithInt(mId) forKey:@"mid"];
+    
+    [para setObject:mSubClass forKey:@"classification1"];
+    [para setObject:mSuperId forKey:@"classification2"];
+    [para setObject:mNote forKey:@"remarks"];
+    
+    [para setObject:mServiceTime forKey:@"appointmentTime"];
+    
+    [para setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
+    
+    [para setObject:mAddress forKey:@"address"];
+    [para setObject:mCommunityId forKey:@"communityId"];
+    [para setObject:mImgUrl forKey:@"imageUrl"];
+    
+    
+    if (mVideoUrl) {
+        [para setObject:mVideoUrl forKey:@"vidoeUrl"];
+    }
+    
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
+        
+        block (info );
+        
+    }];
+    
+    
+    
+}
+
+
+
 + (void)getServiceName:(NSString *)mAddress andLng:(NSString *)mLng andLat:(NSString *)mLat andOneLevel:(NSString *)mOne andTwoLevel:(NSString *)mTwo andPage:(int)mStart andEnd:(int)mEnd block:(void(^)(mBaseData *resb,GServiceList *mList))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -2874,6 +2913,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mLevel = [[obj objectForKeyMy:@"level"] intValue];
     self.mSuperID = [[obj objectForKeyMy:@"superiorId"] intValue];
     self.mType = [[obj objectForKeyMy:@"type"] intValue];
+    
+    self.mDescribe = [obj objectForKeyMy:@"describe"];
+    
+    
+    
+    self.mSmallImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"minImage"]];
+    self.mBigImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"maxImage"]];
+
+    self.mEstimatedPrice = [obj objectForKeyMy:@"estimatedPrice"];
+
 
 }
 

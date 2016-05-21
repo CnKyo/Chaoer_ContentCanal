@@ -15,6 +15,10 @@
 
 - (void)xkactionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin;
 
+
+
+- (void)WKActionSheetPickerDidSucessed:(AbstractActionSheetPicker *)mAbstractionSheet andOrigin:(id)mOrigin;
+
 @end
 @interface XKPEActionPickersDelegate : NSObject<UIPickerViewDataSource,UIPickerViewDelegate,ActionSheetCustomPickerDelegate>
 

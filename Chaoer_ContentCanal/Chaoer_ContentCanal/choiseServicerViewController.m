@@ -83,13 +83,12 @@
     if (_Type == 1) {
         address = [self.mData.mData objectForKey:@"address"];
         
-        [mUserInfo getServiceName:address andLng:nil andLat:nil andOneLevel:[self.mData.mData objectForKey:@"classification1"] andTwoLevel:[self.mData.mData objectForKey:@"classification2"] andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
+        [mUserInfo getServiceName:self.mAddress andLng:nil andLat:nil andOneLevel:self.mSubClass andTwoLevel:[NSString stringWithFormat:@"%d",self.mID]  andPage:self.page andEnd:10 block:^(mBaseData *resb, GServiceList *mList) {
             [self headerEndRefresh];
             [self.tempArray removeAllObjects];
             [self removeEmptyView];
             if (resb.mSucess) {
                 
-//                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 if (mList.mArray.count<=0) {
                     [self addEmptyViewWithImg:nil];
                 }else{
@@ -259,7 +258,7 @@
     
     cell.mDoneBtn.tag = ss.mId;
     
-    [cell.mDoneBtn addTarget:self action:@selector(makeAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.mDoneBtn addTarget:self action:@selector(makeAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -276,10 +275,16 @@
 
     SServicer *ss = self.tempArray[indexPath.row];
 
-    choiceServicerViewController *sss = [choiceServicerViewController new];
-    sss.mS = SServicer.new;
-    sss.mS = ss;
-    [self pushViewController:sss];
+//    choiceServicerViewController *sss = [choiceServicerViewController new];
+//    sss.mS = SServicer.new;
+//    sss.mS = ss;
+//    [self pushViewController:sss];
+
+
+    self.block([NSString stringWithFormat:@"%@",ss.mMerchantName],[NSString stringWithFormat:@"%d",ss.mId]);
+    
+    [self dismissViewController];
+
 }
 #pragma mark----预约按钮
 - (void)makeAction:(UIButton *)sender{
@@ -312,8 +317,9 @@
 - (void)leftBtnTouched:(id)sender{
 
     if (_Type == 1) {
-        [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+//        [self AlertViewShow:@"保修订单已经生成确定要离开此页面吗？" alertViewMsg:@"保修订单可以订单列表里查看！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
+        [self dismissViewController];
     }else{
         [self popViewController];
     }

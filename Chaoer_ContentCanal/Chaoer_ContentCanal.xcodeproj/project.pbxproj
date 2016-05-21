@@ -144,6 +144,15 @@
 		04D49C7D1CE730DC00BAD649 /* complaintViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D49C7B1CE730DC00BAD649 /* complaintViewController.xib */; };
 		04D49C811CE730EF00BAD649 /* complaintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C7F1CE730EF00BAD649 /* complaintTableViewCell.m */; };
 		04D49C821CE730EF00BAD649 /* complaintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */; };
+		04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652821CF002E900E26209 /* mFixRestCell.xib */; };
+		04D652871CF00E8700E26209 /* comfirOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D652851CF00E8700E26209 /* comfirOrderViewController.m */; };
+		04D652881CF00E8700E26209 /* comfirOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652861CF00E8700E26209 /* comfirOrderViewController.xib */; };
+		04D6528B1CF010B700E26209 /* mComfirOrderDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6528A1CF010B700E26209 /* mComfirOrderDetailView.m */; };
+		04D6528D1CF010C000E26209 /* mComfirOrderDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D6528C1CF010C000E26209 /* mComfirOrderDetailView.xib */; };
+		04D652911CF01B9000E26209 /* goOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6528F1CF01B9000E26209 /* goOrderViewController.m */; };
+		04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652901CF01B9000E26209 /* goOrderViewController.xib */; };
+		04D652951CF0229400E26209 /* goOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D652941CF0229400E26209 /* goOrderView.m */; };
+		04D652971CF022A100E26209 /* goOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652961CF022A100E26209 /* goOrderView.xib */; };
 		04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */; };
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
 		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
@@ -931,6 +940,19 @@
 		04D49C7E1CE730EF00BAD649 /* complaintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = complaintTableViewCell.h; sourceTree = "<group>"; };
 		04D49C7F1CE730EF00BAD649 /* complaintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = complaintTableViewCell.m; sourceTree = "<group>"; };
 		04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = complaintTableViewCell.xib; sourceTree = "<group>"; };
+		04D652821CF002E900E26209 /* mFixRestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixRestCell.xib; sourceTree = "<group>"; };
+		04D652841CF00E8700E26209 /* comfirOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comfirOrderViewController.h; sourceTree = "<group>"; };
+		04D652851CF00E8700E26209 /* comfirOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = comfirOrderViewController.m; sourceTree = "<group>"; };
+		04D652861CF00E8700E26209 /* comfirOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = comfirOrderViewController.xib; sourceTree = "<group>"; };
+		04D652891CF010B700E26209 /* mComfirOrderDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mComfirOrderDetailView.h; sourceTree = "<group>"; };
+		04D6528A1CF010B700E26209 /* mComfirOrderDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mComfirOrderDetailView.m; sourceTree = "<group>"; };
+		04D6528C1CF010C000E26209 /* mComfirOrderDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mComfirOrderDetailView.xib; sourceTree = "<group>"; };
+		04D6528E1CF01B9000E26209 /* goOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goOrderViewController.h; sourceTree = "<group>"; };
+		04D6528F1CF01B9000E26209 /* goOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goOrderViewController.m; sourceTree = "<group>"; };
+		04D652901CF01B9000E26209 /* goOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = goOrderViewController.xib; sourceTree = "<group>"; };
+		04D652931CF0229400E26209 /* goOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goOrderView.h; sourceTree = "<group>"; };
+		04D652941CF0229400E26209 /* goOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goOrderView.m; sourceTree = "<group>"; };
+		04D652961CF022A100E26209 /* goOrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = goOrderView.xib; sourceTree = "<group>"; };
 		04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAndaJson.h; sourceTree = "<group>"; };
 		04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAndaJson.m; sourceTree = "<group>"; };
 		04D9D4FE1CC8B9180090EC1E /* mCookDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetailView.h; sourceTree = "<group>"; };
@@ -2777,8 +2799,21 @@
 				318D56731C9FDD150045B5FB /* fixTableViewCell.h */,
 				318D56741C9FDD150045B5FB /* fixTableViewCell.m */,
 				318D56751C9FDD150045B5FB /* fixTableViewCell.xib */,
+				04D652821CF002E900E26209 /* mFixRestCell.xib */,
 				318D566C1C9FA0240045B5FB /* ButtonItem.h */,
 				318D566D1C9FA0240045B5FB /* ButtonItem.m */,
+				04D652841CF00E8700E26209 /* comfirOrderViewController.h */,
+				04D652851CF00E8700E26209 /* comfirOrderViewController.m */,
+				04D652861CF00E8700E26209 /* comfirOrderViewController.xib */,
+				04D652891CF010B700E26209 /* mComfirOrderDetailView.h */,
+				04D6528A1CF010B700E26209 /* mComfirOrderDetailView.m */,
+				04D6528C1CF010C000E26209 /* mComfirOrderDetailView.xib */,
+				04D6528E1CF01B9000E26209 /* goOrderViewController.h */,
+				04D6528F1CF01B9000E26209 /* goOrderViewController.m */,
+				04D652901CF01B9000E26209 /* goOrderViewController.xib */,
+				04D652931CF0229400E26209 /* goOrderView.h */,
+				04D652941CF0229400E26209 /* goOrderView.m */,
+				04D652961CF022A100E26209 /* goOrderView.xib */,
 			);
 			name = "物业报修";
 			sourceTree = "<group>";
@@ -4491,6 +4526,7 @@
 				04D49C591CE6D2DE00BAD649 /* pptMyMsgCell.xib in Resources */,
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
+				04D652971CF022A100E26209 /* goOrderView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
 				047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */,
 				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
@@ -4502,6 +4538,7 @@
 				04648C671CB4F64E006823C9 /* senderTableViewCell.xib in Resources */,
 				31EEB32D1C93F73200B61A86 /* mOrderComform.xib in Resources */,
 				04D49C721CE7144A00BAD649 /* pptDetailCell3.xib in Resources */,
+				04D6528D1CF010C000E26209 /* mComfirOrderDetailView.xib in Resources */,
 				04F228501CEEEBD6004E8702 /* choiceArearViewController.xib in Resources */,
 				31F544801CAE12C400307B83 /* homeNavView.xib in Resources */,
 				04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */,
@@ -4558,6 +4595,7 @@
 				04D49C691CE706CD00BAD649 /* pptDetailCell.xib in Resources */,
 				31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */,
 				3135F80D1C97BB4500EF9569 /* mUserTopupViewController.xib in Resources */,
+				04D652881CF00E8700E26209 /* comfirOrderViewController.xib in Resources */,
 				04E5A8031CE5AB4E00A2D111 /* pptChoulaoViewController.xib in Resources */,
 				04AD8A961CE3200C00A3F87F /* depositViewController.xib in Resources */,
 				04648C731CB50394006823C9 /* senderSubView.xib in Resources */,
@@ -4584,7 +4622,9 @@
 				318D56771C9FDD150045B5FB /* fixTableViewCell.xib in Resources */,
 				317E46321CAD26A900217C60 /* Emoji.plist in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
+				04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */,
 				04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */,
+				04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
@@ -4729,6 +4769,7 @@
 				313D76B21C98F03E004D5679 /* mBundleViewController.m in Sources */,
 				31EEB31D1C93B6E700B61A86 /* communityTableViewCell.m in Sources */,
 				749BEA3C1B3277AA00BABCA6 /* NSData+GIF.m in Sources */,
+				04D652951CF0229400E26209 /* goOrderView.m in Sources */,
 				04F9E5DA1CED4D8B00FCA8B7 /* README.md in Sources */,
 				3135F8351C97FA3800EF9569 /* zhongchouViewController.m in Sources */,
 				B2CF98811BEB36AA003BB896 /* MyTempButton.m in Sources */,
@@ -4932,11 +4973,13 @@
 				31EEB30C1C93A6DF00B61A86 /* takeFixViewController.m in Sources */,
 				749BEA431B3277AA00BABCA6 /* SDWebImageManager+MJ.m in Sources */,
 				04E5A7E11CE579B000A2D111 /* MCMenuButton.m in Sources */,
+				04D652871CF00E8700E26209 /* comfirOrderViewController.m in Sources */,
 				31EEB3191C93B32F00B61A86 /* communityViewController.m in Sources */,
 				04F9E5D31CED4D8B00FCA8B7 /* MJPropertyKey.m in Sources */,
 				040B801A1CC50C08006A9489 /* LCProgressHUD.m in Sources */,
 				749BEA4A1B3277AA00BABCA6 /* UIImageView+HighlightedWebCache.m in Sources */,
 				31BBE2951C914174006C553D /* DCPicScrollView.m in Sources */,
+				04D652911CF01B9000E26209 /* goOrderViewController.m in Sources */,
 				31B990261C969791002E34A5 /* mWashDetailView.m in Sources */,
 				742FB8FC1B5CDEA3005A1AFA /* WPHotspotLabel.m in Sources */,
 				749BE9971B32756800BABCA6 /* IQNSArray+Sort.m in Sources */,
@@ -5035,6 +5078,7 @@
 				04AD8A9E1CE326C300A3F87F /* pptHeaderView.m in Sources */,
 				31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */,
 				31462CE01CB38D7600E67836 /* walletViewController.m in Sources */,
+				04D6528B1CF010B700E26209 /* mComfirOrderDetailView.m in Sources */,
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				74B486A11BE88EA30023E839 /* UIFont+FontAwesome.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,

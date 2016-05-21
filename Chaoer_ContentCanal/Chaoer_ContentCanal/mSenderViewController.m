@@ -442,6 +442,12 @@
     
     GPPTOrder *mPPtOrder = self.tempArray[indexPath.row];
 
+    if (mPPtOrder.mProcessStatus == 0) {
+        [self showErrorStatus:@"订单已被取消，无法查看！"];
+    
+        return;
+    }
+    
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 1;
     ppp.mType = mType;

@@ -26,6 +26,17 @@
         [self.delegates xkactionSheetPickerDidSucceed:actionSheetPicker origin:origin];
     }
 }
+
+
+- (void)WKActionSheetPickerDidSucessed:(AbstractActionSheetPicker *)mAbstractionSheet andOrigin:(id)mOrigin{
+
+    if ([self.delegates respondsToSelector:@selector(WKActionSheetPickerDidSucessed:andOrigin:)]) {
+        [self.delegates WKActionSheetPickerDidSucessed:mAbstractionSheet andOrigin:mOrigin];
+    }
+    
+}
+
+
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){

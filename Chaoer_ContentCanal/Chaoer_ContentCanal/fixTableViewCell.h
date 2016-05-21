@@ -9,7 +9,25 @@
 #import <UIKit/UIKit.h>
 
 @interface fixTableViewCell : UITableViewCell
+/**
+ *  名称
+ */
 @property (strong, nonatomic) IBOutlet UILabel *mName;
+/**
+ *  图片
+ */
 @property (strong, nonatomic) IBOutlet UIImageView *mImg;
+/**
+ *  价格
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mPrice;
+/**
+ *  详情
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mDetail;
+
+
+
+
 
 @end

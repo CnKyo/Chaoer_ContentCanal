@@ -17,5 +17,13 @@
 
 @property (nonatomic,assign) int    Type;
 
+@property (nonatomic,strong) NSString *mAddress;
+/**
+ *  主类型
+ */
+@property (assign,nonatomic) int mID;
+@property (nonatomic,strong) NSString *mSubClass;
+
+@property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId);
 
 @end

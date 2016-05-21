@@ -21,7 +21,7 @@
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
 
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.230:8080/";
@@ -41,7 +41,7 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     });
     _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;
-    _sharedClient.requestSerializer.timeoutInterval = 60;
+    _sharedClient.requestSerializer.timeoutInterval = 10;
     return _sharedClient;
 }
 

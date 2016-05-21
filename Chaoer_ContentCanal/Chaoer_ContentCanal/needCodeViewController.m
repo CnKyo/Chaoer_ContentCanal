@@ -127,11 +127,11 @@
     mTT4 = [NSMutableArray new];
     [self initViewData];
     
-    [self initview];
+//    [self initview];
     
     mAddressStr = nil;
     
-//    [self updatePage];
+    [self updatePage];
     
 }
 
@@ -273,28 +273,24 @@
 }
 //三组数据的点击事件
 -(void)xkactionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin{
-    if ([_detailAddressPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
+
     
+    if ([_detailAddressPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
+        
         NSLog(@"选择的地址是：%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3);
         
-//        if ([_detailAddressPicker.selectedKey1 isEqualToString:@"楼栋"]) {
-//            [self showErrorStatus:@"请完善地址信息"];
-//            return;
-//        }
-//        if ([_detailAddressPicker.selectedkey2 isEqualToString:@"单元"]) {
-//            [self showErrorStatus:@"请完善地址信息"];
-//            return;
-//        }
-//        if ([_detailAddressPicker.selectedkey3 isEqualToString:@"楼层"]) {
-//            [self showErrorStatus:@"请完善地址信息"];
-//            
-//            return;
-//        }
-//        if ([_detailAddressPicker.selectedkey4 isEqualToString:@"门牌号"]) {
-//            [self showErrorStatus:@"请完善地址信息"];
-//            
-//            return;
-//        }
+        if ([_detailAddressPicker.selectedKey1 isEqualToString:@"楼栋"]) {
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mTT1[0],_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
+        }
+        if ([_detailAddressPicker.selectedkey2 isEqualToString:@"单元"]) {
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,mTT2[0],_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
+        }
+        if ([_detailAddressPicker.selectedkey3 isEqualToString:@"楼层"]) {
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,mTT3[0],_detailAddressPicker.selectedkey4] forState:0];
+        }
+        if ([_detailAddressPicker.selectedkey4 isEqualToString:@"门牌号"]) {
+            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,mTT4[0]] forState:0];
+        }
         if (_detailAddressPicker.selectedKey1 == nil || _detailAddressPicker.selectedkey2 == nil || _detailAddressPicker.selectedkey3 == nil || _detailAddressPicker.selectedkey4 == nil) {
             
             
@@ -307,7 +303,11 @@
         }
         
     }
+
+    
+    
 }
+
 
 - (void)mOneAction:(UIButton *)sender{
     [mIdentify removeAllObjects];

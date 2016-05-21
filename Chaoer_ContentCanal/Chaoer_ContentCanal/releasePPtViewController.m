@@ -211,9 +211,16 @@
     }
     mMin = mPopView.mMin.text;
     mMax = mPopView.mMax.text;
-    [self hiddenPopView];
+    if (mMin > mMax) {
+        [self showErrorStatus:@"最高价不能低于最低价！"];
+        return;
+    }else{
+        [self hiddenPopView];
+        
+        [self.tableView reloadData];
+    }
 
-    [self.tableView reloadData];
+
     
 }
 - (void)showPopView{
@@ -719,7 +726,10 @@
         [self showErrorStatus:@"备注不能为空！"];
         return;
     }
-    
+    if (mMin > mMax) {
+        [self showErrorStatus:@"最高价不能低于最低价！"];
+        return;
+    }
     NSLog(@"发布");
     if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
         [self showErrorStatus:@"余额不足，发布失败！"];

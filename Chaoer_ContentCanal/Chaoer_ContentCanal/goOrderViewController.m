@@ -1,20 +1,12 @@
 //
-//  mFixViewController.m
+//  goOrderViewController.m
 //  Chaoer_ContentCanal
 //
-//  Created by 王钶 on 16/3/11.
+//  Created by Mac on 16/5/21.
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "mFixViewController.h"
-
-#import "mFixView.h"
-
-
-#import "takeFixViewController.h"
-
-#import "fixTableViewCell.h"
-
+#import "goOrderViewController.h"
 #import "choiseServicerViewController.h"
 
 #import "RSKImageCropper.h"
@@ -29,51 +21,28 @@
 #import "needCodeViewController.h"
 #import "MHDatePicker.h"
 
+#import "choiseServicerViewController.h"
+#import "goOrderView.h"
+@interface goOrderViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>
+{
 
-#import "comfirOrderViewController.h"
-
-#define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>{
     HZQDatePickerView *_pikerView;
 
 }
-
 @property (nonatomic, copy)   NSArray<XMNAssetModel *> *assets;
 
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
-
 @end
 
-@implementation mFixViewController
+@implementation goOrderViewController
 {
-    UIScrollView *mScrollerView;
-    mFixView *mView;
-    
-    
-    ZJAlertListView *mCleanA;
-    
-    NSMutableArray  *mArrTemp;
-    NSMutableArray  *mClassID;
-
-    NSString    *mType;
-
     UIImage *tempImage;
     
-    
-    
-    NSString *mSuperID;
-    
-    NSString    *mTime;
-    
-
     NSData  *mImgData;
     NSString *mImagePath;
     
     NSData *mVedioData;
     NSString *mVedioPath;
-    
-    NSMutableDictionary *mPara;
-    
     
     int mSelecte;
     
@@ -82,21 +51,31 @@
     
     
     NSString *mVideoUrlString;
+    NSString *mImgUrlString;
+    UIScrollView *mScrollerView;
     
-    NSString *mAddress;
+    goOrderView *mView;
     
     NSMutableArray *mAddressArr;
-    
     NSString *mACommunityId;
+
+    NSString    *mTime;
     
+    
+    NSString *mAddressStr;
+    
+    NSString    *mBlockServiceName;
+    NSString    *mBlockServiceId;
+    
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [WJStatusBarHUD hide];
-
+    
     [self loadData];
-  
+    
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -112,186 +91,12 @@
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    mPara = [NSMutableDictionary new];
-    mAddressArr = [NSMutableArray new];
-    mArrTemp = [NSMutableArray new];
-    mClassID = [NSMutableArray new];
-
-    self.assets = @[];
-
-    self.Title = self.mPageName = @"物业报修";
-    self.hiddenlll = YES;
-    self.hiddenTabBar = YES;
-
-    mSelecte = 1;
-    
-    [self initTableView];
-//    [self initView];
-    
-}
-
-- (void)initTableView{
-    
-    NSArray *tt=  @[@"家电类",@"清洁类",@"管道类"];
-    mSuperID = @"1";
-    WKLeftView *mLeftView = [[WKLeftView alloc] initWithFrame:CGRectMake(0, 64, 80, DEVICE_Height) titles:tt clickBlick:^(NSInteger index) {
-        NSLog(@"点击了%ld",(long)index);
-        mType = tt[index-1];
-        mSuperID = [NSString stringWithFormat:@"%ld",(long)index];
-
-        [self.tableView headerBeginRefreshing];
-
-    }];
-    mLeftView.layer.masksToBounds = YES;
-    mLeftView.layer.borderColor = [UIColor colorWithRed:0.67 green:0.67 blue:0.67 alpha:0.45].CGColor;
-    mLeftView.layer.borderWidth = 0.5;
-    [self.view addSubview:mLeftView];
-    
-    [self loadTableView:CGRectMake(mLeftView.mright, 64, DEVICE_Width-80, DEVICE_Height-64) delegate:self dataSource:self];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
-    UINib   *nib = [UINib nibWithNibName:@"mFixRestCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-
-    
-}
-
-- (void)headerBeganRefresh{
-
-    [mUserInfo getFixDetail:mSuperID andLevel:@"2" block:^(mBaseData *resb, NSArray *marr) {
-        [self headerEndRefresh];
-        
-        [self.tempArray removeAllObjects];
-        [self.tableView reloadData];
-        if (resb.mSucess) {
-            [self.tempArray addObjectsFromArray:marr];
-            [self.tableView reloadData];
-            
-        }else{
-            [LCProgressHUD showFailure:@"数据加载错误!"];
-            
-        }
-    }];
-
-    
-}
-
-#pragma mark -- tableviewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
-{
-    return 1;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    return self.tempArray.count;
-    
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-    
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *reuseCellId = @"cell";
-    
-    fixTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
-    GFix *GF = self.tempArray[indexPath.row];
-    cell.mName.text = GF.mClassName;
-    cell.mPrice.text = [NSString stringWithFormat:@"%@¥",GF.mEstimatedPrice];
-    cell.mDetail.text = GF.mDescribe;
-    
-    [cell.mImg sd_setImageWithURL:[NSURL URLWithString:GF.mSmallImage] placeholderImage:[UIImage imageNamed:@"img_default"]];
-    
-    return cell;
-    
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    GFix *GF = self.tempArray[indexPath.row];
-    
-    comfirOrderViewController *ccc = [[comfirOrderViewController alloc] initWithNibName:@"comfirOrderViewController" bundle:nil];
-    
-    
-    ccc.mFixOrder = GFix.new;
-    ccc.mFixOrder = GF;
-    ccc.mSubClass = mSuperID;
-    ccc.mID = GF.mId;
-    [self presentModalViewController :ccc];
-    
-    
-}
-
-
-
-
-
-
-- (void)initView{
-    
-    
-    UIImageView *mbgk = [UIImageView new];
-    CGRect  mrr = self.view.bounds;
-    mrr.origin.y = 64;
-    mbgk.frame = mrr;
-    mbgk.image = [UIImage imageNamed:@"mBaseBgkImg"];
-    [self.view addSubview:mbgk];
-    
-    mScrollerView = [UIScrollView new];
-    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
-    mScrollerView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:mScrollerView];
-    
-    
-    mView = [mFixView shareView];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
-
-    [mView.mHomeBtn addTarget:self action:@selector(mHomeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mCleanBtn addTarget:self action:@selector(mCleanAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mPipeBtn addTarget:self action:@selector(mPipeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mResultBtn addTarget:self action:@selector(mResetAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mTimeBtn addTarget:self action:@selector(mTimeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mMakeBtn addTarget:self action:@selector(mMakeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mAddressBtn addTarget:self action:@selector(mAddressAction:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    [mView.mLeftBtn addTarget:self action:@selector(mImageAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mRightBtn addTarget:self action:@selector(mVideoAction:) forControlEvents:UIControlEventTouchUpInside];
-
-
-    
-    mView.mLeftBtn.layer.masksToBounds = mView.mRightBtn.layer.masksToBounds = YES;
-    mView.mLeftBtn.layer.cornerRadius = mView.mRightBtn.layer.cornerRadius = 3;
-    
-    
-
-    mView.mHiddenView.alpha = 0;
-    [mScrollerView addSubview:mView];
-    
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 620);
-    
-    
-    
-}
 - (void)loadData{
-
+    
     [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] getAddress:^(mBaseData *resb, NSArray *mArr) {
         
-
+        
         [mAddressArr removeAllObjects];
         
         if (resb.mSucess) {
@@ -306,14 +111,147 @@
         }
         
     }];
+
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
+    self.Title = self.mPageName = @"确认订单";
+    self.hiddenlll = YES;
+    self.hiddenTabBar = YES;
+    self.hiddenRightBtn = YES;
+    UIButton *mCommitBtn = [UIButton new];
+    mCommitBtn.frame = CGRectMake(0, DEVICE_Height-40, DEVICE_Width, 40);
+    mCommitBtn.backgroundColor = M_CO;
+    [mCommitBtn setTitle:@"立即下单" forState:0];
+    [mCommitBtn setTitleColor:[UIColor whiteColor] forState:0];
+    [mCommitBtn addTarget:self action:@selector(mCommitAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mCommitBtn];
     
     
-    mView.mPhone.text = [NSString stringWithFormat:@"电话：%@",[mUserInfo backNowUser].mPhone];
- 
+    mAddressArr = [NSMutableArray new];
+    mACommunityId = nil;
+    mTime = nil;
+    
+    mAddressStr = nil;
+    mImgUrlString = nil;
+    mVideoUrlString = nil;
+    
+    mBlockServiceId = nil;
+    mBlockServiceName = nil;
+    
+    [self initView];
+    
+}
+- (void)initView{
+    
+    mScrollerView = [UIScrollView new];
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-104);
+    mScrollerView.backgroundColor = [UIColor colorWithRed:0.92 green:0.91 blue:0.95 alpha:0.75];
+    [self.view addSubview:mScrollerView];
+    
+    
+    mView = [goOrderView shareView];
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, 580);
+    
+    [mView.mNoteTx setPlaceholder:@"请输入备注"];
+    [mView.mNoteTx setHolderToTop];
+    
+    [mView.mImag sd_setImageWithURL:[NSURL URLWithString:self.mFixOrder.mSmallImage] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    mView.mServiceName.text = self.mFixOrder.mClassName;
+    mView.mServicePrice.text = [NSString stringWithFormat:@"%@¥",self.mFixOrder.mEstimatedPrice];
+    mView.mDetail.text = self.mFixOrder.mDescribe;
+    mView.mMoney.hidden = YES;
+    mView.mMoney.text = [NSString stringWithFormat:@"押金：%@元",@"20"];
+    
+    [mView.mAddressBtn addTarget:self action:@selector(mAddressAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mServiceTimeBtn addTarget:self action:@selector(mServiceTimeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mChoiceServiceBtn addTarget:self action:@selector(mChoiceAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mUploadImgBtn addTarget:self action:@selector(mUploadImgAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mUploadVideoBtn addTarget:self action:@selector(mUploadVideoAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [mScrollerView addSubview:mView];
+    
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 580);
+    
+    
+}
+
+#pragma mark---－确认下单
+- (void)mCommitAction:(UIButton *)sender{
+    
+    
+    if (mAddressStr == nil || [mAddressStr isEqualToString:@""] || mAddressStr.length == 0) {
+        [self showErrorStatus:@"请选择服务地址！"];
+        return;
+    }
+    if (mTime == nil || [mTime isEqualToString:@""] || mTime.length == 0) {
+        [self showErrorStatus:@"请选择服务时间！"];
+        return;
+    }
+    if (mBlockServiceId == nil || [mBlockServiceId isEqualToString:@""] || mBlockServiceId.length == 0) {
+        [self showErrorStatus:@"请选择服务人员！"];
+        return;
+    }
+    if (mView.mNoteTx.text.length == 0) {
+        [self showErrorStatus:@"请输入备注！"];
+        return;
+    }
+    if (mImgUrlString == nil || [mImgUrlString isEqualToString:@""] || mImgUrlString.length == 0) {
+        [self showErrorStatus:@"请上传图片！"];
+        return;
+    }
+    [self showWithStatus:@"正在操作中..."];
+    [[mUserInfo backNowUser] commitFixOrder:[NSString stringWithFormat:@"%d",self.mID] andSubClass:self.mSubClass andNote:mView.mNoteTx.text andServiceTime:mTime andAddress:mAddressStr andCommunityId:mACommunityId andServicerId:[mBlockServiceId intValue] andImgUrl:mImgUrlString andVideoUrl:mVideoUrlString block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            [self dismissViewController_3];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+    
+}
+#pragma mark---－选择地址
+- (void)mAddressAction:(UIButton *)sender{
+    if (mAddressArr.count <= 0) {
+        [self AlertViewShow:@"未找到地址！请添加房屋！" alertViewMsg:@"添加房屋地址后才能使用保修功能哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+        
+        return;
+    }
+    
+    [self loadMHActionSheetView];
+
+    
+    
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+        nnn.Type = 2;
+        [self pushViewController:nnn];
+    }
+}
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"离开", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
 }
 
 - (void)loadMHActionSheetView{
- 
+    
     NSLog(@"得到的数据是：%@",mAddressArr);
     
     NSMutableArray *madd = [NSMutableArray new];
@@ -327,48 +265,96 @@
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-
+        
         GAddress *mAddresss = mAddressArr[index];
         
-        mView.mAddress.text = [NSString stringWithFormat:@"地点：%@",mAddresss.mAddressName];
+        [mView.mAddressBtn setTitle:[NSString stringWithFormat:@"%@",mAddresss.mAddressName] forState:0];
         mACommunityId = mAddresss.mAddressId;
-        mAddress = mAddresss.mAddressName;
-
+        mAddressStr = mAddresss.mAddressName;
         
     }];
 }
 
+#pragma mark---－选择时间
+- (void)mServiceTimeAction:(UIButton *)sender{
+    
+    MHDatePicker *selectTimePicker = [[MHDatePicker alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [selectTimePicker didFinishSelectedDate:^(NSDate *selectedDate) {
+        
+        
+        mTime = [weakSelf dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
+        
+        [mView.mServiceTimeBtn setTitle:[NSString stringWithFormat:@"%@", mTime] forState:0];
+    }];
 
-#pragma mark----图片按钮
-- (void)mImageAction:(UIButton *)sender{
+    
+    
+}
+- (NSString *)dateStringWithDate:(NSDate *)date DateFormat:(NSString *)dateFormat
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:dateFormat];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    NSString *str = [dateFormatter stringFromDate:date];
+    return str ? str : @"";
+}
+
+#pragma mark---－确认人员
+- (void)mChoiceAction:(UIButton *)sender{
+    
+    if (mAddressStr == nil || [mAddressStr isEqualToString:@""] || mAddressStr.length == 0) {
+        [self showErrorStatus:@"请选择服务地址!"];
+        return;
+    }
+    
+    choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
+    ccc.Type = 1;
+    ccc.mSubClass = self.mSubClass;
+    ccc.mID = self.mID;
+    ccc.mAddress = mAddressStr;
+    ccc.block = ^(NSString *content ,NSString *mId){
+        
+        mBlockServiceName = content;
+        mBlockServiceId = mId;
+        
+        [sender setTitle:content forState:0];
+    };
+    [self presentModalViewController:ccc];
+    
+    
+}
+#pragma mark---－上传图片
+- (void)mUploadImgAction:(UIButton *)sender{
+    mSelecte = 1;
     //1. 推荐使用XMNPhotoPicker 的单例
     //2. 设置选择完照片的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
         
         if (images.count > 1 || assets.count > 1) {
             [LCProgressHUD showFailure:@"只能选择1张图片!"];
-
+            
             NSLog(@"选择的图片超过3张!");
             return ;
         }
         
         NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
-
+        
         
         if (assets) {
             for (XMNAssetModel *model in assets) {
                 tempImage = [Util scaleImg:model.previewImage maxsize:150];
-                [mView.mLeftBtn setBackgroundImage:model.thumbnail forState:0];
+                [mView.mUploadImgBtn setBackgroundImage:model.thumbnail forState:0];
                 
             }
         }else{
-        
+            
             for (UIImage *img in images) {
                 tempImage = [Util scaleImg:img maxsize:150];
-                [mView.mLeftBtn setBackgroundImage:tempImage forState:0];
+                [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
             }
         }
-
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";
         NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
@@ -385,28 +371,48 @@
         mImagePath = aPath;
         
         mImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
-
+        
         
         self.assets = [assets copy];
         
+        NSMutableDictionary *para = [NSMutableDictionary new];
+        [para setObject:@"apply" forKey:@"type"];
+        [para setObject:mImgData forKey:@"file"];
+        
+        NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/warranty/uploadWarrantyImg",[HTTPrequest returnNowURL]];
+        TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
+        manage.delegate = self;
+        [manage uploadFileWithURL:mUrlStr params:para andData:mImgData fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            if (connectionError) {
+                NSLog(@"请求出错 %@",connectionError);
+            }else{
+                NSLog(@"请求返回：\n%@",response);
+            }
+        }];
+
         
     }];
     //3. 设置选择完视频的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
         NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
         self.assets = @[asset];
-
+        
     }];
     //4. 显示XMNPhotoPicker
     [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
 
+    
+    
 }
-#pragma mark----视频按钮
-- (void)mVideoAction:(UIButton *)sender{
+
+#pragma mark---－上传视频
+- (void)mUploadVideoAction:(UIButton *)sender{
+    
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-
+    
     
     UIAlertAction *localvideo = [UIAlertAction actionWithTitle:@"本地视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self locallVideo];
@@ -421,94 +427,21 @@
     [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-#pragma mark----提交预约按钮
-- (void)mMakeAction:(UIButton *)sender{
-    
-    if (mClassID.count <= 0) {
-        [LCProgressHUD showFailure:@"请选择服务类型"];
-
-        return;
-    }if (mView.mTxView.text.length == 0) {
-        [LCProgressHUD showFailure:@"请输入您的备注!"];
-
-        return;
-
-
-    }if (mTime.length == 0) {
-        [LCProgressHUD showFailure:@"请选择服务时间!"];
-
-        return;
-
-    }
-    if (!mImgData) {
-        [LCProgressHUD showFailure:@"请选择图片!"];
-        return;
-    }
-    if (mAddress == nil || [mAddress isEqualToString:@""]) {
-        [LCProgressHUD showFailure:@"请选择服务地址!"];
-        return;
-    }
-    
-    [self commit];
-
 
     
 }
-
-- (void)commit{
-    
-    mSelecte = 1;
-    
-    [mPara setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"uid"];
-    [mPara setObject:mImgData forKey:@"image"];
-    [mPara setObject:[NSString stringWithFormat:@"%@",mSuperID] forKey:@"classification1"];
-    [mPara setObject:[NSString stringWithFormat:@"%@",mClassID[0]] forKey:@"classification2"];
-    [mPara setObject:mView.mTxView.text forKey:@"remarks"];
-    [mPara setObject:mTime forKey:@"appointmentTime"];
-    [mPara setObject:[mUserInfo backNowUser].mPhone forKey:@"phone"];
-    [mPara setObject:mAddress forKey:@"address"];
-    [mPara setObject:mACommunityId forKey:@"communityId"];
-
-    
-    if (mVideoUrlString == nil || [mVideoUrlString isEqualToString:@""]) {
-        
-    }else{
-        [mPara setObject:mVideoUrlString forKey:@"video"];
-
-    }
-    
-    NSLog(@"这里提交的参数是：%@",mPara);
-    
-    [LBProgressHUD showHUDto:self.view withTips:@"正在提交..." animated:YES];
-
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]];
-    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
-    manage.delegate = self;
-    
-    
-    
-    [manage uploadFileWithURL:mUrlStr params:mPara andData:mImgData fileKey:@"pic" filePath:mImagePath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            NSLog(@"请求出错 %@",connectionError);
-        }else{
-            NSLog(@"请求返回：\n%@",response);
-        }
-    }];
-  }
 #pragma mark----上传视频
 - (void)upLoadVideo{
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     
-
+    
     [para setObject:mVedioData forKey:@"video"];
     
     NSLog(@"上传的参数是：%@",para);
     
     [LBProgressHUD showHUDto:self.view withTips:@"正在上传视频..." animated:YES];
-
+    
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/upload/uploadVideo",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
@@ -525,286 +458,34 @@
 
 - (void)block:(mBaseData *)resb{
     [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-
+    
     if (mSelecte == 2) {
         
         if (resb.mSucess) {
             
             [LCProgressHUD showSuccess:@"视频上传成功！"];
-
+            
             mVideoUrlString = [resb.mData objectForKey:@"video"];
             
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
         }
-
+        
     }else{
         if (resb.mSucess) {
             [LCProgressHUD showSuccess:resb.mMessage];
-            choiseServicerViewController *ccc = [[choiseServicerViewController alloc] initWithNibName:@"choiseServicerViewController" bundle:nil];
-            ccc.Type = 1;
-            ccc.mData = mBaseData.new;
-            ccc.mData = resb;
-            [self presentModalViewController:ccc];
-            
-
+            mImgUrlString = [resb.mData objectForKey:@"pic"];
             
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
         }
-
-    }
-
-    
-    
-    
-}
-
-#pragma mark----时间选择
-- (void)mTimeAction:(UIButton *)sender{
-//    [self setupDateView:DateTypeOfStart];
-    
-   MHDatePicker *selectTimePicker = [[MHDatePicker alloc] init];
-    __weak typeof(self) weakSelf = self;
-    [selectTimePicker didFinishSelectedDate:^(NSDate *selectedDate) {
-
-        
-        mTime = [weakSelf dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
-        
-        [mView.mTimeBtn setTitle:[NSString stringWithFormat:@"选择时间:%@", mTime] forState:0];
-    }];
-
-
-}
-
-- (NSString *)dateStringWithDate:(NSDate *)date DateFormat:(NSString *)dateFormat
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:dateFormat];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-    NSString *str = [dateFormatter stringFromDate:date];
-    return str ? str : @"";
-}
-- (void)setupDateView:(DateType)type {
-    
-    _pikerView = [HZQDatePickerView instanceDatePickerView];
-    _pikerView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height + 20);
-    [_pikerView setBackgroundColor:[UIColor clearColor]];
-    _pikerView.delegate = self;
-    _pikerView.type = type;
-    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
-    [self.view addSubview:_pikerView];
-    
-}
-#pragma mark----时间选择
-- (void)getSelectDate:(NSString *)date type:(DateType)type {
-    NSLog(@"%d - %@", type, date);
-    
-    switch (type) {
-        case DateTypeOfStart:
-            [mView.mTimeBtn setTitle:[NSString stringWithFormat:@"选择时间:%@", date] forState:0];
-            mTime = date;
-            break;
-
-            
-        default:
-            break;
-    }
-}
-#pragma mark----重新选择
-- (void)mResetAction:(UIButton *)sender{
-    mView.mHiddenView.alpha = 0;
-    mView.mSelectedView.alpha = 1;
-}
-#pragma mark----家电
-- (void)mHomeAction:(UIButton *)sender{
-    [WJStatusBarHUD hide];
-
-    mSuperID = @"1";
-    
-    mType = sender.titleLabel.text;
-
-    [self getData:sender.titleLabel.text];
-
-}
-#pragma mark----清洁
-- (void)mCleanAction:(UIButton *)sender{
-    [WJStatusBarHUD hide];
-
-    mSuperID = @"2";
-    [self getData:sender.titleLabel.text];
-    mType = sender.titleLabel.text;
-   
-}
-#pragma mark----管道
-- (void)mPipeAction:(UIButton *)sender{
-    [WJStatusBarHUD hide];
-
-    mSuperID = @"3";
-    mType = sender.titleLabel.text;
-    [self getData:sender.titleLabel.text];
-
-}
-
-/**
- *  获取数据
- *
- *  @param mTitle 标签
- */
-- (void)getData:(NSString *)mTitle{
-    [LBProgressHUD showHUDto:self.view withTips:@"正在加载中..." animated:YES];
-    [mUserInfo getFixDetail:mSuperID andLevel:@"2" block:^(mBaseData *resb, NSArray *marr) {
-        
-        [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        
-        [self.tempArray removeAllObjects];
-
-        if (resb.mSucess) {
-            [LCProgressHUD showSuccess:resb.mMessage];
-            [self.tempArray addObjectsFromArray:marr];
-            
-            mCleanA = [[ZJAlertListView alloc] initWithFrame:CGRectMake(0, 0, 180, 300)];
-            
-            mCleanA.titleLabel.text = mTitle;
-            mCleanA.datasource = self;
-            mCleanA.delegate = self;
-            //点击确定的时候，调用它去做点事情
-            [mCleanA setDoneButtonWithBlock:^{
-                
-                NSLog(@"结果是：%@",mArrTemp);
-                
-                mView.mHiddenView.alpha = 1;
-                mView.mSelectedView.alpha = 0;
-                
-                [mView.mResultBtn setTitle:mTitle forState:UIControlStateNormal];
-                mView.mResultContent.text = [NSString stringWithFormat:@"%@",mArrTemp[0]];
-                [mCleanA dismiss];
-                
-            }];
-            [mCleanA show];
-
-        }else{
-            [LCProgressHUD showFailure:@"数据加载错误!"];
-
-        }
-    }];
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-#pragma mark -设置行数
-- (NSInteger)alertListTableView:(ZJAlertListView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.tempArray.count;
-
-}
-
-- (UITableViewCell *)alertListTableView:(ZJAlertListView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identifier = @"identifier";
-    UITableViewCell *cell = [tableView dequeueReusableAlertListCellWithIdentifier:identifier];
-    cell.tintColor = M_CO;
-    if (nil == cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        /**
-         *  cell选择样式为无
-         */
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        /**
-         *  自定义cell背景
-         */
-        UIImageView *iii = [UIImageView new];
-        iii.frame = CGRectMake(0,5, 180, 45);
-        iii.image = [UIImage imageNamed:@"fixcell_bgk"];
-        [cell.contentView addSubview:iii];
         
     }
-    if ( self.selectedIndexPath && NSOrderedSame == [self.selectedIndexPath compare:indexPath])
-    {
-        /**
-         *  自定义cell选择样式－选中
-         */
-        UIImageView *iii = [UIImageView new];
-        iii.frame = CGRectMake(230, 25, 10, 10);
-        iii.image = [UIImage imageNamed:@"fixcell_selected"];
-        [cell.contentView addSubview:iii];
-        cell.accessoryView = iii;
-    }
-    else
-    {
-        /**
-         *  自定义cell选择样式－未选中
-         */
-        UIImageView *iii = [UIImageView new];
-        iii.frame = CGRectMake(230, 25, 10, 10);
-        iii.image = [UIImage imageNamed:@"fixcell_unselecte"];
-        [cell.contentView addSubview:iii];
-        cell.accessoryView = iii;
-
-    }
     
-    GFix *fix = self.tempArray[indexPath.row];
     
-    cell.textLabel.text = fix.mClassName;
-    return cell;
-}
-
-- (void)alertListTableView:(ZJAlertListView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
     
-    UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
-    cell.tintColor = M_CO;
-    UIImageView *iii = [UIImageView new];
-    iii.frame = CGRectMake(230, 25, 10, 10);
-    iii.image = [UIImage imageNamed:@"fixcell_unselecte"];
-    [cell.contentView addSubview:iii];
-    cell.accessoryView = iii;
-//    cell.accessoryType = UITableViewCellAccessoryNone;
-    NSLog(@"didDeselectRowAtIndexPath:%ld", (long)indexPath.row);
+    
 }
-
-- (void)alertListTableView:(ZJAlertListView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    [mArrTemp removeAllObjects];
-    [mClassID removeAllObjects];
-    self.selectedIndexPath = indexPath;
-    UITableViewCell *cell = [tableView alertListCellForRowAtIndexPath:indexPath];
-    cell.tintColor = M_CO;
-    cell.selected = !cell.selected;
-    if (cell.selected) {
-        cell.backgroundColor = [UIColor whiteColor];
-        UIImageView *iii = [UIImageView new];
-        iii.frame = CGRectMake(230, 25, 10, 10);
-        iii.image = [UIImage imageNamed:@"fixcell_selected"];
-        [cell.contentView addSubview:iii];
-        cell.accessoryView = iii;
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        GFix *fix = self.tempArray[indexPath.row];
-
-        [mArrTemp addObject:fix.mClassName];
-        [mClassID addObject:NumberWithInt(fix.mId)];
-        NSLog(@"选择了第:%ld行", (long)indexPath.row);
-        NSLog(@"一共有%@",mArrTemp);
-    }else{
-        NSLog(@"dasda");
-    }
-
-}
-
 
 //本地视频
 - (void)locallVideo
@@ -837,7 +518,7 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-
+    
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
     BOOL success;
@@ -869,33 +550,33 @@
     else if([mediaType isEqualToString:@"public.movie"]){
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         mVideoUrl = videoURL;
-        [mView.mRightBtn setBackgroundImage:[self imageWithMediaURL:mVideoUrl] forState:0];
-
+        [mView.mUploadVideoBtn setBackgroundImage:[self imageWithMediaURL:mVideoUrl] forState:0];
+        
         [self saveVideoWith:videoURL];
         
-      
-//        
-//        /****************************************/
-//        
-//        NSString *videoFile = [documentsDirectory stringByAppendingPathComponent:@"temp.mov"];
-//        ;
-//        
-//        success = [fileManager fileExistsAtPath:videoFile];
-//        if(success) {
-//            success = [fileManager removeItemAtPath:videoFile error:&error];
-//        }
-//        [mVedioData writeToFile:videoFile atomically:YES];
-//        //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);
-//        ;    //NSLog(videoURL);
-//        
         
-
+        //
+        //        /****************************************/
+        //
+        //        NSString *videoFile = [documentsDirectory stringByAppendingPathComponent:@"temp.mov"];
+        //        ;
+        //
+        //        success = [fileManager fileExistsAtPath:videoFile];
+        //        if(success) {
+        //            success = [fileManager removeItemAtPath:videoFile error:&error];
+        //        }
+        //        [mVedioData writeToFile:videoFile atomically:YES];
+        //        //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);
+        //        ;    //NSLog(videoURL);
+        //
+        
+        
         
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];
-
-
+    
+    
 }
 
 - (void) convertVideoQuailtyWithInputURL:(NSURL*)inputURL
@@ -921,7 +602,7 @@
         NSLog(@"resultPath = %@",resultPath);
         exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
         [self getFileSize:[NSString stringWithFormat:@"%@",exportSession.outputURL]];
-
+        
         exportSession.outputFileType = AVFileTypeMPEG4;
         
         exportSession.shouldOptimizeForNetworkUse = YES;
@@ -930,7 +611,7 @@
          
          {
              NSLog(@"-+-+-+-++-+-+-+-+--+:%@",exportSession.outputURL);
-
+             
              switch (exportSession.status) {
                      
                  case AVAssetExportSessionStatusUnknown:
@@ -969,7 +650,7 @@
          }];
         
     }
-
+    
 }
 
 - (CGFloat) getFileSize:(NSString *)path
@@ -1061,7 +742,7 @@
     
     if ([self getFileSize:[NSString stringWithFormat:@"%@",exporter.outputURL]] >= 10.0*1024) {
         [LCProgressHUD showFailure:@"选择的文件太大了！"];
-
+        
         return;
     }
     
@@ -1075,23 +756,23 @@
                 {
                     
                     [LCProgressHUD showFailure:@"视频处理失败！"];
-
+                    
                     break;
                 }
                     
                 case AVAssetExportSessionStatusCancelled:
                     [LCProgressHUD showFailure:@"视频处理取消！"];
-
+                    
                     break;
                 case AVAssetExportSessionStatusCompleted:
                     [LCProgressHUD showSuccess:@"视频处理完成"];
-                      mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
+                    mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
                     mSelecte = 2;
                     [self upLoadVideo];
-
+                    
                     //视频转码成功,删除原始文件
                     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
-                                      break;
+                    break;
                 default:
                     break;
             }
@@ -1128,25 +809,6 @@
     second = urlAsset.duration.value/urlAsset.duration.timescale;
     return second;
 }
-
-
-- (void)mAddressAction:(UIButton *)sender{
-
-//    addAddressViewController *add = [[addAddressViewController alloc] initWithNibName:@"addAddressViewController" bundle:nil];
-//    
-//    
-//    [self pushViewController:add];
-    
-    if (mAddressArr.count <= 0) {
-        [self AlertViewShow:@"未找到地址！请添加房屋！" alertViewMsg:@"添加房屋地址后才能使用保修功能哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
-
-        return;
-    }
-    
-    [self loadMHActionSheetView];
-}
-
-
 /**
  *  通过视频的URL，获得视频缩略图
  *
@@ -1177,25 +839,21 @@
 }
 
 - (void)leftBtnTouched:(id)sender{
-
     [self dismissViewController];
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if( buttonIndex == 1)
-    {
-        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-        nnn.Type = 2;
-        [self pushViewController:nnn];
-    }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
-    
-    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"离开", nil];
-    al.delegate = self;
-    al.tag = tag;
-    [al show];
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end
