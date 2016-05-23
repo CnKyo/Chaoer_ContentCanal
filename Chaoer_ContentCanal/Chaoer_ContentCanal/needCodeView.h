@@ -199,7 +199,7 @@
 /**
  *  提交按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mCommitBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mTijiaoBtn;
 
 
 /**

@@ -14,6 +14,12 @@
 #import "AddressPickView.h"
 
 
+
+
+#import "NFPickerView.h"
+
+
+
 #import "choiceArearViewController.h"
 
 #import "AbstractActionSheetPicker+Interface.h"//这个是定义取消和确定按钮
@@ -21,7 +27,7 @@
 #import "XKPEActionPickersDelegate.h"
 #import "XKPEWeightAndHightActionPickerDelegate.h"
 #define kScreenSize [UIScreen mainScreen].bounds.size
-@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate>
+@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete>
 
 @property (nonatomic ,strong) XKPEActionPickersDelegate *detailAddressPicker; //4列
 
@@ -35,6 +41,10 @@
     
     needCodeView    *mView;
     
+    
+    
+    NSString *mProvinceId;
+
     NSString *mCityId;
     
     NSString *mArearId;
@@ -75,6 +85,10 @@
     NSMutableArray *mTT3;
     NSMutableArray *mTT4;
 
+    
+    NFPickerView *pickerView;
+    
+    NSString *mBlockArearId;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -120,6 +134,12 @@
     Arrtemp = [NSMutableArray new];
     mIdentify = [NSMutableArray new];
 
+    mCommunityId = 0;
+    mBlockArearId = nil;
+    
+    mProvinceId = nil;
+    mCityId = nil;
+    mArearId = nil;
     
     mTT1 = [NSMutableArray new];
     mTT2 = [NSMutableArray new];
@@ -173,7 +193,7 @@
             datastr = [NSString stringWithFormat:@"楼层"];
             [mTT3 addObject:datastr];
         }else{
-            datastr = [NSString stringWithFormat:@"%ld楼",(long)i];
+            datastr = [NSString stringWithFormat:@"%ld号",(long)i];
             [mTT3 addObject:datastr];
         }
         
@@ -221,42 +241,113 @@
 
     
 }
+
+#pragma mark----加载地址
+- (void)loadAddress{
+    
+   
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
+        
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            [self.tempArray addObjectsFromArray:mArr];
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+
+}
+
 #pragma mark----重新设计后的界面⬇️
 - (void)mSelectCityAction:(UIButton *)sender{
     [self loadAddressPick];
     
 }
 - (void)loadAddressPick{
-    [addressPickView removeFromSuperview];
+//    [addressPickView removeFromSuperview];
+//    
+//    addressPickView  = [AddressPickView shareInstance];
+//    [self.view addSubview:addressPickView];
+//    
+//    __weak __typeof(mView)weakSelf = mView;
+//    
+//    addressPickView.block = ^(NSString *province,NSString *city,NSString *town){
+//        
+//        mAddressStr = [NSString stringWithFormat:@"%@%@%@",province,city,town ];
+//        
+//        [weakSelf.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",province,city,town ] forState:0];
+//        
+//    };
+//    [self showWithStatus:@"正在加载..."];
+//    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
     
-    addressPickView  = [AddressPickView shareInstance];
-    [self.view addSubview:addressPickView];
+//        [self.tempArray removeAllObjects];
+//        if (resb.mSucess) {
     
-    __weak __typeof(mView)weakSelf = mView;
     
-    addressPickView.block = ^(NSString *province,NSString *city,NSString *town){
-        
-        mAddressStr = [NSString stringWithFormat:@"%@%@%@",province,city,town ];
-        
-        [weakSelf.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",province,city,town ] forState:0];
-        
-    };
+    [pickerView removeFromSuperview];
+            pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
+            pickerView.delegate = self;
+            [pickerView show];
+//        }else{
+//            
+//            [self showErrorStatus:resb.mMessage];
+//        }
+//    }];
+
+    
+ 
+
+    
 }
+
+- (void)pickerDidSelectProvinceName:(NSString *)provinceName andProvinId:(int)ProvinceId cityName:(NSString *)cityName andArearId:(int)ArearId countrys:(NSString *)countrys andCityId:(int)CityId{
+    
+    NSLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
+    
+    [mView.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",provinceName,cityName,countrys] forState:0];
+    
+    mProvinceId = [NSString stringWithFormat:@"%d",ProvinceId];
+    mCityId = [NSString stringWithFormat:@"%d",CityId];
+    mArearId = [NSString stringWithFormat:@"%d",ArearId];
+    
+    
+    NSLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
+    
+    
+}
+
 - (void)mSelectArearAction:(UIButton *)sender{
     
-    choiceArearViewController *ccc = [[choiceArearViewController alloc] initWithNibName:@"choiceArearViewController" bundle:nil];
     
-    ccc.block = ^(NSString *content ,NSString *mId){
+    if (mProvinceId == nil || mProvinceId.length == 0 || [mProvinceId isEqualToString:@""]) {
+        [self showErrorStatus:@"请选择地区！"];
+        return;
+    }else{
+        choiceArearViewController *ccc = [[choiceArearViewController alloc] initWithNibName:@"choiceArearViewController" bundle:nil];
         
+        ccc.mProvinceId = mProvinceId;
+        ccc.mArearId= mArearId;
+        ccc.mCityId = mCityId;
         
+        ccc.block = ^(NSString *content ,NSString *mId){
+            
+            
+            mBlockArearId = mId;
+            
+            [mView.mChoiceArearBtn setTitle:content forState:0];
+            
+            
+        };
         
+        [self pushViewController:ccc];
         
-        [mView.mChoiceArearBtn setTitle:content forState:0];
-        
-   
-    };
+    }
     
-    [self pushViewController:ccc];
+    
     
 }
 - (void)mSelectDetailAction:(UIButton *)sender{
@@ -301,6 +392,13 @@
         }else{
             [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
         }
+        
+        mBan = _detailAddressPicker.selectedKey1;
+        mUnit = _detailAddressPicker.selectedkey2;
+        mFloor = _detailAddressPicker.selectedkey3;
+        mDoornum = _detailAddressPicker.selectedkey4;
+        
+        
         
     }
 
@@ -395,7 +493,7 @@
     [mView.mFloorBtn addTarget:self action:@selector(floorAction:) forControlEvents:UIControlEventTouchUpInside];
 
     
-    [mView.mOkBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mTijiaoBtn addTarget:self action:@selector(commitAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [mView.mMasterBtn addTarget:self action:@selector(choiseAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mVisitorBtn addTarget:self action:@selector(choiseAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -733,7 +831,7 @@
 
 
 #pragma mark----实名认证
-- (void)okAction:(UIButton *)sender{
+- (void)commitAction:(UIButton *)sender{
     
     
     if ([mView.mDoorNumLb.text isEqualToString:@"选择门牌号"]) {
@@ -744,6 +842,30 @@
         [self showErrorStatus:@"请选择您的身份"];
         return;
     }
+    
+    NSArray *mBanArr = [mBan componentsSeparatedByString:@"栋"];
+    NSString *mBanStr1 = [mBanArr objectAtIndex:1];
+    NSString *mBanStr2 = [mBanArr objectAtIndex:2];
+    
+    NSArray *mUnitArrr = [mUnit componentsSeparatedByString:@"单元"];
+    NSString *mUnitStr = [mUnitArrr objectAtIndex:1];
+    NSString *mUnitStr2 = [mUnitArrr objectAtIndex:2];
+    
+    
+    NSArray *mFloorArr = [mFloor componentsSeparatedByString:@"楼"];
+    NSString *mFloorStr = [mFloorArr objectAtIndex:1];
+    NSString *mFloorStr2 = [mFloorArr objectAtIndex:2];
+    
+    
+    
+    NSArray *mDoomNumArr = [mDoornum componentsSeparatedByString:@"号"];
+    NSString *mDoorNmStr = [mDoomNumArr objectAtIndex:1];
+    NSString *mDoorNmStr2 = [mDoomNumArr objectAtIndex:2];
+    
+    
+    
+    
+    
     if (self.Type == 1) {
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         

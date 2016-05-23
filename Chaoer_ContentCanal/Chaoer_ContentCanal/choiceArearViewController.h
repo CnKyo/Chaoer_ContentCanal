@@ -11,6 +11,17 @@
 @interface choiceArearViewController : BaseVC
 
 @property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId);
-
+/**
+ *  省市id
+ */
+@property (nonatomic,strong) NSString *mProvinceId;
+/**
+ *  区县id
+ */
+@property (nonatomic,strong) NSString *mArearId;
+/**
+ *  城市id
+ */
+@property (nonatomic,strong) NSString *mCityId;
 
 @end

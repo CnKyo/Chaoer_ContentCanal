@@ -44,16 +44,16 @@
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     [super viewDidLoad];
-    self.Title = self.mPageName = @"意见反馈";
+    self.Title = self.mPageName = @"公司建议";
     self.hiddenlll = YES;
     self.bgkView.backgroundColor = [UIColor clearColor];
     self.txView.layer.masksToBounds = YES;
     self.txView.layer.borderColor = [UIColor colorWithRed:0.855 green:0.851 blue:0.843 alpha:1].CGColor;
     self.txView.layer.borderWidth = 0.75f;
-    self.txView.layer.cornerRadius = 5;
+    self.txView.layer.cornerRadius = 3;
     self.txView.placeholder = @"留下您的宝贵意见，我们将尽全力完善";
     self.okBtn.layer.masksToBounds = YES;
-    self.okBtn.layer.cornerRadius = 4;
+    self.okBtn.layer.cornerRadius = 3;
     [self.txView setHolderToTop];
     [self.okBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
     self.view.backgroundColor = M_BGCO;
@@ -71,18 +71,16 @@
     }
     else{
         [self showWithStatus:@"正在提交..."];
-//        
-//        [SAppInfo feedback:self.txView.text block:^(SResBase *resb) {
-//            if (!resb.msuccess) {
-//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-//                
-//            }
-//            else{
-//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-//                [self dismiss];
-//                [self popViewController];
-//            }
-//        }];
+        
+        [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.txView.text block:^(mBaseData *resb) {
+            [SVProgressHUD dismiss];
+            if (resb.mSucess) { 
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+        }];
         
     }
     

@@ -226,7 +226,11 @@
                                            mSex = [user.rawData objectForKey:@"gender"];
                                            mHeaderUrl = [user.rawData objectForKey:@"figureurl_qq_2"];
                                            [para setObject:@"2" forKey:@"loginType"];
-
+                                           if ([mSex isEqualToString:@"男"]) {
+                                               mSex = @"1";
+                                           }else if ([mSex isEqualToString:@"女"]){
+                                               mSex = @"2";
+                                           }
 
                                        }else if (type == SSDKPlatformTypeWechat){
                                            mOpenID = [user.rawData objectForKey:@"openid"];
@@ -236,8 +240,14 @@
                                            [para setObject:@"1" forKey:@"loginType"];
 
                                        }
+
                                        
                                        
+                                       
+                                     
+                                       
+                                       
+                                       NSLog(@"性别是：%@",mSex);
                                        
                                        [para setObject:mOpenID forKey:@"openid"];
                                        [para setObject:mNickName forKey:@"nickname"];

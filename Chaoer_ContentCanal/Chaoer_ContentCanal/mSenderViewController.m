@@ -394,8 +394,12 @@
         cell.mDoneBtn.enabled = NO;
     }else{
         if ([mUserInfo backNowUser].mUserId == [mOrder.mUserId intValue]) {
-            cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
-            cell.mDoneBtn.enabled = NO;
+            
+            
+            [cell.mDoneBtn setTitle:@"取消订单" forState:0];
+            cell.mDoneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+            [cell.mDoneBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            
         }else{
             
             if ([mUserInfo backNowUser].mIs_leg != 5) {
@@ -561,9 +565,7 @@
 #pragma mark----接单
 - (void)getOrderAction:(mOrderButton *)sender{
     
-    
-    
-    
+ 
     if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
         [self showErrorStatus:@"必须打开定位才能接单哦！"];
         return;
@@ -589,5 +591,33 @@
     
 }
 
+- (void)mCancelOrderAction:(mOrderButton *)sender{
 
+    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        return;
+    }
+    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        return;
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    
+    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            
+            [self showSuccessStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+
+    
+}
 @end

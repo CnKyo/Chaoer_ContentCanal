@@ -475,6 +475,15 @@
  */
 + (void)getCodeAndPay:(NSString *)mOrderCode andYBOrderCode:(NSString *)mYBOrderCode andPhoneCode:(NSString *)mCode block:(void(^)(mBaseData *resb))block;
 #pragma mark----实名认证
+
+#pragma mark----实名认证（获取省市区）
+/**
+ *  实名认证（获取省市区）
+ *
+ *  @param block 返回值
+ */
+- (void)getCodeAddress:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
 /**
  * 实名认证 获取城市id
  *
@@ -1001,7 +1010,18 @@
  *  @param block      返回值
  */
 - (void)getPPTOrder:(int)mLegUserId andOrderCode:(NSString *)mOrderCode andOrderType:(NSString *)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
-
+#pragma mark----用户取消订单操作
+/**
+ *  用户取消订单
+ *
+ *  @param mUserId    用户id
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)cancelOrder:(int)mUserId andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
 #pragma mark----获取系统标签
 /**
  *  获取系统标签
@@ -1047,6 +1067,14 @@
  */
 - (void)feedBackOrder:(int)mUserId andLegUserId:(int)mLegId andContent:(NSString *)mContent andFeedTagId:(int)mTagId andOrderType:(int)mOrderType andOrderCode:(NSString *)mOrderCode andImags:(NSString *)mImages block:(void(^)(mBaseData *resb))block;
 
+
+#pragma mark----实名认证 获取小区
+/**
+ *  实名认证 获取小区
+ *
+ *  @param block 返回值
+ */
+- (void)getCodeArear:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityId andName:(NSString *)mName andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 @end
 
 @interface SMessage : NSObject
@@ -2470,4 +2498,90 @@
 
 
 -(id)initWithObj:(NSDictionary*)obj;
+@end
+
+
+
+#pragma mark----省对象
+@class GCodeArear;
+@interface GCodeProvince : NSObject
+/**
+ *   省市id
+ */
+@property (nonatomic,assign) int        mProvinceId;
+/**
+ *  省市名称
+ */
+@property (nonatomic,strong) NSString*  mProvinceName;
+/**
+ *  城市数组
+ */
+@property (nonatomic,strong) NSArray *mProvinceArr;
+
+@property (nonatomic,strong) GCodeArear *mArear;
+
+-(id)initWithObj:(NSDictionary*)obj;
+@end
+@class GCodeCity;
+#pragma mark----区县对象
+@interface GCodeArear : NSObject
+/**
+ *   省市id
+ */
+@property (nonatomic,assign) int        mArearId;
+/**
+ *  省市名称
+ */
+@property (nonatomic,strong) NSString*  mArearName;
+/**
+ *  城市数组
+ */
+@property (nonatomic,strong) NSArray *mArearArr;
+
+@property (nonatomic,strong) GCodeCity *mCity;
+
+-(id)initWithObj:(NSDictionary*)obj;
+@end
+#pragma mark----城市对象
+@interface GCodeCity : NSObject
+/**
+ *   省市id
+ */
+@property (nonatomic,assign) int        mCityId;
+/**
+ *  省市名称
+ */
+@property (nonatomic,strong) NSString*  mCityName;
+/**
+ *  城市数组
+ */
+@property (nonatomic,strong) NSString *mCityCode;
+
+-(id)initWithObj:(NSDictionary*)obj;
+@end
+
+
+
+
+@interface GGetArear : NSObject
+
+/**
+ *   id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  地区名称
+ */
+@property (nonatomic,strong) NSString*  mArearName;
+/**
+ *  小区名称
+ */
+@property (nonatomic,strong) NSString*  mName;
+/**
+ *  距离
+ */
+@property (nonatomic,strong) NSString *mDistance;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
 @end

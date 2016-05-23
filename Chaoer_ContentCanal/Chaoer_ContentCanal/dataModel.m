@@ -527,7 +527,7 @@ bool g_bined = NO;
     
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
-        [mUserInfo dealUserSession:info andPhone:nil andOpenId:nil block:block];
+        [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
 
     }];
 
@@ -906,10 +906,36 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+#pragma mark----实名认证（获取省市区）
+/**
+ *  实名认证（获取省市区）
+ *
+ *  @param block 返回值
+ */
+- (void)getCodeAddress:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/region/getRegion" parameters:nil call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCodeProvince alloc] initWithObj:dic]];
+            }
+            
+            block ( info ,tempArr );
+            
+        }else{
+            block ( info ,nil );
+        }
+    }];
 
+    
+    
+}
 
 + (void)getCityId:(int)mCityId block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCityId) forKey:@"parentId"];
     [[HTTPrequest sharedClient] postUrl:@"app/city/appWebSite" parameters:para call:^(mBaseData *info) {
@@ -2596,7 +2622,45 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
     
 }
-
+#pragma mark----用户取消订单操作
+/**
+ *  用户取消订单
+ *
+ *  @param mUserId    用户id
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)cancelOrder:(int)mUserId andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block{
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mOrderType) forKey:@"orderType"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLng forKey:@"lon"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appOrderCancel" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            block (info);
+            
+        }else{
+            
+            block (info);
+        }
+    }];
+    
+    
+    
+}
 #pragma mark----获取系统标签
 /**
  *  获取系统标签
@@ -2749,7 +2813,49 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+#pragma mark----实名认证 获取小区
+/**
+ *  实名认证 获取小区
+ *
+ *  @param block 返回值
+ */
+- (void)getCodeArear:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityId andName:(NSString *)mName andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:mProvinceId forKey:@"provinceId"];
+    [para setObject:mArearId forKey:@"cityId"];
+    [para setObject:mCityId forKey:@"countyId"];
+    [para setObject:mName forKey:@"name"];
+    
+    if (mLat) {
+        [para setObject:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setObject:mLng forKey:@"lng"];
+    }
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/verificationCell" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GGetArear alloc] initWithObj:dic]];
+            }
+            
+            block (info ,tempArr);
+        }else{
+            block (info ,nil);
+        }
+        
+    }];
+    
+    
+    
+}
 
 
 
@@ -4100,6 +4206,8 @@ bool pptbined = NO;
 }
 
 
+
+
 @end
 @implementation GPPTUserInfo
 - (id)initWithObj:(NSDictionary *)obj{
@@ -4341,6 +4449,104 @@ bool pptbined = NO;
     self.mTagId = [[obj objectForKeyMy:@"id"] intValue];
     self.mTagName = [obj objectForKeyMy:@"title_alias"];
     
+}
+
+@end
+
+@implementation GCodeProvince
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mProvinceId = [[obj objectForKeyMy:@"provinceId"] intValue];
+    self.mProvinceName = [obj objectForKeyMy:@"provinceName"];
+
+    
+    NSMutableArray *tempArr = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"cityList"]) {
+        [tempArr addObject:[[GCodeArear alloc] initWithObj:dic]];
+    }
+    self.mProvinceArr = tempArr;
+
+    
+}
+
+
+@end
+@implementation GCodeArear
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mArearId = [[obj objectForKeyMy:@"cityId"] intValue];
+    self.mArearName = [obj objectForKeyMy:@"cityName"];
+    
+    NSMutableArray *tempArr = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"countyList"]) {
+        [tempArr addObject:[[GCodeCity alloc] initWithObj:dic]];
+    }
+    self.mArearArr = tempArr;
+    
+    
+}
+
+
+@end
+@implementation GCodeCity
+- (id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mCityId = [[obj objectForKeyMy:@"countyId"] intValue];
+    self.mCityName = [obj objectForKeyMy:@"countyName"];
+    self.mCityCode = [obj objectForKeyMy:@"countyJianpin"];
+    
+}
+
+
+@end
+
+@implementation GGetArear
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mArearName = [obj objectForKeyMy:@"areaName"];
+    self.mName = [obj objectForKeyMy:@"communityName"];
+    self.mDistance = [obj objectForKeyMy:@"distance"];
+
 }
 
 @end

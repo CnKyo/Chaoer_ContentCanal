@@ -60,6 +60,7 @@
 		044A24801CB4B25700A6379C /* msgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A247E1CB4B25700A6379C /* msgViewController.xib */; };
 		044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24821CB4B2EA00A6379C /* msgTableViewCell.m */; };
 		044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */; };
+		044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F16B21CF2ED6600B6B90D /* NFPickerView.m */; };
 		0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B7791CD4D64600B950BD /* mServiceClassViewController.m */; };
 		0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */; };
 		0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B77E1CD4D78000B950BD /* ChatListViewController.m */; };
@@ -810,6 +811,8 @@
 		044A24811CB4B2EA00A6379C /* msgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msgTableViewCell.h; sourceTree = "<group>"; };
 		044A24821CB4B2EA00A6379C /* msgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = msgTableViewCell.m; sourceTree = "<group>"; };
 		044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = msgTableViewCell.xib; sourceTree = "<group>"; };
+		044F16B11CF2ED6600B6B90D /* NFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NFPickerView.h; sourceTree = "<group>"; };
+		044F16B21CF2ED6600B6B90D /* NFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFPickerView.m; sourceTree = "<group>"; };
 		0461B7781CD4D64600B950BD /* mServiceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceClassViewController.h; sourceTree = "<group>"; };
 		0461B7791CD4D64600B950BD /* mServiceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceClassViewController.m; sourceTree = "<group>"; };
 		0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceClassViewController.xib; sourceTree = "<group>"; };
@@ -2984,6 +2987,8 @@
 		3135F8191C97D60E00EF9569 /* 实名认证 */ = {
 			isa = PBXGroup;
 			children = (
+				044F16B11CF2ED6600B6B90D /* NFPickerView.h */,
+				044F16B21CF2ED6600B6B90D /* NFPickerView.m */,
 				3135F8141C97D5EE00EF9569 /* mCodeNameViewController.h */,
 				3135F8151C97D5EE00EF9569 /* mCodeNameViewController.m */,
 				3135F8161C97D5EE00EF9569 /* mCodeNameViewController.xib */,
@@ -4737,6 +4742,7 @@
 				04E5A8291CE5E57C00A2D111 /* AddressPickView.m in Sources */,
 				04E5A7E21CE579B000A2D111 /* MCPopMenuCell.m in Sources */,
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
+				044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */,
 				044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */,
 				04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */,
 				7487DC1D1B4E17F000C40220 /* View+MASAdditions.m in Sources */,

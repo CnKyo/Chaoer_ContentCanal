@@ -47,8 +47,8 @@
     needCodeView *view = [[[NSBundle mainBundle] loadNibNamed:@"addHouseAndCodeView" owner:self options:nil] objectAtIndex:0];
     
     
-    view.mCommitBtn.layer.masksToBounds = YES;
-    view.mCommitBtn.layer.cornerRadius = 3;
+    view.mTijiaoBtn.layer.masksToBounds = YES;
+    view.mTijiaoBtn.layer.cornerRadius = 3;
     
     return view;
     

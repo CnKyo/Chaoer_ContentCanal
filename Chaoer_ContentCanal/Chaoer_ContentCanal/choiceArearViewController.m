@@ -8,16 +8,28 @@
 
 #import "choiceArearViewController.h"
 
-@interface choiceArearViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface choiceArearViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,AMapLocationManagerDelegate>
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UITableView *searchResult;
-@property (nonatomic,strong) NSMutableArray *nameArray;
 @property (nonatomic,strong) NSMutableArray *result;
 -(void)initSearchBar;//创建搜索
 -(void)initTableView;//创建搜索结果的示意图
 @end
 
 @implementation choiceArearViewController
+{
+
+    AMapLocationManager *mLocation;
+    /**
+     *  纬度
+     */
+    NSString *mLat;
+    /**
+     *  经度
+     */
+    NSString *mLng;
+}
+
 -(NSMutableArray *)result{
     if (!_result) {
         self.result = [NSMutableArray array];
@@ -32,11 +44,17 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-
-    self.nameArray = [@[@"闪闪发光",@"商量等产",@"小情人",@"小歌手",@"爱人",@"爱着你",@"王大妈",@"王阿姨",@"我爱你",@"我爱猪",@"你是猪",@"你是人吗",@"啦啦啦",@"爱我吗",@"爱吗",@"爱不爱",@"不爱",@"爱人他",@"爱人妈",@"小帅哥",@"小情人人",@"小帅哥小帅哥小帅哥小帅哥小帅哥",@"小帅哥小帅哥小帅哥小帅哥小帅",@"小帅哥小帅哥小帅哥小帅哥小",@"小帅哥小帅哥小帅哥小帅哥",@"小帅哥小帅哥小帅哥小帅",@"小帅哥小帅哥小帅哥小",@"小帅哥小帅哥小帅哥",@"小帅哥小帅哥小帅哥小",@"小帅哥小帅哥小帅哥",@"小帅哥小帅哥小帅",@"小帅哥小帅哥小",@"小帅哥小帅哥"] mutableCopy];
+   
+    mLat = nil;
+    mLng = nil;
+    
+    [self loadAddress];
     
     [self initSearchBar];
 
+    
+    
+    
     
 //    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
 //    self.tableView.allowsSelection = YES;
@@ -44,6 +62,85 @@
     
     
 }
+- (void)loadAddress{
+    mLocation = [[AMapLocationManager alloc] init];
+    mLocation.delegate = self;
+    [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    mLocation.locationTimeout = 3;
+    mLocation.reGeocodeTimeout = 3;
+    //    [WJStatusBarHUD showLoading:@"正在定位中..."];
+    [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        if (error)
+        {
+            NSString *eee =@"定位失败！请检查网络和定位设置！";
+            [WJStatusBarHUD showErrorImageName:nil text:eee];
+            
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+        }
+        
+        NSLog(@"location:%f", location.coordinate.latitude);
+        
+        mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+        mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+        
+        if (regeocode)
+        {
+            
+            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
+            
+            NSLog(@"reGeocode:%@", regeocode);
+        }
+    }];
+    
+}
+
+
+
+
+
+
+
+
+- (void)loadData{
+
+    
+    if (mLat.length == 0 || mLng.length == 0) {
+        
+        
+        [self showErrorStatus:@"必须打开定位才能查询附近的小区!"];
+        return;
+        
+    }
+    if (self.mProvinceId == nil || self.mProvinceId.length == 0 ||[self.mProvinceId isEqualToString:@""]) {
+        [self showErrorStatus:@"地区输入有误，请重新输入！"];
+        [self popViewController];
+        return;
+    }
+    
+    [self showWithStatus:@"正在加载中..."];
+    
+    
+    [[mUserInfo backNowUser] getCodeArear:self.mProvinceId andArearId:self.mArearId andCityId:self.mCityId andName:self.searchBar.text andLat:mLat andLng:mLng block:^(mBaseData *resb, NSArray *mArr) {
+    
+        [self.tempArray removeAllObjects];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            [self.tempArray addObjectsFromArray:mArr];
+            [self.searchResult reloadData];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+    
+    
+    
+}
+
+
 -(void)initSearchBar{
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, DEVICE_Width, 44)];
     _searchBar.keyboardType = UIKeyboardAppearanceDefault;
@@ -120,12 +217,12 @@
     
     NSLog(@"输入的关键字是---%@---%lu",searchText,(unsigned long)searchText.length);
     self.result = nil;
-    for (int i = 0; i < self.nameArray.count; i++) {
-        NSString *string = self.nameArray[i];
+    for (int i = 0; i < self.tempArray.count; i++) {
+        NSString *string = self.tempArray[i];
         if (string.length >= searchText.length) {
-            NSString *str = [self.nameArray[i] substringWithRange:NSMakeRange(0, searchText.length)];
+            NSString *str = [self.tempArray[i] substringWithRange:NSMakeRange(0, searchText.length)];
             if ([str isEqualToString:searchText]) {
-                [self.result addObject:self.nameArray[i]];
+                [self.result addObject:self.tempArray[i]];
             }
         }
     }
@@ -155,6 +252,7 @@
     NSLog(@"取");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
+    [self loadData];
     
 }
 
@@ -166,13 +264,16 @@
  *  @return 行数
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.result.count;
+    return self.tempArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.result[indexPath.row];
+    
+    GGetArear *mArear = self.tempArray[indexPath.row];
+    
+    cell.textLabel.text = mArear.mName;
     return cell;
 }
 
@@ -183,8 +284,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    self.block(self.result[indexPath.row],@"what");
+    GGetArear *mArear = self.tempArray[indexPath.row];
+
+    self.block(mArear.mName,[NSString stringWithFormat:@"%d",mArear.mId]);
     
     [self popViewController];
     

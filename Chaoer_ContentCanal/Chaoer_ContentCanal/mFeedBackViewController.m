@@ -12,6 +12,9 @@
 #import "mFeedCompanyViewController.h"
 
 #import "mFeedPersonViewController.h"
+
+#import "feedbackViewController.h"
+
 @interface mFeedBackViewController ()
 
 @end
@@ -56,8 +59,9 @@
 #pragma mark----投诉公司
 - (IBAction)mCompany:(id)sender {
     
-    mFeedCompanyViewController *mmm = [[mFeedCompanyViewController alloc] initWithNibName:@"mFeedCompanyViewController" bundle:nil];
-    [self pushViewController:mmm];
+    UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    feedbackViewController *f =[secondStroyBoard instantiateViewControllerWithIdentifier:@"xxx"];
+    [self.navigationController pushViewController:f animated:YES];
 }
 
 /*

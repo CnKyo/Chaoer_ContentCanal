@@ -251,10 +251,10 @@
                 <outlet property="mChoiceArearBtn" destination="gPt-WZ-4Xn" id="pdX-Ud-iz2"/>
                 <outlet property="mChoiceCityBtn" destination="2Mg-Np-MLc" id="y8S-VQ-4E9"/>
                 <outlet property="mChoiceDetailBtn" destination="X6G-oC-3ma" id="PMe-s8-bWe"/>
-                <outlet property="mCommitBtn" destination="Gve-Nq-y7a" id="7Ao-9z-93D"/>
                 <outlet property="mNameTx" destination="Le2-HW-JmU" id="aEe-8x-Wq3"/>
                 <outlet property="mOneBtn" destination="Dyl-bR-Ke7" id="aDZ-eG-eJC"/>
                 <outlet property="mOneImg" destination="9qv-5F-Qj8" id="byM-mO-5Zc"/>
+                <outlet property="mTijiaoBtn" destination="Gve-Nq-y7a" id="hSc-Mi-aZz"/>
                 <outlet property="mTwoBtn" destination="zNF-iY-NNO" id="sFW-5A-hxS"/>
                 <outlet property="mTwoImg" destination="IzY-Rf-lOP" id="J9N-dE-0DA"/>
             </connections>
