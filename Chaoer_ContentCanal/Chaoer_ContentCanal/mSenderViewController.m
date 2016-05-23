@@ -594,11 +594,11 @@
 - (void)mCancelOrderAction:(mOrderButton *)sender{
 
     if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        [self showErrorStatus:@"必须打开定位才能操作哦！"];
         return;
     }
     if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
+        [self showErrorStatus:@"必须打开定位才能操作哦！"];
         return;
     }
     

@@ -210,8 +210,11 @@
             cell.mDoBtn.enabled = NO;
         }else{
             if ([mUserInfo backNowUser].mUserId == [self.mOrder.mUserId intValue]) {
-                cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
-                cell.mDoBtn.enabled = NO;
+                
+                [cell.mDoBtn setTitle:@"取消订单" forState:0];
+                cell.mDoBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+                [cell.mDoBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
             }else{
                 if ([mUserInfo backNowUser].mIs_leg != 5) {
                     cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
@@ -496,4 +499,37 @@
     [self pushViewController:eee];
 
 }
+
+
+#pragma mark----取消订单
+- (void)mCancelOrderAction:(mOrderButton *)sender{
+    
+    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能操作哦！"];
+        return;
+    }
+    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能操作哦！"];
+        return;
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    
+    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            
+            [self showSuccessStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+    
+    
+}
+
 @end
