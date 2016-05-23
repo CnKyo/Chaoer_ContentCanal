@@ -147,7 +147,6 @@
     mTT4 = [NSMutableArray new];
     [self initViewData];
     
-//    [self initview];
     
     mAddressStr = nil;
     
@@ -159,7 +158,7 @@
 
     NSString *datastr = nil;
     
-    for (int i=1; i<=51; i++) {
+    for (int i=0; i<=50; i++) {
         
         if (i == 0) {
             datastr = [NSString stringWithFormat:@"楼栋"];
@@ -172,7 +171,7 @@
         
         
     }
-    for (int i=1; i<=41; i++) {
+    for (int i=0; i<=40; i++) {
         NSString *datastr = nil;
         
         if (i == 0) {
@@ -186,21 +185,21 @@
         
         
     }
-    for (int i=1; i<=51; i++) {
+    for (int i=0; i<=50; i++) {
         NSString *datastr = nil;
         
         if (i == 0) {
             datastr = [NSString stringWithFormat:@"楼层"];
             [mTT3 addObject:datastr];
         }else{
-            datastr = [NSString stringWithFormat:@"%ld号",(long)i];
+            datastr = [NSString stringWithFormat:@"%ld楼",(long)i];
             [mTT3 addObject:datastr];
         }
         
         
         
     }
-    for (int i=1; i<=51; i++) {
+    for (int i=0; i<=50; i++) {
         NSString *datastr = nil;
         
         if (i == 0) {
@@ -234,7 +233,7 @@
     [mView.mOneBtn addTarget:self action:@selector(mOneAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mTwoBtn addTarget:self action:@selector(mOneAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    [mView.mTijiaoBtn addTarget:self action:@selector(commitAction:) forControlEvents:UIControlEventTouchUpInside];
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
@@ -267,36 +266,11 @@
     
 }
 - (void)loadAddressPick{
-//    [addressPickView removeFromSuperview];
-//    
-//    addressPickView  = [AddressPickView shareInstance];
-//    [self.view addSubview:addressPickView];
-//    
-//    __weak __typeof(mView)weakSelf = mView;
-//    
-//    addressPickView.block = ^(NSString *province,NSString *city,NSString *town){
-//        
-//        mAddressStr = [NSString stringWithFormat:@"%@%@%@",province,city,town ];
-//        
-//        [weakSelf.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",province,city,town ] forState:0];
-//        
-//    };
-//    [self showWithStatus:@"正在加载..."];
-//    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
-    
-//        [self.tempArray removeAllObjects];
-//        if (resb.mSucess) {
-    
-    
+
     [pickerView removeFromSuperview];
             pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
             pickerView.delegate = self;
             [pickerView show];
-//        }else{
-//            
-//            [self showErrorStatus:resb.mMessage];
-//        }
-//    }];
 
     
  
@@ -353,7 +327,7 @@
 - (void)mSelectDetailAction:(UIButton *)sender{
     
 
-    _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT3 title:@"详细住址"];
+    _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT4 title:@"详细住址"];
     _detailAddressPicker.delegates = self;
     
     ActionSheetCustomPicker *action = [[ActionSheetCustomPicker alloc]initWithTitle:@"录入住址" delegate:_detailAddressPicker showCancelButton:YES origin:self.view];
@@ -458,377 +432,6 @@
 
 #pragma mark----重新设计后的界面⬆️
 
-- (void)initview{
-    
-    UIImageView *iii = [UIImageView new];
-    
-    iii.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
-    iii.image = [UIImage imageNamed:@"mBaseBgkImg"];
-    [self.view addSubview:iii];
-    
-    mScrollerView = [UIScrollView new];
-    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
-    mScrollerView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:mScrollerView];
-    
-    
-    mView = [needCodeView shareView];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
-    
-    
-    
-//    if ([[mUserInfo backNowUser].mIdentity isEqualToString:@"房主"]) {
-//        mView.mMasterBtn.selected = YES;
-//    }else{
-//        mView.mVisitorBtn.selected = YES;
-//    }
-    
-    [mView.mCityBtn addTarget:self action:@selector(cityAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mArearBtn addTarget:self action:@selector(arearAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mCommunityBtn addTarget:self action:@selector(communityAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [mView.mBuildBtn addTarget:self action:@selector(builAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mUnitBtn addTarget:self action:@selector(unitAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mDoorNuimBtn addTarget:self action:@selector(doornumAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mFloorBtn addTarget:self action:@selector(floorAction:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    [mView.mTijiaoBtn addTarget:self action:@selector(commitAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [mView.mMasterBtn addTarget:self action:@selector(choiseAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mVisitorBtn addTarget:self action:@selector(choiseAction:) forControlEvents:UIControlEventTouchUpInside];
-
-
-
-    [mScrollerView addSubview:mView];
-    
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
-    
-}
-
-
-- (void)loadData{
-
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
-    if (mType == 3) {
-        
-        [mUserInfo getArearId:[[NSString stringWithFormat:@"%@",mCityId] intValue] andProvince:[[NSString stringWithFormat:@"%@",mArearId] intValue] block:^(mBaseData *resb,NSArray *mArr) {
-            [SVProgressHUD dismiss];
-            [self.tempArray removeAllObjects];
-            if (resb.mSucess) {
-                
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                [self.tempArray addObjectsFromArray:mArr];
-                [self loadMHActionSheetView];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-
-            }
-        }];
-        
-    }else if (mType == 4){
-    
-        [mUserInfo getBuilNum:mCommunityId block:^(mBaseData *resb, NSArray *mArr) {
-            [self.tempArray removeAllObjects];
-            if (resb.mSucess) {
-                
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                [self.tempArray addObjectsFromArray:mArr];
-                [self loadMHActionSheetView];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-                
-            }
-
-        }];
-        
-    }else if (mType == 5){
-                
-        [mUserInfo getDoorNum:mCommunityId andBuildName:[[NSString stringWithFormat:@"%@",mBan] intValue] block:^(mBaseData *resb, NSArray *mArr) {
-            [self.tempArray removeAllObjects];
-            if (resb.mSucess) {
-                
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                [self.tempArray addObjectsFromArray:mArr];
-                [self loadMHActionSheetView];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-                
-            }
-        }];
-        
-    }
-    else if(mType == 2){
-        [mUserInfo getCityId:[[NSString stringWithFormat:@"%@",mCityId] intValue] block:^(mBaseData *resb, NSArray *mArr) {
-            [SVProgressHUD dismiss];
-            [self.tempArray removeAllObjects];
-            if (resb.mSucess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                
-                [self.tempArray addObjectsFromArray:mArr];
-                [self loadMHActionSheetView];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            }
-            
-        }];
-    }    else{
-        [mUserInfo getCityId:0 block:^(mBaseData *resb, NSArray *mArr) {
-            [SVProgressHUD dismiss];
-            [self.tempArray removeAllObjects];
-            if (resb.mSucess) {
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                
-                [self.tempArray addObjectsFromArray:mArr];
-                [self loadMHActionSheetView];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            }
-            
-        }];
-    }
-    
-    
-}
-
-- (void)loadMHActionSheetView{
-    
-    NSString *mTt = nil;
-    [Arrtemp removeAllObjects];
-
-    if (mType == 1) {
-        mTt = @"选择城市";
-    }else if (mType == 2){
-    
-        mTt = @"选择市区";
-    }else if(mType == 3){
-        mTt = @"选择小区";
-    }else if(mType == 4){
-        mTt = @"选择楼栋号";
-    }else if(mType == 5){
-        mTt = @"选择单元";
-    }else if(mType == 6){
-        mTt = @"选择楼层";
-    }else{
-        mTt = @"选择门牌号";
-    }
-    
-    
-    if (mType == 3) {
-        for (GCommunity *city in self.tempArray) {
-            [Arrtemp addObject:city.mCommunityName];
-        }
-    }else if(mType == 4){
-       
-        for (NSString *str in self.tempArray) {
-            [Arrtemp addObject:str];
-        }
-        
-    }else if(mType == 5){
-        [mDoornumArr removeAllObjects];
-        [mUnitArr removeAllObjects];
-        [mFloorArr removeAllObjects];
-        for (int i = 0 ;i < self.tempArray.count ; i++) {
-            
-            GdoorNum *door = self.tempArray[i];
-            [mUnitArr addObject:[NSString stringWithFormat:@"%@",door.mUnit]];
-            
-            NSMutableArray *floor = [NSMutableArray new];
-            NSMutableArray *doorArr = [NSMutableArray new];
-            for (int j =1; j<[[NSString stringWithFormat:@"%@",door.mFloor] intValue]; j++) {
-                [floor addObject:[NSString stringWithFormat:@"%d",j]];
-                
-                
-            }
-            for (int k = 1; k<[[NSString stringWithFormat:@"%@",door.mRoomNumber] intValue]; k++) {
-                [doorArr addObject:[NSString stringWithFormat:@"%d",k]];
-            }
-            [mFloorArr addObject:floor];
-            [mDoornumArr addObject:doorArr];
-            
-        }
-        [Arrtemp addObjectsFromArray:mUnitArr];
-        
-    }else if(mType == 6){
-        
-        [Arrtemp removeAllObjects];
-        [Arrtemp addObjectsFromArray:mFloorArr[mUnitIndex]];
-
-        
-    }
-    else if(mType == 7){
-        [Arrtemp removeAllObjects];
-        [Arrtemp addObjectsFromArray:mDoornumArr[mUnitIndex]];
-        
-    }else{
-        for (GCity *city in self.tempArray) {
-            [Arrtemp addObject:city.mAreaName];
-        }
-    }
-
-    
-    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:mTt style:MHSheetStyleWeiChat itemTitles:Arrtemp];
-    actionSheet.cancleTitle = @"取消选择";
-    
-    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-        NSString *text = nil;
-        
-        if (mType == 1) {
-            GCity *city = self.tempArray[index];
-            text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mCityId = city.mAreaId;
-            mView.mCityLb.text = text;
-            mType = 2;
-
-        }else if (mType == 2){
-            GCity *city = self.tempArray[index];
-            text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mArearId = city.mAreaId;
-
-            mView.mArearLb.text = text;
-            mCityId = city.mParentId;
-            mType = 3;
-
-        }else if(mType == 3){
-            GCommunity *gm = self.tempArray[index];
-            text = [NSString stringWithFormat:@"%@", gm.mCommunityName];
-            mCommunityId = gm.mPropertyId;
-            mView.mCommunityLb.text = text;
-            mType = 4;
-
-        }else if(mType == 4){
-            NSString *gm = Arrtemp[index];
-            mBan = gm;
-            text = [NSString stringWithFormat:@"%@栋", gm];
-            mView.mBuildLb.text = text;
-            mUnit = gm;
-            mType = 5;
-
-            
-        }else if(mType == 5){
-            NSString *gm = mUnitArr[index];
-            text = [NSString stringWithFormat:@"%@单元", gm];
-            mUnit = gm;
-            mView.mUnitLb.text = text;
-            mType = 6;
-            
-            mUnitIndex = index;
-
-
-            
-        }else if(mType == 6){
-            NSString *gm = Arrtemp[index];
-            text = [NSString stringWithFormat:@"%@楼", gm];
-            mView.mFloorLb.text = text;
-            mFloor = gm;
-            mType = 7;
-
-        }
-        else if(mType == 7){
-            NSString *gm = Arrtemp[index];
-            text = [NSString stringWithFormat:@"%@号", Arrtemp[index]];
-            mView.mDoorNumLb.text = text;
-            mDoornum = gm;
-            
-        }else{
-            NSString *gm = Arrtemp[index];
-            text = gm;
-            mView.mDoorNumLb.text = text;
-            mDoornum = gm;
-
-        }
-        
-        
-    }];
-}
-
-
-- (void)cityAction:(UIButton *)sender{
-    if (mView.mNameTx.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入您的名称！"];
-        [mView.mNameTx becomeFirstResponder];
-        return;
-    }
-    mType = 1;
-    mCityId = 0;
-    [self loadData];
-
-}
-- (void)arearAction:(UIButton *)sender{
-    if (mCityId == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
-        return;
-    }
-    mType = 2;
-    [self loadData];
-
-
-
-}
-
-- (void)communityAction:(UIButton *)sender{
-    
- 
-    if (mType == 1) {
-        [SVProgressHUD showErrorWithStatus:@"请选择区县!"];
-        return;
-    }
-    mType = 3;
-    [self loadData];
-
- 
-
-}
-
-
-- (void)unitAction:(UIButton *)sender{
-    if ([mView.mBuildLb.text isEqualToString:@"选择楼栋号"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择楼栋号!"];
-        return;
-    }
-    mType = 5;
-    [self loadData];
-
-    
-}
-- (void)floorAction:(UIButton *)sender{
-    if ([mView.mUnitLb.text isEqualToString:@"选择单元"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择单元!"];
-        return;
-    }
-    mType = 6;
-    
-    
-    [self loadMHActionSheetView];
-}
-- (void)doornumAction:(UIButton *)sender{
-    
-
-    if ([mView.mFloorLb.text isEqualToString:@"选择楼层"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择楼层!"];
-        return;
-    }
-    mType = 7;
-    
-    
-    [self loadMHActionSheetView];
-    
-
-
-}
-- (void)builAction:(UIButton *)sender{
-
-    if ([mView.mCommunityLb.text isEqualToString:@"选择小区"]) {
-        [SVProgressHUD showErrorWithStatus:@"请选择小区!"];
-        return;
-    }
-    mType = 4;
-
-    [self loadData];
-
-
-}
-
 
 #pragma mark----实名认证
 - (void)commitAction:(UIButton *)sender{
@@ -844,23 +447,19 @@
     }
     
     NSArray *mBanArr = [mBan componentsSeparatedByString:@"栋"];
-    NSString *mBanStr1 = [mBanArr objectAtIndex:1];
-    NSString *mBanStr2 = [mBanArr objectAtIndex:2];
+    NSString *mBanStr1 = [mBanArr objectAtIndex:0];
     
     NSArray *mUnitArrr = [mUnit componentsSeparatedByString:@"单元"];
-    NSString *mUnitStr = [mUnitArrr objectAtIndex:1];
-    NSString *mUnitStr2 = [mUnitArrr objectAtIndex:2];
+    NSString *mUnitStr = [mUnitArrr objectAtIndex:0];
     
     
     NSArray *mFloorArr = [mFloor componentsSeparatedByString:@"楼"];
-    NSString *mFloorStr = [mFloorArr objectAtIndex:1];
-    NSString *mFloorStr2 = [mFloorArr objectAtIndex:2];
+    NSString *mFloorStr = [mFloorArr objectAtIndex:0];
     
     
     
     NSArray *mDoomNumArr = [mDoornum componentsSeparatedByString:@"号"];
-    NSString *mDoorNmStr = [mDoomNumArr objectAtIndex:1];
-    NSString *mDoorNmStr2 = [mDoomNumArr objectAtIndex:2];
+    NSString *mDoorNmStr = [mDoomNumArr objectAtIndex:0];
     
     
     
