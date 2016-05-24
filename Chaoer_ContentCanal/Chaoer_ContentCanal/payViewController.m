@@ -12,7 +12,8 @@
 #import "wpgViewController.h"
 
 #import "payFeeViewController.h"
-
+#import "needCodeViewController.h"
+#import "verifyBankViewController.h"
 @interface payViewController ()<MAMapViewDelegate,AMapLocationManagerDelegate>
 
 @end
@@ -115,8 +116,8 @@
  *  @param sender
  */
 - (IBAction)mCanalAction:(id)sender {
-    if ([mUserInfo backNowUser].mTemporary) {
-        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+    if (![mUserInfo backNowUser].mIsRegist) {
+        [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
         return;
     }
     
@@ -137,8 +138,8 @@
  */
 - (IBAction)mThreeAction:(id)sender {
     
-    if ([mUserInfo backNowUser].mTemporary) {
-        [LCProgressHUD showInfoMsg:@"您还未认证！"];
+    if (![mUserInfo backNowUser].mIsRegist) {
+        [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
         return;
     }
     
@@ -188,6 +189,36 @@ updatingLocation:(BOOL)updatingLocation
         //取出当前位置的坐标
         NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
     }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        if([mUserInfo backNowUser].mIsHousingAuthentication){
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+        }else{
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+        }
+        
+        
+        
+    }
+}
+
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
 }
 
 @end

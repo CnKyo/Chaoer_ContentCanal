@@ -1185,6 +1185,13 @@
     return strsize.width;
 }
 
+
++ (BOOL)isHaveIllegalChar:(NSString *)str{
+    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]{}（#%-*+=_）\\|~(＜＞$%^&*)_+ "];
+    NSRange range = [str rangeOfCharacterFromSet:doNotWant];
+    return range.location<str.length;
+}
+
 @end
 
 

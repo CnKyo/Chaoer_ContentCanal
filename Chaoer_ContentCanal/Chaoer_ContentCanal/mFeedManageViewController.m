@@ -8,6 +8,7 @@
 
 #import "mFeedManageViewController.h"
 #import "utilityView.h"
+#import "needCodeViewController.h"
 #import "verifyBankViewController.h"
 #import "hasCodeViewController.h"
 @interface mFeedManageViewController ()
@@ -169,19 +170,18 @@
     {
         [self popViewController];
     }else{
-        [self popViewController];
-//
-//        if ([mUserInfo backNowUser].mIsRegist) {
-//            hasCodeViewController *hhh = [hasCodeViewController new];
-//            [self pushViewController:hhh];
-//        }else if([mUserInfo backNowUser].mIsBundle == 1){
-//            
-//            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-//            [self pushViewController:vvv];
-//            
-//            
-//            
-//        }
+        if([mUserInfo backNowUser].mIsHousingAuthentication){
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+        }else{
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+        }
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

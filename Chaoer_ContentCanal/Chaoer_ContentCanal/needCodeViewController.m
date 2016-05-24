@@ -27,7 +27,7 @@
 #import "XKPEActionPickersDelegate.h"
 #import "XKPEWeightAndHightActionPickerDelegate.h"
 #define kScreenSize [UIScreen mainScreen].bounds.size
-@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete>
+@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete,UITextFieldDelegate>
 
 @property (nonatomic ,strong) XKPEActionPickersDelegate *detailAddressPicker; //4列
 
@@ -227,6 +227,16 @@
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
     
+    mView.mPhoneTx.delegate = self;
+
+    if ([mUserInfo backNowUser].mPhone) {
+        mView.mPhoneTx.text = [mUserInfo backNowUser].mPhone;
+//        mView.mPhoneTx.enabled = NO;
+    }else{
+    
+
+    }
+    
     [mView.mChoiceCityBtn addTarget:self action:@selector(mSelectCityAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mChoiceArearBtn addTarget:self action:@selector(mSelectArearAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mChoiceDetailBtn addTarget:self action:@selector(mSelectDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -238,6 +248,10 @@
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
 
+    
+    
+    
+    
     
 }
 
@@ -266,12 +280,12 @@
     
 }
 - (void)loadAddressPick{
-
+    [self showWithStatus:@"正在加载中..."];
     [pickerView removeFromSuperview];
-            pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
-            pickerView.delegate = self;
-            [pickerView show];
-
+    pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
+    pickerView.delegate = self;
+    [pickerView show];
+    [self dismiss];
     
  
 
@@ -310,7 +324,15 @@
         ccc.block = ^(NSString *content ,NSString *mId){
             
             
-            mBlockArearId = mId;
+            if (mId == nil || mId.length == 0 ||[mId isEqualToString:@""]) {
+
+                mBlockArearId = @"";
+
+            }else{
+                mBlockArearId = mId;
+            }
+            
+            
             
             [mView.mChoiceArearBtn setTitle:content forState:0];
             
@@ -453,23 +475,29 @@
     NSString *mUnitStr = [mUnitArrr objectAtIndex:0];
     
     
-    NSArray *mFloorArr = [mFloor componentsSeparatedByString:@"楼"];
-    NSString *mFloorStr = [mFloorArr objectAtIndex:0];
+    NSArray *mFloorArrr = [mFloor componentsSeparatedByString:@"楼"];
+    NSString *mFloorStr = [mFloorArrr objectAtIndex:0];
     
     
     
     NSArray *mDoomNumArr = [mDoornum componentsSeparatedByString:@"号"];
     NSString *mDoorNmStr = [mDoomNumArr objectAtIndex:0];
     
+    BOOL isUp;
     
+    if (mBlockArearId == nil || mBlockArearId.length == 0 || [mBlockArearId isEqualToString:@""]) {
+        isUp = YES;
+    }else{
+        isUp = NO;
+    }
     
     
     
     if (self.Type == 1) {
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
-        [mUserInfo realCode:nil andUserId:[mUserInfo backNowUser].mUserId andCommunityId:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum andIdentity:mIdentify[0] block:^(mBaseData *resb) {
-            
+     
+        [[mUserInfo backNowUser] realyCodeAndCommunityId:1 andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
@@ -478,20 +506,25 @@
                 
                 [SVProgressHUD showErrorWithStatus:resb.mMessage];
             }
-            
         }];
-
+        
+        
+        
+        
     }else{
         [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] addHouse:mCommunityId andBannum:mBan andUnnitnum:mUnit andFloor:mFloor andDoornum:mDoornum andIdentity:mIdentify[0] block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] realyCodeAndCommunityId:2 andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text  block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+               
                 [self popViewController];
             }else{
                 
                 [SVProgressHUD showErrorWithStatus:resb.mMessage];
             }
         }];
+        
+
     }
     
     
@@ -549,5 +582,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+///限制电话号码输入长度
+#define TEXT_MAXLENGTH 11
+///限制验证码输入长度
+#define PASS_LENGHT 20
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==20) {
+        res= PASS_LENGHT-[new length];
+        
+        
+    }else
+    {
+        res= TEXT_MAXLENGTH-[new length];
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
 
 @end

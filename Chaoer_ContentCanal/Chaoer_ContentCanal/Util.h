@@ -239,4 +239,7 @@ typedef enum _RelDic
 
 
 
+#pragma mark----过滤非法字符
++ (BOOL)isHaveIllegalChar:(NSString *)str;
+
 @end

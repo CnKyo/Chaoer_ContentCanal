@@ -26,14 +26,14 @@
                         <constraint firstAttribute="width" constant="100" id="J6L-4K-yrM"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLo-uD-6v3">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交成功，等待审核" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLo-uD-6v3">
                     <rect key="frame" x="8" y="216" width="304" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.74884159482758617" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-Bt-wjJ">
-                    <rect key="frame" x="85" y="294" width="150" height="40"/>
+                    <rect key="frame" x="85" y="274" width="150" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="IsV-JV-JI1"/>
                         <constraint firstAttribute="height" constant="40" id="L7g-Y1-qFI"/>
@@ -45,7 +45,7 @@
                         <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="h1J-ix-WiT"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-vW-cGp">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-vW-cGp">
                     <rect key="frame" x="8" y="253" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="0xU-Q8-Ba3"/>
@@ -60,7 +60,7 @@
                 <constraint firstItem="gVs-vW-cGp" firstAttribute="top" secondItem="jLo-uD-6v3" secondAttribute="bottom" constant="16" id="1y4-ph-k1q"/>
                 <constraint firstItem="gVs-vW-cGp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="5nO-9D-sgr"/>
                 <constraint firstAttribute="trailing" secondItem="jLo-uD-6v3" secondAttribute="trailing" constant="8" id="7Lo-oS-BeP"/>
-                <constraint firstItem="cMm-Bt-wjJ" firstAttribute="top" secondItem="gVs-vW-cGp" secondAttribute="bottom" constant="20" id="IBi-xB-c7Z"/>
+                <constraint firstItem="cMm-Bt-wjJ" firstAttribute="top" secondItem="gVs-vW-cGp" secondAttribute="bottom" id="IBi-xB-c7Z"/>
                 <constraint firstItem="dCr-Hd-fSm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="99" id="OLb-Vt-9Kg"/>
                 <constraint firstItem="cMm-Bt-wjJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZDC-HH-gqS"/>
                 <constraint firstItem="dCr-Hd-fSm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zzt-ej-Mfk"/>

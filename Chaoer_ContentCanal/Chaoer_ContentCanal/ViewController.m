@@ -248,7 +248,8 @@
                                        
                                        
                                        NSLog(@"性别是：%@",mSex);
-                                       
+                                       [para setObject:@"ios" forKey:@"device"];
+
                                        [para setObject:mOpenID forKey:@"openid"];
                                        [para setObject:mNickName forKey:@"nickname"];
                                        [para setObject:mSex forKey:@"sex"];

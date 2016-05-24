@@ -49,10 +49,11 @@
     mLng = nil;
     
     [self loadAddress];
-    
-    [self initSearchBar];
 
-    
+    [self initSearchBar];
+    [self initTableView];
+
+
     
     
     
@@ -83,7 +84,7 @@
         
         mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
         mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-        
+        [self headerBeganRefresh];
         if (regeocode)
         {
             
@@ -99,11 +100,12 @@
 
 
 
-
-
-
-- (void)loadData{
-
+- (void)headerBeganRefresh{
+    
+    if ([Util isHaveIllegalChar:self.searchBar.text]) {
+        [self showErrorStatus:@"搜索内容不能包含非法字符！"];
+        return;
+    }
     
     if (mLat.length == 0 || mLng.length == 0) {
         
@@ -122,12 +124,14 @@
     
     
     [[mUserInfo backNowUser] getCodeArear:self.mProvinceId andArearId:self.mArearId andCityId:self.mCityId andName:self.searchBar.text andLat:mLat andLng:mLng block:^(mBaseData *resb, NSArray *mArr) {
-    
+        [self headerEndRefresh];
         [self.tempArray removeAllObjects];
+        [self.result removeAllObjects];
         [self removeEmptyView];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
             [self.tempArray addObjectsFromArray:mArr];
+            [self.result addObject:mArr];
             [self.searchResult reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
@@ -135,10 +139,10 @@
         }
         
     }];
-    
-    
-    
+
 }
+
+
 
 
 -(void)initSearchBar{
@@ -168,12 +172,15 @@
 }
 */
 - (void)initTableView{
-    self.searchResult = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.searchBar.frame), self.view.bounds.size.width, self.view.bounds.size.height-64-CGRectGetHeight(self.searchBar.frame))];
+    self.searchResult = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.searchBar.frame), DEVICE_Width, DEVICE_Height-108)];
     _searchResult.dataSource = self;
     _searchResult.delegate =self;
     _searchResult.tableFooterView = [[UIView alloc]init];
     [_searchResult registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.searchResult];
+    
+    self.tableView = _searchResult;
+    self.haveHeader = YES;
     
 }
 
@@ -186,7 +193,6 @@
 {
     searchBar.showsCancelButton = YES;//取消的字体颜色，
     [searchBar setShowsCancelButton:YES animated:YES];
-    [self initTableView];
     NSLog(@"heahtdyfgh");
     
     //改变取消的文本
@@ -212,23 +218,26 @@
  *  @param searchBar  UISearchBar
  *  @param searchText 输入的关键字
  */
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    
-    NSLog(@"输入的关键字是---%@---%lu",searchText,(unsigned long)searchText.length);
-    self.result = nil;
-    for (int i = 0; i < self.tempArray.count; i++) {
-        NSString *string = self.tempArray[i];
-        if (string.length >= searchText.length) {
-            NSString *str = [self.tempArray[i] substringWithRange:NSMakeRange(0, searchText.length)];
-            if ([str isEqualToString:searchText]) {
-                [self.result addObject:self.tempArray[i]];
-            }
-        }
-    }
-    [self.searchResult reloadData];
-    
-}
+//-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//{
+//    
+//    NSLog(@"输入的关键字是---%@---%lu",searchText,(unsigned long)searchText.length);
+//    self.tempArray = nil;
+//    for (int i = 0; i < self.result.count; i++) {
+//        
+//        GGetArear *mArear = self.result[i];
+//
+//        
+//        if (mArear.mName.length >= searchText.length) {
+//            NSString *str = [self.result[i] substringWithRange:NSMakeRange(0, searchText.length)];
+//            if ([str isEqualToString:searchText]) {
+//                [self.tempArray addObject:self.result[i]];
+//            }
+//        }
+//    }
+//    [self.searchResult reloadData];
+//    
+//}
 
 /**
  *  取消的响应事件
@@ -252,7 +261,7 @@
     NSLog(@"取");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-    [self loadData];
+    [self headerBeganRefresh];
     
 }
 
@@ -292,5 +301,20 @@
     
 }
 
+- (void)leftBtnTouched:(id)sender{
+
+    if ([Util isHaveIllegalChar:self.searchBar.text]) {
+        [self showErrorStatus:@"搜索内容不能包含非法字符！"];
+        return;
+    }else{
+        self.block(self.searchBar.text,nil);
+        
+        
+        [self popViewController];
+        
+    }
+    
+    
+}
 
 @end

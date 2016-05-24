@@ -200,6 +200,10 @@
  *  提交按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mTijiaoBtn;
+/**
+ *  手机号码
+ */
+@property (weak, nonatomic) IBOutlet UITextField *mPhoneTx;
 
 
 /**

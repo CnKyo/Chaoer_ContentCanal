@@ -232,9 +232,28 @@
     
     if( buttonIndex == 1)
     {
-        [mUserInfo logOut];
-        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-        [self gotoLoginVC];
+        if (alertView.tag == 10) {
+            [mUserInfo logOut];
+            [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+            [self gotoLoginVC];
+        }else if (alertView.tag == 11){
+            if([mUserInfo backNowUser].mIsHousingAuthentication){
+                
+                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                [self pushViewController:vvv];
+                
+                
+            }else{
+                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                nnn.Type = 1;
+                
+                [self pushViewController:nnn];
+            }
+
+            
+        }
+        
+
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
@@ -505,8 +524,8 @@
         {
      
             
-            if ([mUserInfo backNowUser].mTemporary) {
-                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+            if (![mUserInfo backNowUser].mIsRegist) {
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
             }
             
@@ -526,8 +545,8 @@
             break;
         case 7:
         {
-            if ([mUserInfo backNowUser].mTemporary) {
-                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+            if (![mUserInfo backNowUser].mIsRegist) {
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
             }
             

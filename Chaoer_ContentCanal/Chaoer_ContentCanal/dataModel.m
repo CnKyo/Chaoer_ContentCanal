@@ -459,6 +459,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"loginName"];
     [para setObject:mPwd forKey:@"passWord"];
+    [para setObject:@"ios" forKey:@"device"];
     
     [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
         [self dealUserSession:info andPhone:mPwd andOpenId:nil block:block];
@@ -1077,12 +1078,66 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             
         }
     }];
+
     
+}
+
+#pragma mark----实名认证
+- (void)realyCodeAndCommunityId:(int)mType andCommunityId:(NSString *)mCommunityId andBanNum:(NSString *)mBanNum andUnitNum:(NSString *)mUnitNum andFloorNum:(NSString *)mFloor andRoomNum:(NSString *)mroomNum andIdentify:(NSString *)mIdentify andAddcommunity:(BOOL)mIsAddCommunity andcommunityName:(NSString *)mcommunityName andAddress:(NSString *)mAddress andProvinceID:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityID andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
+
+    NSString *mUrlStr = nil;
+    
+    if (mType == 1) {
+        mUrlStr = @"app/house/appBindHouse";
+    }else{
+        mUrlStr = @"app/house/appAddHouse";
+
+    }
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+   
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mPhone forKey:@"mobile"];
+
+    [para setObject:mCommunityId forKey:@"propertyId"];
+    [para setObject:mBanNum forKey:@"banNum"];
+    [para setObject:mUnitNum forKey:@"unitNum"];
+    [para setObject:mFloor forKey:@"floorNum"];
+    [para setObject:mroomNum forKey:@"roomNum"];
+    [para setObject:mIdentify forKey:@"customerType"];
+    [para setObject:NumberWithBool(mIsAddCommunity) forKey:@"isAddCommunity"];
+    
+    if (mIsAddCommunity) {
+        [para setObject:mcommunityName forKey:@"communityName"];
+        [para setObject:mAddress forKey:@"address"];
+        [para setObject:mProvinceId forKey:@"province"];
+        [para setObject:mArearId forKey:@"city"];
+        [para setObject:mCityID forKey:@"county"];
+
+    }
+    
+    
+    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block( info);
+        }else{
+            block( info);
+            
+        }
+    }];
 
     
     
     
 }
+
+
+
+
+
+
 
 - (void)addHouse:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -2827,13 +2882,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mProvinceId forKey:@"provinceId"];
     [para setObject:mArearId forKey:@"cityId"];
     [para setObject:mCityId forKey:@"countyId"];
-    [para setObject:mName forKey:@"name"];
     
     if (mLat) {
         [para setObject:mLat forKey:@"lat"];
     }
     if (mLng) {
         [para setObject:mLng forKey:@"lng"];
+    }
+    
+    if (mName) {
+        [para setObject:mName forKey:@"name"];
     }
     
     [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/verificationCell" parameters:para call:^(mBaseData *info) {
@@ -2857,7 +2915,46 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+#pragma mark----更新跑跑腿用户状态接口
+/**
+ *  更新跑跑腿用户状态接口
+ *
+ *  @param mLat  纬度
+ *  @param mLng  经度
+ *  @param block 返回值
+ */
+- (void)ipDataPPTUserStatus:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block{
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legworkUserId"];
+    
+    if (mLat) {
+        [para setObject:mLat forKey:@"lat"];
+    }
+    if (mLng) {
+        [para setObject:mLng forKey:@"lng"];
+    }
+    
+    [para setObject:@"1" forKey:@"isOnline"];
+    [para setObject:@"1" forKey:@"device"];
 
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/updateUserState" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            
+            block (info );
+        }else{
+            block (info );
+        }
+        
+    }];
+
+    
+}
 
 
 @end

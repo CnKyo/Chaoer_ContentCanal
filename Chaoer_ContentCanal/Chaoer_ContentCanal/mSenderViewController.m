@@ -89,6 +89,31 @@
     [self initReleaseView];
 }
 
+
+- (void)upDateUserStatus{
+
+    
+    if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        return;
+    }
+    if (self.mLng == nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+        return;
+    }
+    if ([mUserInfo backNowUser].mLegworkUserId == 0) {
+        return;
+    }
+    [[mUserInfo backNowUser] ipDataPPTUserStatus:_mLat andLng:_mLng block:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            
+        }else{
+        
+        }
+        
+    }];
+    
+}
+
 - (void)initView{
 
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
@@ -127,6 +152,8 @@
             NSLog(@"location:%@", location);
             self.mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
             self.mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+            
+            [self upDateUserStatus];
         }
 
         

@@ -34,7 +34,8 @@
 #import "mServiceClassViewController.h"
 
 
-
+#import "needCodeViewController.h"
+#import "verifyBankViewController.h"
 
 
 #define Height (DEVICE_Width*0.67)
@@ -393,15 +394,11 @@
             break;
         case 1:
         {
-            if ([mUserInfo backNowUser].mTemporary) {
-                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+            if (![mUserInfo backNowUser].mIsRegist) {
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
-//            else if ([mUserInfo backNowUser].mIsRegist == 0) {
-//                [LCProgressHUD showInfoMsg:@"您还未绑定银行卡！"];
-//                return;
-//            }
-            
+
             mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
             [self presentModalViewController:ppp];
         }
@@ -432,21 +429,11 @@
             break;
         case 2:
         {
-//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
-            if ([mUserInfo backNowUser].mTemporary) {
-                [LCProgressHUD showInfoMsg:@"您还未认证！"];
+            if (![mUserInfo backNowUser].mIsRegist) {
+              
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
-            
-            
-            
-//            mServiceClassViewController *mmm = [[mServiceClassViewController alloc] initWithNibName:@"mServiceClassViewController" bundle:nil];
-//            if (mLat) {
-//                mmm.mLat = mLat;
-//            }if (mLng) {
-//                mmm.mLng = mLng;
-//            }
-//            [self pushViewController:mmm];
             
             mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
             
@@ -475,6 +462,7 @@
             break;
         case 4:
         {
+            
             mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
             
             mmm.mLng = mLng;
@@ -488,7 +476,12 @@
             break;
         case 5:
         {
-//            
+            if (![mUserInfo backNowUser].mIsRegist) {
+                
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
+
             communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
             [self pushViewController:ccc];
 //            [LCProgressHUD showInfoMsg:@"正在建设中..."];
@@ -612,5 +605,37 @@
     
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+  
+         if([mUserInfo backNowUser].mIsHousingAuthentication){
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+        }else{
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+        }
+
+        
+        
+    }
+}
+
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 
 @end
