@@ -25,53 +25,53 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.backgroundColor = [UIColor whiteColor];
-        self.userInteractionEnabled = YES;
-        self.layer.borderColor = [UIColor clearColor].CGColor;
-        self.layer.borderWidth =  1;
-        [self.layer setMasksToBounds:YES];
-        
-        cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [cancelbtn addTarget:self action:@selector(selectbtn:) forControlEvents:UIControlEventTouchUpInside];
-        [cancelbtn setTitle:@"取消" forState:0];
-        cancelbtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        cancelbtn.tag = 1;
-        cancelbtn.frame = CGRectMake(10, 5, 40, 35);
-        [cancelbtn setTitleColor:[UIColor lightGrayColor] forState:0];
-        [cancelbtn.layer setMasksToBounds:YES];
-        [self addSubview:cancelbtn];
-        
-        surebtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [surebtn addTarget:self action:@selector(selectbtn:) forControlEvents:UIControlEventTouchUpInside];
-        [surebtn setTitle:@"完成" forState:0];
-        surebtn.tag = 2;
-        cancelbtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        surebtn.frame = CGRectMake(CGRectGetWidth(frame)-50, 5, 40, 35);
-        [self addSubview:surebtn];
-        
-        picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 30, CGRectGetWidth(frame), CGRectGetHeight(frame)-50)];
-        picker.delegate  = self;
-        picker.dataSource = self;
-//        picker.backgroundColor = [UIColor yellowColor];
-        picker.showsSelectionIndicator = YES;
-        [self addSubview:picker];
-        
-        [self loadData];
-
+        [self loadData:frame];
     }
     return self;
 }
 
-- (void)loadData{
+- (void)initView:(CGRect)frame{
+    self.backgroundColor = [UIColor whiteColor];
+    self.userInteractionEnabled = YES;
+    self.layer.borderColor = [UIColor clearColor].CGColor;
+    self.layer.borderWidth =  1;
+    [self.layer setMasksToBounds:YES];
+    
+    cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelbtn addTarget:self action:@selector(selectbtn:) forControlEvents:UIControlEventTouchUpInside];
+    [cancelbtn setTitle:@"取消" forState:0];
+    cancelbtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    cancelbtn.tag = 1;
+    cancelbtn.frame = CGRectMake(10, 5, 40, 35);
+    [cancelbtn setTitleColor:[UIColor lightGrayColor] forState:0];
+    [cancelbtn.layer setMasksToBounds:YES];
+    [self addSubview:cancelbtn];
+    
+    surebtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [surebtn addTarget:self action:@selector(selectbtn:) forControlEvents:UIControlEventTouchUpInside];
+    [surebtn setTitle:@"完成" forState:0];
+    surebtn.tag = 2;
+    cancelbtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    surebtn.frame = CGRectMake(CGRectGetWidth(frame)-50, 5, 40, 35);
+    [self addSubview:surebtn];
+    
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 30, CGRectGetWidth(frame), CGRectGetHeight(frame)-50)];
+    picker.delegate  = self;
+    picker.dataSource = self;
+    //        picker.backgroundColor = [UIColor yellowColor];
+    picker.showsSelectionIndicator = YES;
+    [self addSubview:picker];
+}
+- (void)loadData:(CGRect)frame{
 
-    [SVProgressHUD showWithStatus:@"正在加载中..."];
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     
     [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
         
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             self.mProvinceArr = mArr;
+            [self initView:frame];
             [picker reloadAllComponents];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];

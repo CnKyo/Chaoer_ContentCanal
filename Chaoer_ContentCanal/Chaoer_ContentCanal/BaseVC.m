@@ -382,6 +382,8 @@
 
     }
     
+    self.tableView.hidden = YES;
+    
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 120, DEVICE_Width, 200)];
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 140, 140, 105)];
@@ -394,7 +396,7 @@
 }
 
 - (void)removeEmptyView2{
-
+    self.tableView.hidden = NO;
     [emptyView removeFromSuperview];
 }
 

@@ -528,7 +528,13 @@ bool g_bined = NO;
     
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
-        [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
+        if (info.mSucess) {
+            [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
+        }else{
+            block (info,[mUserInfo backNowUser]);
+        }
+        
+        
 
     }];
 

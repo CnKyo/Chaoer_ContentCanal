@@ -361,7 +361,17 @@
 
         cell.mOrderStatus.text = self.mOrder.mStatusName;
         cell.mLevel.text = [NSString stringWithFormat:@"下单时间:%@",self.mOrder.mGenTime];
-        cell.mSenderMg.text = [NSString stringWithFormat:@"个人信息:%@",self.mOrder.mUserName];
+       
+        NSString *mmname = nil;
+        
+        if (self.mOrder.mGoodsTypeName == nil) {
+            mmname = self.mOrder.mTypeName;
+        }
+        if (self.mOrder.mTypeName == nil) {
+            mmname = self.mOrder.mGoodsTypeName;
+        }
+        
+        cell.mSenderMg.text = [NSString stringWithFormat:@"商品类型:%@",mmname];
         cell.mOrderNum.text = [NSString stringWithFormat:@"订单编号：%@",self.mOrder.mOrderCode];
         cell.mOrderName.text = self.mOrder.mTypeName;
         
@@ -532,4 +542,10 @@
     
 }
 
+#pragma mark----打电话
+- (void)rightBtnTouched:(id)sender{
+
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.mOrder.mPhone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
 @end

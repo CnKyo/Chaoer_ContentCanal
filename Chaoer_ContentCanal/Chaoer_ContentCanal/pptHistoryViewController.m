@@ -353,7 +353,7 @@
         cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
         cell.mContent.text = mOrder.mContext;
         cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
-        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"商品类型：%@",mOrder.mGoodsTypeName];
+        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"商品类型：%@",@"买东西"];
     }
     
     

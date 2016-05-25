@@ -95,7 +95,7 @@
     [super viewWillAppear:animated];
     [WJStatusBarHUD hide];
 
-    [self loadData];
+//    [self loadData];
   
     /**
      IQKeyboardManager为自定义收起键盘

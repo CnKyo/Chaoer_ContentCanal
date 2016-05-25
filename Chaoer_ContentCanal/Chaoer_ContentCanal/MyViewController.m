@@ -220,7 +220,7 @@
     [mFooter addSubview:mLogout];
     [self.tableView setTableFooterView:mFooter];
     
-
+    [self initData];
 }
 
 - (void)logoutAction:(UIButton *)sender{
@@ -274,10 +274,11 @@
 //    }else{
         [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
             [self headerEndRefresh];
+            [self removeEmptyView];
             if (resb.mSucess) {
                 [self initData];
             }else{
-                
+                [self addEmptyView:nil];
             }
         }];
 //    }

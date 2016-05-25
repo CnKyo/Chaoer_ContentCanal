@@ -34,6 +34,13 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *mPPTMy;
 /**
+ *  子视图
+ */
+@property (weak, nonatomic) IBOutlet UIView *mSubView;
+
+
+
+/**
  *  初始化方法
  *
  *  @return 返回view

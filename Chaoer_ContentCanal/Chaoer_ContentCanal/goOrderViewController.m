@@ -94,16 +94,20 @@
 - (void)loadData{
     
     [SVProgressHUD showWithStatus:@"正在验证..." maskType:SVProgressHUDMaskTypeClear];
+    
     [[mUserInfo backNowUser] getAddress:^(mBaseData *resb, NSArray *mArr) {
         
         
         [mAddressArr removeAllObjects];
         
         if (resb.mSucess) {
+            
             [SVProgressHUD dismiss];
+            
             [mAddressArr addObjectsFromArray:mArr];
             
         }else{
+            
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             
             [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];

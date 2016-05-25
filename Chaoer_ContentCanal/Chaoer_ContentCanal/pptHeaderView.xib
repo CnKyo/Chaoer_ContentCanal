@@ -216,6 +216,7 @@
                 <outlet property="mPPTMy" destination="d7d-jV-fzM" id="jbX-TY-f5y"/>
                 <outlet property="mPPTReleaseBtn" destination="ZJq-22-JOF" id="2na-am-Q7j"/>
                 <outlet property="mPPTseniorityBtn" destination="qDn-28-uDb" id="U5M-qq-2Wg"/>
+                <outlet property="mSubView" destination="xSQ-FP-nsk" id="rmZ-Xf-t1E"/>
             </connections>
             <point key="canvasLocation" x="192" y="389"/>
         </view>

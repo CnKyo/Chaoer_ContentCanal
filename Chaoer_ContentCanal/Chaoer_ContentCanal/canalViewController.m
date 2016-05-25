@@ -35,6 +35,8 @@
     GCanalList *mCList;
 
     
+    int mNowSelected;
+    
 }
 
 
@@ -155,7 +157,7 @@
     actionSheet.cancleTitle = @"取消选择";
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-
+        mNowSelected = [[NSString stringWithFormat:@"%ld",index] intValue];
         GCanal *mC = self.tempArray[index];
         
         mCanView.mJaintou.image = [UIImage imageNamed:@"jiantou_down"];
@@ -212,7 +214,7 @@
     mrr.origin.x = DEVICE_Width-80;
     self.navBar.rightBtn.frame = mrr;
     
-    
+    mNowSelected = 0;
     
     mScrollerView = [UIScrollView new];
     mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
@@ -290,7 +292,13 @@
  */
 - (void)mBalanceAction:(UIButton *)sender{
     NSLog(@"缴费");
-    GCanal *mC = self.tempArray[0];
+    GCanal *mC = self.tempArray[mNowSelected];
+    
+    
+    if ([mUserInfo backNowUser].mMoney < mC.mMoney) {
+        [self showErrorStatus:@"余额不足请充值!"];
+        return;
+    }
     
     if (isSelected) {
         
