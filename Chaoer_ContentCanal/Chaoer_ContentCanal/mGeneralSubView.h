@@ -23,4 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *mName;
 
 + (mGeneralSubView *)shareView;
+
++ (mGeneralSubView *)shareSubView;
 @end

@@ -21,4 +21,14 @@
     mGeneralSubView *view = [[[NSBundle mainBundle] loadNibNamed:@"mGeneralSubView" owner:self options:nil] objectAtIndex:0];
     return view;
 }
+
+
++ (mGeneralSubView *)shareSubView{
+
+    mGeneralSubView *view = [[[NSBundle mainBundle] loadNibNamed:@"mGeneratSmallView" owner:self options:nil] objectAtIndex:0];
+    return view;
+    
+ 
+}
+
 @end

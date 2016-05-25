@@ -57,7 +57,9 @@
     [self.txView setHolderToTop];
     [self.okBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
     self.view.backgroundColor = M_BGCO;
-
+    
+    
+    
 }
 - (void)okAction:(UIButton *)sender{
     ///提交按钮

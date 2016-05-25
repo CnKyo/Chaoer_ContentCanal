@@ -95,6 +95,10 @@
     
     mView.mTime.tag = 5;
     
+    mView.mCVV.delegate = self;
+    mView.mTime.delegate = self;
+    mView.mBankCard.delegate = self;
+    
     //当编辑改变的时候，进行字符校验
     [mView.mTime addTarget:self action:@selector(reformatAsPhoneNumber:) forControlEvents:UIControlEventEditingChanged];
     
@@ -330,6 +334,7 @@
 ///限制验证码输入长度
 #define IDENTIFY_LENGHT 18
 #define Time_LENGHT 4
+#define CVV_LENGHT 3
 #pragma mark **----键盘代理方法
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -340,7 +345,7 @@
         
         
     }
-    else if (textField.tag == 5){
+    else if (textField.tag == 4){
         res= Time_LENGHT-[new length];
         
         _previousSelection = textField.selectedTextRange;
@@ -354,6 +359,12 @@
         }
 
 
+    }
+    else if (textField.tag == 3){
+        res= CVV_LENGHT-[new length];
+    
+        
+        
     }
     else
     {
@@ -384,7 +395,7 @@
     NSString *phoneNumberWithoutSpaces = [self removeNonDigits:textField.text andPreserveCursorPosition:&targetCursorPostion];
     
     
-    if([phoneNumberWithoutSpaces length]>5) {
+    if([phoneNumberWithoutSpaces length]>4) {
         /**
          *  避免超过11位的输入
          */

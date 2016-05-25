@@ -14,6 +14,10 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *mAddressBtn;
 /**
+ *  服务地址
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mServiceAddress;
+/**
  *  服务时间
  */
 @property (weak, nonatomic) IBOutlet UIButton *mServiceTimeBtn;

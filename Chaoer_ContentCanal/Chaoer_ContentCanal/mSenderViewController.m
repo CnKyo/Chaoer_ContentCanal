@@ -30,6 +30,9 @@
 #import "pptMyViewController.h"
 
 #import "pptOrderDetailViewController.h"
+
+
+#import "mGeneralSubView.h"
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
@@ -56,6 +59,11 @@
      *  发布view
      */
     pptReleaseView *mReleaseView;
+    
+    /**
+     *  子视图
+     */
+    mGeneralSubView *mSubView;
     
  
 
@@ -313,46 +321,97 @@
         NSLog(@"%@",error);
     }];
     
-        mHeaderView = [pptHeaderView shareView];
-        
-        mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 270);
-        [mHeaderView.mBanerView addSubview:mScrollerView];
+    mHeaderView = [pptHeaderView shareView];
+    
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 270);
+    [mHeaderView.mBanerView addSubview:mScrollerView];
 
-    [mHeaderView.mPPTMy addTarget:self action:@selector(pptMyAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mHeaderView.mPPTseniorityBtn addTarget:self action:@selector(pptseniorityAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mHeaderView.mPPTHistoryBtn addTarget:self action:@selector(pptHistoryAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mHeaderView.mPPTReleaseBtn addTarget:self action:@selector(pptReleaseAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+    for (UIView *view in mHeaderView.mSubView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    
+    NSArray *mTT= @[@"跑腿榜",@"发布",@"我的跑单",@"我的"];
+    
+    
+    
+    NSArray *mII = @[[UIImage imageNamed:@"ppt_seniority"],[UIImage imageNamed:@"ppt_release"],[UIImage imageNamed:@"ppt_history"],[UIImage imageNamed:@"ppt_my"]];
+    
+    CGFloat mmW = mHeaderView.mwidth/4;
+    
+    for (int i = 0; i<mTT.count; i++) {
+        
+        mSubView = [mGeneralSubView shareSubView];
+        
+        mSubView.mName.text = mTT[i];
+        mSubView.mImg.image = mII[i];
+        mSubView.mBtn.tag = i;
+        [mSubView.mBtn addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [mHeaderView.mSubView addSubview:mSubView];
+        
+        
+        [mSubView makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(mHeaderView.mSubView).offset(@0);
+            make.left.equalTo(mHeaderView.mSubView).offset(i*mmW);
+            make.width.height.offset(mmW);
+            
+        }];
+        
+    }
+    
+    
+    
     [self.tableView setTableHeaderView:mHeaderView];
     
 }
+#pragma mark----按钮的点击事件
+- (void)mBtnAction:(UIButton *)sender{
 
-
-#pragma mark----我的
-- (void)pptMyAction:(UIButton *)sender{
-
-    pptMyViewController *ppt = [[pptMyViewController alloc] initWithNibName:@"pptMyViewController" bundle:nil];
-    [self pushViewController:ppt];
-    
-}
+    switch (sender.tag) {
+        case 0:
+        {
 #pragma mark----榜单
-- (void)pptseniorityAction:(UIButton *)sender{
-    pptChartsViewController *ppt = [[pptChartsViewController alloc] initWithNibName:@"pptChartsViewController" bundle:nil];
-    [self pushViewController:ppt];
-    
-    
-}
-#pragma mark----纪录
-- (void)pptHistoryAction:(UIButton *)sender{
-    pptHistoryViewController *ppt = [[pptHistoryViewController alloc]initWithNibName:@"pptHistoryViewController" bundle:nil];
-    ppt.mType = 1;
-    ppt.mLng = self.mLng;
-    ppt.mLat = self.mLat;
-    [self pushViewController:ppt];
-}
+
+            pptChartsViewController *ppt = [[pptChartsViewController alloc] initWithNibName:@"pptChartsViewController" bundle:nil];
+            [self pushViewController:ppt];
+        }
+            break;
+        case 1:
+        {
 #pragma mark----发布
-- (void)pptReleaseAction:(UIButton *)sender{
-    [self showReleaseView];
+
+            [self showReleaseView];
+
+        }
+            break;
+        case 2:
+        {
+#pragma mark----纪录
+
+            pptHistoryViewController *ppt = [[pptHistoryViewController alloc]initWithNibName:@"pptHistoryViewController" bundle:nil];
+            ppt.mType = 1;
+            ppt.mLng = self.mLng;
+            ppt.mLat = self.mLat;
+            [self pushViewController:ppt];
+        }
+            break;
+        case 3:
+        {
+#pragma mark----我的
+
+            pptMyViewController *ppt = [[pptMyViewController alloc] initWithNibName:@"pptMyViewController" bundle:nil];
+            [self pushViewController:ppt];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -426,6 +485,8 @@
             [cell.mDoneBtn setTitle:@"取消订单" forState:0];
             cell.mDoneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
             [cell.mDoneBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.mDoneBtn.backgroundColor = M_CO;
+
             
         }else{
             

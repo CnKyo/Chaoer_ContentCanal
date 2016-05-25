@@ -271,8 +271,8 @@
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
         
         GAddress *mAddresss = mAddressArr[index];
-        
-        [mView.mAddressBtn setTitle:[NSString stringWithFormat:@"%@",mAddresss.mAddressName] forState:0];
+        mView.mServiceAddress.text = mAddresss.mAddressName;
+ 
         mACommunityId = mAddresss.mAddressId;
         mAddressStr = mAddresss.mAddressName;
         
