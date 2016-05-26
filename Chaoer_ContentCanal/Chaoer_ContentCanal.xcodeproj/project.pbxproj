@@ -154,6 +154,8 @@
 		04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652901CF01B9000E26209 /* goOrderViewController.xib */; };
 		04D652951CF0229400E26209 /* goOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D652941CF0229400E26209 /* goOrderView.m */; };
 		04D652971CF022A100E26209 /* goOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652961CF022A100E26209 /* goOrderView.xib */; };
+		04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */; };
+		04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */; };
 		04D8955E1CF57BF100E3BAE9 /* mGeneratSmallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */; };
 		04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */; };
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
@@ -957,6 +959,9 @@
 		04D652931CF0229400E26209 /* goOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goOrderView.h; sourceTree = "<group>"; };
 		04D652941CF0229400E26209 /* goOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goOrderView.m; sourceTree = "<group>"; };
 		04D652961CF022A100E26209 /* goOrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = goOrderView.xib; sourceTree = "<group>"; };
+		04D85DBD1CF6991300E1A3A2 /* mFeedBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedBackCell.h; sourceTree = "<group>"; };
+		04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedBackCell.m; sourceTree = "<group>"; };
+		04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedBackCell.xib; sourceTree = "<group>"; };
 		04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGeneratSmallView.xib; sourceTree = "<group>"; };
 		04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAndaJson.h; sourceTree = "<group>"; };
 		04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAndaJson.m; sourceTree = "<group>"; };
@@ -2974,6 +2979,9 @@
 				3135F80F1C97BD2500EF9569 /* mFeedBackViewController.h */,
 				3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */,
 				3135F8111C97BD2600EF9569 /* mFeedBackViewController.xib */,
+				04D85DBD1CF6991300E1A3A2 /* mFeedBackCell.h */,
+				04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */,
+				04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */,
 				3154427B1C9A40EB0047E52A /* mFeedManageViewController.h */,
 				3154427C1C9A40EB0047E52A /* mFeedManageViewController.m */,
 				3154427D1C9A40EB0047E52A /* mFeedManageViewController.xib */,
@@ -4501,6 +4509,7 @@
 				040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */,
 				31B990281C96979F002E34A5 /* mWashDetailView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
+				04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */,
 				04D49C761CE71E3000BAD649 /* pptDetailCell5.xib in Resources */,
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
 				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
@@ -4999,6 +5008,7 @@
 				741B8D941B326EFA002104A0 /* AppDelegate.m in Sources */,
 				747BB8361BD0EF5D00C4C09D /* MZTimerLabel.m in Sources */,
 				16A987BA1C0397F100D55C4A /* CBCUtil.m in Sources */,
+				04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */,
 				740089731B38F2C300618BA0 /* AFURLConnectionOperation.m in Sources */,
 				04648C4C1CB4D6AD006823C9 /* messageTableViewController.m in Sources */,
 				318D56761C9FDD150045B5FB /* fixTableViewCell.m in Sources */,
