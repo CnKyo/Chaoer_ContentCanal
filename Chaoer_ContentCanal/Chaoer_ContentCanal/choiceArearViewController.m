@@ -84,7 +84,7 @@
         
         mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
         mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-        [self headerBeganRefresh];
+
         if (regeocode)
         {
             
@@ -110,8 +110,7 @@
     if (mLat.length == 0 || mLng.length == 0) {
         
         
-        [self showErrorStatus:@"必须打开定位才能查询附近的小区!"];
-        return;
+        mLat = mLng = @"";
         
     }
     if (self.mProvinceId == nil || self.mProvinceId.length == 0 ||[self.mProvinceId isEqualToString:@""]) {
@@ -153,7 +152,6 @@
     _searchBar.barTintColor = M_CO;
     _searchBar.searchBarStyle = UIBarStyleBlackTranslucent;
     _searchBar.barStyle = UIBarStyleDefault;
-    
     [self.view addSubview:_searchBar];
     
 }
@@ -182,7 +180,7 @@
     
     self.tableView = _searchResult;
     self.haveHeader = YES;
-    
+    [self.tableView headerBeginRefreshing];
 }
 
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar

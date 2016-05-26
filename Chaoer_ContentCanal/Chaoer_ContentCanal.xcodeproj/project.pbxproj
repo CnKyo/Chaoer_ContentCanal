@@ -156,6 +156,7 @@
 		04D652971CF022A100E26209 /* goOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652961CF022A100E26209 /* goOrderView.xib */; };
 		04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */; };
 		04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */; };
+		04D85DC51CF6D20600E1A3A2 /* UITextField+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */; };
 		04D8955E1CF57BF100E3BAE9 /* mGeneratSmallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */; };
 		04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */; };
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
@@ -962,6 +963,8 @@
 		04D85DBD1CF6991300E1A3A2 /* mFeedBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedBackCell.h; sourceTree = "<group>"; };
 		04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedBackCell.m; sourceTree = "<group>"; };
 		04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedBackCell.xib; sourceTree = "<group>"; };
+		04D85DC31CF6D20600E1A3A2 /* UITextField+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Shake.h"; sourceTree = "<group>"; };
+		04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Shake.m"; sourceTree = "<group>"; };
 		04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGeneratSmallView.xib; sourceTree = "<group>"; };
 		04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAndaJson.h; sourceTree = "<group>"; };
 		04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAndaJson.m; sourceTree = "<group>"; };
@@ -2278,6 +2281,15 @@
 				04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */,
 			);
 			name = "评价";
+			sourceTree = "<group>";
+		};
+		04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */ = {
+			isa = PBXGroup;
+			children = (
+				04D85DC31CF6D20600E1A3A2 /* UITextField+Shake.h */,
+				04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */,
+			);
+			name = UITextFileShake;
 			sourceTree = "<group>";
 		};
 		04E02E461CE6B45F00220D54 /* 我的评价 */ = {
@@ -4020,6 +4032,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */,
 				04F2281E1CEEE4CA004E8702 /* XKPEActionPicker */,
 				04F9E5B61CED4D8B00FCA8B7 /* MJExtension */,
 				04F99DAE1CE9577B00FA9390 /* AJGradientPicker */,
@@ -5076,6 +5089,7 @@
 				3135F81D1C97D96800EF9569 /* mUserInfoViewController.m in Sources */,
 				046B12E81CE18CD300A8FB76 /* BlockButton.m in Sources */,
 				310EB5EE1CA2499D005C61F4 /* DLStarView.m in Sources */,
+				04D85DC51CF6D20600E1A3A2 /* UITextField+Shake.m in Sources */,
 				74B486AA1BE88F310023E839 /* UIButton+PPiAwesome.m in Sources */,
 				04F99DD01CE95CD800FA9390 /* AJPhotoListView.m in Sources */,
 				749BE9661B3272E700BABCA6 /* MJRefreshConst.m in Sources */,
