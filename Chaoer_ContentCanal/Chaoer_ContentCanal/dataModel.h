@@ -547,7 +547,7 @@
 + (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----实名认证
-- (void)realyCodeAndCommunityId:(int)mType andCommunityId:(NSString *)mCommunityId andBanNum:(NSString *)mBanNum andUnitNum:(NSString *)mUnitNum andFloorNum:(NSString *)mFloor andRoomNum:(NSString *)mroomNum andIdentify:(NSString *)mIdentify andAddcommunity:(BOOL)mIsAddCommunity andcommunityName:(NSString *)mcommunityName andAddress:(NSString *)mAddress andProvinceID:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityID andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
+- (void)realyCodeAndCommunityId:(int)mType andName:(NSString *)mName andCommunityId:(NSString *)mCommunityId andBanNum:(NSString *)mBanNum andUnitNum:(NSString *)mUnitNum andFloorNum:(NSString *)mFloor andRoomNum:(NSString *)mroomNum andIdentify:(NSString *)mIdentify andAddcommunity:(BOOL)mIsAddCommunity andcommunityName:(NSString *)mcommunityName andAddress:(NSString *)mAddress andProvinceID:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityID andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
 
 - (void)addHouse:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block;
 
@@ -1092,6 +1092,14 @@
  */
 - (void)ipDataPPTUserStatus:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
 
+
+#pragma mark----获取物管费历史纪录
+/**
+ *  获取物管费历史纪录
+ *
+ *  @param block 返回值
+ */
+- (void)getCanelHistory:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 @end
 
 @interface SMessage : NSObject

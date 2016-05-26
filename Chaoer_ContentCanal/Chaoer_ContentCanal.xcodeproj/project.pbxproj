@@ -157,6 +157,10 @@
 		04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */; };
 		04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */; };
 		04D85DC51CF6D20600E1A3A2 /* UITextField+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */; };
+		04D85DC91CF6DE9400E1A3A2 /* canelHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DC71CF6DE9400E1A3A2 /* canelHistoryViewController.m */; };
+		04D85DCA1CF6DE9400E1A3A2 /* canelHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DC81CF6DE9400E1A3A2 /* canelHistoryViewController.xib */; };
+		04D85DCE1CF6E15100E1A3A2 /* canelHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DCC1CF6E15100E1A3A2 /* canelHistoryCell.m */; };
+		04D85DCF1CF6E15100E1A3A2 /* canelHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DCD1CF6E15100E1A3A2 /* canelHistoryCell.xib */; };
 		04D8955E1CF57BF100E3BAE9 /* mGeneratSmallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */; };
 		04D9D4FD1CC8AB5E0090EC1E /* AVAndaJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */; };
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
@@ -965,6 +969,12 @@
 		04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedBackCell.xib; sourceTree = "<group>"; };
 		04D85DC31CF6D20600E1A3A2 /* UITextField+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Shake.h"; sourceTree = "<group>"; };
 		04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Shake.m"; sourceTree = "<group>"; };
+		04D85DC61CF6DE9400E1A3A2 /* canelHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = canelHistoryViewController.h; sourceTree = "<group>"; };
+		04D85DC71CF6DE9400E1A3A2 /* canelHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = canelHistoryViewController.m; sourceTree = "<group>"; };
+		04D85DC81CF6DE9400E1A3A2 /* canelHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = canelHistoryViewController.xib; sourceTree = "<group>"; };
+		04D85DCB1CF6E15100E1A3A2 /* canelHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = canelHistoryCell.h; sourceTree = "<group>"; };
+		04D85DCC1CF6E15100E1A3A2 /* canelHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = canelHistoryCell.m; sourceTree = "<group>"; };
+		04D85DCD1CF6E15100E1A3A2 /* canelHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = canelHistoryCell.xib; sourceTree = "<group>"; };
 		04D8955D1CF57BF100E3BAE9 /* mGeneratSmallView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGeneratSmallView.xib; sourceTree = "<group>"; };
 		04D9D4FB1CC8AB5E0090EC1E /* AVAndaJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAndaJson.h; sourceTree = "<group>"; };
 		04D9D4FC1CC8AB5E0090EC1E /* AVAndaJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAndaJson.m; sourceTree = "<group>"; };
@@ -2777,6 +2787,12 @@
 				3123CC171C92961F00C3B928 /* canPayView.m */,
 				3123CC191C92962E00C3B928 /* canPayView.xib */,
 				3123CC2C1C92A51100C3B928 /* mBalanceView.xib */,
+				04D85DC61CF6DE9400E1A3A2 /* canelHistoryViewController.h */,
+				04D85DC71CF6DE9400E1A3A2 /* canelHistoryViewController.m */,
+				04D85DC81CF6DE9400E1A3A2 /* canelHistoryViewController.xib */,
+				04D85DCB1CF6E15100E1A3A2 /* canelHistoryCell.h */,
+				04D85DCC1CF6E15100E1A3A2 /* canelHistoryCell.m */,
+				04D85DCD1CF6E15100E1A3A2 /* canelHistoryCell.xib */,
 			);
 			name = "物管费";
 			sourceTree = "<group>";
@@ -4557,6 +4573,7 @@
 				04D49C591CE6D2DE00BAD649 /* pptMyMsgCell.xib in Resources */,
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
+				04D85DCA1CF6DE9400E1A3A2 /* canelHistoryViewController.xib in Resources */,
 				04D652971CF022A100E26209 /* goOrderView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
 				047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */,
@@ -4659,6 +4676,7 @@
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
+				04D85DCF1CF6E15100E1A3A2 /* canelHistoryCell.xib in Resources */,
 				04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */,
 				048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */,
 				3122890A1C966237009C315F /* shopViewController.xib in Resources */,
@@ -4765,6 +4783,7 @@
 				048FD8341CB63B6800383DF8 /* MovieAddComment.m in Sources */,
 				749BE99A1B32756800BABCA6 /* IQKeyboardManager.m in Sources */,
 				04D49C5D1CE6D4EE00BAD649 /* pptMyMsgViewController.m in Sources */,
+				04D85DCE1CF6E15100E1A3A2 /* canelHistoryCell.m in Sources */,
 				04E5A8291CE5E57C00A2D111 /* AddressPickView.m in Sources */,
 				04E5A7E21CE579B000A2D111 /* MCPopMenuCell.m in Sources */,
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
@@ -5120,6 +5139,7 @@
 				749BE9DD1B32775D00BABCA6 /* NSDate+TimeInterval.m in Sources */,
 				04F2283C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m in Sources */,
 				B2D48CA31BEC53FF00482EB8 /* README.md in Sources */,
+				04D85DC91CF6DE9400E1A3A2 /* canelHistoryViewController.m in Sources */,
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				04F9E5D51CED4D8B00FCA8B7 /* NSObject+MJClass.m in Sources */,
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,

@@ -1089,18 +1089,19 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 
 #pragma mark----实名认证
-- (void)realyCodeAndCommunityId:(int)mType andCommunityId:(NSString *)mCommunityId andBanNum:(NSString *)mBanNum andUnitNum:(NSString *)mUnitNum andFloorNum:(NSString *)mFloor andRoomNum:(NSString *)mroomNum andIdentify:(NSString *)mIdentify andAddcommunity:(BOOL)mIsAddCommunity andcommunityName:(NSString *)mcommunityName andAddress:(NSString *)mAddress andProvinceID:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityID andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
+- (void)realyCodeAndCommunityId:(int)mType andName:(NSString *)mName andCommunityId:(NSString *)mCommunityId andBanNum:(NSString *)mBanNum andUnitNum:(NSString *)mUnitNum andFloorNum:(NSString *)mFloor andRoomNum:(NSString *)mroomNum andIdentify:(NSString *)mIdentify andAddcommunity:(BOOL)mIsAddCommunity andcommunityName:(NSString *)mcommunityName andAddress:(NSString *)mAddress andProvinceID:(NSString *)mProvinceId andArearId:(NSString *)mArearId andCityId:(NSString *)mCityID andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
 
     NSString *mUrlStr = nil;
-    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
     if (mType == 1) {
         mUrlStr = @"app/house/appBindHouse";
     }else{
         mUrlStr = @"app/house/appAddHouse";
-
+        [para setObject:mName forKey:@"ownerName"];
     }
 
-    NSMutableDictionary *para = [NSMutableDictionary new];
+    
     
    
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
@@ -2961,6 +2962,50 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+
+
+#pragma mark----获取物管费历史纪录
+/**
+ *  获取物管费历史纪录
+ *
+ *  @param block 返回值
+ */
+- (void)getCanelHistory:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageIndex"];
+    [para setObject:NumberWithInt(10) forKey:@"pageSize"];
+
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/findHistoryPropertyCost" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+        
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"propertyCostHistory"]) {
+                
+                [tempArr addObject:[[GCanal alloc] initWithObj:dic]];
+            }
+
+            
+            
+            block (info,tempArr );
+        }else{
+            block (info, nil );
+            
+        }
+        
+    }];
+    
+    
+}
+
+
 
 
 @end

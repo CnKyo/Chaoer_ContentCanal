@@ -14,6 +14,8 @@
 #import "verifyBankViewController.h"
 #import "hasCodeViewController.h"
 
+
+#import "canelHistoryViewController.h"
 @interface canalViewController ()<UITextFieldDelegate>
 
 @end
@@ -31,7 +33,8 @@
     BOOL isSelected;
     utilityView *mView;
     
-    
+    utilityView *mEmptyView;
+
     GCanalList *mCList;
 
     
@@ -74,7 +77,6 @@
     [[mUserInfo backNowUser] getCanalMsg:^(mBaseData *resb, GCanalList *mList) {
     
         [self.tempArray removeAllObjects];
-        
         if (resb.mSucess) {
             [SVProgressHUD dismiss];
 
@@ -88,17 +90,18 @@
         }else{
         
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self popViewController];
+            [self updatePage];
+
         }
         
     }];
 }
 - (void)initEmptyView{
     
-    mView = [utilityView shareEmpty];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
+    mEmptyView = [utilityView shareEmpty];
+    mEmptyView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
     
-    [mScrollerView addSubview:mView];
+    [mScrollerView addSubview:mEmptyView];
     
     
 }
@@ -207,7 +210,7 @@
     self.Title = self.mPageName = _mTitel;
     self.hiddenTabBar = YES;
     self.hiddenlll = YES;
-    self.hiddenRightBtn = YES;
+    self.hiddenRightBtn = NO;
     self.rightBtnTitle = @"纪录查询";
     CGRect  mrr = self.navBar.rightBtn.frame;
     mrr.size.width = 100;
@@ -370,5 +373,13 @@
     al.delegate = self;
     al.tag = tag;
     [al show];
+}
+
+#pragma mark----记录查询
+- (void)rightBtnTouched:(id)sender{
+
+    canelHistoryViewController *ccc = [[canelHistoryViewController alloc] initWithNibName:@"canelHistoryViewController" bundle:nil];
+    [self pushViewController:ccc];
+    
 }
 @end
