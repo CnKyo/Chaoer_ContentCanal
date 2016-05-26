@@ -721,23 +721,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ji9-9i-xmS">
-                                <rect key="frame" x="15" y="331" width="290" height="39"/>
-                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ji9-9i-xmS" secondAttribute="height" multiplier="58:9" constant="40" id="Ia8-em-NOR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="提交">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g09-mW-XHv">
-                                <rect key="frame" x="-4" y="108" width="328" height="203"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="200"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSd-GI-DDk" customClass="IQTextView">
-                                        <rect key="frame" x="14" y="8" width="300" height="187"/>
+                                        <rect key="frame" x="10" y="10" width="300" height="180"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -746,23 +734,49 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="nSd-GI-DDk" secondAttribute="bottom" constant="8" id="5QT-5Q-3AO"/>
-                                    <constraint firstAttribute="height" constant="203" id="9FP-8u-txR"/>
-                                    <constraint firstItem="nSd-GI-DDk" firstAttribute="top" secondItem="g09-mW-XHv" secondAttribute="top" constant="8" id="LJe-W5-3cC"/>
-                                    <constraint firstAttribute="trailing" secondItem="nSd-GI-DDk" secondAttribute="trailing" constant="14" id="dMU-nR-yHH"/>
-                                    <constraint firstItem="nSd-GI-DDk" firstAttribute="leading" secondItem="g09-mW-XHv" secondAttribute="leading" constant="14" id="zOG-yx-ErZ"/>
+                                    <constraint firstItem="nSd-GI-DDk" firstAttribute="leading" secondItem="g09-mW-XHv" secondAttribute="leading" constant="10" id="PnE-yq-JzB"/>
+                                    <constraint firstItem="nSd-GI-DDk" firstAttribute="top" secondItem="g09-mW-XHv" secondAttribute="top" constant="10" id="YmY-af-8Ld"/>
+                                    <constraint firstAttribute="height" constant="200" id="e3n-e1-9yh"/>
+                                    <constraint firstAttribute="trailing" secondItem="nSd-GI-DDk" secondAttribute="trailing" constant="10" id="pHH-xF-5E0"/>
+                                    <constraint firstAttribute="width" constant="320" id="pKa-8D-qgd"/>
+                                    <constraint firstAttribute="bottom" secondItem="nSd-GI-DDk" secondAttribute="bottom" constant="10" id="ua8-ab-acL"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pKa-8D-qgd"/>
+                                    </mask>
+                                </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ji9-9i-xmS">
+                                <rect key="frame" x="11" y="331" width="298" height="39"/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="At7-XD-4Qe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="提交">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ji9-9i-xmS" firstAttribute="top" secondItem="XA6-86-r2v" secondAttribute="bottom" constant="267" id="BTt-6V-1fw"/>
-                            <constraint firstItem="g09-mW-XHv" firstAttribute="top" secondItem="XA6-86-r2v" secondAttribute="bottom" constant="44" id="QmB-ez-0kj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ji9-9i-xmS" secondAttribute="trailing" constant="-1" id="W2S-z7-Qlz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g09-mW-XHv" secondAttribute="trailing" constant="-20" id="bbT-qt-1mt"/>
-                            <constraint firstItem="Ji9-9i-xmS" firstAttribute="leading" secondItem="A53-aH-yNM" secondAttribute="leadingMargin" constant="-1" id="qWs-fV-Rpk"/>
-                            <constraint firstItem="g09-mW-XHv" firstAttribute="leading" secondItem="A53-aH-yNM" secondAttribute="leadingMargin" constant="-20" id="znO-89-WEW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g09-mW-XHv" secondAttribute="trailing" constant="-20" id="E3v-m5-pA8"/>
+                            <constraint firstItem="g09-mW-XHv" firstAttribute="leading" secondItem="A53-aH-yNM" secondAttribute="leadingMargin" constant="-20" id="Ebl-kM-7RR"/>
+                            <constraint firstItem="Ji9-9i-xmS" firstAttribute="top" secondItem="g09-mW-XHv" secondAttribute="bottom" constant="23" id="MVA-2a-e6o"/>
+                            <constraint firstItem="g09-mW-XHv" firstAttribute="top" secondItem="XA6-86-r2v" secondAttribute="bottom" constant="44" id="WFo-3m-zaT"/>
+                            <constraint firstItem="g09-mW-XHv" firstAttribute="centerX" secondItem="Ji9-9i-xmS" secondAttribute="centerX" id="cBI-0T-B6X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ji9-9i-xmS" secondAttribute="trailing" constant="-5" id="srZ-hn-xwH"/>
+                            <constraint firstItem="Ji9-9i-xmS" firstAttribute="leading" secondItem="A53-aH-yNM" secondAttribute="leadingMargin" constant="-5" id="tYT-A6-6Kj"/>
+                            <constraint firstItem="g09-mW-XHv" firstAttribute="leading" secondItem="A53-aH-yNM" secondAttribute="leading" id="vbI-j1-aaf"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="E3v-m5-pA8"/>
+                                <exclude reference="Ebl-kM-7RR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="UFd-25-wOu"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

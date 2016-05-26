@@ -136,10 +136,11 @@
     
     cell.mStatus.text = mCanel.mStatustr;
     cell.mTime.text = mCanel.mDeadline;
-    cell.mMoney.text = [NSString stringWithFormat:@"缴费金额:%.1f元",mCanel.mPayableMoney];
     cell.mUnit.text = [NSString stringWithFormat:@"缴费单位:%@",mCanel.mPaymentUnit];
     
-   
+    NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:14],@"color": [UIColor redColor]};
+    cell.mMoney.attributedText = [[NSString stringWithFormat:@"<font>缴费金额:</font> <color>%.2f元</color>",mCanel.mPayableMoney] attributedStringWithStyleBook:mStyle];
+
     
     return cell;
     

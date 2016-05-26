@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mGeneryEmptyView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zw-cV-QIl">
+                    <rect key="frame" x="0.0" y="80" width="320" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数据加载失败，请重试！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndw-dn-8H5">
+                            <rect key="frame" x="8" y="117" width="304" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RST-6B-VyS">
+                            <rect key="frame" x="120" y="152" width="80" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Fvn-DG-BPr"/>
+                                <constraint firstAttribute="width" constant="80" id="Pyd-hg-L7P"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="点此重试">
+                                <color key="titleColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="without_order" translatesAutoresizingMaskIntoConstraints="NO" id="ajz-5j-fCJ">
+                            <rect key="frame" x="120" y="29" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="c6O-NQ-abl"/>
+                                <constraint firstAttribute="height" constant="80" id="cn4-fN-O1d"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ndw-dn-8H5" secondAttribute="trailing" constant="8" id="9R6-1R-9o9"/>
+                        <constraint firstItem="Ndw-dn-8H5" firstAttribute="leading" secondItem="3Zw-cV-QIl" secondAttribute="leading" constant="8" id="AMc-E6-3IO"/>
+                        <constraint firstItem="Ndw-dn-8H5" firstAttribute="top" secondItem="ajz-5j-fCJ" secondAttribute="bottom" constant="8" id="Vhg-Pv-1gg"/>
+                        <constraint firstAttribute="height" constant="200" id="Wiv-Ng-K9c"/>
+                        <constraint firstItem="ajz-5j-fCJ" firstAttribute="centerX" secondItem="3Zw-cV-QIl" secondAttribute="centerX" id="XOD-7G-Bnv"/>
+                        <constraint firstItem="RST-6B-VyS" firstAttribute="centerX" secondItem="3Zw-cV-QIl" secondAttribute="centerX" id="eWX-dr-pvn"/>
+                        <constraint firstItem="RST-6B-VyS" firstAttribute="top" secondItem="Ndw-dn-8H5" secondAttribute="bottom" constant="17" id="ihq-on-DTB"/>
+                        <constraint firstItem="ajz-5j-fCJ" firstAttribute="top" secondItem="3Zw-cV-QIl" secondAttribute="top" constant="29" id="j9a-bQ-k9c"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3Zw-cV-QIl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OqK-EX-14S"/>
+                <constraint firstAttribute="trailing" secondItem="3Zw-cV-QIl" secondAttribute="trailing" id="W3W-FN-6ME"/>
+                <constraint firstItem="3Zw-cV-QIl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="fny-bJ-0fS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="mEmptyBtn" destination="RST-6B-VyS" id="2re-9L-Tuu"/>
+                <outlet property="mEmptyImg" destination="ajz-5j-fCJ" id="Ze0-JS-A47"/>
+                <outlet property="mEmptyTitle" destination="Ndw-dn-8H5" id="Xt9-jE-QCM"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="without_order" width="160" height="160"/>
+    </resources>
+</document>

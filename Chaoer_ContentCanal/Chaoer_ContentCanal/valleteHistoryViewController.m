@@ -58,20 +58,19 @@
 
 - (void)headerBeganRefresh{
 
-//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     self.page = 1;
 
     [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self.tempArray removeAllObjects];
         [self headerEndRefresh];
-        [self removeEmptyView];
+        
+        [self DissMissEmptyView];
+        
         if (resb.mSucess) {
             [SVProgressHUD dismiss];
-//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            
             if (mArr.count <= 0) {
-                [self addEmptyViewWithImg:nil];
+                [self ShowEmptyViewWithTitle:@"暂时没有数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
                 return ;
             }
             
@@ -81,7 +80,7 @@
         }else{
             
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self addEmptyViewWithImg:nil];
+            [self ShowEmptyViewWithTitle:nil andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
             
         }
 
@@ -94,7 +93,6 @@
 - (void)footetBeganRefresh{
 
 
-//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     self.page ++;
     
     [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
@@ -104,7 +102,6 @@
         [self removeEmptyView];
         if (resb.mSucess) {
             [SVProgressHUD dismiss];
-//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
             if (mArr.count <= 0) {
                 [self addEmptyViewWithImg:nil];

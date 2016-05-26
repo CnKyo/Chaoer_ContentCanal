@@ -274,11 +274,13 @@
 //    }else{
         [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
             [self headerEndRefresh];
-            [self removeEmptyView];
+
+            [self DissMissEmptyView];
+            
             if (resb.mSucess) {
                 [self initData];
             }else{
-                [self addEmptyView:nil];
+                [self ShowEmptyViewWithTitle:resb.mMessage andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
             }
         }];
 //    }

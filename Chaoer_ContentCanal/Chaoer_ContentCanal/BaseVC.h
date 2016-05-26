@@ -146,4 +146,21 @@
 
 -(void)followRollingScrollView:(UIView *)scrollView;
 
+
+#pragma maek----空view
+/**
+ *  显示空view
+ *
+ *  @param mTitle  标题
+ *  @param mImg    图片
+ *  @param mHidden 是否隐藏按钮
+ *  @param mHight  高度
+ */
+- (void)ShowEmptyViewWithTitle:(NSString *)mTitle andImg:(UIImage *)mImg andIsHiddenBtn:(BOOL)mHidden andHaveTabBar:(BOOL)mIsTabbar;
+
+#pragma maek----隐藏空view
+- (void)DissMissEmptyView;
+
+
+
 @end

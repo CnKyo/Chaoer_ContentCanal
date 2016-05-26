@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "HTTPrequest.h"
 #import "dataModel.h"
+
+#import "mGeneryEmptyView.h"
 @interface BaseVC ()<UIGestureRecognizerDelegate>
 {
     UIView *emptyView;
@@ -24,6 +26,12 @@
 @end
 
 @implementation BaseVC
+
+{
+
+    mGeneryEmptyView *mEmptyView;
+}
+
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -750,6 +758,66 @@
     return YES;
 }
 
+#pragma mark----加载空视图
+- (void)ShowEmptyViewWithTitle:(NSString *)mTitle andImg:(UIImage *)mImg andIsHiddenBtn:(BOOL)mHidden andHaveTabBar:(BOOL)mIsTabbar{
 
+    
+    CGFloat mHH;
+    
+    if (mIsTabbar) {
+        mHH = 114;
+    }else{
+        mHH = 64;
+    }
+    
+    
+    mEmptyView = [mGeneryEmptyView shareView];
+    
+    mEmptyView.alpha = 1;
+    
+    if (mTitle) {
+        mEmptyView.mEmptyTitle.text = mTitle;
+    }
+    if (mImg) {
+        mEmptyView.mEmptyImg.image = mImg;
+    }
+    
+    
+    mEmptyView.mEmptyBtn.hidden = mHidden;
+    
+    [mEmptyView.mEmptyBtn addTarget:self action:@selector(mReloadAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:mEmptyView];
+    
+    [mEmptyView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).offset(@0);
+        make.bottom.equalTo(self.view).offset(DEVICE_Height-mHH);
+        make.top.equalTo(self.view).offset(@64);
+    }];
+    
+    
+    
+    
+}
+
+
+- (void)mReloadAction:(UIButton *)sender{
+    [self DissMissEmptyView];
+    [self headerBeganRefresh];
+}
+
+#pragma mark----隐藏空视图
+- (void)DissMissEmptyView{
+    
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        mEmptyView.alpha = 0;
+        [mEmptyView removeFromSuperview];
+        
+    }];
+    
+
+}
 
 @end
