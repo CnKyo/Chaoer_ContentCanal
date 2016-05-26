@@ -21,16 +21,19 @@
     NSInteger _pickerComponent;
 }
 @synthesize cancelbtn,surebtn;
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andArr:(NSArray *)mArr
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self loadData:frame];
+
+        [self initView:frame andArr:mArr];
     }
     return self;
 }
 
-- (void)initView:(CGRect)frame{
+- (void)initView:(CGRect)frame andArr:(NSArray *)mArr{
+    self.mProvinceArr = mArr;
+
     self.backgroundColor = [UIColor whiteColor];
     self.userInteractionEnabled = YES;
     self.layer.borderColor = [UIColor clearColor].CGColor;
@@ -61,22 +64,8 @@
     //        picker.backgroundColor = [UIColor yellowColor];
     picker.showsSelectionIndicator = YES;
     [self addSubview:picker];
-}
-- (void)loadData:(CGRect)frame{
 
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
-    
-    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
-        
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            self.mProvinceArr = mArr;
-            [self initView:frame];
-            [picker reloadAllComponents];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+    [picker reloadAllComponents];
 
 }
 

@@ -139,6 +139,11 @@
 
     }
     
+    if (self.mComfirPwd.text.length < 6) {
+        [self showErrorStatus:@"请输入6-15位密码！"];
+        return;
+    }
+    
 
     if (_mType == 1) {
         [SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];

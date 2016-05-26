@@ -279,13 +279,31 @@
     [self loadAddressPick];
     
 }
+
 - (void)loadAddressPick{
-    [self showWithStatus:@"正在加载中..."];
-    [pickerView removeFromSuperview];
-    pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
-    pickerView.delegate = self;
-    [pickerView show];
-    [self dismiss];
+    
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
+        
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [pickerView removeFromSuperview];
+            
+            pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(0, DEVICE_Height-220, DEVICE_Width, 220) andArr:mArr];
+            
+//            pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.frame)/2-110, CGRectGetWidth(self.view.frame)-40, 220)];
+            pickerView.delegate = self;
+            [pickerView show];
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+    
+
     
  
 

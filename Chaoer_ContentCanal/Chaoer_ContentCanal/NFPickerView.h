@@ -24,6 +24,8 @@
 
 @property (strong,nonatomic) NSArray *mCityArr;
 
+- (id)initWithFrame:(CGRect)frame andArr:(NSArray *)mArr;
+
 
 -(void)show;
 //消失

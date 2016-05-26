@@ -150,9 +150,10 @@
     _searchBar.keyboardType = UIKeyboardAppearanceDefault;
     _searchBar.placeholder = @"请输入搜索关键字";
     _searchBar.delegate = self;
-    _searchBar.barTintColor = [UIColor colorWithRed:0.82 green:0.84 blue:0.86 alpha:1.00];
-    _searchBar.searchBarStyle = UISearchBarStyleDefault;
+    _searchBar.barTintColor = M_CO;
+    _searchBar.searchBarStyle = UIBarStyleBlackTranslucent;
     _searchBar.barStyle = UIBarStyleDefault;
+    
     [self.view addSubview:_searchBar];
     
 }
