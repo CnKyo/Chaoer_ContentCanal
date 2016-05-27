@@ -316,7 +316,7 @@
     UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
 
     
-    tempImage = [Util scaleImg:imageView3.image maxsize:150];
+    tempImage = [Util scaleImg:imageView3.image maxsize:100];
     
     NSData *mmm = UIImagePNGRepresentation(tempImage);
 
