@@ -961,11 +961,12 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 }
 
-+ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void(^)(mBaseData *resb,NSArray *mArr))block{
++ (void)getArearId:(NSString *)mProvince andArear:(NSString*)mArear andCity:(NSString *)mCity block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:NumberWithInt(mCityId) forKey:@"cityId"];
-    [para setObject:NumberWithInt(mProvince) forKey:@"areaId"];
-    
+    [para setObject:mProvince forKey:@"propertyId"];
+    [para setObject:mArear forKey:@"cityId"];
+    [para setObject:mCity forKey:@"areaId"];
+
     [[HTTPrequest sharedClient] postUrl:@"app/zocompany/appZocompany" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             

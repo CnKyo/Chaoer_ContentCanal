@@ -9,7 +9,6 @@
 #import "addAddressViewController.h"
 #import "addTableViewCell.h"
 
-#import "addressViewController.h"
 @interface addAddressViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -96,7 +95,6 @@
 
 
 - (void)rightBtnTouched:(id)sender{
-    addressViewController *add = [[addressViewController alloc] initWithNibName:@"addressViewController" bundle:nil];
-    [self pushViewController:add];
+
 }
 @end

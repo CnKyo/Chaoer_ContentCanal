@@ -498,7 +498,7 @@
  *  @param mProvince 区县
  *  @param block     返回值
  */
-+ (void)getArearId:(int)mCityId andProvince:(int)mProvince block:(void(^)(mBaseData *resb,NSArray *mArr))block;
++ (void)getArearId:(NSString *)mProvince andArear:(NSString*)mArear andCity:(NSString *)mCity block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 /**
  *  获取管理用户的楼盘信息

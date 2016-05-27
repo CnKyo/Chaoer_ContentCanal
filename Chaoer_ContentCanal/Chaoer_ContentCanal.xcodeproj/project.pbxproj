@@ -123,8 +123,6 @@
 		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
 		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
 		04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */; };
-		04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E91CBD1D6200BD1420 /* addressViewController.m */; };
-		04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */; };
 		04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C528691CDC8BA000572C3B /* libWeChatSDK.a */; };
 		04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04C5286A1CDC8BA000572C3B /* read_me.txt */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
@@ -920,9 +918,6 @@
 		04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTableViewCell.h; sourceTree = "<group>"; };
 		04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addTableViewCell.m; sourceTree = "<group>"; };
 		04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addTableViewCell.xib; sourceTree = "<group>"; };
-		04BBA2E81CBD1D6200BD1420 /* addressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressViewController.h; sourceTree = "<group>"; };
-		04BBA2E91CBD1D6200BD1420 /* addressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressViewController.m; sourceTree = "<group>"; };
-		04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addressViewController.xib; sourceTree = "<group>"; };
 		04C528691CDC8BA000572C3B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		04C5286A1CDC8BA000572C3B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		04C5286B1CDC8BA000572C3B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -2783,9 +2778,6 @@
 				04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */,
 				04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */,
 				04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */,
-				04BBA2E81CBD1D6200BD1420 /* addressViewController.h */,
-				04BBA2E91CBD1D6200BD1420 /* addressViewController.m */,
-				04BBA2EA1CBD1D6200BD1420 /* addressViewController.xib */,
 				04AD8A971CE323B300A3F87F /* pptStatusViewController.h */,
 				04AD8A981CE323B300A3F87F /* pptStatusViewController.m */,
 				04AD8A991CE323B300A3F87F /* pptStatusViewController.xib */,
@@ -4750,7 +4742,6 @@
 				31BBE2A61C91612F006C553D /* mPersonView.xib in Resources */,
 				31E1A7221CA3890C00D3496F /* makeFixOrderDetailViewController.xib in Resources */,
 				04AD8A8C1CE3052300A3F87F /* applyPPTView.xib in Resources */,
-				04BBA2EC1CBD1D6200BD1420 /* addressViewController.xib in Resources */,
 				310EB5FA1CA26178005C61F4 /* serviceDetailView.xib in Resources */,
 				04E5A7F81CE5892300A2D111 /* pptMyCell.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
@@ -4925,7 +4916,6 @@
 				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
 				04F2283F1CEEE4EB004E8702 /* DistancePickerView.m in Sources */,
 				04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */,
-				04BBA2EB1CBD1D6200BD1420 /* addressViewController.m in Sources */,
 				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
 				044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */,
 				313413551CA28DC3003972E2 /* XMNAlbumCell.m in Sources */,

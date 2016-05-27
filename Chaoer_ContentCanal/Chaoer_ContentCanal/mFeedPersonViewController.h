@@ -29,10 +29,6 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *mProvinceBtn;
 /**
- *  区县
- */
-@property (weak, nonatomic) IBOutlet UIButton *mCityBtn;
-/**
  *  小区按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mValiigeBtn;

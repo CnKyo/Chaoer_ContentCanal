@@ -8,7 +8,10 @@
 
 #import "mFeedPersonViewController.h"
 #import "MHActionSheet.h"
-@interface mFeedPersonViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#import "NFPickerView.h"
+
+@interface mFeedPersonViewController ()<UITableViewDelegate,UITableViewDataSource,NFPickerViewDelegete>
 
 
 @end
@@ -43,6 +46,17 @@
     NSMutableArray  *Arrtemp;
 
     NSInteger mUnitIndex;
+    
+    
+    
+    
+    NSString *mmProvinceId;
+    
+    NSString *mmCityId;
+    
+    NSString *mmArearId;
+    NFPickerView *pickerView;
+
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -84,6 +98,12 @@
     self.mSubmit.layer.masksToBounds = YES;
     self.mSubmit.layer.cornerRadius = 3;
     
+    
+    mmProvinceId = nil;
+    mmCityId = nil;
+    mmArearId = nil;
+    
+    
     self.mReason.placeholder = @"在此写上您投诉的原因:";
     [self.mReason setHolderToTop];
 //    [self initTap];
@@ -100,7 +120,8 @@
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     if (mType == 3) {
         
-        [mUserInfo getArearId:mArearId andProvince:mCityId block:^(mBaseData *resb,NSArray *mArr) {
+        [mUserInfo getArearId:mmProvinceId andArear:mmArearId andCity:mmCityId block:^(mBaseData *resb, NSArray *mArr) {
+      
             [SVProgressHUD dismiss];
             [self.tempArray removeAllObjects];
             if (resb.mSucess) {
@@ -258,13 +279,7 @@
             mType = 2;
 
         }else if (mType == 2){
-            GCity *city = self.tempArray[index];
-            text = [NSString stringWithFormat:@"%@", city.mAreaName];
-            mCityId = [[NSString stringWithFormat:@"%@",city.mAreaId] intValue];
-            
-            self.mCityBtn.titleLabel.text = text;
-            mArearId = [[NSString stringWithFormat:@"%@",city.mParentId] intValue];
-            mType = 3;
+       
 
         }else if(mType == 3){
             GCommunity *gm = self.tempArray[index];
@@ -350,26 +365,51 @@
 - (IBAction)provinceAction:(UIButton *)sender {
     mType = 1;
     mCityId = 0;
-    [self loadData];
 
+    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    
+    [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
+        
+        if (resb.mSucess) {
+            
+            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+            
+            [pickerView removeFromSuperview];
+            
+            pickerView = [[NFPickerView alloc] initWithFrame:CGRectMake(0, DEVICE_Height-220, DEVICE_Width, 220) andArr:mArr];
+            
+            pickerView.delegate = self;
+            [pickerView show];
+            
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+        }
+    }];
+
+    
+    
+    
 }
-#pragma mark----区县
-- (IBAction)cityAction:(id)sender {
-    if (mType == 1) {
-        [SVProgressHUD showErrorWithStatus:@"请选择省份！"];
-        return;
-
-    }
-
-    mType = 2;
-    [self loadData];
-
+- (void)pickerDidSelectProvinceName:(NSString *)provinceName andProvinId:(int)ProvinceId cityName:(NSString *)cityName andArearId:(int)ArearId countrys:(NSString *)countrys andCityId:(int)CityId{
+    
+    NSLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
+    
+    [self.mProvinceBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",provinceName,cityName,countrys] forState:0];
+    
+    mmProvinceId = [NSString stringWithFormat:@"%d",ProvinceId];
+    mmCityId = [NSString stringWithFormat:@"%d",CityId];
+    mmArearId = [NSString stringWithFormat:@"%d",ArearId];
+    
+    
+    NSLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
+    
+    
 }
 
 
 #pragma mark----小区
 - (IBAction)mValiigeAction:(UIButton *)sender {
-    if (mType == 2 || mType == 1) {
+    if (mmProvinceId.length == 0 || [mmProvinceId isEqualToString:@""] || mmProvinceId == nil) {
         [SVProgressHUD showErrorWithStatus:@"请选择城市!"];
         return;
     }
