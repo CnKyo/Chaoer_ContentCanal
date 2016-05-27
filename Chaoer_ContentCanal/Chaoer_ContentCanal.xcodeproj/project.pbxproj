@@ -123,6 +123,7 @@
 		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
 		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
 		04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */; };
+		04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1FD571CF846500057DEBD /* CurentLocation.m */; };
 		04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C528691CDC8BA000572C3B /* libWeChatSDK.a */; };
 		04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04C5286A1CDC8BA000572C3B /* read_me.txt */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
@@ -918,6 +919,8 @@
 		04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTableViewCell.h; sourceTree = "<group>"; };
 		04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addTableViewCell.m; sourceTree = "<group>"; };
 		04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addTableViewCell.xib; sourceTree = "<group>"; };
+		04C1FD561CF846500057DEBD /* CurentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurentLocation.h; sourceTree = "<group>"; };
+		04C1FD571CF846500057DEBD /* CurentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurentLocation.m; sourceTree = "<group>"; };
 		04C528691CDC8BA000572C3B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		04C5286A1CDC8BA000572C3B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		04C5286B1CDC8BA000572C3B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -4284,6 +4287,8 @@
 				04678F521CB7916A0074AA80 /* keyChain.m */,
 				742739CC1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.h */,
 				742739CD1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.m */,
+				04C1FD561CF846500057DEBD /* CurentLocation.h */,
+				04C1FD571CF846500057DEBD /* CurentLocation.m */,
 			);
 			name = EXT;
 			sourceTree = "<group>";
@@ -5096,6 +5101,7 @@
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,
+				04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */,
 				742739CE1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.m in Sources */,
 				04E5A7E51CE579B000A2D111 /* MCPopMenuPresentAnimator.m in Sources */,
 				04E5A7E61CE579B000A2D111 /* MCPopMenuViewController.m in Sources */,

@@ -37,13 +37,15 @@
 #import "needCodeViewController.h"
 #import "verifyBankViewController.h"
 
+#import "CurentLocation.h"
 
 #define Height (DEVICE_Width*0.67)
 
-@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
+@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
+@property(nonatomic,strong) CLLocationManager *locaManager;
 
 @end
 
@@ -76,7 +78,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    
+    [CurentLocation sharedManager];
     [self.tableView headerBeginRefreshing];
 }
 - (void)viewDidLoad {
@@ -194,6 +196,10 @@
     
 }
 - (void)loadAddress{
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
+    
+    
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
@@ -637,5 +643,13 @@
     al.tag = tag;
     [al show];
 }
+
+
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+
+    NSLog(@"定位成功之后返回的东东：%@",mCoordinate);
+}
+
 
 @end
