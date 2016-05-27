@@ -287,7 +287,7 @@
     //设置标题显示文本数组
     
     //占位图片,你可以在下载图片失败处修改占位图片
-    mScrollerView.placeImage = [UIImage imageNamed:@"place.png"];
+    mScrollerView.placeImage = [UIImage imageNamed:@"ic_default_rectangle-1"];
     
     //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
     
