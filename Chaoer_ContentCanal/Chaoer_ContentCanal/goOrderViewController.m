@@ -159,7 +159,7 @@
     
     
     mView = [goOrderView shareView];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, 580);
+    mView.frame = CGRectMake(0, 0, DEVICE_Width, 630);
     
     [mView.mNoteTx setPlaceholder:@"请输入备注"];
     [mView.mNoteTx setHolderToTop];
@@ -179,7 +179,7 @@
 
     [mScrollerView addSubview:mView];
     
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 580);
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 630);
     
     
 }
@@ -477,7 +477,7 @@
         
     }else{
         if (resb.mSucess) {
-            [LCProgressHUD showSuccess:resb.mMessage];
+            [LCProgressHUD showSuccess:@"图片上传成功！"];
             mImgUrlString = [resb.mData objectForKey:@"pic"];
             
         }else{

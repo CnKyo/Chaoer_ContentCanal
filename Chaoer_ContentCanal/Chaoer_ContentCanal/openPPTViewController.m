@@ -325,7 +325,7 @@
 {
     RSKImageCropViewController *imageCropVC = nil;
     
-    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeCircle];
+    imageCropVC = [[RSKImageCropViewController alloc] initWithImage:photo cropMode:RSKImageCropModeSquare];
     imageCropVC.dataSource = self;
     imageCropVC.delegate = self;
     [self.navigationController pushViewController:imageCropVC animated:YES];

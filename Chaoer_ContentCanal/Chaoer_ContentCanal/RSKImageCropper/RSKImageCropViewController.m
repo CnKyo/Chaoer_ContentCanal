@@ -28,13 +28,13 @@
 #import "UIImage+FixOrientation.h"
 
 static const CGFloat kPortraitCircleMaskRectInnerEdgeInset = 15.0f;
-static const CGFloat kPortraitSquareMaskRectInnerEdgeInset = 20.0f;
+static const CGFloat kPortraitSquareMaskRectInnerEdgeInset = 0.0f;
 static const CGFloat kPortraitMoveAndScaleLabelVerticalMargin = 64.0f;
 static const CGFloat kPortraitCancelAndChooseButtonsHorizontalMargin = 13.0f;
 static const CGFloat kPortraitCancelAndChooseButtonsVerticalMargin = 21.0f;
 
 static const CGFloat kLandscapeCircleMaskRectInnerEdgeInset = 45.0f;
-static const CGFloat kLandscapeSquareMaskRectInnerEdgeInset = 45.0f;
+static const CGFloat kLandscapeSquareMaskRectInnerEdgeInset = 0.0f;
 static const CGFloat kLandscapeMoveAndScaleLabelVerticalMargin = 12.0f;
 static const CGFloat kLandscapeCancelAndChooseButtonsVerticalMargin = 12.0f;
 

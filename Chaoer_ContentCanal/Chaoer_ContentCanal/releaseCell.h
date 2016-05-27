@@ -83,5 +83,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *mGoodsPriceTx;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *mtimeBtn;
+
+
+
+
 
 @end

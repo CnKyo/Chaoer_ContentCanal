@@ -35,7 +35,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写办理时间" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="h9q-FX-7Cy">
+                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写办理时间" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="h9q-FX-7Cy">
                         <rect key="frame" x="68" y="50" width="244" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="t5c-gB-k6a"/>
@@ -44,6 +44,15 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOq-ZT-71Q">
+                        <rect key="frame" x="68" y="50" width="244" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="l9B-H3-SXz"/>
+                        </constraints>
+                        <state key="normal" title="请填写办理时间">
+                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnt-MY-vr1">
                         <rect key="frame" x="0.0" y="85" width="320" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44981142241379313" colorSpace="calibratedRGB"/>
@@ -138,9 +147,11 @@
                     <constraint firstItem="OSJ-dU-bJy" firstAttribute="top" secondItem="cnt-MY-vr1" secondAttribute="bottom" constant="8" id="G8p-uh-QLA"/>
                     <constraint firstItem="cnt-MY-vr1" firstAttribute="top" secondItem="h9q-FX-7Cy" secondAttribute="bottom" constant="15" id="IBB-qe-8jw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OSJ-dU-bJy" secondAttribute="trailing" id="LKh-nf-XIL"/>
+                    <constraint firstItem="oOq-ZT-71Q" firstAttribute="leading" secondItem="xot-I3-WnY" secondAttribute="trailing" constant="8" id="MGx-N8-IkU"/>
                     <constraint firstAttribute="topMargin" secondItem="gKe-90-KKM" secondAttribute="top" id="NKo-gY-kbF"/>
                     <constraint firstItem="OSJ-dU-bJy" firstAttribute="leading" secondItem="jNH-Nv-Nt4" secondAttribute="trailing" constant="8" id="OfX-Sa-MFy"/>
                     <constraint firstItem="cnt-MY-vr1" firstAttribute="leading" secondItem="paH-7K-s9G" secondAttribute="leadingMargin" constant="-8" id="SBe-ZI-BRR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oOq-ZT-71Q" secondAttribute="trailing" id="ScU-oE-Vyj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cnt-MY-vr1" secondAttribute="trailing" constant="-8" id="V4Y-7O-o4u"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OHZ-wq-ctl" secondAttribute="trailing" constant="-8" id="XiV-fD-DQa"/>
                     <constraint firstItem="eyI-jI-uGK" firstAttribute="top" secondItem="iQ2-jv-7Uk" secondAttribute="bottom" constant="8" id="YSW-rX-EGc"/>
@@ -150,6 +161,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="iQ2-jv-7Uk" secondAttribute="trailing" constant="-8" id="iwt-rC-eQa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="k01-Yh-Doq" secondAttribute="trailing" id="l7V-3g-Hu6"/>
                     <constraint firstAttribute="trailingMargin" secondItem="h9q-FX-7Cy" secondAttribute="trailing" id="mHy-ex-NqV"/>
+                    <constraint firstItem="oOq-ZT-71Q" firstAttribute="top" secondItem="gKe-90-KKM" secondAttribute="bottom" constant="21" id="mhD-qT-Gae"/>
                     <constraint firstItem="OHZ-wq-ctl" firstAttribute="top" secondItem="DYU-Tm-6GR" secondAttribute="bottom" constant="15" id="nDX-bq-vqm"/>
                     <constraint firstItem="h9q-FX-7Cy" firstAttribute="leading" secondItem="xot-I3-WnY" secondAttribute="trailing" constant="8" id="npE-qI-i7b"/>
                     <constraint firstItem="jNH-Nv-Nt4" firstAttribute="top" secondItem="cnt-MY-vr1" secondAttribute="bottom" constant="8" id="qNV-9h-6sd"/>
@@ -162,6 +174,7 @@
                 <outlet property="mNoteTX" destination="k01-Yh-Doq" id="B9N-F6-Ax6"/>
                 <outlet property="mPhone" destination="OSJ-dU-bJy" id="KzI-bq-K6l"/>
                 <outlet property="mTime" destination="h9q-FX-7Cy" id="KmJ-TP-1iq"/>
+                <outlet property="mtimeBtn" destination="oOq-ZT-71Q" id="4xQ-Ca-DU2"/>
             </connections>
             <point key="canvasLocation" x="217" y="297.5"/>
         </tableViewCell>

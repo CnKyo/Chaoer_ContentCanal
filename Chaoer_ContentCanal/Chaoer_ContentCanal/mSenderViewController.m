@@ -473,6 +473,10 @@
     GPPTOrder *mOrder = self.tempArray[indexPath.row];
     
     pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+   
+    [cell.mDoneBtn removeTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.mDoneBtn removeTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
     
     
     if (mOrder.mProcessStatus == 0) {
@@ -484,6 +488,7 @@
             
             [cell.mDoneBtn setTitle:@"取消订单" forState:0];
             cell.mDoneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+
             [cell.mDoneBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
             cell.mDoneBtn.backgroundColor = M_CO;
 
@@ -496,6 +501,8 @@
             }else{
                 cell.mDoneBtn.backgroundColor = M_CO;
                 cell.mDoneBtn.enabled = YES;
+                [cell.mDoneBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
             }
         }
 
@@ -519,7 +526,7 @@
         cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
     }
     cell.mDoneBtn.mOrder = mOrder;
-    [cell.mDoneBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
 
     
     cell.mMoney.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];

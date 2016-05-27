@@ -183,6 +183,19 @@
     pptDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    [cell.mDoBtn removeTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.mDoBtn removeTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.mDoBtn removeTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [cell.mDoBtn removeTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+    
+
+    
     cell.mDoBtn.mOrder = self.mOrder;
 
     [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],self.mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
@@ -213,7 +226,10 @@
                 
                 [cell.mDoBtn setTitle:@"取消订单" forState:0];
                 cell.mDoBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+                if (cell.mDoBtn.allTargets.count == 0) {
+
                 [cell.mDoBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+                }
 
             }else{
                 if ([mUserInfo backNowUser].mIs_leg != 5) {
@@ -222,12 +238,12 @@
                 }else{
                     cell.mDoBtn.backgroundColor = M_CO;
                     cell.mDoBtn.enabled = YES;
+                    [cell.mDoBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+
                 }
             }
         }
-              
-        [cell.mDoBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-
+ 
         NSString *ordertype = nil;
         
         if (self.mType == 1) {
@@ -335,7 +351,9 @@
             
             cell.mDoBtn.enabled = YES;
             cell.mDoBtn.backgroundColor = M_CO;
+
             [cell.mDoBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            
             mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
         }else if (self.mOrder.mProcessStatus == 4){
             /**
@@ -344,7 +362,9 @@
             [cell.mDoBtn setTitle:@"去评价" forState:0];
             cell.mDoBtn.enabled = YES;
             cell.mDoBtn.backgroundColor = M_CO;
+
             [cell.mDoBtn addTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+            
             mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
         }else{
             /**
@@ -463,6 +483,33 @@
 }
 #pragma mark----取消订单
 - (void)cancelOrderAction:(mOrderButton *)sender{
+    
+        if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能操作哦！"];
+            return;
+        }
+        if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能操作哦！"];
+            return;
+        }
+        
+        [self showWithStatus:@"正在操作..."];
+        
+        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                
+                [self showSuccessStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+        
+    
+    
 
 }
 #pragma mark----完成订单

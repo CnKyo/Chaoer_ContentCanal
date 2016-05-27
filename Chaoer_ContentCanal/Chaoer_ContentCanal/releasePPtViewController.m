@@ -16,6 +16,9 @@
 
 
 #import "mPriceView.h"
+
+#import "LTPickerView.h"
+
 @interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,UITextFieldDelegate>
 
 @end
@@ -94,6 +97,13 @@
     NSString *mArriveAddress;
 
 
+    /**
+     *  时间段
+     */
+    NSString *mSelecteTimeStr;
+    
+    
+    LTPickerView*LtpickerView;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -148,6 +158,7 @@
     mArriveAddress = nil;
     mSendAddress = nil;
     
+    mSelecteTimeStr = nil;
     [self initView];
     
     UIView *mBottomView = [UIView new];
@@ -474,6 +485,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             [cell.mChoiceTool addTarget:self action:@selector(choiceToolAction:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.mtimeBtn addTarget:self action:@selector(mSelectTimeAction:) forControlEvents:UIControlEventTouchUpInside];
             
             if (mToolStr != nil) {
                 [cell.mChoiceTool setTitle:mToolStr forState:0];
@@ -498,7 +510,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             [cell.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
-            
+            [cell.mtimeBtn addTarget:self action:@selector(mSelectTimeAction:) forControlEvents:UIControlEventTouchUpInside];
+
             mTimeStr = cell.mTime.text;
             
             mPhoneStr = cell.mPhone.text;
@@ -515,6 +528,49 @@
 
     
 }
+#pragma mark----选择时间短
+- (void)mSelectTimeAction:(UIButton *)sender{
+
+    NSArray *mTT = @[@"30分钟",@"60分钟",@"90分钟",@"2小时",@"3小时",@"4小时",@"5小时",@"8小时",@"12小时"];
+    
+//    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择地址:" style:MHSheetStyleWeiChat itemTitles:mTT];
+//    actionSheet.cancleTitle = @"取消选择";
+//    
+//    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
+//        
+//         NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
+//        
+//        [sender setTitle:title forState:0];
+//        mSelecteTimeStr = mTT2[index-1];
+//        [self.tableView reloadData];
+//        
+//    }];
+
+   LtpickerView = [LTPickerView new];
+    LtpickerView.dataSource = mTT;//设置要显示的数据
+    LtpickerView.defaultStr = mTT[0];//默认选择的数据
+    [LtpickerView show];//显示
+    __weak __typeof(self)weakSelf = self;
+
+    //回调block
+    LtpickerView.block = ^(LTPickerView* obj,NSString* str,int num){
+        //obj:LTPickerView对象
+        //str:选中的字符串
+        //num:选中了第几行
+        NSLog(@"选择了第%d行的%@",num,str);
+        NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
+        
+        [sender setTitle:str forState:0];
+        mSelecteTimeStr = mTT2[num];
+        [weakSelf.tableView reloadData];
+    
+    
+    };
+
+    
+    
+}
+
 - (void)choiceToolAction:(UIButton *)sender{
 
     [self LoadTool];
@@ -710,7 +766,7 @@
     if (self.mType == 3) {
         
     }else{
-        if (mTimeStr == nil || mTimeStr.length == 0) {
+        if (mSelecteTimeStr == nil || mSelecteTimeStr.length == 0) {
             [self showErrorStatus:@"时间不能为空！"];
             return;
         }
@@ -741,7 +797,7 @@
     [self showWithStatus:@"正在发布..."];
     
     if (self.mType == 1) {
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
@@ -754,7 +810,7 @@
         
         
     }else if(self.mType == 2){
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];

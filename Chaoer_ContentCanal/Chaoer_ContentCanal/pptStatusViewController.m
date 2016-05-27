@@ -32,7 +32,7 @@
 }
 - (IBAction)btnAction:(UIButton *)sender {
     
-    [self popViewController_3];
+    [self popViewController_2];
     
 }
 

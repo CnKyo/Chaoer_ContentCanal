@@ -61,6 +61,8 @@
 		044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24821CB4B2EA00A6379C /* msgTableViewCell.m */; };
 		044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */; };
 		044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F16B21CF2ED6600B6B90D /* NFPickerView.m */; };
+		0453DC011CF88F9C006C9B6B /* LTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453DBFF1CF88F9C006C9B6B /* LTPickerView.m */; };
+		0453DC021CF88F9C006C9B6B /* LTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0453DC001CF88F9C006C9B6B /* LTPickerView.xib */; };
 		0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B7791CD4D64600B950BD /* mServiceClassViewController.m */; };
 		0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */; };
 		0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B77E1CD4D78000B950BD /* ChatListViewController.m */; };
@@ -822,6 +824,9 @@
 		044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = msgTableViewCell.xib; sourceTree = "<group>"; };
 		044F16B11CF2ED6600B6B90D /* NFPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NFPickerView.h; sourceTree = "<group>"; };
 		044F16B21CF2ED6600B6B90D /* NFPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFPickerView.m; sourceTree = "<group>"; };
+		0453DBFE1CF88F9C006C9B6B /* LTPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPickerView.h; sourceTree = "<group>"; };
+		0453DBFF1CF88F9C006C9B6B /* LTPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPickerView.m; sourceTree = "<group>"; };
+		0453DC001CF88F9C006C9B6B /* LTPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTPickerView.xib; sourceTree = "<group>"; };
 		0461B7781CD4D64600B950BD /* mServiceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceClassViewController.h; sourceTree = "<group>"; };
 		0461B7791CD4D64600B950BD /* mServiceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceClassViewController.m; sourceTree = "<group>"; };
 		0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceClassViewController.xib; sourceTree = "<group>"; };
@@ -2153,6 +2158,16 @@
 				04648C521CB4E0C0006823C9 /* msgDetailViewController.xib */,
 			);
 			name = "消息";
+			sourceTree = "<group>";
+		};
+		0453DBFD1CF88F8B006C9B6B /* LtpickerView */ = {
+			isa = PBXGroup;
+			children = (
+				0453DBFE1CF88F9C006C9B6B /* LTPickerView.h */,
+				0453DBFF1CF88F9C006C9B6B /* LTPickerView.m */,
+				0453DC001CF88F9C006C9B6B /* LTPickerView.xib */,
+			);
+			name = LtpickerView;
 			sourceTree = "<group>";
 		};
 		04648C5D1CB4F116006823C9 /* 跑跑腿 */ = {
@@ -4059,6 +4074,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0453DBFD1CF88F8B006C9B6B /* LtpickerView */,
 				04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */,
 				04F2281E1CEEE4CA004E8702 /* XKPEActionPicker */,
 				04F9E5B61CED4D8B00FCA8B7 /* MJExtension */,
@@ -4537,6 +4553,7 @@
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				31B990201C968971002E34A5 /* wAndSTableViewCell.xib in Resources */,
+				0453DC021CF88F9C006C9B6B /* LTPickerView.xib in Resources */,
 				04AD8AA01CE326CC00A3F87F /* pptHeaderView.xib in Resources */,
 				04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */,
 				040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */,
@@ -5057,6 +5074,7 @@
 				740089731B38F2C300618BA0 /* AFURLConnectionOperation.m in Sources */,
 				04648C4C1CB4D6AD006823C9 /* messageTableViewController.m in Sources */,
 				318D56761C9FDD150045B5FB /* fixTableViewCell.m in Sources */,
+				0453DC011CF88F9C006C9B6B /* LTPickerView.m in Sources */,
 				16A987BC1C0397F100D55C4A /* NSObject+myobj.m in Sources */,
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
 				31B9903E1C96B369002E34A5 /* phoneUpTopViewController.m in Sources */,

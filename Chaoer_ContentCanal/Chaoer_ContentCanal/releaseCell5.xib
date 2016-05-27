@@ -35,7 +35,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写办理时间" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ba2-mh-niH">
+                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写办理时间" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ba2-mh-niH">
                         <rect key="frame" x="68" y="50" width="244" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="UCp-eH-ovf"/>
@@ -44,6 +44,15 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygD-oi-xO5">
+                        <rect key="frame" x="68" y="50" width="244" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="cEM-Bu-SN5"/>
+                        </constraints>
+                        <state key="normal" title="请填写办理时间">
+                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-ZH-Pgb">
                         <rect key="frame" x="0.0" y="85" width="320" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.44981142239999999" colorSpace="calibratedRGB"/>
@@ -180,6 +189,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="uQu-n1-eos" secondAttribute="trailing" id="5GQ-QJ-Xsa"/>
                     <constraint firstItem="b5L-pw-bww" firstAttribute="leading" secondItem="y5m-3b-xpo" secondAttribute="leadingMargin" constant="7" id="5Qz-hg-L1z"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kOr-Q7-vmm" secondAttribute="trailing" constant="-8" id="6Ce-tt-PqM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ygD-oi-xO5" secondAttribute="trailing" id="6Jd-Iq-PDb"/>
                     <constraint firstItem="Ba2-mh-niH" firstAttribute="leading" secondItem="deh-2E-OvN" secondAttribute="trailing" constant="8" id="At1-7Y-Lbh"/>
                     <constraint firstItem="tH2-uK-7VB" firstAttribute="top" secondItem="Lu8-78-qO7" secondAttribute="bottom" constant="10" id="CRt-Kt-sV9"/>
                     <constraint firstItem="deh-2E-OvN" firstAttribute="top" secondItem="DV3-hW-haP" secondAttribute="bottom" constant="21" id="CSa-I8-XsN"/>
@@ -209,6 +219,8 @@
                     <constraint firstItem="RsI-cz-oYT" firstAttribute="leading" secondItem="y5m-3b-xpo" secondAttribute="leadingMargin" constant="-8" id="eHs-rA-FhN"/>
                     <constraint firstItem="9e0-Di-ZjE" firstAttribute="leading" secondItem="7YC-3U-Dft" secondAttribute="trailing" constant="8" id="f9T-ua-OUF"/>
                     <constraint firstItem="WEV-UB-ZtT" firstAttribute="leading" secondItem="y5m-3b-xpo" secondAttribute="leadingMargin" constant="7" id="fTT-Ap-1Gf"/>
+                    <constraint firstItem="ygD-oi-xO5" firstAttribute="top" secondItem="DV3-hW-haP" secondAttribute="bottom" constant="21" id="fTU-el-uep"/>
+                    <constraint firstItem="ygD-oi-xO5" firstAttribute="leading" secondItem="deh-2E-OvN" secondAttribute="trailing" constant="8" id="hRX-SC-Zah"/>
                     <constraint firstItem="deh-2E-OvN" firstAttribute="leading" secondItem="y5m-3b-xpo" secondAttribute="leadingMargin" constant="7" id="jYa-jL-QDC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="tH2-uK-7VB" secondAttribute="trailing" id="ljz-4U-Mw7"/>
                     <constraint firstItem="z3Y-2g-DaY" firstAttribute="top" secondItem="tH2-uK-7VB" secondAttribute="bottom" constant="10" id="mWh-qY-kc9"/>
@@ -236,6 +248,7 @@
                 <outlet property="mPhone" destination="aJj-tR-y63" id="c7r-Ca-xTi"/>
                 <outlet property="mSndAddressTx" destination="9e0-Di-ZjE" id="T4X-5J-pdU"/>
                 <outlet property="mTime" destination="Ba2-mh-niH" id="qlS-T8-9d7"/>
+                <outlet property="mtimeBtn" destination="ygD-oi-xO5" id="hAK-JW-YVg"/>
             </connections>
             <point key="canvasLocation" x="217" y="287.5"/>
         </tableViewCell>
