@@ -47,12 +47,17 @@
     
     [[mUserInfo backNowUser] getCanelHistory:self.page block:^(mBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
-        [self removeEmptyView];
+//        [self removeEmptyView];
         [self.tempArray removeAllObjects];
+        
+        
+        [self DissMissEmptyView];
+        
         if (resb.mSucess) {
             [self dismiss];
             if (mArr.count <= 0) {
-                [self addEmptyView:nil];
+//                [self addEmptyView:nil];
+                [self ShowEmptyViewWithTitle:@"暂无数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:YES];
             }else{
                 [self.tempArray addObjectsFromArray:mArr];
                 [self.tableView reloadData];
@@ -61,6 +66,7 @@
         }else{
         
             [self showErrorStatus:resb.mMessage];
+            [self ShowEmptyViewWithTitle:@"暂无数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:YES];
         }
         
     }];

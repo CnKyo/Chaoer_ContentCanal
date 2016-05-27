@@ -3143,7 +3143,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 -(void)fetch:(NSDictionary*)obj
 {
-    self.mImgUrl = [obj objectForKeyMy:@"img"];
+    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"img"]];
+    
     self.mContentUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"name"];
     self.mB_index = [[obj objectForKeyMy:@"b_index"] intValue];
