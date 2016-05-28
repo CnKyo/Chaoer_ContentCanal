@@ -429,13 +429,13 @@
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = YES;
                 mView.mVisitorBtn.selected = NO;
-                [mIdentify addObject:NumberWithFloat(2)];
+                [mIdentify addObject:NumberWithFloat(1)];
                 mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_selected"];
                 mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
 
             }else{
                 sender.selected = NO;
-                [mIdentify removeObject:NumberWithFloat(2)];
+                [mIdentify removeObject:NumberWithFloat(1)];
                 mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
                 mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
 
@@ -449,13 +449,13 @@
             if (sender.selected == NO) {
                 mView.mMasterBtn.selected = NO;
                 mView.mVisitorBtn.selected = YES;
-                [mIdentify addObject:NumberWithFloat(1)];
+                [mIdentify addObject:NumberWithFloat(2)];
                 mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_selected"];
                 mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
 
             }else{
                 sender.selected = NO;
-                [mIdentify removeObject:NumberWithFloat(1)];
+                [mIdentify removeObject:NumberWithFloat(2)];
                 mView.mTwoImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
                 mView.mOneImg.image = [UIImage imageNamed:@"ppt_add_address_normal"];
 

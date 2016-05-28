@@ -3006,7 +3006,107 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
+#pragma mark----获取消息列表
+/**
+ *  获取消息列表
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMsgList:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(10) forKey:@"pageSize"];
+    
+
+    [[HTTPrequest sharedClient] postUrl:@"app/msg/queryUserMsg" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"list"]) {
+                
+                [tempArr addObject:[[GMsgObj alloc] initWithObj:dic]];
+            }
+            
+            
+            
+            block (info,tempArr );
+        }else{
+            block (info, nil );
+            
+        }
+        
+    }];
+    
+
+    
+}
+
+
+#pragma mark----读消息
+/**
+ *  读消息
+ *
+ *  @param mId   消息id
+ *  @param block 返回值
+ */
+- (void)readMsg:(int)mId block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mId) forKey:@"id"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/msg/readMsgInfo" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            block (info );
+        }else{
+            block (info );
+            
+        }
+        
+    }];
+    
+    
+    
+}
+
+#pragma mark----删除消息
+/**
+ *  删除消息
+ *
+ *  @param mId   消息id
+ *  @param block 返回值
+ */
+- (void)deleteMsg:(int)mId block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mId) forKey:@"ids"];
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/msg/deleteMsgInfo" parameters:para call:^(mBaseData *info) {
+        
+        if (info.mSucess) {
+            block (info );
+        }else{
+            block (info );
+            
+        }
+        
+    }];
+}
 
 
 @end
@@ -4698,5 +4798,35 @@ bool pptbined = NO;
     self.mDistance = [obj objectForKeyMy:@"distance"];
 
 }
+
+@end
+
+
+@implementation GMsgObj
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    
+    self.mIsRead = [[obj objectForKeyMy:@"is_read"] boolValue];
+    self.mType = [[obj
+                   objectForKeyMy:@"msg_type"] intValue];
+    self.mMsg_title = [obj objectForKeyMy:@"msg_title"];
+    self.mMsg_content = [obj objectForKeyMy:@"msg_content"];
+    self.mGen_time = [obj objectForKeyMy:@"gen_time"];
+    
+    
+    self.mExtras = [[Util dictionaryWithJsonString:[obj objectForKeyMy:@"extras"]] objectForKey:@"url"];
+
+}
+
 
 @end

@@ -27,6 +27,12 @@
  *  消息气泡
  */
 @property (weak, nonatomic) IBOutlet UILabel *mBadge;
+
 + (homeNavView *)sharePersonNav;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *mBackBtn;
+
++ (homeNavView *)shareChatNav;
 
 @end

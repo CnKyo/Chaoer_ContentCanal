@@ -66,6 +66,8 @@
 		0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B7791CD4D64600B950BD /* mServiceClassViewController.m */; };
 		0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */; };
 		0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B77E1CD4D78000B950BD /* ChatListViewController.m */; };
+		046400881CF9279D0090A475 /* chatNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046400871CF9279D0090A475 /* chatNavView.xib */; };
+		0464008A1CF935B40090A475 /* msgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046400891CF935B40090A475 /* msgCell.xib */; };
 		04648C4C1CB4D6AD006823C9 /* messageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04648C4A1CB4D6AD006823C9 /* messageTableViewController.m */; };
 		04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C4B1CB4D6AD006823C9 /* messageTableViewController.xib */; };
 		04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04648C4E1CB4D783006823C9 /* messageCell.xib */; };
@@ -832,6 +834,8 @@
 		0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceClassViewController.xib; sourceTree = "<group>"; };
 		0461B77D1CD4D78000B950BD /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		0461B77E1CD4D78000B950BD /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
+		046400871CF9279D0090A475 /* chatNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = chatNavView.xib; sourceTree = "<group>"; };
+		046400891CF935B40090A475 /* msgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = msgCell.xib; sourceTree = "<group>"; };
 		04648C491CB4D6AD006823C9 /* messageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageTableViewController.h; sourceTree = "<group>"; };
 		04648C4A1CB4D6AD006823C9 /* messageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageTableViewController.m; sourceTree = "<group>"; };
 		04648C4B1CB4D6AD006823C9 /* messageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = messageTableViewController.xib; sourceTree = "<group>"; };
@@ -2150,6 +2154,7 @@
 				044A24821CB4B2EA00A6379C /* msgTableViewCell.m */,
 				044A24831CB4B2EA00A6379C /* msgTableViewCell.xib */,
 				04648C4E1CB4D783006823C9 /* messageCell.xib */,
+				046400891CF935B40090A475 /* msgCell.xib */,
 				04648C491CB4D6AD006823C9 /* messageTableViewController.h */,
 				04648C4A1CB4D6AD006823C9 /* messageTableViewController.m */,
 				04648C4B1CB4D6AD006823C9 /* messageTableViewController.xib */,
@@ -3873,6 +3878,7 @@
 				31F5447D1CAE12B900307B83 /* homeNavView.m */,
 				31F5447F1CAE12C400307B83 /* homeNavView.xib */,
 				31AF47B91CAE65CA00A722CD /* mPersonNavView.xib */,
+				046400871CF9279D0090A475 /* chatNavView.xib */,
 				3123CC061C9261DA00C3B928 /* payViewController.h */,
 				3123CC071C9261DA00C3B928 /* payViewController.m */,
 				3123CC081C9261DA00C3B928 /* payViewController.xib */,
@@ -4645,6 +4651,7 @@
 				04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */,
 				040FE0E41CDB20E000270D4F /* mBarCodeView.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
+				046400881CF9279D0090A475 /* chatNavView.xib in Resources */,
 				04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */,
 				317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
@@ -4680,6 +4687,7 @@
 				04648C731CB50394006823C9 /* senderSubView.xib in Resources */,
 				317E46331CAD26A900217C60 /* RongCloudKit.strings in Resources */,
 				3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */,
+				0464008A1CF935B40090A475 /* msgCell.xib in Resources */,
 				312D08B71CAA1C560006F0FA /* read_me.txt in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
 				04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */,

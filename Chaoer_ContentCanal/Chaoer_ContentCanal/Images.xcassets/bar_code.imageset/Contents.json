@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bar_code.png",
+      "filename" : "管家_二维码.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bar_code-1.png",
+      "filename" : "管家_二维码-1.png",
       "scale" : "2x"
     },
     {

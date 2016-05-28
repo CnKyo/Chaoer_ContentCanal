@@ -1100,6 +1100,37 @@
  *  @param block 返回值
  */
 - (void)getCanelHistory:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+
+
+#pragma mark----获取消息列表
+/**
+ *  获取消息列表
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMsgList:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+
+#pragma mark----读消息
+/**
+ *  读消息
+ *
+ *  @param mId   消息id
+ *  @param block 返回值
+ */
+- (void)readMsg:(int)mId block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----删除消息
+/**
+ *  删除消息
+ *
+ *  @param mId   消息id
+ *  @param block 返回值
+ */
+- (void)deleteMsg:(int)mId block:(void(^)(mBaseData *resb))block;
+
 @end
 
 @interface SMessage : NSObject
@@ -2610,3 +2641,44 @@
 -(id)initWithObj:(NSDictionary*)obj;
 
 @end
+
+
+
+@interface GMsgObj : NSObject
+
+/**
+ *   id
+ */
+@property (nonatomic,assign) int        mId;
+/**
+ *  消息类型
+ */
+@property (nonatomic,assign) int        mType;
+/**
+ *  是否已读
+ */
+@property (nonatomic,assign) BOOL        mIsRead;
+/**
+ *  消息标题
+ */
+@property (nonatomic,strong) NSString*  mMsg_title;
+/**
+ *  消息内容
+ */
+@property (nonatomic,strong) NSString*  mMsg_content;
+/**
+ *  时间
+ */
+@property (nonatomic,strong) NSString *mGen_time;
+/**
+ *  扩展字段
+ */
+@property (nonatomic,strong) NSString *mExtras;
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+
+@end
+
+
+

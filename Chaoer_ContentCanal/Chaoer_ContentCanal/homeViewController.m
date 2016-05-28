@@ -78,6 +78,21 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    //设置聊天界面的颜色,风格
+    UIFont *font = [UIFont systemFontOfSize:19.f];
+    NSDictionary *textAttributes = @{
+                                     NSFontAttributeName : font,
+                                     NSForegroundColorAttributeName : [UIColor whiteColor]
+                                     };
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:M_CO];
+    //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavImg"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:M_CO];
+    
+    self.navigationController.navigationBarHidden = YES;
+
     [CurentLocation sharedManager];
     [self.tableView headerBeginRefreshing];
 }
@@ -91,6 +106,9 @@
     self.navBar.hidden = YES;
     self.mBanerArr = [NSMutableArray new];
     
+
+  
+
     
     mLat = nil;
     mLng = nil;

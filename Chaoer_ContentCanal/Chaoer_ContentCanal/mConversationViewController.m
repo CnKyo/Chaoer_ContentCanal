@@ -12,6 +12,7 @@
 #import <RongIMKit/RongIMKit.h>
 
 #import "RCChatViewController.h"
+#import "homeNavView.h"
 
 @interface mConversationViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,RCIMClientReceiveMessageDelegate,RCIMUserInfoDataSource,RCIMReceiveMessageDelegate>
 
@@ -24,8 +25,28 @@
 
     
     int mType;
+    homeNavView *mNavView;
+
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    //设置聊天界面的颜色,风格
+    UIFont *font = [UIFont systemFontOfSize:19.f];
+    NSDictionary *textAttributes = @{
+                                     NSFontAttributeName : font,
+                                     NSForegroundColorAttributeName : [UIColor whiteColor]
+                                     };
     
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:M_CO];
+    //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavImg"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:M_CO];
+    
+    self.navigationController.navigationBarHidden = YES;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,12 +56,23 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    self.navBar.hidden = YES;
 
     mType = 1;
     
     [self initViuew];
 }
 - (void)initViuew{
+    
+    mNavView = [homeNavView shareChatNav];
+//    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    [mNavView.mBackBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mNavView];
+    [mNavView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view).offset(0);
+        make.height.offset(@64);
+    }];
+
     
     
     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"我的小区",  @"附近的人"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:70 delegate:self andIsHiddenLine:NO andType:1];
@@ -67,6 +99,9 @@
 
 
     
+}
+- (void)leftAction:(UIButton *)sender{
+    [self popViewController];
 }
 - (void)getUserInfoWithUserId:(NSString *)userId
                    completion:(void (^)(RCUserInfo *userInfo))completion

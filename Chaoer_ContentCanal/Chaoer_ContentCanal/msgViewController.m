@@ -28,7 +28,7 @@
     self.hiddenRightBtn = YES;
     self.hiddenTabBar = YES;
     [self initView];
-    [self loadData];
+//    [self loadData];
 }
 - (void)initView{
     UIView *vvv= [UIView new];
@@ -41,11 +41,44 @@
     [self loadTableView:CGRectMake(0, 74, DEVICE_Width, DEVICE_Height-74) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.95 alpha:1.00];
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.haveHeader = YES;
+    [self.tableView headerBeginRefreshing];
     
-    UINib   *nib = [UINib nibWithNibName:@"msgTableViewCell" bundle:nil];
+    
+    
+    UINib   *nib = [UINib nibWithNibName:@"msgCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
 }
+
+- (void)headerBeganRefresh{
+
+    self.page = 1;
+    
+    [[mUserInfo backNowUser] getMsgList:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self.tempArray removeAllObjects];
+        [self DissMissEmptyView];
+        if (resb.mSucess) {
+            if (mArr.count <= 0) {
+                [self ShowEmptyViewWithTitle:@"暂时没有数据！请重试!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+                return ;
+            }else{
+            
+            
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+        }else{
+        
+            [self ShowEmptyViewWithTitle:@"暂时没有数据！请重试!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+
+        }
+        
+    }];
+    
+}
+
 - (void)loadData{
     
     
@@ -109,12 +142,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return mArr2.count;
+    return self.tempArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
     
 }
 
@@ -122,12 +155,28 @@
 {
     
     NSString *reuseCellId = @"cell";
-    NSDictionary *dic = mArr2[indexPath.row];
+   GMsgObj *mmsg = self.tempArray[indexPath.row];
 
     
     msgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    cell.mImg.image = [dic objectForKey:@"img"];
-    cell.mcontent.text = [dic objectForKey:@"name"];
+    if (mmsg.mType == 3) {
+        cell.mLogo.image = [UIImage imageNamed:@"system_msg"];
+    }else if(mmsg.mType == 2){
+        cell.mLogo.image = [UIImage imageNamed:@"fix_msg"];
+    }else{
+        
+        cell.mLogo.image = [UIImage imageNamed:@"money_msg"];
+    }
+    
+    
+    cell.mPoint.hidden = mmsg.mIsRead?YES:NO;
+    
+    
+    cell.mDetail.text = mmsg.mMsg_content;
+    cell.mTitle.text = mmsg.mMsg_title;
+    
+    cell.mTime.text = mmsg.mGen_time;
+    
     return cell;
     
     
@@ -138,37 +187,97 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dic = mArr2[indexPath.row];
-    int  i = [[dic objectForKey:@"ppp"] intValue];
-    switch (i) {
+    GMsgObj *mmsg = self.tempArray[indexPath.row];
+    
+    [self readMsg:mmsg.mId];
+    mmsg.mIsRead = YES;
+    
+    [tableView beginUpdates];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
+    [tableView reloadData];
+    
+    switch (mmsg.mType) {
         case 3:
         {
-            messageTableViewController *mmm = [[messageTableViewController alloc] initWithNibName:@"messageTableViewController" bundle:nil];
-            [self pushViewController:mmm];
-        }
-            break;
-        case 4:
-        {
+//            messageTableViewController *mmm = [[messageTableViewController alloc] initWithNibName:@"messageTableViewController" bundle:nil];
+//            [self pushViewController:mmm];
 
+            if (mmsg.mExtras.length > 0) {
+                WebVC* vc = [[WebVC alloc]init];
+                vc.mName = @"消息详情";
+                vc.mUrl = mmsg.mExtras;
+                [self pushViewController:vc];
+            }
             
         }
             break;
-        case 5:
-        {
-
-        }
-            break;
-        case 6:
-        {
-            
-        }
-            break;
-
+      
         default:
+            
+            [self readMsg:mmsg.mId];
+            
             break;
     }
 
     
 }
 
+#pragma mark----读消息
+- (void)readMsg:(int)mId{
+
+
+    
+    [[mUserInfo backNowUser] readMsg:mId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [self headerBeganRefresh];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    GMsgObj *mmsg = self.tempArray[indexPath.row];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.tempArray removeObject:self.tempArray[indexPath.row]];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self deleteMsg:mmsg.mId];
+        
+    }
+}
+#pragma mark----删除消息
+- (void)deleteMsg:(int)mId{
+    
+    
+    
+    [[mUserInfo backNowUser] deleteMsg:mId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [self headerBeganRefresh];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+}
 @end

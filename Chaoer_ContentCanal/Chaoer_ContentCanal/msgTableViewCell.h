@@ -40,6 +40,15 @@
  *  消息提示点
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mPoint;
+/**
+ *  消息标题
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mTitle;
+
+
+
+
+
 
 
 @end

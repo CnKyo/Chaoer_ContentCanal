@@ -560,7 +560,7 @@
         NSLog(@"选择了第%d行的%@",num,str);
         NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
         
-        [sender setTitle:str forState:0];
+        [sender setTitle:[NSString stringWithFormat:@"%@内送达",str] forState:0];
         mSelecteTimeStr = mTT2[num];
         [weakSelf.tableView reloadData];
     
