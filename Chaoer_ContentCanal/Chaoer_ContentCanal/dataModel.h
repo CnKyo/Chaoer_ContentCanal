@@ -2643,7 +2643,7 @@
 @end
 
 
-
+@class GExtra;
 @interface GMsgObj : NSObject
 
 /**
@@ -2673,12 +2673,45 @@
 /**
  *  扩展字段
  */
-@property (nonatomic,strong) NSString *mExtras;
+@property (nonatomic,strong) GExtra *mExtras;
+
+
+
 
 -(id)initWithObj:(NSDictionary*)obj;
 
 
 @end
 
+#pragma mark----*  消息扩展字段
+/**
+ *  消息扩展字段
+ */
+@interface GExtra : NSObject
+/**
+ *  平台类型
+ */
+@property (nonatomic,strong) NSString *mModel;
+/**
+ *  平台类型
+ */
+@property (nonatomic,assign) int        mPlaformtType;
 
+/**
+ *  订单类型
+ */
+@property (nonatomic,strong) NSString *mOrderType;
+/**
+ *  订单编号
+ */
+@property (nonatomic,strong) NSString *mOrderCode;
+/**
+ *  链接
+ */
+@property (nonatomic,strong) NSString *mUrl;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
 

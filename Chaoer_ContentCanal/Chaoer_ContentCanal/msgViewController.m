@@ -203,10 +203,10 @@
 //            messageTableViewController *mmm = [[messageTableViewController alloc] initWithNibName:@"messageTableViewController" bundle:nil];
 //            [self pushViewController:mmm];
 
-            if (mmsg.mExtras.length > 0) {
+            if (mmsg.mExtras.mUrl.length > 0) {
                 WebVC* vc = [[WebVC alloc]init];
                 vc.mName = @"消息详情";
-                vc.mUrl = mmsg.mExtras;
+                vc.mUrl = mmsg.mExtras.mUrl;
                 [self pushViewController:vc];
             }
             

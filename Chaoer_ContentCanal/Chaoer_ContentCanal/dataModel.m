@@ -4824,9 +4824,41 @@ bool pptbined = NO;
     self.mGen_time = [obj objectForKeyMy:@"gen_time"];
     
     
-    self.mExtras = [[Util dictionaryWithJsonString:[obj objectForKeyMy:@"extras"]] objectForKey:@"url"];
+    self.mExtras = [[GExtra alloc] initWithObj:[Util dictionaryWithJsonString:[obj objectForKeyMy:@"extras"]]];
+    
+    
 
 }
 
+
+@end
+
+@implementation GExtra
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mOrderType = [obj objectForKeyMy:@"order_type"];
+    
+    self.mModel = [obj objectForKeyMy:@"model"];
+    
+    self.mPlaformtType = [[obj objectForKeyMy:@"type"] intValue];
+    
+    self.mOrderCode = [obj objectForKeyMy:@"order_code"];
+    
+    self.mUrl = [obj objectForKeyMy:@"url "];
+    
+    
+    
+}
 
 @end
