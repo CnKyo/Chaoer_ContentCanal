@@ -27,7 +27,7 @@
     
     view.mCancelBtn.layer.masksToBounds = view.mOkBtn.layer.masksToBounds = YES;
     view.mCancelBtn.layer.cornerRadius = view.mOkBtn.layer.cornerRadius = 3;
-    view.mCancelBtn.layer.borderColor = view.mOkBtn.layer.borderColor = M_CO.CGColor;
+    view.mCancelBtn.layer.borderColor = view.mOkBtn.layer.borderColor = [UIColor colorWithRed:0.43 green:0.43 blue:0.43 alpha:1.00].CGColor;
     view.mCancelBtn.layer.borderWidth = view.mOkBtn.layer.borderWidth = 0.5;
 
     

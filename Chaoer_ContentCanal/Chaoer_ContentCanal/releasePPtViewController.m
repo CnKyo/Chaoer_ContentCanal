@@ -188,6 +188,7 @@
 - (void)tap{
     [self hiddenPopView];
 }
+#pragma mark----加载价格view
 - (void)loadPopView{
 
     mPopView = [mPriceView shareView];
@@ -222,8 +223,15 @@
     }
     mMin = mPopView.mMin.text;
     mMax = mPopView.mMax.text;
-    if (mMin > mMax) {
+    
+    int mIn = 0;
+    mIn = [mMin intValue];
+    int mAx = 0;
+    mAx = [mMax intValue];
+    if (mIn > mAx) {
         [self showErrorStatus:@"最高价不能低于最低价！"];
+        [mPopView.mMax becomeFirstResponder];
+
         return;
     }else{
         [self hiddenPopView];
@@ -615,6 +623,7 @@
     }];
 
 }
+#pragma mark----选择价格
 - (void)mPriceAction:(UIButton *)sender{
 
     [self showPopView];
