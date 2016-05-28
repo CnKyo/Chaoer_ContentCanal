@@ -699,7 +699,7 @@
     
     [self showWithStatus:@"正在操作..."];
     
-    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
             

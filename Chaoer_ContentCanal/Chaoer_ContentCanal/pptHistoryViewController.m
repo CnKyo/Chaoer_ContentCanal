@@ -271,7 +271,7 @@
     
     pptHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    
+    cell.mStatus.text = mOrder.mStatusName;
     
     [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 

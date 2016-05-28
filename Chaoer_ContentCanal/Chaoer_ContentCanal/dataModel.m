@@ -198,7 +198,7 @@ bool g_bined = NO;
     
     int mIdd =  [[obj objectForKeyMy:@"identity"] intValue];
     
-    if (mIdd == 2) {
+    if (mIdd == 1) {
         self.mIdentity = @"房主";
     }else{
         self.mIdentity = @"租客";
@@ -1099,10 +1099,10 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         mUrlStr = @"app/house/appBindHouse";
     }else{
         mUrlStr = @"app/house/appAddHouse";
-        [para setObject:mName forKey:@"ownerName"];
     }
 
-    
+    [para setObject:mName forKey:@"ownerName"];
+
     
    
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];

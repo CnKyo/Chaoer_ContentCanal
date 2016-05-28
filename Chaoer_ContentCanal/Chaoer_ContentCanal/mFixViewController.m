@@ -128,7 +128,7 @@
     self.hiddenTabBar = YES;
 
     mSelecte = 1;
-    
+    mSuperID = nil;
     [self initTableView];
 //    [self initView];
     
@@ -136,7 +136,7 @@
 
 - (void)initTableView{
     
-    NSArray *tt=  @[@"家电类",@"清洁类",@"管道类"];
+    NSArray *tt=  @[@"管道类",@"清洁类",@"家电类"];
     mSuperID = @"1";
     WKLeftView *mLeftView = [[WKLeftView alloc] initWithFrame:CGRectMake(0, 64, 80, DEVICE_Height) titles:tt clickBlick:^(NSInteger index) {
         NSLog(@"点击了%ld",(long)index);

@@ -145,6 +145,11 @@
     mTT2 = [NSMutableArray new];
     mTT3 = [NSMutableArray new];
     mTT4 = [NSMutableArray new];
+    
+    mBan = nil;
+    mUnit = nil;
+    mFloor= nil;
+    mDoornum= nil;
     [self initViewData];
     
     
@@ -485,6 +490,23 @@
         return;
     }
     
+    if (mBan == nil || mBan.length <= 0 ||[mBan isEqualToString:@""]) {
+        [self showErrorStatus:@"请选择楼栋信息！"];
+        return;
+    }
+    if (mUnit == nil || mUnit.length <= 0 ||[mUnit isEqualToString:@""]) {
+        [self showErrorStatus:@"请选择楼栋信息！"];
+        return;
+    }
+    if (mFloor == nil || mFloor.length <= 0 ||[mFloor isEqualToString:@""]) {
+        [self showErrorStatus:@"请选择楼栋信息！"];
+        return;
+    }
+    if (mDoornum == nil || mDoornum.length <= 0 ||[mDoornum isEqualToString:@""]) {
+        [self showErrorStatus:@"请选择楼栋信息！"];
+        return;
+    }
+    
     NSArray *mBanArr = [mBan componentsSeparatedByString:@"栋"];
     NSString *mBanStr1 = [mBanArr objectAtIndex:0];
     
@@ -508,13 +530,18 @@
         isUp = NO;
     }
     
-    
+    if (mView.mNameTx.text.length == 0) {
+        [self showErrorStatus:@"姓名不能为空！"];
+        [mView.mNameTx becomeFirstResponder];
+        [mView.mNameTx shake];
+        return;
+    }
     
     if (self.Type == 1) {
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
      
-        [[mUserInfo backNowUser] realyCodeAndCommunityId:1 andName:nil andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] realyCodeAndCommunityId:1 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
@@ -530,12 +557,7 @@
         
     }else{
         
-        if (mView.mNameTx.text.length == 0) {
-            [self showErrorStatus:@"姓名不能为空！"];
-            [mView.mNameTx becomeFirstResponder];
-            [mView.mNameTx shake];
-            return;
-        }
+      
         
         [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
         [[mUserInfo backNowUser] realyCodeAndCommunityId:2 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text  block:^(mBaseData *resb) {

@@ -147,13 +147,13 @@
 #pragma mark - 该方法返回的NSString将作为UIPickerView中指定列和列表项的标题文本
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (0 == component) {
+    if (component  == 0) {
         
         GCodeProvince *GProvince = self.mProvinceArr[row];
         return GProvince.mProvinceName;
        
     }
-    else if(1 == component){
+    else if(component == 1){
         
         NSInteger rowProvince = [pickerView selectedRowInComponent:0];
         GCodeProvince *GProvince = self.mProvinceArr[rowProvince];

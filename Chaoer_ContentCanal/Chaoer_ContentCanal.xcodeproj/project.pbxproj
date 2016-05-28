@@ -5390,7 +5390,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
+				PROVISIONING_PROFILE = "8b9a84db-fc70-4a14-8a5b-5e7df6077e17";
 			};
 			name = Debug;
 		};
@@ -5400,8 +5400,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ping Tang (5FKH22H2X2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ping Tang (5FKH22H2X2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5444,7 +5444,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95fa90c6-c941-48ff-8292-da2c00b44203";
+				PROVISIONING_PROFILE = "8b9a84db-fc70-4a14-8a5b-5e7df6077e17";
 			};
 			name = Release;
 		};
