@@ -491,7 +491,7 @@
 
             [cell.mDoneBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
             cell.mDoneBtn.backgroundColor = M_CO;
-
+            cell.mDoneBtn.tag = 10;
             
         }else{
             
@@ -502,7 +502,7 @@
                 cell.mDoneBtn.backgroundColor = M_CO;
                 cell.mDoneBtn.enabled = YES;
                 [cell.mDoneBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-
+                cell.mDoneBtn.tag = 20;
             }
         }
 
@@ -660,57 +660,63 @@
 #pragma mark----接单
 - (void)getOrderAction:(mOrderButton *)sender{
     
- 
-    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
-        return;
-    }
-    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
-        return;
-    }
-    
-    [self showWithStatus:@"正在操作..."];
-    [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            
-            [self showSuccessStatus:resb.mMessage];
-            [self.tableView headerBeginRefreshing];
-        }else{
-            
-            [self showErrorStatus:resb.mMessage];
+    if (sender.tag == 20 ) {
+        if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能接单哦！"];
+            return;
+        }
+        if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能接单哦！"];
+            return;
         }
         
-    }];
+        [self showWithStatus:@"正在操作..."];
+        [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                
+                [self showSuccessStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+
+    }
+ 
     
 }
 
 - (void)mCancelOrderAction:(mOrderButton *)sender{
 
-    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能操作哦！"];
-        return;
-    }
-    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能操作哦！"];
-        return;
-    }
-    
-    [self showWithStatus:@"正在操作..."];
-    
-    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            
-            [self showSuccessStatus:resb.mMessage];
-            [self.tableView headerBeginRefreshing];
-        }else{
-            
-            [self showErrorStatus:resb.mMessage];
+    if (sender.tag == 10) {
+        if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能操作哦！"];
+            return;
+        }
+        if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能操作哦！"];
+            return;
         }
         
-    }];
+        [self showWithStatus:@"正在操作..."];
+        
+        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                
+                [self showSuccessStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+
+    }
     
 
     

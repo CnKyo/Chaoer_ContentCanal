@@ -230,6 +230,8 @@
 
                 [cell.mDoBtn addTarget:self action:@selector(mCancelOrderAction:) forControlEvents:UIControlEventTouchUpInside];
                 }
+                
+                cell.mDoBtn.tag = 10;
 
             }else{
                 if ([mUserInfo backNowUser].mIs_leg != 5) {
@@ -239,7 +241,7 @@
                     cell.mDoBtn.backgroundColor = M_CO;
                     cell.mDoBtn.enabled = YES;
                     [cell.mDoBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-
+                    cell.mDoBtn.tag = 20;
                 }
             }
         }
@@ -353,7 +355,7 @@
             cell.mDoBtn.backgroundColor = M_CO;
 
             [cell.mDoBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-            
+            cell.mDoBtn.tag = 30;
             mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
         }else if (self.mOrder.mProcessStatus == 4){
             /**
@@ -364,7 +366,7 @@
             cell.mDoBtn.backgroundColor = M_CO;
 
             [cell.mDoBtn addTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-            
+            cell.mDoBtn.tag = 40;
             mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
         }else{
             /**
@@ -457,33 +459,89 @@
 #pragma mark----接单
 - (void)getOrderAction:(mOrderButton *)sender{
 
-    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
-        return;
-    }
-    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能接单哦！"];
-        return;
-    }
-    
-    [self showWithStatus:@"正在操作..."];
-    [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:self.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",self.mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            
-            [self showSuccessStatus:resb.mMessage];
-            [self popViewController];
-        }else{
-        
-            [self showErrorStatus:resb.mMessage];
+    if (sender.tag == 20) {
+        if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能接单哦！"];
+            return;
+        }
+        if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能接单哦！"];
+            return;
         }
         
-    }];
+        [self showWithStatus:@"正在操作..."];
+        [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:self.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",self.mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                
+                [self showSuccessStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+    }
+    
+
     
 }
-#pragma mark----取消订单
-- (void)cancelOrderAction:(mOrderButton *)sender{
+
+#pragma mark----完成订单
+- (void)finishOrderAction:(mOrderButton *)sender{
+    if (sender.tag == 30) {
+        if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
+            [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
+            return;
+        }
+        if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能确认完成！"];
+            return;
+        }
+        
+        [self showWithStatus:@"正在操作..."];
+        
+        [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }
+            
+            
+        }];
+
+    }
     
+    
+    
+    
+    
+}
+#pragma mark----评价订单
+- (void)rateOrderAction:(mOrderButton *)sender{
+    if (sender.tag == 40) {
+        evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
+        eee.mOrder = GPPTOrder.new;
+        eee.mOrder = sender.mOrder;
+        eee.mLat = self.mLat;
+        eee.mLng = self.mLng;
+        eee.mType = self.mType;
+        [self pushViewController:eee];
+    }
+ 
+
+}
+
+
+#pragma mark----取消订单
+- (void)mCancelOrderAction:(mOrderButton *)sender{
+    if (sender.tag == 10) {
         if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
             [self showErrorStatus:@"必须打开定位才能操作哦！"];
             return;
@@ -495,7 +553,7 @@
         
         [self showWithStatus:@"正在操作..."];
         
-        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 
@@ -507,83 +565,8 @@
             }
             
         }];
-        
-    
-    
-
-}
-#pragma mark----完成订单
-- (void)finishOrderAction:(mOrderButton *)sender{
-    
-    if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
-        [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
-        return;
     }
-    if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能确认完成！"];
-        return;
-    }
-    
-    [self showWithStatus:@"正在操作..."];
-    
-    [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            [self showSuccessStatus:resb.mMessage];
-            [self.tableView headerBeginRefreshing];
-        }else{
-        
-            [self showErrorStatus:resb.mMessage];
-            [self.tableView headerBeginRefreshing];
-        }
-        
-        
-    }];
-    
-    
-    
-    
-    
-}
-#pragma mark----评价订单
-- (void)rateOrderAction:(mOrderButton *)sender{
-    evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
-    eee.mOrder = GPPTOrder.new;
-    eee.mOrder = sender.mOrder;
-    eee.mLat = self.mLat;
-    eee.mLng = self.mLng;
-    eee.mType = self.mType;
-    [self pushViewController:eee];
 
-}
-
-
-#pragma mark----取消订单
-- (void)mCancelOrderAction:(mOrderButton *)sender{
-    
-    if (self.mLng ==nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能操作哦！"];
-        return;
-    }
-    if (self.mLat ==nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-        [self showErrorStatus:@"必须打开定位才能操作哦！"];
-        return;
-    }
-    
-    [self showWithStatus:@"正在操作..."];
-    
-    [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            
-            [self showSuccessStatus:resb.mMessage];
-            [self.tableView headerBeginRefreshing];
-        }else{
-            
-            [self showErrorStatus:resb.mMessage];
-        }
-        
-    }];
     
     
     

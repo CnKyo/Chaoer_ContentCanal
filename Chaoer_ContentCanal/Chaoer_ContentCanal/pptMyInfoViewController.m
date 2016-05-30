@@ -119,7 +119,7 @@
         mMoneyLb.frame = CGRectMake(mHeaderView.mwidth/2-60, line2.mbottom+10, 120, 20);
         mMoneyLb.textColor = [UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
         mMoneyLb.font = [UIFont systemFontOfSize:15];
-        mMoneyLb.text = [NSString stringWithFormat:@"累计收益：%d元",mPPTUser.mDeposit];
+        mMoneyLb.text = [NSString stringWithFormat:@"累计收益：%d元",mPPTUser.mPile];
         mMoneyLb.textAlignment = NSTextAlignmentCenter;
         [mHeaderView addSubview:mMoneyLb];
     }
@@ -128,7 +128,7 @@
     if (mMoneyProgress == nil) {
         mMoneyProgress = [[CustomProgress alloc] initWithFrame:CGRectMake(15, mMoneyLb.mbottom+5, DEVICE_Width-30, 15) andType:1];
         mMoneyProgress.mType = 1;
-        mMoneyProgress.maxValue = mPPTUser.mDeposit*5;
+        mMoneyProgress.maxValue = mPPTUser.mPile*5;
         //设置背景色
         mMoneyProgress.bgimg.backgroundColor =[UIColor colorWithRed:188/255.0 green:188/255.0 blue:188/255.0 alpha:1];
         mMoneyProgress.leftimg.backgroundColor =[UIColor colorWithRed:1.00 green:0.78 blue:0.35 alpha:1.00];
@@ -174,7 +174,7 @@
 -(void)timer22
 {
     money++;
-    if (money <= mPPTUser.mDeposit){
+    if (money <= mPPTUser.mPile){
         [mMoneyProgress setPresent:money];
     }
     else
@@ -306,7 +306,8 @@
     
     
     pptMyInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     cell.mName.text = mPPTUser.mName;
     cell.mSex.text = mPPTUser.mSex;
     cell.mIdentify.text = [NSString stringWithFormat:@"%@",mPPTUser.mCardID];

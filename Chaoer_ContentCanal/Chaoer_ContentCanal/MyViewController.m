@@ -265,25 +265,18 @@
 }
 
 - (void)headerBeganRefresh{
-
-//    if ([mUserInfo backNowUser].mId == 0) {
-//        [self headerEndRefresh];
-//
-//        [self initData];
-//
-//    }else{
-        [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
-            [self headerEndRefresh];
-
-            [self DissMissEmptyView];
-            
-            if (resb.mSucess) {
-                [self initData];
-            }else{
-                [self ShowEmptyViewWithTitle:resb.mMessage andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
-            }
-        }];
-//    }
+    
+    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+        [self headerEndRefresh];
+        
+        [self DissMissEmptyView];
+        
+        if (resb.mSucess) {
+            [self initData];
+        }else{
+            [self ShowEmptyViewWithTitle:resb.mMessage andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+        }
+    }];
     
 }
 

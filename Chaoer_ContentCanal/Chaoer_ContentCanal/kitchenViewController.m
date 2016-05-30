@@ -152,7 +152,7 @@
     GCook *mCook = self.tempArray[indexPath.row];
     
     kitchenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    
+    [cell.mBgkImg sd_cancelCurrentImageLoad];
     [cell.mBgkImg sd_setImageWithURL:[NSURL URLWithString:mCook.mImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     cell.mContent.text = mCook.mName;
