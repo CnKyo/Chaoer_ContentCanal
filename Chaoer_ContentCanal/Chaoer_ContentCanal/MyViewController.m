@@ -225,18 +225,41 @@
 
 - (void)logoutAction:(UIButton *)sender{
 
-    [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:10];
+    [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:11];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if( buttonIndex == 1)
-    {
-        if (alertView.tag == 10) {
-            [mUserInfo logOut];
-            [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-            [self gotoLoginVC];
-        }else if (alertView.tag == 11){
+    if (alertView.tag == 11) {
+        if( buttonIndex == 1)
+        {
+            if (alertView.tag == 10) {
+                [mUserInfo logOut];
+                [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+                [self gotoLoginVC];
+            }else if (alertView.tag == 11){
+                if([mUserInfo backNowUser].mIsHousingAuthentication){
+                    
+                    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                    [self pushViewController:vvv];
+                    
+                    
+                }else{
+                    needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                    nnn.Type = 1;
+                    
+                    [self pushViewController:nnn];
+                }
+                
+                
+            }
+            
+            
+        }
+
+    }else{
+        if( buttonIndex == 1)
+        {
             if([mUserInfo backNowUser].mIsHousingAuthentication){
                 
                 verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
@@ -249,12 +272,12 @@
                 
                 [self pushViewController:nnn];
             }
-
+            
             
         }
-        
-
     }
+    
+   
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
     
@@ -287,7 +310,8 @@
 }
 #pragma mark----信息事件
 - (void)mMsgAction:(UIButton *)sender{
-//    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+    //                [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
+
 //    return;
     NSLog(@"消息");
     msgViewController *mmm = [[msgViewController alloc] initWithNibName:@"msgViewController" bundle:nil];
@@ -461,35 +485,39 @@
         case 2:
         {
             NSLog(@"我的跑腿");
-            
-            int m_leg = [mUserInfo backNowUser].mIs_leg;
-            
-            if ( m_leg == 0) {
-                openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
-                [self pushViewController:ppp];
+            if (![mUserInfo backNowUser].mIsRegist) {
+                
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }else{
+                int m_leg = [mUserInfo backNowUser].mIs_leg;
+                
+                if ( m_leg == 0) {
+                    openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+                    [self pushViewController:ppp];
+                    
+                }else if (m_leg == 1){
+                    depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+                    [self pushViewController:ddd];
+                    
+                }
+                else if (m_leg == 2){
+                    [self showSuccessStatus:@"正在审核中，请耐心等待！"];
+                }else if (m_leg == 3){
+                    [self showErrorStatus:@"您已被系统禁用!"];
+                    
+                }else if (m_leg == 4){
+                    [self showErrorStatus:@"您已注销!"];
+                    
+                }
+                else{
+                    [self showSuccessStatus:@"您已成为跑腿者，无需再次申请！"];
+                    
+                }
 
-            }else if (m_leg == 1){
-                depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
-                [self pushViewController:ddd];
-
+                
             }
-            else if (m_leg == 2){
-                [self showSuccessStatus:@"正在审核中，请耐心等待！"];
-            }else if (m_leg == 3){
-                [self showErrorStatus:@"您已被系统禁用!"];
-
-            }else if (m_leg == 4){
-                [self showErrorStatus:@"您已注销!"];
-
-            }
-            else{
-                [self showSuccessStatus:@"您已成为跑腿者，无需再次申请！"];
-
-            }
-            
-            
-            
-            
+  
            
         }
             break;
@@ -497,7 +525,7 @@
         {
 
             NSLog(@"我的二维码");
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
 //            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
 //            
@@ -509,7 +537,7 @@
         case 4:
         {
 
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
             //            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
             //            [self pushViewController:mmm];
             
@@ -534,7 +562,7 @@
             break;
         case 6:
         {
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
             
         }

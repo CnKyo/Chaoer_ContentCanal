@@ -439,7 +439,7 @@
     switch (sender.tag) {
         case 0:
         {
-            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 //
 //            communityViewController   *ppp = [communityViewController new];
 //            [self pushViewController:ppp];
@@ -493,7 +493,8 @@
             mmm.mLng = mLng;
             mmm.mLat = mLat;
             [self pushViewController:mmm];
-//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            //                        [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
+
 
             
 
@@ -509,7 +510,8 @@
 
             communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
             [self pushViewController:ccc];
-//            [LCProgressHUD showInfoMsg:@"正在建设中..."];
+            //                        [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
+
 
 
         }

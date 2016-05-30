@@ -159,7 +159,7 @@
  *  @param sender
  */
 - (IBAction)mParkAction:(id)sender {
-    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+    [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
     return;
 //    UIButton *bbb = sender;
 //    bbb.selected = !bbb.selected;

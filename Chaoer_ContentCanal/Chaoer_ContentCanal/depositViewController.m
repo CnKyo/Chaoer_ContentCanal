@@ -8,6 +8,8 @@
 
 #import "depositViewController.h"
 #import "pptStatusViewController.h"
+#import "mBalanceViewController.h"
+
 @interface depositViewController ()
 @property (weak, nonatomic) IBOutlet UIView *mView;
 @property (weak, nonatomic) IBOutlet UIButton *mOkBtn;
@@ -56,32 +58,44 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    if( buttonIndex == 1)
-    {
-      
-        if ([mUserInfo backNowUser].mMoney < 100) {
+    if (alertView.tag == 10) {
+        if( buttonIndex == 1)
+        {
             
-            [LCProgressHUD showInfoMsg:@"您的余额不足！"];
-            return;
-        }else{
-            [self showErrorStatus:@"正在提交...."];
-            [[mUserInfo backNowUser] payPPTAplly:^(mBaseData *resb) {
-                if (resb.mSucess) {
-                    [self dismiss];
-                    
-                    pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
-                    [self pushViewController:ppp];
-                    
-                }else{
-                    [self showErrorStatus:resb.mMessage];
-                }
-            }];
+            if ([mUserInfo backNowUser].mMoney < 100) {
+                
+                [self AlertViewShow:@"提交失败" alertViewMsg:@"您的余额不足！请充值！" alertViewCancelBtnTiele:@"取消" alertTag:11];
+                
+                return;
+            }else{
+                [self showErrorStatus:@"正在提交...."];
+                [[mUserInfo backNowUser] payPPTAplly:^(mBaseData *resb) {
+                    if (resb.mSucess) {
+                        [self dismiss];
+                        
+                        pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
+                        [self pushViewController:ppp];
+                        
+                    }else{
+                        [self showErrorStatus:resb.mMessage];
+                    }
+                }];
+                
+            }
+            
             
         }
 
+    }else{
+        if( buttonIndex == 1)
+        {
+            mBalanceViewController *mmm = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
+            [self pushViewController:mmm];
+        }
+        
         
     }
+   
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
     

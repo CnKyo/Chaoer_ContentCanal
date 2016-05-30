@@ -49,7 +49,7 @@
     
 //    mBundleViewController *mmm = [[mBundleViewController alloc] initWithNibName:@"mBundleViewController" bundle:nil];
 //    [self pushViewController:mmm];
-    [LCProgressHUD showInfoMsg:@"正在建设中..."];
+    [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
     
 }
