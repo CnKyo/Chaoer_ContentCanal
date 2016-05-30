@@ -31,6 +31,8 @@
 
 @property (strong,nonatomic) NSArray *mCityArr;
 
+@property (strong,nonatomic) NSArray *mArr1;
+
 - (id)initWithFrame:(CGRect)frame andArr:(NSArray *)mArr;
 
 

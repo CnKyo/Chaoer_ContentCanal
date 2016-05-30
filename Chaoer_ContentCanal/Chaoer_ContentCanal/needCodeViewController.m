@@ -496,32 +496,54 @@
             [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
         }
         
-        if (mTT1.count == 1 || _detailAddressPicker.selectedKey1 == nil) {
+        if (mTT1.count == 1) {
             mBan = mTT1[0];
         }else{
             mBan = _detailAddressPicker.selectedKey1;
         }
         
-        if (mTT2.count == 1 || _detailAddressPicker.selectedkey2 == nil) {
+        if (mTT2.count == 1) {
             mUnit = mTT2[0];
         }else{
             mUnit = _detailAddressPicker.selectedkey2;
         }
-        if (mTT3.count == 0 || _detailAddressPicker.selectedkey3 == nil) {
+        if (mTT3.count == 0) {
             mFloor = mTT3[0];
         }else{
             mFloor = _detailAddressPicker.selectedkey3;
         }
         
-        if (mTT4.count == 0 || _detailAddressPicker.selectedkey4 == nil) {
+        if (mTT4.count == 0 ) {
             mDoornum = mTT4[0];
         }else{
             mDoornum = _detailAddressPicker.selectedkey4;
         }
         
+        if (_detailAddressPicker.selectedKey1 == nil) {
+            mBan = mTT1[0];
+        }else{
+            mBan = _detailAddressPicker.selectedKey1;
+        }
         
+        if ( _detailAddressPicker.selectedkey2 == nil) {
+            mUnit = mTT2[0];
+        }else{
+            mUnit = _detailAddressPicker.selectedkey2;
+        }
+        if ( _detailAddressPicker.selectedkey3 == nil) {
+            mFloor = mTT3[0];
+        }else{
+            mFloor = _detailAddressPicker.selectedkey3;
+        }
         
+        if ( _detailAddressPicker.selectedkey4 == nil) {
+            mDoornum = mTT4[0];
+        }else{
+            mDoornum = _detailAddressPicker.selectedkey4;
+        }
         
+        [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mBan,mUnit,mFloor,mDoornum] forState:0];
+
         
         
     }

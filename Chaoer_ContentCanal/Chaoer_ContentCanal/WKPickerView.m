@@ -127,28 +127,38 @@
         
         NSMutableArray *mTT = [NSMutableArray new];
         
-        for (GCodeProvince *GProvince in self.mProvinceArr) {
-            [mTT addObject:GProvince.mProvinceName];
+        for (GAddArearObj *mAddObj in self.mProvinceArr) {
+            [mTT addObject:[NSString stringWithFormat:@"%d栋",mAddObj.mBan]];
         }
         
-        return mTT.count;
+        return self.mProvinceArr.count;
     }
     else if (1 == component) {
         NSInteger rowProvince = [pickerView selectedRowInComponent:0];
-        GCodeProvince *GProvince = self.mProvinceArr[rowProvince];
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
         
-        return GProvince.mProvinceArr.count;
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[rowProvince];
+        
+        return mUnitObj.mUnit;
+        
+    }else if(component == 2){
+        
+        NSInteger rowProvince = [pickerView selectedRowInComponent:0];
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
+        
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[rowProvince];
+        
+        return mUnitObj.mFloor;
+
+  
     }else{
         NSInteger rowProvince = [pickerView selectedRowInComponent:0];
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
         
-        GCodeProvince *GProvince = self.mProvinceArr[rowProvince];
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[rowProvince];
         
+        return mUnitObj.mRoomNum;
         
-        NSInteger rowCity = [pickerView selectedRowInComponent:1];
-        
-        GCodeArear *GArear = GProvince.mProvinceArr[rowCity];
-        
-        return GArear.mArearArr.count;
     }
 }
 #pragma mark - 该方法返回的NSString将作为UIPickerView中指定列和列表项的标题文本
@@ -156,33 +166,39 @@
 {
     if (component  == 0) {
         
-        GCodeProvince *GProvince = self.mProvinceArr[row];
-        return GProvince.mProvinceName;
+       
+        
+        GAddArearObj *mAddObj = self.mProvinceArr[row];
+        return [NSString stringWithFormat:@"%d栋",mAddObj.mBan];
         
     }
     else if(component == 1){
         
         NSInteger rowProvince = [pickerView selectedRowInComponent:0];
-        GCodeProvince *GProvince = self.mProvinceArr[rowProvince];
-        GCodeArear *GArear = GProvince.mProvinceArr[row];
-        return GArear.mArearName;
         
-    }else{
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
         
+         GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[row];
+        return [NSString stringWithFormat:@"%d单元",mUnitObj.mUnit];
         
+    }else if (component == 2){
+        NSInteger rowProvince = [pickerView selectedRowInComponent:0];
+        
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
+        
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[row];
+        return [NSString stringWithFormat:@"%d楼",mUnitObj.mFloor];
+
+    }
+    else{
         
         NSInteger rowProvince = [pickerView selectedRowInComponent:0];
         
-        GCodeProvince *GProvince = self.mProvinceArr[rowProvince];
+        GAddArearObj *mAddObj = self.mProvinceArr[rowProvince];
         
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[row];
         
-        NSInteger rowCity = [pickerView selectedRowInComponent:1];
-        
-        GCodeArear *GArear = GProvince.mProvinceArr[rowCity];
-        
-        GCodeCity *GCity = GArear.mArearArr[row];
-        
-        return GCity.mCityName;
+        return [NSString stringWithFormat:@"%d号",mUnitObj.mRoomNum];
     }
 }
 
