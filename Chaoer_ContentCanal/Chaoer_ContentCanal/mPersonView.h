@@ -13,6 +13,7 @@
  *  头像
  */
 @property (strong, nonatomic) IBOutlet UIImageView *mHeaderImg;
+@property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
 
 /**
  *  姓名

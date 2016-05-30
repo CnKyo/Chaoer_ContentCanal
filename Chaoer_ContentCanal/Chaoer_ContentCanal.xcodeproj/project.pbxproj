@@ -276,6 +276,7 @@
 		04F9E5D81CED4D8B00FCA8B7 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CB1CED4D8B00FCA8B7 /* NSObject+MJProperty.m */; };
 		04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CD1CED4D8B00FCA8B7 /* NSString+MJExtension.m */; };
 		04F9E5DA1CED4D8B00FCA8B7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CE1CED4D8B00FCA8B7 /* README.md */; };
+		04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */; };
 		16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */; };
 		16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB81C3D13A400B9A850 /* AlipaySDK.framework */; };
 		16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB91C3D13A400B9A850 /* libcrypto.a */; };
@@ -1168,6 +1169,8 @@
 		04F9E5CC1CED4D8B00FCA8B7 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		04F9E5CD1CED4D8B00FCA8B7 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		04F9E5CE1CED4D8B00FCA8B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04FE0DD41CFC01CF003CAF88 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		16279CB81C3D13A400B9A850 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		16279CB91C3D13A400B9A850 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -2659,6 +2662,15 @@
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
+		04FE0DD31CFC01C3003CAF88 /* ImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				04FE0DD41CFC01CF003CAF88 /* UIImage+ImageEffects.h */,
+				04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */,
+			);
+			name = ImageEffects;
+			sourceTree = "<group>";
+		};
 		16279CB61C3D13A400B9A850 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -4080,6 +4092,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04FE0DD31CFC01C3003CAF88 /* ImageEffects */,
 				0453DBFD1CF88F8B006C9B6B /* LtpickerView */,
 				04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */,
 				04F2281E1CEEE4CA004E8702 /* XKPEActionPicker */,
@@ -5127,6 +5140,7 @@
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,
+				04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */,
 				04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */,
 				742739CE1B7D900600EE58B1 /* UITableViewCell+HDFAutoCalculateHeight.m in Sources */,
 				04E5A7E51CE579B000A2D111 /* MCPopMenuPresentAnimator.m in Sources */,

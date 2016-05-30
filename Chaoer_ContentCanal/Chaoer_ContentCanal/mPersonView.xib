@@ -12,6 +12,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-re-pHA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_headerdefault" translatesAutoresizingMaskIntoConstraints="NO" id="pFT-NL-1st">
                     <rect key="frame" x="10" y="10" width="75" height="75"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -152,10 +155,11 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.90980392160000001" green="0.53725490200000003" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="DZs-bm-VO2" secondAttribute="trailing" constant="8" id="1LN-tr-Mie"/>
                 <constraint firstItem="zA2-sl-FVl" firstAttribute="leading" secondItem="Mkw-PZ-ovk" secondAttribute="trailing" constant="8" id="4lp-hM-mRs"/>
+                <constraint firstAttribute="trailing" secondItem="9c9-re-pHA" secondAttribute="trailing" id="5eV-Q6-RdX"/>
                 <constraint firstItem="H7D-S0-32o" firstAttribute="top" secondItem="by2-sQ-vh0" secondAttribute="bottom" constant="2" id="6iU-ci-7fI"/>
                 <constraint firstItem="jOp-Ft-DfR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="79g-Ew-5hu"/>
                 <constraint firstItem="DZs-bm-VO2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="AMy-wa-n7N"/>
@@ -165,6 +169,7 @@
                 <constraint firstAttribute="bottom" secondItem="H7D-S0-32o" secondAttribute="bottom" id="P95-jF-Vqd"/>
                 <constraint firstItem="pFT-NL-1st" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="PF6-13-PNP"/>
                 <constraint firstItem="H7D-S0-32o" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QvD-ET-x1g"/>
+                <constraint firstItem="9c9-re-pHA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qz5-yL-U0d"/>
                 <constraint firstAttribute="trailing" secondItem="zA2-sl-FVl" secondAttribute="trailing" constant="13" id="RgY-vW-tVY"/>
                 <constraint firstItem="UkL-hJ-nsQ" firstAttribute="top" secondItem="DZs-bm-VO2" secondAttribute="bottom" constant="15" id="TSb-r8-bwH"/>
                 <constraint firstAttribute="trailing" secondItem="H7D-S0-32o" secondAttribute="trailing" id="ZfC-XF-sDT"/>
@@ -175,12 +180,15 @@
                 <constraint firstItem="DZs-bm-VO2" firstAttribute="leading" secondItem="pFT-NL-1st" secondAttribute="trailing" constant="8" id="nUp-1z-CVK"/>
                 <constraint firstItem="Mkw-PZ-ovk" firstAttribute="width" secondItem="jOp-Ft-DfR" secondAttribute="height" multiplier="181:21" id="tsz-A7-FdK"/>
                 <constraint firstItem="zA2-sl-FVl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="tzX-vz-xbu"/>
+                <constraint firstAttribute="bottom" secondItem="9c9-re-pHA" secondAttribute="bottom" id="vPh-VK-a5b"/>
+                <constraint firstItem="9c9-re-pHA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vhx-Pn-xeU"/>
                 <constraint firstItem="UkL-hJ-nsQ" firstAttribute="leading" secondItem="pFT-NL-1st" secondAttribute="trailing" constant="8" id="wef-Gb-m3a"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="mBalance" destination="0a6-lJ-UOq" id="87G-hL-r5Y"/>
+                <outlet property="mBgkImg" destination="9c9-re-pHA" id="Mlj-x0-24S"/>
                 <outlet property="mHeaderBtn" destination="by2-sQ-vh0" id="sJA-lx-sy1"/>
                 <outlet property="mHeaderImg" destination="pFT-NL-1st" id="82U-VJ-US3"/>
                 <outlet property="mJob" destination="jOp-Ft-DfR" id="AHv-6Y-lTW"/>

@@ -106,12 +106,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "486273407.198877"
+                  timestampString = "486281236.295244"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
                   endingLineNumber = "165"
-                  offsetFromSymbolStart = "80">
+                  offsetFromSymbolStart = "108">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "486273407.199629"
+                  timestampString = "486281236.295516"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
                   endingLineNumber = "166"
-                  offsetFromSymbolStart = "44">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -154,12 +154,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "486273407.202541"
+                  timestampString = "486281236.296678"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1841"
                   endingLineNumber = "1841"
-                  offsetFromSymbolStart = "489">
+                  offsetFromSymbolStart = "556">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -169,12 +169,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "486273407.202771"
+                  timestampString = "486281236.296835"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1842"
                   endingLineNumber = "1842"
-                  offsetFromSymbolStart = "44">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>

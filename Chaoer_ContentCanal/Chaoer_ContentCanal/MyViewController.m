@@ -10,6 +10,7 @@
 
 #import "mPersonView.h"
 
+#import "UIImage+ImageEffects.h"
 
 #import "mCodeNameViewController.h"
 
@@ -94,10 +95,12 @@
     
     
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    UIImage *mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
     
+    UIImage *mLastImg = [mHead applyLightEffect];
     
     NSLog(@"头像地址是：%@",url);
-    
+    mHeaderView.mBgkImg.image = mLastImg;
     [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;

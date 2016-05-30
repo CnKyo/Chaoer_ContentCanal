@@ -298,7 +298,7 @@
     
     [controller.navigationController popViewControllerAnimated:YES];
     
-    tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
+    tempImage = [Util scaleImg:croppedImage maxsize:200];//[Util scaleImg:croppedImage maxsize:140];
     
     self.mHeaderImg.image = tempImage;
     
@@ -316,7 +316,7 @@
     UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
 
     
-    tempImage = [Util scaleImg:imageView3.image maxsize:100];
+    tempImage = [Util scaleImg:imageView3.image maxsize:200];
     
     NSData *mmm = UIImagePNGRepresentation(tempImage);
 
