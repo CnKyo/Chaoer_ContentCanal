@@ -68,7 +68,7 @@
 
     [super viewWillAppear:YES];
 
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
 }
 
 - (void)viewDidLoad {
@@ -95,7 +95,13 @@
     
     
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
-    UIImage *mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+    UIImage *mHead = nil;
+    
+    if ([mUserInfo backNowUser].mUserImgUrl == nil || [[mUserInfo backNowUser].mUserImgUrl isEqualToString:@""] || [mUserInfo backNowUser].mUserImgUrl.length == 0) {
+        mHead = [UIImage imageNamed:@"rbgk"];
+    }else{
+        mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+    }
     
     UIImage *mLastImg = [mHead applyLightEffect];
     
@@ -193,18 +199,20 @@
     UIView *hhh = [UIView new];
     hhh.frame = CGRectMake(0, 0, DEVICE_Width, 226);
     
-    mNavView = [homeNavView sharePersonNav];
-    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
-    
-    mNavView.mBadge.hidden = YES;
-    mNavView.mSetupBtn.hidden = YES;
-    [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
-    [hhh addSubview:mNavView];
+//    mNavView = [homeNavView sharePersonNav];
+//    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+//    
+//    mNavView.mBadge.hidden = YES;
+//    mNavView.mSetupBtn.hidden = YES;
+//    [mNavView.mSetupBtn addTarget:self action:@selector(mSetupAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [mNavView.mMsgBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [hhh addSubview:mNavView];
     
     mHeaderView = [mPersonView shareView];
-    mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 162);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 226);
     [mHeaderView.mHeaderBtn addTarget:self action:@selector(mHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mHeaderView.mRightBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
+
     [hhh addSubview:mHeaderView];
     [self.tableView setTableHeaderView:hhh];
 
@@ -228,39 +236,22 @@
 
 - (void)logoutAction:(UIButton *)sender{
 
-    [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:11];
+    [self AlertViewShow:@"退出登录" alertViewMsg:@"是否确定退出当前用户" alertViewCancelBtnTiele:@"取消" alertTag:10];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if (alertView.tag == 11) {
+    
+    if (alertView.tag == 10) {
         if( buttonIndex == 1)
         {
-            if (alertView.tag == 10) {
-                [mUserInfo logOut];
-                [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-                [self gotoLoginVC];
-            }else if (alertView.tag == 11){
-                if([mUserInfo backNowUser].mIsHousingAuthentication){
-                    
-                    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                    [self pushViewController:vvv];
-                    
-                    
-                }else{
-                    needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                    nnn.Type = 1;
-                    
-                    [self pushViewController:nnn];
-                }
-                
-                
-            }
-            
-            
+            [mUserInfo logOut];
+            [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+            [self gotoLoginVC];
         }
-
-    }else{
+        
+    }
+    else{
         if( buttonIndex == 1)
         {
             if([mUserInfo backNowUser].mIsHousingAuthentication){
@@ -402,8 +393,8 @@
                 cell.mDetail.text = @"被系统禁用";
                 
             }else if (m_leg == 4){
-                [self showErrorStatus:@"您已注销!"];
-                cell.mDetail.text = @"立即申请";
+                
+                cell.mDetail.text = @"您已注销!";
                 
             }
             else{
@@ -490,7 +481,7 @@
             NSLog(@"我的跑腿");
             if (![mUserInfo backNowUser].mIsRegist) {
                 
-                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
             }else{
                 int m_leg = [mUserInfo backNowUser].mIs_leg;

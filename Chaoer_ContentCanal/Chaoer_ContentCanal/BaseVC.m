@@ -337,10 +337,10 @@
         [self.tableView addSubview:emptyView];
         return;
     }
-    emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, DEVICE_Width, 200)];
+    emptyView = [[UIView alloc]initWithFrame:CGRectMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20, DEVICE_Width, 200)];
     emptyView.backgroundColor = [UIColor clearColor];
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 43, 43)];
-    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
+    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 43, 90)];
+//    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
     image.image = [UIImage imageNamed:@"ic_empty"];
     [emptyView addSubview:image];
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
@@ -369,8 +369,8 @@
     
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 300)];
     emptyView.backgroundColor = [UIColor clearColor];
-    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 140, 140, 105)];
-    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
+    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(emptyView.bounds.size.width / 2-50, emptyView.frame.size.height / 2-40, 100, 100)];
+//    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
     image.image = [UIImage imageNamed:img];
     [emptyView addSubview:image];
     

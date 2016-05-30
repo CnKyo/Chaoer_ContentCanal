@@ -1055,7 +1055,41 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         }
     }];
 }
+#pragma mark----获取楼栋门牌号
+/**
+ *  获取楼栋门牌号
+ *
+ *  @param mCommunityId 小区id
+ *  @param block        返回值
+ */
+- (void)getBanAndUnitAndFloors:(NSString *)mCommunityId block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:mCommunityId forKey:@"communityId"];
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/getBan" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
 
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for (NSDictionary *dic in info.mData) {
+                
+                GAddArearObj *mAddObj = [[GAddArearObj alloc] initWithObj:dic];
+               
+              
+                
+                [tempArr addObject:mAddObj];
+            }
+            
+            block( info,tempArr);
+        }else{
+            block( info,nil);
+            
+        }
+    }];
+    
+    
+    
+}
 
 + (void)realCode:(NSString *)mName andUserId:(int)mUserid andCommunityId:(int)mCommunityId andBannum:(NSString *)mBannum andUnnitnum:(NSString *)mUnitNum andFloor:(NSString *)mFloor andDoornum:(NSString *)mDoorNum andIdentity:(NSString *)mId block:(void(^)(mBaseData *resb))block{
 
@@ -4858,6 +4892,67 @@ bool pptbined = NO;
     self.mUrl = [obj objectForKeyMy:@"url "];
     
     
+    
+}
+
+@end
+#pragma mark----认证地址对象
+/**
+ *  认证地址对象
+ */
+@implementation GAddArearObj
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    NSMutableArray *mUniArr = [NSMutableArray new];
+    
+    NSArray *mArr = [obj objectForKeyMy:@"umitList"];
+    
+    
+    for (NSDictionary *dic in mArr) {
+        
+        GArearUnitAndFloorObj *mUnitObj = [[GArearUnitAndFloorObj alloc]initWithObj:dic];
+        
+        [mUniArr addObject:mUnitObj];
+    }
+    
+    self.mUnitList = mUniArr;
+    
+    self.mBan = [[obj objectForKeyMy:@"ban"] intValue];
+
+    
+}
+
+@end
+
+@implementation GArearUnitAndFloorObj
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mUnit = [[obj objectForKeyMy:@"unit"] intValue];
+    self.mRoomNum = [[obj objectForKeyMy:@"room_number"] intValue];
+    self.mFloor = [[obj objectForKeyMy:@"floor"] intValue];
+
     
 }
 

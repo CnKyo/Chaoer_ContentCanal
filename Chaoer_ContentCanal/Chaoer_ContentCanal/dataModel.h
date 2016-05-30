@@ -532,6 +532,14 @@
  */
 + (void)getBundleMsg:(int)mUserId block:(void(^)(mBaseData *resb,SVerifyMsg *info))block;
 
+#pragma mark----获取楼栋门牌号
+/**
+ *  获取楼栋门牌号
+ *
+ *  @param mCommunityId 小区id
+ *  @param block        返回值
+ */
+- (void)getBanAndUnitAndFloors:(NSString *)mCommunityId block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 /**
  *  实名认证
@@ -2714,4 +2722,45 @@
 -(id)initWithObj:(NSDictionary*)obj;
 
 @end
+#pragma mark----认证地址对象
+/**
+ *  认证地址对象
+ */
+@interface GAddArearObj : NSObject
+/**
+ *  楼栋
+ */
+@property (nonatomic,assign) int mBan;
+/**
+ *  单元信息
+ */
+@property (nonatomic,strong) NSArray *mUnitList;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+#pragma mark----认证房屋楼号对象
+/**
+ *  认证房屋楼号对象
+ */
+@interface GArearUnitAndFloorObj : NSObject
+/**
+ *  单元
+ */
+@property (nonatomic,assign) int mUnit;
+/**
+ *  楼层
+ */
+@property (nonatomic,assign) int mFloor;
+/**
+ *  门牌号
+ */
+@property (nonatomic,assign) int mRoomNum;
+
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+
+
 

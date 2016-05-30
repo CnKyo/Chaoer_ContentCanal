@@ -14,6 +14,7 @@
  */
 @property (strong, nonatomic) IBOutlet UIImageView *mHeaderImg;
 @property (weak, nonatomic) IBOutlet UIImageView *mBgkImg;
+@property (weak, nonatomic) IBOutlet UIButton *mRightBtn;
 
 /**
  *  姓名

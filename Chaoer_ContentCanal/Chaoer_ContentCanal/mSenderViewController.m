@@ -33,7 +33,12 @@
 
 
 #import "mGeneralSubView.h"
-@interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate>
+
+#import "CurentLocation.h"
+#import "openPPTViewController.h"
+
+#import "depositViewController.h"
+@interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate,MMApBlockCoordinate>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
@@ -196,7 +201,8 @@
 }
 
 - (void)headerBeganRefresh{
-    
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
     self.page = 1;
     
     [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
@@ -399,9 +405,44 @@
         case 3:
         {
 #pragma mark----我的
+            int m_leg = [mUserInfo backNowUser].mIs_leg;
+            
+            if ( m_leg == 0) {
+                
+                [self AlertViewShow:@"您还未开通跑跑腿功能，是否立即开通？" alertViewMsg:@"开通成功即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                
+                return;
+                
+            }else if (m_leg == 1){
+                [self showErrorStatus:@"您已注销!"];
+                [self AlertViewShow:@"您还未支付押金！" alertViewMsg:@"支付押金即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:11];
+                
+                return;
+                
+                
+            }
+            else if (m_leg == 2){
+                [self showErrorStatus:@"正在审核中!"];
+                return;
+                
+            }else if (m_leg == 3){
+                [self showErrorStatus:@"您已被系统禁用!"];
+                
+                return;
+                
+            }else if (m_leg == 4){
+                [self showErrorStatus:@"您已注销!"];
+                return;
+                
+            }
+            else{
+            
+                pptMyViewController *ppt = [[pptMyViewController alloc] initWithNibName:@"pptMyViewController" bundle:nil];
+                [self pushViewController:ppt];
+                
+            }
 
-            pptMyViewController *ppt = [[pptMyViewController alloc] initWithNibName:@"pptMyViewController" bundle:nil];
-            [self pushViewController:ppt];
+      
         }
             break;
             
@@ -720,5 +761,43 @@
     
 
     
+}
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    NSLog(@"定位成功之后返回的东东：%@",mCoordinate);
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (alertView.tag == 10) {
+        if (buttonIndex == 1) {
+
+            openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+            [self pushViewController:ppp];
+            
+        }
+    }else{
+        if( buttonIndex == 1)
+        {
+            
+    
+            depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+            [self pushViewController:ddd];
+            
+            
+        }
+    }
+    
+    
+}
+
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
 }
 @end

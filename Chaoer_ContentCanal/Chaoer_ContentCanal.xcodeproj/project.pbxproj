@@ -277,6 +277,7 @@
 		04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CD1CED4D8B00FCA8B7 /* NSString+MJExtension.m */; };
 		04F9E5DA1CED4D8B00FCA8B7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CE1CED4D8B00FCA8B7 /* README.md */; };
 		04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */; };
+		04FE0DDA1CFC4AEB003CAF88 /* WKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */; };
 		16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */; };
 		16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB81C3D13A400B9A850 /* AlipaySDK.framework */; };
 		16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB91C3D13A400B9A850 /* libcrypto.a */; };
@@ -1171,6 +1172,8 @@
 		04F9E5CE1CED4D8B00FCA8B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		04FE0DD41CFC01CF003CAF88 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		04FE0DD81CFC4AEB003CAF88 /* WKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKPickerView.h; sourceTree = "<group>"; };
+		04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKPickerView.m; sourceTree = "<group>"; };
 		16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		16279CB81C3D13A400B9A850 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		16279CB91C3D13A400B9A850 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -2671,6 +2674,13 @@
 			name = ImageEffects;
 			sourceTree = "<group>";
 		};
+		04FE0DD71CFC4AC7003CAF88 /* WKPickerView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WKPickerView;
+			sourceTree = "<group>";
+		};
 		16279CB61C3D13A400B9A850 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -3070,6 +3080,8 @@
 			children = (
 				044F16B11CF2ED6600B6B90D /* NFPickerView.h */,
 				044F16B21CF2ED6600B6B90D /* NFPickerView.m */,
+				04FE0DD81CFC4AEB003CAF88 /* WKPickerView.h */,
+				04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */,
 				3135F8141C97D5EE00EF9569 /* mCodeNameViewController.h */,
 				3135F8151C97D5EE00EF9569 /* mCodeNameViewController.m */,
 				3135F8161C97D5EE00EF9569 /* mCodeNameViewController.xib */,
@@ -4092,6 +4104,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04FE0DD71CFC4AC7003CAF88 /* WKPickerView */,
 				04FE0DD31CFC01C3003CAF88 /* ImageEffects */,
 				0453DBFD1CF88F8B006C9B6B /* LtpickerView */,
 				04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */,
@@ -4868,6 +4881,7 @@
 				749BEA111B32779800BABCA6 /* MJPhotoToolbar.m in Sources */,
 				04F99DCB1CE95CD800FA9390 /* AJGradientView.m in Sources */,
 				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
+				04FE0DDA1CFC4AEB003CAF88 /* WKPickerView.m in Sources */,
 				313D76B21C98F03E004D5679 /* mBundleViewController.m in Sources */,
 				31EEB31D1C93B6E700B61A86 /* communityTableViewCell.m in Sources */,
 				749BEA3C1B3277AA00BABCA6 /* NSData+GIF.m in Sources */,

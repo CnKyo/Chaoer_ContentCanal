@@ -39,6 +39,8 @@
 
 #import "CurentLocation.h"
 
+
+
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate>
@@ -94,7 +96,8 @@
     self.navigationController.navigationBarHidden = YES;
 
     [CurentLocation sharedManager];
-    [self.tableView headerBeginRefreshing];
+//    [self.tableView headerBeginRefreshing];
+//    [self headerBeganRefresh];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -272,6 +275,8 @@
     [self loadAddress];
 
     [self.mBanerArr removeAllObjects];
+//    [self.tableView reloadData];
+
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
         [self headerEndRefresh];
         [self removeEmptyView];
@@ -488,15 +493,45 @@
         case 4:
         {
             
-            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
-            
-            mmm.mLng = mLng;
-            mmm.mLat = mLat;
-            [self pushViewController:mmm];
-            //                        [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
+//            int m_leg = [mUserInfo backNowUser].mIs_leg;
+//            
+//            if ( m_leg == 0) {
+//                
+//                [self AlertViewShow:@"您还未开通跑跑腿功能，是否立即开通？" alertViewMsg:@"开通成功即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:11];
+//                
+//                return;
+//
+//            }else if (m_leg == 1){
+//                [self showErrorStatus:@"您已注销!"];
+//                [self AlertViewShow:@"您还未支付押金！" alertViewMsg:@"支付押金即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:12];
+//
+//                return;
+//
+//
+//            }
+//            else if (m_leg == 2){
+//                [self showErrorStatus:@"正在审核中!"];
+//                return;
+//
+//            }else if (m_leg == 3){
+//                [self showErrorStatus:@"您已被系统禁用!"];
+//
+//                return;
+//
+//            }else if (m_leg == 4){
+//                [self showErrorStatus:@"您已注销!"];
+//                return;
+//                
+//            }
+//            else{
 
-
-            
+                mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+                
+                mmm.mLng = mLng;
+                mmm.mLat = mLat;
+                [self pushViewController:mmm];
+                
+//            }
 
         }
             break;
@@ -636,25 +671,29 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if( buttonIndex == 1)
-    {
-  
-         if([mUserInfo backNowUser].mIsHousingAuthentication){
+   
+        if( buttonIndex == 1)
+        {
             
-            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-            [self pushViewController:vvv];
+            if([mUserInfo backNowUser].mIsHousingAuthentication){
+                
+                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                [self pushViewController:vvv];
+                
+                
+            }else{
+                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                nnn.Type = 1;
+                
+                [self pushViewController:nnn];
+            }
             
             
-        }else{
-            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-            nnn.Type = 1;
             
-            [self pushViewController:nnn];
         }
 
-        
-        
-    }
+    
+  
 }
 
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

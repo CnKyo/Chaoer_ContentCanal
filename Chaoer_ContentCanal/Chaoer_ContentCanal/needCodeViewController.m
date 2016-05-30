@@ -17,7 +17,7 @@
 
 
 #import "NFPickerView.h"
-
+#import "WKPickerView.h"
 
 
 #import "choiceArearViewController.h"
@@ -27,7 +27,7 @@
 #import "XKPEActionPickersDelegate.h"
 #import "XKPEWeightAndHightActionPickerDelegate.h"
 #define kScreenSize [UIScreen mainScreen].bounds.size
-@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete,UITextFieldDelegate>
+@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete,UITextFieldDelegate,WKPickerViewDelegate>
 
 @property (nonatomic ,strong) XKPEActionPickersDelegate *detailAddressPicker; //4列
 
@@ -87,6 +87,8 @@
 
     
     NFPickerView *pickerView;
+
+    WKPickerView *mDetailPickView;
     
     NSString *mBlockArearId;
 
@@ -150,7 +152,6 @@
     mUnit = nil;
     mFloor= nil;
     mDoornum= nil;
-    [self initViewData];
     
     
     mAddressStr = nil;
@@ -158,7 +159,7 @@
     [self updatePage];
     
 }
-
+#pragma mark----装载循环小区楼栋数据
 - (void)initViewData{
 
     NSString *datastr = nil;
@@ -313,7 +314,7 @@
 
     
 }
-
+#pragma mark----选择地址代理方法
 - (void)pickerDidSelectProvinceName:(NSString *)provinceName andProvinId:(int)ProvinceId cityName:(NSString *)cityName andArearId:(int)ArearId countrys:(NSString *)countrys andCityId:(int)CityId{
     
     NSLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
@@ -329,7 +330,13 @@
     
     
 }
+#pragma mark----选择详细地址代理方法
+- (void)WKPickerViewSelectedView:(NSDictionary *)obj{
 
+    
+}
+
+#pragma mark----选择小区
 - (void)mSelectArearAction:(UIButton *)sender{
     
     
@@ -349,9 +356,10 @@
             if (mId == nil || mId.length == 0 ||[mId isEqualToString:@""]) {
 
                 mBlockArearId = @"";
-
+                [self initViewData];
             }else{
                 mBlockArearId = mId;
+                [self loadArearData];
             }
             
             
@@ -368,9 +376,86 @@
     
     
 }
+
+#pragma mark----加载小区数据
+/**
+ *  加载小区数据
+ */
+- (void)loadArearData{
+
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getBanAndUnitAndFloors:mBlockArearId block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        if (resb.mSucess) {
+            
+            
+ 
+            
+            [self reloadData:mArr];
+            
+            
+        }else{
+        
+            [self initViewData];
+
+        }
+        
+        
+    }];
+    
+    
+}
+- (void)reloadData:(NSArray *)mData{
+
+    
+    [mTT1 removeAllObjects];
+    [mTT2 removeAllObjects];
+    [mTT3 removeAllObjects];
+    [mTT4 removeAllObjects];
+    
+    for (int i = 0; i<mData.count; i++) {
+        
+        GAddArearObj *mAddObj = mData[i];
+        
+        [mTT1 addObject:[NSString stringWithFormat:@"%d栋",mAddObj.mBan]];
+        
+        GArearUnitAndFloorObj *mUnitObj = mAddObj.mUnitList[0];
+        
+        if (i == 0) {
+            for (int j = 0; j<mUnitObj.mUnit; j++) {
+                [mTT2 addObject:[NSString stringWithFormat:@"%d单元",j+1]];
+            }
+            
+            for (int k = 0; k<mUnitObj.mFloor; k++) {
+                [mTT3 addObject:[NSString stringWithFormat:@"%d楼",k+1]];
+                
+                
+            }
+            
+            for (int l = 0; l<mUnitObj.mRoomNum; l++) {
+                [mTT4 addObject:[NSString stringWithFormat:@"%d号",l+1]];
+            }
+            
+        }
+       
+    }
+    
+    
+    
+    
+}
+#pragma mark----选择详细地址
+/**
+ *  选择详细地址
+ *
+ *  @param sender
+ */
 - (void)mSelectDetailAction:(UIButton *)sender{
     
-
+    if (mBlockArearId == nil || mBlockArearId.length == 0 || [mBlockArearId isEqualToString:@""]) {
+        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
+        return;
+    }
     _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT4 title:@"详细住址"];
     _detailAddressPicker.delegates = self;
     
@@ -411,10 +496,31 @@
             [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
         }
         
-        mBan = _detailAddressPicker.selectedKey1;
-        mUnit = _detailAddressPicker.selectedkey2;
-        mFloor = _detailAddressPicker.selectedkey3;
-        mDoornum = _detailAddressPicker.selectedkey4;
+        if (mTT1.count == 1 || _detailAddressPicker.selectedKey1 == nil) {
+            mBan = mTT1[0];
+        }else{
+            mBan = _detailAddressPicker.selectedKey1;
+        }
+        
+        if (mTT2.count == 1 || _detailAddressPicker.selectedkey2 == nil) {
+            mUnit = mTT2[0];
+        }else{
+            mUnit = _detailAddressPicker.selectedkey2;
+        }
+        if (mTT3.count == 0 || _detailAddressPicker.selectedkey3 == nil) {
+            mFloor = mTT3[0];
+        }else{
+            mFloor = _detailAddressPicker.selectedkey3;
+        }
+        
+        if (mTT4.count == 0 || _detailAddressPicker.selectedkey4 == nil) {
+            mDoornum = mTT4[0];
+        }else{
+            mDoornum = _detailAddressPicker.selectedkey4;
+        }
+        
+        
+        
         
         
         
