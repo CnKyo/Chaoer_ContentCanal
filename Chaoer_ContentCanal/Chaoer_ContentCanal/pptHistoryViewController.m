@@ -327,7 +327,7 @@
     
 
     if (mOrder.mComments == nil) {
-        mOrder.mComments = @"下单时间";
+        mOrder.mComments = @"创建时间";
     }
    
     
@@ -340,7 +340,7 @@
         
     }else if (mRight == 2){
         if (mOrder.mContext == nil) {
-            mOrder.mContext = @"下单时间";
+            mOrder.mContext = @"创建时间";
         }
         cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
         cell.mContent.text = mOrder.mContext;
@@ -348,7 +348,7 @@
         cell.mDistanceAndTime.text = @"";
     }else{
         if (mOrder.mGoodsName == nil) {
-            mOrder.mGoodsName = @"下单时间";
+            mOrder.mGoodsName = @"创建时间";
         }
         cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
         cell.mContent.text = mOrder.mContext;

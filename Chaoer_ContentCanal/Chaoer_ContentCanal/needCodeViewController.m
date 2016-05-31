@@ -386,19 +386,19 @@
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getBanAndUnitAndFloors:mBlockArearId block:^(mBaseData *resb, NSArray *mArr) {
         [self dismiss];
-        if (resb.mSucess) {
-            
+//        if (resb.mSucess) {
+        
             
  
             
-            [self reloadData:mArr];
-            
-            
-        }else{
+//            [self reloadData:mArr];
+//            
+//            
+//        }else{
         
             [self initViewData];
 
-        }
+//        }
         
         
     }];

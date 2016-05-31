@@ -102,10 +102,9 @@
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
+        [SVProgressHUD dismiss];
         if (resb.mSucess) {
-            [SVProgressHUD dismiss];
-//            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-
+            
             if (marray.count <= 0) {
                 [self addEmptyViewWithImg:nil];
             }else{
@@ -116,7 +115,7 @@
             
             
         }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+
             [self addEmptyViewWithImg:nil];
 
         }

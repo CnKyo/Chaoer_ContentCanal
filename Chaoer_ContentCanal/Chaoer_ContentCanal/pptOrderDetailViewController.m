@@ -85,7 +85,7 @@
                 
             }else{
                 [self showErrorStatus:resb.mMessage];
-                [self popViewController];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1.5];
             }
             
         }];
@@ -101,7 +101,7 @@
                 
             }else{
                 [self showErrorStatus:resb.mMessage];
-                [self popViewController];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1.5];
             }
             
         }];
@@ -202,7 +202,7 @@
 
     if (self.mOrderType == 1) {
      
-        cell.mOrderDetailName.text = [NSString stringWithFormat:@"下单时间：%@",self.mOrder.mGenTime];
+        cell.mOrderDetailName.text = [NSString stringWithFormat:@"创建时间：%@",self.mOrder.mGenTime];
         cell.mTHXMoney.text = [NSString stringWithFormat:@"酬劳金额:%@",self.mOrder.mLegworkMoney];
         cell.mOrderNum.text = [NSString stringWithFormat:@"订单编号：%@",self.mOrder.mOrderCode];
         cell.mOrderName.text = self.mOrder.mContext;
@@ -382,7 +382,7 @@
         cell.mOrderStatusImg.image = mStatusImg;
 
         cell.mOrderStatus.text = self.mOrder.mStatusName;
-        cell.mLevel.text = [NSString stringWithFormat:@"下单时间:%@",self.mOrder.mGenTime];
+        cell.mLevel.text = [NSString stringWithFormat:@"创建时间:%@",self.mOrder.mGenTime];
        
         NSString *mmname = nil;
         
@@ -475,7 +475,10 @@
             if (resb.mSucess) {
                 
                 [self showSuccessStatus:resb.mMessage];
-                [self popViewController];
+                
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1.5];
+                
+                
             }else{
                 
                 [self showErrorStatus:resb.mMessage];
@@ -558,7 +561,8 @@
             if (resb.mSucess) {
                 
                 [self showSuccessStatus:resb.mMessage];
-                [self.tableView headerBeginRefreshing];
+                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1.5];
+
             }else{
                 
                 [self showErrorStatus:resb.mMessage];
@@ -577,5 +581,10 @@
 
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.mOrder.mPhone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
+- (void)leftBtnTouched:(id)sender{
+
+    [self popViewController];
 }
 @end

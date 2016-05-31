@@ -2285,6 +2285,11 @@
  *  常见问题url
  */
 @property (nonatomic,strong) NSString*  mFAQUrl;
+/**
+ *  电话 
+ */
+@property (nonatomic,strong) NSString*  mPhone;
+
 
 /**
  *  总体评价

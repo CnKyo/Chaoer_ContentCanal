@@ -34,6 +34,8 @@
     
     GPPTer *mPPTUser;
     
+    UIButton *mPhoneBtn;
+    
     
 }
 - (void)viewDidLoad {
@@ -87,23 +89,30 @@
     mBottomView.layer.borderWidth = 0.5;
     
    
-    BlockButton *mBtn = [BlockButton new];
-    mBtn.frame = CGRectMake(0, 10, DEVICE_Width, 40);
-    mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    mBtn.backgroundColor = [UIColor clearColor];
-    [mBtn setTitle:@"客服电话 023-89787878" forState:0];
-    [mBtn setTitleColor:M_CO forState:0];
-    [mBtn btnClick:^{
-        
-        NSLog(@"打电话");
-        
-    }];
-    [mBottomView addSubview:mBtn];
+    mPhoneBtn = [UIButton new];
+    mPhoneBtn.frame = CGRectMake(0, 10, DEVICE_Width, 40);
+    mPhoneBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    mPhoneBtn.backgroundColor = [UIColor clearColor];
+    [mPhoneBtn setTitle:[NSString stringWithFormat:@"客服电话:%@",[GPPTer backPPTUser].mPhone] forState:0];
+    [mPhoneBtn addTarget:self action:@selector(mPhoneAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mPhoneBtn setTitleColor:M_CO forState:0];
+
+    [mBottomView addSubview:mPhoneBtn];
     [self.tableView setTableHeaderView:mHeaderView];
     [self.tableView setTableFooterView:mBottomView];
     
 }
-
+- (void)mPhoneAction:(UIButton *)sender{
+    
+    if ([GPPTer backPPTUser].mPhone.length == 0) {
+        [self showErrorStatus:@"客服电话有误！"];
+        return;
+    }
+    
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",[GPPTer backPPTUser].mPhone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    
+}
 - (void)headerBeganRefresh{
 
     [GPPTer getPPTerInfo:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb, GPPTer *mUser) {
@@ -112,6 +121,8 @@
         [self headerEndRefresh];
         
         if (resb.mSucess) {
+            [mPhoneBtn setTitle:[NSString stringWithFormat:@"客服电话:%@",[GPPTer backPPTUser].mPhone] forState:0];
+
             [self upLoadPage];
             
         }else{

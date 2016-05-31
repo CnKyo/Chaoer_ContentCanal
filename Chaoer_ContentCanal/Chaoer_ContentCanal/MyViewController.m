@@ -119,10 +119,10 @@
     UIImage *img1 = [UIImage imageNamed:@"icon_verify"];
     UIImage *img2 = [UIImage imageNamed:@"icon_getorder"];
     UIImage *img3 = [UIImage imageNamed:@"bar_code"];
-    UIImage *img4 = [UIImage imageNamed:@"icon_order"];
-    UIImage *img5 = [UIImage imageNamed:@"icon_rent"];
-    UIImage *img6 = [UIImage imageNamed:@"add_hourse"];
-    UIImage *img7 = [UIImage imageNamed:@"icon_activity"];
+    UIImage *img4 = [UIImage imageNamed:@"icon_activity"];
+    UIImage *img5 = [UIImage imageNamed:@"icon_order"];
+    UIImage *img6 = [UIImage imageNamed:@"icon_rent"];
+    UIImage *img7 = [UIImage imageNamed:@"add_hourse"];
 
 
     NSMutableDictionary *dic = [NSMutableDictionary new];

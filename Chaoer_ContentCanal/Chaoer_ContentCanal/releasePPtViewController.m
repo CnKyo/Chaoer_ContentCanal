@@ -791,8 +791,14 @@
         [self showErrorStatus:@"备注不能为空！"];
         return;
     }
-    if (mMin > mMax) {
+    int mIn = 0;
+    mIn = [mMin intValue];
+    int mAx = 0;
+    mAx = [mMax intValue];
+    if (mIn > mAx) {
         [self showErrorStatus:@"最高价不能低于最低价！"];
+        [mPopView.mMax becomeFirstResponder];
+        
         return;
     }
     NSLog(@"发布");

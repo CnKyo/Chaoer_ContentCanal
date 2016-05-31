@@ -4228,6 +4228,7 @@ bool pptbined = NO;
     self.mTotleRateCount = self.mBadRatecount + self.mGoodRateCount + self.mMidRateCount;
 
     
+    self.mPhone =[obj objectForKeyMy:@"phone"];
     
 }
 - (BOOL)isVaildpptUser{
