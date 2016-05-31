@@ -395,7 +395,16 @@ bool g_bined = NO;
     [WXApi sendReq:payobj];
     
 }
+#pragma mark----支付宝支付
+//=======================微信支付===================================
+-(void)aliPay:(int)Price block:(void(^)(mBaseData* retobj))block
+{
 
+    
+    
+    
+    
+}
 + (void)getRegistVerifyCode:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"moblie"];
@@ -625,8 +634,12 @@ bool g_bined = NO;
         
     }
     
+    if ([mUserInfo backNowUser].mPhone.length != 0) {
+        [para setObject:[mUserInfo backNowUser].mPhone forKey:@"moblie"];
+
+    }
     
-    [para setObject:[mUserInfo backNowUser].mPhone forKey:@"moblie"];
+    
 
     [[HTTPrequest sharedClient] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
         
@@ -1339,6 +1352,35 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             block (info,nil);
         }
     }];
+}
+
+
+#pragma mark----获取跑跑腿baner横幅
+/**
+ *  获取baner横幅
+ *
+ *  @param block 返回值
+ */
+- (void)getPPTbaner:(void(^)(mBaseData *resb,NSArray *mBaner))block{
+
+    
+    
+    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appLegBanner" parameters:nil call:^(mBaseData *info) {
+        NSMutableArray *temparr = [NSMutableArray new];
+        if (info.mSucess ) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [temparr addObject:[[GPPTBaner alloc] initWithObj:dic]];
+            }
+            block (info,temparr);
+            
+        }else{
+            block (info,nil);
+        }
+    }];
+    
+    
+    
 }
 
 
@@ -3283,6 +3325,36 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     self.mContentUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"name"];
     self.mB_index = [[obj objectForKeyMy:@"b_index"] intValue];
+}
+
+@end
+
+
+@implementation GPPTBaner
+
+-(id)initWithObj:(NSDictionary*)obj{
+    self = [super init];
+    if( self )
+    {
+        [self fetch:obj];
+    }
+    return self;
+}
+-(void)fetch:(NSDictionary*)obj
+{
+    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"img"]];
+    
+    self.mContentUrl = [obj objectForKeyMy:@"url"];
+    self.mName = [obj objectForKeyMy:@"name"];
+    self.mB_index = [[obj objectForKeyMy:@"bIndex"] intValue];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mVisite = [[obj objectForKeyMy:@"isVisit"] intValue];
+    
+    self.mUUID = [obj objectForKeyMy:@"uuid"];
+    self.mStatus = [[obj objectForKeyMy:@"state"] intValue];
+    
+    
+    
 }
 
 @end

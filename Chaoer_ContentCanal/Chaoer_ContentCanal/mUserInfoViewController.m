@@ -26,6 +26,8 @@
     
     NSString *mHeaderUrl;
     
+    BOOL mIsEdit;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -55,6 +57,8 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.rightBtnTitle = @"保存";
+    
+    mIsEdit = NO;
     
     self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
     
@@ -322,11 +326,15 @@
 
     
     NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId] forKey:@"userId"];
+    
+    
+    
+    
     [para setObject:imageData forKey:@"file"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/updUser/appModfiyHead",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
     [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -344,13 +352,13 @@
     
     if (resb.mSucess) {
         [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-//        [self loadUserInfo];
-        
-        mHeaderUrl = resb.mData;
+        mIsEdit = YES;
+        mHeaderUrl = [resb.mData objectForKey:@"pic"];
         
         [self rightBtnTouched:nil];
         
     }else{
+        mIsEdit = NO;
         [SVProgressHUD showErrorWithStatus:resb.mMessage];
     }
     
@@ -358,14 +366,18 @@
 
 - (void)rightBtnTouched:(id)sender{
 
+    
+    if ([[mUserInfo backNowUser].mNickName isEqualToString:self.mName.text] && [[mUserInfo backNowUser].mSex isEqualToString:self.mSex.text] && [[mUserInfo backNowUser].mSignature isEqualToString:self.mDetail.text] && mIsEdit == NO) {
+        [self showErrorStatus:@"未做任何修改！"];
+        return;
+    }
+    
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
     [mUserInfo editUserMsg:mHeaderUrl andUserid:[mUserInfo backNowUser].mUserId andLoginName:nil andNickName:self.mName.text andSex:msex andSignate:self.mDetail.text block:^(mBaseData *resb, mUserInfo *mUser) {
         
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-//            [self loadUserInfo];
-//            [self popViewController];
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
         }

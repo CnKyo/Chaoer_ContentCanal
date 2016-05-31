@@ -305,13 +305,13 @@
     
     if (isSelected) {
         
-        [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+        [mParas setObject:NumberWithFloat(mC.mPayableMoney) forKey:@"paymentAmount"];
     }else{
     
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
         [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
         [mParas setObject:mC.mId forKey:@"id"];
-        [mParas setObject:mCanView.mMoneyTx.text forKey:@"paymentAmount"];
+        [mParas setObject:NumberWithFloat(mC.mPayableMoney) forKey:@"paymentAmount"];
 
     }
     

@@ -591,13 +591,21 @@
  */
 + (void)geBankCode:(NSString *)mName andUserId:(int)mUserId andIdentify:(NSString *)mIdentify andBankName:(NSString *)mBankName andProvince:(NSString *)mProvince andCity:(NSString *)mCity andPoint:(NSString *)mPoint andBankCard:(NSString *)mCard andBankCode:(NSString *)mBankCode block:(void(^)(mBaseData *resb))block;
 
-
+#pragma mark----获取baner横幅
 /**
  *  获取baner横幅
  *
  *  @param block 返回值
  */
 + (void)getBaner:(void(^)(mBaseData *resb,NSArray *mBaner))block;
+
+#pragma mark----获取跑跑腿baner横幅
+/**
+ *  获取baner横幅
+ *
+ *  @param block 返回值
+ */
+- (void)getPPTbaner:(void(^)(mBaseData *resb,NSArray *mBaner))block;
 
 
 /**
@@ -1313,6 +1321,37 @@
  *  排序
  */
 @property (assign,nonatomic) int    mB_index;
+
+
+-(id)initWithObj:(NSDictionary*)obj;
+
+@end
+
+@interface GPPTBaner : NSObject
+/**
+ *  图片地址
+ */
+@property (nonatomic,strong)    NSString       *mImgUrl;
+/**
+ *  内容
+ */
+@property (nonatomic,strong)    NSString       *mContentUrl;
+/**
+ *  title名称
+ */
+@property (nonatomic,strong)    NSString       *mName;
+/**
+ *  排序
+ */
+@property (assign,nonatomic) int    mB_index;
+
+@property (assign,nonatomic) int    mId;
+
+@property (assign,nonatomic) int    mVisite;
+
+@property (assign,nonatomic) int    mStatus;
+
+@property (nonatomic,strong)    NSString       *mUUID;
 
 
 -(id)initWithObj:(NSDictionary*)obj;

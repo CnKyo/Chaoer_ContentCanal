@@ -96,7 +96,7 @@
 
     mType =1;
     self.mBanerArr = [NSMutableArray new];
-    [self loadData];
+    
 
     [self initView];
     [self initReleaseView];
@@ -185,7 +185,7 @@
 
 - (void)loadData{
     [self.mBanerArr removeAllObjects];
-    [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
+    [[mUserInfo backNowUser] getPPTbaner:^(mBaseData *resb, NSArray *mBaner) {
         [self removeEmptyView];
         if (resb.mSucess) {
             
@@ -201,6 +201,7 @@
 }
 
 - (void)headerBeganRefresh{
+    [self loadData];
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
     self.page = 1;
@@ -280,7 +281,7 @@
     
     NSMutableArray *arrtemp = [NSMutableArray new];
     [arrtemp removeAllObjects];
-    for (MBaner *banar in self.mBanerArr) {
+    for (GPPTBaner *banar in self.mBanerArr) {
         [arrtemp addObject:banar.mImgUrl];
     }
     

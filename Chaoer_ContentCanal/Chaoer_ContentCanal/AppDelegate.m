@@ -269,8 +269,43 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     // url:wx206e0a3244b4e469://pay/?returnKey=&ret=0 withsouce url:com.tencent.xin
+    
+    
+    
     NSLog(@"url:%@ withsouce url:%@",url,sourceApplication);
     if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
+                                                      
+                                                      MLLog(@"xxx:%@",resultDic);
+                                                      
+                                                      mBaseData* retobj = nil;
+                                                      
+                                                      if (resultDic)
+                                                      {
+                                                          if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                                                          {
+                                                              mBaseData* retobj = [[mBaseData alloc]init];
+                                                              retobj.mSucess = YES;
+                                                              retobj.mMessage = @"支付成功";
+                                                              retobj.mState = 200000;
+                                                              [SVProgressHUD showSuccessWithStatus:retobj.mMessage];
+                                                          }
+                                                          else
+                                                          {
+                                                              retobj = [mBaseData infoWithError: [resultDic objectForKey:@"memo" ]];
+                                                              [SVProgressHUD showErrorWithStatus:retobj.mMessage];
+                                                          }
+                                                      }
+                                                      else
+                                                      {
+                                                          retobj = [mBaseData infoWithError: @"支付出现异常"];
+                                                          [SVProgressHUD showErrorWithStatus:retobj.mMessage];
+                                                      }
+                                                  }];
+
+        
         return YES;
     }
     else if( [sourceApplication isEqualToString:@"com.tencent.xin"] )
@@ -323,6 +358,38 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
     if ([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.alipay.iphoneclient"]) {
+        
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
+                                                      
+                                                      MLLog(@"xxx:%@",resultDic);
+                                                      
+                                                      mBaseData* retobj = nil;
+                                                      
+                                                      if (resultDic)
+                                                      {
+                                                          if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                                                          {
+                                                              mBaseData* retobj = [[mBaseData alloc]init];
+                                                              retobj.mSucess = YES;
+                                                              retobj.mMessage = @"支付成功";
+                                                              retobj.mState = 200000;
+                                                              [SVProgressHUD showSuccessWithStatus:retobj.mMessage];
+                                                          }
+                                                          else
+                                                          {
+                                                              retobj = [mBaseData infoWithError: [resultDic objectForKey:@"memo" ]];
+                                                              [SVProgressHUD showErrorWithStatus:retobj.mMessage];
+                                                          }
+                                                      }
+                                                      else
+                                                      {
+                                                          retobj = [mBaseData infoWithError: @"支付出现异常"];
+                                                          [SVProgressHUD showErrorWithStatus:retobj.mMessage];
+                                                      }
+                                                  }];
+
+        
         return YES;
     }
     else if([[options objectForKey:@"UIApplicationOpenURLOptionsSourceApplicationKey"] isEqualToString:@"com.tencent.xin"]){
