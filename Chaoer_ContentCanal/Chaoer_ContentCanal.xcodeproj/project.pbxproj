@@ -5256,7 +5256,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69986e15-5d92-48cc-bc30-d14be3ea2de3";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -5310,7 +5310,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69986e15-5d92-48cc-bc30-d14be3ea2de3";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

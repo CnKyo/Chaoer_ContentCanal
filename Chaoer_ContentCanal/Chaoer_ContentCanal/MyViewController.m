@@ -397,6 +397,9 @@
                 cell.mDetail.text = @"您已注销!";
                 
             }
+            else if(m_leg == 6){
+                cell.mDetail.text = @"申请失败，重新申请!";
+            }
             else{
                 cell.mDetail.hidden = YES;
                 
@@ -502,6 +505,12 @@
                     
                 }else if (m_leg == 4){
                     [self showErrorStatus:@"您已注销!"];
+                    
+                
+                }
+                else if (m_leg == 6){
+                    openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+                    [self pushViewController:ppp];
                     
                 }
                 else{
