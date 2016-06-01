@@ -276,13 +276,11 @@
 
     [self.mBanerArr removeAllObjects];
 //    [self.tableView reloadData];
-
     [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
 
-            
             [self.mBanerArr addObjectsFromArray:mBaner];
             [self.tableView reloadData];
             [self loadScrollerView];

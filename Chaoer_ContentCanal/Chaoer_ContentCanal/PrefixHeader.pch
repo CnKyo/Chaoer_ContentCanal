@@ -128,4 +128,5 @@
 #import "CustomProgress.h"
 
 #import "UITextField+Shake.h"
+#import "MBProgressHUD.h"
 #endif
