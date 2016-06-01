@@ -71,21 +71,17 @@
                     <constraint firstAttribute="trailingMargin" secondItem="82p-ce-dhn" secondAttribute="trailing" id="MYi-ji-6Rq"/>
                     <constraint firstItem="aYK-v6-nj5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="VQ2-YG-Day"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1PV-bX-hu3" secondAttribute="trailing" id="ZHD-2n-95h"/>
-                    <constraint firstItem="4Ab-ys-PAL" firstAttribute="top" secondItem="1PV-bX-hu3" secondAttribute="bottom" constant="13" id="gtz-bM-2OH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bZ1-Nq-ulN" secondAttribute="trailing" id="qFk-EC-iXn"/>
                     <constraint firstAttribute="leadingMargin" secondItem="4Ab-ys-PAL" secondAttribute="leading" id="xQd-qp-4g1"/>
                     <constraint firstItem="82p-ce-dhn" firstAttribute="top" secondItem="bZ1-Nq-ulN" secondAttribute="bottom" id="xbf-nR-9jD"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="gtz-bM-2OH"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="mAddress" destination="1PV-bX-hu3" id="fS3-ld-rpq"/>
                 <outlet property="mContent" destination="82p-ce-dhn" id="HHV-ZG-gcI"/>
+                <outlet property="mDetailLeft" destination="CRF-ea-0r2" id="Edp-H7-LgR"/>
                 <outlet property="mTag" destination="4Ab-ys-PAL" id="VT7-7K-3KK"/>
+                <outlet property="mTagLeft" destination="xQd-qp-4g1" id="Wno-Su-Frj"/>
             </connections>
             <point key="canvasLocation" x="203" y="100"/>
         </tableViewCell>

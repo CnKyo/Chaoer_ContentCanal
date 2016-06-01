@@ -116,7 +116,17 @@
     
     cell.mAddress.text = [NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr];
     cell.mContent.text = [NSString stringWithFormat:@"%@-%@",mAddress.mUserName,mAddress.mPhone];
-    cell.mTag.text = mAddress.mAddressName;
+    
+    if (mAddress.mAddressName.length != 0) {
+        cell.mTag.text = mAddress.mAddressName;
+        cell.mTag.hidden = NO;
+        cell.mDetailLeft.constant = 15;
+
+    }else{
+    
+        cell.mTag.hidden = YES;
+        cell.mDetailLeft.constant = -40;
+    }
     
     return cell;
     

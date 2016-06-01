@@ -22,6 +22,8 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mTagLeft;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mDetailLeft;
 
 @end
