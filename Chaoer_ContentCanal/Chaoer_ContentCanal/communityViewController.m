@@ -143,8 +143,7 @@
             left = -60;
         };
         btn.titleEdgeInsets = UIEdgeInsetsMake(90, left, 20, 0);
-        [btn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
+     
         
         btn.tag = i;
         [btn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];

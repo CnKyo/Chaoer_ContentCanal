@@ -14,7 +14,7 @@
 #import "cashViewController.h"
 
 #import "mServiceCell.h"
-@interface serviceViewController ()<CircleLHQdelegate,AMapLocationManagerDelegate>
+@interface serviceViewController ()<AMapLocationManagerDelegate>
 
 @end
 

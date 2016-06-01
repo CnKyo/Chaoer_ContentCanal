@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MTA.h"
 #import "MTAConfig.h"
-#import <QMapKit/QMapKit.h>
 
 #import "MyViewController.h"
 #import "APService.h"
@@ -57,7 +56,6 @@
     [AMapSearchServices sharedServices].apiKey = AMAP_KEY;
     [AMapLocationServices sharedServices].apiKey = AMAP_KEY;
     [MTA startWithAppkey:@"I1DMN7E2WA6K"];
-    [QMapServices sharedServices].apiKey = QQMAPKEY;
     
     
     /**

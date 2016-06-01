@@ -329,9 +329,6 @@
         [mSubView.mBtn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
 
         
-        [mSubView.mBtn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
-        [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
-        
         mSubView.mBtn.tag = i;
         [mSubView.mBtn addTarget:self action:@selector(mTwoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -387,9 +384,7 @@
         mSubView.mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [mSubView.mBtn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
 
-        [mSubView.mBtn setBackgroundColor:[UIColor whiteColor] forUIControlState:UIControlStateNormal];
-        [mSubView.mBtn setBackgroundColor:[UIColor lightGrayColor] forUIControlState:UIControlStateSelected];
-        
+              
         mSubView.mBtn.tag = i;
         [mSubView.mBtn addTarget:self action:@selector(mSomeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
