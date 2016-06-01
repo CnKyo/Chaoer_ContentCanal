@@ -22,7 +22,16 @@
 
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
-- (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback;
+
+/**
+ *  上传表单数据
+ *
+ *  @param urlString 链接
+ *  @param mFileName 文件
+ *  @param para      参数
+ *  @param callback  返回值
+ */
+- (void)postUrlWithString:(NSString *)urlString andFileName:(NSString *)mFileName andData:(NSData *)mData andFilePath:(NSURL *)mPath andPara:(id)para block:(void (^)( mBaseData* info))callback;
 
 + (NSString *)returnNowURL;
 

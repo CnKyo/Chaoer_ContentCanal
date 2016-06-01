@@ -23,7 +23,7 @@
 
 #import "choiseServicerViewController.h"
 #import "goOrderView.h"
-@interface goOrderViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface goOrderViewController ()<HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>
 {
 
     HZQDatePickerView *_pikerView;

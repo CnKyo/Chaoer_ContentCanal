@@ -324,14 +324,15 @@
     
     NSData *mmm = UIImagePNGRepresentation(tempImage);
 
-    
+       
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
-    [para setObject:imageData forKey:@"file"];
+    [para setObject:mmm forKey:@"file"];
+
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
@@ -345,6 +346,26 @@
             NSLog(@"请求返回：\n%@",response);
         }
     }];
+    
+    
+//    [self upLoadImage:mmm andFileName:aPath3 andFilePath:nil andPara:para];
+
+}
+
+
+- (void)upLoadImage:(NSData *)mData andFileName:(NSString *)mFileName andFilePath:(NSURL *)mPath andPara:(NSDictionary *)mPara{
+
+    [self showWithStatus:@"正在上传"];
+    [[HTTPrequest sharedClient] postUrlWithString:@"resource/userInfo/uploadUserProfileImg" andFileName:mFileName andData:mData andFilePath:mPath andPara:mPara block:^(mBaseData *info) {
+        if (info.mSucess) {
+            [self showSuccessStatus:info.mMessage];
+        }else{
+            [self showErrorStatus:info.mMessage];
+            
+        }
+    }];
+ 
+    
 }
 
 - (void)block:(mBaseData *)resb{

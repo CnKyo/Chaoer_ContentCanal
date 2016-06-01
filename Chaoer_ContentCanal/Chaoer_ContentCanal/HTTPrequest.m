@@ -123,11 +123,73 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
        }];
 }
 
-- (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback{
+- (void)postUrlWithString:(NSString *)urlString andFileName:(NSString *)mFileName andData:(NSData *)mData andFilePath:(NSURL *)mPath andPara:(id)para block:(void (^)( mBaseData* info))callback{
+  
+    urlString = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString];
     NSLog(@"请求地址：%@-------请求参数：%@",urlString,para);
-  
-  
-   
+
+    
+
+    
+    NSURLRequest *request = [[HTTPrequest sharedClient].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
+        if (mData) {
+            [formData appendPartWithFileData:mData name:@"file" fileName:mFileName mimeType:@"image/png"];
+        }
+        
+    } error:nil];
+    
+    // 3. operation包装的urlconnetion
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    
+    
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        
+        NSLog(@"%@",responseObject);
+        NSLog(@"上传完成");
+        
+        NSDictionary *resbObj = [self deleteEmpty:responseObject];
+        
+        NSLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+        
+        mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
+        
+        callback (retob);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+        callback( [mBaseData infoWithError:error.description] );
+        
+    }];
+    
+    //执行
+    
+    [[HTTPrequest sharedClient].operationQueue addOperation:op];
+    
+    
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    // formData是遵守了AFMultipartFormData的对象
+//    [manager POST:urlString parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileData:mData name:@"file" fileName:mFileName mimeType:@"image/png"];
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//
+//        NSLog(@"完成 %@ ,,", result);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"错误 %@", error.localizedDescription);
+//    }];
+    
+    
 }
 
 + (NSString *)returnNowURL{
@@ -222,5 +284,42 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
     }
     return marr;
 }
-
+#pragma mark----测试上传文件方法
++ (NSMutableURLRequest *)constructFormDataRequestWithUrlString:(NSString *)urlString
+                                                          data:(NSData *)data
+                                                          name:(NSString *)name
+                                                      fileName:(NSString *)fileName
+                                                      mimeType:(NSString *)mimeType
+                                                    parameters:(NSDictionary *)parameters
+{
+    NSString *boundary = [NSString stringWithFormat:@"Boundary+%08X%08X", arc4random(), arc4random()];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString]]];
+    request.HTTPMethod = @"POST";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    [request addValue:[NSString stringWithFormat:@"%lud", (unsigned long)data.length] forHTTPHeaderField:@"Content-Length"];
+    
+    NSMutableData *postBody = [NSMutableData data];
+    // body 参数
+    [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"%@", obj] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+    }];
+    
+    NSLog(@"%@", [[NSString alloc] initWithData:postBody encoding:NSUTF8StringEncoding]);
+    
+    // body data
+    [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n", name, fileName] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:data];
+    [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postBody];
+    return request;
+    
+}
 @end
