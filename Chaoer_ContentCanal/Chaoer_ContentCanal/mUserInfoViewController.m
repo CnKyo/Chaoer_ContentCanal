@@ -329,9 +329,9 @@
     
     
     
-    
-    [para setObject:imageData forKey:@"file"];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
+    [para setObject:imageData forKey:@"file"];
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];

@@ -106,7 +106,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "486384817.080235"
+                  timestampString = "486437117.660206"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
@@ -121,7 +121,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "486384817.080396"
+                  timestampString = "486437117.660353"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
@@ -154,7 +154,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "486384817.081654"
+                  timestampString = "486437117.661245"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1917"
@@ -169,7 +169,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "486384817.08189"
+                  timestampString = "486437117.66139"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1918"
@@ -378,38 +378,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/mUserInfoViewController.m"
-            timestampString = "486384816.874315"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
-            landmarkName = "-rightBtnTouched:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mUserInfoViewController.m"
-            timestampString = "486384816.874315"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
-            landmarkName = "-imageCropViewController:didCropImage:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mUserInfoViewController.m"
             timestampString = "486384871.814206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -417,6 +385,102 @@
             endingLineNumber = "353"
             landmarkName = "-block:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chaoer_ContentCanal/mUserInfoViewController.m"
+            timestampString = "486436700.195455"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
+            landmarkName = "-rightBtnTouched:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[mUserInfoViewController rightBtnTouched:]"
+                  moduleName = "Chaoer_ContentCanal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/mUserInfoViewController.m"
+                  timestampString = "486437117.671624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "377"
+                  endingLineNumber = "377"
+                  offsetFromSymbolStart = "1112">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[mUserInfoViewController rightBtnTouched:]_block_invoke"
+                  moduleName = "Chaoer_ContentCanal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/mUserInfoViewController.m"
+                  timestampString = "486437117.672157"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "379"
+                  endingLineNumber = "379"
+                  offsetFromSymbolStart = "75">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chaoer_ContentCanal/dataModel.m"
+            timestampString = "486436779.202799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
+            landmarkName = "+editUserMsg:andUserid:andLoginName:andNickName:andSex:andSignate:block:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[mUserInfo editUserMsg:andUserid:andLoginName:andNickName:andSex:andSignate:block:]"
+                  moduleName = "Chaoer_ContentCanal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
+                  timestampString = "486437117.673728"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "644"
+                  endingLineNumber = "644"
+                  offsetFromSymbolStart = "949">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__84+[mUserInfo editUserMsg:andUserid:andLoginName:andNickName:andSex:andSignate:block:]_block_invoke"
+                  moduleName = "Chaoer_ContentCanal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
+                  timestampString = "486437117.673928"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "644"
+                  endingLineNumber = "644"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

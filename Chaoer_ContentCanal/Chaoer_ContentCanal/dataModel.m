@@ -630,7 +630,7 @@ bool g_bined = NO;
         
     }
     if (mHeader) {
-        [para setObject:mSignate forKey:@"img"];
+        [para setObject:mHeader forKey:@"portrait"];
         
     }
     
