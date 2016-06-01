@@ -19,9 +19,9 @@
 #pragma mark -
 #pragma mark APIClient
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
 

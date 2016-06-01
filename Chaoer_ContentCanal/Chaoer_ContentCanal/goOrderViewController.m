@@ -383,7 +383,7 @@
         [para setObject:@"apply" forKey:@"type"];
         [para setObject:mImgData forKey:@"file"];
         
-        NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/warranty/uploadWarrantyImg",[HTTPrequest returnNowURL]];
+        NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/warranty/uploadWarrantyImg",[HTTPrequest returnNowURL]];
         TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
         manage.delegate = self;
         [manage uploadFileWithURL:mUrlStr params:para andData:mImgData fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -446,7 +446,7 @@
     
     [LBProgressHUD showHUDto:self.view withTips:@"正在上传视频..." animated:YES];
     
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@app/upload/uploadVideo",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@/app/upload/uploadVideo",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
     

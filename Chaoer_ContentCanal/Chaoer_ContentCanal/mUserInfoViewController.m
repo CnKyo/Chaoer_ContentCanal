@@ -331,11 +331,11 @@
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
-    [para setObject:mmm forKey:@"file"];
+    [para setObject:imageData forKey:@"file"];
 
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
     [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
