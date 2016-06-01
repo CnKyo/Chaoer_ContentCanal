@@ -23,9 +23,9 @@
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
 
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.230:8080/";
@@ -193,7 +193,12 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110
 }
 
 + (NSString *)returnNowURL{
-    return kAFAppDotNetAPIBaseURLString;
+    
+    NSArray *mUrl = [kAFAppDotNetAPIBaseURLString componentsSeparatedByString:@"/"];
+    NSString *mRsetUrl = [NSString stringWithFormat:@"%@//%@%@",[mUrl objectAtIndex:0],[mUrl objectAtIndex:1],[mUrl objectAtIndex:2]];
+    
+    
+    return mRsetUrl;
 }
 #pragma mark----删除字典里的null值
 - (NSDictionary *)deleteEmpty:(NSDictionary *)dic
