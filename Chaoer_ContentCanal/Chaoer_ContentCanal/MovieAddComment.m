@@ -61,8 +61,12 @@
             [nnn removeFromSuperview];
         }
         
+
        
         CGFloat LW = self.mTagView.mwidth/3-15;
+        
+        CGFloat mXX = 5;
+        CGFloat mYY = 2;;
         
         for ( int i = 0; i<mArr.count; i++) {
             
@@ -71,7 +75,7 @@
       
             UIButton *lll = [UIButton new];
             
-            lll.frame = CGRectMake(5+LW*i, 2, LW-10, 25);
+            lll.frame = CGRectMake(mXX, mYY, LW-10, 25);
             lll.titleLabel.font = [UIFont systemFontOfSize:14];
             [lll setTitle:mTag.mTagName forState:0];
             
@@ -95,8 +99,11 @@
             
             [self.mTagView addSubview:lll];
             
-            if (i>=4) {
-                break;
+            mXX += LW;
+            
+            if (mXX >= DEVICE_Width-LW) {
+                mXX = 5;
+                mYY += 30;
             }
             
         }

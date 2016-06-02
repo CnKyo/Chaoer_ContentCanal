@@ -522,6 +522,8 @@
     
     
     if (mOrder.mProcessStatus == 0) {
+        [cell.mDoneBtn setTitle:@"取消订单" forState:0];
+
         cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
         cell.mDoneBtn.enabled = NO;
     }else{
@@ -538,9 +540,12 @@
         }else{
             
             if ([mUserInfo backNowUser].mIs_leg != 5) {
+                [cell.mDoneBtn setTitle:@"接单" forState:0];
+
                 cell.mDoneBtn.backgroundColor = [UIColor lightGrayColor];
                 cell.mDoneBtn.enabled = NO;
             }else{
+                [cell.mDoneBtn setTitle:@"接单" forState:0];
                 cell.mDoneBtn.backgroundColor = M_CO;
                 cell.mDoneBtn.enabled = YES;
                 [cell.mDoneBtn addTarget:self action:@selector(getOrderAction:) forControlEvents:UIControlEventTouchUpInside];

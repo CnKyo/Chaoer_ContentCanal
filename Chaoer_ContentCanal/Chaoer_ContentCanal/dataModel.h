@@ -2439,7 +2439,17 @@
 
 
 
-
+#pragma mark----跑腿者确认订单
+/**
+ *  确认完成订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)mServicefinishPPTOrder:(int)mUserId andMoney:(int)mMoney andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block;
 @end
 
 @interface GPPTUserInfo : NSObject

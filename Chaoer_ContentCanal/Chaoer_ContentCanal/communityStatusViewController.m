@@ -274,7 +274,7 @@
     
     WebVC* vc = [[WebVC alloc]init];
     vc.mName = @"社区详情";
-    vc.mUrl = [NSString stringWithFormat:@"%@app/news/getNewSContent?id=%d",[HTTPrequest returnNowURL],GC.mId];
+    vc.mUrl = [NSString stringWithFormat:@"%@/app/news/getNewSContent?id=%d",[HTTPrequest returnNowURL],GC.mId];
     [self pushViewController:vc];
     
 

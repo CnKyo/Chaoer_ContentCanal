@@ -306,7 +306,7 @@
         }
     }else{
         
-        
+#pragma mark----跑腿者操作
         UIImage *mStatusImg = nil;
         
         if (self.mOrder.mProcessStatus == 0) {
@@ -333,11 +333,29 @@
             /**
              *  进行中
              */
-            [cell.mDoBtn setTitle:@"订单进行中" forState:0];
-            cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+            /**
+             *  如果是跑腿者
+             */
+            if ([mUserInfo backNowUser].mIs_leg == 5 && [mUserInfo backNowUser].mUserId != [self.mOrder.mUserId intValue]) {
+                [cell.mDoBtn setTitle:@"确认完成" forState:0];
+                cell.mDoBtn.backgroundColor = M_CO;
+                
+                cell.mDoBtn.enabled = YES;
+                mStatusImg = [UIImage imageNamed:@"ppt_order_accept"];
+                [cell.mDoBtn addTarget:self action:@selector(mReleasecomformAction:) forControlEvents:UIControlEventTouchUpInside];
+                cell.mDoBtn.tag = 300;
+                
+            }else{
+                [cell.mDoBtn setTitle:@"订单进行中" forState:0];
+                cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+                
+                cell.mDoBtn.enabled = NO;
+                mStatusImg = [UIImage imageNamed:@"ppt_order_accept"];
+            }
+       
             
-            cell.mDoBtn.enabled = NO;
-            mStatusImg = [UIImage imageNamed:@"ppt_order_accept"];
+   
+            
         }else if (self.mOrder.mProcessStatus == 3){
             /**
              *  确认订单
@@ -349,25 +367,49 @@
             /**
              *  确定完成
              */
-            [cell.mDoBtn setTitle:@"确认完成" forState:0];
             
-            cell.mDoBtn.enabled = YES;
-            cell.mDoBtn.backgroundColor = M_CO;
-
-            [cell.mDoBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.mDoBtn.tag = 30;
-            mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
+            if ([mUserInfo backNowUser].mIs_leg == 5 && [mUserInfo backNowUser].mUserId != [self.mOrder.mUserId intValue]) {
+                [cell.mDoBtn setTitle:@"等待确认" forState:0];
+                
+                cell.mDoBtn.enabled = NO;
+                cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+                
+    
+                mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
+            }else{
+            
+                [cell.mDoBtn setTitle:@"确认完成" forState:0];
+                
+                cell.mDoBtn.enabled = YES;
+                cell.mDoBtn.backgroundColor = M_CO;
+                
+                [cell.mDoBtn addTarget:self action:@selector(finishOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+                cell.mDoBtn.tag = 30;
+                mStatusImg = [UIImage imageNamed:@"ppt_order_sended"];
+            }
+        
         }else if (self.mOrder.mProcessStatus == 4){
             /**
              *  评价
              */
-            [cell.mDoBtn setTitle:@"去评价" forState:0];
-            cell.mDoBtn.enabled = YES;
-            cell.mDoBtn.backgroundColor = M_CO;
+            if ([mUserInfo backNowUser].mIs_leg == 5 && [mUserInfo backNowUser].mUserId != [self.mOrder.mUserId intValue]) {
+                [cell.mDoBtn setTitle:@"待评价" forState:0];
+                cell.mDoBtn.enabled = NO;
+                cell.mDoBtn.backgroundColor = [UIColor lightGrayColor];
+                mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
 
-            [cell.mDoBtn addTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.mDoBtn.tag = 40;
-            mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
+            }else{
+            
+                [cell.mDoBtn setTitle:@"去评价" forState:0];
+                cell.mDoBtn.enabled = YES;
+                cell.mDoBtn.backgroundColor = M_CO;
+                
+                [cell.mDoBtn addTarget:self action:@selector(rateOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+                cell.mDoBtn.tag = 40;
+                mStatusImg = [UIImage imageNamed:@"ppt_order_finish"];
+
+            }
+            
         }else{
             /**
              *  已完成
@@ -491,7 +533,42 @@
     
 }
 
-#pragma mark----完成订单
+#pragma mark----跑腿者确认订单
+- (void)mReleasecomformAction:(mOrderButton *)sender{
+
+    if (sender.tag == 300) {
+        if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
+            [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
+            return;
+        }
+        if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+            [self showErrorStatus:@"必须打开定位才能确认完成！"];
+            return;
+        }
+        
+        [self showWithStatus:@"正在操作..."];
+        
+        [[GPPTer backPPTUser] mServicefinishPPTOrder:[mUserInfo backNowUser].mLegworkUserId andMoney:[self.mOrder.mMaxPrice intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            
+            
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }else{
+                
+                [self showErrorStatus:resb.mMessage];
+                [self.tableView headerBeginRefreshing];
+            }
+            
+            
+        }];
+        
+    }
+
+    
+    
+}
+#pragma mark----发布者确认订单
 - (void)finishOrderAction:(mOrderButton *)sender{
     if (sender.tag == 30) {
         if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
