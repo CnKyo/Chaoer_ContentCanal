@@ -595,19 +595,19 @@
 #pragma mark----导航条渐变
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offset_Y = scrollView.contentOffset.y;
-    CGFloat alpha = (offset_Y + 40)/300.0f;
-    self.navBar.hidden = NO;
-    self.navBar.alpha=alpha;
-    
-    CGRect mRR = self.tableView.frame;
-    
-    if (offset_Y == 40) {
-        mRR.origin.y = 64;
-        self.tableView.frame = mRR;
-    }
-    
-
+//    CGFloat offset_Y = scrollView.contentOffset.y;
+//    CGFloat alpha = (offset_Y + 40)/300.0f;
+//    self.navBar.hidden = NO;
+//    self.navBar.alpha=alpha;
+//    
+//    CGRect mRR = self.tableView.frame;
+//    
+//    if (offset_Y == 40) {
+//        mRR.origin.y = 64;
+//        self.tableView.frame = mRR;
+//    }
+//    
+//
  
     
 }
