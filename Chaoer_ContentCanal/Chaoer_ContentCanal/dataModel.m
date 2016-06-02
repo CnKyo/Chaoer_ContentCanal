@@ -323,7 +323,12 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLat forKey:@"lat"];
     [para setObject:mLong forKey:@"lon"];
-    [para setObject:[RCCInfo backRCCInfo].mRCCUserId forKey:@"userId"];
+    
+    if ([RCCInfo backRCCInfo].mRCCUserId ) {
+        [para setObject:[RCCInfo backRCCInfo].mRCCUserId forKey:@"userId"];
+
+    }
+    
     
     [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appUpLocation" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
