@@ -48,6 +48,7 @@
 		04102E311CE4683F006F82E2 /* releaseCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E301CE4683F006F82E2 /* releaseCell3.xib */; };
 		04102E331CE46893006F82E2 /* releaseCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E321CE46893006F82E2 /* releaseCell4.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
+		041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E9D9B1D000FDE00C91D93 /* mTagButton.m */; };
 		042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042238EB1CD3046D00D1784B /* RCChatViewController.m */; };
 		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
 		04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D9B1CC0E76300CB6249 /* utilityView.m */; };
@@ -788,6 +789,8 @@
 		04102E301CE4683F006F82E2 /* releaseCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell3.xib; sourceTree = "<group>"; };
 		04102E321CE46893006F82E2 /* releaseCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell4.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
+		041E9D9A1D000FDE00C91D93 /* mTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTagButton.h; sourceTree = "<group>"; };
+		041E9D9B1D000FDE00C91D93 /* mTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTagButton.m; sourceTree = "<group>"; };
 		042238EA1CD3046D00D1784B /* RCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatViewController.h; sourceTree = "<group>"; };
 		042238EB1CD3046D00D1784B /* RCChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatViewController.m; sourceTree = "<group>"; };
 		04223D971CC0C9E400CB6249 /* JHJsonRequst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHJsonRequst.h; sourceTree = "<group>"; };
@@ -2260,6 +2263,8 @@
 				04D49C7E1CE730EF00BAD649 /* complaintTableViewCell.h */,
 				04D49C7F1CE730EF00BAD649 /* complaintTableViewCell.m */,
 				04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */,
+				041E9D9A1D000FDE00C91D93 /* mTagButton.h */,
+				041E9D9B1D000FDE00C91D93 /* mTagButton.m */,
 			);
 			name = "评价";
 			sourceTree = "<group>";
@@ -4798,6 +4803,7 @@
 				310EB5FD1CA2680F005C61F4 /* choiceServicerViewController.m in Sources */,
 				749BE96B1B3272E700BABCA6 /* UIView+MJExtension.m in Sources */,
 				0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */,
+				041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */,
 				313D76C31C9929AD004D5679 /* mTouzhiViewController.m in Sources */,
 				318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */,
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,

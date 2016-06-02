@@ -7,7 +7,7 @@
 //
 
 #import "MovieAddComment.h"
-
+#import "mTagButton.h"
 @implementation MovieAddComment
 
 
@@ -73,7 +73,7 @@
             GSystemTags *mTag = mArr[i];
             
       
-            UIButton *lll = [UIButton new];
+            mTagButton *lll = [mTagButton new];
             
             lll.frame = CGRectMake(mXX, mYY, LW-10, 25);
             lll.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -92,8 +92,8 @@
             [lll setBackgroundImage:[UIImage imageNamed:@"ppt_system_tag_selected"] forState:UIControlStateSelected];
 
             
+            lll.mTag = mTag;
             
-            lll.tag = mTag.mTagId;
             
             [lll addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -114,15 +114,15 @@
     return self;
 }
 
-- (void)tagAction:(UIButton *)sender{
+- (void)tagAction:(mTagButton *)sender{
 
     sender.selected = !sender.selected;
     
     if (sender.selected) {
-        [mIds addObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+        [mIds addObject:sender.mTag.mTagName];
     }else{
         
-        [mIds removeObject:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
+        [mIds removeObject:sender.mTag.mTagName];
     }
     
     
