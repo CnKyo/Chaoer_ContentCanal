@@ -81,9 +81,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>你需要打开定位服务才能正常使用0生活</string>
+	<string>你需要打开定位服务才能正常使用零生活</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>你需要打开定位服务才能正常使用0生活</string>
+	<string>你需要打开定位服务才能正常使用零生活</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
