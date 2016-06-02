@@ -43,7 +43,7 @@
 
 #import "depositViewController.h"
 
-@interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface MyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 
 @end
@@ -77,7 +77,7 @@
     self.hiddenBackBtn = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
-    self.navBar.alpha = 0;
+    self.navBar.hidden = YES;
     self.navigationController.navigationBar.barTintColor=M_CO;
 
     
@@ -595,8 +595,12 @@
 #pragma mark----导航条渐变
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    CGFloat offset_Y = scrollView.contentOffset.y;
+    CGFloat alpha = (offset_Y + 40)/300.0f;
     
-    self.navigationController.navigationBar.alpha=scrollView.contentOffset.y/200;
+    self.navBar.hidden = NO;
+    self.navBar.alpha=alpha;
+ 
     
 }
 @end
