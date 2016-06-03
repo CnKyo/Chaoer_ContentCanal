@@ -452,10 +452,10 @@
  */
 - (void)mSelectDetailAction:(UIButton *)sender{
     
-    if (mBlockArearId == nil || mBlockArearId.length == 0 || [mBlockArearId isEqualToString:@""]) {
-        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
-        return;
-    }
+//    if (mBlockArearId == nil || mBlockArearId.length == 0 || [mBlockArearId isEqualToString:@""]) {
+//        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
+//        return;
+//    }
     _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT4 title:@"详细住址"];
     _detailAddressPicker.delegates = self;
     
