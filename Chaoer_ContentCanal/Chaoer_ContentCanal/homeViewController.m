@@ -158,11 +158,16 @@
             [mUserInfo OpenRCConnect];
         }else{
             NSLog(@"获取RCC返回错误信息:%@",resb.mMessage);
+//            [self showErrorStatus:resb.mMessage];
+            [self performSelector:@selector(getRCCToken) withObject:self afterDelay:30];
+            
         }
         
     }];
 }
-
+- (void)getRCCToken{
+    [self getRCC];
+}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -455,6 +460,12 @@
             if (![mUserInfo backNowUser].mIsRegist) {
               
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
+            
+            if ([RCCInfo backRCCInfo].mRCCToken.length == 0 || [RCCInfo backRCCInfo].mRCCToken == nil || [[RCCInfo backRCCInfo].mRCCToken isEqualToString:@""]) {
+                [self showErrorStatus:@"哎呀！你要的东西被外星人抓走了，正尝试重新连接！"];
+                [self getRCC];
                 return;
             }
             

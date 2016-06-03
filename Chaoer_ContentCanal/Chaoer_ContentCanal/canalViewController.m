@@ -238,7 +238,7 @@
     mCanView = [canPayView shareView];
     mCanView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
     mCanView.mMoneyTx.delegate = mCanView.mNumTx.delegate = mCanView.mNameTx.delegate = self;
-    
+    mCanView.mMoneyTx.enabled = NO;
     [mCanView.mTopup addTarget:self action:@selector(mTopupAction:) forControlEvents:UIControlEventTouchUpInside];
     [mCanView.mBalanceBtn addTarget:self action:@selector(mBalanceAction:) forControlEvents:UIControlEventTouchUpInside];
     [mCanView.mChioceCanalBtn addTarget:self action:@selector(mCanalAction:) forControlEvents:UIControlEventTouchUpInside];

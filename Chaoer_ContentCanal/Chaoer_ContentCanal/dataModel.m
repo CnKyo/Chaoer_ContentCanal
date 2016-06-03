@@ -1745,7 +1745,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"uid"];
-    [para setObject:NumberWithInt(mId) forKey:@"mid"];
+    [para setObject:NumberWithInt(mId) forKey:@"mId"];
     
     [para setObject:mSubClass forKey:@"classification1"];
     [para setObject:mSuperId forKey:@"classification2"];

@@ -167,7 +167,6 @@
     
     [APService setupWithOption:launchOptions];
     
-    [mUserInfo OpenRCConnect];
 
     [mUserInfo openPush];
     

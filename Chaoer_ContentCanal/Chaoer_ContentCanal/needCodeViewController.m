@@ -618,20 +618,20 @@
         return;
     }
     
-    if (mBan == nil || mBan.length <= 0 ||[mBan isEqualToString:@""]) {
-        [self showErrorStatus:@"请选择楼栋信息！"];
+    if (mBan == nil || mBan.length <= 0 ||[mBan isEqualToString:@""] || [mBan isEqualToString:@"楼栋"]) {
+        [self showErrorStatus:@"请完善详细地址！"];
         return;
     }
-    if (mUnit == nil || mUnit.length <= 0 ||[mUnit isEqualToString:@""]) {
-        [self showErrorStatus:@"请选择楼栋信息！"];
+    if (mUnit == nil || mUnit.length <= 0 ||[mUnit isEqualToString:@""] || [mUnit isEqualToString:@"单元"]) {
+        [self showErrorStatus:@"请完善详细地址！"];
         return;
     }
-    if (mFloor == nil || mFloor.length <= 0 ||[mFloor isEqualToString:@""]) {
-        [self showErrorStatus:@"请选择楼栋信息！"];
+    if (mFloor == nil || mFloor.length <= 0 ||[mFloor isEqualToString:@""] || [mFloor isEqualToString:@"楼层"]) {
+        [self showErrorStatus:@"请完善详细地址！"];
         return;
     }
-    if (mDoornum == nil || mDoornum.length <= 0 ||[mDoornum isEqualToString:@""]) {
-        [self showErrorStatus:@"请选择楼栋信息！"];
+    if (mDoornum == nil || mDoornum.length <= 0 ||[mDoornum isEqualToString:@""] || [mDoornum isEqualToString:@"门牌号"]) {
+        [self showErrorStatus:@"请完善详细地址！"];
         return;
     }
     
@@ -673,6 +673,7 @@
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                 verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                vvv.mType = 11;
                 [self pushViewController:vvv];
             }else{
                 

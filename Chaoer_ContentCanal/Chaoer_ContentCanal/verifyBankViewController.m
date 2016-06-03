@@ -344,4 +344,18 @@
 }
 */
 
+- (void)leftBtnTouched:(id)sender{
+
+    if (self.mType == 11) {
+        [self popViewController_2];
+
+    }
+    
+    else {
+   
+        [self popViewController];
+        
+    }
+    
+}
 @end

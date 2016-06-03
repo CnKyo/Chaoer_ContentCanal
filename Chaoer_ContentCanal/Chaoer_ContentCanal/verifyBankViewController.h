@@ -10,4 +10,6 @@
 
 @interface verifyBankViewController : BaseVC
 
+@property (nonatomic,assign) int mType;
+
 @end
