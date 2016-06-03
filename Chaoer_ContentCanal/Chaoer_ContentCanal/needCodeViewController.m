@@ -362,10 +362,10 @@
                 [self loadArearData];
             }
             
-            
-            
-            [mView.mChoiceArearBtn setTitle:content forState:0];
-            
+            if (content.length == 0 || [content isEqualToString:@""] || content == nil) {
+                [mView.mChoiceArearBtn setTitle:content forState:0];
+            }
+        
             
         };
         
@@ -456,6 +456,15 @@
 //        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
 //        return;
 //    }
+    
+    
+    if (mView.mChoiceArearBtn.titleLabel.text.length == 0 || [mView.mChoiceArearBtn.titleLabel.text isEqualToString:@""] || mView.mChoiceArearBtn.titleLabel.text == nil) {
+        
+        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
+        return;
+        
+    }
+    
     _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT4 title:@"详细住址"];
     _detailAddressPicker.delegates = self;
     

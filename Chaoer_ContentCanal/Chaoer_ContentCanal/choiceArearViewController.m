@@ -306,6 +306,8 @@
         [self showErrorStatus:@"搜索内容不能包含非法字符！"];
         return;
     }else{
+
+        
         self.block(self.searchBar.text,nil);
         
         
