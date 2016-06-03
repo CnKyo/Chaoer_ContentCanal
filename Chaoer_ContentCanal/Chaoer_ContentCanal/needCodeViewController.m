@@ -91,6 +91,13 @@
     WKPickerView *mDetailPickView;
     
     NSString *mBlockArearId;
+    
+    
+    
+    /**
+     *  详细地址
+     */
+    NSString *mDetailAddressStr;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -156,6 +163,8 @@
     
     mAddressStr = nil;
     
+    
+    mDetailAddressStr = nil;
     [self updatePage];
     
 }
@@ -353,6 +362,7 @@
         ccc.block = ^(NSString *content ,NSString *mId){
             
             
+            
             if (mId == nil || mId.length == 0 ||[mId isEqualToString:@""]) {
 
                 mBlockArearId = @"";
@@ -363,8 +373,12 @@
             }
             
             if (content.length == 0 || [content isEqualToString:@""] || content == nil) {
-                [mView.mChoiceArearBtn setTitle:content forState:0];
+                
+            }else{
+                mDetailAddressStr = content;
+                [mView.mChoiceArearBtn setTitle:mDetailAddressStr forState:0];
             }
+            
         
             
         };
@@ -458,7 +472,7 @@
 //    }
     
     
-    if (mView.mChoiceArearBtn.titleLabel.text.length == 0 || [mView.mChoiceArearBtn.titleLabel.text isEqualToString:@""] || mView.mChoiceArearBtn.titleLabel.text == nil) {
+    if (mDetailAddressStr == 0 || [mDetailAddressStr isEqualToString:@""] || mDetailAddressStr == nil || [mView.mChoiceArearBtn.titleLabel.text isEqualToString:@"请选择小区"]) {
         
         [self showErrorStatus:@"小区名不能为空！请重新选择！"];
         return;
