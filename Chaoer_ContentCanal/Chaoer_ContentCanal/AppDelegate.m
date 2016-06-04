@@ -55,7 +55,7 @@
     [MAMapServices sharedServices].apiKey = AMAP_KEY;
     [AMapSearchServices sharedServices].apiKey = AMAP_KEY;
     [AMapLocationServices sharedServices].apiKey = AMAP_KEY;
-    [MTA startWithAppkey:@"I1DMN7E2WA6K"];
+    [MTA startWithAppkey:@"IBW9PAI485ZQ"];
     
     
     /**

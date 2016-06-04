@@ -90,7 +90,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fuhao/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/registViewController.m"
-                  timestampString = "486653435.989528"
+                  timestampString = "486699783.5781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "97"
@@ -105,7 +105,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/fuhao/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/registViewController.m"
-                  timestampString = "486653435.989664"
+                  timestampString = "486699783.578394"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "98"
@@ -144,22 +144,6 @@
             startingLineNumber = "460"
             endingLineNumber = "460"
             landmarkName = "-payIt:andPrice:block:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/myRedBagViewController.m"
-            timestampString = "480994739.891363"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-loadData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
