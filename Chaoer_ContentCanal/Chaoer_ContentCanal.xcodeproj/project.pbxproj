@@ -4376,7 +4376,7 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 5FKH22H2X2;
+						DevelopmentTeam = 9RKHC7JB9Y;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -5260,9 +5260,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34abfb37-e79a-46fd-af15-efb7073f625b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -5272,8 +5272,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5314,9 +5314,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34abfb37-e79a-46fd-af15-efb7073f625b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
