@@ -131,6 +131,10 @@
 		04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1FD571CF846500057DEBD /* CurentLocation.m */; };
 		04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C528691CDC8BA000572C3B /* libWeChatSDK.a */; };
 		04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04C5286A1CDC8BA000572C3B /* read_me.txt */; };
+		04C75DA71D058C27002D21FB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04C75DA51D058C27002D21FB /* AlipaySDK.bundle */; };
+		04C75DA81D058C27002D21FB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA61D058C27002D21FB /* AlipaySDK.framework */; };
+		04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA91D058C37002D21FB /* libcrypto.a */; };
+		04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DAA1D058C37002D21FB /* libssl.a */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
 		04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D476E01CC72B8400746491 /* orderTongjiViewController.xib */; };
 		04D49C581CE6D2DE00BAD649 /* pptMyMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C561CE6D2DE00BAD649 /* pptMyMsgCell.m */; };
@@ -267,10 +271,6 @@
 		04F9E5DA1CED4D8B00FCA8B7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 04F9E5CE1CED4D8B00FCA8B7 /* README.md */; };
 		04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */; };
 		04FE0DDA1CFC4AEB003CAF88 /* WKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */; };
-		16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */; };
-		16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB81C3D13A400B9A850 /* AlipaySDK.framework */; };
-		16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CB91C3D13A400B9A850 /* libcrypto.a */; };
-		16279CBE1C3D13A400B9A850 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CBA1C3D13A400B9A850 /* libssl.a */; };
 		16279CC71C3D151600B9A850 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CC61C3D151600B9A850 /* libstdc++.tbd */; };
 		165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 165291D21B43BEBB005A94F8 /* PushConfig.plist */; };
 		16A987BA1C0397F100D55C4A /* CBCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A987B51C0397F100D55C4A /* CBCUtil.m */; };
@@ -920,6 +920,10 @@
 		04C5286B1CDC8BA000572C3B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		04C5286C1CDC8BA000572C3B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		04C5286D1CDC8BA000572C3B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		04C75DA51D058C27002D21FB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		04C75DA61D058C27002D21FB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		04C75DA91D058C37002D21FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		04C75DAA1D058C37002D21FB /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		04D476DE1CC72B8400746491 /* orderTongjiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTongjiViewController.h; sourceTree = "<group>"; };
 		04D476DF1CC72B8400746491 /* orderTongjiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTongjiViewController.m; sourceTree = "<group>"; };
 		04D476E01CC72B8400746491 /* orderTongjiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderTongjiViewController.xib; sourceTree = "<group>"; };
@@ -1134,10 +1138,6 @@
 		04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		04FE0DD81CFC4AEB003CAF88 /* WKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKPickerView.h; sourceTree = "<group>"; };
 		04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKPickerView.m; sourceTree = "<group>"; };
-		16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		16279CB81C3D13A400B9A850 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
-		16279CB91C3D13A400B9A850 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		16279CBA1C3D13A400B9A850 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		16279CC61C3D151600B9A850 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		165291D21B43BEBB005A94F8 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		16A987B51C0397F100D55C4A /* CBCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCUtil.m; path = ../../YiZanBusinessCore/YiZanBusinessCore/CBCUtil.m; sourceTree = "<group>"; };
@@ -1924,6 +1924,7 @@
 				312D08B21CAA1C560006F0FA /* TencentOpenAPI.framework in Frameworks */,
 				3190365C1CA9036700EA6191 /* Accelerate.framework in Frameworks */,
 				16A987C71C03989200D55C4A /* libsqlite3.0.tbd in Frameworks */,
+				04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */,
 				317E46341CAD26A900217C60 /* libopencore-amrnb.a in Frameworks */,
 				312D08BA1CAA1C560006F0FA /* ShareSDKConnector.framework in Frameworks */,
 				74B3A0431B565DB00026E91D /* AVFoundation.framework in Frameworks */,
@@ -1935,16 +1936,17 @@
 				3182DA441CAB775E00C217AE /* AMapSearchKit.framework in Frameworks */,
 				74B3A03F1B565DA20026E91D /* CoreVideo.framework in Frameworks */,
 				3182DA3D1CAB6CDD00C217AE /* AMapLocationKit.framework in Frameworks */,
+				04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */,
 				74B3A03D1B565D990026E91D /* libiconv.dylib in Frameworks */,
 				3182DA451CAB775E00C217AE /* MAMapKit.framework in Frameworks */,
 				749BE9CA1B3276AF00BABCA6 /* libz.dylib in Frameworks */,
 				319036731CA9041E00EA6191 /* libopencv_imgproc.a in Frameworks */,
 				749BE9C81B3276A700BABCA6 /* MapKit.framework in Frameworks */,
 				312D08B61CAA1C560006F0FA /* libWeChatSDK.a in Frameworks */,
-				16279CBE1C3D13A400B9A850 /* libssl.a in Frameworks */,
 				749BE9C61B3276A000BABCA6 /* CFNetwork.framework in Frameworks */,
 				749BE9C41B32769900BABCA6 /* CoreFoundation.framework in Frameworks */,
 				3182DA3A1CAB6B7500C217AE /* AMapSearchKit.framework in Frameworks */,
+				04C75DA81D058C27002D21FB /* AlipaySDK.framework in Frameworks */,
 				312D08B11CAA1C560006F0FA /* ShareSDKUI.framework in Frameworks */,
 				04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */,
 				749BE9C21B32769300BABCA6 /* CoreTelephony.framework in Frameworks */,
@@ -1956,9 +1958,7 @@
 				74FD53B81BBAA1FA00161398 /* libPushSDK-1.8.5.a in Frameworks */,
 				749BE9BC1B32767400BABCA6 /* Foundation.framework in Frameworks */,
 				312D08B41CAA1C560006F0FA /* libWeiboSDK.a in Frameworks */,
-				16279CBD1C3D13A400B9A850 /* libcrypto.a in Frameworks */,
 				312D08B81CAA1C560006F0FA /* MOBFoundation.framework in Frameworks */,
-				16279CBC1C3D13A400B9A850 /* AlipaySDK.framework in Frameworks */,
 				749BE9BA1B32766D00BABCA6 /* UIKit.framework in Frameworks */,
 				749BE9B81B32766700BABCA6 /* Security.framework in Frameworks */,
 				312D08AF1CAA1C560006F0FA /* ShareSDKExtension.framework in Frameworks */,
@@ -2586,10 +2586,10 @@
 		16279CB61C3D13A400B9A850 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
-				16279CB71C3D13A400B9A850 /* AlipaySDK.bundle */,
-				16279CB81C3D13A400B9A850 /* AlipaySDK.framework */,
-				16279CB91C3D13A400B9A850 /* libcrypto.a */,
-				16279CBA1C3D13A400B9A850 /* libssl.a */,
+				04C75DA51D058C27002D21FB /* AlipaySDK.bundle */,
+				04C75DA61D058C27002D21FB /* AlipaySDK.framework */,
+				04C75DA91D058C37002D21FB /* libcrypto.a */,
+				04C75DAA1D058C37002D21FB /* libssl.a */,
 			);
 			path = alipay;
 			sourceTree = "<group>";
@@ -4557,7 +4557,6 @@
 				741C85151BABFA0B00CEFD18 /* headerView.xib in Resources */,
 				749BE9641B3272E700BABCA6 /* MJRefresh.bundle in Resources */,
 				3182DA471CAB77AD00C217AE /* AMap.bundle in Resources */,
-				16279CBB1C3D13A400B9A850 /* AlipaySDK.bundle in Resources */,
 				3122890F1C9662EA009C315F /* mLeftTableViewCell.xib in Resources */,
 				31EEB32F1C94135700B61A86 /* mGoodsDetailView.xib in Resources */,
 				3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */,
@@ -4617,6 +4616,7 @@
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
+				04C75DA71D058C27002D21FB /* AlipaySDK.bundle in Resources */,
 				04AD8AA71CE3319200A3F87F /* pptTableViewCell.xib in Resources */,
 				04D49C7D1CE730DC00BAD649 /* complaintViewController.xib in Resources */,
 				040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */,
