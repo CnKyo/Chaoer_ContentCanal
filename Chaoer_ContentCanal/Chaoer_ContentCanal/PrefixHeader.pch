@@ -37,8 +37,8 @@
  *
  *  @return 
  */
-#define RCCAPP_KEY @"pgyu6atqyw3vu"
-#define RCCAPP_SECRET @"UJVomQH4WSpKf"
+#define RCCAPP_KEY @"p5tvi9dstu8n4"
+#define RCCAPP_SECRET @"FkJ1YvraKjmNy"
 
 #define WXPAYKEY @"wxf8feb845b3a4d04e"
 
