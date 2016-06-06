@@ -53,13 +53,6 @@
     if ([mUserInfo backNowUser].mIsHousingAuthentication) {
         hasCodeViewController *hhh = [hasCodeViewController new];
         [self pushViewController:hhh];
-    }else if([mUserInfo backNowUser].mIsBundle == 1){
-        
-        verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-        [self pushViewController:vvv];
-
-
-
     }else{
         needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
         nnn.Type = 2;

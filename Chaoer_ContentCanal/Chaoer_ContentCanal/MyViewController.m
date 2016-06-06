@@ -250,22 +250,23 @@
             [self gotoLoginVC];
         }
         
+    }else if (alertView.tag == 12){
+    
+        if (buttonIndex == 1) {
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+
+        }
     }
+    
     else{
         if( buttonIndex == 1)
         {
-            if([mUserInfo backNowUser].mIsHousingAuthentication){
-                
-                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                [self pushViewController:vvv];
-                
-                
-            }else{
-                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                nnn.Type = 1;
-                
-                [self pushViewController:nnn];
-            }
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+            
             
             
         }
@@ -373,11 +374,16 @@
     cell.mImg.image = [dic objectForKey:@"img"];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            if ([mUserInfo backNowUser].mIsRegist) {
+            if ([mUserInfo backNowUser].mIsHousingAuthentication) {
                 cell.mDetail.hidden = YES;
             }else{
                 cell.mDetail.hidden = NO;
             }
+            if ([mUserInfo backNowUser].mIsRegist == 0 ) {
+                cell.mDetail.text = @"绑定银行卡";
+                
+            }
+            
         
         }else if (indexPath.row == 1){
             int m_leg = [mUserInfo backNowUser].mIs_leg;
@@ -455,17 +461,20 @@
                 ooo.mOpenId = [mUserInfo backNowUser].mOpenId;
                 [self pushViewController:ooo];
 
-            }else{
+            }
+            if ([mUserInfo backNowUser].mIsRegist == 0 ) {
+//                [self AlertViewShow:@"未绑定银行卡！" alertViewMsg:@"绑定了银行卡才能体现！" alertViewCancelBtnTiele:@"取消" alertTag:12];
+//                
+//                return;
+                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                [self pushViewController:vvv];
+
+            }
+            else{
             
-                if ([mUserInfo backNowUser].mIsRegist) {
+                if ([mUserInfo backNowUser].mIsHousingAuthentication) {
                     hasCodeViewController *hhh = [hasCodeViewController new];
                     [self pushViewController:hhh];
-                }else if([mUserInfo backNowUser].mIsHousingAuthentication){
-                    
-                    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                    [self pushViewController:vvv];
-                    
-                    
                 }else{
                     needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
                     nnn.Type = 1;
@@ -482,7 +491,7 @@
         case 2:
         {
             NSLog(@"我的跑腿");
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
@@ -551,7 +560,7 @@
         {
      
             
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
             }
@@ -572,7 +581,7 @@
             break;
         case 7:
         {
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
             }

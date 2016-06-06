@@ -16,6 +16,10 @@
 
 #import "WXApi.h"
 #import "WXApiObject.h"
+
+#import <AlipaySDK/AlipaySDK.h>
+#import <objc/message.h>
+
 @implementation dataModel{
     NSMutableURLRequest *request;
     NSOperationQueue *queue;
@@ -406,7 +410,85 @@ bool g_bined = NO;
 {
 
     
-    
+    NSMutableDictionary* param =    NSMutableDictionary.new;
+    [param setObject:NumberWithInt(Price) forKey:@"price"];
+    [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [param setObject:@"alipay" forKey:@"channel"];
+    [[HTTPrequest sharedClient] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
+        
+        if( info.mSucess )
+        {
+            // self.mPayedSn = [info.mdata objectForKeyMy:@"sn"];
+            // self.mPayMoney = [[info.mdata objectForKeyMy:@"money"] floatValue];
+            
+            NSString *mPayInfo = [info.mData objectForKey:@"packages"];
+            
+            
+            
+            [SVProgressHUD dismiss];
+            
+            
+            
+            [mUserInfo backNowUser].mPayBlock = ^(mBaseData *retobj) {
+                
+                if( retobj.mSucess )
+                {//如果成功了,就更新下
+                    block(retobj);//再回调获取
+                    
+                }else
+                    block(retobj);//再回调获取
+                [mUserInfo backNowUser].mPayBlock = nil;
+                
+            };
+            
+            
+            [[AlipaySDK defaultService] payOrder:mPayInfo fromScheme:@"zerolife" callback:^(NSDictionary *resultDic) {
+                
+                NSLog(@"xxx:%@",resultDic);
+                
+                mBaseData* retobj = nil;
+                
+                if (resultDic)
+                {
+                    if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                    {
+                        retobj = [[mBaseData alloc]init];
+                        retobj.mSucess = YES;
+                        retobj.mMessage = @"支付成功";
+                        retobj.mState = 200000;
+                    }
+                    else
+                    {
+                        retobj = [mBaseData infoWithError: [resultDic objectForKey:@"memo" ]];
+                    }
+                }
+                else
+                {
+                    retobj = [mBaseData infoWithError: @"支付出现异常"];
+                }
+                
+                if(  [mUserInfo backNowUser].mPayBlock )
+                {
+                    [mUserInfo backNowUser].mPayBlock( retobj );
+                }
+                else
+                {
+                    MLLog(@"alipay block nil?");
+                }
+                
+            }];
+            
+            
+            
+          
+        }
+        else
+        {
+            mBaseData* itretobj = [mBaseData infoWithError:@"支付出现异常,请稍后再试"];
+            block(itretobj);//再回调获取
+        }
+    }];
+
     
     
 }
@@ -460,6 +542,10 @@ bool g_bined = NO;
     if( [paytype isEqualToString:@"wx"] )
     {
         [self wxPay:mPrice block:block];
+    }
+    else if ([paytype isEqualToString:@"alipay"]){
+    
+        [self aliPay:mPrice block:block];
     }
     else{
         block( [mBaseData infoWithError:@"不支持的支付方式!"] );

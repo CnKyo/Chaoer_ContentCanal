@@ -422,7 +422,7 @@
             break;
         case 1:
         {
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
@@ -457,7 +457,7 @@
             break;
         case 2:
         {
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
               
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
@@ -541,7 +541,7 @@
             break;
         case 5:
         {
-            if (![mUserInfo backNowUser].mIsRegist) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
@@ -679,18 +679,12 @@
         if( buttonIndex == 1)
         {
             
-            if([mUserInfo backNowUser].mIsHousingAuthentication){
-                
-                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                [self pushViewController:vvv];
-                
-                
-            }else{
-                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                nnn.Type = 1;
-                
-                [self pushViewController:nnn];
-            }
+     
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+            
             
             
             

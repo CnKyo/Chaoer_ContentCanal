@@ -315,14 +315,8 @@
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             
-            if ([mUserInfo backNowUser].mIsHousingAuthentication) {
-                [self popViewController];
-            }else{
-                [self popViewController_2];
-
-            }
-            
-
+            [self popViewController];
+ 
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             

@@ -68,19 +68,12 @@
     
     if( buttonIndex == 1)
     {
+       
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+        nnn.Type = 1;
         
-        if([mUserInfo backNowUser].mIsHousingAuthentication){
-            
-            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-            [self pushViewController:vvv];
-            
-            
-        }else{
-            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-            nnn.Type = 1;
-            
-            [self pushViewController:nnn];
-        }
+        [self pushViewController:nnn];
+        
         
         
     }
@@ -133,7 +126,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row == 0) {
-        if (![mUserInfo backNowUser].mIsRegist) {
+        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
             [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
             return;
         }
@@ -142,7 +135,7 @@
         mFeedPersonViewController *mmm = [[mFeedPersonViewController alloc] initWithNibName:@"mFeedPersonViewController" bundle:nil];
         [self pushViewController:mmm];
     }else if (indexPath.row == 1){
-        if (![mUserInfo backNowUser].mIsRegist) {
+        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
             [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
             return;
         }

@@ -170,18 +170,11 @@
     {
         [self popViewController];
     }else{
-        if([mUserInfo backNowUser].mIsHousingAuthentication){
-            
-            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-            [self pushViewController:vvv];
-            
-            
-        }else{
-            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-            nnn.Type = 1;
-            
-            [self pushViewController:nnn];
-        }
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+        nnn.Type = 1;
+        
+        [self pushViewController:nnn];
+        
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
