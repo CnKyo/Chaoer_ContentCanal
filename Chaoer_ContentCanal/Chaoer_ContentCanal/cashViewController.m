@@ -49,7 +49,7 @@
             self.mBankCode.text = [resb.mData objectForKey:@"bankCard"];
 
         }else{
-            [SVProgressHUD showErrorWithStatus:@"数据验证失败！"];
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
             
             [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
             

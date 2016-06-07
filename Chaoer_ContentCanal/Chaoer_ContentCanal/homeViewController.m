@@ -94,11 +94,26 @@
     [[UINavigationBar appearance] setBackgroundColor:M_CO];
     
     self.navigationController.navigationBarHidden = YES;
-
+    
     [CurentLocation sharedManager];
 //    [self.tableView headerBeginRefreshing];
 //    [self headerBeganRefresh];
+    [self upDateUserInfo];
 }
+
+- (void)upDateUserInfo{
+
+    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+      
+        
+        if (resb.mSucess) {
+
+        }else{
+        
+        }
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.Title = self.mPageName = @"首页";

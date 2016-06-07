@@ -79,7 +79,7 @@
     retobj.mTitle = @"";
     retobj.mState = 400301;
     retobj.mData = nil;
-    retobj.mMessage = @"网络连接错误!";
+    retobj.mMessage = @"服务器君开小差啦!";
     return retobj;
 }
 @end

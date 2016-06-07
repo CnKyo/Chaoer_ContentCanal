@@ -56,7 +56,7 @@
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self initEmptyView];
             
-            [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能投诉哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+            [self AlertViewShow:@"您还没有添加小区！" alertViewMsg:@"添加小区后才能投诉哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
         }
 
@@ -172,14 +172,14 @@
     }else{
         needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
         nnn.Type = 1;
-        
+        nnn.mPageName = @"添加房屋";
         [self pushViewController:nnn];
         
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
     
-    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去添加", nil];
     al.delegate = self;
     al.tag = tag;
     [al show];

@@ -36,6 +36,7 @@
 
     [super viewWillAppear:YES];
     [self loadData];
+    [self upDateUserInfo];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +51,18 @@
     [self initView];
     
 }
-
+- (void)upDateUserInfo{
+    
+    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+        
+        
+        if (resb.mSucess) {
+            
+        }else{
+            
+        }
+    }];
+}
 - (void)loadData{
 
 //    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
@@ -133,14 +145,32 @@
 
 #pragma mark----提现
 - (void)tixianAction:(UIButton *)sender{
-  if ([mUserInfo backNowUser].mIsRegist == 0 ) {
-        [self AlertViewShow:@"未绑定银行卡！" alertViewMsg:@"绑定了银行卡才能体现！" alertViewCancelBtnTiele:@"取消" alertTag:12];
+  
+    
+    if ([mUserInfo backNowUser].mIsRegist == 0 ) {
+    
+        
+        [self AlertViewShow:@"找不到银行卡！" alertViewMsg:@"需要绑定银行卡才！" alertViewCancelBtnTiele:@"取消" alertTag:12];
 
         return;
+            
+        
+    }else{
+        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+            
+            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"实名认证之后才能提现！" alertViewCancelBtnTiele:@"取消" alertTag:13];
+            
+            return;
+        }else{
+            
+            cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
+            [self pushViewController:ccc];
+            
+        }
+        
     }
     
-    cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
-    [self pushViewController:ccc];
+
 }
 #pragma mark----充值
 - (void)topupAction:(UIButton *)sender{
@@ -190,16 +220,28 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-
-    
-    if( buttonIndex == 1)
-    {
-        
-        verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-        [self pushViewController:vvv];
- 
-        
+    if (alertView.tag == 12) {
+        if( buttonIndex == 1)
+        {
+            
+            verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+            [self pushViewController:vvv];
+            
+            
+        }
+    }else{
+        if( buttonIndex == 1)
+        {
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 1;
+            
+            [self pushViewController:nnn];
+            
+            
+        }
     }
+    
+  
 }
 
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{

@@ -375,15 +375,20 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             if ([mUserInfo backNowUser].mIsHousingAuthentication) {
-                cell.mDetail.hidden = YES;
-            }else{
-                cell.mDetail.hidden = NO;
-            }
-            if ([mUserInfo backNowUser].mIsRegist == 0 ) {
-                cell.mDetail.text = @"绑定银行卡";
                 
+                if ([mUserInfo backNowUser].mIsRegist) {
+                    cell.mDetail.text = @"已认证";
+                }else{
+                    cell.mDetail.text = @"绑定银行卡";
+                }
+                
+                
+
+            }else{
+                cell.mDetail.text = @"未认证";
+
             }
-            
+
         
         }else if (indexPath.row == 1){
             int m_leg = [mUserInfo backNowUser].mIs_leg;
@@ -462,30 +467,28 @@
                 [self pushViewController:ooo];
 
             }
-            if ([mUserInfo backNowUser].mIsRegist == 0 ) {
-//                [self AlertViewShow:@"未绑定银行卡！" alertViewMsg:@"绑定了银行卡才能体现！" alertViewCancelBtnTiele:@"取消" alertTag:12];
-//                
-//                return;
-                verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
-                [self pushViewController:vvv];
-
-            }
-            else{
             
-                if ([mUserInfo backNowUser].mIsHousingAuthentication) {
+            if ([mUserInfo backNowUser].mIsHousingAuthentication) {
+                
+                if ([mUserInfo backNowUser].mIsRegist) {
                     hasCodeViewController *hhh = [hasCodeViewController new];
                     [self pushViewController:hhh];
                 }else{
-                    needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-                    nnn.Type = 1;
-                    
-                    [self pushViewController:nnn];
+                    verifyBankViewController *vvv = [[verifyBankViewController alloc] initWithNibName:@"verifyBankViewController" bundle:nil];
+                    [self pushViewController:vvv];
                 }
-
+                
+                
+                
+            }else{
+                needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+                nnn.Type = 1;
+                
+                [self pushViewController:nnn];
+                
             }
             
-          
-
+           
         }
             break;
         case 2:
