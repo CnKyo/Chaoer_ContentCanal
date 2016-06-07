@@ -77,7 +77,7 @@
  *  @param sender
  */
 - (void)mTopupAction:(UIButton *)sender{
-    NSLog(@"充值");
+    MLLog(@"充值");
     mBalanceViewController *bbb = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
     [self pushViewController:bbb];
 }

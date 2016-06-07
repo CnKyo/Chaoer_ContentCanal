@@ -19,9 +19,9 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
 
@@ -70,15 +70,14 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)(mBaseData  * info))callback
 {
     
-    NSLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
-    
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
     [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
 //        NSLog(@"去掉字典里的null值之前的数据---URL%@ data:%@",operation.response.URL,responseObject);
 
         NSDictionary *resbObj = [self deleteEmpty:responseObject];
         
-        NSLog(@"去掉字典里的null值之后的数据---%@",resbObj);
+        MLLog(@"去掉字典里的null值之后的数据---%@",resbObj);
 
         mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
                 
@@ -92,22 +91,22 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
     }
        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
            
-           NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
            callback( [mBaseData infoWithError:@"网络请求错误"] );
            
        }];
 }
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback{
 
-    NSLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
     
     [self GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+        MLLog(@"URL%@ data:%@",operation.response.URL,responseObject);
         
         NSDictionary *resbObj = [self deleteEmpty:responseObject];
         
-        NSLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+        MLLog(@"去掉字典里的null值之后的数据：%@",resbObj);
         
         mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
         
@@ -122,7 +121,7 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
     }
        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
            
-           NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
            callback( [mBaseData infoWithError:@"网络请求错误"] );
            
        }];
@@ -131,7 +130,7 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
 - (void)postUrlWithString:(NSString *)urlString andFileName:(NSString *)mFileName andData:(NSData *)mData andFilePath:(NSURL *)mPath andPara:(id)para block:(void (^)( mBaseData* info))callback{
   
     urlString = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString];
-    NSLog(@"请求地址：%@-------请求参数：%@",urlString,para);
+    MLLog(@"请求地址：%@-------请求参数：%@",urlString,para);
 
     
 
@@ -155,19 +154,19 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
         
         
         
-        NSLog(@"%@",responseObject);
-        NSLog(@"上传完成");
+        MLLog(@"%@",responseObject);
+        MLLog(@"上传完成");
         
         NSDictionary *resbObj = [self deleteEmpty:responseObject];
         
-        NSLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+        MLLog(@"去掉字典里的null值之后的数据：%@",resbObj);
         
         mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
         
         callback (retob);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+        MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
         callback( [mBaseData infoWithError:error.description] );
         
     }];
@@ -321,7 +320,7 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
         
     }];
     
-    NSLog(@"%@", [[NSString alloc] initWithData:postBody encoding:NSUTF8StringEncoding]);
+    MLLog(@"%@", [[NSString alloc] initWithData:postBody encoding:NSUTF8StringEncoding]);
     
     // body data
     [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n", name, fileName] dataUsingEncoding:NSUTF8StringEncoding]];

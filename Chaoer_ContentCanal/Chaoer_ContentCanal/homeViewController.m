@@ -172,7 +172,7 @@
         if (resb.mSucess) {
             [mUserInfo OpenRCConnect];
         }else{
-            NSLog(@"获取RCC返回错误信息:%@",resb.mMessage);
+            MLLog(@"获取RCC返回错误信息:%@",resb.mMessage);
 //            [self showErrorStatus:resb.mMessage];
             [self performSelector:@selector(getRCCToken) withObject:self afterDelay:30];
             
@@ -191,7 +191,7 @@
 
 -(void)callBack{
     
-    NSLog(@"this is Notification.");
+    MLLog(@"this is Notification.");
     [self appInit];
 
     [self initview];
@@ -255,11 +255,11 @@
             [WJStatusBarHUD showErrorImageName:nil text:eee];
 
             mNavView.mAddress.text = eee;
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
 
         }
         
-        NSLog(@"location:%f", location.coordinate.latitude);
+        MLLog(@"location:%f", location.coordinate.latitude);
         
         mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
         mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
@@ -270,7 +270,7 @@
 
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mNavView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
         }
     }];
@@ -285,7 +285,7 @@
         }else if(resb.mState == 401002){
             [self getRCC];
         }else{
-            NSLog(@"获取融云位置信息失败：%@",resb.mMessage);
+            MLLog(@"获取融云位置信息失败：%@",resb.mMessage);
         }
     }];
     
@@ -452,7 +452,7 @@
 }
 #pragma mark----按钮的点击事件
 - (void)mSomeBtnAction:(UIButton *)sender{
-    NSLog(@"第%ld个",(long)sender.tag);
+    MLLog(@"第%ld个",(long)sender.tag);
     
     switch (sender.tag) {
         case 0:
@@ -597,7 +597,7 @@
         [arrtemp addObject:banar.mImgUrl];
     }
     
-    NSLog(@"%@",arrtemp);
+    MLLog(@"%@",arrtemp);
     //显示顺序和数组顺序一致
     //设置图片url数组,和滚动视图位置
     mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 120) WithImageUrls:arrtemp];
@@ -636,7 +636,7 @@
     //error错误信息
     //url下载失败的imageurl
     [[DCWebImageManager shareManager] setDownLoadImageError:^(NSError *error, NSString *url) {
-        NSLog(@"%@",error);
+        MLLog(@"%@",error);
     }];
     
     [self loadHeaderView];
@@ -721,7 +721,7 @@
 #pragma mark----maplitdelegate
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
 
-    NSLog(@"定位成功之后返回的东东：%@",mCoordinate);
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
 }
 
 

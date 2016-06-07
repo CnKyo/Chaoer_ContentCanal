@@ -78,7 +78,7 @@
 - (void)upDatePage{
     
     
-    NSLog(@"个人欣喜:%@",[mUserInfo backNowUser]);
+    MLLog(@"个人欣喜:%@",[mUserInfo backNowUser]);
     
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 
@@ -185,7 +185,7 @@
             [self startImagePickerVCwithButtonIndex:buttonIndex];
         }
     }else{
-        NSLog(@"选择了第 %ld个", (long)buttonIndex);
+        MLLog(@"选择了第 %ld个", (long)buttonIndex);
         
         NSString *sex = nil;
         NSString *text = nil;
@@ -341,9 +341,9 @@
     [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if (connectionError) {
-            NSLog(@"请求出错 %@",connectionError);
+            MLLog(@"请求出错 %@",connectionError);
         }else{
-            NSLog(@"请求返回：\n%@",response);
+            MLLog(@"请求返回：\n%@",response);
         }
     }];
     

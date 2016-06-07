@@ -13,7 +13,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     for(CLLocation *location in locations){
-        NSLog(@"---------%@-------",location);
+        MLLog(@"---------%@-------",location);
     }
     CLLocation *currLocation=[locations lastObject];
     CLGeocoder *geoCoder = [[CLGeocoder alloc]init];//反向解析，根据及纬度反向解析出地址
@@ -23,7 +23,7 @@
         for(CLPlacemark *place in placemarks)
         {
             //取出当前位置的坐标
-            NSLog(@"latitude : %f,longitude: %f",currLocation.coordinate.latitude,currLocation.coordinate.longitude);
+            MLLog(@"latitude : %f,longitude: %f",currLocation.coordinate.latitude,currLocation.coordinate.longitude);
             NSString *latStr = [NSString stringWithFormat:@"%f",currLocation.coordinate.latitude];
             NSString *lngStr = [NSString stringWithFormat:@"%f",currLocation.coordinate.longitude];
             NSDictionary *dict = [place addressDictionary];
@@ -37,7 +37,7 @@
             
             [self.delegate MMapreturnLatAndLng:resultDic];
             
-            NSLog(@"------addressDictionary-%@------",dict);
+            MLLog(@"------addressDictionary-%@------",dict);
             [[NSUserDefaults standardUserDefaults] setObject:dict[@"SubLocality"] forKey:@"XianUser"];
             [[NSUserDefaults standardUserDefaults] setObject:resultDic forKey:@"LocationInfo"];
             [[NSUserDefaults standardUserDefaults] synchronize];

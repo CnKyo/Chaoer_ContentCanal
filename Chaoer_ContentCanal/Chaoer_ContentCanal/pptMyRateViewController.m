@@ -300,7 +300,7 @@
     return 40;
 }
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
-    NSLog(@"点击了%lu",(unsigned long)mIndex);
+    MLLog(@"点击了%lu",(unsigned long)mIndex);
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
     [self.tableView headerBeginRefreshing];
     

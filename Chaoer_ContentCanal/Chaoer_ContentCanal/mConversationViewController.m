@@ -288,7 +288,7 @@
 
 
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
-    NSLog(@"点击了%lu",(unsigned long)mIndex);
+    MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     if (mIndex == 0) {
         mType = 1;

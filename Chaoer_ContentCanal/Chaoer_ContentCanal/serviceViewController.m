@@ -74,17 +74,17 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             mAdView.mAddress.text = eee;
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
         
-        NSLog(@"location:%@", location);
+        MLLog(@"location:%@", location);
         
         if (regeocode)
         {
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mAdView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             
         }
@@ -142,7 +142,7 @@
 
 #pragma mark----按钮的点击事件
 - (void)mCusBtnAction:(UIButton *)sender{
-    NSLog(@"第%ld个",(long)sender.tag);
+    MLLog(@"第%ld个",(long)sender.tag);
     
     NSString *mTT = mTTArr[sender.tag];
     

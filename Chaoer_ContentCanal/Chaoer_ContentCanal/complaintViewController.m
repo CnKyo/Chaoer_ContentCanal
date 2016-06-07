@@ -108,7 +108,7 @@
 }
 #pragma mark----提交投诉
 - (void)commitAction:(UIButton *)sender{
-    NSLog(@"提交");
+    MLLog(@"提交");
     
     if (mContent.length == 0) {
         [self showErrorStatus:@"请完善投诉内容!"];
@@ -411,9 +411,9 @@
     [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if (connectionError) {
-            NSLog(@"请求出错 %@",connectionError);
+            MLLog(@"请求出错 %@",connectionError);
         }else{
-            NSLog(@"请求返回：\n%@",response);
+            MLLog(@"请求返回：\n%@",response);
         }
     }];
     

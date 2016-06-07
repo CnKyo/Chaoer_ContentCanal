@@ -49,12 +49,12 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://api.avatardat
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)(mJHBaseData  * info))callback
 {
     
-    NSLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
     
     [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         
-        NSLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+        MLLog(@"URL%@ data:%@",operation.response.URL,responseObject);
         
         mJHBaseData   *retob = [[mJHBaseData alloc]initWithObj:responseObject];
         
@@ -68,14 +68,14 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://api.avatardat
     }
        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
            
-           NSLog(@"url:%@ error:%@",operation.response.URL,error.description);
+           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
            callback( [mJHBaseData infoWithError:@"网络请求错误"] );
            
        }];
 }
 
 - (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback{
-    NSLog(@"请求地址：%@-------请求参数：%@",urlString,para);
+    MLLog(@"请求地址：%@-------请求参数：%@",urlString,para);
     
     
     

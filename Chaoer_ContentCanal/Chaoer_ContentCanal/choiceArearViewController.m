@@ -76,11 +76,11 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
         
-        NSLog(@"location:%f", location.coordinate.latitude);
+        MLLog(@"location:%f", location.coordinate.latitude);
         
         mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
         mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
@@ -90,7 +90,7 @@
             
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
         }
     }];
     
@@ -192,7 +192,7 @@
 {
     searchBar.showsCancelButton = YES;//取消的字体颜色，
     [searchBar setShowsCancelButton:YES animated:YES];
-    NSLog(@"heahtdyfgh");
+    MLLog(@"heahtdyfgh");
     
     //改变取消的文本
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
@@ -208,7 +208,7 @@
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    NSLog(@"我的");
+    MLLog(@"我的");
 }
 
 /**
@@ -245,7 +245,7 @@
  */
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"取消吗");
+    MLLog(@"取消吗");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
@@ -257,7 +257,7 @@
  */
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"取");
+    MLLog(@"取");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     [self headerBeganRefresh];

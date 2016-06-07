@@ -137,7 +137,7 @@
     [mHeaderView removeFromSuperview];
     
     mHeaderView=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 60) titles:mTTArr clickBlick:^void(NSInteger index) {
-        NSLog(@"点击了-----%ld",index);
+        MLLog(@"点击了-----%ld",index);
         
         GCommunityClass *GC = mClassArr[index-1];
         mType = GC.mId;

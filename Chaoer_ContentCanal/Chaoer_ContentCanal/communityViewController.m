@@ -83,7 +83,7 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [SVProgressHUD showErrorWithStatus:eee];
             mTopView.mAddress.text = eee;
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
             //            if (error.code == AMapLocatingErrorLocateFailed)
             //            {
@@ -91,13 +91,13 @@
             //            }
         }
         
-        NSLog(@"location:%@", location);
+        MLLog(@"location:%@", location);
         
         if (regeocode)
         {
             [SVProgressHUD showErrorWithStatus:@"定位成功！"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mTopView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
 
         }
@@ -171,7 +171,7 @@
 }
 #pragma mark----按钮的点击事件
 - (void)mCusBtnAction:(UIButton *)sender{
-    NSLog(@"第%ld个",(long)sender.tag);
+    MLLog(@"第%ld个",(long)sender.tag);
     
     switch (sender.tag) {
         case 0:

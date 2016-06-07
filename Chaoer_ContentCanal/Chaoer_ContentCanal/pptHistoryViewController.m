@@ -170,7 +170,7 @@
 - (void)headerBeganRefresh{
 
     
-    NSLog(@"左边：%d右边：%d",mLeft,mRight);
+    MLLog(@"左边：%d右边：%d",mLeft,mRight);
     
     self.page = 1;
     

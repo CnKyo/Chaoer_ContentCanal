@@ -198,7 +198,7 @@
     NSString *title = btn.titleLabel.text;
 
     if (view.tag == 1001) {
-        NSLog(@"tt%@",title);
+        MLLog(@"tt%@",title);
         mReleaseTag = title;
         mTagId = mTag;
     }else{
