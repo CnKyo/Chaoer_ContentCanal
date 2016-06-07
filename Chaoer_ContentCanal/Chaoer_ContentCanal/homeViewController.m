@@ -618,7 +618,7 @@
         
         WebVC *w = [WebVC new];
         w.mName = banar.mName;
-        w.mUrl = [NSString stringWithFormat:@"http://%@",banar.mContentUrl];
+        w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
         [weakSelf pushViewController:w];
 
         
