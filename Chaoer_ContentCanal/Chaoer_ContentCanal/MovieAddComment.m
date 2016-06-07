@@ -145,7 +145,7 @@
         
     }
     
-    NSLog(@"提交");
+    MLLog(@"提交");
     
     if (mSpeed == 0) {
         [SVProgressHUD showErrorWithStatus:@"请选择速度评分！"];

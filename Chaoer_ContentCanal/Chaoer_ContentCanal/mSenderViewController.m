@@ -158,11 +158,11 @@
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             mHeaderView.mAddress.text = eee;
             [self showErrorStatus:@"需要打开定位才能查询附近的订单！"];
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
         if (location) {
-            NSLog(@"location:%@", location);
+            MLLog(@"location:%@", location);
             self.mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
             self.mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
             
@@ -174,7 +174,7 @@
         {
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mHeaderView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             
         }
@@ -285,7 +285,7 @@
         [arrtemp addObject:banar.mImgUrl];
     }
     
-    NSLog(@"%@",arrtemp);
+    MLLog(@"%@",arrtemp);
     //显示顺序和数组顺序一致
     //设置图片url数组,和滚动视图位置
     mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 100) WithImageUrls:arrtemp];
@@ -325,7 +325,7 @@
     //error错误信息
     //url下载失败的imageurl
     [[DCWebImageManager shareManager] setDownLoadImageError:^(NSError *error, NSString *url) {
-        NSLog(@"%@",error);
+        MLLog(@"%@",error);
     }];
     
     mHeaderView = [pptHeaderView shareView];
@@ -492,7 +492,7 @@
 }
 
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
-    NSLog(@"点击了%lu",(unsigned long)mIndex);
+    MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
     [self.tableView headerBeginRefreshing];
@@ -622,7 +622,7 @@
     mReleaseView.mBgkView.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.75];
     
     [mReleaseView.mBuyBtn btnClick:^{
-        NSLog(@"买东西");
+        MLLog(@"买东西");
         
         if ([mUserInfo backNowUser].mMoney <= 0) {
             [self showErrorStatus:@"余额不足，发布失败！"];
@@ -641,7 +641,7 @@
             [self showErrorStatus:@"余额不足，发布失败！"];
             return ;
         }
-        NSLog(@"办事情");
+        MLLog(@"办事情");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 2;
         rrr.mSubType = 2;
@@ -653,7 +653,7 @@
             [self showErrorStatus:@"余额不足，发布失败！"];
             return ;
         }
-        NSLog(@"送东西");
+        MLLog(@"送东西");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 3;
         rrr.mSubType = 3;
@@ -661,7 +661,7 @@
     }];
     
     [mReleaseView.mCloseBtn btnClick:^{
-        NSLog(@"关闭"); 
+        MLLog(@"关闭");
         [self hiddenReleaseView];
     
     }];
@@ -771,7 +771,7 @@
 #pragma mark----maplitdelegate
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
     
-    NSLog(@"定位成功之后返回的东东：%@",mCoordinate);
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

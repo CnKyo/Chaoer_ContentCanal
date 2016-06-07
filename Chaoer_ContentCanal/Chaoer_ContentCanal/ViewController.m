@@ -216,8 +216,8 @@
                                        
                                        //在此示例中没有跟用户系统关联，则使用一个社交用户对应一个系统用户的方式。将社交用户的uid作为关联ID传入associateHandler。
                                        associateHandler (user.uid, user, user);
-                                       NSLog(@"dd%@",user.rawData);
-                                       NSLog(@"dd%@",user.credential);
+                                       MLLog(@"dd%@",user.rawData);
+                                       MLLog(@"dd%@",user.credential);
                                        NSMutableDictionary *para = [NSMutableDictionary new];
 
                                        if (type == SSDKPlatformTypeQQ) {
@@ -247,7 +247,7 @@
                                      
                                        
                                        
-                                       NSLog(@"性别是：%@",mSex);
+                                       MLLog(@"性别是：%@",mSex);
                                        [para setObject:@"ios" forKey:@"device"];
 
                                        [para setObject:mOpenID forKey:@"openid"];
@@ -284,7 +284,7 @@
                                        if (state == SSDKResponseStateSuccess){
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
                                            
-                                           NSLog(@"返回的用户信息：%@",user);
+                                           MLLog(@"返回的用户信息：%@",user);
                                            
                                            
                                            
@@ -292,7 +292,7 @@
                                        {
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
                                            
-                                           NSLog(@"%@",error);
+                                           MLLog(@"%@",error);
                                            [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
                                        }
                                    }];
@@ -680,14 +680,14 @@
     [adsView hideAnimated:YES];
 }
 - (void)wjAdsViewDidAppear:(WJAdsView *)view{
-    NSLog(@"视图出现");
+    MLLog(@"视图出现");
 }
 - (void)wjAdsViewDidDisAppear:(WJAdsView *)view{
-    NSLog(@"视图消失");
+    MLLog(@"视图消失");
 }
 
 - (void)wjAdsViewTapMainContainView:(WJAdsView *)view currentSelectIndex:(long)selectIndex{
-    NSLog(@"点击主内容视图:--%ld",selectIndex);
+    MLLog(@"点击主内容视图:--%ld",selectIndex);
 }
 
 

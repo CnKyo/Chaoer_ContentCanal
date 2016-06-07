@@ -82,7 +82,7 @@
     [para setObject:self.mHouseNum forKey:@"account"];
     [para setObject:JH_KEY forKey:@"key"];
 
-    NSLog(@"请求的参数:是%@",para);
+    MLLog(@"请求的参数:是%@",para);
     
     [SVProgressHUD showWithStatus:@"正在查询..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] Inquire:para block:^(mJHBaseData *resb) {
@@ -107,7 +107,7 @@
     mView = [utilityView shareEmpty];
     mView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
     
-    NSLog(@"%@",self.mPara);
+    MLLog(@"%@",self.mPara);
     
     
     [mScrollerView addSubview:mView];
@@ -122,7 +122,7 @@
     mView = [utilityView shareInquireView];
     mView.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
 
-    NSLog(@"%@",self.mPara);
+    MLLog(@"%@",self.mPara);
 
     
     [mView.mGoPayBtn addTarget:self action:@selector(mPayFeeAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -121,12 +121,12 @@
 #pragma mark - CardIOPaymentViewControllerDelegate
 
 - (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
-    NSLog(@"Scan succeeded with info: %@", info);
+    MLLog(@"Scan succeeded with info: %@", info);
     // Do whatever needs to be done to deliver the purchased items.
     [self dismissViewControllerAnimated:YES completion:nil];
     
     NSString *mTT = [NSString stringWithFormat:@"Received card info. Number: %@, expiry: %02lu/%lu, cvv: %@.", info.redactedCardNumber, (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear, info.cvv];
-    NSLog(@"最后扫描出来的信息是：%@",mTT);
+    MLLog(@"最后扫描出来的信息是：%@",mTT);
     
     mView.mBankCard.text = info.cardNumber;
     mView.mTime.text = [NSString stringWithFormat:@"%02lu/%lu",(unsigned long)info.expiryMonth, (unsigned long)info.expiryYear];
@@ -134,7 +134,7 @@
 }
 
 - (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
-    NSLog(@"User cancelled scan");
+    MLLog(@"User cancelled scan");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

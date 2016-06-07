@@ -86,7 +86,7 @@
 
 }
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
-    NSLog(@"第%ld个",(long)mIndex);
+    MLLog(@"第%ld个",(long)mIndex);
 }
 #pragma mark----底部view
 - (void)initShopCarView{
@@ -299,14 +299,14 @@
 }
 #pragma mark----左边的按钮
 - (void)mLeftAction:(UIButton *)sender{
-    NSLog(@"left");
+    MLLog(@"left");
     mGoodsDetailViewController *mmm = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     mmm.mTitle = @"左边的";
     [self pushViewController:mmm];
 }
 #pragma mark----右边的按钮
 - (void)mRightAction:(UIButton *)sender{
-    NSLog(@"right");
+    MLLog(@"right");
     mGoodsDetailViewController *mmm = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     mmm.mTitle = @"右边的";
     [self pushViewController:mmm];

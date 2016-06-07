@@ -79,7 +79,7 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             mAdView.mAddress.text = eee;
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
 //            if (error.code == AMapLocatingErrorLocateFailed)
 //            {
@@ -87,13 +87,13 @@
 //            }
         }
         
-        NSLog(@"location:%@", location);
+        MLLog(@"location:%@", location);
         
         if (regeocode)
         {
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
 
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mAdView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
 
         }
@@ -187,7 +187,7 @@ updatingLocation:(BOOL)updatingLocation
     if(updatingLocation)
     {
         //取出当前位置的坐标
-        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        MLLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
     }
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

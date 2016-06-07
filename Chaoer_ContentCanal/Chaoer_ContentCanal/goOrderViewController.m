@@ -256,7 +256,7 @@
 
 - (void)loadMHActionSheetView{
     
-    NSLog(@"得到的数据是：%@",mAddressArr);
+    MLLog(@"得到的数据是：%@",mAddressArr);
     
     NSMutableArray *madd = [NSMutableArray new];
     
@@ -338,11 +338,11 @@
         if (images.count > 1 || assets.count > 1) {
             [LCProgressHUD showFailure:@"只能选择1张图片!"];
             
-            NSLog(@"选择的图片超过3张!");
+            MLLog(@"选择的图片超过3张!");
             return ;
         }
         
-        NSLog(@"picker images :%@ \n\n assets:%@",images,assets);
+        MLLog(@"picker images :%@ \n\n assets:%@",images,assets);
         
         
         if (assets) {
@@ -389,9 +389,9 @@
         [manage uploadFileWithURL:mUrlStr params:para andData:mImgData fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             
             if (connectionError) {
-                NSLog(@"请求出错 %@",connectionError);
+                MLLog(@"请求出错 %@",connectionError);
             }else{
-                NSLog(@"请求返回：\n%@",response);
+                MLLog(@"请求返回：\n%@",response);
             }
         }];
 
@@ -399,7 +399,7 @@
     }];
     //3. 设置选择完视频的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
-        NSLog(@"picker video :%@ \n\n asset :%@",image,asset);
+        MLLog(@"picker video :%@ \n\n asset :%@",image,asset);
         self.assets = @[asset];
         
     }];
@@ -442,7 +442,7 @@
     
     [para setObject:mVedioData forKey:@"video"];
     
-    NSLog(@"上传的参数是：%@",para);
+    MLLog(@"上传的参数是：%@",para);
     
     [LBProgressHUD showHUDto:self.view withTips:@"正在上传视频..." animated:YES];
     
@@ -452,9 +452,9 @@
     
     [manage uploadFileWithURL:mUrlStr params:para andData:mVedioData fileKey:@"video" filePath:mVedioPath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError) {
-            NSLog(@"请求出错 %@",connectionError);
+            MLLog(@"请求出错 %@",connectionError);
         }else{
-            NSLog(@"请求返回：\n%@",response);
+            MLLog(@"请求返回：\n%@",response);
         }
     }];
     
@@ -536,7 +536,7 @@
         
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         ;
-        NSLog(@"%@",image);
+        MLLog(@"%@",image);
         NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp.jpg"];
         ;
         
@@ -591,7 +591,7 @@
     
     NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
     
-    NSLog(@"%@",compatiblePresets);
+    MLLog(@"%@",compatiblePresets);
     
     if ([compatiblePresets containsObject:AVAssetExportPresetHighestQuality]) {
         
@@ -603,7 +603,7 @@
         
         NSString * resultPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
         
-        NSLog(@"resultPath = %@",resultPath);
+        MLLog(@"resultPath = %@",resultPath);
         exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
         [self getFileSize:[NSString stringWithFormat:@"%@",exportSession.outputURL]];
         
@@ -614,37 +614,37 @@
         [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
          
          {
-             NSLog(@"-+-+-+-++-+-+-+-+--+:%@",exportSession.outputURL);
+             MLLog(@"-+-+-+-++-+-+-+-+--+:%@",exportSession.outputURL);
              
              switch (exportSession.status) {
                      
                  case AVAssetExportSessionStatusUnknown:
                      
-                     NSLog(@"AVAssetExportSessionStatusUnknown");
+                     MLLog(@"AVAssetExportSessionStatusUnknown");
                      
                      break;
                      
                  case AVAssetExportSessionStatusWaiting:
                      
-                     NSLog(@"AVAssetExportSessionStatusWaiting");
+                     MLLog(@"AVAssetExportSessionStatusWaiting");
                      
                      break;
                      
                  case AVAssetExportSessionStatusExporting:
                      
-                     NSLog(@"AVAssetExportSessionStatusExporting");
+                     MLLog(@"AVAssetExportSessionStatusExporting");
                      
                      break;
                      
                  case AVAssetExportSessionStatusCompleted:
                      
-                     NSLog(@"AVAssetExportSessionStatusCompleted");
-                     NSLog(@"完成之后－－－＋－＋－＋－＋－%@",exportSession);
+                     MLLog(@"AVAssetExportSessionStatusCompleted");
+                     MLLog(@"完成之后－－－＋－＋－＋－＋－%@",exportSession);
                      break;
                      
                  case AVAssetExportSessionStatusFailed:
                      
-                     NSLog(@"AVAssetExportSessionStatusFailed");
+                     MLLog(@"AVAssetExportSessionStatusFailed");
                      
                      break;
                      
@@ -666,7 +666,7 @@
         unsigned long long size = [[fileDic objectForKey:NSFileSize] longLongValue];
         filesize = 1.0*size/1024;
     }
-    NSLog(@"问价大小是:%f",filesize);
+    MLLog(@"问价大小是:%f",filesize);
     return filesize;
 }
 
@@ -678,15 +678,15 @@
     AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
     AVAsset *asset = [AVAsset assetWithURL:url];
     if (!asset) {
-        NSLog(@"asset数据为空");
+        MLLog(@"asset数据为空");
         return;
     }
-    NSLog(@"%@---%@",asset.tracks,[asset tracksWithMediaType:@"vide"]);
+    MLLog(@"%@---%@",asset.tracks,[asset tracksWithMediaType:@"vide"]);
     AVAssetTrack *assetTrack;
     if ([asset tracksWithMediaType:@"vide"].count>0) {
         assetTrack = [[asset tracksWithMediaType:@"vide"] objectAtIndex:0];
     }else{
-        NSLog(@"asset数据为空");
+        MLLog(@"asset数据为空");
         return;
     }
     renderSize.width = MAX(renderSize.width, assetTrack.naturalSize.height);
@@ -742,7 +742,7 @@
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality];
     exporter.videoComposition = mainCompositionInst;
     exporter.outputURL = mergeFileURL;
-    NSLog(@"最后的到的文件是：%@",exporter.outputURL);
+    MLLog(@"最后的到的文件是：%@",exporter.outputURL);
     
     if ([self getFileSize:[NSString stringWithFormat:@"%@",exporter.outputURL]] >= 10.0*1024) {
         [LCProgressHUD showFailure:@"选择的文件太大了！"];
@@ -791,7 +791,7 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager isExecutableFileAtPath:testDirectory]) {
-        NSLog(@"无文件夹,创建文件");
+        MLLog(@"无文件夹,创建文件");
         [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     }
     

@@ -269,7 +269,7 @@
     
     
     
-    NSLog(@"url:%@ withsouce url:%@",url,sourceApplication);
+    MLLog(@"url:%@ withsouce url:%@",url,sourceApplication);
     if ([url.host isEqualToString:@"safepay"]) {
         
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url
@@ -317,7 +317,7 @@
     if( [resp isKindOfClass: [PayResp class]] )
     {
         NSString *strMsg    =   [NSString stringWithFormat:@"errcode:%d errmsg:%@ payinfo:%@", resp.errCode,resp.errStr,((PayResp*)resp).returnKey];
-        NSLog(@"payresp:%@",strMsg);
+        MLLog(@"payresp:%@",strMsg);
         
         mBaseData* retobj = mBaseData.new;
         if( resp.errCode == -1 )
@@ -343,12 +343,12 @@
         }
         else
         {
-            NSLog(@"may be err no block to back");
+            MLLog(@"may be err no block to back");
         }
     }
     else
     {
-        NSLog(@"may be err what class one onResp");
+        MLLog(@"may be err what class one onResp");
     }
 }
 
@@ -399,7 +399,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    NSLog(@"hhhhhhurl:%@",url);
+    MLLog(@"hhhhhhurl:%@",url);
     return  [WXApi handleOpenURL:url delegate:self];
 }
 
@@ -486,7 +486,7 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"reg push err:%@",error);
+    MLLog(@"reg push err:%@",error);
 }
 #pragma mark*-*----加载推送通知
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -551,7 +551,7 @@
                      tags:(NSSet *)tags
                     alias:(NSString *)alias {
     
-    NSLog(@"tag:%@ alias%@ irescod:%d",tags,alias,iResCode);
+    MLLog(@"tag:%@ alias%@ irescod:%d",tags,alias,iResCode);
     if( iResCode == 6002 )
     {
 //        [SUser  relTokenWithPush];

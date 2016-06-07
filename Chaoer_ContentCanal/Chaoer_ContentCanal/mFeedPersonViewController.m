@@ -392,7 +392,7 @@
 }
 - (void)pickerDidSelectProvinceName:(NSString *)provinceName andProvinId:(int)ProvinceId cityName:(NSString *)cityName andArearId:(int)ArearId countrys:(NSString *)countrys andCityId:(int)CityId{
     
-    NSLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
+    MLLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
     
     [self.mProvinceBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",provinceName,cityName,countrys] forState:0];
     
@@ -401,7 +401,7 @@
     mmArearId = [NSString stringWithFormat:@"%d",ArearId];
     
     
-    NSLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
+    MLLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
     
     
 }
@@ -603,7 +603,7 @@
 
     }
     
-    NSLog(@"第%ld行",(long)indexPath.row);
+    MLLog(@"第%ld行",(long)indexPath.row);
     
 }
 

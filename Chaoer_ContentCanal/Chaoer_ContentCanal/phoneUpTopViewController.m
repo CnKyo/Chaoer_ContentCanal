@@ -153,7 +153,7 @@
         return;
     }
 
-    NSLog(@"选择了%@",[mTT lastObject]);
+    MLLog(@"选择了%@",[mTT lastObject]);
     [self loadData];
     
     

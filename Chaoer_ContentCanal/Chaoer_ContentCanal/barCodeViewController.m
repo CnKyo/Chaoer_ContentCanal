@@ -68,14 +68,14 @@
 
 
 - (void)mWechat:(UIButton *)sender{
-    NSLog(@"微信");
+    MLLog(@"微信");
 }
 
 - (void)mTencent:(UIButton *)sender{
-    NSLog(@"qq");
+    MLLog(@"qq");
 }
 - (void)mWebo:(UIButton *)sender{
-    NSLog(@"微博");
+    MLLog(@"微博");
 }
 
 - (void)didReceiveMemoryWarning {

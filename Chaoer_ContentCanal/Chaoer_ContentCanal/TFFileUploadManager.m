@@ -137,7 +137,7 @@
 #pragma mark - connection delegate
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    NSLog(@"reveive Response:\n%@",response);
+    MLLog(@"reveive Response:\n%@",response);
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
@@ -148,10 +148,10 @@
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    NSLog(@"received Data:\n%@",[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]);
-    NSLog(@"%@",_reveivedData);
+    MLLog(@"received Data:\n%@",[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]);
+    MLLog(@"%@",_reveivedData);
   
-    NSLog(@"RESPONSE　DATA: %@", [Util dictionaryWithJsonString:[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]]);
+    MLLog(@"RESPONSE　DATA: %@", [Util dictionaryWithJsonString:[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]]);
     mBaseData *mdata = [[mBaseData alloc] initWithObj:[Util dictionaryWithJsonString:[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]]];
 
     [self.delegate block:mdata];
@@ -159,7 +159,7 @@
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    NSLog(@"fail connect:\n%@",error);
+    MLLog(@"fail connect:\n%@",error);
 //    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"fail connect:\n%@",error]];
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:[NSString stringWithFormat:@"fail connect:\n%@",error] forKey:@"error"];

@@ -161,7 +161,7 @@ bool g_bined = NO;
         return g_user;
     }
     if (g_bined) {
-        NSLog(@"警告！递归错误！");
+        MLLog(@"警告！递归错误！");
         return nil;
     }
     g_bined = YES;
@@ -288,13 +288,13 @@ bool g_bined = NO;
     
     
         [[RCIM sharedRCIM] connectWithToken:mRcc.mRCCToken success:^(NSString *userId) {
-            NSLog(@"rc ok:%@",userId);
+            MLLog(@"rc ok:%@",userId);
 
         } error:^(RCConnectErrorCode status) {
-            NSLog(@"rcerrcccrr:%ld",(long)status);
+            MLLog(@"rcerrcccrr:%ld",(long)status);
 
         } tokenIncorrect:^{
-            NSLog(@"rcerrrr:");
+            MLLog(@"rcerrrr:");
 
         }];
     
@@ -444,7 +444,7 @@ bool g_bined = NO;
             
             [[AlipaySDK defaultService] payOrder:mPayInfo fromScheme:@"zerolife" callback:^(NSDictionary *resultDic) {
                 
-                NSLog(@"xxx:%@",resultDic);
+                MLLog(@"xxx:%@",resultDic);
                 
                 mBaseData* retobj = nil;
                 
@@ -881,7 +881,7 @@ bool g_bined = NO;
 
 }
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    NSLog(@"reveive Response:\n%@",response);
+    MLLog(@"reveive Response:\n%@",response);
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
@@ -893,11 +893,11 @@ bool g_bined = NO;
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    NSLog(@"received Data:\n%@",[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]);
+    MLLog(@"received Data:\n%@",[[NSString alloc] initWithData:_reveivedData encoding:NSUTF8StringEncoding]);
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    NSLog(@"fail connect:\n%@",error);
+    MLLog(@"fail connect:\n%@",error);
 }
 
 
@@ -1811,15 +1811,15 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             [formData appendPartWithFileData:mImgData name:@"file" fileName:fileName mimeType:@"image/png"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@ˆ",responseObject);
+            MLLog(@"%@ˆ",responseObject);
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@",error);
+            MLLog(@"%@",error);
 
         }];
     
     [operator setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-         NSLog(@"bytesWritten=%lu, totalBytesWritten=%lld, totalBytesExpectedToWrite=%lld", (unsigned long)bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+         MLLog(@"bytesWritten=%lu, totalBytesWritten=%lld, totalBytesExpectedToWrite=%lld", (unsigned long)bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
     }];
         
 
@@ -3906,7 +3906,7 @@ bool g_rccbined = NO;
         return g_rcc;
     }
     if (g_rccbined) {
-        NSLog(@"警告！递归错误！");
+        MLLog(@"警告！递归错误！");
         return nil;
     }
     g_rccbined = YES;
@@ -4106,7 +4106,7 @@ bool g_rccbined = NO;
         
 //        self.sign = [Util getMd5_32Bit:[NSString stringWithFormat:@"appid=%@&noncestr=%@&package=%@&partnerid=%@&prepayid=%@&timestamp=%d&key=%@",WXPAYKEY,[obj objectForKeyMy:@"nonce_str"],@"Sign=WXPay",[obj objectForKeyMy:@"partnerid"],[obj objectForKeyMy:@"prepay_id"],[[obj objectForKeyMy:@"timeStamp"] intValue],@"CHAOer68190809PAYCHAOer68190809P"]];
         
-        NSLog(@"sig:%@",self.sign);
+        MLLog(@"sig:%@",self.sign);
     }
     return self;
 }
@@ -4309,7 +4309,7 @@ bool pptbined = NO;
         return pptuser;
     }
     if (pptbined) {
-        NSLog(@"警告！递归错误！");
+        MLLog(@"警告！递归错误！");
         return nil;
     }
     pptbined = YES;

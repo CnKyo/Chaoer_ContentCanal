@@ -326,7 +326,7 @@
 #pragma mark----选择地址代理方法
 - (void)pickerDidSelectProvinceName:(NSString *)provinceName andProvinId:(int)ProvinceId cityName:(NSString *)cityName andArearId:(int)ArearId countrys:(NSString *)countrys andCityId:(int)CityId{
     
-    NSLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
+    MLLog(@"省市区名称:%@%@%@",provinceName,cityName,countrys);
     
     [mView.mChoiceCityBtn setTitle:[NSString stringWithFormat:@"%@ %@ %@",provinceName,cityName,countrys] forState:0];
     
@@ -335,7 +335,7 @@
     mArearId = [NSString stringWithFormat:@"%d",ArearId];
     
     
-    NSLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
+    MLLog(@"省市区id:%d-%d-%d",ProvinceId,ArearId,CityId);
     
     
 }
@@ -494,7 +494,7 @@
     
     if ([_detailAddressPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
         
-        NSLog(@"选择的地址是：%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3);
+        MLLog(@"选择的地址是：%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3);
         
         if ([_detailAddressPicker.selectedKey1 isEqualToString:@"楼栋"]) {
             [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mTT1[0],_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];

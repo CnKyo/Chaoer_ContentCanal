@@ -105,8 +105,8 @@
         case 2:
         {
 
-            [self showErrorStatus:@"哎呀，支付宝君还在赶来的路上！即将到来!"];
-            return;
+//            [self showErrorStatus:@"哎呀，支付宝君还在赶来的路上！即将到来!"];
+//            return;
             [mTT removeAllObjects];
 
             if (sender.selected == NO) {

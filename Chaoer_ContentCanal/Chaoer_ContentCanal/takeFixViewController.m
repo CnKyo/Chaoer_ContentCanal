@@ -40,7 +40,7 @@
     secondSwitch.labelTextColorOutsideSlider = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
     secondSwitch.cornerRadius = 0;
     [secondSwitch setPressedHandler:^(NSUInteger index) {
-        NSLog(@"点击了%lu",(unsigned long)index);
+        MLLog(@"点击了%lu",(unsigned long)index);
         [mTableView reloadData];
     }];
     [self.view addSubview:secondSwitch];

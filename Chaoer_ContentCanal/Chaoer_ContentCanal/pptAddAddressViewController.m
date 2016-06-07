@@ -170,7 +170,7 @@
         
         mTagName = [NSString stringWithFormat:@"%d",mTag.mId];
         
-        NSLog(@"选择了%@",mTagName);
+        MLLog(@"选择了%@",mTagName);
         [weakSelf.mTagBtn setTitle:mTag.mTagName forState:0];
     }];
 }

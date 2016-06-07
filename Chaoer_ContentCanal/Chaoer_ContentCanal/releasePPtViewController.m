@@ -298,7 +298,7 @@
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
             mAddressStr = eee;
-            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
         if (location) {
@@ -311,7 +311,7 @@
         {
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
-            NSLog(@"reGeocode:%@", regeocode);
+            MLLog(@"reGeocode:%@", regeocode);
             mAddressStr = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             
         }
@@ -565,7 +565,7 @@
         //obj:LTPickerView对象
         //str:选中的字符串
         //num:选中了第几行
-        NSLog(@"选择了第%d行的%@",num,str);
+        MLLog(@"选择了第%d行的%@",num,str);
         NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
         
         [sender setTitle:[NSString stringWithFormat:@"%@内送达",str] forState:0];
@@ -801,7 +801,7 @@
         
         return;
     }
-    NSLog(@"发布");
+    MLLog(@"发布");
     if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
         [self showErrorStatus:@"余额不足，发布失败！"];
         return;

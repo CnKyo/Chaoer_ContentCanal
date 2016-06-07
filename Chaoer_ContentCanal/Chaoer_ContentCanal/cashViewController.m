@@ -97,7 +97,7 @@
     
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
         NSString *text = title;
-        NSLog(@"%@",text);
+        MLLog(@"%@",text);
         mPayType = [NSString stringWithFormat:@"%ld",(long)index];
         [self.mTimeBtn setTitle:text forState:0];
         

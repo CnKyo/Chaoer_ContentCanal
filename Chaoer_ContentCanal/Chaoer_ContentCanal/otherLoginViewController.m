@@ -86,7 +86,7 @@
         return;
     }
     if (self.mOpenId == nil || [self.mOpenId isEqualToString:@""]) {
-        NSLog(@"openid是%@",self.mOpenId);
+        MLLog(@"openid是%@",self.mOpenId);
 
         [LCProgressHUD showInfoMsg:@"用户标志码错误！"];
         return;

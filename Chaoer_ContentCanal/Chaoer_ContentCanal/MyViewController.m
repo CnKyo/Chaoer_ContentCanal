@@ -105,7 +105,7 @@
     
     UIImage *mLastImg = [mHead applyLightEffect];
     
-    NSLog(@"头像地址是：%@",url);
+    MLLog(@"头像地址是：%@",url);
     mHeaderView.mBgkImg.image = mLastImg;
     [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
@@ -308,7 +308,7 @@
     //                [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
 //    return;
-    NSLog(@"消息");
+    MLLog(@"消息");
     msgViewController *mmm = [[msgViewController alloc] initWithNibName:@"msgViewController" bundle:nil];
     [self pushViewController:mmm];
 }
@@ -493,7 +493,7 @@
             break;
         case 2:
         {
-            NSLog(@"我的跑腿");
+            MLLog(@"我的跑腿");
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
@@ -539,7 +539,7 @@
         case 3:
         {
 
-            NSLog(@"我的二维码");
+            MLLog(@"我的二维码");
             [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
 //            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];

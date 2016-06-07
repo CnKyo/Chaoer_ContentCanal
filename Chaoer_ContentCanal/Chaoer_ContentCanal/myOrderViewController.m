@@ -205,7 +205,7 @@
     cell.mOrderName.text = [NSString stringWithFormat:@"%@-%@",mFix.mClassificationName,mFix.mClassificationName2];
     cell.mServiceTime.text = [NSString stringWithFormat:@"服务时间：%@",mFix.mOrderServiceTime];
     cell.mServiceAddress.text = [NSString stringWithFormat:@"服务地址：%@",mFix.mAddress];
-    NSLog(@"图片地址是：%@",[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]);
+    MLLog(@"图片地址是：%@",[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]);
     
     if ([mFix.mOrderImage isEqualToString:@""] || mFix.mOrderImage == nil) {
         cell.mImage1.image = [UIImage imageNamed:@"logo"];

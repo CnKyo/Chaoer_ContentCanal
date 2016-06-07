@@ -38,7 +38,7 @@
     if( self ) {
         
         self.isStoryBoard = nibNameOrNil != nil;
-        NSLog(@"<------isnib");
+        MLLog(@"<------isnib");
     }
     return self;
 }
@@ -48,7 +48,7 @@
     self = [super init];
     if (self) {
       
-        NSLog(@"--------->isnotnib");
+        MLLog(@"--------->isnotnib");
 
     }
     return self;
@@ -140,7 +140,7 @@
     [super viewWillAppear:animated];
     if( !_mPageName )
     {
-        NSLog(@"page not name:%@",[self description]);
+        MLLog(@"page not name:%@",[self description]);
         assert(_mPageName);
     }
     [MTA trackPageViewBegin:self.mPageName];
