@@ -37,8 +37,8 @@
  *
  *  @return 
  */
-//#define RCCAPP_KEY @"pgyu6atqyw3vu"
-//#define RCCAPP_SECRET @"UJVomQH4WSpKf"
+#define RCCAPP_KEY @"pgyu6atqyw3vu"
+#define RCCAPP_SECRET @"UJVomQH4WSpKf"
 
 
 #pragma mark----融云企业证书
@@ -58,8 +58,8 @@
  *
  *  @return
  */
-#define RCCAPP_KEY @"n19jmcy59u489"
-#define RCCAPP_SECRET @"Nn1gJY5HWq"
+//#define RCCAPP_KEY @"n19jmcy59u489"
+//#define RCCAPP_SECRET @"Nn1gJY5HWq"
 
 #define WXPAYKEY @"wxf8feb845b3a4d04e"
 
