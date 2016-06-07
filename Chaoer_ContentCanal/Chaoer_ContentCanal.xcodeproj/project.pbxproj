@@ -4376,7 +4376,7 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 5FKH22H2X2;
+						DevelopmentTeam = 9RKHC7JB9Y;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -5261,7 +5261,7 @@
 					"-lc++",
 					"-DEBUG",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -5315,7 +5315,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
+				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
