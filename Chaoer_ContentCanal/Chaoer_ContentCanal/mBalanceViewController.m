@@ -167,34 +167,13 @@
         mUserTopupViewController *ppp = [[mUserTopupViewController alloc] initWithNibName:@"mUserTopupViewController" bundle:nil];
         ppp.mPayMoney = [[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue];
         [self pushViewController:ppp];
-    }else if (type == 2){
-
-        
-        [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
-            [SVProgressHUD dismiss];
-            
-            if( resb.mSucess )
-            {
-                [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-            }
-            else{
-                
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-                
-            }
-            
-            
-        }];
-        
-
     }else{
 
+        
         [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
         [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
             [SVProgressHUD dismiss];
-
+            
             if( resb.mSucess )
             {
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
@@ -209,8 +188,8 @@
             
         }];
         
-    }
-    
+
+    }    
     
 }
 - (void)didReceiveMemoryWarning {
