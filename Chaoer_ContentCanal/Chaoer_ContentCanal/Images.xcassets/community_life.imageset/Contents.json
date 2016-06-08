@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "community_life.png",
+      "filename" : "社区生活.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "community_life-1.png",
+      "filename" : "社区生活-1.png",
       "scale" : "2x"
     },
     {

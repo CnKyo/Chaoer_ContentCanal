@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "movie_ticket.png",
+      "filename" : "跑跑腿.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "movie_ticket-1.png",
+      "filename" : "跑跑腿-1.png",
       "scale" : "2x"
     },
     {

@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "community_status.png",
+      "filename" : "社区动态.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "community_status-1.png",
+      "filename" : "社区动态-1.png",
       "scale" : "2x"
     },
     {
