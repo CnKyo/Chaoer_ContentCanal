@@ -321,7 +321,7 @@
     
     
     mHeaderView = [UIView new];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 470);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
     mHeaderView.backgroundColor = [UIColor whiteColor];
 
     UIView  *bgkView = [UIView new];
@@ -600,7 +600,7 @@
     MLLog(@"%@",arrtemp);
     //显示顺序和数组顺序一致
     //设置图片url数组,和滚动视图位置
-    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 120) WithImageUrls:arrtemp];
+    mScrollerView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, DEVICE_Width, 150) WithImageUrls:arrtemp];
     
     //显示顺序和数组顺序一致
     //设置标题显示文本数组

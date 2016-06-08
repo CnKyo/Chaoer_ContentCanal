@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "neiborhud.png",
+      "filename" : "邻里圈.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "neiborhud-1.png",
+      "filename" : "邻里圈-1.png",
       "scale" : "2x"
     },
     {

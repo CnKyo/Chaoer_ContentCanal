@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "person_service.png",
+      "filename" : "便民服务.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "person_service-1.png",
+      "filename" : "便民服务-1.png",
       "scale" : "2x"
     },
     {

@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "qiuk_pay.png",
+      "filename" : "快捷缴费.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "qiuk_pay-1.png",
+      "filename" : "快捷缴费-1.png",
       "scale" : "2x"
     },
     {
