@@ -76,6 +76,7 @@
      */
     NSString *mLng;
     
+    NSString *mDownAppUrl;
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -113,6 +114,27 @@
         }
     }];
 }
+#pragma mark----更新app
+- (void)dateUpAppVersion{
+
+    [[mUserInfo backNowUser] getUpdateApp:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            
+            mDownAppUrl = [resb.mData objectForKey:@"downloadUrl"];
+            
+            float mVersion = [[resb.mData objectForKey:@"versionsNumber"] floatValue];
+            
+            if (mVersion > [[Util getAppVersion] floatValue]) {
+                [self AlertViewShow:[resb.mData objectForKey:@"fileName"] alertViewMsg:[resb.mData objectForKey:@"content"] alertViewCancelBtnTiele:@"取消" alertTag:99];
+            }
+            
+        }else{
+        
+            
+        }
+    }];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -123,7 +145,7 @@
     self.hiddenlll = YES;
     self.navBar.hidden = YES;
     self.mBanerArr = [NSMutableArray new];
-    
+    mDownAppUrl = nil;
 
   
 
@@ -195,7 +217,8 @@
     [self appInit];
 
     [self initview];
-    
+    [self dateUpAppVersion];
+
 }
 
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -370,17 +393,17 @@
     UIImage *imag1 = [UIImage imageNamed:@"community_life"];
     UIImage *imag2 = [UIImage imageNamed:@"person_service"];
 
-    UIImage *imag3 = [UIImage imageNamed:@"neiborhud"];
+    UIImage *imag3 = [UIImage imageNamed:@"movie_ticket"];
 
-    UIImage *imag4 = [UIImage imageNamed:@"feedback_sorpport"];
+    UIImage *imag4 = [UIImage imageNamed:@"community_status"];
 
-    UIImage *imag5 = [UIImage imageNamed:@"movie_ticket"];
+    UIImage *imag5 = [UIImage imageNamed:@"neiborhud"];
 
-    UIImage *imag6 = [UIImage imageNamed:@"community_status"];
+    UIImage *imag6 = [UIImage imageNamed:@"feedback_sorpport"];
 
     NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
     
-    NSArray *marr = @[@"社区生活",@"便民服务",@"邻里圈",@"投诉建议",@"跑跑腿",@"社区动态",];
+    NSArray *marr = @[@"社区生活",@"便民服务",@"跑跑腿",@"社区动态",@"邻里圈",@"投诉建议",];
     
     float x = 0;
     float y = bgkView1.mbottom;
@@ -472,8 +495,34 @@
             break;
         case 2:
         {
+            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+            
+            mmm.mLng = mLng;
+            mmm.mLat = mLat;
+            [self pushViewController:mmm];
+
+        }
+            break;
+        case 3:
+        {
+            
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-              
+                
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
+            
+            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
+            [self pushViewController:ccc];
+            
+
+        }
+            break;
+        case 4:
+        {
+            
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
@@ -501,72 +550,18 @@
             
             [self pushViewController:ccc];
 
-        }
-            break;
-        case 3:
-        {
-            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
-            [self pushViewController:sss];
-        }
-            break;
-        case 4:
-        {
-            
-//            int m_leg = [mUserInfo backNowUser].mIs_leg;
-//            
-//            if ( m_leg == 0) {
-//                
-//                [self AlertViewShow:@"您还未开通跑跑腿功能，是否立即开通？" alertViewMsg:@"开通成功即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:11];
-//                
-//                return;
-//
-//            }else if (m_leg == 1){
-//                [self showErrorStatus:@"您已注销!"];
-//                [self AlertViewShow:@"您还未支付押金！" alertViewMsg:@"支付押金即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:12];
-//
-//                return;
-//
-//
-//            }
-//            else if (m_leg == 2){
-//                [self showErrorStatus:@"正在审核中!"];
-//                return;
-//
-//            }else if (m_leg == 3){
-//                [self showErrorStatus:@"您已被系统禁用!"];
-//
-//                return;
-//
-//            }else if (m_leg == 4){
-//                [self showErrorStatus:@"您已注销!"];
-//                return;
-//                
-//            }
-//            else{
 
-                mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
-                
-                mmm.mLng = mLng;
-                mmm.mLat = mLat;
-                [self pushViewController:mmm];
-                
-//            }
+            
 
         }
             break;
         case 5:
         {
-            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-                
-                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
-                return;
-            }
+            
+            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
+            [self pushViewController:sss];
 
-            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
-            [self pushViewController:ccc];
-            //                        [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
-
-
+           
 
         }
             break;
@@ -689,8 +684,18 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == 99) {
+        if( buttonIndex == 1)
+        {
+            
+            WebVC* vc = [[WebVC alloc]init];
+            vc.mName = @"更新app";
+            vc.mUrl = mDownAppUrl;
+            [self pushViewController:vc];
+            
+        }
+    }else{
     
-   
         if( buttonIndex == 1)
         {
             
@@ -705,13 +710,13 @@
             
         }
 
-    
+    }
   
 }
 
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
     
-    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
     al.delegate = self;
     al.tag = tag;
     [al show];

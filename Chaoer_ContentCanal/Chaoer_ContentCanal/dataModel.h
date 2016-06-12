@@ -329,7 +329,13 @@
 +(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid block:(void(^)(mBaseData* resb, mUserInfo*user))block;
 
 +(void)saveUserInfo:(NSDictionary *)dccat;
-
+#pragma mark----更新app
+/**
+ *  更新app
+ *
+ *  @param block 返回值
+ */
+- (void)getUpdateApp:(void(^)(mBaseData *resb))block;
 
 /**
  *  获取注册验证吗

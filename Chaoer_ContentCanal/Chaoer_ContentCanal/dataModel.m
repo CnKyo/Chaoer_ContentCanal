@@ -700,7 +700,21 @@ bool g_bined = NO;
 }
 
 
+#pragma mark----更新app
+/**
+ *  更新app
+ *
+ *  @param block 返回值
+ */
+- (void)getUpdateApp:(void(^)(mBaseData *resb))block{
 
+    [[HTTPrequest sharedClient] postUrl:@"app/versions/getVersionNumber" parameters:nil call:^(mBaseData *info) {
+        
+        block (info);
+    }];
+    
+    
+}
 
 + (void)editUserMsg:(NSString *)mHeader andUserid:(int)mUserid andLoginName:(NSString *)mLoginName andNickName:(NSString *)nickName andSex:(NSString *)mSex andSignate:(NSString *)mSignate block:(void(^)(mBaseData *resb,mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
