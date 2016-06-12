@@ -920,7 +920,7 @@ static UIColor *selectedColor;
     NSString *title;
     
     if (numberOfVideos == 0)
-        title = [NSString stringWithFormat:@"%d 张照片", numberOfPhotos];
+        title = [NSString stringWithFormat:@"%ld 张照片", (long)numberOfPhotos];
     else if (numberOfPhotos == 0)
         title = [NSString stringWithFormat:@"%d 部视频", numberOfVideos];
     else

@@ -100,8 +100,8 @@
 - (void)_setupPlayButton {
     UIButton *playButton  = [UIButton buttonWithType:UIButtonTypeCustom];
     playButton.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 44);
-    [playButton setImage:[UIImage imageNamed:@"video_preview_play_normal"] forState:UIControlStateNormal];
-    [playButton setImage:[UIImage imageNamed:@"video_preview_play_highlight"] forState:UIControlStateHighlighted];
+    [playButton setImage:[UIImage imageNamed:@"photo_state_normal"] forState:UIControlStateNormal];
+    [playButton setImage:[UIImage imageNamed:@"finish_status"] forState:UIControlStateHighlighted];
     [playButton addTarget:self action:@selector(_handlePlayAciton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.playButton = playButton];
 }

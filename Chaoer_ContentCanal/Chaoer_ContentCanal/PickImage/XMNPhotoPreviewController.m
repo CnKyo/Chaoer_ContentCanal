@@ -182,7 +182,7 @@ static NSString * const kXMNPhotoPreviewIdentifier = @"XMNPhotoPreviewCell";
         
         UIButton *stateButton  = [UIButton buttonWithType:UIButtonTypeCustom];
         [stateButton setImage:[UIImage imageNamed:@"photo_state_normal"] forState:UIControlStateNormal];
-        [stateButton setImage:[UIImage imageNamed:@"photo_state_selected"] forState:UIControlStateSelected];
+        [stateButton setImage:[UIImage imageNamed:@"finish_status"] forState:UIControlStateSelected];
         [stateButton setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
         [stateButton sizeToFit];
         stateButton.frame = CGRectMake(_topBar.frame.size.width - 12 - stateButton.frame.size.width, _topBar.frame.size.height/2 - stateButton.frame.size.height/2 + originY/2, stateButton.frame.size.width, stateButton.frame.size.height);
