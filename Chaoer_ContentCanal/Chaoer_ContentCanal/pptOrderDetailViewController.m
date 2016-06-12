@@ -434,6 +434,9 @@
         if (self.mOrder.mTypeName == nil) {
             mmname = self.mOrder.mGoodsTypeName;
         }
+        if (mmname == nil || mmname.length == 0 || [mmname isEqualToString:@""]) {
+            mmname = @"暂无";
+        }
         
         cell.mSenderMg.text = [NSString stringWithFormat:@"商品类型:%@",mmname];
         cell.mOrderNum.text = [NSString stringWithFormat:@"订单编号：%@",self.mOrder.mOrderCode];
