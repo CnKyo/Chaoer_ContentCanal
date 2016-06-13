@@ -128,6 +128,8 @@
 		04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E01CBD1B2000BD1420 /* addAddressViewController.xib */; };
 		04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */; };
 		04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */; };
+		04BD179B1D0E59B3001792DA /* mCustomTxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BD179A1D0E59B3001792DA /* mCustomTxView.m */; };
+		04BD179D1D0E59BE001792DA /* mCustomTxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BD179C1D0E59BE001792DA /* mCustomTxView.xib */; };
 		04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1FD571CF846500057DEBD /* CurentLocation.m */; };
 		04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C528691CDC8BA000572C3B /* libWeChatSDK.a */; };
 		04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04C5286A1CDC8BA000572C3B /* read_me.txt */; };
@@ -913,6 +915,9 @@
 		04BBA2E31CBD1C3F00BD1420 /* addTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTableViewCell.h; sourceTree = "<group>"; };
 		04BBA2E41CBD1C3F00BD1420 /* addTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addTableViewCell.m; sourceTree = "<group>"; };
 		04BBA2E51CBD1C3F00BD1420 /* addTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addTableViewCell.xib; sourceTree = "<group>"; };
+		04BD17991D0E59B3001792DA /* mCustomTxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCustomTxView.h; sourceTree = "<group>"; };
+		04BD179A1D0E59B3001792DA /* mCustomTxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCustomTxView.m; sourceTree = "<group>"; };
+		04BD179C1D0E59BE001792DA /* mCustomTxView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCustomTxView.xib; sourceTree = "<group>"; };
 		04C1FD561CF846500057DEBD /* CurentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurentLocation.h; sourceTree = "<group>"; };
 		04C1FD571CF846500057DEBD /* CurentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurentLocation.m; sourceTree = "<group>"; };
 		04C528691CDC8BA000572C3B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -2244,6 +2249,9 @@
 				04D49C5F1CE7059500BAD649 /* pptOrderDetailViewController.h */,
 				04D49C601CE7059500BAD649 /* pptOrderDetailViewController.m */,
 				04D49C611CE7059500BAD649 /* pptOrderDetailViewController.xib */,
+				04BD17991D0E59B3001792DA /* mCustomTxView.h */,
+				04BD179A1D0E59B3001792DA /* mCustomTxView.m */,
+				04BD179C1D0E59BE001792DA /* mCustomTxView.xib */,
 			);
 			name = "首页跑单详情";
 			sourceTree = "<group>";
@@ -4640,6 +4648,7 @@
 				04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */,
 				04E5A8281CE5E57C00A2D111 /* Address.plist in Resources */,
 				74DDE8F81BAC0D33004878D1 /* setupView.xib in Resources */,
+				04BD179D1D0E59BE001792DA /* mCustomTxView.xib in Resources */,
 				312D08B91CAA1C560006F0FA /* ShareSDK.bundle in Resources */,
 				3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */,
 				313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */,
@@ -5056,6 +5065,7 @@
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				04F9E5D51CED4D8B00FCA8B7 /* NSObject+MJClass.m in Sources */,
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,
+				04BD179B1D0E59B3001792DA /* mCustomTxView.m in Sources */,
 				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
 				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,

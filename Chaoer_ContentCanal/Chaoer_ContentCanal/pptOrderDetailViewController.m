@@ -11,11 +11,20 @@
 
 #import "evolutionViewController.h"
 
+
+#import "mCustomTxView.h"
+
+
 @interface pptOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
 @implementation pptOrderDetailViewController
+{
+
+    mCustomTxView *mPopView;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -47,6 +56,9 @@
     self.rightBtnImage = [UIImage imageNamed:@"right_phone"];
     
     [self initView];
+    [self initPopView];
+    
+    
 
 }
 - (void)initView{
@@ -210,7 +222,7 @@
         
         cell.mPhone.text = [NSString stringWithFormat:@"电话：%@",self.mOrder.mPhone];
         
-        cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@",self.mOrder.mArrivedTime];
+        cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",self.mOrder.mArrivedTime];
         
         cell.mArriveAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
         
@@ -286,7 +298,7 @@
              *  cell2
              */
             cell.mServiceName.text = [NSString stringWithFormat:@"姓名：%@",[mUserInfo backNowUser].mNickName];
-            cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@",@"暂无"];
+            cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",@"暂无"];
 
             cell.mSendAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
             cell.mArriveAddress.text = [NSString stringWithFormat:@"到达地址：%@",@"暂无"];
@@ -444,9 +456,9 @@
         
         cell.mServiceName.text = [NSString stringWithFormat:@"姓名：%@",self.mOrder.mUserName];
         cell.mPhone.text = [NSString stringWithFormat:@"电话：%@",self.mOrder.mPhone];
-        cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@",self.mOrder.mArrivedTime];
+        cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",self.mOrder.mArrivedTime];
         cell.mArriveAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
-        cell.mSendMoney.text = [NSString stringWithFormat:@"费用：%@",self.mOrder.mLegworkMoney];
+        cell.mSendMoney.text = [NSString stringWithFormat:@"费用：%@元",self.mOrder.mLegworkMoney];
         
         NSString *ordertype = nil;
 
@@ -469,7 +481,7 @@
         }else if (self.mType == 2){
         
             cell.mServiceName.text = [NSString stringWithFormat:@"姓名：%@",[mUserInfo backNowUser].mNickName];
-            cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@",@"暂无"];
+            cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",@"暂无"];
             
             cell.mSendAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
             cell.mArriveAddress.text = [NSString stringWithFormat:@"到达地址：%@",@"暂无"];
@@ -540,32 +552,9 @@
 - (void)mReleasecomformAction:(mOrderButton *)sender{
 
     if (sender.tag == 300) {
-        if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
-            [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
-            return;
-        }
-        if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-            [self showErrorStatus:@"必须打开定位才能确认完成！"];
-            return;
-        }
-        
-        [self showWithStatus:@"正在操作..."];
-        
-        [[GPPTer backPPTUser] mServicefinishPPTOrder:[mUserInfo backNowUser].mLegworkUserId andMoney:[self.mOrder.mMaxPrice intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-            
-            
-            if (resb.mSucess) {
-                [self showSuccessStatus:resb.mMessage];
-                [self.tableView headerBeginRefreshing];
-            }else{
-                
-                [self showErrorStatus:resb.mMessage];
-                [self.tableView headerBeginRefreshing];
-            }
-            
-            
+        [UIView animateWithDuration:0.25 animations:^{
+            mPopView.alpha = 1;
         }];
-        
     }
 
     
@@ -666,5 +655,65 @@
 - (void)leftBtnTouched:(id)sender{
 
     [self popViewController];
+}
+
+#pragma mark----弹出输入框
+- (void)initPopView{
+
+    mPopView = [mCustomTxView shareView];
+    mPopView.frame = self.view.bounds;
+    mPopView.alpha = 0;
+    [mPopView.mCancelBtn addTarget:self action:@selector(dismissPopAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mPopView.mOkBtn addTarget:self action:@selector(comfirmPopAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mPopView];
+
+}
+
+
+- (void)dismissPopAction:(UIButton *)sender{
+
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        mPopView.alpha = 0;
+    }];
+    
+}
+- (void)comfirmPopAction:(UIButton *)sender{
+    
+    
+    if (mPopView.mTx.text.length == 0) {
+        [self showErrorStatus:@"金额不能为空！"];
+        [mPopView.mTx becomeFirstResponder];
+        return;
+    }
+    
+    
+    if (self.mOrder.mOrderCode == nil || [self.mOrder.mOrderCode isEqualToString:@""] || self.mOrder.mOrderCode.length == 0) {
+        [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
+        return;
+    }
+    if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
+        [self showErrorStatus:@"必须打开定位才能确认完成！"];
+        return;
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    
+    [[GPPTer backPPTUser] mServicefinishPPTOrder:[mUserInfo backNowUser].mLegworkUserId andMoney:[mPopView.mTx.text intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        
+        
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+            [self dismissPopAction:nil];
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self.tableView headerBeginRefreshing];
+        }
+        
+        
+    }];
+
 }
 @end

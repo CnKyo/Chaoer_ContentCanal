@@ -61,9 +61,15 @@
             timestampString = "487420215.597727"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< Updated upstream
             startingLineNumber = "898"
             endingLineNumber = "898"
             landmarkName = "-connection:didReceiveResponse:"
+=======
+            startingLineNumber = "884"
+            endingLineNumber = "884"
+            landmarkName = "+modifyUserImg:andImage:andPath:block:"
+>>>>>>> Stashed changes
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,9 +83,15 @@
             timestampString = "487420215.597727"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< Updated upstream
             startingLineNumber = "902"
             endingLineNumber = "902"
             landmarkName = "-connection:didReceiveData:"
+=======
+            startingLineNumber = "888"
+            endingLineNumber = "888"
+            landmarkName = "+modifyUserImg:andImage:andPath:block:"
+>>>>>>> Stashed changes
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,7 +118,11 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
+<<<<<<< Updated upstream
                   timestampString = "487421666.047049"
+=======
+                  timestampString = "487482040.033784"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
@@ -121,7 +137,11 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
+<<<<<<< Updated upstream
                   timestampString = "487421666.047205"
+=======
+                  timestampString = "487482040.033958"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
@@ -145,6 +165,7 @@
             endingLineNumber = "2022"
             landmarkName = "-finishFixOrder:andPayType:andRate:block:"
             landmarkType = "5">
+<<<<<<< Updated upstream
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -177,6 +198,8 @@
                   offsetFromSymbolStart = "44">
                </Location>
             </Locations>
+=======
+>>>>>>> Stashed changes
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -339,6 +362,7 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< Updated upstream
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
@@ -387,5 +411,7 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+=======
+>>>>>>> Stashed changes
    </Breakpoints>
 </Bucket>
