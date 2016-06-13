@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "884"
             endingLineNumber = "884"
-            landmarkName = "-connection:didReceiveResponse:"
+            landmarkName = "+modifyUserImg:andImage:andPath:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "888"
             endingLineNumber = "888"
-            landmarkName = "-connection:didReceiveData:"
+            landmarkName = "+modifyUserImg:andImage:andPath:block:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +106,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "487391893.77126"
+                  timestampString = "487482040.033784"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
                   endingLineNumber = "165"
-                  offsetFromSymbolStart = "108">
+                  offsetFromSymbolStart = "80">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/makeFixOrderDetailViewController.m"
-                  timestampString = "487391893.771417"
+                  timestampString = "487482040.033958"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "166"
                   endingLineNumber = "166"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -145,38 +145,6 @@
             endingLineNumber = "2008"
             landmarkName = "-finishFixOrder:andPayType:andRate:block:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[mUserInfo finishFixOrder:andPayType:andRate:block:]"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "487391893.772406"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2008"
-                  endingLineNumber = "2008"
-                  offsetFromSymbolStart = "556">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__53-[mUserInfo finishFixOrder:andPayType:andRate:block:]_block_invoke"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "487391893.77256"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2009"
-                  endingLineNumber = "2009"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -337,54 +305,6 @@
             endingLineNumber = "208"
             landmarkName = "-pickerView:didSelectRow:inComponent:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/dataModel.m"
-            timestampString = "486955914.45361"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4640"
-            endingLineNumber = "4640"
-            landmarkName = "-finishPPTOrder:andOrderCode:andOrderType:andLat:andLng:block:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GPPTer finishPPTOrder:andOrderCode:andOrderType:andLat:andLng:block:]"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "487391893.777386"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "4640"
-                  endingLineNumber = "4640"
-                  offsetFromSymbolStart = "592">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__71-[GPPTer finishPPTOrder:andOrderCode:andOrderType:andLat:andLng:block:]_block_invoke"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "487391893.777527"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "4643"
-                  endingLineNumber = "4643"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

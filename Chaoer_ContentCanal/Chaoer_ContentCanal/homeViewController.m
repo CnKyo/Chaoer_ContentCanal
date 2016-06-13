@@ -359,7 +359,7 @@
     UIImage *imag11 = [UIImage imageNamed:@"qiuk_pay"];
     UIImage *imag21 = [UIImage imageNamed:@"canal_fix"];
     NSArray *imgArr11 = @[imag11,imag21];
-    NSArray *marr11 = @[@"快捷缴费",@"物业保修"];
+    NSArray *marr11 = @[@"快捷缴费",@"物业报修"];
 
     for (int i = 0; i<2; i++) {
         
