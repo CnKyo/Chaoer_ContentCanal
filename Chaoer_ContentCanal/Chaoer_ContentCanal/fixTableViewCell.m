@@ -25,6 +25,10 @@
     self.mImg.layer.masksToBounds = YES;
     self.mImg.layer.cornerRadius = 3;
     
+    self.mBgk1.layer.masksToBounds =     self.mBgk2.layer.masksToBounds = YES;
+    
+    self.mBgk1.layer.cornerRadius =     self.mBgk2.layer.cornerRadius = 3;
+
 }
 
 @end

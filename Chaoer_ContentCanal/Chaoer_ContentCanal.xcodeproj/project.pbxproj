@@ -53,6 +53,8 @@
 		04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D981CC0C9E400CB6249 /* JHJsonRequst.m */; };
 		04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04223D9B1CC0E76300CB6249 /* utilityView.m */; };
 		04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04223D9D1CC0E77100CB6249 /* utilityView.xib */; };
+		042410621D0FFE4F00B4A61A /* FixNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042410601D0FFE4F00B4A61A /* FixNewCell.m */; };
+		042410631D0FFE4F00B4A61A /* FixNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042410611D0FFE4F00B4A61A /* FixNewCell.xib */; };
 		043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D61CEAA3CE000041EC /* releaseCell5.xib */; };
 		043F38D91CEAC9D4000041EC /* releaseCell6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D81CEAC9D4000041EC /* releaseCell6.xib */; };
 		044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24771CB4A85700A6379C /* kitchenTableViewCell.m */; };
@@ -816,6 +818,9 @@
 		04223D9A1CC0E76300CB6249 /* utilityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utilityView.h; path = AFNetworking/utilityView.h; sourceTree = "<group>"; };
 		04223D9B1CC0E76300CB6249 /* utilityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = utilityView.m; path = AFNetworking/utilityView.m; sourceTree = "<group>"; };
 		04223D9D1CC0E77100CB6249 /* utilityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = utilityView.xib; sourceTree = "<group>"; };
+		0424105F1D0FFE4F00B4A61A /* FixNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixNewCell.h; sourceTree = "<group>"; };
+		042410601D0FFE4F00B4A61A /* FixNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixNewCell.m; sourceTree = "<group>"; };
+		042410611D0FFE4F00B4A61A /* FixNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixNewCell.xib; sourceTree = "<group>"; };
 		043F38D61CEAA3CE000041EC /* releaseCell5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell5.xib; sourceTree = "<group>"; };
 		043F38D81CEAC9D4000041EC /* releaseCell6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell6.xib; sourceTree = "<group>"; };
 		044A24761CB4A85700A6379C /* kitchenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kitchenTableViewCell.h; sourceTree = "<group>"; };
@@ -2945,6 +2950,9 @@
 				318D56741C9FDD150045B5FB /* fixTableViewCell.m */,
 				318D56751C9FDD150045B5FB /* fixTableViewCell.xib */,
 				04D652821CF002E900E26209 /* mFixRestCell.xib */,
+				0424105F1D0FFE4F00B4A61A /* FixNewCell.h */,
+				042410601D0FFE4F00B4A61A /* FixNewCell.m */,
+				042410611D0FFE4F00B4A61A /* FixNewCell.xib */,
 				318D566C1C9FA0240045B5FB /* ButtonItem.h */,
 				318D566D1C9FA0240045B5FB /* ButtonItem.m */,
 				04D652841CF00E8700E26209 /* comfirOrderViewController.h */,
@@ -4754,6 +4762,7 @@
 				040B80231CC50D50006A9489 /* WJStatusBarHUD_error.png in Resources */,
 				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
+				042410631D0FFE4F00B4A61A /* FixNewCell.xib in Resources */,
 				318D56691C9C012B0045B5FB /* MHSheetHead.xib in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
@@ -5066,6 +5075,7 @@
 				04F2283E1CEEE4EB004E8702 /* ActionSheetStringPicker.m in Sources */,
 				31B990331C96A535002E34A5 /* serviceViewController.m in Sources */,
 				749BEA481B3277AA00BABCA6 /* UIImage+MultiFormat.m in Sources */,
+				042410621D0FFE4F00B4A61A /* FixNewCell.m in Sources */,
 				746F8ACD1BEC330900C87992 /* HZQDatePickerView.m in Sources */,
 				B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */,
 				04F9E5D61CED4D8B00FCA8B7 /* NSObject+MJCoding.m in Sources */,

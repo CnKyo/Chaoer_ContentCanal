@@ -466,6 +466,7 @@
             }
 
             mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
+            ppp.sType = 1;
             [self presentModalViewController:ppp];
         }
             break;
