@@ -72,14 +72,13 @@
 		<string>diditripcard</string>
 		<string>weixin</string>
 		<string>wechat</string>
-        <string>mqzone</string>
-        <string>wtloginmqq2</string>
-        <string>mqqopensdkapiV3</string>
-        <string>mqqopensdkapiV2</string>
-        <string>mqqOpensdkSSoLogin</string>
-        <string>mqq</string>
-        <string>mqqapi</string>
-
+		<string>mqzone</string>
+		<string>wtloginmqq2</string>
+		<string>mqqopensdkapiV3</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqq</string>
+		<string>mqqapi</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -101,6 +100,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>

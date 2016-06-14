@@ -10,4 +10,9 @@
 
 @interface mFixViewController : BaseVC
 
+@property(strong,nonatomic) NSString *mSuperID;
+
+@property(assign,nonatomic) int sType;
+
+@property(strong,nonatomic) NSString *mTT;
 @end
