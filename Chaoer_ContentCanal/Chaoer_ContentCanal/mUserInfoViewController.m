@@ -347,26 +347,8 @@
         }
     }];
     
-    
-//    [self upLoadImage:mmm andFileName:aPath3 andFilePath:nil andPara:para];
-
 }
 
-
-- (void)upLoadImage:(NSData *)mData andFileName:(NSString *)mFileName andFilePath:(NSURL *)mPath andPara:(NSDictionary *)mPara{
-
-    [self showWithStatus:@"正在上传"];
-    [[HTTPrequest sharedClient] postUrlWithString:@"resource/userInfo/uploadUserProfileImg" andFileName:mFileName andData:mData andFilePath:mPath andPara:mPara block:^(mBaseData *info) {
-        if (info.mSucess) {
-            [self showSuccessStatus:info.mMessage];
-        }else{
-            [self showErrorStatus:info.mMessage];
-            
-        }
-    }];
- 
-    
-}
 
 - (void)block:(mBaseData *)resb{
     

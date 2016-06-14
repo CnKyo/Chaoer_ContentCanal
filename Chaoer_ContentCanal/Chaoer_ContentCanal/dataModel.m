@@ -134,7 +134,7 @@
     [para setObject:[Util getDeviceUUID] forKey:@"imei"];
     [para setObject:@"ios" forKey:@"type"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/login/loginlog" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/login/loginlog" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }
@@ -334,7 +334,7 @@ bool g_bined = NO;
     }
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appUpLocation" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/rongCloud/appUpLocation" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block (info);
         }else
@@ -351,7 +351,7 @@ bool g_bined = NO;
     [param setObject:NumberWithInt(Price) forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"wx" forKey:@"channel"];
-    [[HTTPrequest sharedClient] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
         {
@@ -414,7 +414,7 @@ bool g_bined = NO;
     [param setObject:NumberWithInt(Price) forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"alipay" forKey:@"channel"];
-    [[HTTPrequest sharedClient] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
         {
@@ -496,7 +496,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"moblie"];
     [para setObject:@"1" forKey:@"from"];
-    [[HTTPrequest sharedClient] postUrl:@"app/verfyCode/appVerfyCode" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/verfyCode/appVerfyCode" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block (info);
         }else
@@ -514,7 +514,7 @@ bool g_bined = NO;
     [para setObject:mId forKey:@"identity"];    
     }
     
-    [[HTTPrequest sharedClient] postUrl:@"app/auth/register" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/auth/register" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
         
             block (info);
@@ -526,7 +526,7 @@ bool g_bined = NO;
 
 + (void)mWechatRegist:(NSDictionary *)mPara block:(void(^)(mBaseData *resb))block{
 
-    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/register" parameters:mPara call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/register" parameters:mPara call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block (info);
@@ -561,13 +561,20 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     [para setObject:@"ios" forKey:@"device"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
         [self dealUserSession:info andPhone:mPwd andOpenId:nil block:block];
     }];
+    
+//    [[HTTPrequest sharedHDNetworking] POST:@"app/login/applogin" parameters:para success:^(id  _Nonnull responseObject) {
+//        MLLog(@"%@",responseObject);
+//    } failure:^(NSError * _Nonnull error) {
+//        MLLog(@"%@",error);
+//    }];
+    
 }
 + (void)mVerifyOpenId:(NSDictionary *)mOpenId block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
  
-    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/login" parameters:mOpenId call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/login" parameters:mOpenId call:^(mBaseData *info) {
         
         [self dealUserSession:info andPhone:nil andOpenId:[mOpenId objectForKey:@"openid"] block:block];
     }];
@@ -582,7 +589,7 @@ bool g_bined = NO;
     [para setObject:mPwd forKey:@"passWord"];
     [para setObject:mOpenId forKey:@"openid"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/wxBind/wxPhoneBind" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/wxPhoneBind" parameters:para call:^(mBaseData *info) {
         [self dealUserSession:info andPhone:mPwd  andOpenId:mOpenId block:block];
     }];
     
@@ -593,7 +600,7 @@ bool g_bined = NO;
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"userName"];
     [para setObject:mPwd forKey:@"newPassword"];
-    [[HTTPrequest sharedClient] postUrl:@"app/auth/updatePassowrd" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/auth/updatePassowrd" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block (info);
 
@@ -626,7 +633,7 @@ bool g_bined = NO;
 
     }
     
-    [[HTTPrequest sharedClient] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
@@ -708,7 +715,7 @@ bool g_bined = NO;
  */
 - (void)getUpdateApp:(void(^)(mBaseData *resb))block{
 
-    [[HTTPrequest sharedClient] postUrl:@"app/versions/getVersionNumber" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/versions/getVersionNumber" parameters:nil call:^(mBaseData *info) {
         
         block (info);
     }];
@@ -746,7 +753,7 @@ bool g_bined = NO;
     
     
 
-    [[HTTPrequest sharedClient] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
         
         [self dealUserSession:info andPhone:nil andOpenId:nil block:block];
 
@@ -935,7 +942,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mType forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"app/redpackage/appRedPackage" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/redpackage/appRedPackage" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *temparr = [NSMutableArray new];
@@ -956,7 +963,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
-    [[HTTPrequest sharedClient] postUrl:@"app/convenience/appIsRecharge" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/convenience/appIsRecharge" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -972,7 +979,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/convenience/appLineOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/convenience/appLineOrder" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block ( info );
 
@@ -999,7 +1006,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mCVV forKey:@"buyerBankCvv"];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/epos/pay/appHandleFunc" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/pay/appHandleFunc" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block( info );
@@ -1018,7 +1025,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mOrderCode forKey:@"orderCode"];
     [para setObject:mYBOrderCode forKey:@"ybOrderCode"];
     [para setObject:mCode forKey:@"verifyCode"];
-    [[HTTPrequest sharedClient] postUrl:@"app/epos/pay/vertifyCodePay" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/pay/vertifyCodePay" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block( info );
@@ -1040,7 +1047,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 - (void)getCodeAddress:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/region/getRegion" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/region/getRegion" parameters:nil call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1063,7 +1070,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCityId) forKey:@"parentId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/city/appWebSite" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/city/appWebSite" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1085,7 +1092,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mArear forKey:@"cityId"];
     [para setObject:mCity forKey:@"areaId"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/zocompany/appZocompany" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/zocompany/appZocompany" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1107,7 +1114,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 + (void)getBuildId:(int)mCId block:(void (^)(mBaseData *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mCId) forKey:@"cId"];
-    [[HTTPrequest sharedClient] postUrl:@"zm/front/personal/village.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"zm/front/personal/village.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -1119,7 +1126,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 + (void)getBuilNum:(int)mId block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mId) forKey:@"propertyId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/house/appHouseList" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/house/appHouseList" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             NSMutableArray *tempArr = [NSMutableArray new];
             for (NSDictionary *dic in info.mData) {
@@ -1138,7 +1145,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mName) forKey:@"propertyId"];
     [para setObject:NumberWithInt(mBuildName) forKey:@"unitNum"];
-    [[HTTPrequest sharedClient] postUrl:@"app/house/appHouseUnit" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/house/appHouseUnit" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -1162,7 +1169,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 + (void)getBundleMsg:(int)mUserId block:(void (^)(mBaseData *, SVerifyMsg *))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/epos/realVerify/appBankInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/realVerify/appBankInfo" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             SVerifyMsg *mVerify = [[SVerifyMsg alloc] initWithObj:info.mData];
             
@@ -1184,7 +1191,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mCommunityId forKey:@"communityId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/getBan" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/communityCenter/getBan" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
 
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1228,7 +1235,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mDoorNum forKey:@"roomNum"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/house/appBindHouse" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/house/appBindHouse" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block( info);
@@ -1278,7 +1285,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }
     
     
-    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block( info);
@@ -1313,7 +1320,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         [para setObject:mId forKey:@"customerType"];
         
     }
-    [[HTTPrequest sharedClient] postUrl:@"app/house/appAddHouse" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/house/appAddHouse" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block( info);
@@ -1328,7 +1335,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 + (void)getbank:(void(^)(mBaseData *resb,NSArray *marr))block
 {    
-    [[HTTPrequest sharedClient] postUrl:@"app/bank/appBankList?&paramName=bankname" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/bank/appBankList?&paramName=bankname" parameters:nil call:^(mBaseData *info) {
         if (info.mData) {
             NSMutableArray *tempArr = [NSMutableArray new];
             
@@ -1373,7 +1380,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }
     
     
-    [[HTTPrequest sharedClient] postUrl:url parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:url parameters:para call:^(mBaseData *info) {
 
         if (info.mSucess) {
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1424,7 +1431,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/epos/realVerify/appRealNameVerify" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/realVerify/appRealNameVerify" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
             block (info);
@@ -1444,7 +1451,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 
 + (void)getBaner:(void (^)(mBaseData *, NSArray *))block{
-    [[HTTPrequest sharedClient] postUrl:@"app/banner/getBanner" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/banner/getBanner" parameters:nil call:^(mBaseData *info) {
         NSMutableArray *temparr = [NSMutableArray new];
         if (info.mSucess ) {
             
@@ -1470,7 +1477,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appLegBanner" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appLegBanner" parameters:nil call:^(mBaseData *info) {
         NSMutableArray *temparr = [NSMutableArray new];
         if (info.mSucess ) {
             
@@ -1494,7 +1501,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:mContent forKey:@"complainReason"];
     [para setObject:@"3" forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"app/complain/companyOpinion" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/complain/companyOpinion" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             block (info);
         }else{
@@ -1514,7 +1521,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mFloor forKey:@"floor"];
     [para setObject:mdoornum forKey:@"roomNumber"];
     [para setObject:mReason forKey:@"complainReason"];
-    [[HTTPrequest sharedClient] postUrl:@"app/complain/residentsComplaints" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/complain/residentsComplaints" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
             blovk (info);
@@ -1537,7 +1544,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mReason forKey:@"complainReason"];
     [para setObject:@"2" forKey:@"type"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/complain/propertyComplaints" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/complain/propertyComplaints" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             block ( info );
         }else{
@@ -1549,7 +1556,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 - (void)getCanalMsg:(void(^)(mBaseData *resb,GCanalList *mList))block{
 
-    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/getPropertyCost" parameters:@{@"userId":[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]} call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/propertyCost/getPropertyCost" parameters:@{@"userId":[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]} call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -1577,7 +1584,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 - (void)payCanal:(NSMutableDictionary *)mPara block:(void(^)(mBaseData *resb))block{
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/deliveryCharge" parameters:mPara call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/propertyCost/deliveryCharge" parameters:mPara call:^(mBaseData *info) {
         if (info.mSucess) {
             block ( info );
         }else{
@@ -1603,10 +1610,9 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         [para setObject:mId forKey:@"provid"];
 
     }
-    
-    
-    
-    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:posturl parameters:para call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedHDNetworking] postUrl:[NSString stringWithFormat:@"%@%@",[JHJsonRequst returnNowURL],posturl] parameters:para call:^(mJHBaseData *info) {
+        
+
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1653,7 +1659,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }else if(mType == 5){
         posturl = @"query";
     }
-    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:posturl parameters:mParas call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedHDNetworking] postUrl:[NSString stringWithFormat:@"%@%@",[JHJsonRequst returnNowURL],posturl] parameters:mParas call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1675,8 +1681,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 - (void)Inquire:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
 
-    
-    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:@"mbalance" parameters:mParas call:^(mJHBaseData *info) {
+    [[JHJsonRequst sharedHDNetworking] postUrl:[NSString stringWithFormat:@"%@mbalance",[JHJsonRequst returnNowURL]] parameters:mParas call:^(mJHBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1697,7 +1702,9 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 
 - (void)goPay:(NSDictionary *)mParas block:(void(^)(mJHBaseData *resb))block{
-    [[JHJsonRequst sharedClient:[JHJsonRequst returnJuheURL]] postUrl:@"order" parameters:mParas call:^(mJHBaseData *info) {
+    
+    [[JHJsonRequst sharedHDNetworking] postUrl:[NSString stringWithFormat:@"%@order",[JHJsonRequst returnNowURL]] parameters:mParas call:^(mJHBaseData *info) {
+
         
         NSMutableArray *tempArr = [NSMutableArray new];
         [tempArr removeAllObjects];
@@ -1722,7 +1729,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mUid) forKey:@"userId"];
     [para setObject:mMoney forKey:@"money"];
     [para setObject:@"0" forKey:@"presentManner"];
-    [[HTTPrequest sharedClient] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
             block ( info );
@@ -1739,7 +1746,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(2) forKey:@"level"];
     [para setObject:NumberWithInt(mType) forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"classify/getClassify.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"classify/getClassify.do" parameters:para call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         if (info.mSucess ) {
@@ -1763,7 +1770,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mSuperiorId forKey:@"superiorId"];
     [para setObject:mLevel forKey:@"level"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/classify/getClassify" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/classify/getClassify" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1779,65 +1786,6 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
         }
     }];
-}
-#pragma mark－－－－提交保修表单
-+ (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck{
-
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    [para setObject:mUid forKey:@"uid"];
-    [para setObject:mLevel forKey:@"classification1"];
-    [para setObject:mClassification forKey:@"classification2"];
-    [para setObject:mRemark forKey:@"remarks"];
-    [para setObject:mTime forKey:@"appointmentTime"];
-    [para setObject:mPhone forKey:@"phone"];
-    [para setObject:@"重庆市渝中区大坪石油路万科锦程1栋1004" forKey:@"address"];
-//    
-//        AFHTTPSessionManager *session = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[HTTPrequest returnNowURL]]];
-//        
-//        [session POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//            
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            formatter.dateFormat = @"yyyyMMddHHmmss";
-//            NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-//            
-//            NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
-//            [formData appendPartWithFileData:mImgData name:@"img" fileName:fileName mimeType:@"image/png"];
-//            
-//            
-//        } success:^(NSURLSessionDataTask *task, id responseObject) {
-//            NSLog(@"%@ˆ",responseObject);
-//            
-//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//            NSLog(@"%@",error);
-//            
-//        }];
-//        
-    
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        AFHTTPRequestOperation *operator = [manager POST:[NSString stringWithFormat:@"%@app/warrantyOrder/addRepairOrder",[HTTPrequest returnNowURL]] parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyyMMddHHmmss";
-            NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-            
-            NSString *fileName = [NSString stringWithFormat:@"%@%@.png",nowTimeStr,mImgData];
-            
-            [formData appendPartWithFileData:mImgData name:@"file" fileName:fileName mimeType:@"image/png"];
-            
-        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            MLLog(@"%@ˆ",responseObject);
-
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            MLLog(@"%@",error);
-
-        }];
-    
-    [operator setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-         MLLog(@"bytesWritten=%lu, totalBytesWritten=%lld, totalBytesExpectedToWrite=%lld", (unsigned long)bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-    }];
-        
-
-    
 }
 
 #pragma mark---提交保修订单
@@ -1866,7 +1814,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/addRepairOrder" parameters:para call:^(mBaseData *info) {
         
         block (info );
         
@@ -1896,7 +1844,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mEnd) forKey:@"pageSize"];
 
 
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/MerchantList" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/MerchantList" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1923,7 +1871,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
     [para setObject:NumberWithInt(mId) forKey:@"mId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/getPreOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/getPreOrder" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
 
             block ( info ,[[GFixOrder alloc] initWithObj:info.mData]);
@@ -1940,7 +1888,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
     [para setObject:NumberWithInt(mUserId) forKey:@"mId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/reserve" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/reserve" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block (info);
         }else{
@@ -1954,7 +1902,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mOrderId) forKey:@"orderId"];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/modifyOrderWgtStatus.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"merchantOrder/modifyOrderWgtStatus.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -1977,7 +1925,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mOrderid) forKey:@"orderId"];
     [para setObject:NumberWithInt(mSellerId) forKey:@"merchantId"];
-    [[HTTPrequest sharedClient] postUrl:@"merchant/reserve.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"merchant/reserve.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
   
@@ -1994,7 +1942,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mOid) forKey:@"oId"];
     [para setObject:NumberWithInt(mId) forKey:@"mId"];
-    [[HTTPrequest sharedClient] postUrl:@"merchantOrder/getOrderInfo.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"merchantOrder/getOrderInfo.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             
@@ -2019,7 +1967,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         [para setObject:mRate forKey:@"praiseRate"];
     }
     
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/userConfirmation" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/userConfirmation" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             block ( info );
@@ -2040,7 +1988,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/getCommunity" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/communityCenter/getCommunity" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
             NSMutableArray *tempArr = [NSMutableArray new];
@@ -2062,7 +2010,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/wallet/walletInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wallet/walletInfo" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block ( info );
             
@@ -2081,7 +2029,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -2116,7 +2064,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mEnd) forKey:@"pageSize"];
 
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -2144,7 +2092,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mOrderID forKey:@"orderId"];
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/getOrderDetails" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/getOrderDetails" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2179,7 +2127,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
     
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -2211,8 +2159,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:@"JSON" forKey:@"dtype"];
     [para setObject:NumberWithBool(false) forKey:@"format"];
     
-    [[AVAndaJson sharedClient] postUrl:@"List" parameters:para call:^(mJHBaseData *info) {
-        
+    [[AVAndaJson sharedHDNetworking] postUrl:@"List" parameters:para call:^(mJHBaseData *info) {
+              
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -2243,7 +2191,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/warrantyOrder/warrantyUserInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/warrantyOrder/warrantyUserInfo" parameters:para call:^(mBaseData *info) {
         
         NSMutableArray *tempArr = [NSMutableArray new];
         
@@ -2295,7 +2243,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 - (void)getCommunityClass:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
-    [[HTTPrequest sharedClient] postUrl:@"app/newsType/getNewsTypeList" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/newsType/getNewsTypeList" parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2326,7 +2274,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(10) forKey:@"pageSize"];
     [para setObject:NumberWithInt(mType) forKey:@"newsType"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/news/getNewSContentList" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/news/getNewSContentList" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
 
@@ -2362,7 +2310,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mNewsId) forKey:@"id"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/news/getNewSContent" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/news/getNewSContent" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2382,7 +2330,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 - (void)getPPTaddressTag:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appSysAddressTag" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appSysAddressTag" parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2410,7 +2358,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appUserAddrList" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appUserAddrList" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2461,7 +2409,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }
 
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2495,7 +2443,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         mUrl = @"app/legwork/user/appGoodsType";
     }
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2527,7 +2475,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mDetailAddress forKey:@"detailsAddr"];
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:mTag forKey:@"addrTagId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appUserAddr" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appUserAddr" parameters:para call:^(mBaseData *info) {
 
         if (info.mSucess) {
             block (info );
@@ -2573,7 +2521,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     }
 
-    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             block (info );
@@ -2608,7 +2556,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mLng forKey:@"lng"];
     [para setObject:mLat forKey:@"lat"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appOrderCarry" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appOrderCarry" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             block (info );
@@ -2645,7 +2593,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }
 
     
-    [[HTTPrequest sharedClient] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2666,7 +2614,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"legworkUserId"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2689,7 +2637,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
     [para setObject:NumberWithInt(10) forKey:@"pageSize"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/rankingList" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/rankingList" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2711,7 +2659,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 - (void)getTool:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appTrafficMethod" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appTrafficMethod" parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2765,7 +2713,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }
     
     
-    [[HTTPrequest sharedClient] postUrl:mUrl parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2800,7 +2748,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mFrontImg forKey:@"cardFace"];
     [para setObject:mForwordImg forKey:@"cardBack"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/auth/legworkRegUser" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/auth/legworkRegUser" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2819,7 +2767,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:NumberWithInt(100) forKey:@"money"];
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/auth/depositPay" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/auth/depositPay" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2854,7 +2802,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mLat forKey:@"lat"];
     [para setObject:mLng forKey:@"lon"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/order/grabOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/order/grabOrder" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2889,7 +2837,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mLng forKey:@"lon"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appOrderCancel" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appOrderCancel" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -2913,7 +2861,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  */
 - (void)getSystemTags:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appSysTag" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appSysTag" parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -2963,7 +2911,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mTags forKey:@"tags"];
     [para setObject:mContent forKey:@"content"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appEvaluate" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appEvaluate" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
          
@@ -2987,7 +2935,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  */
 - (void)getFeedBackTags:(void(^)(mBaseData *resb,NSArray *mArr))block{
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appTreaty" parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appTreaty" parameters:nil call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3043,7 +2991,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appComplaints" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appComplaints" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3083,7 +3031,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         [para setObject:mName forKey:@"name"];
     }
     
-    [[HTTPrequest sharedClient] postUrl:@"app/communityCenter/verificationCell" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/communityCenter/verificationCell" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3130,7 +3078,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:@"1" forKey:@"device"];
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/updateUserState" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/updateUserState" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3161,7 +3109,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(10) forKey:@"pageSize"];
 
     
-    [[HTTPrequest sharedClient] postUrl:@"app/propertyCost/findHistoryPropertyCost" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/propertyCost/findHistoryPropertyCost" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3204,7 +3152,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(10) forKey:@"pageSize"];
     
 
-    [[HTTPrequest sharedClient] postUrl:@"app/msg/queryUserMsg" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/msg/queryUserMsg" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3247,7 +3195,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mId) forKey:@"id"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/msg/readMsgInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/msg/readMsgInfo" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             block (info );
@@ -3277,7 +3225,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mId) forKey:@"ids"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/msg/deleteMsgInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/msg/deleteMsgInfo" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             block (info );
@@ -3318,7 +3266,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
     [para setObject:NumberWithInt(mIsLook) forKey:@"isLook"];
     [para setObject:mType forKey:@"type"];
-    [[HTTPrequest sharedClient] postUrl:@"front/personal/informationCount.do" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"front/personal/informationCount.do" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
         }else{
@@ -3982,7 +3930,7 @@ bool g_rccbined = NO;
     [para setObject:mValue forKey:@"value"];
     [para setObject:mUserName forKey:@"userName"];
     [para setObject:mHeader forKey:@"portraitUri"];
-    [[HTTPrequest sharedClient] postUrl:@"app/rongCloud/appGetToken" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/rongCloud/appGetToken" parameters:para call:^(mBaseData *info) {
         
         [self dealSession:info block:block];
  
@@ -3999,7 +3947,7 @@ bool g_rccbined = NO;
 
     
     
-    [[HTTPrequest sharedClient] getUrl:@"app/rongCloud/appGetCommunityUsers" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] getUrl:@"app/rongCloud/appGetCommunityUsers" parameters:para call:^(mBaseData *info) {
         
         
         NSMutableArray *tempArr = [NSMutableArray new];
@@ -4028,7 +3976,7 @@ bool g_rccbined = NO;
     [para setObject:mLng forKey:@"lon"];
     [para setObject:mLat forKey:@"lat"];
 
-    [[HTTPrequest sharedClient] getUrl:@"app/rongCloud/appGetNearbyUsers" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] getUrl:@"app/rongCloud/appGetNearbyUsers" parameters:para call:^(mBaseData *info) {
         
         
         NSMutableArray *tempArr = [NSMutableArray new];
@@ -4416,7 +4364,7 @@ bool pptbined = NO;
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUser" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUser" parameters:para call:^(mBaseData *info) {
         
         [self dealpptUserSession:info block:block];
     }];
@@ -4463,7 +4411,7 @@ bool pptbined = NO;
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserInfo" parameters:para call:^(mBaseData *info) {
         
         block (info ,[[GPPTUserInfo alloc] initWithObj:info.mData]);
     }];
@@ -4477,7 +4425,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
     [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
 
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserMsg" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserMsg" parameters:para call:^(mBaseData *info) {
         
 
         if (info.mSucess) {
@@ -4506,7 +4454,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
     [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserPile" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserPile" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4534,7 +4482,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
     [para setObject:NumberWithInt(mNum) forKey:@"pageSize"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserEvaluate" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserEvaluate" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4560,7 +4508,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/queryUserTags" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/queryUserTags" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4590,7 +4538,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/cancel" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/cancel" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4613,7 +4561,7 @@ bool pptbined = NO;
     [para setObject:NumberWithInt([GPPTer backPPTUser].mPPTerId) forKey:@"legworkUserId"];
     [para setObject:mMessageIds forKey:@"ids"];
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/user/deleteUserMsg" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/deleteUserMsg" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4651,7 +4599,7 @@ bool pptbined = NO;
     [para setObject:mLng forKey:@"lon"];
     
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/user/appComfirmOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appComfirmOrder" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {
@@ -4697,7 +4645,7 @@ bool pptbined = NO;
         [para setObject:NumberWithInt(mMoney) forKey:@"money"];
     }
     
-    [[HTTPrequest sharedClient] postUrl:@"app/legwork/service/order/confirmOrder" parameters:para call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/order/confirmOrder" parameters:para call:^(mBaseData *info) {
         
         
         if (info.mSucess) {

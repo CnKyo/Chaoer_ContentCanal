@@ -7,22 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFHTTPRequestOperationManager.h"
-#import "AFURLResponseSerialization.h"
 #import "dataModel.h"
 #import "AFNetworking.h"
-#import "AFAppDotNetAPIClient.h"
+#import "HDSingleton.h"
 
 @class mBaseData;
 
-@interface AVAndaJson : AFHTTPRequestOperationManager
-+ (AVAndaJson *)sharedClient;
+@interface AVAndaJson : NSObject
+
+HDSingletonH(HDNetworking) // 单例声明
+
+/**
+ *  可接受的响应内容类型
+ */
+@property (nonatomic, copy) NSSet <NSString *> *acceptableContentTypes;
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mJHBaseData* info))callback;
 
-- (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback;
 
-+ (NSString *)returnJuheURL;
 
 + (NSString *)returnNowURL;
 

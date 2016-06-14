@@ -74,6 +74,7 @@
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #import "CustomDefine.h"
+#import "HDDefine.h"
 #import "NSString+CheckEmpty.h"
 #import "IQKeyboardManager.h"
 #import "UIImageView+WebCache.h"
@@ -164,4 +165,8 @@
 
 #import "UITextField+Shake.h"
 #import "MBProgressHUD.h"
+
+
+#import "HDPicModle.h"
+
 #endif
