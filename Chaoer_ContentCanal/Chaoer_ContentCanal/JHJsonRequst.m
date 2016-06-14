@@ -19,71 +19,63 @@
 static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://op.juhe.cn/ofpay/public/";
 
 @implementation JHJsonRequst
-#pragma mark -
-+ (JHJsonRequst *)sharedClient:(NSString *)mUrl{
-    static JHJsonRequst *_sharedClient = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[JHJsonRequst alloc] initWithBaseURL:[NSURL URLWithString:mUrl]];
-        _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    });
-    _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;
-    _sharedClient.requestSerializer.timeoutInterval = 60;
-    return _sharedClient;
-}
+HDSingletonM(HDNetworking) // 单例实现
 
-- (void)cancelHttpOpretion:(AFHTTPRequestOperation *)http
-{
-    for (NSOperation *operation in [self.operationQueue operations]) {
-        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
-            continue;
-        }
-        if ([operation isEqual:http]) {
-            [operation cancel];
-            break;
-        }
-    }
-}
+#pragma mark -
+
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)(mJHBaseData  * info))callback
 {
     
     MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+
     
-    [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = 10;
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
+    
+    [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+    
+            MLLog(@"data:%@",responseObject);
+            
+            mJHBaseData   *retob = [[mJHBaseData alloc]initWithObj:responseObject];
+            
+            if( retob.mState == 400301 )
+            {//需要登陆
+                id oneid = [UIApplication sharedApplication].delegate;
+                [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+            }
+            callback(  retob );
         
         
-        MLLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
         
-        mJHBaseData   *retob = [[mJHBaseData alloc]initWithObj:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if( retob.mState == 400301 )
-        {//需要登陆
-            id oneid = [UIApplication sharedApplication].delegate;
-            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
-        }
-        callback(  retob );
+
+        MLLog(@"error:%@",error.description);
+        callback( [mJHBaseData infoWithError:@"网络请求错误"] );
         
-    }
-       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-           
-           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
-           callback( [mJHBaseData infoWithError:@"网络请求错误"] );
-           
-       }];
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+    }];
+
+    
 }
 
-- (void)postUrlWithString:(NSString *)urlString andFileName:(NSData *)mFileName andPara:(id)para block:(void (^)( mBaseData* info))callback{
-    MLLog(@"请求地址：%@-------请求参数：%@",urlString,para);
-    
-    
-    
-}
+
 
 + (NSString *)returnNowURL{
-    return @"http://op.juhe.cn/onebox/news/query";
-}
-+ (NSString *)returnJuheURL{
     return kAFAppDotNetAPIBaseURLString;
 }
 

@@ -725,8 +725,6 @@
  *  @param mImg            图片
  *  @param blck            返回值
  */
-+ (void)commiteFixOrder:(NSString *)mUid andOneLevel:(NSString *)mLevel andClassification:(NSString *)mClassification andRemark:(NSString *)mRemark andtime:(NSString *)mTime andPhone:(NSString *)mPhone andAddress:(NSString *)mAddress andImg:(NSData *)mImgData block:(void(^)(mBaseData *resb))blck;
-
 
 #pragma mark---提交保修订单
 - (void)commitFixOrder:(NSString *)mSuperId andSubClass:(NSString *)mSubClass andNote:(NSString *)mNote andServiceTime:(NSString *)mServiceTime andAddress:(NSString *)mAddress andCommunityId:(NSString *)mCommunityId andServicerId:(int)mId andImgUrl:(NSString *)mImgUrl andVideoUrl:(NSString *)mVideoUrl block:(void(^)(mBaseData *resb))block;

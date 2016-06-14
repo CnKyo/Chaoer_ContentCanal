@@ -19,9 +19,9 @@
 #pragma mark -
 #pragma mark APIClient
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
 
@@ -41,68 +41,93 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
 
 
 @implementation HTTPrequest
-#pragma mark -
-+ (instancetype)sharedClient {
-    static HTTPrequest *_sharedClient = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[HTTPrequest alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetAPIBaseURLString]];
-        _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    });
-    _sharedClient.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/json",@"text/html",@"charset=UTF-8",@"text/plain",@"application/json",nil];;
-    _sharedClient.requestSerializer.timeoutInterval = 10;
-    return _sharedClient;
-}
+HDSingletonM(HDNetworking) // 单例实现
 
-- (void)cancelHttpOpretion:(AFHTTPRequestOperation *)http
-{
-    for (NSOperation *operation in [self.operationQueue operations]) {
-        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
-            continue;
-        }
-        if ([operation isEqual:http]) {
-            [operation cancel];
-            break;
-        }
-    }
-}
+#pragma mark -
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)(mBaseData  * info))callback
 {
-    
-    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
-    [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-//        NSLog(@"去掉字典里的null值之前的数据---URL%@ data:%@",operation.response.URL,responseObject);
+    [[HTTPrequest sharedHDNetworking] networkStatusUnknown:^{
+        MLLog(@"未知网络连接");
+    } reachable:^{
+        MLLog(@"reachable");
+    } reachableViaWWAN:^{
+        MLLog(@"移动蜂窝网络");
+    } reachableViaWiFi:^{
+        MLLog(@"WiFi");
+    }];
 
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
         NSDictionary *resbObj = [self deleteEmpty:responseObject];
         
         MLLog(@"去掉字典里的null值之后的数据---%@",resbObj);
-
+        
         mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
-                
-//        if( retob.mState == 400301 )
-//        {//需要登陆
-//            id oneid = [UIApplication sharedApplication].delegate;
-//            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
-//        }
+        
+        //        if( retob.mState == 400301 )
+        //        {//需要登陆
+        //            id oneid = [UIApplication sharedApplication].delegate;
+        //            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+        //        }
         callback(  retob );
         
-    }
-       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-           
-           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
-           callback( [mBaseData infoWithError:@"网络请求错误"] );
-           
-       }];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        MLLog(@" error:%@",error.description);
+        callback( [mBaseData infoWithError:@"网络请求错误"] );
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+    }];
+
+    
+    
 }
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback{
-
+    [[HTTPrequest sharedHDNetworking] networkStatusUnknown:^{
+        MLLog(@"未知网络连接");
+    } reachable:^{
+        MLLog(@"reachable");
+    } reachableViaWWAN:^{
+        MLLog(@"移动蜂窝网络");
+    } reachableViaWiFi:^{
+        MLLog(@"WiFi");
+    }];
     MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
     
-    [self GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [manager GET:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        MLLog(@"URL%@ data:%@",operation.response.URL,responseObject);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        MLLog(@"data:%@",responseObject);
         
         NSDictionary *resbObj = [self deleteEmpty:responseObject];
         
@@ -118,83 +143,23 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
         //        }
         callback(  retob );
         
-    }
-       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-           
-           MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
-           callback( [mBaseData infoWithError:@"网络请求错误"] );
-           
-       }];
-}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        MLLog(@"error:%@",error.description);
+        callback( [mBaseData infoWithError:@"网络请求错误"] );
 
-- (void)postUrlWithString:(NSString *)urlString andFileName:(NSString *)mFileName andData:(NSData *)mData andFilePath:(NSURL *)mPath andPara:(id)para block:(void (^)( mBaseData* info))callback{
-  
-    urlString = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString];
-    MLLog(@"请求地址：%@-------请求参数：%@",urlString,para);
-
-    
-
-    
-    NSURLRequest *request = [[HTTPrequest sharedClient].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        
-        if (mData) {
-            [formData appendPartWithFileData:mData name:@"file" fileName:mFileName mimeType:@"image/png"];
-        }
-        
-    } error:nil];
-    
-    // 3. operation包装的urlconnetion
-    
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    
-    
-    
-    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        
-        
-        MLLog(@"%@",responseObject);
-        MLLog(@"上传完成");
-        
-        NSDictionary *resbObj = [self deleteEmpty:responseObject];
-        
-        MLLog(@"去掉字典里的null值之后的数据：%@",resbObj);
-        
-        mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
-        
-        callback (retob);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MLLog(@"url:%@ error:%@",operation.response.URL,error.description);
-        callback( [mBaseData infoWithError:error.description] );
-        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
+
     
-    //执行
-    
-    [[HTTPrequest sharedClient].operationQueue addOperation:op];
-    
-    
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    // formData是遵守了AFMultipartFormData的对象
-//    [manager POST:urlString parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        [formData appendPartWithFileData:mData name:@"file" fileName:mFileName mimeType:@"image/png"];
-//        
-//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//
-//        NSLog(@"完成 %@ ,,", result);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"错误 %@", error.localizedDescription);
-//    }];
     
     
 }
+
+
 
 + (NSString *)returnNowURL{
     
@@ -293,42 +258,381 @@ static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
     }
     return marr;
 }
-#pragma mark----测试上传文件方法
-+ (NSMutableURLRequest *)constructFormDataRequestWithUrlString:(NSString *)urlString
-                                                          data:(NSData *)data
-                                                          name:(NSString *)name
-                                                      fileName:(NSString *)fileName
-                                                      mimeType:(NSString *)mimeType
-                                                    parameters:(NSDictionary *)parameters
+#pragma mark----HDNetWork
+/**
+ *  网络监测(在什么网络状态)
+ *
+ *  @param unknown          未知网络
+ *  @param reachable        无网络
+ *  @param reachableViaWWAN 蜂窝数据网
+ *  @param reachableViaWiFi WiFi网络
+ */
+- (void)networkStatusUnknown:(Unknown)unknown reachable:(Reachable)reachable reachableViaWWAN:(ReachableViaWWAN)reachableViaWWAN reachableViaWiFi:(ReachableViaWiFi)reachableViaWiFi;
 {
-    NSString *boundary = [NSString stringWithFormat:@"Boundary+%08X%08X", arc4random(), arc4random()];
+    // 创建网络监测者
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,urlString]]];
-    request.HTTPMethod = @"POST";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 监测到不同网络的情况
+        switch (status)
+        {
+            case AFNetworkReachabilityStatusUnknown:
+                unknown();
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:
+                reachable();
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                reachableViaWWAN();
+                
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                reachableViaWiFi();
+                break;
+                
+            default:
+                break;
+        }
+    }] ;
     
-    [request addValue:[NSString stringWithFormat:@"%lud", (unsigned long)data.length] forHTTPHeaderField:@"Content-Length"];
+    // 开始监听网络状况
+    [manager startMonitoring];
+}
+
+/**
+ *  封装的get请求
+ *
+ *  @param URLString  请求的链接
+ *  @param parameters 请求的参数
+ *  @param success    请求成功回调
+ *  @param failure    请求失败回调
+ */
+- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSMutableData *postBody = [NSMutableData data];
-    // body 参数
-    [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithFormat:@"%@", obj] dataUsingEncoding:NSUTF8StringEncoding]];
-        [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [manager GET:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success)
+        {
+            success(responseObject);
+        }
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure)
+        {
+            failure(error);
+        }
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
+}
+
+/**
+ *  封装的POST请求
+ *
+ *  @param URLString  请求的链接
+ *  @param parameters 请求的参数
+ *  @param success    请求成功回调
+ *  @param failure    请求失败回调
+ */
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success)
+        {
+            success(responseObject);
+        }
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure)
+        {
+            failure(error);
+        }
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+    }];
+}
+
+/**
+ *  封装POST图片上传(多张图片) // 可扩展成多个别的数据上传如:mp3等
+ *
+ *  @param URLString  请求的链接
+ *  @param parameters 请求的参数
+ *  @param picArray   存放图片模型(HDPicModle)的数组
+ *  @param progress   进度的回调
+ *  @param success    发送成功的回调
+ *  @param failure    发送失败的回调
+ */
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicArray:(NSArray<HDPicModle *> *)picArray progress:(Progress)progress success:(Success)success failure:(Failure)failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSInteger count = picArray.count;
+        NSString *fileName = @"";
+        NSData *data = [NSData data];
+        
+        for (int i = 0; i < count; i++)
+        {
+            @autoreleasepool {
+                HDPicModle *picModle = picArray[i];
+                fileName = [NSString stringWithFormat:@"pic%02d.png", i];
+                /**
+                 *  压缩图片然后再上传(1.0代表无损 0~~1.0区间)
+                 */
+                data = UIImageJPEGRepresentation(picModle.mPicImage, 1.0);
+                CGFloat precent = self.picSize / (data.length / 1024.0);
+                if (precent > 1)
+                {
+                    precent = 1.0;
+                }
+                data = nil;
+                data = UIImageJPEGRepresentation(picModle.mPicImage, precent);
+                
+                [formData appendPartWithFileData:data name:picModle.mPicName fileName:fileName mimeType:@"image/png"];
+                data = nil;
+                picModle.mPicImage = nil;
+            }
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        if (progress)
+        {
+            progress(uploadProgress); // HDLog(@"%lf", 1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        }
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success)
+        {
+            success(responseObject);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure)
+        {
+            failure(error);
+        }
+    }];
+}
+
+/**
+ *  封装POST图片上传(单张图片) // 可扩展成单个别的数据上传如:mp3等
+ *
+ *  @param URLString  请求的链接
+ *  @param parameters 请求的参数
+ *  @param picModle   上传的图片模型
+ *  @param progress   进度的回调
+ *  @param success    发送成功的回调
+ *  @param failure    发送失败的回调
+ */
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPic:(HDPicModle *)picModle progress:(Progress)progress success:(Success)success failure:(Failure)failure call:(void (^)( mBaseData* info))callback
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        /**
+         *  压缩图片然后再上传(1.0代表无损 0~~1.0区间)
+         */
+        NSData *data = UIImageJPEGRepresentation(picModle.mPicImage, 1.0);
+        CGFloat precent = self.picSize / (data.length / 1024.0);
+        if (precent > 1)
+        {
+            precent = 1.0;
+        }
+        data = nil;
+        data = UIImageJPEGRepresentation(picModle.mPicImage, precent);
+        
+        NSString *fileName = picModle.mPicName;
+        
+        [formData appendPartWithFileData:data name:picModle.mPicName fileName:fileName mimeType:@"image/png"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        if (progress)
+        {
+            progress(uploadProgress);
+            HDLog(@"%lf", 1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        }
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success)
+        {
+            success(responseObject);
+            
+            NSDictionary *resbObj = [self deleteEmpty:responseObject];
+            
+            MLLog(@"去掉字典里的null值之后的数据---%@",resbObj);
+            
+            mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
+
+            callback(  retob );
+
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure)
+        {
+            failure(error);
+            MLLog(@"error:%@",error.description);
+            callback( [mBaseData infoWithError:@"网络请求错误"] );
+
+        }
+    }];
+}
+
+/**
+ *  封装POST上传url资源
+ *
+ *  @param URLString  请求的链接
+ *  @param parameters 请求的参数
+ *  @param picModle   上传的图片模型(资源的url地址)
+ *  @param progress   进度的回调
+ *  @param success    发送成功的回调
+ *  @param failure    发送失败的回调
+ */
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicUrl:(HDPicModle *)picModle progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@.png", picModle.mPicName];
+        // 根据本地路径获取url(相册等资源上传)
+        NSURL *url = [NSURL fileURLWithPath:picModle.mPicUrl]; // [NSURL URLWithString:picModle.url] 可以换成网络的图片在上传
+        
+        [formData appendPartWithFileURL:url name:picModle.mPicName fileName:fileName mimeType:@"application/octet-stream" error:nil];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        if (progress)
+        {
+            progress(uploadProgress); // HDLog(@"%lf", 1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        }
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success)
+        {
+            success(responseObject);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure)
+        {
+            failure(error);
+        }
+    }];
+}
+
+/**
+ *  下载
+ *
+ *  @param URLString       请求的链接
+ *  @param progress        进度的回调
+ *  @param destination     返回URL的回调
+ *  @param downLoadSuccess 发送成功的回调
+ *  @param failure         发送失败的回调
+ */
+- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString progress:(Progress)progress destination:(Destination)destination downLoadSuccess:(DownLoadSuccess)downLoadSuccess failure:(Failure)failure;
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSURL *url = [NSURL URLWithString:URLString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    // 下载任务
+    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+        if (progress)
+        {
+            progress(downloadProgress); // HDLog(@"%lf", 1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        }
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        
+        if (destination)
+        {
+            return destination(targetPath, response);
+        }
+        else
+        {
+            return nil;
+        }
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+        if (error)
+        {
+            failure(error);
+        }
+        else
+        {
+            downLoadSuccess(response, filePath);
+        }
     }];
     
-    MLLog(@"%@", [[NSString alloc] initWithData:postBody encoding:NSUTF8StringEncoding]);
+    // 开始启动任务
+    [task resume];
     
-    // body data
-    [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n", name, fileName] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postBody appendData:data];
-    [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPBody:postBody];
-    return request;
-    
+    return task;
 }
+
 @end
