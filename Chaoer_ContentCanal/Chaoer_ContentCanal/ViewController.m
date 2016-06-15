@@ -295,7 +295,7 @@
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
                                            
                                            MLLog(@"%@",error);
-                                           [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+                                           [self showErrorStatus:@"您已取消登录！"];
                                        }
                                    }];
 
