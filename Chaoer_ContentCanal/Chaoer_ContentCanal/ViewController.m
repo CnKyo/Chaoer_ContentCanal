@@ -274,7 +274,7 @@
                                                
                                                //                                               [self showAdsView];
                                                
-                                               [self showErrorStatus:resb.mMessage];
+                                               [self showErrorStatus:@"您已取消登录！"];
                                                
                                                
                                            }
@@ -288,14 +288,14 @@
                                            
                                            MLLog(@"返回的用户信息：%@",user);
                                            
-                                           
+                                        
                                            
                                        }  else
                                        {
                                            [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
                                            
-                                           MLLog(@"%@",error);
-                                           [self showErrorStatus:[NSString stringWithFormat:@"%@",error]];
+                                           MLLog(@"－－－错误信息%@",error);
+                                           [self showErrorStatus:@"您已取消登录！"];
                                        }
                                    }];
 
