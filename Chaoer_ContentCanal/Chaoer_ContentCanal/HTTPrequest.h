@@ -137,8 +137,19 @@ HDSingletonH(HDNetworking) // 单例声明
  *  @param failure         发送失败的回调
  */
 - (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString progress:(Progress)progress destination:(Destination)destination downLoadSuccess:(DownLoadSuccess)downLoadSuccess failure:(Failure)failure;
-
+#pragma mark----返回当前url
+/**
+ *  返回当前url
+ *
+ *  @return 返回当前url
+ */
 + (NSString *)returnNowURL;
-
+#pragma mark----返回资源url
+/**
+ *  返回资源url
+ *
+ *  @return 返回资源url
+ */
++ (NSString *)currentResourceUrl;
 @end
 NS_ASSUME_NONNULL_END

@@ -65,7 +65,7 @@
 }
 - (void)loadData{
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
     [mView.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 

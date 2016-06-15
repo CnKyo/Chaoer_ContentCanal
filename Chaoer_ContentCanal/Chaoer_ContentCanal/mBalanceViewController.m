@@ -65,7 +65,7 @@
     mView = [mAddressView sharePayView];
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
     [mView.mLogo sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
 

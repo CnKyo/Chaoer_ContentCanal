@@ -205,7 +205,7 @@
     cell.mOrderName.text = [NSString stringWithFormat:@"%@-%@",mFix.mClassificationName,mFix.mClassificationName2];
     cell.mServiceTime.text = [NSString stringWithFormat:@"服务时间：%@",mFix.mOrderServiceTime];
     cell.mServiceAddress.text = [NSString stringWithFormat:@"服务地址：%@",mFix.mAddress];
-    MLLog(@"图片地址是：%@",[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]);
+    MLLog(@"图片地址是：%@",[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mFix.mOrderImage]);
     
     if ([mFix.mOrderImage isEqualToString:@""] || mFix.mOrderImage == nil) {
         cell.mImage1.image = [UIImage imageNamed:@"logo"];
@@ -213,7 +213,7 @@
         cell.mAddressLeft.constant = 0;
         cell.mServiceTimeLeft.constant = 0;
     }else{
-        [cell.mImage1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mFix.mOrderImage]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+        [cell.mImage1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mFix.mOrderImage]] placeholderImage:[UIImage imageNamed:@"img_default"]];
     }
     
     cell.mPhone.text = mFix.mPhone;

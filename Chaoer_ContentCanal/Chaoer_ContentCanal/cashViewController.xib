@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -157,18 +157,23 @@
                         <constraint firstAttribute="bottom" secondItem="LLc-zj-KOY" secondAttribute="bottom" constant="8" id="wiu-AZ-EHA"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="节假日例外" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuW-wa-fvx">
-                    <rect key="frame" x="15" y="266" width="109" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="节假日例外，且提现金额不能低于50元，不能高于5万元" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuW-wa-fvx">
+                    <rect key="frame" x="15" y="266" width="297" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="109" id="hee-hH-AOL"/>
-                        <constraint firstAttribute="height" constant="21" id="w2X-8E-etO"/>
+                        <constraint firstAttribute="height" constant="40" id="w2X-8E-etO"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hee-hH-AOL"/>
+                        </mask>
+                    </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot8-NX-oME">
-                    <rect key="frame" x="15" y="307" width="290" height="40"/>
+                    <rect key="frame" x="15" y="326" width="290" height="40"/>
                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Pca-rK-BN1"/>
@@ -195,6 +200,7 @@
                 <constraint firstItem="Wm3-ef-0xu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="OTl-gF-qoP"/>
                 <constraint firstItem="9OF-NF-emz" firstAttribute="top" secondItem="KcT-QI-ZkL" secondAttribute="bottom" constant="15" id="SOL-gj-uuU"/>
                 <constraint firstItem="r5v-Tv-trg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WxX-RE-Xyx"/>
+                <constraint firstAttribute="trailing" secondItem="QuW-wa-fvx" secondAttribute="trailing" constant="8" id="Yev-f4-rNH"/>
                 <constraint firstItem="QuW-wa-fvx" firstAttribute="top" secondItem="FUx-dT-9kc" secondAttribute="bottom" constant="8" id="Yr7-2m-EAA"/>
                 <constraint firstAttribute="trailing" secondItem="FUx-dT-9kc" secondAttribute="trailing" id="apr-aB-USz"/>
                 <constraint firstAttribute="trailing" secondItem="Wm3-ef-0xu" secondAttribute="trailing" constant="8" id="cqX-rx-DbX"/>

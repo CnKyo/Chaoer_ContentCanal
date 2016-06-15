@@ -556,7 +556,7 @@
     }
     
     
-    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 
     
     

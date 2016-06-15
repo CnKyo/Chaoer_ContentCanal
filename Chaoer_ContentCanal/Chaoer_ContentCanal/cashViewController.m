@@ -111,13 +111,30 @@
 
 - (IBAction)okbtn:(UIButton *)sender {
     
-    
+  
     if (self.mMoneyTx.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入您要提现的金额！"];
         [self.mMoneyTx becomeFirstResponder];
         return;
         
     }
+    if ([mUserInfo backNowUser].mMoney < [self.mMoneyTx.text floatValue]) {
+        [self showErrorStatus:@"余额不足，提现失败！"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+    }
+    if ([mUserInfo backNowUser].mMoney < 50) {
+        [self showErrorStatus:@"提现余额不能低于50元，且不高于5万元！"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+    }
+    
+    if ([mUserInfo backNowUser].mMoney >= 50000) {
+        [self showErrorStatus:@"提现余额不能低于50元，且不高于5万元！"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+    }
+   
     if ([self.mTimeBtn.titleLabel.text isEqualToString:@"请选择到账时间"]) {
         [SVProgressHUD showErrorWithStatus:@"请选择到账时间！"];
         return;
