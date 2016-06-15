@@ -149,7 +149,7 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     
     if (sType == 2) {
-        self.tableView.backgroundColor = [UIColor colorWithRed:0.71 green:0.71 blue:0.72 alpha:0.45];
+        self.tableView.backgroundColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:0.45];
     }else{
         self.tableView.backgroundColor = [UIColor clearColor];
     }
