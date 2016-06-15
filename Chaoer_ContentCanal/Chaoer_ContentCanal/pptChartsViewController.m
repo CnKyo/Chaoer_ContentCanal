@@ -136,7 +136,7 @@
     pptChartsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mRank.mHeaderImg];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mRank.mHeaderImg];
     
     [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
     

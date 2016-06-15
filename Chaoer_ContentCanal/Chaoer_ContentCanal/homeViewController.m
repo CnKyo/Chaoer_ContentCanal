@@ -187,7 +187,7 @@
         mtt = [mUserInfo backNowUser].mOpenId;
         
     }
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
     [RCCInfo getToken:@"seller" andValue:mtt andUserName:[mUserInfo backNowUser].mNickName andPrtraitUri:url block:^(mBaseData *resb,RCCInfo *mrcc) {
         

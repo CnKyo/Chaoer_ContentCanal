@@ -248,7 +248,7 @@
     cell.mPhone.text = ss.mMerchantPhone;
     
 
-    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],ss.mMerchantImage]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],ss.mMerchantImage]] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     int x = ss.mPraiseRate;
     cell.mRaitingView.numberOfStars = 5;

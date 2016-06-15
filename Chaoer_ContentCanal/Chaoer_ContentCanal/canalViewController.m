@@ -68,7 +68,7 @@
     
     mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",[mUserInfo backNowUser].mMoney];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
     
     [mCanView.mLogoImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];

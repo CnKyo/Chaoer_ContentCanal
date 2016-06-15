@@ -273,7 +273,7 @@
     
     cell.mStatus.text = mOrder.mStatusName;
     
-    [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [cell.mImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 
     
     if (mOrder.mProcessStatus == 0) {

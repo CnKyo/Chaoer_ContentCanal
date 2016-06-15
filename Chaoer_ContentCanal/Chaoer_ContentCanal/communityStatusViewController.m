@@ -257,7 +257,7 @@
     cell.mTitle.text = GC.mTitel;
     
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],GC.mNewsImage];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],GC.mNewsImage];
 
     [cell.mImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img_default"]];
     

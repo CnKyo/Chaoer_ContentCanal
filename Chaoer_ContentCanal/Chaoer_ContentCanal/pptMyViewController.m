@@ -139,7 +139,7 @@
     mHeaderView.mLevel.text = [NSString stringWithFormat:@"%@",[GPPTer backPPTUser].mLevel];
     mHeaderView.mMoney.text = [NSString stringWithFormat:@"%@¥",[GPPTer backPPTUser].mTotleMoney];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[GPPTer backPPTUser].mHeaderImg];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[GPPTer backPPTUser].mHeaderImg];
 
     [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
 

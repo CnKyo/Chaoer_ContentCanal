@@ -33,7 +33,7 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.
 /**
  *  资源路径
  */
-static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/";
+static NSString* const  kAFASourceUrl    = @"http://app.china-cr.com/resource/";
 
 @interface HTTPrequest()
 
@@ -165,10 +165,21 @@ HDSingletonM(HDNetworking) // 单例实现
     
     NSArray *mUrl = [kAFAppDotNetAPIBaseURLString componentsSeparatedByString:@"/"];
     NSString *mRsetUrl = [NSString stringWithFormat:@"%@//%@%@",[mUrl objectAtIndex:0],[mUrl objectAtIndex:1],[mUrl objectAtIndex:2]];
-    
-    
+
     return mRsetUrl;
 }
+#pragma mark----返回资源url
+/**
+ *  返回资源url
+ *
+ *  @return 返回资源url
+ */
++ (NSString *)currentResourceUrl{
+
+    
+    return kAFASourceUrl;
+}
+
 #pragma mark----删除字典里的null值
 - (NSDictionary *)deleteEmpty:(NSDictionary *)dic
 {

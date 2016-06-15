@@ -210,7 +210,7 @@
     
     cell.mDoBtn.mOrder = self.mOrder;
 
-    [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],self.mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [cell.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],self.mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 
     if (self.mOrderType == 1) {
      

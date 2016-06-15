@@ -280,7 +280,7 @@ bool g_bined = NO;
         return;
     }
     
-    RCUserInfo *mUser =  [[RCUserInfo alloc] initWithUserId:mRcc.mRCCUserId name:mRcc.mRCCUserName portrait:[NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl]];
+    RCUserInfo *mUser =  [[RCUserInfo alloc] initWithUserId:mRcc.mRCCUserId name:mRcc.mRCCUserName portrait:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl]];
     [RCIMClient sharedRCIMClient].currentUserInfo = mUser;
     
     //初始化融云SDK
@@ -312,7 +312,7 @@ bool g_bined = NO;
 //        NSLog(@"rcerrrr:");
 //        
 //    }];
-    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[mUserInfo backNowUser].mUserImgUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
 
     [RCIMClient sharedRCIMClient].currentUserInfo = [[RCUserInfo alloc]initWithUserId:mRcc.mRCCUserId  name:mRcc.mRCCUserName portrait:url];
 
