@@ -61,7 +61,11 @@
     mView.mPrice.text = [NSString stringWithFormat:@"%@¥",self.mFixOrder.mEstimatedPrice];
     mView.mDetail.text = self.mFixOrder.mDescribe;
     [mView.mBigImg sd_setImageWithURL:[NSURL URLWithString:self.mFixOrder.mBigImage] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    
+    
     [mScrollerView addSubview:mView];
+    
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 276+[Util labelText:self.mFixOrder.mDescribe fontSize:14 labelWidth:mView.mDetail.mwidth]);
     
 
     
