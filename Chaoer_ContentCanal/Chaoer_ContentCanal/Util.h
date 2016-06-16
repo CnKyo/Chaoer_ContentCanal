@@ -241,5 +241,13 @@ typedef enum _RelDic
 
 #pragma mark----过滤非法字符
 + (BOOL)isHaveIllegalChar:(NSString *)str;
-
+#pragma mark----过滤emoji表情
+/**
+ *  过滤emoji表情
+ *
+ *  @param string 传入字符串
+ *
+ *  @return 返回过滤后的字符串
+ */
++ (NSString *)filterEmoji:(NSString *)string;
 @end
