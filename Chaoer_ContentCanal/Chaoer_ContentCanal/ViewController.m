@@ -115,6 +115,12 @@
     self.navBar.rightBtn.frame = CGRectMake(DEVICE_Width-100, 20, 120, 44);
     self.rightBtnTitle = @"密码登录";
     
+    UIImageView *mBgk = [UIImageView new];
+    mBgk.frame = self.view.bounds;
+    mBgk.image = [UIImage imageNamed:@"login_bgk"];
+    [self.view addSubview:mBgk];
+    
+    
     [self initView];
     
     [self initAlertView];
@@ -129,7 +135,7 @@
     [self.view addSubview:mScrollerView];
     
     mLoginV = [mLoginView shareView];
-    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, DEVICE_Height+100);
+    mLoginV.frame = CGRectMake(0, 0, mScrollerView.mwidth, 568);
     
     
     if ([mUserInfo backNowUser].mPhone) {
@@ -153,7 +159,7 @@
 
     
     [mScrollerView addSubview:mLoginV];
-    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, DEVICE_Height+100);
+    mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
     
     
     
