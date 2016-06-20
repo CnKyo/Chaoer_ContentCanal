@@ -19,11 +19,11 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.175/";
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.110/";
 
@@ -58,6 +58,10 @@ HDSingletonM(HDNetworking) // 单例实现
     }];
 
     MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+//    
+//    if ([URLString isEqualToString:@"app/login/applogin"]) {
+//        [self getRSAKey];
+//    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -646,4 +650,23 @@ HDSingletonM(HDNetworking) // 单例实现
     return task;
 }
 
+
+#pragma mark----获取rsakey
+
+- (NSString *)getRSAKey{
+
+    NSString *key = nil;
+    
+    [mUserInfo getRSAKey:^(mBaseData *resb) {
+        
+        if (resb.mSucess) {
+            
+        }else{
+        
+        }
+        
+    }];
+    
+    return key;
+}
 @end
