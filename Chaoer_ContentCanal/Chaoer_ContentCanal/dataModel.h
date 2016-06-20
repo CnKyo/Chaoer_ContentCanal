@@ -303,7 +303,13 @@
  *  退出登录
  */
 + (void)logOut;
-
+#pragma mark----获取rsa加密公钥
+/**
+ *  获取rsa加密公钥
+ *
+ *  @param block
+ */
++ (void)getRSAKey:(void(^)(mBaseData *resb))block;
 #pragma mark----关联融云
 /**
  *  关联融云

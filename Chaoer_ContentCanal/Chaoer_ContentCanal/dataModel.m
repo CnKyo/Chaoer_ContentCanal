@@ -270,7 +270,20 @@ bool g_bined = NO;
 - (BOOL)mTemporary{
     return self.mId == 0;
 }
+#pragma mark----获取rsa加密公钥
+/**
+ *  获取rsa加密公钥
+ *
+ *  @param block
+ */
++ (void)getRSAKey:(void(^)(mBaseData *resb))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/login/getPublicKey" parameters:para call:^(mBaseData * _Nonnull info) {
+        block (info);
+    }];
+    
+}
 
 + (void)OpenRCConnect{
 

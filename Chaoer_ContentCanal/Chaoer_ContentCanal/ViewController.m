@@ -37,6 +37,9 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
+
+#import "CRSA.h"
+#import "Base64.h"
 @interface ViewController ()<UITextFieldDelegate,WJAdsViewDelegate>
 
 @end
@@ -76,6 +79,9 @@
     NSString *mHeaderUrl;
     
     int mType;
+    
+    
+    NSString *mRSAKey;
 
 }
 
@@ -120,7 +126,8 @@
     mBgk.image = [UIImage imageNamed:@"login_bgk"];
     [self.view addSubview:mBgk];
     
-    
+    mRSAKey = nil;
+    [self getRSAKey];
     [self initView];
     
     [self initAlertView];
@@ -384,7 +391,19 @@
 
     [self presentModalViewController:rrr];
 }
+#pragma mark----获取RSAkey
+- (void)getRSAKey{
 
+    [mUserInfo getRSAKey:^(mBaseData *resb) {
+       
+        if (resb.mSucess) {
+            mRSAKey = resb.mData;
+        }else{
+            mRSAKey = nil;
+        }
+    }];
+    
+}
 #pragma mark----登录
 - (void)mLoginAction:(UIButton *)sender{
     MLLog(@"登录");
@@ -412,9 +431,22 @@
 }
 
 - (void)initLogin{
+    NSString *mPwd = nil;
+    CRSA *cc = [CRSA shareInstance];
+
+    // 写入公钥
+    [cc writePukWithKey:mRSAKey];
+    MLLog(@"获得的公钥：%@",mRSAKey);
+    if (mRSAKey.length == 0) {
+        mPwd = mLoginV.codeTx.text;
+    }else{
+        mPwd  = [cc encryptByRsa:mLoginV.codeTx.text withKeyType:KeyTypePublic];
+    }
+   
+    
     [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
     
-    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
+    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mPwd block:^(mBaseData *resb, mUserInfo *mUser) {
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
         
         if (resb.mSucess) {
