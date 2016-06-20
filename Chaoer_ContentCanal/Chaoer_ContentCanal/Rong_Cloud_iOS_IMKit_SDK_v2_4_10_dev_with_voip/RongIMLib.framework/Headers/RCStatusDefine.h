@@ -7,7 +7,7 @@
  *
  */
 
-//  RCCommonDefine.h
+//  RCStatusDefine.h
 //  Created by Heq.Shinoda on 14-4-21.
 
 #import <Foundation/Foundation.h>
@@ -27,12 +27,6 @@
  RC_DISCONN_KICK, RC_CLIENT_NOT_INIT, RC_INVALID_PARAMETER, RC_INVALID_ARGUMENT
  */
 typedef NS_ENUM(NSInteger, RCConnectErrorCode) {
-    /*!
-     导航路由失败
-     
-     @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_NET_NAVI_ERROR = 30000,
     
     /*!
      连接已被释放
@@ -49,39 +43,18 @@ typedef NS_ENUM(NSInteger, RCConnectErrorCode) {
     RC_NET_UNAVAILABLE = 30002,
     
     /*!
-     请求响应超时
-     
-     @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_MSG_RESP_TIMEOUT = 30003,
-    
-    /*!
      导航HTTP发送失败
      
      @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
      */
-    RC_HTTP_SEND_FAIL = 30004,
-    
-    /*!
-     导航HTTP请求超时
-     
-     @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_HTTP_REQ_TIMEOUT = 30005,
-    
-    /*!
-     导航HTTP接收失败
-     
-     @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_HTTP_RECV_FAIL = 30006,
+    RC_NAVI_REQUEST_FAIL = 30004,
     
     /*!
      导航HTTP请求失败
      
      @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
      */
-    RC_NAVI_RESOURCE_ERROR = 30007,
+    RC_NAVI_RESPONSE_ERROR = 30007,
     
     /*!
      导航HTTP返回数据格式错误
@@ -91,18 +64,11 @@ typedef NS_ENUM(NSInteger, RCConnectErrorCode) {
     RC_NODE_NOT_FOUND = 30008,
     
     /*!
-     导航HTTP返回数据不可用
-     
-     @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_DOMAIN_NOT_RESOLVE = 30009,
-    
-    /*!
      创建Socket连接失败
      
      @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
      */
-    RC_SOCKET_NOT_CREATED = 30010,
+    RC_SOCKET_NOT_CONNECTED = 30010,
     
     /*!
      Socket断开
@@ -212,20 +178,6 @@ typedef NS_ENUM(NSInteger, RCConnectErrorCode) {
     RC_DISCONN_KICK = 31010,
     
     /*!
-     信令数据无效
-     
-     @discussion 建立连接的临时状态，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_QUERY_ACK_NO_DATA = 32001,
-    
-    /*!
-     信令数据错误
-     
-     @discussion 建立连接的临时状态，SDK会做好自动重连，开发者无须处理。
-     */
-    RC_MSG_DATA_INCOMPLETE = 32002,
-    
-    /*!
      SDK没有初始化
      
      @discussion 在使用SDK任何功能之前，必须先Init。
@@ -321,6 +273,11 @@ typedef NS_ENUM(NSInteger, RCErrorCode) {
      当前连接不可用
      */
     RC_NETWORK_UNAVAILABLE = 30002,
+    
+    /*!
+     消息响应超时
+     */
+    RC_MSG_RESPONSE_TIMEOUT = 30003,
     
     /*!
      SDK没有初始化
@@ -483,19 +440,19 @@ typedef NS_ENUM(NSUInteger, RCNetworkStatus) {
     RC_ReachableViaWiFi = 1,
     
     /*!
-     当前处于LTE网络
+     移动网络
      */
-    RC_ReachableViaLTE = 2,
+    RC_ReachableViaWWAN = 2,
     
-    /*!
-     当前处于3G网络
-     */
-    RC_ReachableVia3G = 3,
-    
-    /*!
-     当前处于2G网络
-     */
-    RC_ReachableVia2G = 4
+//    /*!
+//     当前处于3G网络
+//     */
+//    RC_ReachableVia3G = 3,
+//    
+//    /*!
+//     当前处于2G网络
+//     */
+//    RC_ReachableVia2G = 4
 };
 
 #pragma mark RCSDKRunningMode - SDK当前所处的状态
@@ -542,10 +499,7 @@ typedef NS_ENUM(NSUInteger, RCConversationType) {
     ConversationType_CHATROOM = 4,
     
     /*!
-     客服1.0会话
-     
-     @discussion 客服2.0使用应用内公众服务会话（ConversationType_APPSERVICE）的方式实现。
-     即客服2.0会话是其中一个应用内公众服务会话，我们推荐您使用和迁移到客服2.0服务。
+     客服
      */
     ConversationType_CUSTOMERSERVICE = 5,
     
@@ -556,6 +510,9 @@ typedef NS_ENUM(NSUInteger, RCConversationType) {
     
     /*!
      应用内公众服务会话
+     
+     @discussion 客服2.0使用应用内公众服务会话（ConversationType_APPSERVICE）的方式实现。
+     即客服2.0会话是其中一个应用内公众服务会话，这种方式我们目前不推荐，请尽快升级到新客服，升级方法请参考官网的客服文档。
      */
     ConversationType_APPSERVICE = 7,
     
@@ -816,10 +773,28 @@ typedef NS_ENUM(NSUInteger, RCSearchType) {
     RC_SEARCH_TYPE_FUZZY = 1,
 };
 
+/*!
+ 客服服务方式
+ */
 typedef NS_ENUM(NSUInteger, RCCSModeType) {
+    /*!
+     无客服服务
+     */
     RC_CS_NoService = 0,
+    
+    /*!
+     机器人服务
+     */
     RC_CS_RobotOnly = 1,
+    
+    /*!
+     人工服务
+     */
     RC_CS_HumanOnly = 2,
+    
+    /*!
+     机器人优先服务
+     */
     RC_CS_RobotFirst= 3,
 };
 

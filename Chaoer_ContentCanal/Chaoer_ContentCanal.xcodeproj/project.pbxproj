@@ -99,6 +99,13 @@
 		046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B12EA1CE1C62100A8FB76 /* WKLeftView.m */; };
 		047125881CCDEC330022BF77 /* mServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047125861CCDEC330022BF77 /* mServiceCell.m */; };
 		047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047125871CCDEC330022BF77 /* mServiceCell.xib */; };
+		0472903C1D17E47C00AA999B /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 047290391D17E47C00AA999B /* RongCloud.bundle */; };
+		0472903D1D17E47C00AA999B /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472903A1D17E47C00AA999B /* RongIMKit.framework */; };
+		0472903E1D17E47C00AA999B /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472903B1D17E47C00AA999B /* RongIMLib.framework */; };
+		047290421D17E49300AA999B /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047290411D17E49300AA999B /* Emoji.plist */; };
+		047290441D17E4D000AA999B /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047290431D17E4D000AA999B /* RCConfig.plist */; };
+		047290461D17E4E300AA999B /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 047290451D17E4E300AA999B /* release_notes_ios.txt */; };
+		047290481D17E4F600AA999B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047290471D17E4F600AA999B /* libopencore-amrnb.a */; };
 		047695F91CE067F200D282C5 /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047695F81CE067F200D282C5 /* LiuXSegmentView.m */; };
 		047695FC1CE094C900D282C5 /* mCommunityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047695FB1CE094C900D282C5 /* mCommunityDetailView.m */; };
 		047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047695FD1CE094D200D282C5 /* mCommunityDetailView.xib */; };
@@ -465,13 +472,7 @@
 		31671DD21CA1332A001DAEBA /* hasCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31671DD11CA1332A001DAEBA /* hasCodeViewController.m */; };
 		31671DD61CA13344001DAEBA /* hasCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31671DD41CA13344001DAEBA /* hasCodeTableViewCell.m */; };
 		31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31671DD51CA13344001DAEBA /* hasCodeTableViewCell.xib */; };
-		317E46321CAD26A900217C60 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 317E46251CAD26A900217C60 /* Emoji.plist */; };
 		317E46331CAD26A900217C60 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 317E46261CAD26A900217C60 /* RongCloudKit.strings */; };
-		317E46341CAD26A900217C60 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E46281CAD26A900217C60 /* libopencore-amrnb.a */; };
-		317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 317E46291CAD26A900217C60 /* release_notes_ios.txt */; };
-		317E46361CAD26A900217C60 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 317E462A1CAD26A900217C60 /* RongCloud.bundle */; };
-		317E46371CAD26A900217C60 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E462B1CAD26A900217C60 /* RongIMKit.framework */; };
-		317E46381CAD26A900217C60 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E462C1CAD26A900217C60 /* RongIMLib.framework */; };
 		317E463D1CAD26CF00217C60 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E463C1CAD26CF00217C60 /* AssetsLibrary.framework */; };
 		317E463F1CAD26F000217C60 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E463E1CAD26F000217C60 /* CoreAudio.framework */; };
 		317E46411CAD270600217C60 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 317E46401CAD270600217C60 /* libc++.tbd */; };
@@ -887,6 +888,13 @@
 		047125851CCDEC330022BF77 /* mServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceCell.h; sourceTree = "<group>"; };
 		047125861CCDEC330022BF77 /* mServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceCell.m; sourceTree = "<group>"; };
 		047125871CCDEC330022BF77 /* mServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceCell.xib; sourceTree = "<group>"; };
+		047290391D17E47C00AA999B /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		0472903A1D17E47C00AA999B /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		0472903B1D17E47C00AA999B /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		047290411D17E49300AA999B /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		047290431D17E4D000AA999B /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
+		047290451D17E4E300AA999B /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
+		047290471D17E4F600AA999B /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		047695F71CE067F200D282C5 /* LiuXSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuXSegmentView.h; sourceTree = "<group>"; };
 		047695F81CE067F200D282C5 /* LiuXSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentView.m; sourceTree = "<group>"; };
 		047695FA1CE094C900D282C5 /* mCommunityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCommunityDetailView.h; sourceTree = "<group>"; };
@@ -1487,13 +1495,7 @@
 		31671DD31CA13344001DAEBA /* hasCodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasCodeTableViewCell.h; sourceTree = "<group>"; };
 		31671DD41CA13344001DAEBA /* hasCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hasCodeTableViewCell.m; sourceTree = "<group>"; };
 		31671DD51CA13344001DAEBA /* hasCodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = hasCodeTableViewCell.xib; sourceTree = "<group>"; };
-		317E46251CAD26A900217C60 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		317E46271CAD26A900217C60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
-		317E46281CAD26A900217C60 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
-		317E46291CAD26A900217C60 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
-		317E462A1CAD26A900217C60 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
-		317E462B1CAD26A900217C60 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
-		317E462C1CAD26A900217C60 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
 		317E462D1CAD26A900217C60 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
 		317E463C1CAD26CF00217C60 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		317E463E1CAD26F000217C60 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -1967,6 +1969,7 @@
 			files = (
 				317E46451CAD273400217C60 /* libxml2.tbd in Frameworks */,
 				317E46431CAD271600217C60 /* libc++abi.tbd in Frameworks */,
+				0472903D1D17E47C00AA999B /* RongIMKit.framework in Frameworks */,
 				317E46411CAD270600217C60 /* libc++.tbd in Frameworks */,
 				317E463F1CAD26F000217C60 /* CoreAudio.framework in Frameworks */,
 				317E463D1CAD26CF00217C60 /* AssetsLibrary.framework in Frameworks */,
@@ -1977,16 +1980,14 @@
 				16279CC71C3D151600B9A850 /* libstdc++.tbd in Frameworks */,
 				312D08BE1CAA1CA60006F0FA /* libz.tbd in Frameworks */,
 				312D08BC1CAA1C9A0006F0FA /* libicucore.tbd in Frameworks */,
+				047290481D17E4F600AA999B /* libopencore-amrnb.a in Frameworks */,
 				319036621CA903DD00EA6191 /* OpenGLES.framework in Frameworks */,
 				319036601CA903D300EA6191 /* MobileCoreServices.framework in Frameworks */,
-				317E46371CAD26A900217C60 /* RongIMKit.framework in Frameworks */,
-				317E46381CAD26A900217C60 /* RongIMLib.framework in Frameworks */,
 				3190365E1CA9037300EA6191 /* AudioToolbox.framework in Frameworks */,
 				312D08B21CAA1C560006F0FA /* TencentOpenAPI.framework in Frameworks */,
 				3190365C1CA9036700EA6191 /* Accelerate.framework in Frameworks */,
 				16A987C71C03989200D55C4A /* libsqlite3.0.tbd in Frameworks */,
 				04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */,
-				317E46341CAD26A900217C60 /* libopencore-amrnb.a in Frameworks */,
 				312D08BA1CAA1C560006F0FA /* ShareSDKConnector.framework in Frameworks */,
 				74B3A0431B565DB00026E91D /* AVFoundation.framework in Frameworks */,
 				3190366F1CA9041E00EA6191 /* libCardIO.a in Frameworks */,
@@ -2012,6 +2013,7 @@
 				04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */,
 				749BE9C21B32769300BABCA6 /* CoreTelephony.framework in Frameworks */,
 				312D08AE1CAA1C560006F0FA /* ShareSDK.framework in Frameworks */,
+				0472903E1D17E47C00AA999B /* RongIMLib.framework in Frameworks */,
 				749BE9C01B32768800BABCA6 /* SystemConfiguration.framework in Frameworks */,
 				3182DA431CAB775E00C217AE /* AMapLocationKit.framework in Frameworks */,
 				749BE9BE1B32767C00BABCA6 /* CoreGraphics.framework in Frameworks */,
@@ -3372,13 +3374,14 @@
 		317E46241CAD26A900217C60 /* Rong_Cloud_iOS_IMKit_SDK_v2_4_10_dev_with_voip */ = {
 			isa = PBXGroup;
 			children = (
-				317E46251CAD26A900217C60 /* Emoji.plist */,
 				317E46261CAD26A900217C60 /* RongCloudKit.strings */,
-				317E46281CAD26A900217C60 /* libopencore-amrnb.a */,
-				317E46291CAD26A900217C60 /* release_notes_ios.txt */,
-				317E462A1CAD26A900217C60 /* RongCloud.bundle */,
-				317E462B1CAD26A900217C60 /* RongIMKit.framework */,
-				317E462C1CAD26A900217C60 /* RongIMLib.framework */,
+				047290431D17E4D000AA999B /* RCConfig.plist */,
+				047290411D17E49300AA999B /* Emoji.plist */,
+				047290451D17E4E300AA999B /* release_notes_ios.txt */,
+				047290471D17E4F600AA999B /* libopencore-amrnb.a */,
+				047290391D17E47C00AA999B /* RongCloud.bundle */,
+				0472903A1D17E47C00AA999B /* RongIMKit.framework */,
+				0472903B1D17E47C00AA999B /* RongIMLib.framework */,
 			);
 			path = Rong_Cloud_iOS_IMKit_SDK_v2_4_10_dev_with_voip;
 			sourceTree = "<group>";
@@ -4650,6 +4653,7 @@
 				04D85DCA1CF6DE9400E1A3A2 /* canelHistoryViewController.xib in Resources */,
 				04D652971CF022A100E26209 /* goOrderView.xib in Resources */,
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
+				047290441D17E4D000AA999B /* RCConfig.plist in Resources */,
 				047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */,
 				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
 				04E5A7EE1CE5823300A2D111 /* pptMyViewController.xib in Resources */,
@@ -4689,7 +4693,6 @@
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				046400881CF9279D0090A475 /* chatNavView.xib in Resources */,
 				04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */,
-				317E46351CAD26A900217C60 /* release_notes_ios.txt in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */,
 				04F1E3A91CD1FBFE00222946 /* mBundlePhoneViewController.xib in Resources */,
@@ -4725,6 +4728,7 @@
 				0464008A1CF935B40090A475 /* msgCell.xib in Resources */,
 				312D08B71CAA1C560006F0FA /* read_me.txt in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
+				0472903C1D17E47C00AA999B /* RongCloud.bundle in Resources */,
 				04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
@@ -4742,13 +4746,13 @@
 				313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */,
 				314586361CAE4249003EB85E /* myViewTableViewCell.xib in Resources */,
 				318D56771C9FDD150045B5FB /* fixTableViewCell.xib in Resources */,
-				317E46321CAD26A900217C60 /* Emoji.plist in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */,
 				04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */,
 				04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
+				047290461D17E4E300AA999B /* release_notes_ios.txt in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
 				04D85DCF1CF6E15100E1A3A2 /* canelHistoryCell.xib in Resources */,
 				04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */,
@@ -4776,7 +4780,6 @@
 				044A247A1CB4A85700A6379C /* kitchenTableViewCell.xib in Resources */,
 				040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */,
 				3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */,
-				317E46361CAD26A900217C60 /* RongCloud.bundle in Resources */,
 				31E1A7291CA3952100D3496F /* popMessageView.xib in Resources */,
 				313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */,
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
@@ -4793,6 +4796,7 @@
 				74DDE8F81BAC0D33004878D1 /* setupView.xib in Resources */,
 				04BD179D1D0E59BE001792DA /* mCustomTxView.xib in Resources */,
 				312D08B91CAA1C560006F0FA /* ShareSDK.bundle in Resources */,
+				047290421D17E49300AA999B /* Emoji.plist in Resources */,
 				3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */,
 				313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */,
 				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
