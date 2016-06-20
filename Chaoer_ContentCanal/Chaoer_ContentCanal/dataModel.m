@@ -3373,7 +3373,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 -(void)fetch:(NSDictionary*)obj
 {
-    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"img"]];
+    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"img"]];
     
     self.mContentUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"name"];
@@ -3395,7 +3395,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 }
 -(void)fetch:(NSDictionary*)obj
 {
-    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"img"]];
+    self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"img"]];
     
     self.mContentUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"name"];
@@ -3433,8 +3433,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
     
-    self.mSmallImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"minImage"]];
-    self.mBigImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest returnNowURL],[obj objectForKeyMy:@"maxImage"]];
+    self.mSmallImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"minImage"]];
+    self.mBigImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"maxImage"]];
 
     self.mEstimatedPrice = [obj objectForKeyMy:@"estimatedPrice"];
 
@@ -4114,7 +4114,7 @@ bool g_rccbined = NO;
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     self.mContent = [obj objectForKeyMy:@"content"];
     self.mDateTime = [obj objectForKeyMy:@"dateTime"];
-    self.mNewsImage = [obj objectForKeyMy:@"newsImage"];
+    self.mNewsImage = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"newsImage"]];
     self.mNewTypeId = [[obj objectForKeyMy:@"newsTypeId"] intValue];
     self.mSource = [obj objectForKeyMy:@"source"];
     
