@@ -1967,6 +1967,14 @@
  */
 + (void)getDistanceWith:(int)mPage andNum:(int)mNum andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
+#pragma mark----获取融云用户信息
+/**
+ *  获取融云用户信息
+ *
+ *  @param mUserId userid
+ *  @param block   返回值
+ */
++ (void)getUserInfo:(NSString *)mUserId block:(void (^)(mBaseData *resb))block;
 @end
 
 @interface  RCCUserInfo : NSObject

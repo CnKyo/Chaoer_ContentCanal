@@ -1289,7 +1289,7 @@
     NSString* publicKeyPath = [[NSBundle mainBundle] pathForResource:@"public_key" ofType:@"der"];
     NSString* privateKeyPath = [[NSBundle mainBundle] pathForResource:@"private_key" ofType:@"p12"];
     [rsaEncryptor loadPublicKeyFromFile: publicKeyPath];
-    [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"123456"];    // 这里，请换成你生成p12时的密码
+    [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"chaoer168"];    // 这里，请换成你生成p12时的密码
     NSString *mEncryptorStr = [rsaEncryptor rsaEncryptString:mText];
 
     NSLog(@"加密: %@", mEncryptorStr);       // 请把这段字符串Copy到JAVA这边main()里做测试

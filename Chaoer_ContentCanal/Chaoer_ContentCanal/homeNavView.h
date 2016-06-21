@@ -13,6 +13,16 @@
  *  地址
  */
 @property (strong, nonatomic) IBOutlet UILabel *mAddress;
+/**
+ *  聊天室
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mChtListBtn;
+/**
+ *  新消息提示
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mMsgPoint;
+
+
 
 + (homeNavView *)shareView;
 /**
