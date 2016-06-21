@@ -52,7 +52,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.Title = self.mPageName = @"社区交流";
+    self.Title = self.mPageName = @"邻里圈";
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
@@ -363,7 +363,7 @@
     }else{
         cell.mDistance.hidden = NO;
     }
-    
+    cell.mBage.hidden = YES;
     return cell;
     
 }

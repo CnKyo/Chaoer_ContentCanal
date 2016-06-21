@@ -23,7 +23,10 @@
  *  距离
  */
 @property (weak, nonatomic) IBOutlet UILabel *mDistance;
-
+/**
+ *  起泡
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mBage;
 
 
 
