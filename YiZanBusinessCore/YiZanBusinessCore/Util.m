@@ -11,6 +11,9 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "keyChain.h"
 #import "sys/utsname.h"
+
+#import "RSAEncryptor.h"
+
 @implementation Util
 
 + (BOOL)isPureInt:(NSString*)string{
@@ -1271,6 +1274,32 @@
     free( newUTF8 );
     return encrypted;
 }
+
+#pragma mark----RSA加密
+/**
+ *  RSA加密
+ *
+ *  @param mText 加密内容
+ *
+ *  @return 返回加密内容
+ */
++ (NSString *)RSAEncryptor:(NSString *)mText{
+
+    RSAEncryptor* rsaEncryptor = [[RSAEncryptor alloc] init];
+    NSString* publicKeyPath = [[NSBundle mainBundle] pathForResource:@"public_key" ofType:@"der"];
+    NSString* privateKeyPath = [[NSBundle mainBundle] pathForResource:@"private_key" ofType:@"p12"];
+    [rsaEncryptor loadPublicKeyFromFile: publicKeyPath];
+    [rsaEncryptor loadPrivateKeyFromFile: privateKeyPath password:@"123456"];    // 这里，请换成你生成p12时的密码
+    NSString *mEncryptorStr = [rsaEncryptor rsaEncryptString:mText];
+
+    NSLog(@"加密: %@", mEncryptorStr);       // 请把这段字符串Copy到JAVA这边main()里做测试
+    NSString* decryptString = [rsaEncryptor rsaDecryptString:mEncryptorStr];
+    NSLog(@"揭秘: %@", decryptString);
+
+    return mEncryptorStr;
+    
+}
+
 @end
 
 

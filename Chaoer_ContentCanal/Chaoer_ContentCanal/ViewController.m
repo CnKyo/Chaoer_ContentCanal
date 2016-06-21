@@ -40,6 +40,11 @@
 
 #import "CRSA.h"
 #import "Base64.h"
+
+
+#import "RSAEncryptor.h"
+
+
 @interface ViewController ()<UITextFieldDelegate,WJAdsViewDelegate>
 
 @end
@@ -431,22 +436,10 @@
 }
 
 - (void)initLogin{
-    NSString *mPwd = nil;
-    CRSA *cc = [CRSA shareInstance];
-
-    // 写入公钥
-    [cc writePukWithKey:mRSAKey];
-    MLLog(@"获得的公钥：%@",mRSAKey);
-    if (mRSAKey.length == 0) {
-        mPwd = mLoginV.codeTx.text;
-    }else{
-        mPwd  = [cc encryptByRsa:mLoginV.codeTx.text withKeyType:KeyTypePublic];
-    }
-   
     
     [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
     
-    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mPwd block:^(mBaseData *resb, mUserInfo *mUser) {
+    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:[Util RSAEncryptor:mLoginV.codeTx.text] block:^(mBaseData *resb, mUserInfo *mUser) {
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
         
         if (resb.mSucess) {
