@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0405834C1D194CC50060C2DE /* mBaseConverSationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0405834A1D194CC50060C2DE /* mBaseConverSationViewController.m */; };
+		0405834D1D194CC50060C2DE /* mBaseConverSationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0405834B1D194CC50060C2DE /* mBaseConverSationViewController.xib */; };
 		040B80051CC47875006A9489 /* payFeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80031CC47875006A9489 /* payFeeViewController.m */; };
 		040B80061CC47875006A9489 /* payFeeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B80041CC47875006A9489 /* payFeeViewController.xib */; };
 		040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040B80071CC4DBA3006A9489 /* inquireView.xib */; };
@@ -762,6 +764,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040583491D194CC50060C2DE /* mBaseConverSationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mBaseConverSationViewController.h; sourceTree = "<group>"; };
+		0405834A1D194CC50060C2DE /* mBaseConverSationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mBaseConverSationViewController.m; sourceTree = "<group>"; };
+		0405834B1D194CC50060C2DE /* mBaseConverSationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mBaseConverSationViewController.xib; sourceTree = "<group>"; };
 		040B80021CC47875006A9489 /* payFeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = payFeeViewController.h; path = AFNetworking/payFeeViewController.h; sourceTree = "<group>"; };
 		040B80031CC47875006A9489 /* payFeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = payFeeViewController.m; path = AFNetworking/payFeeViewController.m; sourceTree = "<group>"; };
 		040B80041CC47875006A9489 /* payFeeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = payFeeViewController.xib; path = AFNetworking/payFeeViewController.xib; sourceTree = "<group>"; };
@@ -2814,6 +2819,9 @@
 		04F1E3AA1CD217AE00222946 /* 邻里圈 */ = {
 			isa = PBXGroup;
 			children = (
+				040583491D194CC50060C2DE /* mBaseConverSationViewController.h */,
+				0405834A1D194CC50060C2DE /* mBaseConverSationViewController.m */,
+				0405834B1D194CC50060C2DE /* mBaseConverSationViewController.xib */,
 				04F1E3AB1CD217EF00222946 /* mConversationViewController.h */,
 				04F1E3AC1CD217EF00222946 /* mConversationViewController.m */,
 				04F1E3AD1CD217EF00222946 /* mConversationViewController.xib */,
@@ -5014,6 +5022,7 @@
 				047290421D17E49300AA999B /* Emoji.plist in Resources */,
 				3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */,
 				313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */,
+				0405834D1D194CC50060C2DE /* mBaseConverSationViewController.xib in Resources */,
 				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
 				312D08B31CAA1C560006F0FA /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -5092,6 +5101,7 @@
 				3134135B1CA28DC3003972E2 /* XMNBottomBar.m in Sources */,
 				746F8ACF1BEC330900C87992 /* UIColor+HexString.m in Sources */,
 				749BEA441B3277AA00BABCA6 /* SDWebImageManager.m in Sources */,
+				0405834C1D194CC50060C2DE /* mBaseConverSationViewController.m in Sources */,
 				7470E1501B9C07B800ECEC69 /* leaveViewController.m in Sources */,
 				749BE9DB1B32775D00BABCA6 /* CTAssetsPickerController.m in Sources */,
 				314586351CAE4249003EB85E /* myViewTableViewCell.m in Sources */,

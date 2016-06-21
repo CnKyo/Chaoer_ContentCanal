@@ -19,6 +19,8 @@
 */
 + (mGeneralSubView *)shareView{
     mGeneralSubView *view = [[[NSBundle mainBundle] loadNibNamed:@"mGeneralSubView" owner:self options:nil] objectAtIndex:0];
+    view.mBage.layer.masksToBounds = YES;
+    view.mBage.layer.cornerRadius = view.mBage.mwidth/2;
     return view;
 }
 

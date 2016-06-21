@@ -26,6 +26,10 @@
 
     self.mHeaderImg.layer.masksToBounds = YES;
     self.mHeaderImg.layer.cornerRadius  = 3;
+    
+    self.mBage.layer.masksToBounds = YES;
+    self.mBage.layer.cornerRadius = self.mBage.mwidth/2;
+    
 }
 
 @end

@@ -18,6 +18,18 @@
                         <constraint firstAttribute="width" constant="45" id="pGi-Dd-5z7"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfh-jP-hnX">
+                    <rect key="frame" x="65" y="5" width="20" height="20"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="d82-UE-jfX"/>
+                        <constraint firstAttribute="height" constant="20" id="e2V-tY-edm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuV-ED-BT6">
                     <rect key="frame" x="0.0" y="68" width="110" height="21"/>
                     <constraints>
@@ -43,6 +55,8 @@
                 <constraint firstAttribute="bottom" secondItem="fmt-ko-tAE" secondAttribute="bottom" id="Bfk-co-b0J"/>
                 <constraint firstItem="Wv6-PM-ykO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bm1-qF-0eo"/>
                 <constraint firstAttribute="trailing" secondItem="fmt-ko-tAE" secondAttribute="trailing" id="E7Y-wX-8ON"/>
+                <constraint firstItem="Bfh-jP-hnX" firstAttribute="leading" secondItem="Wv6-PM-ykO" secondAttribute="trailing" constant="-13" id="Xvk-OH-WXD"/>
+                <constraint firstItem="Bfh-jP-hnX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="lVn-fM-umJ"/>
                 <constraint firstItem="fmt-ko-tAE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="swh-Fb-Bh9"/>
                 <constraint firstItem="xuV-ED-BT6" firstAttribute="top" secondItem="Wv6-PM-ykO" secondAttribute="bottom" constant="13" id="ye4-D5-afm"/>
                 <constraint firstAttribute="trailing" secondItem="xuV-ED-BT6" secondAttribute="trailing" id="zBr-O8-yjY"/>
@@ -50,6 +64,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="mBage" destination="Bfh-jP-hnX" id="2qS-Uc-HOy"/>
                 <outlet property="mBtn" destination="fmt-ko-tAE" id="eva-5V-bPl"/>
                 <outlet property="mImg" destination="Wv6-PM-ykO" id="mkf-GU-Rkf"/>
                 <outlet property="mName" destination="xuV-ED-BT6" id="bBk-zE-2A6"/>

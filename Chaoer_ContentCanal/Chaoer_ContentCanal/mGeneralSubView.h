@@ -21,6 +21,10 @@
  *  标题  
  */
 @property (strong, nonatomic) IBOutlet UILabel *mName;
+/**
+ *  起泡
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mBage;
 
 + (mGeneralSubView *)shareView;
 

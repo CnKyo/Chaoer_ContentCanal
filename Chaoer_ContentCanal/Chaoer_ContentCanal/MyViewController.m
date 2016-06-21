@@ -211,6 +211,7 @@
     mHeaderView = [mPersonView shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 226);
     [mHeaderView.mHeaderBtn addTarget:self action:@selector(mHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
+    mHeaderView.mRightBtn.hidden = YES;
     [mHeaderView.mRightBtn addTarget:self action:@selector(mMsgAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [hhh addSubview:mHeaderView];

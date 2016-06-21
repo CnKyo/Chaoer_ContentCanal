@@ -41,7 +41,8 @@
 
 #import <RongIMKit/RongIMKit.h>
 #import "mListViewController.h"
-
+#import "mBaseConverSationViewController.h"
+#import "msgViewController.h"
 
 #define Height (DEVICE_Width*0.67)
 
@@ -100,7 +101,7 @@
     
     [CurentLocation sharedManager];
 //    [self.tableView headerBeginRefreshing];
-//    [self headerBeganRefresh];
+    [self headerBeganRefresh];
     [self upDateUserInfo];
     [self showMsg];
 }
@@ -112,12 +113,10 @@
     if( allunread > 0 )
     {//如果有 没有读的消息
         it.badgeValue = [NSString stringWithFormat:@"%d",allunread];
-        mNavView.mMsgPoint.hidden = NO;
     }
     else
     {
         it.badgeValue = nil;
-        mNavView.mMsgPoint.hidden = YES;
     }
 }
 - (void)upDateUserInfo{
@@ -163,6 +162,7 @@
     self.hiddenlll = YES;
     self.navBar.hidden = YES;
     self.mBanerArr = [NSMutableArray new];
+    [self.mBanerArr removeAllObjects];
     mDownAppUrl = nil;
 
   
@@ -232,7 +232,7 @@
 
 
 -(void)callBack{
-    
+    [self.mBanerArr removeAllObjects];
     MLLog(@"this is Notification.");
     [self appInit];
 
@@ -267,6 +267,7 @@
 - (void)initview{
     
     mNavView = [homeNavView shareView];
+    mNavView.mMsgPoint.hidden = YES;
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
     [mNavView.mChtListBtn addTarget:self action:@selector(mRCCListView:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -281,18 +282,14 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
 }
-#pragma mark----回话列表
+#pragma mark----信息事件
 - (void)mRCCListView:(UIButton *)sender{
-    __weak typeof(&*self)  weakSelf = self;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        mListViewController *rcc = [[mListViewController alloc] init];
-        
-        
-        UITabBarController *tabbarVC = weakSelf.navigationController.viewControllers[0];
-        [tabbarVC.navigationController  pushViewController:rcc animated:YES];
-    });
+    MLLog(@"消息");
+    msgViewController *mmm = [[msgViewController alloc] initWithNibName:@"msgViewController" bundle:nil];
+    [self pushViewController:mmm];
     
+
 }
 
 - (void)loadAddress{
@@ -407,7 +404,7 @@
         mSubView.mBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [mSubView.mBtn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
 
-        
+        mSubView.mBage.hidden = YES;
         mSubView.mBtn.tag = i;
         [mSubView.mBtn addTarget:self action:@selector(mTwoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -468,6 +465,25 @@
         [mSubView.mBtn addTarget:self action:@selector(mSomeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [mHeaderView addSubview:mSubView];
+        mSubView.mBage.hidden = YES;
+
+        if (i == 4) {
+            mSubView.mBage.hidden = NO;
+
+            //收到消息,,,
+            int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
+            if( allunread > 0 )
+            {//如果有 没有读的消息
+                
+                mSubView.mBage.text = [NSString stringWithFormat:@"%d",allunread];
+            }
+            else
+            {
+                mSubView.mBage.hidden = YES;
+
+            }
+
+        }
         
         x += btnWidth;
         
@@ -570,7 +586,7 @@
                 return;
             }
             
-            mConversationViewController *ccc = [[mConversationViewController alloc] initWithNibName:@"mConversationViewController" bundle:nil];
+            mBaseConverSationViewController *ccc = [[mBaseConverSationViewController alloc] initWithNibName:@"mBaseConverSationViewController" bundle:nil];
             
             
             if (mLat) {
