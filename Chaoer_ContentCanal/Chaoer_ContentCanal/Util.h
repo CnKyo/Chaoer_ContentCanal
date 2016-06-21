@@ -250,4 +250,15 @@ typedef enum _RelDic
  *  @return 返回过滤后的字符串
  */
 + (NSString *)filterEmoji:(NSString *)string;
+
+#pragma mark----RSA加密
+/**
+ *  RSA加密
+ *
+ *  @param mText 加密内容
+ *
+ *  @return 返回加密内容
+ */
++ (NSString *)RSAEncryptor:(NSString *)mText;
+
 @end

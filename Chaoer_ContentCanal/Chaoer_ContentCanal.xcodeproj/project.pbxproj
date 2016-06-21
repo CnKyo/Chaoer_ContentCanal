@@ -23,6 +23,10 @@
 		040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B801F1CC50D50006A9489 /* WJStatusBarHUD_warning.png */; };
 		040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */; };
 		040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 040B80221CC50D50006A9489 /* WJStatusBarHUD.m */; };
+		040FB5501D18DBC300D453E3 /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = 040FB54E1D18DBC300D453E3 /* public_key.der */; };
+		040FB5511D18DBC300D453E3 /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 040FB54F1D18DBC300D453E3 /* private_key.p12 */; };
+		040FB5571D18DC6600D453E3 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FB5561D18DC6600D453E3 /* RSAEncryptor.m */; };
+		040FB55A1D18DDAD00D453E3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FB5591D18DDAD00D453E3 /* NSData+Base64.m */; };
 		040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0DC1CDB20C200270D4F /* barCodeViewController.m */; };
 		040FE0DF1CDB20C200270D4F /* barCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0DD1CDB20C200270D4F /* barCodeViewController.xib */; };
 		040FE0E21CDB20DA00270D4F /* mBarCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0E11CDB20DA00270D4F /* mBarCodeView.m */; };
@@ -778,6 +782,12 @@
 		040B80201CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJStatusBarHUD_warning@2x.png"; sourceTree = "<group>"; };
 		040B80211CC50D50006A9489 /* WJStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJStatusBarHUD.h; sourceTree = "<group>"; };
 		040B80221CC50D50006A9489 /* WJStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJStatusBarHUD.m; sourceTree = "<group>"; };
+		040FB54E1D18DBC300D453E3 /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
+		040FB54F1D18DBC300D453E3 /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
+		040FB5551D18DC6600D453E3 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		040FB5561D18DC6600D453E3 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
+		040FB5581D18DDAD00D453E3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		040FB5591D18DDAD00D453E3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		040FE0DB1CDB20C200270D4F /* barCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barCodeViewController.h; sourceTree = "<group>"; };
 		040FE0DC1CDB20C200270D4F /* barCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barCodeViewController.m; sourceTree = "<group>"; };
 		040FE0DD1CDB20C200270D4F /* barCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barCodeViewController.xib; sourceTree = "<group>"; };
@@ -2168,6 +2178,19 @@
 				040B80181CC50C08006A9489 /* LCProgressHUD.m */,
 			);
 			name = LCProgress;
+			sourceTree = "<group>";
+		};
+		040FB54D1D18DB8500D453E3 /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				040FB54E1D18DBC300D453E3 /* public_key.der */,
+				040FB54F1D18DBC300D453E3 /* private_key.p12 */,
+				040FB5581D18DDAD00D453E3 /* NSData+Base64.h */,
+				040FB5591D18DDAD00D453E3 /* NSData+Base64.m */,
+				040FB5551D18DC6600D453E3 /* RSAEncryptor.h */,
+				040FB5561D18DC6600D453E3 /* RSAEncryptor.m */,
+			);
+			name = RSA;
 			sourceTree = "<group>";
 		};
 		040FE0DA1CDB20AA00270D4F /* 二维码 */ = {
@@ -4303,6 +4326,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				040FB54D1D18DB8500D453E3 /* RSA */,
 				04B3BAAC1D13E965000C7B2E /* include */,
 				04FE0DD31CFC01C3003CAF88 /* ImageEffects */,
 				0453DBFD1CF88F8B006C9B6B /* LtpickerView */,
@@ -4765,6 +4789,7 @@
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
 				04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
+				040FB5511D18DBC300D453E3 /* private_key.p12 in Resources */,
 				043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */,
 				74D292EB1B96DA8500A57977 /* moreView.xib in Resources */,
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
@@ -4918,6 +4943,7 @@
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
 				040B80261CC50D50006A9489 /* WJStatusBarHUD_success@2x.png in Resources */,
 				3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */,
+				040FB5501D18DBC300D453E3 /* public_key.der in Resources */,
 				31AF47BA1CAE65CA00A722CD /* mPersonNavView.xib in Resources */,
 				04648C691CB4FD80006823C9 /* mySenderCell.xib in Resources */,
 				04F2DDFD1CBE2C460088C90F /* communityStatusTableViewCell.xib in Resources */,
@@ -5125,6 +5151,7 @@
 				315442901C9A93810047E52A /* HTTPrequest.m in Sources */,
 				04E5A7F11CE5826000A2D111 /* pptMyHeaderView.m in Sources */,
 				046B12E21CE184BC00A8FB76 /* MHDatePicker.m in Sources */,
+				040FB5571D18DC6600D453E3 /* RSAEncryptor.m in Sources */,
 				04EEAE041D0FAFCA00FA97C6 /* UIRefreshControl+AFNetworking.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,
@@ -5184,6 +5211,7 @@
 				040B800C1CC4DFCC006A9489 /* mGoPayViewController.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
 				04648C661CB4F64E006823C9 /* senderTableViewCell.m in Sources */,
+				040FB55A1D18DDAD00D453E3 /* NSData+Base64.m in Sources */,
 				31B990371C96AD6D002E34A5 /* mServiceAddressView.m in Sources */,
 				310EB5E11CA241B0005C61F4 /* choiseServicerTableViewCell.m in Sources */,
 				04F2284F1CEEEBD6004E8702 /* choiceArearViewController.m in Sources */,
