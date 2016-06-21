@@ -39,11 +39,13 @@
 
 #import "CurentLocation.h"
 
+#import <RongIMKit/RongIMKit.h>
+#import "mListViewController.h"
 
 
 #define Height (DEVICE_Width*0.67)
 
-@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate>
+@interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate,RCIMUserInfoDataSource>
 
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
@@ -100,8 +102,24 @@
 //    [self.tableView headerBeginRefreshing];
 //    [self headerBeganRefresh];
     [self upDateUserInfo];
+    [self showMsg];
 }
-
+-(void)showMsg
+{
+    UITabBarItem* it = self.tabBarController.viewControllers[0].tabBarItem;
+    //收到消息,,,
+    int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
+    if( allunread > 0 )
+    {//如果有 没有读的消息
+        it.badgeValue = [NSString stringWithFormat:@"%d",allunread];
+        mNavView.mMsgPoint.hidden = NO;
+    }
+    else
+    {
+        it.badgeValue = nil;
+        mNavView.mMsgPoint.hidden = YES;
+    }
+}
 - (void)upDateUserInfo{
 
     [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
@@ -250,6 +268,8 @@
     
     mNavView = [homeNavView shareView];
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    [mNavView.mChtListBtn addTarget:self action:@selector(mRCCListView:) forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:mNavView];
     
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
@@ -261,6 +281,20 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
 }
+#pragma mark----回话列表
+- (void)mRCCListView:(UIButton *)sender{
+    __weak typeof(&*self)  weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        mListViewController *rcc = [[mListViewController alloc] init];
+        
+        
+        UITabBarController *tabbarVC = weakSelf.navigationController.viewControllers[0];
+        [tabbarVC.navigationController  pushViewController:rcc animated:YES];
+    });
+    
+}
+
 - (void)loadAddress{
     
     [CurentLocation sharedManager].delegate = self;

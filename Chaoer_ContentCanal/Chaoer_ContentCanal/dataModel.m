@@ -4006,7 +4006,31 @@ bool g_rccbined = NO;
     }];
 }
 
+#pragma mark----获取融云用户信息
+/**
+ *  获取融云用户信息
+ *
+ *  @param mUserId userid
+ *  @param block   返回值
+ */
++ (void)getUserInfo:(NSString *)mUserId block:(void (^)(mBaseData *resb))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    [para setObject:mUserId forKey:@"userId"];
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/rongCloud/appGetUserInfo" parameters:para call:^(mBaseData *info) {
+
+        if (info.mSucess) {
+        
+
+            block (info);
+        }else{
+            block ( info );
+        }
+        
+    }];
+    
+}
 
 
 
