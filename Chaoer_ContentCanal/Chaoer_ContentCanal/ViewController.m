@@ -439,7 +439,7 @@
     
     [LBProgressHUD showHUDto:self.view withTips:@"正在登录中..." animated:YES];
     
-    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:mLoginV.codeTx.text block:^(mBaseData *resb, mUserInfo *mUser) {
+    [mUserInfo mUserLogin:mLoginV.phoneTx.text andPassword:[Util RSAEncryptor:mLoginV.codeTx.text] block:^(mBaseData *resb, mUserInfo *mUser) {
         [LBProgressHUD hideAllHUDsForView:self.view animated:YES];
         
         if (resb.mSucess) {
