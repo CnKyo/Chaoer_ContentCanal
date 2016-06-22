@@ -246,7 +246,7 @@ bool g_bined = NO;
     self.mIs_leg = [[obj objectForKeyMy:@"is_leg"] intValue];
     self.mLegworkUserId = [[obj objectForKeyMy:@"legworkUserId"] intValue];
     
-    
+    self.mCommunityId = [[obj objectForKeyMy:@"community_id"] intValue];
 }
 
 + (BOOL)isNeedLogin{
@@ -1742,6 +1742,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt(mUid) forKey:@"userId"];
     [para setObject:mMoney forKey:@"money"];
     [para setObject:@"0" forKey:@"presentManner"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/wallet/present" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {
             
@@ -2533,7 +2534,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         mUrlStr = @"app/legwork/user/appOrderCarry";
 
     }
-
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
+    
     [[HTTPrequest sharedHDNetworking] postUrl:mUrlStr parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
