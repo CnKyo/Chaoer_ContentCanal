@@ -199,6 +199,7 @@
 		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
 		04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D5041CC8BBC90090EC1E /* mCookDetail.m */; };
 		04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */; };
+		04DEBD281D1A1FFA0097EBC7 /* mChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */; };
 		04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */; };
 		04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E02E491CE6B46E00220D54 /* pptMyRateViewController.xib */; };
 		04E02E4F1CE6B4C900220D54 /* pptMyRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E4D1CE6B4C900220D54 /* pptMyRateCell.m */; };
@@ -1122,6 +1123,7 @@
 		04D9D5031CC8BBC90090EC1E /* mCookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetail.h; sourceTree = "<group>"; };
 		04D9D5041CC8BBC90090EC1E /* mCookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetail.m; sourceTree = "<group>"; };
 		04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSmallSubView.xib; sourceTree = "<group>"; };
+		04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mChatCell.xib; sourceTree = "<group>"; };
 		04E02E471CE6B46E00220D54 /* pptMyRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateViewController.h; sourceTree = "<group>"; };
 		04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptMyRateViewController.m; sourceTree = "<group>"; };
 		04E02E491CE6B46E00220D54 /* pptMyRateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptMyRateViewController.xib; sourceTree = "<group>"; };
@@ -2828,6 +2830,7 @@
 				04F1E3B01CD2185700222946 /* mConversationCell.h */,
 				04F1E3B11CD2185700222946 /* mConversationCell.m */,
 				04F1E3B21CD2185700222946 /* mConversationCell.xib */,
+				04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */,
 				042238EA1CD3046D00D1784B /* RCChatViewController.h */,
 				042238EB1CD3046D00D1784B /* RCChatViewController.m */,
 				0461B7781CD4D64600B950BD /* mServiceClassViewController.h */,
@@ -4842,6 +4845,7 @@
 				749BEA0D1B32779800BABCA6 /* MJPhotoBrowser.bundle in Resources */,
 				3135F8501C980A2B00EF9569 /* myOrderViewController.xib in Resources */,
 				31462CE51CB38E0F00E67836 /* walletView.xib in Resources */,
+				04DEBD281D1A1FFA0097EBC7 /* mChatCell.xib in Resources */,
 				04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */,
 				3123CC101C92743500C3B928 /* mAddressView.xib in Resources */,
 				04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */,

@@ -24,6 +24,8 @@
 {
 
     NSArray *mTT;
+    NSArray *mImg;
+
     homeNavView *mNavView;
 
 }
@@ -66,13 +68,13 @@
         make.height.offset(@64);
     }];
     mTT = @[@"聊天室",@"邻里圈"];
-    
+    mImg = @[[UIImage imageNamed:@"chat_room"],[UIImage imageNamed:@"near_room"]];
     [self loadTableView:CGRectMake(0,64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     
-    UINib   *nib = [UINib nibWithNibName:@"mConversationCell" bundle:nil];
+    UINib   *nib = [UINib nibWithNibName:@"mChatCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
  
@@ -119,8 +121,7 @@
     mConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     
-    [cell.mHeaderImg sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"img_default"]];
-    
+    cell.mHeaderImg.image = mImg[indexPath.row];
     cell.mName.text = mTT[indexPath.row];
     
     cell.mDistance.hidden = YES;
@@ -141,6 +142,7 @@
         }
 
     }
+ 
     return cell;
     
 }
