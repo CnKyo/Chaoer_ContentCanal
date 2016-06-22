@@ -243,7 +243,10 @@
  *  微信openid
  */
 @property (nonatomic,strong) NSString   *mOpenId;
-
+/**
+ *  社区id
+ */
+@property (nonatomic,assign) int mCommunityId;
 
 
 
