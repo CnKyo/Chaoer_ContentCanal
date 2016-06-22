@@ -550,6 +550,11 @@
             break;
         case 2:
         {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
             mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
             
             mmm.mLng = mLng;
