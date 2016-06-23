@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "splash_two.png",
+      "filename" : "首页指引02.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splash_two-1.png",
+      "filename" : "首页指引02-1.png",
       "scale" : "2x"
     },
     {

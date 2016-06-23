@@ -82,6 +82,8 @@
     NSString *mDownAppUrl;
     BOOL _bneedhidstatusbar;
 
+    int mIndex;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -139,10 +141,8 @@
         if (resb.mSucess) {
             
             mDownAppUrl = [resb.mData objectForKey:@"downloadUrl"];
-            
-            float mVersion = [[resb.mData objectForKey:@"versionsNumber"] floatValue];
-            
-            if (mVersion > [[Util getAppVersion] floatValue]) {
+                        
+            if (![[Util getAPPBuildNum] isEqualToString:[resb.mData objectForKey:@"versionsName"]]) {
                 [self AlertViewShow:[resb.mData objectForKey:@"fileName"] alertViewMsg:[resb.mData objectForKey:@"content"] alertViewCancelBtnTiele:@"取消" alertTag:99];
             }
             
@@ -167,7 +167,7 @@
     mDownAppUrl = nil;
 
   
-
+    mIndex = 0;
     
     mLat = nil;
     mLng = nil;
@@ -747,11 +747,9 @@
     if (alertView.tag == 99) {
         if( buttonIndex == 1)
         {
-            
-            WebVC* vc = [[WebVC alloc]init];
-            vc.mName = @"更新app";
-            vc.mUrl = mDownAppUrl;
-            [self pushViewController:vc];
+
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mDownAppUrl]];
+
             
         }
     }else{
@@ -802,19 +800,28 @@
         firstview.backgroundColor = [UIColor colorWithRed:0.937 green:0.922 blue:0.918 alpha:1.000];
         firstview.pagingEnabled = YES;
         firstview.bounces = NO;
+        firstview.scrollEnabled = NO;
         NSArray* allimgs = [self getFristImages];
         
         CGFloat x_offset = 0.0f;
         CGRect f;
         UIImageView* last = nil;
+        int tag = 0;
         for ( NSString* oneimgname in allimgs ) {
             UIImageView* itoneimage = [[UIImageView alloc] initWithFrame:firstview.bounds];
             itoneimage.image = [UIImage imageNamed: oneimgname];
+
+            itoneimage.userInteractionEnabled = YES;
+            itoneimage.tag = tag;
+            UITapGestureRecognizer* imgAction = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imgAction:)];
+            [itoneimage addGestureRecognizer: imgAction];
+            
             f = itoneimage.frame;
             f.origin.x = x_offset;
             itoneimage.frame = f;
             x_offset += firstview.frame.size.width;
             [firstview addSubview: itoneimage];
+            tag++;
             last  = itoneimage;
         }
         UITapGestureRecognizer* guset = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fristTaped:)];
@@ -832,6 +839,49 @@
         [((UIWindow*)[UIApplication sharedApplication].delegate).window addSubview: firstview];
     }
     
+}
+- (void)imgAction:(UITapGestureRecognizer*)sender{
+    NSArray* allimgs = [self getFristImages];
+
+    UIView* ttt = [sender view];
+    UIView* pview = [ttt superview];
+    UIImageView *ii = (UIImageView *)ttt;
+    
+    MLLog(@"%lu",(unsigned long)allimgs.count);
+    
+    if (mIndex == allimgs.count-1) {
+
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            CGRect f = pview.frame;
+            f.origin.y = -pview.frame.size.height;
+            pview.frame = f;
+            
+        } completion:^(BOOL finished) {
+            
+            [pview removeFromSuperview];
+            
+            NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+            NSString* nowver = [Util getAppVersion];
+            [def setObject:nowver forKey:@"first"];
+            [def synchronize];
+            _bneedhidstatusbar = NO;
+            [self setNeedsStatusBarAppearanceUpdate];
+            
+        }];
+
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            ii.image = [UIImage imageNamed:allimgs[mIndex+1]];
+            
+        } completion:^(BOOL finished) {
+            
+            mIndex++;
+        }];
+    }
+    
+
+
 }
 -(void)fristTaped:(UITapGestureRecognizer*)sender
 {
