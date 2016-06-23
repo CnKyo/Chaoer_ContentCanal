@@ -1155,9 +1155,23 @@
 
 + (NSString *)getDeviceVersion{
     NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
-    NSString* versionNum =[infoDict objectForKey:@"CFBundleVersion"];
+    NSString* versionNum =[infoDict objectForKey:@"CFBundleShortVersionString"];
 
     return versionNum;
+}
+
+#pragma mark----获取设备build号
+/**
+ *  获取设备build号
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getAPPBuildNum{
+    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+    NSString* versionNum =[infoDict objectForKey:@"CFBundleVersion"];
+    
+    return versionNum;
+    
 }
 
 +(NSString *)getDeviceUUID{

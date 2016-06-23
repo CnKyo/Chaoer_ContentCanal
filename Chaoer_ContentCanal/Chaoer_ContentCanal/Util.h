@@ -217,12 +217,20 @@ typedef enum _RelDic
  *  @return 返回字符串
  */
 + (NSString *)getDeviceModel;
+#pragma mark----获取设备版本
 /**
  *  获取设备版本
  *
  *  @return 返回字符串
  */
 + (NSString *)getDeviceVersion;
+#pragma mark----获取设备build号
+/**
+ *  获取设备build号
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getAPPBuildNum;
 /**
  *  获取设备uuid
  *
