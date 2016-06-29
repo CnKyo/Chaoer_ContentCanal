@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 ljg. All rights reserved.
 //
 #import "NavBar.h"
+#import "MJRefreshBaseView.h"
 #import "MJRefresh.h"
 #import "TabBar.h"
 #import "ContentScrollView.h"

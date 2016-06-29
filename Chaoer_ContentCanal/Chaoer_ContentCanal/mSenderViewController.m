@@ -80,7 +80,7 @@
     [self initAddress];
 
     [self hiddenReleaseView];
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
 
     
 }
@@ -134,7 +134,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
 
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -495,7 +495,7 @@
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     
 }
 
@@ -723,7 +723,7 @@
             if (resb.mSucess) {
                 
                 [self showSuccessStatus:resb.mMessage];
-                [self headerBeganRefresh];
+                [self.tableView headerBeginRefreshing];
             }else{
                 
                 [self showErrorStatus:resb.mMessage];
@@ -755,7 +755,7 @@
             if (resb.mSucess) {
                 
                 [self showSuccessStatus:resb.mMessage];
-                [self headerBeganRefresh];
+                [self.tableView headerBeginRefreshing];
             }else{
                 
                 [self showErrorStatus:resb.mMessage];

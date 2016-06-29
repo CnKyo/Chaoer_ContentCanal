@@ -159,7 +159,7 @@
     
     if (sType == 2) {
         self.haveHeader = YES;
-        [self headerBeganRefresh];
+        [self.tableView headerBeginRefreshing];
     }else{
     
     }
@@ -182,7 +182,7 @@
         mType = tt[index-1];
         mSuperID = [NSString stringWithFormat:@"%ld",(long)index];
 
-        [self headerBeganRefresh];
+        [self.tableView headerBeginRefreshing];
 
     }];
     mLeftView.layer.masksToBounds = YES;
@@ -194,7 +194,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     UINib   *nib = [UINib nibWithNibName:@"mFixRestCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 

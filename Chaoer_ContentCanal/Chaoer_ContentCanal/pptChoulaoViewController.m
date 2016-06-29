@@ -35,7 +35,7 @@
     
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"choulaoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
