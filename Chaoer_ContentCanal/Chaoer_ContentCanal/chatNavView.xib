@@ -61,7 +61,7 @@
             <connections>
                 <outlet property="mBackBtn" destination="0wv-C8-Vrd" id="BIQ-ro-vsr"/>
             </connections>
-            <point key="canvasLocation" x="213" y="293"/>
+            <point key="canvasLocation" x="254" y="294"/>
         </view>
     </objects>
     <resources>

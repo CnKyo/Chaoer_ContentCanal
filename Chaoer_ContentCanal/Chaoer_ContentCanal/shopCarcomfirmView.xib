@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="shopCarHeaderAndFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-Kh-9ld">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.45032327586206894" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="JeT-9S-BXQ"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ppt_add_address_normal" translatesAutoresizingMaskIntoConstraints="NO" id="AbX-Fy-sNG">
+                    <rect key="frame" x="6" y="14" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Ebx-Zy-wuT"/>
+                        <constraint firstAttribute="height" constant="20" id="k9u-5G-6gw"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVn-QH-fcO">
+                    <rect key="frame" x="8" y="10" width="65" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Wl0-bf-Aqp"/>
+                        <constraint firstAttribute="width" constant="65" id="XGN-XM-NOu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="全选">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：¥6542元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29I-qi-d4Y">
+                    <rect key="frame" x="81" y="15" width="135" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ZM3-vp-ocV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z7-6h-5gL">
+                    <rect key="frame" x="224" y="0.0" width="96" height="50"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="H5g-Ab-gHn"/>
+                        <constraint firstAttribute="width" constant="96" id="t4H-lb-2sh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="去结算">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2z7-6h-5gL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1zh-gM-unB"/>
+                <constraint firstItem="Bhe-Kh-9ld" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mdk-n0-Yy6"/>
+                <constraint firstAttribute="bottom" secondItem="2z7-6h-5gL" secondAttribute="bottom" id="S66-rK-yqK"/>
+                <constraint firstAttribute="trailing" secondItem="Bhe-Kh-9ld" secondAttribute="trailing" id="Z60-eU-qof"/>
+                <constraint firstItem="AbX-Fy-sNG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="ZQB-pE-z0R"/>
+                <constraint firstAttribute="trailing" secondItem="2z7-6h-5gL" secondAttribute="trailing" id="c7f-nD-w33"/>
+                <constraint firstItem="29I-qi-d4Y" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cTT-Fq-dYI"/>
+                <constraint firstItem="Bhe-Kh-9ld" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h9E-Yb-vms"/>
+                <constraint firstItem="2z7-6h-5gL" firstAttribute="leading" secondItem="29I-qi-d4Y" secondAttribute="trailing" constant="8" id="ihJ-P2-P4U"/>
+                <constraint firstItem="29I-qi-d4Y" firstAttribute="leading" secondItem="kVn-QH-fcO" secondAttribute="trailing" constant="8" id="kwm-PV-3LA"/>
+                <constraint firstItem="kVn-QH-fcO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nzA-LI-udt"/>
+                <constraint firstItem="AbX-Fy-sNG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="vpb-9h-hWg"/>
+                <constraint firstItem="kVn-QH-fcO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="yNY-Pn-z2D"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGoPayBtn" destination="2z7-6h-5gL" id="Plu-ZC-wCi"/>
+                <outlet property="mSelectAll" destination="kVn-QH-fcO" id="dG7-6K-qS7"/>
+                <outlet property="mSelectedImg" destination="AbX-Fy-sNG" id="b7I-2L-DHg"/>
+                <outlet property="mtotleMoney" destination="29I-qi-d4Y" id="CAs-e4-N6M"/>
+            </connections>
+            <point key="canvasLocation" x="219" y="454"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ppt_add_address_normal" width="32" height="32"/>
+    </resources>
+</document>
