@@ -103,7 +103,6 @@
     self.navigationController.navigationBarHidden = YES;
     
     [CurentLocation sharedManager];
-//    [self.tableView headerBeginRefreshing];
     [self headerBeganRefresh];
     [self upDateUserInfo];
     [self showMsg];

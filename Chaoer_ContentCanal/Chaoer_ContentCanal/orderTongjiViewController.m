@@ -50,7 +50,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"myOrderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
