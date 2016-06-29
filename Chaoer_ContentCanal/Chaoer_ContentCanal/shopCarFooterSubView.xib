@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="shopCarHeaderAndFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ItH-6L-5gh">
+                    <rect key="frame" x="30" y="10" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="09W-Og-Vnr"/>
+                        <constraint firstAttribute="width" constant="80" id="iud-Sf-5lF"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75L-G3-BZh">
+                    <rect key="frame" x="8" y="100" width="124" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥300" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjm-g9-ja2">
+                    <rect key="frame" x="8" y="132" width="81" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJX-sZ-xPB">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGo-lD-V3X">
+                    <rect key="frame" x="102" y="120" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="1bL-bI-jiN"/>
+                        <constraint firstAttribute="height" constant="30" id="heI-4o-JD7"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="addto_shopCar">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="75L-G3-BZh" secondAttribute="trailing" constant="8" id="6Bz-9i-1DY"/>
+                <constraint firstItem="75L-G3-BZh" firstAttribute="top" secondItem="ItH-6L-5gh" secondAttribute="bottom" constant="10" id="Ah2-0i-hoT"/>
+                <constraint firstItem="ItH-6L-5gh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="CDd-QR-pQG"/>
+                <constraint firstAttribute="bottom" secondItem="rJX-sZ-xPB" secondAttribute="bottom" id="HLZ-CB-eUf"/>
+                <constraint firstItem="rJX-sZ-xPB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vlf-2N-n33"/>
+                <constraint firstItem="ItH-6L-5gh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XoX-SX-xTD"/>
+                <constraint firstAttribute="trailing" secondItem="XGo-lD-V3X" secondAttribute="trailing" constant="8" id="YEg-b4-kZb"/>
+                <constraint firstItem="75L-G3-BZh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cVx-77-kbn"/>
+                <constraint firstItem="rJX-sZ-xPB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jZC-0h-k7b"/>
+                <constraint firstItem="XGo-lD-V3X" firstAttribute="leading" secondItem="qjm-g9-ja2" secondAttribute="trailing" constant="13" id="kv7-Dl-Rs7"/>
+                <constraint firstAttribute="trailing" secondItem="rJX-sZ-xPB" secondAttribute="trailing" id="laI-uP-JBc"/>
+                <constraint firstItem="XGo-lD-V3X" firstAttribute="top" secondItem="75L-G3-BZh" secondAttribute="bottom" constant="3" id="u12-7x-EyE"/>
+                <constraint firstItem="qjm-g9-ja2" firstAttribute="top" secondItem="75L-G3-BZh" secondAttribute="bottom" constant="15" id="wsj-g5-bGs"/>
+                <constraint firstItem="qjm-g9-ja2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="xlI-6o-mBV"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mSubAddShopCarBtn" destination="XGo-lD-V3X" id="ZVg-LK-hcp"/>
+                <outlet property="mSubDetailBtn" destination="rJX-sZ-xPB" id="kQV-iC-ysg"/>
+                <outlet property="mSubImg" destination="ItH-6L-5gh" id="LvL-Wn-M2q"/>
+                <outlet property="mSubName" destination="75L-G3-BZh" id="B4f-4h-zc5"/>
+                <outlet property="mSubPrice" destination="qjm-g9-ja2" id="5L0-Ad-eV3"/>
+            </connections>
+            <point key="canvasLocation" x="129" y="355"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addto_shopCar" width="1024" height="1024"/>
+    </resources>
+</document>

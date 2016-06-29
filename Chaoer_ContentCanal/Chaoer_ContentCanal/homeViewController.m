@@ -305,7 +305,6 @@
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-//    [WJStatusBarHUD showLoading:@"正在定位中..."];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
@@ -535,10 +534,8 @@
     switch (sender.tag) {
         case 0:
         {
-            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
-//
-//            communityViewController   *ppp = [communityViewController new];
-//            [self pushViewController:ppp];
+            communityViewController   *ppp = [communityViewController new];
+            [self pushViewController:ppp];
         }
             break;
         case 1:

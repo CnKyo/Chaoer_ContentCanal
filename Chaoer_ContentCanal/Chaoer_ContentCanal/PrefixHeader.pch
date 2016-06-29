@@ -119,7 +119,6 @@
 
 #import "WKSegmentControl.h"
 
-#import "mGoodsDetailViewController.h"
 
 #import "dataModel.h"
 #import "JHJsonRequst.h"

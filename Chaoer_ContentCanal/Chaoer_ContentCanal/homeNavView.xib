@@ -15,7 +15,7 @@
                     <rect key="frame" x="40" y="12" width="240" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在定位..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="mOv-px-WJ9">
-                            <rect key="frame" x="25" y="10" width="207" height="30"/>
+                            <rect key="frame" x="29" y="12" width="203" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="vD0-de-zTT"/>
                             </constraints>
@@ -23,21 +23,21 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rent_address" translatesAutoresizingMaskIntoConstraints="NO" id="2eP-VI-rtX">
-                            <rect key="frame" x="8" y="18" width="12" height="16"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mCommunity_location" translatesAutoresizingMaskIntoConstraints="NO" id="2eP-VI-rtX">
+                            <rect key="frame" x="8" y="18" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="12" id="NDg-4I-uif"/>
-                                <constraint firstAttribute="height" constant="16" id="qqj-Wc-PRs"/>
+                                <constraint firstAttribute="width" constant="20" id="NDg-4I-uif"/>
+                                <constraint firstAttribute="height" constant="20" id="qqj-Wc-PRs"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="525-fJ-5y5"/>
-                        <constraint firstItem="mOv-px-WJ9" firstAttribute="leading" secondItem="2eP-VI-rtX" secondAttribute="trailing" constant="5" id="KyR-HA-Aeb"/>
+                        <constraint firstItem="mOv-px-WJ9" firstAttribute="leading" secondItem="2eP-VI-rtX" secondAttribute="trailing" constant="1" id="KyR-HA-Aeb"/>
                         <constraint firstItem="2eP-VI-rtX" firstAttribute="leading" secondItem="dvZ-LT-tTe" secondAttribute="leading" constant="8" id="gx4-8v-t5d"/>
                         <constraint firstAttribute="width" constant="240" id="qEq-No-8AB"/>
-                        <constraint firstItem="mOv-px-WJ9" firstAttribute="top" secondItem="dvZ-LT-tTe" secondAttribute="top" constant="10" id="qtm-fL-uEq"/>
+                        <constraint firstItem="mOv-px-WJ9" firstAttribute="top" secondItem="dvZ-LT-tTe" secondAttribute="top" constant="12" id="qtm-fL-uEq"/>
                         <constraint firstAttribute="trailing" secondItem="mOv-px-WJ9" secondAttribute="trailing" constant="8" id="stV-Ng-PLE"/>
                         <constraint firstItem="2eP-VI-rtX" firstAttribute="top" secondItem="dvZ-LT-tTe" secondAttribute="top" constant="18" id="y9t-Ay-oMd"/>
                     </constraints>
@@ -96,6 +96,6 @@
     <resources>
         <image name="24" width="12" height="12"/>
         <image name="53-1" width="32" height="28"/>
-        <image name="rent_address" width="52" height="68"/>
+        <image name="mCommunity_location" width="1024" height="1024"/>
     </resources>
 </document>

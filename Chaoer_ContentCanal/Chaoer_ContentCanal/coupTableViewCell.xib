@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="coupTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="store_coup" translatesAutoresizingMaskIntoConstraints="NO" id="JJF-aM-bLA">
+                        <rect key="frame" x="0.0" y="18" width="320" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="MCj-iC-UdD"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ech-rb-yUp">
+                        <rect key="frame" x="0.0" y="26" width="320" height="68"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCK-Vs-6Y6">
+                                <rect key="frame" x="8" y="14" width="120" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="6nK-6z-Ogu"/>
+                                    <constraint firstAttribute="height" constant="40" id="7R3-4N-SYd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅限永辉超市使用，满50000减免1000优惠" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuK-8P-D2l">
+                                <rect key="frame" x="139" y="10" width="173" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VuK-8P-D2l" firstAttribute="leading" secondItem="VCK-Vs-6Y6" secondAttribute="trailing" constant="11" id="2uq-Fy-Mdb"/>
+                            <constraint firstItem="VCK-Vs-6Y6" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="top" constant="14" id="MAs-GC-yOr"/>
+                            <constraint firstAttribute="trailing" secondItem="VuK-8P-D2l" secondAttribute="trailing" constant="8" id="Ucu-yf-5an"/>
+                            <constraint firstAttribute="bottom" secondItem="VuK-8P-D2l" secondAttribute="bottom" constant="1" id="YHF-5N-fur"/>
+                            <constraint firstItem="VCK-Vs-6Y6" firstAttribute="leading" secondItem="ech-rb-yUp" secondAttribute="leading" constant="8" id="pXn-1X-EUe"/>
+                            <constraint firstItem="VuK-8P-D2l" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="top" constant="10" id="slt-g6-DeN"/>
+                            <constraint firstAttribute="height" constant="68" id="zbc-cL-c7I"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GfD-za-tKf">
+                        <rect key="frame" x="13" y="110" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="NfP-ca-GEV"/>
+                            <constraint firstAttribute="height" constant="45" id="a9u-LO-Kyf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="仅限永辉超市使用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKW-EH-ZSL">
+                        <rect key="frame" x="66" y="110" width="246" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用期限：2016-06-23-2016-06-28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBE-gH-OB0">
+                        <rect key="frame" x="66" y="131" width="246" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coup_ expire" translatesAutoresizingMaskIntoConstraints="NO" id="sNV-lx-JL9">
+                        <rect key="frame" x="229" y="96" width="80" height="65"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="PMT-Da-ng1"/>
+                            <constraint firstAttribute="height" constant="65" id="WWZ-uC-WFE"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="sNV-lx-JL9" secondAttribute="trailing" constant="3" id="0Ev-67-HAv"/>
+                    <constraint firstItem="JJF-aM-bLA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="1oK-OC-0RH"/>
+                    <constraint firstItem="TKW-EH-ZSL" firstAttribute="leading" secondItem="GfD-za-tKf" secondAttribute="trailing" constant="8" id="42N-wU-d6G"/>
+                    <constraint firstItem="TKW-EH-ZSL" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="bottom" constant="16" id="4Us-vM-mb4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TKW-EH-ZSL" secondAttribute="trailing" id="5q0-Ol-Xag"/>
+                    <constraint firstItem="GfD-za-tKf" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="bottom" constant="16" id="8vF-fa-eZ8"/>
+                    <constraint firstItem="JJF-aM-bLA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Bnn-Id-GMA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JJF-aM-bLA" secondAttribute="trailing" constant="-8" id="IYZ-L9-QLG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="UBE-gH-OB0" secondAttribute="trailing" id="Jjg-bh-D2s"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="JJF-aM-bLA" secondAttribute="bottom" constant="-8" id="O9p-Jd-R0N"/>
+                    <constraint firstItem="UBE-gH-OB0" firstAttribute="top" secondItem="TKW-EH-ZSL" secondAttribute="bottom" constant="3" id="W1C-tU-huu"/>
+                    <constraint firstItem="GfD-za-tKf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="bnc-gl-sK6"/>
+                    <constraint firstItem="sNV-lx-JL9" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="bottom" constant="2" id="mGc-aR-Zny"/>
+                    <constraint firstItem="UBE-gH-OB0" firstAttribute="leading" secondItem="GfD-za-tKf" secondAttribute="trailing" constant="8" id="uoy-Wo-IGo"/>
+                    <constraint firstItem="ech-rb-yUp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="urc-Ez-TXg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ech-rb-yUp" secondAttribute="trailing" constant="-8" id="vAm-6D-Fgi"/>
+                    <constraint firstItem="ech-rb-yUp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="18" id="vdd-k3-QJs"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="O9p-Jd-R0N"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="mBgkImg" destination="JJF-aM-bLA" id="GSs-UY-tcL"/>
+                <outlet property="mContent" destination="VuK-8P-D2l" id="gKZ-Wd-olX"/>
+                <outlet property="mIsValid" destination="sNV-lx-JL9" id="vyc-u9-3K8"/>
+                <outlet property="mLogo" destination="GfD-za-tKf" id="naj-cS-KVe"/>
+                <outlet property="mMoney" destination="VCK-Vs-6Y6" id="oTw-Su-OHS"/>
+                <outlet property="mStore" destination="TKW-EH-ZSL" id="3Fj-Vh-CMz"/>
+                <outlet property="mTime" destination="UBE-gH-OB0" id="hfa-2t-uot"/>
+            </connections>
+            <point key="canvasLocation" x="196" y="377"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="coup_ expire" width="146" height="120"/>
+        <image name="store_coup" width="584" height="239"/>
+    </resources>
+</document>

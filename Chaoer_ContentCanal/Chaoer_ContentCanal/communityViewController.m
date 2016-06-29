@@ -7,204 +7,181 @@
 //
 
 #import "communityViewController.h"
-
-#import "mAddressView.h"
+#import "CurentLocation.h"
 
 #import "communityTableViewCell.h"
+#import "mCommunityNavView.h"
 
+#import "mCommunityMyViewController.h"
 
-#import "mSuperMarketViewController.h"
+#import "mMarketDetailViewController.h"
+@interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
+@property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
-#import "shopViewController.h"
-#import "washAndSendViewController.h"
-@interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate>
+@property (nonatomic,strong)    NSMutableArray  *mSubArr;
 
 @end
 
 @implementation communityViewController
 {
-    mAddressView *mTopView;
+    mCommunityNavView *mNavView;
     
-    UITableView *mTableView;
-    
-    UIView *mHeaderView;
     AMapLocationManager *mLocation;
 
-
+    mCommunityNavView *mSubView;
+    DCPicScrollView  *mScrollerView;
+    /**
+     *  纬度
+     */
+    NSString *mLat;
+    /**
+     *  经度
+     */
+    NSString *mLng;
 }
 
 
 - (void)viewDidLoad {
+    self.hiddenTabBar = YES;
+
     [super viewDidLoad];
 
-    self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
-    self.Title = self.mPageName = @"社区服务";
+    self.Title = self.mPageName = @"社区生活";
+    self.navBar.hidden = YES;
+    self.mBanerArr = [NSMutableArray new];
+    self.mSubArr = [NSMutableArray new];
+
     [self initView];
 }
 - (void)initView{
     
+    mNavView = [mCommunityNavView shareView];
+    mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    [mNavView.mBackBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mNavView.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mNavView.mMyBtn addTarget:self action:@selector(myAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:mNavView];
     
-    mTableView = [UITableView new];
-    mTableView.backgroundColor = [UIColor whiteColor];
-    mTableView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-50);
-    mTableView.delegate = self;
-    mTableView.dataSource = self;
-//    mTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.view addSubview:mTableView];
+    
+    [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
     
     
-    UINib   *nib = [UINib nibWithNibName:@"communityTableViewCell" bundle:nil];
-    [mTableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-    [self initHeaderView];
+    self.haveHeader = YES;
+    [self headerBeganRefresh];
+    
+    
+    UINib   *nib = [UINib nibWithNibName:@"communityCell1" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell1"];
+    
+    nib = [UINib nibWithNibName:@"communityCell2" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    
+    nib = [UINib nibWithNibName:@"communityCell3" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
+    
     
 }
-- (void)initHeaderView{
+- (void)leftAction:(UIButton *)sender{
 
-    mHeaderView = [UIView new];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 500);
-    mHeaderView.backgroundColor = [UIColor whiteColor];
+    [self popViewController];
+}
+- (void)addressAction:(UIButton *)sender{
     
+    MLLog(@"选择地址");
+}
+- (void)myAction:(UIButton *)sender{
     
-    mTopView = [mAddressView shareView];
-    mTopView.frame  =CGRectMake(0, 0, DEVICE_Width, 50);
-    [mHeaderView addSubview:mTopView];
+    MLLog(@"我的");
+    
+    mCommunityMyViewController *my = [mCommunityMyViewController new];
+    [self pushViewController:my];
+}
+#pragma mark----加载地址
+- (void)initLocation{
+  
+    [CurentLocation sharedManager].delegate = self;
+    [[CurentLocation sharedManager] getUSerLocation];
+
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
-            NSString *eee =@"定位失败！请检查网络和定位设置！";
-            [SVProgressHUD showErrorWithStatus:eee];
-            mTopView.mAddress.text = eee;
+            NSString *eee =@"定位失败！请点击这里重新选择地址！";
+//            [SVProgressHUD showErrorWithStatus:eee];
+            [mNavView.mAddressBtn setTitle:eee forState:0];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-            
-            //            if (error.code == AMapLocatingErrorLocateFailed)
-            //            {
-            //                return;
-            //            }
+
         }
         
         MLLog(@"location:%@", location);
-        
+        mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+        mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+
         if (regeocode)
         {
-            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
+//            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
             
             MLLog(@"reGeocode:%@", regeocode);
-            mTopView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            [mNavView.mAddressBtn setTitle:[NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number] forState:0];
 
         }
     }];
 
     
-    UIImage *imag1 = [UIImage imageNamed:@"supermarket"];
-    UIImage *imag2 = [UIImage imageNamed:@"fruit"];
+
     
-    UIImage *imag3 = [UIImage imageNamed:@"eat"];
+}
+
+- (void)headerBeganRefresh{
+
     
-    UIImage *imag4 = [UIImage imageNamed:@"join"];
     
-    UIImage *imag5 = [UIImage imageNamed:@"water"];
+    [self.mBanerArr removeAllObjects];
+    [self.mSubArr removeAllObjects];
+
     
-    UIImage *imag6 = [UIImage imageNamed:@"wash"];
+    for (int i =0; i<10; i++) {
+        NSString *sr = [NSString stringWithFormat:@"第%d个",i];
+        [self.mSubArr addObject:sr];
+    }
     
-    NSArray *imgArr = @[imag1,imag2,imag3,imag4,imag5,imag6];
-    NSArray *marr = @[@"超市快递",@"水果生鲜",@"美食速递",@"招募合伙人",@"饮水配送",@"衣服洗涤"];
-    
-    float x = 0;
-    float y = mTopView.mbottom;
-    
-    float btnWidth = DEVICE_Width/3;
-    
-    for (int i = 0; i<marr.count; i++) {
-        
-        
-        
-        UIButton    *btn = [UIButton new];
-        btn.frame = CGRectMake(x, y, btnWidth, 110);
-        btn.backgroundColor = [UIColor whiteColor];
-        [btn setImage:imgArr[i] forState:0];
-        [btn setTitle:marr[i] forState:0];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [btn setTitleColor:[UIColor colorWithRed:0.33 green:0.33 blue:0.33 alpha:1] forState:0];
-        btn.imageEdgeInsets  = UIEdgeInsetsMake(-20, 24, 0, 0);
-        float left;
-        if (DEVICE_Width<=320) {
-            left = -60;
+    [self initLocation];
+    [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            [self.mBanerArr addObjectsFromArray:mBaner];
+            [self.tableView reloadData];
+            
         }else{
-            left = -60;
-        };
-        btn.titleEdgeInsets = UIEdgeInsetsMake(90, left, 20, 0);
-     
-        
-        btn.tag = i;
-        [btn addTarget:self action:@selector(mCusBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [mHeaderView addSubview:btn];
-        
-        x += btnWidth+10;
-        
-        if (x >= DEVICE_Width) {
-            x = 0;
-            y += 110;
+            [self addEmptyView:nil];
         }
         
-        
-    }
-    
-    CGRect  mRect = mHeaderView.frame;
-    mRect.size.height = y;
-    mHeaderView.frame = mRect;
-    
-    [mTableView setTableHeaderView:mHeaderView];
-
+    }];
 
     
 }
-#pragma mark----按钮的点击事件
-- (void)mCusBtnAction:(UIButton *)sender{
-    MLLog(@"第%ld个",(long)sender.tag);
-    
-    switch (sender.tag) {
-        case 0:
-        {
-            mSuperMarketViewController *mmm = [mSuperMarketViewController new];
-            [self pushViewController:mmm];
-        }
-            break;
-        case 4:
-        {
-            washAndSendViewController *www = [[washAndSendViewController alloc] initWithNibName:@"washAndSendViewController" bundle:nil];
-            www.mTitle = @"送水";
-            [self pushViewController:www];
-        }
-            break;
-        case 5:
-        {
-            washAndSendViewController *www = [[washAndSendViewController alloc] initWithNibName:@"washAndSendViewController" bundle:nil];
-            www.mTitle = @"洗衣";
-            [self pushViewController:www];
-        }
-            break;
-        default:
-            break;
-    }
-
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark----maplitdelegate
+- (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
+    
+    MLLog(@"定位成功之后返回的东东：%@",mCoordinate);
+}
 /*
 #pragma mark - Navigation
 
@@ -217,61 +194,106 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 1;
+    return 3;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+
+    return 0.5;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *vvv = [UIView new];
-    vvv.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
-    vvv.frame = CGRectMake(0, 0, DEVICE_Width, 40);
-    vvv.layer.masksToBounds = YES;
-    vvv.layer.borderColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.88 alpha:1].CGColor;
-    vvv.layer.borderWidth = 1;
-    
-    UILabel *lll = [UILabel new];
-    lll.text = @"附近商家";
-    lll.frame = CGRectMake(20,15, 200, 20);
-    lll.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1];
-    lll.textAlignment = NSTextAlignmentLeft;
-    lll.font = [UIFont systemFontOfSize:15];
-    [vvv addSubview:lll];
-    
-    return vvv;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return nil;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    if (section == 0) {
+        return 1;
+    }else if (section == 1){
+        return 1;
+    }else{
+        return 5;
+    }
+    
+    
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    
+    if (indexPath.section == 0) {
+        return 120;
+    }else if (indexPath.section == 1){
+        return 220;
+    }else{
+        return 180;
+    }
+    
     
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuseCellId = @"cell";
-    
-    communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     
-    return cell;
+    NSString *reuseCellId = nil;
+    
+    if (indexPath.section == 0) {
+        reuseCellId = @"cell1";
+        
+        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.delegate = self;
+        [cell setMDataSourceArr:self.mBanerArr];
+        
+        return cell;
+
+    }else if (indexPath.section == 1){
+        reuseCellId = @"cell2";
+        
+        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.delegate = self;
+        [cell setMScrollerSourceArr:self.mSubArr];
+        return cell;
+
+    }else{
+    
+        reuseCellId = @"cell3";
+        
+        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        
+        
+        return cell;
+    }
+
     
 }
+#pragma mark----cellbaner的代理方法
+- (void)cellDidSelectedBanerIndex:(NSInteger)mIndex{
 
+    MBaner *banar = self.mBanerArr[mIndex];
+    
+    WebVC *w = [WebVC new];
+    w.mName = banar.mName;
+    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
+    [self pushViewController:w];
 
+}
+#pragma mark----滚动的代理方法
+- (void)cellWithScrollerViewSelectedIndex:(NSInteger)mIndex{
+    MLLog(@"点击了%ld个",(long)mIndex);
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    shopViewController *sss = [[shopViewController alloc] initWithNibName:@"shopViewController" bundle:nil];
-    sss.mTitle = @"沃尔玛";
-    [self pushViewController:sss];
+
+    mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+    [self pushViewController:market];
     
 }
+
+
 
 @end
