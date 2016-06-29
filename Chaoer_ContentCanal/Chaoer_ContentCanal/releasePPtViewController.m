@@ -265,7 +265,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"releaseCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -717,13 +717,13 @@
 
     if (mLat == nil || mLat.length == 0 || [mLat isEqualToString:@""]) {
         [self showErrorStatus:@"必须开启定位才能发布订单！"];
-        [self.tableView headerBeginRefreshing];
+        [self headerBeganRefresh];
         
         return ;
     }
     if (mLng == nil || mLng.length == 0 || [mLng isEqualToString:@""]) {
         [self showErrorStatus:@"必须开启定位才能发布订单！"];
-        [self.tableView headerBeginRefreshing];
+        [self headerBeganRefresh];
         
         return ;
     }

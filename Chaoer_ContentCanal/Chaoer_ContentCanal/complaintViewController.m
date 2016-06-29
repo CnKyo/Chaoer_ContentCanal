@@ -164,7 +164,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"complaintTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

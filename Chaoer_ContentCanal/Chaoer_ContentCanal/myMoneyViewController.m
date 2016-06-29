@@ -53,7 +53,7 @@
     
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
 }
 
 #pragma mark ----顶部刷新数据

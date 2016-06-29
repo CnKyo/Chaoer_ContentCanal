@@ -85,7 +85,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveFooter = YES;
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"mConversationCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

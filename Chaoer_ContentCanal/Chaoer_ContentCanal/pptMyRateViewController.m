@@ -45,7 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
 
 }
 
@@ -69,7 +69,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveFooter = YES;
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyRateCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -302,7 +302,7 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     
 }

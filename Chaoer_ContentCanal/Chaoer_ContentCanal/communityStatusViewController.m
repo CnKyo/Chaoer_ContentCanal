@@ -141,12 +141,10 @@
         
         GCommunityClass *GC = mClassArr[index-1];
         mType = GC.mId;
-        [self.tableView headerBeginRefreshing];
-        
+        [self headerBeganRefresh];
     }];
     [self.view addSubview:mHeaderView];
-    [self.tableView headerBeginRefreshing];
-
+    [self headerBeganRefresh];
 }
 
 - (void)initView{

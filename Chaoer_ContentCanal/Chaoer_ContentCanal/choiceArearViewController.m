@@ -180,7 +180,7 @@
     
     self.tableView = _searchResult;
     self.haveHeader = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
 }
 
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
