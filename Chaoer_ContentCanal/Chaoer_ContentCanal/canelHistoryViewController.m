@@ -36,7 +36,7 @@
     
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
 
     
 }

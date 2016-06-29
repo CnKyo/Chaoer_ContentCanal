@@ -13,7 +13,6 @@
 #import "dataModel.h"
 
 #import "mGeneryEmptyView.h"
-#import "MJRefresh.h"
 @interface BaseVC ()<UIGestureRecognizerDelegate>
 {
     UIView *emptyView;
@@ -173,57 +172,17 @@
 -(void)setHaveHeader:(BOOL)have
 {
     __block BaseVC *vc = self;
-   
-    
-    // 动画时间
-    CGFloat duration = 0.3f;
-    // 2.设置 UIWebView 下拉显示商品详情
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        //设置动画效果
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
 
-            [vc.tableView.header beginRefreshing];
-        } completion:^(BOOL finished) {
-            //结束加载
-            [vc.tableView.header endRefreshing];
-            
-        }];
+    [self.tableView addHeaderWithCallback:^{
+        [vc headerBeganRefresh];
     }];
-    header.lastUpdatedTimeLabel.hidden = YES;
-    
-    // 设置文字、颜色、字体
-    [header setTitle:@"下拉查看更多" forState:MJRefreshStateIdle];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    
-    header.stateLabel.textColor = [UIColor lightGrayColor];
-    header.stateLabel.font = [UIFont systemFontOfSize:14];
-    vc.tableView.header = header;
-
-    
 }
 -(void)setHaveFooter:(BOOL)haveFooter
 {
-    CGFloat duration = 0.3f;
-
     __block BaseVC *vc = self;
-    // 1.设置 UITableView 上拉显示商品详情
-    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            [vc.tableView.footer beginRefreshing];
-
-        
-        } completion:^(BOOL finished) {
-            [self.tableView.footer endRefreshing];
-        }];
+    [self.tableView addFooterWithCallback:^{
+        [vc footetBeganRefresh];
     }];
-    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
-    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
-    [footer setTitle:@"上拉拉查看更多" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
-    self.tableView.footer = footer;
 
 }
 - (void)viewDidLoad {
@@ -298,11 +257,10 @@
 }
 
 -(void)headerEndRefresh{
-
-    [self.tableView.header endRefreshing];
+    [self.tableView headerEndRefreshing];
 }//header停止刷新
 -(void)footetEndRefresh{
-    [self.tableView.footer endRefreshing];
+    [self.tableView footerEndRefreshing];
 }//footer停止刷新
 -(void)loadTableView:(CGRect)rect delegate:(id<UITableViewDelegate>)delegate dataSource:(id<UITableViewDataSource>)datasource
 {

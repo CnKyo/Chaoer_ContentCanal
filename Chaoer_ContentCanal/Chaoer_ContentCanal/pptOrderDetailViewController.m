@@ -67,7 +67,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     self.haveHeader = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptDetailCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -578,11 +578,11 @@
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
-                [self headerBeganRefresh];
+                [self.tableView headerBeginRefreshing];
             }else{
                 
                 [self showErrorStatus:resb.mMessage];
-                [self headerBeganRefresh];
+                [self.tableView headerBeginRefreshing];
             }
             
             
@@ -704,12 +704,12 @@
         
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
-            [self headerBeganRefresh];
+            [self.tableView headerBeginRefreshing];
             [self dismissPopAction:nil];
         }else{
             
             [self showErrorStatus:resb.mMessage];
-            [self headerBeganRefresh];
+            [self.tableView headerBeginRefreshing];
         }
         
         

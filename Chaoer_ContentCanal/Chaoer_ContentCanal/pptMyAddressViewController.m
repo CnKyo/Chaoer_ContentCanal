@@ -18,7 +18,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
 
 }
 - (void)viewDidLoad {
@@ -40,7 +40,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyAddressCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

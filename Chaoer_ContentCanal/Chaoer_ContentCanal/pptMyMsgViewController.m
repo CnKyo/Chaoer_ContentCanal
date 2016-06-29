@@ -59,7 +59,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.haveFooter = YES;
     self.haveHeader = YES;
-    [self headerBeganRefresh];
+    [self.tableView headerBeginRefreshing];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyMsgCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
