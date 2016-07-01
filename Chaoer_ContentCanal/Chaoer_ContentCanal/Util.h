@@ -170,9 +170,33 @@ typedef enum _RelDic
 + (NSString *)startTimeStr:(NSString *)startSS;
 
 #pragma mark----根据文字计算高度
+/**
+ *  根据文字计算高度
+ *
+ *  @param s     要进行计算的文字
+ *  @param fsize 字体大小
+ *  @param width view的宽度
+ *
+ *  @return 返回高度
+ */
 + (CGFloat)labelText:(NSString *)s fontSize:(NSInteger)fsize labelWidth:(CGFloat)width;
 #pragma mark----根据文字计算宽度
+/**
+ *  根据文字计算宽度
+ *
+ *  @param str 要进行计算的文字
+ *
+ *  @return 返回宽度
+ */
 + (CGFloat)labelTextWithWidth:(NSString *)str;
+
+/**
+ *返回值是该字符串所占的大小(width, height)
+ *font : 该字符串所用的字体(字体大小不一样,显示出来的面积也不同)
+ *maxSize : 为限制改字体的最大宽和高(如果显示一行,则宽高都设置为MAXFLOAT, 如果显示为多行,只需将宽设置一个有限定长值,高设置为MAXFLOAT)
+ */
++ (CGSize)boundingRectWithSize:(CGSize)size andStr:(NSString *)str;
+
 #pragma mark----2015-09-01 14:30－16:30转 9月1日 14:30-16:30
 + (NSString *)mFirstStr:(NSString *)mFirstStr andSecondStr:(NSString *)secondStr;
 #pragma mark----时间转时间戳（utc时间戳） 2015-09-01 14:30 转14478212545

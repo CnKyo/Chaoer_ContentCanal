@@ -12,6 +12,11 @@
 #import "mMarketHeaderView.h"
 
 #import "shopCarViewController.h"
+
+#import "mGoodsDetailViewController.h"
+
+#import "goodsSearchViewController.h"
+
 @interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
 
 
@@ -54,9 +59,10 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    self.hiddenRightBtn = YES;
+    
     self.hiddenlll = YES;
-    self.Title = self.mPageName = @"我的";
+    self.Title = self.mPageName = @"超市详情";
+    self.rightBtnImage = [UIImage imageNamed:@"search-1"];
     mType = 1;
     mShopCarNum = 0;
     [self currentArrar];
@@ -231,7 +237,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
+    [self pushViewController:goods];
 }
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
@@ -239,6 +246,14 @@
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
     [self.tableView reloadData];
     //    [self.tableView headerBeginRefreshing];
+    
+}
+#pragma mark----搜索
+- (void)rightBtnTouched:(id)sender{
+
+    
+    goodsSearchViewController *mSearch = [[goodsSearchViewController alloc] initWithNibName:@"goodsSearchViewController" bundle:nil];
+    [self pushViewController:mSearch];
     
 }
 @end

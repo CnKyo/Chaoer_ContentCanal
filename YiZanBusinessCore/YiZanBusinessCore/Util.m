@@ -1227,8 +1227,23 @@
 }
 
 + (CGFloat)labelTextWithWidth:(NSString *)str{
-    CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:13]];
+    CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:14]];
     return strsize.width;
+    
+}
++ (CGSize)boundingRectWithSize:(CGSize)size andStr:(NSString *)str
+{
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:15]};
+    
+    CGSize retSize = [str boundingRectWithSize:size
+                                             options:\
+                      NSStringDrawingTruncatesLastVisibleLine |
+                      NSStringDrawingUsesLineFragmentOrigin |
+                      NSStringDrawingUsesFontLeading
+                                          attributes:attribute
+                                             context:nil].size;
+    
+    return retSize;
 }
 
 

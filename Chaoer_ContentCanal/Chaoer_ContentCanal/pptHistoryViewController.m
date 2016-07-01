@@ -121,7 +121,7 @@
             weakSelf.levelButton.extend = item;
             
             mLeft = [[NSString stringWithFormat:@"%@",item.itemid] intValue];
-            [weakSelf.tableView headerBeginRefreshing];
+            [weakSelf headerBeganRefresh];
 
         };
         
@@ -147,7 +147,7 @@
             [weakSelf.groupButton refreshWithTitle:item.itemtitle];
             weakSelf.groupButton.extend = item;
             mRight = [[NSString stringWithFormat:@"%@",item.itemid] intValue];
-            [weakSelf.tableView headerBeginRefreshing];
+            [weakSelf headerBeganRefresh];
 
         };
     };
@@ -159,7 +159,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

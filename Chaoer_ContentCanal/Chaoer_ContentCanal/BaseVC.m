@@ -13,6 +13,7 @@
 #import "dataModel.h"
 
 #import "mGeneryEmptyView.h"
+#import "MJRefresh.h"
 @interface BaseVC ()<UIGestureRecognizerDelegate>
 {
     UIView *emptyView;
@@ -28,7 +29,7 @@
 @implementation BaseVC
 
 {
-
+    
     mGeneryEmptyView *mEmptyView;
 }
 
@@ -47,16 +48,16 @@
 {
     self = [super init];
     if (self) {
-      
+        
         MLLog(@"--------->isnotnib");
-
+        
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-//     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    //     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.isStoryBoard = YES;
     return [super initWithCoder:aDecoder];
 }
@@ -66,7 +67,7 @@
     self.navBar.leftBtn.hidden = hiddenBackBtn;
 }
 -(void)setHiddenRightBtn:(BOOL)hiddenRightBtn{
-
+    
     self.navBar.rightBtn.hidden = hiddenRightBtn;
 }
 -(void)setHiddenlll:(BOOL)hiddenlll{
@@ -89,29 +90,29 @@
         label.textAlignment = NSTextAlignmentCenter;
         notifView.backgroundColor = COLOR(88, 88, 88);
         notifView.alpha = 0.0;
-       // label.backgroundColor = [UIColor redColor];
+        // label.backgroundColor = [UIColor redColor];
         [notifView addSubview:label];
     }
     [self.contentView addSubview:notifView];
-
+    
     [self notifViewAnimation:YES];
 }
 -(void)notifViewAnimation:(BOOL)isbegan
 {
     if (isbegan) {
         [UIView animateWithDuration:1 animations:^{
-//            CGRect rect = notifView.frame;
-//            rect.origin.y=0;
-//            notifView.frame = rect;
+            //            CGRect rect = notifView.frame;
+            //            rect.origin.y=0;
+            //            notifView.frame = rect;
             notifView.alpha = 1.0;
         }];
     }else
     {
         [UIView animateWithDuration:1 animations:^{
-//            CGRect rect = notifView.frame;
-//            rect.origin.y=-50;
-//            notifView.frame = rect;
-               notifView.alpha = 0.0;
+            //            CGRect rect = notifView.frame;
+            //            rect.origin.y=-50;
+            //            notifView.frame = rect;
+            notifView.alpha = 0.0;
         }completion:^(BOOL finished) {
             [notifView removeFromSuperview];
             notifView = nil;
@@ -133,7 +134,7 @@
         contentView = [self.tabBarController.view.subviews objectAtIndex:0];
     contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
     self.tabBarController.tabBar.hidden = YES;
-
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -144,46 +145,105 @@
         assert(_mPageName);
     }
     [MTA trackPageViewBegin:self.mPageName];
-//    [MobClick beginLogPageView:_mPageName];
+    //    [MobClick beginLogPageView:_mPageName];
     
     MLLog_VC("viewWillAppear");
-
+    
     if (self.hiddenTabBar) {
         self.tabBarController.tabBar.hidden = YES;
     }else{
         self.tabBarController.tabBar.hidden = NO;
     }
     
-
-//    if (!self.hiddenTabBar) {
-//        [super.view addSubview:self.tabBar];
-//    }
-
+    
+    //    if (!self.hiddenTabBar) {
+    //        [super.view addSubview:self.tabBar];
+    //    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     //MLLog_VC("viewWillDisappear");
-
+    
     [MTA trackPageViewEnd:self.mPageName];
     
 }
 -(void)setHaveHeader:(BOOL)have
 {
     __block BaseVC *vc = self;
-
-    [self.tableView addHeaderWithCallback:^{
-        [vc headerBeganRefresh];
+    
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
+    for (int i =0; i<20; i++) {
+        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
+        
+        [mImgArr addObject:[UIImage imageNamed:imgstr]];
+    }
+    // 动画时间
+    CGFloat duration = 0.3f;
+    // 2.设置 UIWebView 下拉显示商品详情
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        //设置动画效果
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+            
+            [vc.tableView.header beginRefreshing];
+        } completion:^(BOOL finished) {
+            //结束加载
+            [vc.tableView.header endRefreshing];
+            
+        }];
     }];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    // 设置文字、颜色、字体
+    [header setTitle:@"下拉查看更多" forState:MJRefreshStateIdle];
+    [header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
+    [header setImages:mImgArr forState:MJRefreshStatePulling];
+    [header setImages:mImgArr forState:MJRefreshStateIdle];
+    [header setImages:mImgArr forState:MJRefreshStateRefreshing];
+    header.stateLabel.textColor = [UIColor lightGrayColor];
+    header.stateLabel.font = [UIFont systemFontOfSize:14];
+    vc.tableView.header = header;
+    
+    
 }
 -(void)setHaveFooter:(BOOL)haveFooter
 {
+    
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
+    for (int i =0; i<20; i++) {
+        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
+        
+        [mImgArr addObject:[UIImage imageNamed:imgstr]];
+    }
+    CGFloat duration = 0.3f;
+    
     __block BaseVC *vc = self;
-    [self.tableView addFooterWithCallback:^{
-        [vc footetBeganRefresh];
+    // 1.设置 UITableView 上拉显示商品详情
+    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+            [vc.tableView.footer beginRefreshing];
+            
+            
+        } completion:^(BOOL finished) {
+            [self.tableView.footer endRefreshing];
+        }];
     }];
-
+    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
+    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
+    [footer setTitle:@"上拉拉查看更多" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
+    [footer setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
+    [footer setImages:mImgArr forState:MJRefreshStatePulling];
+    [footer setImages:mImgArr forState:MJRefreshStateIdle];
+    [footer setImages:mImgArr forState:MJRefreshStateRefreshing];
+    footer.stateLabel.textColor = [UIColor lightGrayColor];
+    self.tableView.footer = footer;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -191,7 +251,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    
     
     if ( [self.Title isEmpty] )
     {
@@ -240,34 +300,98 @@
     
     self.tempArray = [[NSMutableArray alloc]init];
     self.page = 0;
-
+    
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-
+    
 }
 -(void)headerBeganRefresh
 {
-    [self headerEndRefresh];
-
+    __block BaseVC *vc = self;
+    
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
+    for (int i =0; i<20; i++) {
+        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
+        
+        [mImgArr addObject:[UIImage imageNamed:imgstr]];
+    }
+    // 动画时间
+    CGFloat duration = 0.3f;
+    // 2.设置 UIWebView 下拉显示商品详情
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        //设置动画效果
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+            
+            [vc.tableView.header beginRefreshing];
+        } completion:^(BOOL finished) {
+            //结束加载
+            [vc.tableView.header endRefreshing];
+            
+        }];
+    }];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    // 设置文字、颜色、字体
+    [header setTitle:@"下拉查看更多" forState:MJRefreshStateIdle];
+    [header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
+    [header setImages:mImgArr forState:MJRefreshStatePulling];
+    [header setImages:mImgArr forState:MJRefreshStateIdle];
+    [header setImages:mImgArr forState:MJRefreshStateRefreshing];
+    header.stateLabel.textColor = [UIColor lightGrayColor];
+    header.stateLabel.font = [UIFont systemFontOfSize:14];
+    vc.tableView.header = header;
+    
     //todo
 }
 -(void)footetBeganRefresh
 {
-    [self footetEndRefresh];
+    NSMutableArray *mImgArr = [NSMutableArray new];
+    
+    for (int i =0; i<20; i++) {
+        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
+        
+        [mImgArr addObject:[UIImage imageNamed:imgstr]];
+    }
+    CGFloat duration = 0.3f;
+    
+    __block BaseVC *vc = self;
+    // 1.设置 UITableView 上拉显示商品详情
+    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+            [vc.tableView.footer beginRefreshing];
+            
+            
+        } completion:^(BOOL finished) {
+            [self.tableView.footer endRefreshing];
+        }];
+    }];
+    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
+    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
+    [footer setTitle:@"上拉拉查看更多" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
+    [footer setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
+    [footer setImages:mImgArr forState:MJRefreshStatePulling];
+    [footer setImages:mImgArr forState:MJRefreshStateIdle];
+    [footer setImages:mImgArr forState:MJRefreshStateRefreshing];
+    footer.stateLabel.textColor = [UIColor lightGrayColor];
+    self.tableView.footer = footer;
     //todo
 }
 
 -(void)headerEndRefresh{
-    [self.tableView headerEndRefreshing];
+    
+    [self.tableView.header endRefreshing];
 }//header停止刷新
 -(void)footetEndRefresh{
-    [self.tableView footerEndRefreshing];
+    [self.tableView.footer endRefreshing];
 }//footer停止刷新
 -(void)loadTableView:(CGRect)rect delegate:(id<UITableViewDelegate>)delegate dataSource:(id<UITableViewDataSource>)datasource
 {
     self.tableView = [[UITableView alloc]initWithFrame:rect];
     self.tableView.delegate = delegate;
     self.tableView.dataSource = datasource;
-//    [self.contentView addSubview:self.tableView];
+    //    [self.contentView addSubview:self.tableView];
     if(!self.isStoryBoard)
     {
         [self.contentView addSubview:self.tableView];
@@ -275,7 +399,7 @@
     {
         [self.view addSubview:self.tableView];
     }
-
+    
 }
 
 -(void)leftBtnTouched:(id)sender
@@ -299,10 +423,10 @@
     //todo
 }
 - (void)ABtnTouched:(id)sender{
-
+    
 }
 - (void)BBtnTouched:(id)sender{
-
+    
 }
 - (void)setHiddenA:(BOOL)hiddenA{
     self.navBar.ABtn.hidden = hiddenA;
@@ -340,7 +464,7 @@
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20, DEVICE_Width, 200)];
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(150, 100, 43, 90)];
-//    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
+    //    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-20) ;
     image.image = [UIImage imageNamed:@"ic_empty"];
     [emptyView addSubview:image];
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
@@ -361,7 +485,7 @@
         if (self.tableView == nil) {
             emptyView.frame = CGRectMake(0, 64, DEVICE_Width, 200);
             [self.view addSubview:emptyView];
-
+            
         }
         
         return;
@@ -370,24 +494,24 @@
     emptyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, 300)];
     emptyView.backgroundColor = [UIColor clearColor];
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(emptyView.bounds.size.width / 2-50, emptyView.frame.size.height / 2-40, 100, 100)];
-//    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
+    //    image.center = CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2-40) ;
     image.image = [UIImage imageNamed:img];
     [emptyView addSubview:image];
     
-//    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
-//    [addBtn setCenter:CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2+20)];
-//    [addBtn setTitle:str forState:UIControlStateNormal];
-//    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [emptyView addSubview:addBtn];
-//    
+    //    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 250, 60)];
+    //    [addBtn setCenter:CGPointMake(emptyView.bounds.size.width / 2, emptyView.frame.size.height / 2+20)];
+    //    [addBtn setTitle:str forState:UIControlStateNormal];
+    //    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [emptyView addSubview:addBtn];
+    //
     self.tableView.tableFooterView = emptyView;
-
+    
 }
 - (void)addKEmptyView:(NSString *)view{
     if ( view == nil) {
         
         view = @"ic_empty";
-
+        
     }
     
     self.tableView.hidden = YES;
@@ -411,7 +535,7 @@
 - (void)hiddenEmptyView{
     
     emptyView.hidden = YES;
-
+    
 }
 
 -(void)removeEmptyView
@@ -421,7 +545,7 @@
         emptyView = nil;
     }
     emptyView.hidden = YES;
-
+    
 }
 
 
@@ -488,7 +612,7 @@
  */
 - (void)dismissViewController{
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 /**
  *  模态跳转返回上二级
@@ -520,14 +644,14 @@
     {
         if( ((BaseVC*)vc).isMustLogin )
         {
-
+            
         }
         else
-
-        [self.navigationController pushViewController:vc animated:YES];
+            
+            [self.navigationController pushViewController:vc animated:YES];
     }
     else
-
+        
         [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -586,14 +710,14 @@
 }
 -(void)didSelectBtn:(NSInteger)tag
 {
-
-
+    
+    
     switch (tag) {
         case 0:
             if (self.tabBarController.selectedIndex == 0) {
-
+                
                 return;
-
+                
             }
             else
                 self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
@@ -603,7 +727,7 @@
                 return;
             }
             else
-
+                
                 self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
             break;
         case 2:
@@ -649,8 +773,8 @@
 }
 -(void)gotoLoginVC
 {
-//    LoginVC *vclog = [[LoginVC alloc]init];
-//    [self pushViewController:vclog];//LoginVC,RegisterVC 里面的isMustLogin 一定不能设置了,否则递归
+    //    LoginVC *vclog = [[LoginVC alloc]init];
+    //    [self pushViewController:vclog];//LoginVC,RegisterVC 里面的isMustLogin 一定不能设置了,否则递归
     
     if( [self.navigationController.topViewController isKindOfClass:[ViewController class]] )
     {
@@ -662,8 +786,8 @@
     id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
     
     [self presentViewController:viewController animated:YES completion:nil];
-//    [self.navigationController pushViewController:viewController animated:YES];
-
+    //    [self.navigationController pushViewController:viewController animated:YES];
+    
 }
 
 
@@ -745,12 +869,12 @@
     [super viewDidAppear:animated];
     MLLog(@"------>来没来？");
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
+    
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     MLLog(@"<------来没来？");
-
+    
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -760,7 +884,7 @@
 
 #pragma mark----加载空视图
 - (void)ShowEmptyViewWithTitle:(NSString *)mTitle andImg:(UIImage *)mImg andIsHiddenBtn:(BOOL)mHidden andHaveTabBar:(BOOL)mIsTabbar{
-
+    
     
     CGFloat mHH;
     
@@ -817,7 +941,7 @@
         
     }];
     
-
+    
 }
 
 @end
