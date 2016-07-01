@@ -172,78 +172,34 @@
 }
 -(void)setHaveHeader:(BOOL)have
 {
-    __block BaseVC *vc = self;
+    __unsafe_unretained UITableView *tableView = self.tableView;
     
-    NSMutableArray *mImgArr = [NSMutableArray new];
-    
-    for (int i =0; i<20; i++) {
-        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
-        
-        [mImgArr addObject:[UIImage imageNamed:imgstr]];
-    }
-    // 动画时间
-    CGFloat duration = 0.3f;
-    // 2.设置 UIWebView 下拉显示商品详情
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        //设置动画效果
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            
-            [vc.tableView.header beginRefreshing];
-        } completion:^(BOOL finished) {
-            //结束加载
-            [vc.tableView.header endRefreshing];
-            
-        }];
+    // 下拉刷新
+    tableView.header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 结束刷新
+            [tableView.header endRefreshing];
+        });
     }];
-    header.lastUpdatedTimeLabel.hidden = YES;
     
-    // 设置文字、颜色、字体
-    [header setTitle:@"下拉查看更多" forState:MJRefreshStateIdle];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    [header setImages:mImgArr forState:MJRefreshStatePulling];
-    [header setImages:mImgArr forState:MJRefreshStateIdle];
-    [header setImages:mImgArr forState:MJRefreshStateRefreshing];
-    header.stateLabel.textColor = [UIColor lightGrayColor];
-    header.stateLabel.font = [UIFont systemFontOfSize:14];
-    vc.tableView.header = header;
-    
-    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.header.automaticallyChangeAlpha = YES;
 }
 -(void)setHaveFooter:(BOOL)haveFooter
 {
-    
-    NSMutableArray *mImgArr = [NSMutableArray new];
-    
-    for (int i =0; i<20; i++) {
-        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
-        
-        [mImgArr addObject:[UIImage imageNamed:imgstr]];
-    }
-    CGFloat duration = 0.3f;
-    
-    __block BaseVC *vc = self;
-    // 1.设置 UITableView 上拉显示商品详情
-    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            [vc.tableView.footer beginRefreshing];
-            
-            
-        } completion:^(BOOL finished) {
-            [self.tableView.footer endRefreshing];
-        }];
+    __unsafe_unretained UITableView *tableView = self.tableView;
+
+    // 上拉刷新
+    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 结束刷新
+            [tableView.footer endRefreshing];
+        });
     }];
-    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
-    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
-    [footer setTitle:@"上拉拉查看更多" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    [footer setImages:mImgArr forState:MJRefreshStatePulling];
-    [footer setImages:mImgArr forState:MJRefreshStateIdle];
-    [footer setImages:mImgArr forState:MJRefreshStateRefreshing];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
-    self.tableView.footer = footer;
-    
+
+   
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -306,77 +262,38 @@
 }
 -(void)headerBeganRefresh
 {
-    __block BaseVC *vc = self;
+    __unsafe_unretained UITableView *tableView = self.tableView;
     
-    NSMutableArray *mImgArr = [NSMutableArray new];
-    
-    for (int i =0; i<20; i++) {
-        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
-        
-        [mImgArr addObject:[UIImage imageNamed:imgstr]];
-    }
-    // 动画时间
-    CGFloat duration = 0.3f;
-    // 2.设置 UIWebView 下拉显示商品详情
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        //设置动画效果
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            
-            [vc.tableView.header beginRefreshing];
-        } completion:^(BOOL finished) {
-            //结束加载
-            [vc.tableView.header endRefreshing];
-            
-        }];
+    // 下拉刷新
+    tableView.header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 结束刷新
+            [tableView.header endRefreshing];
+        });
     }];
-    header.lastUpdatedTimeLabel.hidden = YES;
     
-    // 设置文字、颜色、字体
-    [header setTitle:@"下拉查看更多" forState:MJRefreshStateIdle];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    [header setImages:mImgArr forState:MJRefreshStatePulling];
-    [header setImages:mImgArr forState:MJRefreshStateIdle];
-    [header setImages:mImgArr forState:MJRefreshStateRefreshing];
-    header.stateLabel.textColor = [UIColor lightGrayColor];
-    header.stateLabel.font = [UIFont systemFontOfSize:14];
-    vc.tableView.header = header;
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.header.automaticallyChangeAlpha = YES;
+
+   
     
     //todo
 }
 -(void)footetBeganRefresh
 {
-    NSMutableArray *mImgArr = [NSMutableArray new];
+    __unsafe_unretained UITableView *tableView = self.tableView;
     
-    for (int i =0; i<20; i++) {
-        NSString *imgstr = [NSString stringWithFormat:@"fresh_%d",i];
-        
-        [mImgArr addObject:[UIImage imageNamed:imgstr]];
-    }
-    CGFloat duration = 0.3f;
-    
-    __block BaseVC *vc = self;
-    // 1.设置 UITableView 上拉显示商品详情
-    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            [vc.tableView.footer beginRefreshing];
-            
-            
-        } completion:^(BOOL finished) {
-            [self.tableView.footer endRefreshing];
-        }];
+    // 上拉刷新
+    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 结束刷新
+            [tableView.footer endRefreshing];
+        });
     }];
-    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
-    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
-    [footer setTitle:@"上拉拉查看更多" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStatePulling];
-    [footer setTitle:@"松开即可刷新" forState:MJRefreshStateRefreshing];
-    [footer setImages:mImgArr forState:MJRefreshStatePulling];
-    [footer setImages:mImgArr forState:MJRefreshStateIdle];
-    [footer setImages:mImgArr forState:MJRefreshStateRefreshing];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
-    self.tableView.footer = footer;
-    //todo
+
+       //todo
 }
 
 -(void)headerEndRefresh{

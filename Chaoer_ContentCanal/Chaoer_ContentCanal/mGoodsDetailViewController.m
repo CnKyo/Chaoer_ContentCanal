@@ -57,6 +57,8 @@
 {
 
     GoodsDetailNavView *mNavView;
+    
+    GoodsDetailNavView *mBootomView;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -78,7 +80,6 @@
         [self.mSubArr addObject:sr];
     }
 
-    [self initNavBarView];
 
     // 添加子控件
     [self addSubView];
@@ -87,7 +88,8 @@
     [self configureRefresh];
 
     
-    
+    [self initNavBarView];
+
     
 }
 
@@ -105,6 +107,39 @@
         make.left.right.top.equalTo(self.view).offset(@0);
         make.height.offset(@64);
     }];
+    
+    
+    mBootomView = [GoodsDetailNavView shareShopCarView];
+    [mBootomView.mAttentionBtn addTarget:self action:@selector(mAttentionAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mBootomView.mShopCarBtn addTarget:self action:@selector(mShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mBootomView.mAddShopCarBtn addTarget:self action:@selector(mAddShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mBootomView.mBuyNowBtn addTarget:self action:@selector(mBuyNowAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    [self.view addSubview:mBootomView];
+    
+    
+    [mBootomView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).offset(@0);
+        make.bottom.equalTo(self.view).offset(@50);
+        make.height.offset(@50);
+    }];
+
+}
+#pragma mark----关注按钮
+- (void)mAttentionAction:(UIButton *)sender{
+
+}
+#pragma mark----购物车按钮
+- (void)mShopCarAction:(UIButton *)sender{
+    
+}
+#pragma mark----添加购物车按钮
+- (void)mAddShopCarAction:(UIButton *)sender{
+    
+}
+#pragma mark----立即购买按钮
+- (void)mBuyNowAction:(UIButton *)sender{
     
 }
 #pragma mark----返回按钮
@@ -136,7 +171,7 @@
 #pragma mark - Lazy Methods
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 64)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 114)];
         _scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH, (kSCREEN_HEIGHT - kSTATUSBAR_NAVIGATION_HEIGHT) * 2);
         _scrollView.pagingEnabled = YES;
         _scrollView.scrollEnabled = NO;

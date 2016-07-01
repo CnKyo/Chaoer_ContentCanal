@@ -39,4 +39,16 @@
     
     
 }
+
+
++ (GoodsDetailNavView *)shareShopCarView{
+
+    GoodsDetailNavView *view = [[[NSBundle mainBundle] loadNibNamed:@"mGoodsDetailBottomView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mGoodsNum.layer.masksToBounds = YES;
+    view.mGoodsNum.layer.cornerRadius = view.mGoodsNum.mwidth/2;
+    
+    return view;}
+
+
 @end
