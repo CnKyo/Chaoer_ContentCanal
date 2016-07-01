@@ -7,8 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+/**
+ *  设置代理
+ */
+@protocol mHotGoodsSelectedDelegate <NSObject>
+
+@optional
+/**
+ *  代理方法
+ *
+ *  @param index 返回索引
+ */
+- (void)cellDidSelectedWithIndex:(NSInteger)index;
+
+@end
 
 @interface mGoodsDetailCell : UITableViewCell
+#pragma mark----第一种cell类型
 /**
  *  商品图片
  */
@@ -54,4 +69,17 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mHaves;
 
+#pragma mark----第二种cell类型
+/**
+ *  滚动视图
+ */
+@property (weak, nonatomic) IBOutlet UIScrollView *mScrollerView;
+/**
+ *  代理方法
+ */
+@property (strong,nonatomic) id <mHotGoodsSelectedDelegate> delegate;
+/**
+ *  滚动数据源
+ */
+@property (strong,nonatomic) NSArray *mDataSource;
 @end

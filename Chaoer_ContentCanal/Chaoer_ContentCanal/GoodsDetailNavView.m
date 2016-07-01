@@ -28,5 +28,15 @@
     
     
 }
-
++ (GoodsDetailNavView *)shareSearchView{
+    
+    GoodsDetailNavView *view = [[[NSBundle mainBundle] loadNibNamed:@"GoodsSearchView" owner:self options:nil] objectAtIndex:0];
+    
+    view.mSearchView.layer.masksToBounds = YES;
+    view.mSearchView.layer.cornerRadius = 3;
+    
+    return view;
+    
+    
+}
 @end

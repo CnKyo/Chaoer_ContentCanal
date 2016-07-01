@@ -38,10 +38,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDG-6i-uAk">
-                    <rect key="frame" x="264" y="21" width="48" height="48"/>
+                    <rect key="frame" x="264" y="19" width="48" height="52"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="4KW-mg-LKv"/>
-                        <constraint firstAttribute="height" constant="48" id="NR7-yp-nYR"/>
+                        <constraint firstAttribute="height" constant="52" id="NR7-yp-nYR"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" backgroundImage="my_ uncollect">
