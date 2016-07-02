@@ -10,6 +10,8 @@
 #import "comfirmOrderView.h"
 
 #import "goPayViewController.h"
+
+#import "noteOrmessageViewController.h"
 @interface comFirmOrderViewController ()
 
 @end
@@ -52,6 +54,9 @@
 - (void)initView{
     
     mMainView = [comfirmOrderView shareView];
+    
+    [mMainView.mSelecteLabel addTarget:self action:@selector(mLabelAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     [mScrollerView addSubview:mMainView];
     [mMainView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.top.equalTo(mScrollerView).offset(@0);
@@ -72,6 +77,11 @@
     
 }
 
+- (void)mLabelAction:(UIButton *)sender{
+    
+    noteOrmessageViewController *nnn = [[noteOrmessageViewController alloc] initWithNibName:@"noteOrmessageViewController" bundle:nil];
+    [self pushViewController:nnn];
+}
 - (void)mGoPayAction:(UIButton *)sender{
     goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
     [self pushViewController:goPay];

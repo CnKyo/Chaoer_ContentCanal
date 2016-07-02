@@ -15,6 +15,8 @@
 #import "mCommunityMyViewController.h"
 
 #import "mMarketDetailViewController.h"
+
+#import "mNavAddressViewController.h"
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
@@ -94,6 +96,15 @@
 - (void)addressAction:(UIButton *)sender{
     
     MLLog(@"选择地址");
+    
+    mNavAddressViewController *address = [[mNavAddressViewController alloc] initWithNibName:@"mNavAddressViewController" bundle:nil];
+    
+    address.block = ^(NSString *Lat,NSString *Lng,NSString *mId){
+        MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
+    };
+    
+    [self pushViewController:address];
+    
 }
 - (void)myAction:(UIButton *)sender{
     
@@ -123,18 +134,15 @@
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
 
         }
-        
-        MLLog(@"location:%@", location);
-        mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-        mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-
         if (regeocode)
         {
 //            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
             
             MLLog(@"reGeocode:%@", regeocode);
             [mNavView.mAddressBtn setTitle:[NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number] forState:0];
-
+            MLLog(@"location:%@", location);
+            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
         }
     }];
 

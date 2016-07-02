@@ -91,7 +91,7 @@
                 <outlet property="mBackBtn" destination="R4B-q1-M5E" id="Usc-k7-pSw"/>
                 <outlet property="mMyBtn" destination="Dgu-UG-NgO" id="bGy-Ve-2v0"/>
             </connections>
-            <point key="canvasLocation" x="213" y="293"/>
+            <point key="canvasLocation" x="195" y="342"/>
         </view>
     </objects>
     <resources>

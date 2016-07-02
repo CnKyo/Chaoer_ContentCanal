@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mMessageOrNoteView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-T7-F7q">
+                    <rect key="frame" x="0.0" y="10" width="320" height="120"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21x-75-jxw">
+                            <rect key="frame" x="20" y="10" width="282" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor in" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2W9-Lk-QAl" customClass="IQTextView">
+                            <rect key="frame" x="20" y="36" width="282" height="73"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="73" id="Okp-mn-XEG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2W9-Lk-QAl" firstAttribute="leading" secondItem="6VP-T7-F7q" secondAttribute="leading" constant="20" id="AGJ-Db-EEa"/>
+                        <constraint firstAttribute="trailing" secondItem="21x-75-jxw" secondAttribute="trailing" constant="18" id="DFr-a6-e94"/>
+                        <constraint firstAttribute="height" constant="120" id="EaN-ss-n1m"/>
+                        <constraint firstItem="2W9-Lk-QAl" firstAttribute="top" secondItem="6VP-T7-F7q" secondAttribute="top" constant="39" id="Kg8-oH-smt"/>
+                        <constraint firstItem="2W9-Lk-QAl" firstAttribute="top" secondItem="21x-75-jxw" secondAttribute="bottom" constant="8" id="Mwd-IO-su8"/>
+                        <constraint firstAttribute="trailing" secondItem="2W9-Lk-QAl" secondAttribute="trailing" constant="18" id="aMA-dV-cOa"/>
+                        <constraint firstItem="21x-75-jxw" firstAttribute="top" secondItem="6VP-T7-F7q" secondAttribute="top" constant="10" id="nnL-bw-WPf"/>
+                        <constraint firstItem="21x-75-jxw" firstAttribute="leading" secondItem="6VP-T7-F7q" secondAttribute="leading" constant="20" id="vrm-00-OZG"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Kg8-oH-smt"/>
+                        </mask>
+                    </variation>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7d-RI-mwV">
+                    <rect key="frame" x="15" y="145" width="290" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="UXA-dK-JbX"/>
+                    </constraints>
+                    <state key="normal" title="提交">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="B7d-RI-mwV" secondAttribute="trailing" constant="15" id="ECe-D2-1U3"/>
+                <constraint firstItem="B7d-RI-mwV" firstAttribute="top" secondItem="6VP-T7-F7q" secondAttribute="bottom" constant="15" id="IoA-4V-0Vg"/>
+                <constraint firstItem="B7d-RI-mwV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="i03-SL-hvo"/>
+                <constraint firstItem="6VP-T7-F7q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="k3Y-YG-Rn7"/>
+                <constraint firstAttribute="trailing" secondItem="6VP-T7-F7q" secondAttribute="trailing" id="oYp-Te-Lzo"/>
+                <constraint firstItem="6VP-T7-F7q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="tQN-PJ-Njo"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mBgkView" destination="6VP-T7-F7q" id="mkq-Uu-Kfo"/>
+                <outlet property="mTextView" destination="2W9-Lk-QAl" id="c2D-ig-qmM"/>
+            </connections>
+            <point key="canvasLocation" x="205" y="397"/>
+        </view>
+    </objects>
+</document>

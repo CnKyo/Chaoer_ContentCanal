@@ -310,13 +310,24 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tg7-SA-UWF">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="选择留言">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="9tG-4u-sif" firstAttribute="leading" secondItem="x6X-8y-18E" secondAttribute="leading" constant="8" id="CnV-VP-Gsl"/>
+                        <constraint firstAttribute="trailing" secondItem="tg7-SA-UWF" secondAttribute="trailing" id="GWp-s8-aZd"/>
                         <constraint firstItem="9tG-4u-sif" firstAttribute="top" secondItem="x6X-8y-18E" secondAttribute="top" constant="10" id="S5L-kK-ANC"/>
                         <constraint firstAttribute="trailing" secondItem="9tG-4u-sif" secondAttribute="trailing" constant="8" id="XjS-V7-WMA"/>
+                        <constraint firstItem="tg7-SA-UWF" firstAttribute="top" secondItem="x6X-8y-18E" secondAttribute="top" id="cL0-kY-hCa"/>
                         <constraint firstAttribute="height" constant="50" id="mEi-pe-7Qj"/>
+                        <constraint firstItem="tg7-SA-UWF" firstAttribute="leading" secondItem="x6X-8y-18E" secondAttribute="leading" id="mV7-o6-E4U"/>
+                        <constraint firstAttribute="bottom" secondItem="tg7-SA-UWF" secondAttribute="bottom" id="o4f-en-WKC"/>
                         <constraint firstAttribute="bottom" secondItem="9tG-4u-sif" secondAttribute="bottom" constant="10" id="oAN-TD-kvR"/>
                     </constraints>
                 </view>
@@ -422,6 +433,7 @@
                 <outlet property="mReciptBtn" destination="AVh-jq-sD1" id="xaq-DT-xIP"/>
                 <outlet property="mScore" destination="WPc-H2-C6T" id="nC5-eO-kCU"/>
                 <outlet property="mScroreBtn" destination="awR-bz-KwV" id="A41-9k-s2w"/>
+                <outlet property="mSelecteLabel" destination="tg7-SA-UWF" id="f2s-Ef-PAs"/>
                 <outlet property="mTotleMoney" destination="EPN-JK-CiL" id="kQa-Nx-Qb0"/>
                 <outlet property="mTotleNum" destination="Kc8-KA-YgF" id="43A-61-dbL"/>
                 <outlet property="mTransPrice" destination="H4q-gB-POI" id="S3U-cm-8dj"/>

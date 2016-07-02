@@ -74,6 +74,12 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mTransPrice;
 /**
+ *  选择标签 
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mSelecteLabel;
+
+
+/**
  *  初始化方法
  *
  *  @return 返回view

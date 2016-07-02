@@ -214,6 +214,15 @@
 		04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D4FF1CC8B9180090EC1E /* mCookDetailView.m */; };
 		04D9D5021CC8BAB50090EC1E /* mCookDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */; };
 		04D9D5051CC8BBC90090EC1E /* mCookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9D5041CC8BBC90090EC1E /* mCookDetail.m */; };
+		04D9F4F31D274B2600518F6F /* mNavAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F4F11D274B2600518F6F /* mNavAddressViewController.m */; };
+		04D9F4F41D274B2600518F6F /* mNavAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9F4F21D274B2600518F6F /* mNavAddressViewController.xib */; };
+		04D9F4F81D274C1000518F6F /* mNavAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F4F61D274C1000518F6F /* mNavAddressCell.m */; };
+		04D9F4F91D274C1000518F6F /* mNavAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9F4F71D274C1000518F6F /* mNavAddressCell.xib */; };
+		04D9F4FE1D27593400518F6F /* noteOrmessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F4FC1D27593400518F6F /* noteOrmessageViewController.m */; };
+		04D9F4FF1D27593400518F6F /* noteOrmessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9F4FD1D27593400518F6F /* noteOrmessageViewController.xib */; };
+		04D9F5031D275B4F00518F6F /* WKLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F5021D275B4F00518F6F /* WKLabelView.m */; };
+		04D9F5061D275C2900518F6F /* mMessageOrNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F5051D275C2900518F6F /* mMessageOrNoteView.m */; };
+		04D9F5081D275C3000518F6F /* mMessageOrNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9F5071D275C3000518F6F /* mMessageOrNoteView.xib */; };
 		04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */; };
 		04DEBD281D1A1FFA0097EBC7 /* mChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */; };
 		04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */; };
@@ -1205,6 +1214,20 @@
 		04D9D5011CC8BAB50090EC1E /* mCookDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCookDetailView.xib; sourceTree = "<group>"; };
 		04D9D5031CC8BBC90090EC1E /* mCookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCookDetail.h; sourceTree = "<group>"; };
 		04D9D5041CC8BBC90090EC1E /* mCookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCookDetail.m; sourceTree = "<group>"; };
+		04D9F4F01D274B2600518F6F /* mNavAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mNavAddressViewController.h; sourceTree = "<group>"; };
+		04D9F4F11D274B2600518F6F /* mNavAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mNavAddressViewController.m; sourceTree = "<group>"; };
+		04D9F4F21D274B2600518F6F /* mNavAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mNavAddressViewController.xib; sourceTree = "<group>"; };
+		04D9F4F51D274C1000518F6F /* mNavAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mNavAddressCell.h; sourceTree = "<group>"; };
+		04D9F4F61D274C1000518F6F /* mNavAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mNavAddressCell.m; sourceTree = "<group>"; };
+		04D9F4F71D274C1000518F6F /* mNavAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mNavAddressCell.xib; sourceTree = "<group>"; };
+		04D9F4FB1D27593400518F6F /* noteOrmessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noteOrmessageViewController.h; sourceTree = "<group>"; };
+		04D9F4FC1D27593400518F6F /* noteOrmessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noteOrmessageViewController.m; sourceTree = "<group>"; };
+		04D9F4FD1D27593400518F6F /* noteOrmessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noteOrmessageViewController.xib; sourceTree = "<group>"; };
+		04D9F5011D275B4F00518F6F /* WKLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKLabelView.h; sourceTree = "<group>"; };
+		04D9F5021D275B4F00518F6F /* WKLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLabelView.m; sourceTree = "<group>"; };
+		04D9F5041D275C2900518F6F /* mMessageOrNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMessageOrNoteView.h; sourceTree = "<group>"; };
+		04D9F5051D275C2900518F6F /* mMessageOrNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMessageOrNoteView.m; sourceTree = "<group>"; };
+		04D9F5071D275C3000518F6F /* mMessageOrNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMessageOrNoteView.xib; sourceTree = "<group>"; };
 		04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSmallSubView.xib; sourceTree = "<group>"; };
 		04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mChatCell.xib; sourceTree = "<group>"; };
 		04E02E471CE6B46E00220D54 /* pptMyRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateViewController.h; sourceTree = "<group>"; };
@@ -2746,6 +2769,41 @@
 			name = KEmptyView;
 			sourceTree = "<group>";
 		};
+		04D9F4EF1D274B0D00518F6F /* 选择地址 */ = {
+			isa = PBXGroup;
+			children = (
+				04D9F4F01D274B2600518F6F /* mNavAddressViewController.h */,
+				04D9F4F11D274B2600518F6F /* mNavAddressViewController.m */,
+				04D9F4F21D274B2600518F6F /* mNavAddressViewController.xib */,
+				04D9F4F51D274C1000518F6F /* mNavAddressCell.h */,
+				04D9F4F61D274C1000518F6F /* mNavAddressCell.m */,
+				04D9F4F71D274C1000518F6F /* mNavAddressCell.xib */,
+			);
+			name = "选择地址";
+			sourceTree = "<group>";
+		};
+		04D9F4FA1D2757B600518F6F /* 备注or留言 */ = {
+			isa = PBXGroup;
+			children = (
+				04D9F4FB1D27593400518F6F /* noteOrmessageViewController.h */,
+				04D9F4FC1D27593400518F6F /* noteOrmessageViewController.m */,
+				04D9F4FD1D27593400518F6F /* noteOrmessageViewController.xib */,
+				04D9F5041D275C2900518F6F /* mMessageOrNoteView.h */,
+				04D9F5051D275C2900518F6F /* mMessageOrNoteView.m */,
+				04D9F5071D275C3000518F6F /* mMessageOrNoteView.xib */,
+			);
+			name = "备注or留言";
+			sourceTree = "<group>";
+		};
+		04D9F5001D275B2900518F6F /* WKLabel */ = {
+			isa = PBXGroup;
+			children = (
+				04D9F5011D275B4F00518F6F /* WKLabelView.h */,
+				04D9F5021D275B4F00518F6F /* WKLabelView.m */,
+			);
+			name = WKLabel;
+			sourceTree = "<group>";
+		};
 		04E02E461CE6B45F00220D54 /* 我的评价 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4067,6 +4125,8 @@
 				04F89C031D1CE08B006A3976 /* communityCell1.xib */,
 				04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */,
 				31EEB31C1C93B6E700B61A86 /* communityCell3.xib */,
+				04D9F4FA1D2757B600518F6F /* 备注or留言 */,
+				04D9F4EF1D274B0D00518F6F /* 选择地址 */,
 				04FA3E901D22840100EA9E34 /* 订单详情 */,
 				04FA3E7E1D22645200EA9E34 /* 确定订单 */,
 				04FA3E681D22073700EA9E34 /* 购物车 */,
@@ -4627,6 +4687,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04D9F5001D275B2900518F6F /* WKLabel */,
 				040FB54D1D18DB8500D453E3 /* RSA */,
 				04B3BAAC1D13E965000C7B2E /* include */,
 				04FE0DD31CFC01C3003CAF88 /* ImageEffects */,
@@ -5085,6 +5146,7 @@
 				31B990391C96AD75002E34A5 /* mServiceAddressView.xib in Resources */,
 				04F5FFFB1D23A85C00EFBB3C /* mGoodsDetailViewController.xib in Resources */,
 				749BE9AC1B32758100BABCA6 /* SVProgressHUD.bundle in Resources */,
+				04D9F4F91D274C1000518F6F /* mNavAddressCell.xib in Resources */,
 				04E5A8181CE5C39700A2D111 /* pptMyAddressCell.xib in Resources */,
 				3182A1771CA681300084E890 /* verifyBankViewController.xib in Resources */,
 				04FA3E7D1D222A8800EA9E34 /* shopCarcomfirmView.xib in Resources */,
@@ -5094,6 +5156,7 @@
 				04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */,
 				04B463021D24CCDC00001ECB /* goodsSearchViewController.xib in Resources */,
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
+				04D9F5081D275C3000518F6F /* mMessageOrNoteView.xib in Resources */,
 				04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
 				043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */,
@@ -5110,6 +5173,7 @@
 				04102E1A1CE42CA7006F82E2 /* bolterViewController.xib in Resources */,
 				04FA3E881D22648D00EA9E34 /* comfirmOrderView.xib in Resources */,
 				B2D48CA21BEC53FF00482EB8 /* LICENSE in Resources */,
+				04D9F4FF1D27593400518F6F /* noteOrmessageViewController.xib in Resources */,
 				040B800F1CC4FD11006A9489 /* emptyView.xib in Resources */,
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				04D49C741CE7189600BAD649 /* pptDetailCell4.xib in Resources */,
@@ -5368,6 +5432,7 @@
 				7470E1521B9C07B800ECEC69 /* leavVC.xib in Resources */,
 				3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */,
 				04648C6E1CB5035A006823C9 /* senderDetailViewController.xib in Resources */,
+				04D9F4F41D274B2600518F6F /* mNavAddressViewController.xib in Resources */,
 				318D56531C9BE2980045B5FB /* aboutusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5476,6 +5541,7 @@
 				040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */,
 				04648C711CB50389006823C9 /* senderSubView.m in Sources */,
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
+				04D9F4F31D274B2600518F6F /* mNavAddressViewController.m in Sources */,
 				04678F531CB7916A0074AA80 /* keyChain.m in Sources */,
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
 				04F500721D23D92300EFBB3C /* UIScrollView+MJRefresh.m in Sources */,
@@ -5493,9 +5559,11 @@
 				315442901C9A93810047E52A /* HTTPrequest.m in Sources */,
 				04E5A7F11CE5826000A2D111 /* pptMyHeaderView.m in Sources */,
 				046B12E21CE184BC00A8FB76 /* MHDatePicker.m in Sources */,
+				04D9F4FE1D27593400518F6F /* noteOrmessageViewController.m in Sources */,
 				040FB5571D18DC6600D453E3 /* RSAEncryptor.m in Sources */,
 				04F500651D23D91300EFBB3C /* MJRefreshNormalHeader.m in Sources */,
 				04EEAE041D0FAFCA00FA97C6 /* UIRefreshControl+AFNetworking.m in Sources */,
+				04D9F5061D275C2900518F6F /* mMessageOrNoteView.m in Sources */,
 				04F5FFE21D23576400EFBB3C /* communityOrderDetailViewController.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,
@@ -5521,6 +5589,7 @@
 				318D564E1C9BE2220045B5FB /* aboutusViewController.m in Sources */,
 				04B463011D24CCDC00001ECB /* goodsSearchViewController.m in Sources */,
 				74DE20661BCE4D5E003C03E7 /* checkPhoneViewController.m in Sources */,
+				04D9F4F81D274C1000518F6F /* mNavAddressCell.m in Sources */,
 				7445C0931B33A39000F330EA /* UIViewExt.m in Sources */,
 				048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */,
 				04102E261CE453D3006F82E2 /* pptReleaseView.m in Sources */,
@@ -5586,6 +5655,7 @@
 				318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */,
 				04F5FFEF1D236ECF00EFBB3C /* mOrderStatusCell.m in Sources */,
 				749BEA3F1B3277AA00BABCA6 /* SDWebImageCompat.m in Sources */,
+				04D9F5031D275B4F00518F6F /* WKLabelView.m in Sources */,
 				3135F82D1C97EB7300EF9569 /* activityCenterViewController.m in Sources */,
 				749BEA3E1B3277AA00BABCA6 /* SDImageCache.m in Sources */,
 				04E5A80B1CE5B3ED00A2D111 /* pptMyInfoViewController.m in Sources */,
