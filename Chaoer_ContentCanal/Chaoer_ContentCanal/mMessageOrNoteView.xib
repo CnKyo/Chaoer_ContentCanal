@@ -71,6 +71,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="mBgkView" destination="6VP-T7-F7q" id="mkq-Uu-Kfo"/>
+                <outlet property="mSubmitBtn" destination="B7d-RI-mwV" id="2Ia-U4-rVe"/>
                 <outlet property="mTextView" destination="2W9-Lk-QAl" id="c2D-ig-qmM"/>
             </connections>
             <point key="canvasLocation" x="205" y="397"/>
