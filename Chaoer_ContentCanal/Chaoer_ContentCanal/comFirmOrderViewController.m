@@ -12,6 +12,8 @@
 #import "goPayViewController.h"
 
 #import "noteOrmessageViewController.h"
+
+#import "billViewController.h"
 @interface comFirmOrderViewController ()
 
 @end
@@ -56,7 +58,7 @@
     mMainView = [comfirmOrderView shareView];
     
     [mMainView.mSelecteLabel addTarget:self action:@selector(mLabelAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [mMainView.mReciptBtn addTarget:self action:@selector(mRecipAction:) forControlEvents:UIControlEventTouchUpInside];
     [mScrollerView addSubview:mMainView];
     [mMainView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.top.equalTo(mScrollerView).offset(@0);
@@ -77,6 +79,11 @@
     
 }
 
+- (void)mRecipAction:(UIButton *)sender{
+    billViewController *bbb = [[billViewController alloc] initWithNibName:@"billViewController" bundle:nil];
+    [self pushViewController:bbb];
+
+}
 - (void)mLabelAction:(UIButton *)sender{
     
     noteOrmessageViewController *nnn = [[noteOrmessageViewController alloc] initWithNibName:@"noteOrmessageViewController" bundle:nil];

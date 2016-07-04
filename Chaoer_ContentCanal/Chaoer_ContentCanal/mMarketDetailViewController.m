@@ -16,8 +16,11 @@
 #import "mGoodsDetailViewController.h"
 
 #import "goodsSearchViewController.h"
+#import "YT_ShopTypeView.h"
 
-@interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
+#import "mClassMoreViewController.h"
+
+@interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,TypeViewDelegate>
 
 
 @end
@@ -31,8 +34,7 @@
  
     UIView *mSectionView;
     
-    WKSegmentControl    *mSegmentView;
-
+    
     NSMutableArray *mBanerArr;
     /**
      *  购物车按钮
@@ -50,6 +52,9 @@
      *  购物车数量
      */
     int mShopCarNum;
+    
+    YT_ShopTypeView *typeView;
+
 }
 
 - (void)viewDidLoad {
@@ -99,32 +104,13 @@
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 90);
     [self.tableView setTableHeaderView:mHeaderView];
     
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 0, DEVICE_Width-50, 40) andTitleWithBtn:mBanerArr andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:[UIColor clearColor] andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:YES andType:1];
-
+ 
     
-    mSectionView = [UIView new];
-    mSectionView.frame = CGRectMake(0, 0, DEVICE_Width, 40);
-    mSectionView.backgroundColor = [UIColor clearColor];
+    typeView =[[YT_ShopTypeView alloc] initZhongXiaoTypeViewWithPoint:CGPointMake(0, 64) AndArray:@[@"生鲜",@"水果",@"蔬菜",@"饮料",@"肉类",@"食品"]];
+    typeView.delegate=self;
     
-    mSectionView.layer.masksToBounds = YES;
-    mSectionView.layer.borderColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.86 alpha:1.00].CGColor;
-    mSectionView.layer.borderWidth = 0.5;
     
-    [mSectionView addSubview:mSegmentView];
-    
-    UIButton *more = [UIButton new];
-    more.frame = CGRectMake(DEVICE_Width-50, 0, 50, 40);
-    [more setTitleColor:[UIColor colorWithRed:0.35 green:0.35 blue:0.35 alpha:1.00] forState:0];
-    [more setBackgroundColor:[UIColor whiteColor]];
-    more.titleLabel.font = [UIFont systemFontOfSize:15];
-    more.layer.masksToBounds = YES;
-    more.layer.borderColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.86 alpha:1.00].CGColor;
-    more.layer.borderWidth = 0.5;
-    [more setTitle:@"更多" forState:0];
-    [more addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mSectionView addSubview:more];
-
-
+   
     mShopCarView = [UIView new];
     mShopCarView.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-100, 60, 60);
     mShopCarView.backgroundColor = [UIColor clearColor];
@@ -152,6 +138,22 @@
 
 
 }
+#pragma mark----更多按钮
+- (void)clickXiaBtn:(BOOL)isClicked{
+
+    mClassMoreViewController *class = [[mClassMoreViewController alloc] initWithNibName:@"mClassMoreViewController" bundle:nil];
+    [self pushViewController:class];
+    
+    if (isClicked) {
+        NSLog(@"点击了？");
+    }else{
+        NSLog(@"取消？");
+    }
+}
+- (void)clickBtnIndex:(NSInteger)mIndex{
+    NSLog(@"%ld",(long)mIndex);
+}
+
 /**
  *  验证
  */
@@ -194,7 +196,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     
-    return mSectionView;
+    return typeView;
     
 }
 
@@ -251,9 +253,9 @@
 #pragma mark----搜索
 - (void)rightBtnTouched:(id)sender{
 
-    
     goodsSearchViewController *mSearch = [[goodsSearchViewController alloc] initWithNibName:@"goodsSearchViewController" bundle:nil];
     [self pushViewController:mSearch];
     
 }
+
 @end

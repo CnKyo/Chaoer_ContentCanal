@@ -41,6 +41,12 @@
 		040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E51CDB28F200270D4F /* mSahreView.xib */; };
 		040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FE0E81CDB39E400270D4F /* barCodeCell.m */; };
 		040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FE0E91CDB39E400270D4F /* barCodeCell.xib */; };
+		04102C981D2A0ABA003A0C56 /* mClassMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102C961D2A0ABA003A0C56 /* mClassMoreViewController.m */; };
+		04102C991D2A0ABA003A0C56 /* mClassMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102C971D2A0ABA003A0C56 /* mClassMoreViewController.xib */; };
+		04102C9D1D2A35B3003A0C56 /* billViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102C9B1D2A35B3003A0C56 /* billViewController.m */; };
+		04102C9E1D2A35B3003A0C56 /* billViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102C9C1D2A35B3003A0C56 /* billViewController.xib */; };
+		04102CA11D2A3643003A0C56 /* billView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102CA01D2A3643003A0C56 /* billView.m */; };
+		04102CA31D2A364C003A0C56 /* billView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102CA21D2A364C003A0C56 /* billView.xib */; };
 		04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E081CE41A17006F82E2 /* pptChartsViewController.m */; };
 		04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E091CE41A17006F82E2 /* pptChartsViewController.xib */; };
 		04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04102E0D1CE41A3D006F82E2 /* pptChartsTableViewCell.m */; };
@@ -223,6 +229,7 @@
 		04D9F5031D275B4F00518F6F /* WKLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F5021D275B4F00518F6F /* WKLabelView.m */; };
 		04D9F5061D275C2900518F6F /* mMessageOrNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F5051D275C2900518F6F /* mMessageOrNoteView.m */; };
 		04D9F5081D275C3000518F6F /* mMessageOrNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D9F5071D275C3000518F6F /* mMessageOrNoteView.xib */; };
+		04D9F50C1D279E7700518F6F /* YT_ShopTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9F50B1D279E7700518F6F /* YT_ShopTypeView.m */; };
 		04DE46751CCB0C6100FA07D6 /* mSmallSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */; };
 		04DEBD281D1A1FFA0097EBC7 /* mChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */; };
 		04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E02E481CE6B46E00220D54 /* pptMyRateViewController.m */; };
@@ -881,6 +888,15 @@
 		040FE0E71CDB39E400270D4F /* barCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barCodeCell.h; sourceTree = "<group>"; };
 		040FE0E81CDB39E400270D4F /* barCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barCodeCell.m; sourceTree = "<group>"; };
 		040FE0E91CDB39E400270D4F /* barCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barCodeCell.xib; sourceTree = "<group>"; };
+		04102C951D2A0ABA003A0C56 /* mClassMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mClassMoreViewController.h; sourceTree = "<group>"; };
+		04102C961D2A0ABA003A0C56 /* mClassMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mClassMoreViewController.m; sourceTree = "<group>"; };
+		04102C971D2A0ABA003A0C56 /* mClassMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mClassMoreViewController.xib; sourceTree = "<group>"; };
+		04102C9A1D2A35B3003A0C56 /* billViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = billViewController.h; sourceTree = "<group>"; };
+		04102C9B1D2A35B3003A0C56 /* billViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = billViewController.m; sourceTree = "<group>"; };
+		04102C9C1D2A35B3003A0C56 /* billViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = billViewController.xib; sourceTree = "<group>"; };
+		04102C9F1D2A3643003A0C56 /* billView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = billView.h; sourceTree = "<group>"; };
+		04102CA01D2A3643003A0C56 /* billView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = billView.m; sourceTree = "<group>"; };
+		04102CA21D2A364C003A0C56 /* billView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = billView.xib; sourceTree = "<group>"; };
 		04102E071CE41A17006F82E2 /* pptChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptChartsViewController.h; sourceTree = "<group>"; };
 		04102E081CE41A17006F82E2 /* pptChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptChartsViewController.m; sourceTree = "<group>"; };
 		04102E091CE41A17006F82E2 /* pptChartsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptChartsViewController.xib; sourceTree = "<group>"; };
@@ -1228,6 +1244,8 @@
 		04D9F5041D275C2900518F6F /* mMessageOrNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMessageOrNoteView.h; sourceTree = "<group>"; };
 		04D9F5051D275C2900518F6F /* mMessageOrNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMessageOrNoteView.m; sourceTree = "<group>"; };
 		04D9F5071D275C3000518F6F /* mMessageOrNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMessageOrNoteView.xib; sourceTree = "<group>"; };
+		04D9F50A1D279E7700518F6F /* YT_ShopTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YT_ShopTypeView.h; sourceTree = "<group>"; };
+		04D9F50B1D279E7700518F6F /* YT_ShopTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YT_ShopTypeView.m; sourceTree = "<group>"; };
 		04DE46741CCB0C6100FA07D6 /* mSmallSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mSmallSubView.xib; sourceTree = "<group>"; };
 		04DEBD271D1A1FFA0097EBC7 /* mChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mChatCell.xib; sourceTree = "<group>"; };
 		04E02E471CE6B46E00220D54 /* pptMyRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptMyRateViewController.h; sourceTree = "<group>"; };
@@ -2331,6 +2349,9 @@
 				04040DED1D20BEFA008C3C31 /* mMarketHeaderView.h */,
 				04040DEE1D20BEFA008C3C31 /* mMarketHeaderView.m */,
 				04040DF01D20BF01008C3C31 /* mMarketHeaderView.xib */,
+				04102C951D2A0ABA003A0C56 /* mClassMoreViewController.h */,
+				04102C961D2A0ABA003A0C56 /* mClassMoreViewController.m */,
+				04102C971D2A0ABA003A0C56 /* mClassMoreViewController.xib */,
 				04B462FD1D24C02500001ECB /* 搜索 */,
 				04F5FFF61D23A83000EFBB3C /* 商品详情 */,
 			);
@@ -2802,6 +2823,15 @@
 				04D9F5021D275B4F00518F6F /* WKLabelView.m */,
 			);
 			name = WKLabel;
+			sourceTree = "<group>";
+		};
+		04D9F5091D279E5A00518F6F /* YT_ShopTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				04D9F50A1D279E7700518F6F /* YT_ShopTypeView.h */,
+				04D9F50B1D279E7700518F6F /* YT_ShopTypeView.m */,
+			);
+			name = YT_ShopTypeView;
 			sourceTree = "<group>";
 		};
 		04E02E461CE6B45F00220D54 /* 我的评价 */ = {
@@ -3298,6 +3328,12 @@
 				04FA3E8B1D22772200EA9E34 /* goPayViewController.h */,
 				04FA3E8C1D22772200EA9E34 /* goPayViewController.m */,
 				04FA3E8D1D22772200EA9E34 /* goPayViewController.xib */,
+				04102C9A1D2A35B3003A0C56 /* billViewController.h */,
+				04102C9B1D2A35B3003A0C56 /* billViewController.m */,
+				04102C9C1D2A35B3003A0C56 /* billViewController.xib */,
+				04102C9F1D2A3643003A0C56 /* billView.h */,
+				04102CA01D2A3643003A0C56 /* billView.m */,
+				04102CA21D2A364C003A0C56 /* billView.xib */,
 			);
 			name = "确定订单";
 			sourceTree = "<group>";
@@ -4687,6 +4723,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04D9F5091D279E5A00518F6F /* YT_ShopTypeView */,
 				04D9F5001D275B2900518F6F /* WKLabel */,
 				040FB54D1D18DB8500D453E3 /* RSA */,
 				04B3BAAC1D13E965000C7B2E /* include */,
@@ -5340,6 +5377,7 @@
 				74DE206C1BCE527E003C03E7 /* changePhoneViewController.xib in Resources */,
 				313D76BF1C9901CE004D5679 /* mZhongchouSubViewView.xib in Resources */,
 				314586361CAE4249003EB85E /* myViewTableViewCell.xib in Resources */,
+				04102CA31D2A364C003A0C56 /* billView.xib in Resources */,
 				318D56771C9FDD150045B5FB /* fixTableViewCell.xib in Resources */,
 				3123CC441C92CA4600C3B928 /* mFixView.xib in Resources */,
 				04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */,
@@ -5369,6 +5407,7 @@
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
+				04102C9E1D2A35B3003A0C56 /* billViewController.xib in Resources */,
 				04F5FFF51D236EE400EFBB3C /* orderStatusViewController.xib in Resources */,
 				04C75DA71D058C27002D21FB /* AlipaySDK.bundle in Resources */,
 				04AD8AA71CE3319200A3F87F /* pptTableViewCell.xib in Resources */,
@@ -5393,6 +5432,7 @@
 				3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */,
 				7470E14D1B9C07B800ECEC69 /* leaveCell.xib in Resources */,
 				7470E1531B9C07B800ECEC69 /* pickVC.xib in Resources */,
+				04102C991D2A0ABA003A0C56 /* mClassMoreViewController.xib in Resources */,
 				04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */,
 				04F89C251D1D312C006A3976 /* communityOrderTableViewCell.xib in Resources */,
 				04E5A8281CE5E57C00A2D111 /* Address.plist in Resources */,
@@ -5477,6 +5517,7 @@
 				04D85DCE1CF6E15100E1A3A2 /* canelHistoryCell.m in Sources */,
 				04E5A8291CE5E57C00A2D111 /* AddressPickView.m in Sources */,
 				04E5A7E21CE579B000A2D111 /* MCPopMenuCell.m in Sources */,
+				04102C981D2A0ABA003A0C56 /* mClassMoreViewController.m in Sources */,
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
 				044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */,
 				044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */,
@@ -5698,6 +5739,7 @@
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
 				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
 				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
+				04D9F50C1D279E7700518F6F /* YT_ShopTypeView.m in Sources */,
 				046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
@@ -5788,6 +5830,7 @@
 				31BBE2A41C916119006C553D /* mPersonView.m in Sources */,
 				749BE9751B32754000BABCA6 /* NSString+CheckEmpty.m in Sources */,
 				04AD8AA61CE3319200A3F87F /* pptTableViewCell.m in Sources */,
+				04102C9D1D2A35B3003A0C56 /* billViewController.m in Sources */,
 				04FA3E861D22648300EA9E34 /* comfirmOrderView.m in Sources */,
 				04F89C281D1D3145006A3976 /* communityOrderViewController.m in Sources */,
 				04D9D5001CC8B9180090EC1E /* mCookDetailView.m in Sources */,
@@ -5811,6 +5854,7 @@
 				04AD8A8A1CE3051500A3F87F /* applyPPTView.m in Sources */,
 				04E5A7E41CE579B000A2D111 /* MCPopMenuItem.m in Sources */,
 				04FA3E8E1D22772200EA9E34 /* goPayViewController.m in Sources */,
+				04102CA11D2A3643003A0C56 /* billView.m in Sources */,
 				04EEAE051D0FAFCA00FA97C6 /* UIWebView+AFNetworking.m in Sources */,
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */,

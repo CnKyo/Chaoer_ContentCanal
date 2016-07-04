@@ -27,10 +27,10 @@
             NSString *name=array[i];
             
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-            CGRect rect=[name boundingRectWithSize:CGSizeMake(DEVICE_Width, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:button.titleLabel.font} context:nil];
+            CGRect rect=[name boundingRectWithSize:CGSizeMake(DEVICE_Width, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:button.titleLabel.font} context:nil];
             if (i==0)
             {
-                button.frame=CGRectMake(10, 30, rect.size.width+15, 30);
+                button.frame=CGRectMake(10, 10, rect.size.width+15, 30);
             }
             else
             {
@@ -42,7 +42,7 @@
                 else
                 {
                     
-                    button.frame=CGRectMake(10, CGRectGetMaxY(beforeBtn.frame)+20, rect.size.width+15, 30);
+                    button.frame=CGRectMake(10, CGRectGetMaxY(beforeBtn.frame)+10, rect.size.width+15, 30);
                 }
                 
             }
@@ -65,7 +65,7 @@
             
         }
         
-        self.mHight = beforeBtn.frame.origin.y+50;
+        self.mHight = beforeBtn.frame.origin.y+40;
         
     }else{
         array=@[@"曾经最美",@"隐形的翅膀",@"让爱重来",@"爱的天国",@"后悔了吧",@"怎样",@"让我忘了",@"怎么知道你爱我",@"你到底爱",@"你到底爱",@"知道不知",@"赤道和北",@"再见中国",@"爱是怎么回",@"幸福的天堂",@"呐喊",@"遗失的美好",@"划地为牢"];
@@ -75,10 +75,10 @@
             
             UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
             
-            CGRect rect=[name boundingRectWithSize:CGSizeMake(DEVICE_Width, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:button.titleLabel.font} context:nil];
+            CGRect rect=[name boundingRectWithSize:CGSizeMake(DEVICE_Width, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:button.titleLabel.font} context:nil];
             if (i==0)
             {
-                button.frame=CGRectMake(10, 30, rect.size.width+15, 30);
+                button.frame=CGRectMake(10, 10, rect.size.width+15, 30);
             }
             else
             {
@@ -90,7 +90,7 @@
                 else
                 {
                     
-                    button.frame=CGRectMake(10, CGRectGetMaxY(beforeBtn.frame)+20, rect.size.width+15,30);
+                    button.frame=CGRectMake(10, CGRectGetMaxY(beforeBtn.frame)+10, rect.size.width+15,30);
                 }
                 
             }
@@ -110,7 +110,7 @@
             [button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:button];
         }
-        self.mHight = beforeBtn.frame.origin.y+50;
+        self.mHight = beforeBtn.frame.origin.y+40;
     }
     
     

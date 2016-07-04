@@ -50,7 +50,7 @@
     
     
     UILabel *lll = [UILabel new];
-    lll.frame = CGRectMake(10, 20, DEVICE_Width, 30);
+    lll.frame = CGRectMake(10, 10, DEVICE_Width, 25);
     lll.text = @"选择标签";
     lll.textColor = [UIColor lightGrayColor];
     lll.font = [UIFont systemFontOfSize:15];
