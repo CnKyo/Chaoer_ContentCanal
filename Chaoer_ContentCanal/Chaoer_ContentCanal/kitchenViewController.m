@@ -40,7 +40,6 @@
     self.haveHeader = YES;
     self.haveFooter = YES;
     
-    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"kitchenTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

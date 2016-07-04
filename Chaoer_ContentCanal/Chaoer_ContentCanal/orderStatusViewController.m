@@ -43,7 +43,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"mOrderStatusCell" bundle:nil];

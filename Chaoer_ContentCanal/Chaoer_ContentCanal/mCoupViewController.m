@@ -69,7 +69,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"coupTableViewCell" bundle:nil];

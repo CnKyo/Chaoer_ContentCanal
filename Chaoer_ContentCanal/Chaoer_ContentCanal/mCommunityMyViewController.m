@@ -54,7 +54,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"mCommunityMyViewCell" bundle:nil];

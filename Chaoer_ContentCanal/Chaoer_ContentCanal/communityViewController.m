@@ -75,7 +75,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"communityCell1" bundle:nil];

@@ -80,7 +80,7 @@
     [self initAddress];
 
     [self hiddenReleaseView];
-    [self headerBeganRefresh];
+    self.haveHeader = YES;
 
     
 }
@@ -134,7 +134,7 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
+    
 
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

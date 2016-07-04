@@ -159,7 +159,6 @@
     
     if (sType == 2) {
         self.haveHeader = YES;
-        [self headerBeganRefresh];
     }else{
     
     }

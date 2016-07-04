@@ -38,7 +38,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"communityOrderDetailCell" bundle:nil];

@@ -67,7 +67,6 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"pptDetailCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

@@ -51,7 +51,6 @@
     
     UINib *nib = [UINib nibWithNibName:@"leaveCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
-    [self headerBeganRefresh];
     
     self.rightBtnTitle = @"全选";
 

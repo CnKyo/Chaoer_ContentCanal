@@ -85,7 +85,6 @@
 
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"shopCarTableViewCell" bundle:nil];

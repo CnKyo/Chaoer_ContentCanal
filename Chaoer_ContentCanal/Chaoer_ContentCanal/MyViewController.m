@@ -190,7 +190,6 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
 
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     UINib   *nib = [UINib nibWithNibName:@"myViewTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 

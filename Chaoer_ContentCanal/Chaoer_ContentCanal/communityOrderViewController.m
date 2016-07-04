@@ -40,7 +40,6 @@
     
     
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     
     UINib   *nib = [UINib nibWithNibName:@"communityOrderTableViewCell" bundle:nil];

@@ -69,7 +69,6 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveFooter = YES;
     self.haveHeader = YES;
-    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"pptMyRateCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

@@ -36,7 +36,6 @@
     
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
 
     
 }

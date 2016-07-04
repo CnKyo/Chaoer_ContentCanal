@@ -53,7 +53,6 @@
     
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
 }
 
 #pragma mark ----顶部刷新数据

@@ -159,7 +159,6 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
     self.haveFooter = YES;
-    [self headerBeganRefresh];
     
     UINib   *nib = [UINib nibWithNibName:@"pptHistoryTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];

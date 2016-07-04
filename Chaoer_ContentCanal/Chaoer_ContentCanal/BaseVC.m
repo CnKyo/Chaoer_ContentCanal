@@ -14,6 +14,7 @@
 
 #import "mGeneryEmptyView.h"
 #import "MJRefresh.h"
+#import "BaseHeaderRefresh.h"
 @interface BaseVC ()<UIGestureRecognizerDelegate>
 {
     UIView *emptyView;
@@ -170,37 +171,76 @@
     [MTA trackPageViewEnd:self.mPageName];
     
 }
+#pragma mark----开始顶部刷新
+/**
+ *  开始顶部刷新
+ *
+ *  @param have yes or no
+ */
 -(void)setHaveHeader:(BOOL)have
 {
-    __unsafe_unretained UITableView *tableView = self.tableView;
     
-    // 下拉刷新
-    tableView.header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 结束刷新
-            [tableView.header endRefreshing];
-        });
-    }];
+    if (have) {
+        
+        BaseHeaderRefresh *mHeader = [BaseHeaderRefresh headerWithRefreshingTarget:self refreshingAction:@selector(headerBeganRefresh)];
+        
+        // 隐藏时间
+        mHeader.lastUpdatedTimeLabel.hidden = YES;
+        
+        // 隐藏状态
+        mHeader.stateLabel.hidden = YES;
+        
+        // 马上进入刷新状态
+        [mHeader beginRefreshing];
+        
+        // 设置header
+        self.tableView.mj_header = mHeader;
+
+    }
     
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
-    tableView.header.automaticallyChangeAlpha = YES;
 }
+#pragma mark----是否开始底部刷新
+/**
+ *  是否开始底部刷新
+ *
+ *  @param haveFooter yes or no
+ */
 -(void)setHaveFooter:(BOOL)haveFooter
 {
-    __unsafe_unretained UITableView *tableView = self.tableView;
 
-    // 上拉刷新
-    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 结束刷新
-            [tableView.footer endRefreshing];
-        });
-    }];
+    if (haveFooter) {
+        [self setHaveHeader:YES];
+        
+        __unsafe_unretained __typeof(self) weakSelf = self;
+        
+        // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf footetBeganRefresh];
+        }];
+
+    }
+    
+   
 
    
 }
+-(void)headerBeganRefresh
+{
+    
+    
+}
+-(void)footetBeganRefresh
+{
+    
+}
+
+-(void)headerEndRefresh{
+    
+    [self.tableView.mj_header endRefreshing];
+}//header停止刷新
+-(void)footetEndRefresh{
+    [self.tableView.mj_footer endRefreshing];
+}//footer停止刷新
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -260,49 +300,31 @@
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     
 }
--(void)headerBeganRefresh
-{
-    __unsafe_unretained UITableView *tableView = self.tableView;
-    
-    // 下拉刷新
-    tableView.header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 结束刷新
-            [tableView.header endRefreshing];
-        });
-    }];
-    
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
-    tableView.header.automaticallyChangeAlpha = YES;
 
-   
-    
-    //todo
+
+- (void)headerData{
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.tableView.mj_header endRefreshing];
+    });
+
 }
--(void)footetBeganRefresh
-{
-    __unsafe_unretained UITableView *tableView = self.tableView;
-    
-    // 上拉刷新
-    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 结束刷新
-            [tableView.footer endRefreshing];
-        });
-    }];
+- (void)footerData{
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.tableView.mj_footer endRefreshing];
+    });
 
-       //todo
 }
 
--(void)headerEndRefresh{
-    
-    [self.tableView.header endRefreshing];
-}//header停止刷新
--(void)footetEndRefresh{
-    [self.tableView.footer endRefreshing];
-}//footer停止刷新
 -(void)loadTableView:(CGRect)rect delegate:(id<UITableViewDelegate>)delegate dataSource:(id<UITableViewDataSource>)datasource
 {
     self.tableView = [[UITableView alloc]initWithFrame:rect];

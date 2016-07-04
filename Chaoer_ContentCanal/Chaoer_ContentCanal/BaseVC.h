@@ -119,11 +119,31 @@
 -(void)footetBeganRefresh;                              //footer刷新
 -(void)headerEndRefresh;                                //header停止刷新
 -(void)footetEndRefresh;                                //footer停止刷新
+
+/**
+ *  header数据
+ */
+-(void)headerData;
+/**
+ *  footer数据
+ */
+-(void)footerData;
+
 -(void)loadTableView:(CGRect)rect delegate:(id<UITableViewDelegate>)delegate dataSource:(id<UITableViewDataSource>)datasource;
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section;//tableview代理 用来在没数据的情况下隐藏分割线
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;//同上
--(void)setHaveHeader:(BOOL)haveHeader;                  //set方法
--(void)setHaveFooter:(BOOL)haveFooter;                  //set方法
+/**
+ *  是否顶部刷新
+ *
+ *  @param haveHeader yes or no
+ */
+-(void)setHaveHeader:(BOOL)haveHeader;
+/**
+ *  是否底部刷新
+ *
+ *  @param haveFooter yes or no
+ */
+-(void)setHaveFooter:(BOOL)haveFooter;
 -(void)setHiddenBackBtn:(BOOL)hiddenBackBtn;
 -(void)addEmptyView:(NSString *)str;                    //空数据添加view 参数:需要显示得内容
 -(void)addEmptyViewWithImg:(NSString *)img;
