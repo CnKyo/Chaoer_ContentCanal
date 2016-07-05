@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "replash3.png",
+      "filename" : "欢迎页03.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "03引导页750x1334.png",
+      "filename" : "欢迎页03-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "03引导页1242x2208.png",
+      "filename" : "欢迎页03-2.png",
       "scale" : "3x"
     }
   ],

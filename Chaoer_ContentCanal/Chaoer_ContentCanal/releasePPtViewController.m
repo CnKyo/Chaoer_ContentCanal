@@ -713,7 +713,10 @@
  */
 - (void)mReleaseAction:(UIButton *)sender{
 
-
+    if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
+        [self showErrorStatus:@"余额不足，发布失败！"];
+        return;
+    }
     if (mLat == nil || mLat.length == 0 || [mLat isEqualToString:@""]) {
         [self showErrorStatus:@"必须开启定位才能发布订单！"];
         [self headerBeganRefresh];
@@ -801,10 +804,7 @@
         return;
     }
     MLLog(@"发布");
-    if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
-        [self showErrorStatus:@"余额不足，发布失败！"];
-        return;
-    }
+ 
     
     //        mLng = @"106.51594";
     //        mLat = @"29.539027";

@@ -907,11 +907,11 @@
 {
     if( DeviceIsiPhone() )
     {
-        return @[@"splash_one.png",@"splash_two",@"splash_three.png",@"splash_four.png",@"splash_five",@"splash_six",@"splash_seven",@"splash_eight"];
+        return @[@"splash_one.png",@"splash_two",@"splash_three.png",@"splash_four.png"];
     }
     else
     {
-        return @[@"splash_one.png",@"splash_two",@"splash_three.png",@"splash_four.png",@"splash_five",@"splash_six",@"splash_seven",@"splash_eight"];
+        return @[@"splash_one.png",@"splash_two",@"splash_three.png",@"splash_four.png"];
     }
     
 }

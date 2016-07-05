@@ -624,11 +624,7 @@
     [mReleaseView.mBuyBtn btnClick:^{
         MLLog(@"买东西");
         
-        if ([mUserInfo backNowUser].mMoney <= 0) {
-            [self showErrorStatus:@"余额不足，发布失败！"];
-            return ;
-        }
-        
+              
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 1;
         rrr.mSubType = 1;
@@ -637,10 +633,6 @@
     }];
     
     [mReleaseView.mDoBtn btnClick:^{
-        if ([mUserInfo backNowUser].mMoney <= 0) {
-            [self showErrorStatus:@"余额不足，发布失败！"];
-            return ;
-        }
         MLLog(@"办事情");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 2;
@@ -649,10 +641,7 @@
     }];
     
     [mReleaseView.mSendBtn btnClick:^{
-        if ([mUserInfo backNowUser].mMoney <= 0) {
-            [self showErrorStatus:@"余额不足，发布失败！"];
-            return ;
-        }
+        
         MLLog(@"送东西");
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 3;

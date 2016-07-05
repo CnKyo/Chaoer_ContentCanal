@@ -618,11 +618,11 @@
 {
     if( DeviceIsiPhone() )
     {
-        return @[@"replash-1.png",@"replash.png",@"replash3.png",@"replash4.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash3.png"];
     }
     else
     {
-        return @[@"replash-1.png",@"replash.png",@"replash3.png",@"replash4.png"];
+        return @[@"replash-1.png",@"replash.png",@"replash3.png"];
     }
     
 }

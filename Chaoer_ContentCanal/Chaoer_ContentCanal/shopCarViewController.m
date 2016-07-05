@@ -157,6 +157,10 @@
             mSubView.frame = CGRectMake(x+10, y, DEVICE_Width/2-20, 160);
             mSubView.backgroundColor = [UIColor whiteColor];
             
+            mSubView.layer.masksToBounds = YES;
+            mSubView.layer.cornerRadius = 3;
+                    
+            
             [mBottomView addSubview:mSubView];
             
             mFooterSubView = [shopCarHeaderAndFooterView shareFooterSubView];
