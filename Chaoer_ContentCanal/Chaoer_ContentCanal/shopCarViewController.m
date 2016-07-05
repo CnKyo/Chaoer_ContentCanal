@@ -46,12 +46,12 @@
      */
     shopCarHeaderAndFooterView *mComfirView;
     
-
+    UIView *mBottomView;
 
 }
 - (NSMutableArray *)dataArray {
     if (_dataArray == nil) {
-        _dataArray = [NSMutableArray arrayWithArray:@[@"科比·布莱恩特",@"德里克·罗斯",@"勒布朗·詹姆斯",@"凯文·杜兰特",@"德怀恩·韦德",@"克里斯·保罗",@"德怀特·霍华德",@"德克·诺维斯基",@"德隆·威廉姆斯",@"斯蒂夫·纳什",@"保罗·加索尔",@"布兰顿·罗伊",@"奈特·阿奇博尔德",@"鲍勃·库西",@"埃尔文·约翰逊"]];
+        _dataArray = [NSMutableArray arrayWithArray:@[@"科比·布莱恩特",@"德里克·罗斯",@"勒布朗·詹姆斯",@"凯文·杜兰特",@"德怀恩·韦德",@"克里斯·保罗"]];
         
     }
     return _dataArray;
@@ -132,25 +132,44 @@
 - (void)loadTableFooterView{
 
     [mFooterView removeFromSuperview];
-    for (UIView *subView in mFooterView.subviews) {
+    [mBottomView removeFromSuperview];
+    for (UIView *subView in mBottomView.subviews) {
         [subView removeFromSuperview];
     }
 //    if (_mFooterDataArr) {
     
-        mFooterView = [shopCarHeaderAndFooterView shareFooterView];
-        mFooterView.frame = CGRectMake(0, 0, DEVICE_Width, 40);
-    mFooterView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
+    mBottomView = [UIView new];
+    mBottomView.frame= CGRectMake(0, 0, DEVICE_Width, 1000);
     
+
+        mFooterView = [shopCarHeaderAndFooterView shareFooterView];
+        mFooterView.frame = CGRectMake(0, 0, mBottomView.mwidth, 40);
+    mFooterView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
+    [mBottomView addSubview:mFooterView];
         
         int x = 5;
-        int y = 40;
+        int y = 45;
         
         for (int i = 0; i<5; i++) {
             
+            
+            UIView *mSubView = [UIView new];
+            mSubView.frame = CGRectMake(x+10, y, DEVICE_Width/2-20, 160);
+            mSubView.backgroundColor = [UIColor whiteColor];
+            
+            [mBottomView addSubview:mSubView];
+            
             mFooterSubView = [shopCarHeaderAndFooterView shareFooterSubView];
-            mFooterSubView.frame = CGRectMake(x+10, y, DEVICE_Width/2-20, 160);
-            mFooterSubView.mSubName.text = [NSString stringWithFormat:@"这是第%d个",i];
-            [mFooterView addSubview:mFooterSubView];
+            mFooterSubView.frame = CGRectMake(0, 0, mSubView.mwidth, mSubView.mheight);
+            [mSubView addSubview:mFooterSubView];
+                        
+            UIButton *bbb = [UIButton new];
+            bbb.backgroundColor = [UIColor clearColor];
+            bbb.frame = CGRectMake(0, 0, mSubView.mwidth, mSubView.mheight);
+            bbb.tag = i;
+            [bbb addTarget:self action:@selector(bbbAction:) forControlEvents:UIControlEventTouchUpInside];
+            [mSubView addSubview:bbb];
+            
             
             x+=DEVICE_Width/2-10;
             
@@ -162,15 +181,19 @@
             
         }
     
-    CGRect mRRR = mFooterView.frame;
-    mRRR.size.height = y;
-    mFooterView.frame = mRRR;
-    [self.tableView setTableFooterView:mFooterView];
+    CGRect mRRR = mBottomView.frame;
+    mRRR.size.height = y+170;
+    mBottomView.frame = mRRR;
+    [self.tableView setTableFooterView:mBottomView];
 
 //    }
     
 }
+- (void)bbbAction:(UIButton *)sender{
 
+    MLLog(@"点击了哪一个：%ld",(long)sender.tag);
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
