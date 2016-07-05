@@ -364,6 +364,8 @@ bool g_bined = NO;
     [param setObject:NumberWithInt(Price) forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"wx" forKey:@"channel"];
+    [param setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
+
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
@@ -427,6 +429,8 @@ bool g_bined = NO;
     [param setObject:NumberWithInt(Price) forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"alipay" forKey:@"channel"];
+    [param setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
+
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/pay/recharge" parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
@@ -992,6 +996,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:NumberWithFloat(mMoney) forKey:@"money"];
     [para setObject:NumberWithInt(mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
+
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/convenience/appLineOrder" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             block ( info );
@@ -1018,7 +1024,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mTime forKey:@"buyerBankExpire"];
     [para setObject:mCVV forKey:@"buyerBankCvv"];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-    
+
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/pay/appHandleFunc" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
@@ -1038,6 +1044,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:mOrderCode forKey:@"orderCode"];
     [para setObject:mYBOrderCode forKey:@"ybOrderCode"];
     [para setObject:mCode forKey:@"verifyCode"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
+
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/pay/vertifyCodePay" parameters:para call:^(mBaseData *info) {
         if (info.mSucess) {
             
