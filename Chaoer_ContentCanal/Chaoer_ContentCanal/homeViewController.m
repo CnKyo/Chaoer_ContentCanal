@@ -103,8 +103,7 @@
     self.navigationController.navigationBarHidden = YES;
     
     [CurentLocation sharedManager];
-//    [self.tableView headerBeginRefreshing];
-    [self headerBeganRefresh];
+//    [self headerBeganRefresh];
     [self upDateUserInfo];
     [self showMsg];
 }
@@ -534,8 +533,10 @@
     switch (sender.tag) {
         case 0:
         {
-            communityViewController   *ppp = [communityViewController new];
-            [self pushViewController:ppp];
+            [self showErrorStatus:@"商家还在赶来的路上～～"];
+            return;
+//            communityViewController   *ppp = [communityViewController new];
+//            [self pushViewController:ppp];
         }
             break;
         case 1:

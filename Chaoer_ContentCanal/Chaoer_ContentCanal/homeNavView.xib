@@ -23,7 +23,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mCommunity_location" translatesAutoresizingMaskIntoConstraints="NO" id="2eP-VI-rtX">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mCommunity_location" translatesAutoresizingMaskIntoConstraints="NO" id="2eP-VI-rtX">
                             <rect key="frame" x="8" y="18" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="NDg-4I-uif"/>
