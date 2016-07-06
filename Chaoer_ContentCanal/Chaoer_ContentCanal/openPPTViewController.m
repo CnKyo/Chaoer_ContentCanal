@@ -354,16 +354,6 @@
     
     tempImage = croppedImage;//[Util scaleImg:croppedImage maxsize:140];
     
-    if (mNowSelected == 1) {
-        [mView.mHandBtn setBackgroundImage:tempImage forState:0];
-    }else if (mNowSelected == 2){
-        
-        [mView.mFrontBtn setBackgroundImage:tempImage forState:0];
-    }else{
-        [mView.mForwordBtn setBackgroundImage:tempImage forState:0];
-    }
-    
-    
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -387,7 +377,7 @@
     [para setObject:mmm forKey:@"file"];
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
     
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/legwork/uploadApplyLegworkImg",[HTTPrequest currentResourceUrl]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@legwork/uploadApplyLegworkImg",[HTTPrequest currentResourceUrl]];
     TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
     manage.delegate = self;
     [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -418,7 +408,14 @@
             mForwordImgPath = [resb.mData objectForKey:@"pic"];
 
         }
-
+        if (mNowSelected == 1) {
+            [mView.mHandBtn setBackgroundImage:tempImage forState:0];
+        }else if (mNowSelected == 2){
+            
+            [mView.mFrontBtn setBackgroundImage:tempImage forState:0];
+        }else{
+            [mView.mForwordBtn setBackgroundImage:tempImage forState:0];
+        }
         
     }else{
         [SVProgressHUD showErrorWithStatus:resb.mMessage];

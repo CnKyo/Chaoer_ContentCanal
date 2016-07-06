@@ -10,4 +10,17 @@
 
 @interface goPayViewController : BaseVC
 
+/**
+ *  1是社区生活订单 2是报修订单
+ */
+@property (assign,nonatomic) int mType;
+/**
+ *  充值金额
+ */
+@property (assign,nonatomic) float mMoney;
+/**
+ *  订单编号
+ */
+@property (strong,nonatomic) NSString *mOrderCode;
+
 @end

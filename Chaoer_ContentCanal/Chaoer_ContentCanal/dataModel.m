@@ -570,8 +570,175 @@ bool g_bined = NO;
     }
 
 }
+/**
+ *  报修支付
+ *
+ *  @param mPayType 支付类型
+ *  @param mPrice   价格
+ *  @param mCode    编号
+ *  @param block    返回值
+ */
+- (void)payType:(int)mPayType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block{
+    
+    int mType;
+    
+    if (mPayType == 1) {
+        /**
+         *  微信支付
+         */
+        mType = 3;
+        
+        [self Pay:mPrice andType:mType andCode:mCode block:block];
+        
+    }else if (mPayType == 2){
+        /**
+         *  支付宝支付
+         */
+        mType = 4;
+        [self Pay:mPrice andType:mType andCode:mCode block:block];
+
+    }else if (mPayType == 3){
+        /**
+         *  银行卡支付
+         */
+        mType = 1;
+        block( [mBaseData infoWithError:@"不支持的支付方式!"] );
 
 
+    }else{
+        /**
+         *  余额支付
+         */
+        mType = 6;
+        [self Pay:mPrice andType:mType andCode:mCode block:block];
+
+
+    }
+    
+//    if( [mPayType isEqualToString:@"wx"] )
+//    {
+//        [self wxPay:mPrice block:block];
+//    }
+//    else if ([mPayType isEqualToString:@"alipay"]){
+//        
+//        [self aliPay:mPrice block:block];
+//    }
+//    else{
+//        block( [mBaseData infoWithError:@"不支持的支付方式!"] );
+//        
+//    }
+    
+}
+-(void)Pay:(float)Price andType:(int)mType andCode:(NSString *)mCode block:(void(^)(mBaseData* retobj))block{
+    NSMutableDictionary* param =    NSMutableDictionary.new;
+    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",0.01]] forKey:@"price"];
+    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mType]] forKey:@"channel"];
+    [param setObject:@"ios" forKey:@"device"];
+    [param setObject:[Util RSAEncryptor:mCode] forKey:@"code"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/payment/payment_repair" parameters:param call:^(mBaseData *info) {
+        
+        if( info.mSucess )
+        {
+            if (mType == 3) {
+                NSString* typestr = [info.mData objectForKeyMy:@"channel"];
+                if( [typestr isEqualToString:@"wx"] )
+                {
+                    
+                    
+                    [SVProgressHUD dismiss];
+                    SWxPayInfo* wxpayinfo = [[SWxPayInfo alloc]initWithObj:info.mData];
+                    [mUserInfo backNowUser].mPayBlock = ^(mBaseData *retobj) {
+                        
+                        if( retobj.mSucess )
+                        {//如果成功了,就更新下
+                            block(retobj);//再回调获取
+                            
+                        }else
+                            block(retobj);//再回调获取
+                        [mUserInfo backNowUser].mPayBlock = nil;
+                        
+                    };
+                    [self gotoWXPayWithSRV:wxpayinfo];
+                }
+                else
+                {
+                    mBaseData* itretobj = [mBaseData infoWithError:@"支付出现异常,请稍后再试"];
+                    block(itretobj);//再回调获取
+                }
+            }else if (mType == 4){
+                NSString *mPayInfo = [info.mData objectForKey:@"packages"];
+                
+                
+                
+                [SVProgressHUD dismiss];
+                
+                
+                
+                [mUserInfo backNowUser].mPayBlock = ^(mBaseData *retobj) {
+                    
+                    if( retobj.mSucess )
+                    {//如果成功了,就更新下
+                        block(retobj);//再回调获取
+                        
+                    }else
+                        block(retobj);//再回调获取
+                    [mUserInfo backNowUser].mPayBlock = nil;
+                    
+                };
+                
+                
+                [[AlipaySDK defaultService] payOrder:mPayInfo fromScheme:@"zerolife" callback:^(NSDictionary *resultDic) {
+                    
+                    MLLog(@"xxx:%@",resultDic);
+                    
+                    mBaseData* retobj = nil;
+                    
+                    if (resultDic)
+                    {
+                        if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
+                        {
+                            retobj = [[mBaseData alloc]init];
+                            retobj.mSucess = YES;
+                            retobj.mMessage = @"支付成功";
+                            retobj.mState = 200000;
+                        }
+                        else
+                        {
+                            retobj = [mBaseData infoWithError: [resultDic objectForKey:@"memo" ]];
+                        }
+                    }
+                    else
+                    {
+                        retobj = [mBaseData infoWithError: @"支付出现异常"];
+                    }
+                    
+                    if(  [mUserInfo backNowUser].mPayBlock )
+                    {
+                        [mUserInfo backNowUser].mPayBlock( retobj );
+                    }
+                    else
+                    {
+                        MLLog(@"alipay block nil?");
+                    }
+                    
+                }];
+            }else if (mType == 1){
+            
+            }else{
+            
+                block (info);
+            }
+            
+         
+        }
+        else
+            block( info );
+    }];
+    
+    
+}
 + (void)mUserLogin:(NSString *)mLoginName andPassword:(NSString *)mPwd block:(void (^)(mBaseData *resb, mUserInfo *mUser))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:mLoginName forKey:@"loginName"];

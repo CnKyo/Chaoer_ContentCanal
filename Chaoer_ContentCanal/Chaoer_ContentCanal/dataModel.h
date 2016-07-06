@@ -380,6 +380,15 @@
  */
 -(void)payIt:(NSString*)paytype andPrice:(int)mPrice block:(void(^)(mBaseData* resb))block;
 
+/**
+ *  报修支付
+ *
+ *  @param mPayType 支付类型
+ *  @param mPrice   价格
+ *  @param mCode    编号
+ *  @param block    返回值
+ */
+- (void)payType:(int)mPayType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block;
 
 /**
  *  登录

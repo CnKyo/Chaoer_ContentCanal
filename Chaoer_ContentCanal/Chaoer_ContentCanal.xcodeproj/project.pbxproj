@@ -421,6 +421,10 @@
 		04FA3E8A1D226E3800EA9E34 /* acountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA3E891D226E3800EA9E34 /* acountView.xib */; };
 		04FA3E8E1D22772200EA9E34 /* goPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA3E8C1D22772200EA9E34 /* goPayViewController.m */; };
 		04FA3E8F1D22772200EA9E34 /* goPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA3E8D1D22772200EA9E34 /* goPayViewController.xib */; };
+		04FAE7E11D2CA2E200341585 /* mFixOrderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE7DF1D2CA2E200341585 /* mFixOrderDetailTableViewCell.m */; };
+		04FAE7E21D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FAE7E01D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib */; };
+		04FAE7E51D2CAA9E00341585 /* mFixOrderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE7E41D2CAA9E00341585 /* mFixOrderFooter.m */; };
+		04FAE7E71D2CAAA700341585 /* mFixOrderFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FAE7E61D2CAAA700341585 /* mFixOrderFooter.xib */; };
 		04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */; };
 		04FE0DDA1CFC4AEB003CAF88 /* WKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FE0DD91CFC4AEB003CAF88 /* WKPickerView.m */; };
 		16279CC71C3D151600B9A850 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 16279CC61C3D151600B9A850 /* libstdc++.tbd */; };
@@ -1568,6 +1572,12 @@
 		04FA3E8B1D22772200EA9E34 /* goPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goPayViewController.h; sourceTree = "<group>"; };
 		04FA3E8C1D22772200EA9E34 /* goPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goPayViewController.m; sourceTree = "<group>"; };
 		04FA3E8D1D22772200EA9E34 /* goPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = goPayViewController.xib; sourceTree = "<group>"; };
+		04FAE7DE1D2CA2E200341585 /* mFixOrderDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixOrderDetailTableViewCell.h; sourceTree = "<group>"; };
+		04FAE7DF1D2CA2E200341585 /* mFixOrderDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixOrderDetailTableViewCell.m; sourceTree = "<group>"; };
+		04FAE7E01D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
+		04FAE7E31D2CAA9E00341585 /* mFixOrderFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixOrderFooter.h; sourceTree = "<group>"; };
+		04FAE7E41D2CAA9E00341585 /* mFixOrderFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixOrderFooter.m; sourceTree = "<group>"; };
+		04FAE7E61D2CAAA700341585 /* mFixOrderFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixOrderFooter.xib; sourceTree = "<group>"; };
 		04FE0DD41CFC01CF003CAF88 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		04FE0DD51CFC01CF003CAF88 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		04FE0DD81CFC4AEB003CAF88 /* WKPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKPickerView.h; sourceTree = "<group>"; };
@@ -3449,6 +3459,12 @@
 				31E1A71E1CA3890C00D3496F /* makeFixOrderDetailViewController.h */,
 				31E1A71F1CA3890C00D3496F /* makeFixOrderDetailViewController.m */,
 				31E1A7201CA3890C00D3496F /* makeFixOrderDetailViewController.xib */,
+				04FAE7DE1D2CA2E200341585 /* mFixOrderDetailTableViewCell.h */,
+				04FAE7DF1D2CA2E200341585 /* mFixOrderDetailTableViewCell.m */,
+				04FAE7E01D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib */,
+				04FAE7E31D2CAA9E00341585 /* mFixOrderFooter.h */,
+				04FAE7E41D2CAA9E00341585 /* mFixOrderFooter.m */,
+				04FAE7E61D2CAAA700341585 /* mFixOrderFooter.xib */,
 			);
 			name = "选择维修人员";
 			sourceTree = "<group>";
@@ -5243,6 +5259,7 @@
 				04E5A8221CE5CA1D00A2D111 /* pptAddAddressViewController.xib in Resources */,
 				04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */,
 				04E5A7E81CE57C3000A2D111 /* pptHistoryTableViewCell2.xib in Resources */,
+				04FAE7E21D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib in Resources */,
 				04E5A7E01CE579B000A2D111 /* down_arrow@2x.png in Resources */,
 				040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
@@ -5381,6 +5398,7 @@
 				04648C691CB4FD80006823C9 /* mySenderCell.xib in Resources */,
 				04F2DDFD1CBE2C460088C90F /* communityStatusTableViewCell.xib in Resources */,
 				046B12E41CE184BC00A8FB76 /* MHSelectPickerView.xib in Resources */,
+				04FAE7E71D2CAAA700341585 /* mFixOrderFooter.xib in Resources */,
 				312D08C61CAA1ECD0006F0FA /* loading.gif in Resources */,
 				31EEB31E1C93B6E700B61A86 /* communityCell3.xib in Resources */,
 				04102E221CE44241006F82E2 /* releasePPtViewController.xib in Resources */,
@@ -5752,6 +5770,7 @@
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
 				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
 				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
+				04FAE7E51D2CAA9E00341585 /* mFixOrderFooter.m in Sources */,
 				04D9F50C1D279E7700518F6F /* YT_ShopTypeView.m in Sources */,
 				046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
@@ -5882,6 +5901,7 @@
 				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
 				04AD8A901CE3103200A3F87F /* openPPTViewController.m in Sources */,
 				04F9E5D01CED4D8B00FCA8B7 /* MJExtensionConst.m in Sources */,
+				04FAE7E11D2CA2E200341585 /* mFixOrderDetailTableViewCell.m in Sources */,
 				16E9CAD61BAC00BC00C48B8A /* DYLineView.m in Sources */,
 				047125881CCDEC330022BF77 /* mServiceCell.m in Sources */,
 				31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */,

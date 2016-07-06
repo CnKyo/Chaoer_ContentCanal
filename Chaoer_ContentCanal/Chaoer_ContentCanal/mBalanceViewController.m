@@ -177,6 +177,7 @@
             if( resb.mSucess )
             {
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+
                 [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
             }
             else{
