@@ -631,7 +631,7 @@ bool g_bined = NO;
 }
 -(void)Pay:(float)Price andType:(int)mType andCode:(NSString *)mCode block:(void(^)(mBaseData* retobj))block{
     NSMutableDictionary* param =    NSMutableDictionary.new;
-    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",0.01]] forKey:@"price"];
+    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"price"];
     [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
     [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mType]] forKey:@"channel"];
     [param setObject:@"ios" forKey:@"device"];

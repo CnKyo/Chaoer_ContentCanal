@@ -168,8 +168,8 @@
     mView.mServiceName.text = self.mFixOrder.mClassName;
     mView.mServicePrice.text = [NSString stringWithFormat:@"%@¥",self.mFixOrder.mEstimatedPrice];
     mView.mDetail.text = self.mFixOrder.mDescribe;
-    mView.mMoney.hidden = YES;
-    mView.mMoney.text = [NSString stringWithFormat:@"押金：%@元",@"20"];
+//    mView.mMoney.hidden = YES;
+    mView.mMoney.text = [NSString stringWithFormat:@"保证金：%@元",@"20"];
     
     [mView.mAddressBtn addTarget:self action:@selector(mAddressAction:) forControlEvents:UIControlEventTouchUpInside];
     [mView.mServiceTimeBtn addTarget:self action:@selector(mServiceTimeAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -208,17 +208,8 @@
         [self showErrorStatus:@"请上传图片！"];
         return;
     }
-    [self showWithStatus:@"正在操作中..."];
-    [[mUserInfo backNowUser] commitFixOrder:[NSString stringWithFormat:@"%d",self.mID] andSubClass:self.mSubClass andNote:mView.mNoteTx.text andServiceTime:mTime andAddress:mAddressStr andCommunityId:mACommunityId andServicerId:[mBlockServiceId intValue] andImgUrl:mImgUrlString andVideoUrl:mVideoUrlString block:^(mBaseData *resb) {
-        
-        if (resb.mSucess) {
-            [self showSuccessStatus:resb.mMessage];
-            [self dismissViewController_3];
-        }else{
-            [self showErrorStatus:resb.mMessage];
-        }
-        
-    }];
+    [self AlertViewShow:@"为了保证服务质量，确认下单将扣除20元保证金！" alertViewMsg:@"完成服务后保证金将全额退还！" alertViewCancelBtnTiele:@"取消" alertTag:100];
+
     
     
 }
@@ -238,17 +229,36 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == 10) {
+        if( buttonIndex == 1)
+        {
+            needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+            nnn.Type = 2;
+            [self pushViewController:nnn];
+        }
+
+    }else{
+        if( buttonIndex == 1)
+        {
+            [self showWithStatus:@"正在操作中..."];
+            [[mUserInfo backNowUser] commitFixOrder:[NSString stringWithFormat:@"%d",self.mID] andSubClass:self.mSubClass andNote:mView.mNoteTx.text andServiceTime:mTime andAddress:mAddressStr andCommunityId:mACommunityId andServicerId:[mBlockServiceId intValue] andImgUrl:mImgUrlString andVideoUrl:mVideoUrlString block:^(mBaseData *resb) {
+                
+                if (resb.mSucess) {
+                    [self showSuccessStatus:resb.mMessage];
+                    [self dismissViewController_3];
+                }else{
+                    [self showErrorStatus:resb.mMessage];
+                }
+                
+            }];
+
+        }
     
-    if( buttonIndex == 1)
-    {
-        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
-        nnn.Type = 2;
-        [self pushViewController:nnn];
     }
 }
 - (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
     
-    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"离开", nil];
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
     al.delegate = self;
     al.tag = tag;
     [al show];

@@ -22,7 +22,11 @@
 
 }
 @synthesize mType;
+- (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:YES];
+    [self headerBeganRefresh];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.Title = self.mPageName = @"我的订单";
