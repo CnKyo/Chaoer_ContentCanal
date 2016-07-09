@@ -533,10 +533,10 @@
     switch (sender.tag) {
         case 0:
         {
-            [self showErrorStatus:@"商家还在赶来的路上～～"];
-            return;
-//            communityViewController   *ppp = [communityViewController new];
-//            [self pushViewController:ppp];
+//            [self showErrorStatus:@"商家还在赶来的路上～～"];
+//            return;
+            communityViewController   *ppp = [communityViewController new];
+            [self pushViewController:ppp];
         }
             break;
         case 1:
