@@ -12,6 +12,7 @@
 
 #import "orderStatusViewController.h"
 
+#import "mMarketRateViewController.h"
 @interface communityOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -129,7 +130,11 @@
 }
 
 - (void)mCaheckAction:(UIButton *)sender{
-    orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
-    [self pushViewController:orderS];
+//    orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
+//    [self pushViewController:orderS];
+    
+    mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
+    [self pushViewController:mmm];
+    
 }
 @end
