@@ -60,6 +60,7 @@
             </variation>
             <connections>
                 <outlet property="mBackBtn" destination="0wv-C8-Vrd" id="BIQ-ro-vsr"/>
+                <outlet property="mCustomTitle" destination="IAz-UM-Irf" id="dwe-Kd-GZk"/>
             </connections>
             <point key="canvasLocation" x="254" y="294"/>
         </view>

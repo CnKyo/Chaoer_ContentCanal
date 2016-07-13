@@ -24,26 +24,25 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 }
 
 @implementation UIView (ViewGeometry)
+- (void)setMx:(CGFloat)mx{
 
-- (void)setX:(CGFloat)x
-{
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin.x = mx;
     self.frame = frame;
 }
-- (CGFloat)x
+- (CGFloat)mx
 {
     return self.frame.origin.x;
 }
 
-- (void)setY:(CGFloat)y
+- (void)setMy:(CGFloat)my
 {
     CGRect frame = self.frame;
-    frame.origin.y = y;
+    frame.origin.y = my;
     self.frame = frame;
 }
 
-- (CGFloat)y
+- (CGFloat)my
 {
     return self.frame.origin.y;
 }

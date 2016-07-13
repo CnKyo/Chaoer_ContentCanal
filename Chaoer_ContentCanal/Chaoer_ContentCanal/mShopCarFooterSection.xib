@@ -8,25 +8,40 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mShopCarHeaderSection">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总金额：¥200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGU-i8-4uj">
-                    <rect key="frame" x="8" y="9" width="304" height="21"/>
+                    <rect key="frame" x="8" y="12" width="304" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbk-BL-uqy">
+                    <rect key="frame" x="0.0" y="40" width="320" height="10"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30126616379310345" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="rFs-oP-lgi"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="eGU-i8-4uj" secondAttribute="trailing" constant="8" id="8BX-93-0oa"/>
                 <constraint firstAttribute="bottom" secondItem="eGU-i8-4uj" secondAttribute="bottom" constant="10" id="Cdc-24-B9V"/>
-                <constraint firstItem="eGU-i8-4uj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="DVW-Ye-cph"/>
+                <constraint firstItem="eGU-i8-4uj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="DVW-Ye-cph"/>
                 <constraint firstItem="eGU-i8-4uj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="F6X-m4-Rak"/>
+                <constraint firstItem="Dbk-BL-uqy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LM0-dR-voH"/>
+                <constraint firstItem="Dbk-BL-uqy" firstAttribute="top" secondItem="eGU-i8-4uj" secondAttribute="bottom" constant="10" id="rSR-Db-aZa"/>
+                <constraint firstAttribute="trailing" secondItem="Dbk-BL-uqy" secondAttribute="trailing" id="u86-QT-svh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Cdc-24-B9V"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="mTotalMoney" destination="eGU-i8-4uj" id="QER-b0-qhD"/>
             </connections>

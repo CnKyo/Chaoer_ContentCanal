@@ -44,5 +44,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *mBackBtn;
 
 + (homeNavView *)shareChatNav;
+@property (weak, nonatomic) IBOutlet UILabel *mCustomTitle;
 
 @end
