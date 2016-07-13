@@ -161,6 +161,9 @@
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
 		048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8371CB642CD00383DF8 /* evolutionViewController.m */; };
 		048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8381CB642CD00383DF8 /* evolutionViewController.xib */; };
+		04A150FF1D36173800AFCE98 /* mShopCarHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */; };
+		04A151011D36174300AFCE98 /* mShopCarHeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */; };
+		04A151031D36260100AFCE98 /* mShopCarFooterSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */; };
 		04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D671CD04DAE00870617 /* otherLoginViewController.m */; };
 		04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */; };
 		04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D6C1CD04DD700870617 /* mBundleView.m */; };
@@ -1091,6 +1094,10 @@
 		048FD8361CB642CD00383DF8 /* evolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolutionViewController.h; sourceTree = "<group>"; };
 		048FD8371CB642CD00383DF8 /* evolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evolutionViewController.m; sourceTree = "<group>"; };
 		048FD8381CB642CD00383DF8 /* evolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evolutionViewController.xib; sourceTree = "<group>"; };
+		04A150FD1D36173800AFCE98 /* mShopCarHeaderSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mShopCarHeaderSection.h; sourceTree = "<group>"; };
+		04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mShopCarHeaderSection.m; sourceTree = "<group>"; };
+		04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mShopCarHeaderSection.xib; sourceTree = "<group>"; };
+		04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mShopCarFooterSection.xib; sourceTree = "<group>"; };
 		04AB1D661CD04DAE00870617 /* otherLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otherLoginViewController.h; sourceTree = "<group>"; };
 		04AB1D671CD04DAE00870617 /* otherLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = otherLoginViewController.m; sourceTree = "<group>"; };
 		04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = otherLoginViewController.xib; sourceTree = "<group>"; };
@@ -3366,6 +3373,10 @@
 				04FA3E771D22164A00EA9E34 /* shopCarTableViewCell.h */,
 				04FA3E781D22164A00EA9E34 /* shopCarTableViewCell.m */,
 				04FA3E791D22164A00EA9E34 /* shopCarTableViewCell.xib */,
+				04A150FD1D36173800AFCE98 /* mShopCarHeaderSection.h */,
+				04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */,
+				04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */,
+				04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */,
 			);
 			name = "购物车";
 			sourceTree = "<group>";
@@ -5476,6 +5487,7 @@
 				318D56691C9C012B0045B5FB /* MHSheetHead.xib in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
+				04A151011D36174300AFCE98 /* mShopCarHeaderSection.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
 				04102C9E1D2A35B3003A0C56 /* billViewController.xib in Resources */,
 				04F5FFF51D236EE400EFBB3C /* orderStatusViewController.xib in Resources */,
@@ -5535,6 +5547,7 @@
 				04AD8A8C1CE3052300A3F87F /* applyPPTView.xib in Resources */,
 				310EB5FA1CA26178005C61F4 /* serviceDetailView.xib in Resources */,
 				04E5A7F81CE5892300A2D111 /* pptMyCell.xib in Resources */,
+				04A151031D36260100AFCE98 /* mShopCarFooterSection.xib in Resources */,
 				04F5FFF01D236ECF00EFBB3C /* mOrderStatusCell.xib in Resources */,
 				74DE20671BCE4D5E003C03E7 /* checkPhoneViewController.xib in Resources */,
 				04E5A80C1CE5B3ED00A2D111 /* pptMyInfoViewController.xib in Resources */,
@@ -5580,6 +5593,7 @@
 				04EEADFF1D0FAFCA00FA97C6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				3123CC181C92961F00C3B928 /* canPayView.m in Sources */,
 				04040DEB1D20BEBD008C3C31 /* mMarketDetailViewController.m in Sources */,
+				04A150FF1D36173800AFCE98 /* mShopCarHeaderSection.m in Sources */,
 				318D56661C9C012B0045B5FB /* MHSheetFoot.m in Sources */,
 				74DE206B1BCE527E003C03E7 /* changePhoneViewController.m in Sources */,
 				746BFC221BAFDA0C006AAEA6 /* changeNameViewController.m in Sources */,

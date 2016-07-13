@@ -231,9 +231,9 @@
     if (indexPath.section == 0) {
         return 120;
     }else if (indexPath.section == 1){
-        return 220;
+        return 210;
     }else{
-        return 180;
+        return 135;
     }
     
     
@@ -271,6 +271,7 @@
         
         communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         
+        cell.mActivity2.hidden = cell.mActivityContent2.hidden = YES;
         
         return cell;
     }

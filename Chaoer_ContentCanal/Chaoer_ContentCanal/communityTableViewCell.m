@@ -31,8 +31,8 @@
     self.mLogo.layer.masksToBounds = YES;
     self.mLogo.layer.cornerRadius = 3;
     
-    self.mActivity.layer.masksToBounds = YES;
-    self.mActivity.layer.cornerRadius = 2;
+    self.mActivity.layer.masksToBounds = self.mActivity2.layer.masksToBounds = YES;
+    self.mActivity.layer.cornerRadius = self.mActivityContent2.layer.cornerRadius =  2;
     
     
 }

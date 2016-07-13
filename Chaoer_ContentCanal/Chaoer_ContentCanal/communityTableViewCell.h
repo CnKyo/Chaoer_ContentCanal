@@ -30,6 +30,14 @@
 @end
 
 @interface communityTableViewCell : UITableViewCell
+/**
+ *  baner数据源
+ */
+@property (strong,nonatomic) NSArray *mDataSourceArr;
+/**
+ *  滚动数据源
+ */
+@property (strong,nonatomic) NSArray *mScrollerSourceArr;
 #pragma mark----cell1
 /**
  *  banerview
@@ -62,24 +70,28 @@
  */
 @property (strong, nonatomic) IBOutlet UILabel *mActivity;
 /**
- *  内容
+ *  活动内容
  */
 @property (strong, nonatomic) IBOutlet UILabel *mContent;
 /**
- *  数量
+ *  商品数量粉丝数量
  */
 @property (weak, nonatomic) IBOutlet UILabel *mNum;
 /**
- *  主视图
+ *  营业时间
  */
-@property (weak, nonatomic) IBOutlet UIView *mMainView;
+@property (weak, nonatomic) IBOutlet UILabel *mWorkTime;
 /**
- *  baner数据源
+ *  活动2
  */
-@property (strong,nonatomic) NSArray *mDataSourceArr;
+@property (weak, nonatomic) IBOutlet UILabel *mActivity2;
 /**
- *  滚动数据源
+ *  活动2内容
  */
-@property (strong,nonatomic) NSArray *mScrollerSourceArr;
+@property (weak, nonatomic) IBOutlet UILabel *mActivityContent2;
+/**
+ *  配送价
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mSenderPrice;
 
 @end
