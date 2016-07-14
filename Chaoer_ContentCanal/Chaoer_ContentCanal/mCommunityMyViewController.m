@@ -17,6 +17,7 @@
 
 
 #import "shopCarViewController.h"
+#import "QHLShoppingCarController.h"
 @interface mCommunityMyViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
 
 @end
@@ -93,7 +94,13 @@
 }
 #pragma mark----购物车
 - (void)mShopCar:(UIButton *)sender{
-    shopCarViewController *shopCar = [[shopCarViewController alloc] initWithNibName:@"shopCarViewController" bundle:nil];
+    
+//    shopCarViewController *shopCar = [[shopCarViewController alloc] initWithNibName:@"shopCarViewController" bundle:nil];
+//    [self pushViewController:shopCar];
+    
+    
+    
+    QHLShoppingCarController *shopCar = [QHLShoppingCarController new];
     [self pushViewController:shopCar];
 }
 #pragma mark----订单

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mOrderDetailBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wm-HV-RxD">
+                    <rect key="frame" x="10" y="0.0" width="300" height="90"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAr-6c-uR3">
+                            <rect key="frame" x="8" y="5" width="292" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLJ-Th-8pE">
+                            <rect key="frame" x="0.0" y="32" width="300" height="1"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30193965517241372" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="z6e-Nt-Mrv"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-nO-l3q">
+                            <rect key="frame" x="8" y="41" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="PMc-ar-fk1"/>
+                                <constraint firstAttribute="width" constant="45" id="gPK-XC-zI5"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆超尔科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62R-vB-9zU">
+                            <rect key="frame" x="61" y="53" width="239" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="dLJ-Th-8pE" firstAttribute="leading" secondItem="4Wm-HV-RxD" secondAttribute="leading" id="9JB-UT-cb9"/>
+                        <constraint firstItem="JAr-6c-uR3" firstAttribute="top" secondItem="4Wm-HV-RxD" secondAttribute="top" constant="5" id="E1O-Xe-ahM"/>
+                        <constraint firstItem="JAr-6c-uR3" firstAttribute="leading" secondItem="4Wm-HV-RxD" secondAttribute="leading" constant="8" id="PMa-tu-i9X"/>
+                        <constraint firstItem="ebf-nO-l3q" firstAttribute="top" secondItem="dLJ-Th-8pE" secondAttribute="bottom" constant="8" id="VsN-aM-ljd"/>
+                        <constraint firstItem="ebf-nO-l3q" firstAttribute="leading" secondItem="4Wm-HV-RxD" secondAttribute="leading" constant="8" id="XzX-Gy-zHs"/>
+                        <constraint firstItem="62R-vB-9zU" firstAttribute="top" secondItem="dLJ-Th-8pE" secondAttribute="bottom" constant="20" id="al5-ZG-EzG"/>
+                        <constraint firstItem="62R-vB-9zU" firstAttribute="leading" secondItem="ebf-nO-l3q" secondAttribute="trailing" constant="8" id="bSX-eF-Yaq"/>
+                        <constraint firstAttribute="trailing" secondItem="62R-vB-9zU" secondAttribute="trailing" id="f6U-cx-8fT"/>
+                        <constraint firstAttribute="trailing" secondItem="dLJ-Th-8pE" secondAttribute="trailing" id="jzs-KO-n9H"/>
+                        <constraint firstAttribute="trailing" secondItem="JAr-6c-uR3" secondAttribute="trailing" id="uQe-f9-0Jq"/>
+                        <constraint firstItem="dLJ-Th-8pE" firstAttribute="top" secondItem="JAr-6c-uR3" secondAttribute="bottom" constant="9" id="vEr-CR-1yT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4Wm-HV-RxD" secondAttribute="trailing" constant="10" id="440-Mn-iuB"/>
+                <constraint firstItem="4Wm-HV-RxD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KDY-yB-ezk"/>
+                <constraint firstAttribute="bottom" secondItem="4Wm-HV-RxD" secondAttribute="bottom" constant="10" id="fKc-An-eRE"/>
+                <constraint firstItem="4Wm-HV-RxD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gUL-Qh-HOc"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mBgkView" destination="4Wm-HV-RxD" id="tAD-aQ-TiR"/>
+                <outlet property="mName" destination="62R-vB-9zU" id="4XE-4V-XjO"/>
+                <outlet property="mStoreImg" destination="ebf-nO-l3q" id="F6B-a0-e9z"/>
+            </connections>
+            <point key="canvasLocation" x="239" y="358"/>
+        </view>
+    </objects>
+</document>

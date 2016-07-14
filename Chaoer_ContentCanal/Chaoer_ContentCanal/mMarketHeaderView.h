@@ -38,6 +38,24 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mNameLeft;
 /**
+ *  活动1
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivity1;
+/**
+ *  活动内容1
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivity2;
+/**
+ *  活动2
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivityContent1;
+/**
+ *  活动内容2
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivityContent2;
+
+
+/**
  *  初始化方法
  *
  *  @return 返回view

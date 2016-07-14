@@ -13,12 +13,19 @@
 #import "orderStatusViewController.h"
 
 #import "mMarketRateViewController.h"
+
+#import "mOrderDetailBottomView.h"
 @interface communityOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
 @implementation communityOrderDetailViewController
+{
 
+    
+    mOrderDetailBottomView *mHeaderSection;
+    mOrderDetailBottomView *mBottomView;
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     
@@ -32,7 +39,7 @@
 }
 - (void)initView{
 
-    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
     
@@ -46,6 +53,16 @@
     
     nib = [UINib nibWithNibName:@"communityOrderDetailCell2" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+    
+    mBottomView = [mOrderDetailBottomView shareView];
+    [self.view addSubview:mBottomView];
+    
+    [mBottomView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).offset(@0);
+        make.bottom.equalTo(self.view).offset(@0);
+        make.height.offset(@50);
+    }];
+    
 
 }
 - (void)didReceiveMemoryWarning {
@@ -69,10 +86,23 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 0.5;
+    if (section == 0) {
+        return 0.5;
+    }else{
+        return 100;
+    }
+    
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return nil;
+    if (section == 0) {
+        return nil;
+    }else{
+
+        mHeaderSection = [mOrderDetailBottomView shareSectionView];
+        return mHeaderSection;
+    }
+    
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -93,7 +123,7 @@
     if (indexPath.section == 0) {
         return 340;
     }else{
-        return 200;
+        return 145;
     }
     
     

@@ -100,7 +100,7 @@
     
     
     mHeaderView = [mMarketHeaderView shareView];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 90);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 150);
     [self.tableView setTableHeaderView:mHeaderView];
     
  

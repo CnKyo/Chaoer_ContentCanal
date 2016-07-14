@@ -125,7 +125,7 @@
                 <outlet property="mTime" destination="80O-9E-LVh" id="s4g-yb-w3G"/>
                 <outlet property="mdobtn" destination="3ib-f2-Pfq" id="9st-vr-i6C"/>
             </connections>
-            <point key="canvasLocation" x="199" y="370"/>
+            <point key="canvasLocation" x="211" y="358"/>
         </tableViewCell>
     </objects>
 </document>

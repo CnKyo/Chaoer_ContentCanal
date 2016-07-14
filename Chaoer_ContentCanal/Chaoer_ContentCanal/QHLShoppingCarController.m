@@ -22,6 +22,7 @@
 #import "homeNavView.h"
 #import "mShopCarHeaderSection.h"
 #import "comFirmOrderViewController.h"
+#import "shopCarHeaderAndFooterView.h"
 
 #define SMGoodsModelPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"goods.archive"]
 
@@ -76,6 +77,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 @implementation QHLShoppingCarController{
 
     homeNavView *mNavView;
+    
+    shopCarHeaderAndFooterView *mEmptyView;
 }
 #pragma mark - viewDidLoad 方法
 - (void)viewDidLoad {
@@ -104,6 +107,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     //添加settle accounts view
     [self setUpSettleAccountView];
+    
+    [self initEmptyView];
 }
 - (void)initView{
 
@@ -132,6 +137,30 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 //    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
 }
+#pragma mark - 加载空视图
+- (void)initEmptyView{
+
+    mEmptyView = [shopCarHeaderAndFooterView shareHeaderView];
+    mEmptyView.alpha = 0;
+    [self.view addSubview:mEmptyView];
+    
+    [mEmptyView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.equalTo(self.view).offset(@0);
+        make.width.offset(DEVICE_Width);
+        make.top.equalTo(self.view).offset(@64);
+    }];
+}
+- (void)showEmptyView{
+    [UIView animateWithDuration:0.2 animations:^{
+        mEmptyView.alpha = 1;
+    }];
+}
+- (void)dissmissEmptyView{
+    [UIView animateWithDuration:0.2 animations:^{
+        mEmptyView.alpha = 0;
+    }];
+}
+
 #pragma mark - 懒加载
 - (NSMutableArray *)tempArray {
     if (!_mtempArray) {
@@ -514,6 +543,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     //headerView代理
     headerView.headerViewDelegate = self;
     return headerView;
+   
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
@@ -857,5 +887,74 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         [self.documentArray removeObject:documentsObject];
         [self.btnsArray removeObject:btnsObject];
     }
+}
+//是否可以编辑  默认的时YES
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+//选择你要对表进行处理的方式  默认是删除方式
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return  UITableViewCellEditingStyleDelete ;
+}
+
+//修改删除按钮的文字
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+//选择编辑的方式,按照选择的方式对表进行处理
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    QHLShop *shop = self.shoppingCar[indexPath.section];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //删除数据
+        [shop.goods removeObjectAtIndex:indexPath.row];
+        
+        
+        if (!shop.goods.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+            [self.shoppingCar removeObjectAtIndex:indexPath.section];
+        }
+        [tableView reloadData];
+        
+        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
+            //根据indexPath获取到QHLShop对象
+            QHLShop *shops = self.tempArray[indexPath.section];
+            
+            //移除该对象goods数组中的下标为indexPath.row的元素
+            [shops.goods removeObject:shops.goods[indexPath.row]];
+            
+            if (!shops.goods.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+                [self.tempArray removeObject:shops];
+            }
+        }
+        
+        for (QHLGoods *good in shop.goods) {
+            if (!good.selected) {
+                shop.selected = NO;
+                [self setButtonSelectState:NO];
+                [tableView reloadData];
+                return;
+            }
+        }
+        
+        shop.selected = YES;
+        if (self.state == QHLViewStateEdited) {
+            //根据indexPath获取到QHLShop对象
+            QHLShop *shops = self.tempArray[indexPath.section];
+            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
+        }
+        [tableView reloadData];
+        
+        for (QHLShop *shop in self.shoppingCar) {
+            if (!shop.selected) {
+                [self setButtonSelectState:NO];
+                return;
+            }
+        }
+        [self setButtonSelectState:YES];
+        [tableView reloadData];
+        
+    }
+    
 }
 @end
