@@ -94,7 +94,7 @@
     self.rightBtnTitle = @"筛选";
     self.hiddenRightBtn = YES;
 
-    mType =1;
+    mType =0;
     self.mBanerArr = [NSMutableArray new];
     
 
@@ -139,7 +139,7 @@
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"商品买送", @"事情办理",@"送东西",@"全部"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
+     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"全部",@"商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
 
 }
 - (void)initAddress{
@@ -415,7 +415,6 @@
                 return;
                 
             }else if (m_leg == 1){
-                [self showErrorStatus:@"您已注销!"];
                 [self AlertViewShow:@"您还未支付押金！" alertViewMsg:@"支付押金即可使用跑跑腿功能" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 
                 return;
@@ -494,10 +493,8 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
-    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
-    if(mType == 4){
-        return;
-    }
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
+  
     [self headerBeganRefresh];
     
 }
@@ -561,25 +558,39 @@
     
     [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mOrder.mPortrait]] placeholderImage:[UIImage imageNamed:@"img_default"]];
 
-    
-    
-    if (mType == 3) {
+    if (mType == 0) {
+        
+        NSString *mAlias = nil;
+        
+        cell.mTitle.text = mOrder.mContext;
+        
+        if (mOrder.mType == 3) {
+            mAlias = [NSString stringWithFormat:@"%@元",mOrder.mAlias];
+        }else if (mOrder.mType == 2){
+            mAlias = [NSString stringWithFormat:@"%@/%@m",mOrder.mAlias,mOrder.mDistance];
+            
+        }else{
+            mAlias = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mAlias,mOrder.mDistance];
+        }
+        
+        cell.mMoney.text = mAlias;
+    }else if (mType == 3) {
         cell.mTitle.text = mOrder.mGoodsName;
-        cell.mDistance.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
-
+        cell.mMoney.text = [NSString stringWithFormat:@"%@元",mOrder.mGoodsPrice];
+        
     }else if(mType ==2){
         cell.mTitle.text = mOrder.mContext;
-        cell.mDistance.text = [NSString stringWithFormat:@"%@/%@m",mOrder.mAdress,mOrder.mDistance];
-
+        cell.mMoney.text = [NSString stringWithFormat:@"%@/%@m",mOrder.mAdress,mOrder.mDistance];
+        
     }else{
         cell.mTitle.text = mOrder.mContext;
-        cell.mDistance.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
+        cell.mMoney.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mArrivedTime,mOrder.mDistance];
     }
     cell.mDoneBtn.mOrder = mOrder;
 
 
     
-    cell.mMoney.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];
+    cell.mDistance.text = [NSString stringWithFormat:@"酬金：%@元",mOrder.mLegworkMoney];
     return cell;
     
 }

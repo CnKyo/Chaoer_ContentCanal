@@ -101,6 +101,7 @@
 @class GCanal;
 @class GCanalList;
 @class GPPTOrder;
+@class GMarketAddress;
 
 /**
  *  用户信息
@@ -925,6 +926,19 @@
 - (void)getPPTaddressList:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 
+#pragma mark----获取全部跑单
+/**
+ *  查看所有订单
+ *
+ *  @param mType 类型
+ *  @param mLat  纬度
+ *  @param mLng  经度
+ *  @param mPage 分页
+ *  @param mNum  分页条数
+ *  @param block 返回值
+ */
+- (void)getAllPPTOrder:(int)mType andMlat:(NSString *)mLat andLng:(NSString *)mLng andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
 #pragma mark----获取附近跑跑腿我想买订单
 /**
  *  查询附近跑跑腿（我想买）订单
@@ -1168,6 +1182,32 @@
  *  @param block 返回值
  */
 - (void)deleteMsg:(int)mId block:(void(^)(mBaseData *resb))block;
+
+#pragma mark----获取社区超市baner
+/**
+ *  获取社区超市baner
+ *
+ *  @param block 返回值
+ */
+- (void)getMarket:(void(^)(mBaseData *resb,NSArray *mArr))block;
+
+#pragma mark----获取社区超市社区地址
+/**
+ *  获取社区超市社区地址
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMarketAddress:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----获取优惠卷
+/**
+ *  获取优惠卷
+ *
+ *  @param mPage   分页
+ *  @param mStatus 状态
+ *  @param block   返回值
+ */
+- (void)getCoupList:(int)mPage andStats:(int)mStatus block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 
 @end
 
@@ -2197,6 +2237,12 @@
 @end
 
 @interface GPPTOrder : NSObject
+
+@property (nonatomic,strong) NSString   *mAlias;
+
+@property (nonatomic,assign) int        mType;
+
+
 /**
  *  订单id
  */
@@ -2846,5 +2892,88 @@
 
 @end
 
+@interface GMarketAddress : NSObject
+/**
+ *  地址id
+ */
+@property (nonatomic,assign) int mAddressId;
+/**
+ *  地址名称
+ */
+@property (nonatomic,strong) NSString *mAddressName;
+/**
+ *  纬度
+ */
+@property (nonatomic,strong) NSString *mLat;
+/**
+ *  经度
+ */
+@property (nonatomic,strong) NSString *mLng;
+/**
+ *  <#Description#>
+ *
+ *  @param obj <#obj description#>
+ *
+ *  @return <#return value description#>
+ */
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+
+@interface GCoup : NSObject
+
+/**
+ *  优惠卷类型
+ */
+@property (nonatomic,assign) int mCoupType;
+/**
+ *  优惠卷名称
+ */
+@property (nonatomic,strong) NSString *mCoupName;
+/**
+ *  是否使用
+ */
+@property (nonatomic,assign) int mIsused;
+/**
+ *  满多少钱
+ */
+@property (nonatomic,strong) NSString *mEnoughMoney;
+/**
+ *  面值多少
+ */
+@property (nonatomic,strong) NSString *mFacePrice;
+/**
+ *  名称
+ */
+@property (nonatomic,strong) NSString *mCoupContent;
+/**
+ *  开始时间
+ */
+@property (nonatomic,strong) NSString *mBeginTime;
+/**
+ *  结束时间
+ */
+@property (nonatomic,strong) NSString *mEndTime;
+/**
+ *  店铺logo
+ */
+@property (nonatomic,strong) NSString *mShopLogo;
+/**
+ *  密码
+ */
+@property (nonatomic,strong) NSString *mPwd;
+/**
+ *  超市名称
+ */
+@property (nonatomic,strong) NSString *mShopName;
+/**
+ *  编码
+ */
+@property (nonatomic,strong) NSString *mCode;
+
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
 
 

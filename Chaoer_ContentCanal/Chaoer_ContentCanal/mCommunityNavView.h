@@ -22,6 +22,8 @@
  *  地址按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mAddressBtn;
+@property (weak, nonatomic) IBOutlet UILabel *mAddress;
+
 /**
  *  初始化方法
  *

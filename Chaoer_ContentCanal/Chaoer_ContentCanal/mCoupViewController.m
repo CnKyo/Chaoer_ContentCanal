@@ -69,6 +69,7 @@
     
     
     self.haveHeader = YES;
+    self.haveFooter = YES;
     
     
     UINib   *nib = [UINib nibWithNibName:@"coupTableViewCell" bundle:nil];
@@ -77,6 +78,65 @@
     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"未使用", @"已过期",@"已使用"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
 }
 
+- (void)headerBeganRefresh{
+
+    self.page = 1;
+    
+    [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self dismiss];
+        [self.tempArray removeAllObjects];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+                return ;
+            }else{
+            
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+}
+- (void)footetBeganRefresh{
+
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
+        [self footetEndRefresh];
+        [self dismiss];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+                return ;
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -110,7 +170,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return self.tempArray.count;
     
 }
 
@@ -127,8 +187,11 @@
     
     NSString *cellId = @"cell";
     
-    coupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
+    GCoup *mCoup = self.tempArray[indexPath.row];
+    
+    coupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.mContent.text = mCoup.mCoupName;
     if (mType == 2) {
         cell.mIsValid.image = [UIImage imageNamed:@"coup_ expire"];
         cell.mIsValid.hidden = NO;
@@ -161,8 +224,8 @@
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
-    [self.tableView reloadData];
-    //    [self.tableView headerBeginRefreshing];
+    [self headerBeganRefresh];
+    
     
 }
 

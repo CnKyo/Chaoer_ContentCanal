@@ -21,9 +21,9 @@
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://app.china-cr.com/";
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
+//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://120.27.111.122/";
 
-//static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.183/";
+static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.114/";
 
 //static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.120/";
 

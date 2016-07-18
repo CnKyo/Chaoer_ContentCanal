@@ -48,7 +48,8 @@
     
     self.haveHeader = YES;
     
-    
+    self.haveFooter = YES;
+
     UINib   *nib = [UINib nibWithNibName:@"mNavAddressCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
@@ -57,7 +58,62 @@
 }
 #pragma mark----加载地址
 - (void)headerBeganRefresh{
-    
+    [self loadLocation];
+    self.page = 1;
+    [self showWithStatus:@"正在加载中..."];
+    [[mUserInfo backNowUser] getMarketAddress:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        [self headerEndRefresh];
+        [self.tempArray removeAllObjects];
+        [self removeEmptyView];
+
+        if (resb.mSucess) {
+            
+            if (mArr.count<=0) {
+                [self addEmptyView:nil];
+
+            }else{
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+            
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+
+}
+- (void)footetBeganRefresh{
+    [self loadLocation];
+    self.page ++;
+    [self showWithStatus:@"正在加载中..."];
+    [[mUserInfo backNowUser] getMarketAddress:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+
+        [self footetEndRefresh];
+        [self removeEmptyView];
+
+        if (resb.mSucess) {
+            
+            if (mArr.count<=0) {
+                [self addEmptyView:nil];
+
+            }else{
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+            
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+
+        }
+    }];
+}
+- (void)loadLocation{
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
     
@@ -92,8 +148,6 @@
         }
         [self.tableView reloadData];
     }];
-    
-
 }
 - (void)MMapreturnLatAndLng:(NSDictionary *)mCoordinate{
 
@@ -154,7 +208,7 @@
     if (section == 0) {
         return 1;
     }else{
-        return 5;
+        return self.tempArray.count;
     }
     
     
@@ -190,10 +244,13 @@
         
     }else{
         
+        GMarketAddress *mAddress = self.tempArray[indexPath.row];
         
         mNavAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.mLocationImg.hidden = YES;
         cell.mAddressLeft.constant = -15;
+        
+        cell.mAddress.text = mAddress.mAddressName;
         
         return cell;
     }
@@ -203,18 +260,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GMarketAddress *mAddress = self.tempArray[indexPath.row];
 
     if (indexPath.section == 0) {
         if (mLat.length == 0) {
             [self headerBeganRefresh];
         }else{
         
-            self.block(mLat,mLng,@"10");
+            self.block(mLat,mLng,mDetailAddress);
             [self popViewController];
             
         }
     }else{
-        self.block(mLat,mLng,@"10");
+        self.block(mAddress.mLat,mAddress.mLng,mAddress.mAddressName);
         [self popViewController];
 
     }

@@ -437,38 +437,43 @@
         cell.mOrderStatus.text = self.mOrder.mStatusName;
         cell.mLevel.text = [NSString stringWithFormat:@"创建时间:%@",self.mOrder.mGenTime];
        
-        NSString *mmname = nil;
-        
-        if (self.mOrder.mGoodsTypeName == nil) {
-            mmname = self.mOrder.mContext;
-        }
-        if (self.mOrder.mTypeName == nil) {
-            mmname = self.mOrder.mGoodsTypeName;
-        }
-        if (mmname == nil || mmname.length == 0 || [mmname isEqualToString:@""]) {
-            mmname = @"暂无";
-        }
-        
-        cell.mSenderMg.text = [NSString stringWithFormat:@"订单内容:%@",mmname];
+  
+
+        cell.mSenderMg.text = [NSString stringWithFormat:@"商品费用:%@元",self.mOrder.mLegworkMoney];
         cell.mOrderNum.text = [NSString stringWithFormat:@"订单编号：%@",self.mOrder.mOrderCode];
-        cell.mOrderName.text = self.mOrder.mTypeName;
         
         cell.mServiceName.text = [NSString stringWithFormat:@"姓名：%@",self.mOrder.mUserName];
         cell.mPhone.text = [NSString stringWithFormat:@"电话：%@",self.mOrder.mPhone];
         cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",self.mOrder.mArrivedTime];
         cell.mArriveAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
-        cell.mSendMoney.text = [NSString stringWithFormat:@"费用：%@元",self.mOrder.mMaxPrice];
+        
+        
+        NSString *mAlias = nil;
         
         NSString *ordertype = nil;
-
+        NSString *mmname = nil;
+        
+      
+        
         if (self.mType == 1) {
             ordertype = @"商品买送";
+            mAlias = [NSString stringWithFormat:@"最低价:%@元－最高价:%@  跑腿费用：%@",self.mOrder.mStartPrice,self.mOrder.mMaxPrice,self.mOrder.mLegworkMoney];
+            mmname = [NSString stringWithFormat:@"订单内容：%@ - 标签：%@",self.mOrder.mContext,self.mOrder.mTypeName];
+
         }else if (self.mType == 2){
             ordertype = @"事情办理";
+            mAlias = [NSString stringWithFormat:@"跑腿费用：%@元",self.mOrder.mLegworkMoney];
+            mmname = [NSString stringWithFormat:@"订单内容：%@",self.mOrder.mContext];
+
         }else{
             ordertype = @"送东西";
+            mAlias = [NSString stringWithFormat:@"跑腿费用:%@元",self.mOrder.mLegworkMoney];
+            mmname = [NSString stringWithFormat:@"订单标签：%@",self.mOrder.mGoodsTypeName];
+
         }
-        
+        cell.mSendMoney.text = mAlias;
+        cell.mOrderName.text = mmname;
+
         cell.mOrderType.text = [NSString stringWithFormat:@"订单类型：%@",ordertype];
         cell.mPayType.text = [NSString stringWithFormat:@"支付方式：%@",@"余额支付"];
         cell.mNote.text = [NSString stringWithFormat:@"备注：%@",self.mOrder.mComments];
@@ -573,19 +578,26 @@
         
         [self showWithStatus:@"正在操作..."];
         
-        [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-            
-            if (resb.mSucess) {
-                [self showSuccessStatus:resb.mMessage];
-                [self headerBeganRefresh];
-            }else{
-                
-                [self showErrorStatus:resb.mMessage];
-                [self headerBeganRefresh];
-            }
-            
-            
-        }];
+//        [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+//            
+//            if (resb.mSucess) {
+//                [self showSuccessStatus:resb.mMessage];
+//                [self headerBeganRefresh];
+//            }else{
+//                
+//                [self showErrorStatus:resb.mMessage];
+//                [self headerBeganRefresh];
+//            }
+//            
+//            
+//        }];
+        evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
+        eee.mOrder = GPPTOrder.new;
+        eee.mOrder = sender.mOrder;
+        eee.mLat = self.mLat;
+        eee.mLng = self.mLng;
+        eee.mType = self.mType;
+        [self pushViewController:eee];
 
     }
     

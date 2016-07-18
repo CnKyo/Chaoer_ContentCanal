@@ -88,6 +88,7 @@
 		0411A9011D3CA87300402511 /* QHLShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */; };
 		0411A9021D3CA87300402511 /* QHLShopCarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9001D3CA87300402511 /* QHLShopCarCell.xib */; };
 		0411A9041D3CB37C00402511 /* homeTableCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9031D3CB37C00402511 /* homeTableCell2.xib */; };
+		0411A9061D3CB83E00402511 /* homeTableCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9051D3CB83E00402511 /* homeTableCell3.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
 		041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E9D9B1D000FDE00C91D93 /* mTagButton.m */; };
 		042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042238EB1CD3046D00D1784B /* RCChatViewController.m */; };
@@ -1016,6 +1017,7 @@
 		0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLShopCarCell.m; sourceTree = "<group>"; };
 		0411A9001D3CA87300402511 /* QHLShopCarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHLShopCarCell.xib; sourceTree = "<group>"; };
 		0411A9031D3CB37C00402511 /* homeTableCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeTableCell2.xib; sourceTree = "<group>"; };
+		0411A9051D3CB83E00402511 /* homeTableCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeTableCell3.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
 		041E9D9A1D000FDE00C91D93 /* mTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTagButton.h; sourceTree = "<group>"; };
 		041E9D9B1D000FDE00C91D93 /* mTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTagButton.m; sourceTree = "<group>"; };
@@ -4787,6 +4789,7 @@
 				31BBE2991C9142C9006C553D /* homeTableViewCell.m */,
 				31BBE29A1C9142C9006C553D /* homeTableViewCell.xib */,
 				0411A9031D3CB37C00402511 /* homeTableCell2.xib */,
+				0411A9051D3CB83E00402511 /* homeTableCell3.xib */,
 				31BBE29D1C914788006C553D /* mCustomHomeView.h */,
 				31BBE29E1C914788006C553D /* mCustomHomeView.m */,
 				31BBE2A01C91479A006C553D /* mCustomHomeView.xib */,
@@ -5614,6 +5617,7 @@
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
 				04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */,
 				318D56651C9C012B0045B5FB /* MHSheetCell.xib in Resources */,
+				0411A9061D3CB83E00402511 /* homeTableCell3.xib in Resources */,
 				04E5A7F31CE5826800A2D111 /* pptMyHeaderView.xib in Resources */,
 				04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */,
 				04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */,

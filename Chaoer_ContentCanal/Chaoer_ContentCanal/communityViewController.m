@@ -100,6 +100,10 @@
     
     address.block = ^(NSString *Lat,NSString *Lng,NSString *mId){
         MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
+        
+        mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置：%@",mId];
+        mLat = Lat;
+        mLng = Lng;
     };
     
     [self pushViewController:address];
@@ -123,22 +127,19 @@
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-//    [SVProgressHUD showWithStatus:@"正在定位中..." maskType:SVProgressHUDMaskTypeClear];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
             NSString *eee =@"定位失败！请点击这里重新选择地址！";
-//            [SVProgressHUD showErrorWithStatus:eee];
-            [mNavView.mAddressBtn setTitle:eee forState:0];
+            mNavView.mAddress.text = eee;
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
 
         }
         if (regeocode)
         {
-//            [SVProgressHUD showErrorWithStatus:@"定位成功！"];
-            
             MLLog(@"reGeocode:%@", regeocode);
-            [mNavView.mAddressBtn setTitle:[NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number] forState:0];
+            mNavView.mAddress.text = [NSString stringWithFormat:@"%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+   
             MLLog(@"location:%@", location);
             mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
             mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
@@ -164,12 +165,13 @@
     }
     
     [self initLocation];
-    [mUserInfo getBaner:^(mBaseData *resb, NSArray *mBaner) {
+    [[mUserInfo backNowUser] getMarket:^(mBaseData *resb, NSArray *mArr) {
+        
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
             
-            [self.mBanerArr addObjectsFromArray:mBaner];
+            [self.mBanerArr addObjectsFromArray:mArr];
             [self.tableView reloadData];
             
         }else{

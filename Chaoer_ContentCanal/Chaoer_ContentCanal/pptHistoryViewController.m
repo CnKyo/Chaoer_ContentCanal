@@ -13,7 +13,7 @@
 #import "pptOrderDetailViewController.h"
 
 #import "evolutionViewController.h"
-@interface pptHistoryViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface pptHistoryViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
 /**
  *  头部筛选模块
  */
@@ -31,7 +31,12 @@
     int mLeft;
     int mRight;
     
+    int mType;
+    
     NSMutableArray *mDataArray;
+    
+    WKSegmentControl    *mSegmentView;
+
     
 }
 - (void)viewDidLoad {
@@ -59,15 +64,31 @@
     mLeft = 1;
     mRight = 1;
     
+    mType = 0;
+    
     mDataArray = [NSMutableArray new];
     
     self.leftArray = @[@"发布跑单",@"接手跑单"];
     self.rightArray = @[@"商品买送",@"办理事情",@"我去跑腿"];
-    [self setupTopView];
+//    [self setupTopView];
 
+    [self setHeaderView];
     
     [self initView];
 
+}
+- (void)setHeaderView{
+
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"发布跑单",@"接手跑单"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
+    [self.view addSubview:mSegmentView];
+}
+- (void)WKDidSelectedIndex:(NSInteger)mIndex{
+    MLLog(@"点击了%lu",(unsigned long)mIndex);
+    
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
+    
+    [self headerBeganRefresh];
+    
 }
 /**
  *  设置头部
@@ -168,12 +189,24 @@
 
 - (void)headerBeganRefresh{
 
-    
+    if (mType == 1) {
+        int m_leg = [mUserInfo backNowUser].mIs_leg;
+        
+        if ( m_leg != 5) {
+            
+            [self showErrorStatus:@"您还不是跑腿者，无法查看接手的跑单！"];
+            
+            return;
+            
+        }
+    }
+
+
     MLLog(@"左边：%d右边：%d",mLeft,mRight);
     
     self.page = 1;
     
-    [[mUserInfo backNowUser] getPPTOrderHisTory:mLeft andRight:mRight and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getPPTOrderHisTory:mType andRight:1 and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self headerEndRefresh];
         [self removeEmptyView];
@@ -200,10 +233,21 @@
 }
 
 - (void)footetBeganRefresh{
+    if (mType == 1) {
+        int m_leg = [mUserInfo backNowUser].mIs_leg;
+        
+        if ( m_leg != 5) {
+            
+            [self showErrorStatus:@"您还不是跑腿者，无法查看接手的跑单！"];
+            
+            return;
+            
+        }
+    }
 
     self.page ++;
     
-    [[mUserInfo backNowUser] getPPTOrderHisTory:mLeft andRight:mRight and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getPPTOrderHisTory:mType andRight:1 and:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self footetEndRefresh];
         [self removeEmptyView];
@@ -325,37 +369,54 @@
 
     
 
-    if (mOrder.mComments == nil) {
-        mOrder.mComments = @"创建时间";
-    }
-   
+//    if (mOrder.mComments == nil) {
+//        mOrder.mComments = @"创建时间";
+//    }
+//   
+//    
+//    if (mRight == 1) {
+//        
+//        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
+//        cell.mContent.text = mOrder.mComments;
+//        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+//        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@分钟",mOrder.mArrivedTime];
+//        
+//    }else if (mRight == 2){
+//        if (mOrder.mContext == nil) {
+//            mOrder.mContext = @"创建时间";
+//        }
+//        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
+//        cell.mContent.text = mOrder.mContext;
+//        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+//        cell.mDistanceAndTime.text = @"";
+//    }else{
+//        if (mOrder.mGoodsName == nil) {
+//            mOrder.mGoodsName = @"创建时间";
+//        }
+//        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
+//        cell.mContent.text = mOrder.mContext;
+//        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+//        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"商品类型：%@",@"买东西"];
+//    }
+
     
-    if (mRight == 1) {
+    
+    NSString *mAlias = nil;
+    
+    cell.mNameAndTime.text = [NSString stringWithFormat:@"创建时间：%@",mOrder.mGenTime];
+    
+    if (mOrder.mType == 3) {
+        mAlias = [NSString stringWithFormat:@"%@元",mOrder.mAlias];
+    }else if (mOrder.mType == 2){
+        mAlias = [NSString stringWithFormat:@"服务地址：%@",mOrder.mAlias];
         
-        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
-        cell.mContent.text = mOrder.mComments;
-        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
-        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"%@分钟",mOrder.mArrivedTime];
-        
-    }else if (mRight == 2){
-        if (mOrder.mContext == nil) {
-            mOrder.mContext = @"创建时间";
-        }
-        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mContext,mOrder.mGenTime];
-        cell.mContent.text = mOrder.mContext;
-        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
-        cell.mDistanceAndTime.text = @"";
     }else{
-        if (mOrder.mGoodsName == nil) {
-            mOrder.mGoodsName = @"创建时间";
-        }
-        cell.mNameAndTime.text = [NSString stringWithFormat:@"%@-%@",mOrder.mGoodsName,mOrder.mGenTime];
-        cell.mContent.text = mOrder.mContext;
-        cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
-        cell.mDistanceAndTime.text = [NSString stringWithFormat:@"商品类型：%@",@"买东西"];
+        mAlias = [NSString stringWithFormat:@"%@分钟",mOrder.mAlias];
     }
     
-    
+    cell.mDistanceAndTime.text = mAlias;
+    cell.mMoney.text = [NSString stringWithFormat:@"酬金:%@¥",mOrder.mLegworkMoney];
+    cell.mContent.text = [NSString stringWithFormat:@"跑单内容：%@",mOrder.mContext];
 
     return cell;
     
@@ -369,7 +430,7 @@
 
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 2;
-    ppp.mType = mRight;
+    ppp.mType = mOrder.mType;
     ppp.mOrder = GPPTOrder.new;
     ppp.mOrder = mOrder;
     ppp.mLng = self.mLng;

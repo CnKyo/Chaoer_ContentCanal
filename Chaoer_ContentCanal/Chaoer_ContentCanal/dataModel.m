@@ -2568,7 +2568,23 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 
 }
+#pragma mark----获取全部跑单
+/**
+ *  查看所有订单
+ *
+ *  @param mType 类型
+ *  @param mLat  纬度
+ *  @param mLng  经度
+ *  @param mPage 分页
+ *  @param mNum  分页条数
+ *  @param block 返回值
+ */
+- (void)getAllPPTOrder:(int)mType andMlat:(NSString *)mLat andLng:(NSString *)mLng andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
+    
+    
+    
+}
 #pragma mark----获取附近跑跑腿我想买订单
 - (void)getPPTNeaerbyOrder:(int)mType andMlat:(NSString *)mLat andLng:(NSString *)mLng andPage:(int)mPage andNum:(int)mNum block:(void(^)(mBaseData *resb,NSArray *mArr))block{
 
@@ -2587,8 +2603,10 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
     NSString *mUrl = nil;
-    
-    if (mType == 1) {
+    if (mType == 0) {
+        mUrl = @"app/legwork/user/appOrderList";
+    }
+    else if (mType == 1) {
         mUrl = @"app/legwork/user/appOrderBuyList";
     }else if (mType == 2){
         mUrl = @"app/legwork/user/appOrderTransactList";
@@ -2876,31 +2894,41 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     NSString *mUrl = nil;
     
-    if (mLeft == 1) {
+    if (mLeft == 0) {
+        mUrl = @"app/legwork/user/appOrderRecord";
         [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
-        if (mRight == 1) {
-            mUrl = @"app/legwork/user/appOrderBuyRecord";
-        }else if (mRight == 2){
-            mUrl = @"app/legwork/user/appOrderTransactRecord";
-
-        }else{
-            mUrl = @"app/legwork/user/appOrderCarryRecord";
-
-        }
     }else{
+        mUrl = @"app/legwork/user/appOrderLegworkRecord";
         [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legId"];
 
-        if (mRight == 1) {
-            mUrl = @"app/legwork/user/appOrderBuyLegwrokRecord";
-        }else if (mRight == 2){
-            mUrl = @"app/legwork/user/appOrderTransactLegwrokRecord";
-            
-        }else{
-            mUrl = @"app/legwork/user/appOrderCarryLegwrokRecord";
-            
-        }
     }
+    
+//    if (mLeft == 1) {
+//        [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+//
+//        if (mRight == 1) {
+//            mUrl = @"app/legwork/user/appOrderBuyRecord";
+//        }else if (mRight == 2){
+//            mUrl = @"app/legwork/user/appOrderTransactRecord";
+//
+//        }else{
+//            mUrl = @"app/legwork/user/appOrderCarryRecord";
+//
+//        }
+//    }else{
+//        [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legId"];
+//
+//        if (mRight == 1) {
+//            mUrl = @"app/legwork/user/appOrderBuyLegwrokRecord";
+//        }else if (mRight == 2){
+//            mUrl = @"app/legwork/user/appOrderTransactLegwrokRecord";
+//            
+//        }else{
+//            mUrl = @"app/legwork/user/appOrderCarryLegwrokRecord";
+//            
+//        }
+//    }
     
     
     [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
@@ -3426,8 +3454,100 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         
     }];
 }
+#pragma mark----获取社区超市baner
+/**
+ *  获取社区超市baner
+ *
+ *  @param block 返回值
+ */
+- (void)getMarket:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/banner/getBanner" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[MBaner alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
 
 
+}
+#pragma mark----获取社区超市社区地址
+/**
+ *  获取社区超市社区地址
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMarketAddress:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/community/getCommunity" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GMarketAddress alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+}
+
+#pragma mark----获取优惠卷
+/**
+ *  获取优惠卷
+ *
+ *  @param mPage   分页
+ *  @param mStatus 状态
+ *  @param block   返回值
+ */
+- (void)getCoupList:(int)mPage andStats:(int)mStatus block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    [para setObject:NumberWithInt(mStatus) forKey:@"state"];
+
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/coupon/getCouponList" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCoup alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+    
+}
 @end
 
 @implementation SMessage
@@ -4429,6 +4549,9 @@ bool g_rccbined = NO;
 }
 - (void)fetchIt:(NSDictionary *)obj{
     
+    self.mAlias = [obj objectForKey:@"alias"];
+    self.mType = [[obj objectForKey:@"type"] intValue];
+
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
 
     self.mUserId = [obj objectForKeyMy:@"userId"];
@@ -5337,6 +5460,62 @@ bool pptbined = NO;
     self.mUnit = [[obj objectForKeyMy:@"unit"] intValue];
     self.mRoomNum = [[obj objectForKeyMy:@"room_number"] intValue];
     self.mFloor = [[obj objectForKeyMy:@"floor"] intValue];
+
+    
+}
+
+@end
+
+@implementation GMarketAddress
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mAddressName = [obj objectForKeyMy:@"communityName"];
+    self.mLat = [obj objectForKeyMy:@"lat"];
+    self.mLng = [obj objectForKeyMy:@"lng"];
+    
+    
+}
+
+
+@end
+@implementation GCoup
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mCoupType = [[obj objectForKeyMy:@"typeName"] intValue];
+    self.mIsused = [[obj objectForKeyMy:@"isUsed"] intValue];
+    self.mEnoughMoney = [obj objectForKeyMy:@"enoughMoney"];
+    self.mCoupName = [obj objectForKeyMy:@"name"];
+    self.mFacePrice = [obj objectForKeyMy:@"facePrice"];
+    self.mBeginTime = [obj objectForKeyMy:@"beginTime"];
+    self.mEndTime = [obj objectForKeyMy:@"endTime"];
+    
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
+    self.mCode = [obj objectForKeyMy:@"code"];
+    self.mEnoughMoney = [obj objectForKeyMy:@"shopLogo"];
+    self.mPwd = [obj objectForKeyMy:@"pass"];
 
     
 }
