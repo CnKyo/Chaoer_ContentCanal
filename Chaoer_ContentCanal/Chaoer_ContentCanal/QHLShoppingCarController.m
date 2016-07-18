@@ -12,7 +12,7 @@
 #import "QHLGoods.h"
 #import "QHLButton.h"
 
-#import "QHLTableViewCell.h"
+//#import "QHLTableViewCell.h"
 #import "QHLHeaderView.h"
 
 #import "UIView+QHLExtension.h"
@@ -24,6 +24,7 @@
 #import "comFirmOrderViewController.h"
 #import "shopCarHeaderAndFooterView.h"
 
+#import "QHLShopCarCell.h"
 #define SMGoodsModelPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"goods.archive"]
 
 typedef NS_ENUM(NSInteger, QHLViewState){
@@ -33,7 +34,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
 };
 
-@interface QHLShoppingCarController ()<QHLHeaderViewDelegate, QHLTableViewCellDelegate, QHLSettleMentViewDelegate, QHLHiddenViewDelegate, UITableViewDelegate,UITableViewDataSource>
+@interface QHLShoppingCarController ()<QHLHeaderViewDelegate, QHLSettleMentViewDelegate, QHLHiddenViewDelegate, UITableViewDelegate,UITableViewDataSource,WKTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *shoppingCar;
 @property (nonatomic, weak) QHLSettleMentView *settleMentView;
@@ -133,8 +134,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.haveHeader = YES;
     
     
-//    UINib   *nib = [UINib nibWithNibName:@"shopCarTableViewCell" bundle:nil];
-//    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    UINib   *nib = [UINib nibWithNibName:@"QHLShopCarCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
 }
 #pragma mark - 加载空视图
@@ -521,10 +522,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     //获取模型
     QHLShop *shop = self.shoppingCar[indexPath.section];
     QHLGoods *goods = shop.goods[indexPath.row];
+    
     //创建cell
-    QHLTableViewCell *cell = [QHLTableViewCell cellWithTableView:tableView];
-    cell.goods = goods;
-    cell.imgView.image = [UIImage imageNamed:@"ppt_my_msg"];
+    QHLShopCarCell *cell = [QHLShopCarCell cellWithTableView:tableView];
+    cell.mGoods = goods;
+    cell.mProLogo.image = [UIImage imageNamed:@"ppt_my_msg"];
     cell.indexPath = indexPath;
     //cell代理
     cell.cellDelegate = self;
@@ -643,7 +645,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 #pragma mark - 设置cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 85;
+    return 110;
 }
 
 #pragma mark - 设置tableView的类型
@@ -654,7 +656,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 //}
 
 #pragma mark - cell的删除代理方法
-- (void)cell:(QHLTableViewCell *)cell deleteBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
+- (void)cell:(QHLShopCarCell *)cell deleteBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
     //获取模型
     QHLShop *shop = self.shoppingCar[indexPath.section];
     
@@ -709,7 +711,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
 }
 #pragma mark - cell的代理方法
-- (void)cell:(QHLTableViewCell *)cell selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andIndexPath:(NSIndexPath *)indexPath{
+- (void)cell:(QHLShopCarCell *)cell selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andIndexPath:(NSIndexPath *)indexPath{
     BOOL selected = !selBtnSelectState;
     
     //获取模型
@@ -801,7 +803,14 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     [self setButtonSelectState:YES];
 }
+- (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
 
+    MLLog(@"加。。。");
+}
+- (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
+    MLLog(@"减。。。");
+    
+}
 
 #pragma mark - headerView的代理方法
 - (void)headerView:(QHLHeaderView *)headerView selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andSection:(NSInteger)section {

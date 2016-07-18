@@ -789,10 +789,10 @@
         return;
     }
 
-    if (mNoteStr == nil || mNoteStr.length == 0) {
-        [self showErrorStatus:@"备注不能为空！"];
-        return;
-    }
+//    if (mNoteStr == nil || mNoteStr.length == 0) {
+//        [self showErrorStatus:@"备注不能为空！"];
+//        return;
+//    }
     int mIn = 0;
     mIn = [mMin intValue];
     int mAx = 0;

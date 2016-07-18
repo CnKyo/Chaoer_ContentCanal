@@ -1,7 +1,7 @@
 //
-// UIImage+FixOrientation.h
+// RSKImageCropper.strings
 //
-// Copyright (c) 2014 Ruslan Skorb, http://lnkd.in/gsBbvb
+// Copyright (c) 2014-present Ruslan Skorb, http://ruslanskorb.com/
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,9 @@
 // THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface UIImage (FixOrientation)
-
-- (UIImage *)fixOrientation;
-
-@end
+/* Move and Scale label */
+"Move and Scale" = "Geser dan Ubah Skala";
+/* Cancel button */
+"Cancel" = "Batalkan";
+/* Choose button */
+"Choose" = "Pilih";

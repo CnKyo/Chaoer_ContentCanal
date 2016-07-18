@@ -243,29 +243,6 @@
 
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"监听的变化-------%f",scrollView.contentOffset.y);
-//    
-//    [UIView animateWithDuration:1 animations:^{
-//        
-//        if (scrollView.contentOffset.y>=100) {
-//            
-//            CGRect mRRR = self.tableView.frame;
-//            mRRR.origin.y = 64;
-//            mRRR.size.height = DEVICE_Height-114;
-//            self.tableView.frame = mRRR;
-//            
-//        }else{
-//            CGRect mRRR = self.tableView.frame;
-//            mRRR.origin.y = 0;
-//            mRRR.size.height = DEVICE_Height-50;
-//            self.tableView.frame = mRRR;
-//        }
-//
-//    }];
-//    
-//}
-
 - (void)initview{
     
     mNavView = [homeNavView shareView];

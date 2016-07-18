@@ -1,7 +1,7 @@
 //
-// UIImage+FixOrientation.m
+// UIImage+RSKImageCropper.m
 //
-// Copyright (c) 2014 Ruslan Skorb, http://lnkd.in/gsBbvb
+// Copyright (c) 2014-present Ruslan Skorb, http://ruslanskorb.com/
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
 // THE SOFTWARE.
 //
 
-#import "UIImage+FixOrientation.h"
+#import "UIImage+RSKImageCropper.h"
 
-@implementation UIImage (FixOrientation)
+@implementation UIImage (RSKImageCropper)
 
 - (UIImage *)fixOrientation
 {
@@ -106,6 +106,25 @@
     CGImageRelease(cgimg);
     
     return img;
+}
+
+- (UIImage *)rotateByAngle:(CGFloat)angleInRadians
+{
+    CGSize contextSize = self.size;
+    
+    UIGraphicsBeginImageContextWithOptions(contextSize, NO, self.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, 0.5 * contextSize.width, 0.5 * contextSize.height);
+    CGContextRotateCTM(context, angleInRadians);
+    CGContextTranslateCTM(context, -0.5 * contextSize.width, -0.5 * contextSize.height);
+    [self drawAtPoint:CGPointZero];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

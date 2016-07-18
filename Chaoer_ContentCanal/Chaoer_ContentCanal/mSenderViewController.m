@@ -139,7 +139,7 @@
     UINib   *nib = [UINib nibWithNibName:@"pptTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
-     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"商品买送", @"事情办理",@"送东西"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
+     mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 165, DEVICE_Width, 40) andTitleWithBtn:@[@"商品买送", @"事情办理",@"送东西",@"全部"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
 
 }
 - (void)initAddress{
@@ -156,7 +156,7 @@
         {
             NSString *eee =@"定位失败！请检查网络和定位设置！";
             [WJStatusBarHUD showErrorImageName:nil text:eee];
-            mHeaderView.mAddress.text = eee;
+//            mHeaderView.mAddress.text = eee;
             [self showErrorStatus:@"需要打开定位才能查询附近的订单！"];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
@@ -175,7 +175,7 @@
             [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             MLLog(@"reGeocode:%@", regeocode);
-            mHeaderView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+//            mHeaderView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             
         }
     }];
@@ -330,7 +330,7 @@
     
     mHeaderView = [pptHeaderView shareView];
     
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 270);
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 235);
     [mHeaderView.mBanerView addSubview:mScrollerView];
 
         
@@ -495,6 +495,9 @@
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
+    if(mType == 4){
+        return;
+    }
     [self headerBeganRefresh];
     
 }

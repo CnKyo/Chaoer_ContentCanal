@@ -52,14 +52,14 @@
 
 - (void)initView{
 
-    mAdView = [mAddressView shareView];
-    [self.view addSubview:mAdView];
-    [mAdView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(0);
-        make.top.equalTo(self
-                         .view).offset(64);
-        make.height.offset(50);
-    }];
+//    mAdView = [mAddressView shareView];
+//    [self.view addSubview:mAdView];
+//    [mAdView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view).offset(0);
+//        make.top.equalTo(self
+//                         .view).offset(64);
+//        make.height.offset(50);
+//    }];
     
     mAmapView = [[MAMapView alloc] initWithFrame:CGRectMake(DEVICE_Width, DEVICE_Height, 0, 0)];
     mAmapView.delegate = self;

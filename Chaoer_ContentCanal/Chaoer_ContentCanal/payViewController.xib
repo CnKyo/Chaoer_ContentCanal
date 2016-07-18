@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mBaseBgkImg" translatesAutoresizingMaskIntoConstraints="NO" id="DEX-Ww-NK0">
-                    <rect key="frame" x="0.0" y="104" width="320" height="464"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KE9-9J-sh8">
                     <rect key="frame" x="60" y="170" width="200" height="95"/>
@@ -116,7 +116,7 @@
                 <constraint firstItem="X7I-rv-xcz" firstAttribute="top" secondItem="KE9-9J-sh8" secondAttribute="bottom" constant="3" id="8oE-Yf-3V5"/>
                 <constraint firstItem="Uf5-J1-k4S" firstAttribute="top" secondItem="X7I-rv-xcz" secondAttribute="bottom" constant="3" id="AhI-VH-AJa"/>
                 <constraint firstItem="Qft-lS-bgw" firstAttribute="top" secondItem="tzF-WZ-ZCn" secondAttribute="bottom" constant="47" id="CzS-X0-nWe"/>
-                <constraint firstItem="DEX-Ww-NK0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="ELQ-Xi-XdD"/>
+                <constraint firstItem="DEX-Ww-NK0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ELQ-Xi-XdD"/>
                 <constraint firstItem="X7I-rv-xcz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="IbD-Jz-WPa"/>
                 <constraint firstAttribute="trailing" secondItem="DEX-Ww-NK0" secondAttribute="trailing" id="JVk-4e-d4o"/>
                 <constraint firstItem="tzF-WZ-ZCn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="KAV-iR-cym"/>

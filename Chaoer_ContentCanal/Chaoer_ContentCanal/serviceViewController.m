@@ -39,19 +39,19 @@
     
     mTTArr = [NSMutableArray new];
     
-    mAdView = [mAddressView shareView];
-    [self.view addSubview:mAdView];
-    
-    [mAdView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view).offset(@0);
-        make.top.equalTo(self.view).offset(@64);
-        make.height.offset(@50);
-    }];
+//    mAdView = [mAddressView shareView];
+//    [self.view addSubview:mAdView];
+//    
+//    [mAdView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view).offset(@0);
+//        make.top.equalTo(self.view).offset(@64);
+//        make.height.offset(@50);
+//    }];
     
 
     mScrollerView = [UIScrollView new];
     mScrollerView.backgroundColor = [UIColor whiteColor];
-    mScrollerView.frame = CGRectMake(0, 114, DEVICE_Width, DEVICE_Height-114);
+    mScrollerView.frame = CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64);
     [self.view addSubview:mScrollerView];
 
     [self loadLocation];

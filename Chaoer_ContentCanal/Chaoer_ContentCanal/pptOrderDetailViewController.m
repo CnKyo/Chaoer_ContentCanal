@@ -440,7 +440,7 @@
         NSString *mmname = nil;
         
         if (self.mOrder.mGoodsTypeName == nil) {
-            mmname = self.mOrder.mTypeName;
+            mmname = self.mOrder.mContext;
         }
         if (self.mOrder.mTypeName == nil) {
             mmname = self.mOrder.mGoodsTypeName;
@@ -449,7 +449,7 @@
             mmname = @"暂无";
         }
         
-        cell.mSenderMg.text = [NSString stringWithFormat:@"商品类型:%@",mmname];
+        cell.mSenderMg.text = [NSString stringWithFormat:@"订单内容:%@",mmname];
         cell.mOrderNum.text = [NSString stringWithFormat:@"订单编号：%@",self.mOrder.mOrderCode];
         cell.mOrderName.text = self.mOrder.mTypeName;
         
@@ -457,7 +457,7 @@
         cell.mPhone.text = [NSString stringWithFormat:@"电话：%@",self.mOrder.mPhone];
         cell.mServiceTime.text = [NSString stringWithFormat:@"时间：%@分钟",self.mOrder.mArrivedTime];
         cell.mArriveAddress.text = [NSString stringWithFormat:@"地址：%@",self.mOrder.mAdress];
-        cell.mSendMoney.text = [NSString stringWithFormat:@"费用：%@元",self.mOrder.mLegworkMoney];
+        cell.mSendMoney.text = [NSString stringWithFormat:@"费用：%@元",self.mOrder.mMaxPrice];
         
         NSString *ordertype = nil;
 

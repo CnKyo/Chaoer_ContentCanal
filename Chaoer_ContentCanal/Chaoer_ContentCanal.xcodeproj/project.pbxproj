@@ -85,6 +85,9 @@
 		04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E2E1CE465CF006F82E2 /* releaseCell2.xib */; };
 		04102E311CE4683F006F82E2 /* releaseCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E301CE4683F006F82E2 /* releaseCell3.xib */; };
 		04102E331CE46893006F82E2 /* releaseCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E321CE46893006F82E2 /* releaseCell4.xib */; };
+		0411A9011D3CA87300402511 /* QHLShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */; };
+		0411A9021D3CA87300402511 /* QHLShopCarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9001D3CA87300402511 /* QHLShopCarCell.xib */; };
+		0411A9041D3CB37C00402511 /* homeTableCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9031D3CB37C00402511 /* homeTableCell2.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
 		041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E9D9B1D000FDE00C91D93 /* mTagButton.m */; };
 		042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042238EB1CD3046D00D1784B /* RCChatViewController.m */; };
@@ -296,6 +299,14 @@
 		04E092FF1CE9DAE000D3090E /* mPriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E092FE1CE9DAE000D3090E /* mPriceView.xib */; };
 		04E093071CEA3EB700D3090E /* myTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E093051CEA3EB700D3090E /* myTagViewController.m */; };
 		04E093081CEA3EB700D3090E /* myTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E093061CEA3EB700D3090E /* myTagViewController.xib */; };
+		04E170131D39D7A200C93892 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E170031D39D7A200C93892 /* CGGeometry+RSKImageCropper.m */; };
+		04E170141D39D7A200C93892 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E170051D39D7A200C93892 /* RSKImageCropperStrings.bundle */; };
+		04E170151D39D7A200C93892 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E170071D39D7A200C93892 /* RSKImageCropViewController.m */; };
+		04E170161D39D7A200C93892 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1700A1D39D7A200C93892 /* RSKImageScrollView.m */; };
+		04E170171D39D7A200C93892 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1700C1D39D7A200C93892 /* RSKInternalUtility.m */; };
+		04E170181D39D7A200C93892 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1700E1D39D7A200C93892 /* RSKTouchView.m */; };
+		04E170191D39D7A200C93892 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E170101D39D7A200C93892 /* UIApplication+RSKImageCropper.m */; };
+		04E1701A1D39D7A200C93892 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E170121D39D7A200C93892 /* UIImage+RSKImageCropper.m */; };
 		04E5A7C91CE56A3C00A2D111 /* pptHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */; };
 		04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */; };
 		04E5A7CE1CE56A5100A2D111 /* pptHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A7CC1CE56A5100A2D111 /* pptHistoryTableViewCell.m */; };
@@ -835,10 +846,6 @@
 		74B3A03F1B565DA20026E91D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B3A03E1B565DA20026E91D /* CoreVideo.framework */; };
 		74B3A0411B565DAA0026E91D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B3A0401B565DAA0026E91D /* CoreMedia.framework */; };
 		74B3A0431B565DB00026E91D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B3A0421B565DB00026E91D /* AVFoundation.framework */; };
-		74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1521B3A6058008F515A /* RSKImageCropViewController.m */; };
-		74BCE15A1B3A6058008F515A /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1541B3A6058008F515A /* RSKImageScrollView.m */; };
-		74BCE15B1B3A6058008F515A /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1561B3A6058008F515A /* RSKTouchView.m */; };
-		74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1581B3A6058008F515A /* UIImage+FixOrientation.m */; };
 		74C165631B7348F900C69390 /* forgetAndChangePwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C165621B7348F900C69390 /* forgetAndChangePwdView.m */; };
 		74D292E91B96DA7A00A57977 /* moreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D292E81B96DA7A00A57977 /* moreView.m */; };
 		74D292EB1B96DA8500A57977 /* moreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D292EA1B96DA8500A57977 /* moreView.xib */; };
@@ -1005,6 +1012,10 @@
 		04102E2E1CE465CF006F82E2 /* releaseCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell2.xib; sourceTree = "<group>"; };
 		04102E301CE4683F006F82E2 /* releaseCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell3.xib; sourceTree = "<group>"; };
 		04102E321CE46893006F82E2 /* releaseCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell4.xib; sourceTree = "<group>"; };
+		0411A8FE1D3CA87300402511 /* QHLShopCarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLShopCarCell.h; sourceTree = "<group>"; };
+		0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLShopCarCell.m; sourceTree = "<group>"; };
+		0411A9001D3CA87300402511 /* QHLShopCarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHLShopCarCell.xib; sourceTree = "<group>"; };
+		0411A9031D3CB37C00402511 /* homeTableCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeTableCell2.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
 		041E9D9A1D000FDE00C91D93 /* mTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mTagButton.h; sourceTree = "<group>"; };
 		041E9D9B1D000FDE00C91D93 /* mTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mTagButton.m; sourceTree = "<group>"; };
@@ -1400,6 +1411,23 @@
 		04E093041CEA3EB600D3090E /* myTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTagViewController.h; sourceTree = "<group>"; };
 		04E093051CEA3EB700D3090E /* myTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTagViewController.m; sourceTree = "<group>"; };
 		04E093061CEA3EB700D3090E /* myTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myTagViewController.xib; sourceTree = "<group>"; };
+		04E170021D39D7A200C93892 /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		04E170031D39D7A200C93892 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		04E170041D39D7A200C93892 /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
+		04E170051D39D7A200C93892 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
+		04E170061D39D7A200C93892 /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
+		04E170071D39D7A200C93892 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
+		04E170081D39D7A200C93892 /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
+		04E170091D39D7A200C93892 /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
+		04E1700A1D39D7A200C93892 /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
+		04E1700B1D39D7A200C93892 /* RSKInternalUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKInternalUtility.h; sourceTree = "<group>"; };
+		04E1700C1D39D7A200C93892 /* RSKInternalUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKInternalUtility.m; sourceTree = "<group>"; };
+		04E1700D1D39D7A200C93892 /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
+		04E1700E1D39D7A200C93892 /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
+		04E1700F1D39D7A200C93892 /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
+		04E170101D39D7A200C93892 /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
+		04E170111D39D7A200C93892 /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
+		04E170121D39D7A200C93892 /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
 		04E5A7C61CE56A3C00A2D111 /* pptHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptHistoryViewController.h; sourceTree = "<group>"; };
 		04E5A7C71CE56A3C00A2D111 /* pptHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptHistoryViewController.m; sourceTree = "<group>"; };
 		04E5A7C81CE56A3C00A2D111 /* pptHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptHistoryViewController.xib; sourceTree = "<group>"; };
@@ -2308,15 +2336,6 @@
 		74B3A03E1B565DA20026E91D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		74B3A0401B565DAA0026E91D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		74B3A0421B565DB00026E91D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		74BCE1501B3A6058008F515A /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
-		74BCE1511B3A6058008F515A /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
-		74BCE1521B3A6058008F515A /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
-		74BCE1531B3A6058008F515A /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
-		74BCE1541B3A6058008F515A /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
-		74BCE1551B3A6058008F515A /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
-		74BCE1561B3A6058008F515A /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
-		74BCE1571B3A6058008F515A /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
-		74BCE1581B3A6058008F515A /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		74C165611B7348F900C69390 /* forgetAndChangePwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forgetAndChangePwdView.h; sourceTree = "<group>"; };
 		74C165621B7348F900C69390 /* forgetAndChangePwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = forgetAndChangePwdView.m; sourceTree = "<group>"; };
 		74D292E71B96DA7A00A57977 /* moreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moreView.h; sourceTree = "<group>"; };
@@ -2761,6 +2780,9 @@
 				04A151181D3637B700AFCE98 /* QHLSettleMentView.m */,
 				04A151191D3637B700AFCE98 /* QHLTableViewCell.h */,
 				04A1511A1D3637B700AFCE98 /* QHLTableViewCell.m */,
+				0411A8FE1D3CA87300402511 /* QHLShopCarCell.h */,
+				0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */,
+				0411A9001D3CA87300402511 /* QHLShopCarCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4764,6 +4786,7 @@
 				31BBE2981C9142C9006C553D /* homeTableViewCell.h */,
 				31BBE2991C9142C9006C553D /* homeTableViewCell.m */,
 				31BBE29A1C9142C9006C553D /* homeTableViewCell.xib */,
+				0411A9031D3CB37C00402511 /* homeTableCell2.xib */,
 				31BBE29D1C914788006C553D /* mCustomHomeView.h */,
 				31BBE29E1C914788006C553D /* mCustomHomeView.m */,
 				31BBE2A01C91479A006C553D /* mCustomHomeView.xib */,
@@ -5259,15 +5282,23 @@
 		74BCE14F1B3A6058008F515A /* RSKImageCropper */ = {
 			isa = PBXGroup;
 			children = (
-				74BCE1501B3A6058008F515A /* RSKImageCropper.h */,
-				74BCE1511B3A6058008F515A /* RSKImageCropViewController.h */,
-				74BCE1521B3A6058008F515A /* RSKImageCropViewController.m */,
-				74BCE1531B3A6058008F515A /* RSKImageScrollView.h */,
-				74BCE1541B3A6058008F515A /* RSKImageScrollView.m */,
-				74BCE1551B3A6058008F515A /* RSKTouchView.h */,
-				74BCE1561B3A6058008F515A /* RSKTouchView.m */,
-				74BCE1571B3A6058008F515A /* UIImage+FixOrientation.h */,
-				74BCE1581B3A6058008F515A /* UIImage+FixOrientation.m */,
+				04E170021D39D7A200C93892 /* CGGeometry+RSKImageCropper.h */,
+				04E170031D39D7A200C93892 /* CGGeometry+RSKImageCropper.m */,
+				04E170041D39D7A200C93892 /* RSKImageCropper.h */,
+				04E170051D39D7A200C93892 /* RSKImageCropperStrings.bundle */,
+				04E170061D39D7A200C93892 /* RSKImageCropViewController.h */,
+				04E170071D39D7A200C93892 /* RSKImageCropViewController.m */,
+				04E170081D39D7A200C93892 /* RSKImageCropViewController+Protected.h */,
+				04E170091D39D7A200C93892 /* RSKImageScrollView.h */,
+				04E1700A1D39D7A200C93892 /* RSKImageScrollView.m */,
+				04E1700B1D39D7A200C93892 /* RSKInternalUtility.h */,
+				04E1700C1D39D7A200C93892 /* RSKInternalUtility.m */,
+				04E1700D1D39D7A200C93892 /* RSKTouchView.h */,
+				04E1700E1D39D7A200C93892 /* RSKTouchView.m */,
+				04E1700F1D39D7A200C93892 /* UIApplication+RSKImageCropper.h */,
+				04E170101D39D7A200C93892 /* UIApplication+RSKImageCropper.m */,
+				04E170111D39D7A200C93892 /* UIImage+RSKImageCropper.h */,
+				04E170121D39D7A200C93892 /* UIImage+RSKImageCropper.m */,
 			);
 			path = RSKImageCropper;
 			sourceTree = "<group>";
@@ -5442,6 +5473,7 @@
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
 				04D9F5081D275C3000518F6F /* mMessageOrNoteView.xib in Resources */,
 				04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */,
+				0411A9021D3CA87300402511 /* QHLShopCarCell.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
 				043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */,
 				74D292EB1B96DA8500A57977 /* moreView.xib in Resources */,
@@ -5625,9 +5657,11 @@
 				31AF47BA1CAE65CA00A722CD /* mPersonNavView.xib in Resources */,
 				04648C691CB4FD80006823C9 /* mySenderCell.xib in Resources */,
 				04F2DDFD1CBE2C460088C90F /* communityStatusTableViewCell.xib in Resources */,
+				0411A9041D3CB37C00402511 /* homeTableCell2.xib in Resources */,
 				046B12E41CE184BC00A8FB76 /* MHSelectPickerView.xib in Resources */,
 				04FAE7E71D2CAAA700341585 /* mFixOrderFooter.xib in Resources */,
 				312D08C61CAA1ECD0006F0FA /* loading.gif in Resources */,
+				04E170141D39D7A200C93892 /* RSKImageCropperStrings.bundle in Resources */,
 				31EEB31E1C93B6E700B61A86 /* communityCell3.xib in Resources */,
 				04102E221CE44241006F82E2 /* releasePPtViewController.xib in Resources */,
 				74DE206C1BCE527E003C03E7 /* changePhoneViewController.xib in Resources */,
@@ -5754,7 +5788,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C15D761D37B0C40097DA6C /* mComfirmOrderCell.m in Sources */,
-				74BCE15A1B3A6058008F515A /* RSKImageScrollView.m in Sources */,
 				B2CEE1221C03794600FC159C /* UITableView+DataSourceBlocks.m in Sources */,
 				04EA59AA1D34824200CC5C39 /* mMarkeyRateCell.m in Sources */,
 				749BEA671B32B33B00BABCA6 /* MyViewController.m in Sources */,
@@ -5787,6 +5820,7 @@
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
 				04C15D631D3772E90097DA6C /* WKOrderHeadView.m in Sources */,
 				044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */,
+				04E170151D39D7A200C93892 /* RSKImageCropViewController.m in Sources */,
 				044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */,
 				04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */,
 				7487DC1D1B4E17F000C40220 /* View+MASAdditions.m in Sources */,
@@ -5801,6 +5835,7 @@
 				749BE9DB1B32775D00BABCA6 /* CTAssetsPickerController.m in Sources */,
 				314586351CAE4249003EB85E /* myViewTableViewCell.m in Sources */,
 				31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */,
+				04E170161D39D7A200C93892 /* RSKImageScrollView.m in Sources */,
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
@@ -5924,10 +5959,8 @@
 				746907E21BABEC6600A4589A /* moreCell.m in Sources */,
 				04E5A7F71CE5892300A2D111 /* pptMyCell.m in Sources */,
 				3123CC261C929ECB00C3B928 /* wpgViewController.m in Sources */,
-				74BCE15C1B3A6058008F515A /* UIImage+FixOrientation.m in Sources */,
 				04F2283F1CEEE4EB004E8702 /* DistancePickerView.m in Sources */,
 				04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */,
-				74BCE1591B3A6058008F515A /* RSKImageCropViewController.m in Sources */,
 				04F5FFF41D236EE400EFBB3C /* orderStatusViewController.m in Sources */,
 				044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */,
 				04102CE51D2A5BC4003A0C56 /* BaseHeaderRefresh.m in Sources */,
@@ -6064,6 +6097,7 @@
 				04BBA2E11CBD1B2000BD1420 /* addAddressViewController.m in Sources */,
 				31EEB30C1C93A6DF00B61A86 /* takeFixViewController.m in Sources */,
 				749BEA431B3277AA00BABCA6 /* SDWebImageManager+MJ.m in Sources */,
+				04E1701A1D39D7A200C93892 /* UIImage+RSKImageCropper.m in Sources */,
 				04EEAE021D0FAFCA00FA97C6 /* UIImageView+AFNetworking.m in Sources */,
 				04E5A7E11CE579B000A2D111 /* MCMenuButton.m in Sources */,
 				04EEADE71D0FAFAE00FA97C6 /* AFURLRequestSerialization.m in Sources */,
@@ -6150,6 +6184,7 @@
 				04E5A7E61CE579B000A2D111 /* MCPopMenuViewController.m in Sources */,
 				04D49C681CE706CD00BAD649 /* pptDetailCell.m in Sources */,
 				04102E1D1CE431CF006F82E2 /* UIView+Extnesion.m in Sources */,
+				04E170131D39D7A200C93892 /* CGGeometry+RSKImageCropper.m in Sources */,
 				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
 				04AD8A901CE3103200A3F87F /* openPPTViewController.m in Sources */,
 				04F9E5D01CED4D8B00FCA8B7 /* MJExtensionConst.m in Sources */,
@@ -6206,6 +6241,7 @@
 				04F2283C1CEEE4EB004E8702 /* ActionSheetLocalePicker.m in Sources */,
 				B2D48CA31BEC53FF00482EB8 /* README.md in Sources */,
 				04D85DC91CF6DE9400E1A3A2 /* canelHistoryViewController.m in Sources */,
+				04E170191D39D7A200C93892 /* UIApplication+RSKImageCropper.m in Sources */,
 				04102CCF1D2A508B003A0C56 /* MJRefreshAutoNormalFooter.m in Sources */,
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				04F9E5D51CED4D8B00FCA8B7 /* NSObject+MJClass.m in Sources */,
@@ -6214,6 +6250,7 @@
 				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
 				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
+				04E170171D39D7A200C93892 /* RSKInternalUtility.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				04EEADB01D0FAE5A00FA97C6 /* HDPicModle.m in Sources */,
 				04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */,
@@ -6223,7 +6260,6 @@
 				04E5A8171CE5C39700A2D111 /* pptMyAddressCell.m in Sources */,
 				313D76B71C98FB5A004D5679 /* mZhongchouView.m in Sources */,
 				749BE9E11B32776B00BABCA6 /* CunsomLabel.m in Sources */,
-				74BCE15B1B3A6058008F515A /* RSKTouchView.m in Sources */,
 				3123CC091C9261DA00C3B928 /* payViewController.m in Sources */,
 				04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */,
 				3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */,
@@ -6236,6 +6272,8 @@
 				7445C0921B33A39000F330EA /* UIView+Additions.m in Sources */,
 				7487DC151B4E17F000C40220 /* MASCompositeConstraint.m in Sources */,
 				04102CB51D2A506D003A0C56 /* NSBundle+MJRefresh.m in Sources */,
+				04E170181D39D7A200C93892 /* RSKTouchView.m in Sources */,
+				0411A9011D3CA87300402511 /* QHLShopCarCell.m in Sources */,
 				7487DC241B4E1A1B00C40220 /* TTTAttributedLabel.m in Sources */,
 				04B462FA1D24AEA800001ECB /* UIView+Extension.m in Sources */,
 			);
