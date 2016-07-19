@@ -10,4 +10,7 @@
 
 @interface communityViewController : BaseVC
 
+@property (strong,nonatomic) NSString *mLat;
+@property (strong,nonatomic) NSString *mLng;
+
 @end

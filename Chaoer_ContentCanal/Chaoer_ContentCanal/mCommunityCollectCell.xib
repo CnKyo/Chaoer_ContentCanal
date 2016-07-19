@@ -218,7 +218,7 @@
                     <constraint firstItem="YTH-7c-wWL" firstAttribute="leading" secondItem="V7Z-mD-vPe" secondAttribute="trailing" constant="10" id="ryR-D2-pL8"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="mLeftAdd" destination="f5U-OB-MuL" id="tfC-03-GtQ"/>
                 <outlet property="mLeftCollect" destination="HS7-rR-HhN" id="p4B-Rp-lLo"/>

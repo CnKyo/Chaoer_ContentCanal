@@ -36,10 +36,36 @@
 //    self.mLeftView.layer.borderWidth = self.mLeftView.layer.borderWidth = 0.75;
 
     
-    
+    [self.mLeftCollect addTarget:self action:@selector(mLeftAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mRightCollect addTarget:self action:@selector(mRightAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
 }
 
+- (void)mLeftAction:(UIButton *)sender{
+
+    if ([self.delegate respondsToSelector:@selector(cellWithLeftBtnClick:)]) {
+        [self.delegate cellWithLeftBtnClick:sender.tag];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithLeftBtnClick:andId:)]) {
+        [self.delegate cellWithLeftBtnClick:sender.tag andId:self.mLeftShopId];
+    }
+    
+    
+}
+
+- (void)mRightAction:(UIButton *)sender{
+ 
+    if ([self.delegate respondsToSelector:@selector(cellWithRightBtnClick:)]) {
+        [self.delegate cellWithRightBtnClick:sender.tag];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithRightBtnClick:andId:)]) {
+        [self.delegate cellWithRightBtnClick:sender.tag andId:self.mRightShopId];
+    }
+    
+    
+}
 
 @end

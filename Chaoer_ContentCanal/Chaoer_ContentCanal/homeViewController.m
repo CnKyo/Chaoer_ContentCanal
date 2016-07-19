@@ -249,7 +249,8 @@
 }
 
 - (void)initview{
-    
+    [mNavView removeFromSuperview];
+    [self.tableView removeFromSuperview];
     mNavView = [homeNavView shareView];
     mNavView.mMsgPoint.hidden = YES;
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
@@ -676,9 +677,11 @@
     switch (Index) {
         case 0:
         {
-            //            [self showErrorStatus:@"商家还在赶来的路上～～"];
-            //            return;
+//                        [self showErrorStatus:@"商家还在赶来的路上～～"];
+//                        return;
             communityViewController   *ppp = [communityViewController new];
+            ppp.mLng = mLng;
+            ppp.mLat = mLat;
             [self pushViewController:ppp];
         }
             break;
@@ -714,6 +717,7 @@
             }
             
             communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
+        
             [self pushViewController:ccc];
             
             

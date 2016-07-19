@@ -27,6 +27,9 @@
 }
 - (void)setMDataSourceArr:(NSArray *)mDataSourceArr{
     
+    for (UIView *vvv in self.contentView.subviews) {
+        [vvv removeFromSuperview];
+    }
     
     NSMutableArray *arrtemp = [NSMutableArray new];
     [arrtemp removeAllObjects];

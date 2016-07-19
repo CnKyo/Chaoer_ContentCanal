@@ -3454,30 +3454,55 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         
     }];
 }
-#pragma mark----获取社区超市baner
+#pragma mark----获取社区超市首页
 /**
- *  获取社区超市baner
+ *  获取社区超市首页
  *
+ *  @param mPage 分页
+ *  @param mLat  纬度
+ *  @param mLng  经度
  *  @param block 返回值
  */
-- (void)getMarket:(void(^)(mBaseData *resb,NSArray *mArr))block{
-    NSMutableDictionary *para = [NSMutableDictionary new];
+- (void)getMarketHome:(int)mPage andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mBanerArr,NSArray *mShopArr,NSArray *mHotArr))block{
 
-    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/banner/getBanner" parameters:para call:^(mBaseData * _Nonnull info) {
-        NSMutableArray *tempArr = [NSMutableArray new];
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    
+    if (mLng) {
+        [para setObject:mLng forKey:@"lng"];
+
+    }
+    if (mLat) {
+        [para setObject:mLat forKey:@"lat"];
+
+    }
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/home/getShopList" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *mBanerArr = [NSMutableArray new];
+        NSMutableArray *mShopArr = [NSMutableArray new];
+        NSMutableArray *mHottArr = [NSMutableArray new];
         if (info.mSucess) {
             
             
-            for (NSDictionary *dic in info.mData) {
-                [tempArr addObject:[[MBaner alloc] initWithObj:dic]];
+            for (NSDictionary *dic in [info.mData objectForKey:@"shm"]) {
+                [mShopArr addObject:[[GMarketList alloc] initWithObj:dic]];
             }
             
-            block(info,tempArr);
+            for (NSDictionary *dic in [info.mData objectForKey:@"sbm"]) {
+                [mBanerArr addObject:[[ MBaner alloc] initWithObj:dic] ];
+            }
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"shgm"]) {
+                [mHottArr addObject:[[GHot alloc] initWithObj:dic]];
+            }
+            
+            block(info,mBanerArr,mShopArr,mHottArr);
         }else{
-            block(info,nil);
+            block(info,nil,nil,nil);
         }
     }];
-
 
 }
 #pragma mark----获取社区超市社区地址
@@ -3511,7 +3536,187 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 
 }
+#pragma mark----获取社区超市详情
+/**
+ *  获取社区超市详情
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMaeketDetail:(int)mPage andMarketId:(int)mMarketId block:(void(^)(mBaseData *resb,NSArray *mArr,int mIsCoup,int mIsCollect,NSArray *mClassArr))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(mMarketId) forKey:@"shopId"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/shop/index" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        NSMutableArray *classArr = [NSMutableArray new];
+
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"goods"]) {
+                [tempArr addObject:[[MGoods alloc] initWithObj:dic]];
+            }
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"category"]) {
+                [classArr addObject:[[GClassN alloc] initWithObj:dic]];
+
+            }
+            
+            block(info,tempArr,[[[info.mData objectForKey:@"shop"] objectForKey:@"coupon"] intValue],[[[info.mData objectForKey:@"shop"] objectForKey:@"focus"] intValue],classArr);
+        }else{
+            block(info,nil,nil,nil,nil);
+        }
+    }];
+    
+}
+#pragma mark----查询超市商品
+/**
+ *  查询超市商品
+ *
+ *  @param mShopId  店铺id
+ *  @param mClassId 分类id
+ *  @param mPage    分页
+ *  @param block    返回值
+ */
+- (void)findGoodsWithShop:(int)mShopId andCatigory:(int)mClassId andPage:(int)mPage andKeyWord:(NSString *)mKey block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mClassId) forKey:@"category"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    if (mKey) {
+        [para setObject:mKey forKey:@"keywords"];
+    }
+    
+
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/shop/queryGoods" parameters:para call:^(mBaseData * _Nonnull info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[MGoods alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+    
+
+    
+}
+#pragma mark----收藏店铺
+/**
+ *  收藏店铺
+ *
+ *  @param mShopId 店铺id
+ *  @param mType   类型
+ *  @param block   返回值
+ */
+- (void)collectShop:(int)mShopId andType:(int)mType block:(void(^)(mBaseData *resb))block{
+
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/shop/collectShop" parameters:para call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+            block(info);
+        }else{
+            block(info);
+        }
+    }];
+
+    
+
+}
+#pragma mark----收藏商品
+/**
+ *  收藏商品
+ *
+ *  @param mShopId  店铺id
+ *  @param mGoodsId 商品id
+ *  @param mType    类型
+ *  @param block    返回值
+ */
+- (void)collectGoods:(int)mShopId andGoodsId:(int)mGoodsId andType:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+    [para setObject:NumberWithInt(mGoodsId) forKey:@"goodsId"];
+
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/shop/collectGoods" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in [info.mData objectForKey:@"goods"]) {
+                [tempArr addObject:[[MGoods alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+    
+}
+#pragma mark----获取我的收藏商品
+/**
+ *  获取我的收藏商品
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMyCollectGoods:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/focus/getGoodsFocus" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCollectGoods alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+}
 #pragma mark----获取优惠卷
 /**
  *  获取优惠卷
@@ -3547,6 +3752,41 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
     
+}
+#pragma mark----获取收藏的店铺
+/**
+ *  获取收藏的店铺
+ *
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getMyStoreCollection:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/focus/getShopFocus" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GCollectionSHop alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+
 }
 @end
 
@@ -3685,7 +3925,10 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 {
     self.mImgUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"img"]];
     
-    self.mContentUrl = [obj objectForKeyMy:@"url"];
+    
+    
+    
+    self.mContentUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"url"]];
     self.mName = [obj objectForKeyMy:@"name"];
     self.mB_index = [[obj objectForKeyMy:@"b_index"] intValue];
 }
@@ -5518,6 +5761,183 @@ bool pptbined = NO;
     self.mPwd = [obj objectForKeyMy:@"pass"];
 
     
+}
+
+@end
+@implementation GCollectionSHop
+
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mShopId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mShopAddress = [obj objectForKeyMy:@"address"];
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
+    self.mShopLogo = [obj objectForKeyMy:@"shopLogo"];
+ 
+    
+    
+}
+@end
+
+@implementation GMarketList
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mShopId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mDisTance = [obj objectForKeyMy:@"distance"];
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
+    
+    self.mOpenTime = [obj objectForKeyMy:@"openingTime"];
+    self.mCloseTime = [obj objectForKeyMy:@"closingTime"];
+    
+    
+    self.mSalesNum = [[obj objectForKeyMy:@"salesNum"] intValue];
+    self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
+
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
+
+}
+
+@end
+
+@implementation MGoods
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mIsCoup = [[obj objectForKeyMy:@"coupon"] intValue];
+    self.mIsCollect = [[obj objectForKeyMy:@"focus"] intValue];
+
+    self.mSalesNum = [[obj objectForKeyMy:@"sales_num"] intValue];
+
+    self.mGoodsId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mGoodsHot = [obj objectForKeyMy:@"hot"];
+    self.mGoodsTag = [obj objectForKeyMy:@"tag"];
+
+    self.mGoodsCampain = [obj objectForKeyMy:@"campaign"];
+    self.mGoodsName = [obj objectForKeyMy:@"goods_name"];
+    self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
+    self.mGoodsDetail = [obj objectForKeyMy:@"describe"];
+    self.mGoodsImg = [obj objectForKeyMy:@"goods_img"];
+
+
+    
+    
+}
+
+@end
+
+@implementation GCollectGoods
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mSalesNum = [[obj objectForKeyMy:@"salesNum"] intValue];
+    
+    self.mGoodsId = [[obj objectForKeyMy:@"goodsId"] intValue];
+    
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    self.mGoodsDetail = [obj objectForKeyMy:@"goodsDetails"];
+    self.mGoodsImg = [obj objectForKeyMy:@"goodsImg"];
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    
+    
+}
+
+@end
+
+@implementation GClassN
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mName = [obj objectForKeyMy:@"category_name"];
+  
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    
+    
+}
+
+@end
+@implementation GHot
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mDetail = [obj objectForKeyMy:@"goodsDetails"];
+    
+    self.mBigImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goodsImg"]];
+    
+    self.mSmallImg =[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"smallImage"]];
+    
+    self.mMarketPrice = [[obj objectForKeyMy:@"marketPrice"] floatValue];
+    
+    self.mNowPrice = [[obj objectForKeyMy:@"goodsPrice"] floatValue];
+    
+    
+
 }
 
 @end

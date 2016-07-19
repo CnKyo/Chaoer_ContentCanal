@@ -7,6 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+/**
+ *  cell的点击代理方法
+ */
+@protocol WKGoodsCellDelegate <NSObject>
+
+@optional
+/**
+ *  左边按钮的代理方法
+ *
+ *  @param mTag tag
+ */
+- (void)cellWithLeftBtnClick:(NSInteger)mTag;
+- (void)cellWithLeftBtnClick:(NSInteger)mTag andId:(int)mShopId;
+
+/**
+ *  右边按钮的代理方法
+ *
+ *  @param mTag tag
+ */
+- (void)cellWithRightBtnClick:(NSInteger)mTag;
+- (void)cellWithRightBtnClick:(NSInteger)mTag andId:(int)mShopId;
+
+
+@end
 
 @interface mCommunityMyViewCell : UITableViewCell
 
@@ -117,6 +141,12 @@
  *  右边的标签
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mRightTagImg;
+
+@property (strong,nonatomic) id <WKGoodsCellDelegate> delegate;
+
+@property (nonatomic,assign) int mLeftShopId;
+
+@property (nonatomic,assign) int mRightShopId;
 
 
 @end

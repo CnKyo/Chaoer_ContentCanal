@@ -10,5 +10,10 @@
 
 @interface mMarketDetailViewController : BaseVC
 @property (weak, nonatomic) IBOutlet UIScrollView *mScrollerView;
+/**
+ *  超市id
+ */
+@property (assign,nonatomic) int mShopId;
 
+@property (strong,nonatomic) GMarketList *mShopList;
 @end

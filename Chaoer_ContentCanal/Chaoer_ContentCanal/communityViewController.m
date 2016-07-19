@@ -21,6 +21,9 @@
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
 @property (nonatomic,strong)    NSMutableArray  *mSubArr;
+@property (nonatomic,strong)    NSMutableArray *mShopArr;
+@property (nonatomic,strong)    NSMutableArray *mShopHotArr;
+
 
 @end
 
@@ -32,17 +35,14 @@
 
     mCommunityNavView *mSubView;
     DCPicScrollView  *mScrollerView;
-    /**
-     *  纬度
-     */
-    NSString *mLat;
-    /**
-     *  经度
-     */
-    NSString *mLng;
+
+    
 }
 
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
 
@@ -54,8 +54,12 @@
     self.navBar.hidden = YES;
     self.mBanerArr = [NSMutableArray new];
     self.mSubArr = [NSMutableArray new];
+    self.mShopArr = [NSMutableArray new];
+    self.mShopHotArr = [NSMutableArray new];
+    [self initLocation];
 
     [self initView];
+
 }
 - (void)initView{
     
@@ -102,8 +106,9 @@
         MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
         
         mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置：%@",mId];
-        mLat = Lat;
-        mLng = Lng;
+        self.mLat = Lat;
+        self.mLng = Lng;
+        [self headerBeganRefresh];
     };
     
     [self pushViewController:address];
@@ -141,8 +146,8 @@
             mNavView.mAddress.text = [NSString stringWithFormat:@"%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
    
             MLLog(@"location:%@", location);
-            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+            _mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            _mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
         }
     }];
 
@@ -153,25 +158,27 @@
 
 - (void)headerBeganRefresh{
 
-    
+    self.page = 1;
     
     [self.mBanerArr removeAllObjects];
     [self.mSubArr removeAllObjects];
-
-    
+    [self.mShopArr removeAllObjects];
+    [self.mShopHotArr removeAllObjects];
     for (int i =0; i<10; i++) {
         NSString *sr = [NSString stringWithFormat:@"第%d个",i];
         [self.mSubArr addObject:sr];
     }
     
-    [self initLocation];
-    [[mUserInfo backNowUser] getMarket:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getMarketHome:self.page andLat:_mLat andLng:_mLng block:^(mBaseData *resb, NSArray *mBanerArr, NSArray *mShopArr,NSArray *mHotArr) {
+        
         
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
             
-            [self.mBanerArr addObjectsFromArray:mArr];
+            [self.mBanerArr addObjectsFromArray:mBanerArr];
+            [self.mShopArr addObjectsFromArray:mShopArr];
+            [self.mShopHotArr addObjectsFromArray:mHotArr];
             [self.tableView reloadData];
             
         }else{
@@ -220,7 +227,7 @@
     }else if (section == 1){
         return 1;
     }else{
-        return 5;
+        return self.mShopArr.count;
     }
     
     
@@ -264,16 +271,30 @@
         
         communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.delegate = self;
-        [cell setMScrollerSourceArr:self.mSubArr];
+        [cell setMScrollerSourceArr:self.mShopHotArr];
         return cell;
 
     }else{
     
         reuseCellId = @"cell3";
-        
         communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+
+        if (self.mShopArr.count == 0 || !self.mShopArr) {
+            
+        }else{
+            GMarketList *mShopList = self.mShopArr[indexPath.row];
+            cell.mName.text = mShopList.mShopName;
+            [cell.mLogo sd_setImageWithURL:[NSURL URLWithString:mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+            cell.mWorkTime.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopList.mOpenTime,mShopList.mCloseTime];
+            cell.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
+
+            cell.mNum.text = [NSString stringWithFormat:@"全部商品：%d 收藏数：%d",mShopList.mSalesNum,mShopList.mGoodsNum];
+        }
+        
+        
         
         cell.mActivity2.hidden = cell.mActivityContent2.hidden = YES;
+        
         
         return cell;
     }
@@ -298,8 +319,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GMarketList *mShopList = self.mShopArr[indexPath.row];
 
     mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+    market.mShopList = GMarketList.new;
+    market.mShopList = mShopList;
+    market.mShopId = mShopList.mShopId;
+    
     [self pushViewController:market];
     
 }
