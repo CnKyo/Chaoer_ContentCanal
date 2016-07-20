@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class MGoods;
+@class GMarketList;
 @interface mGoodsBtn : UIButton
 
 @property (strong,nonatomic) MGoods *mGood;
+
+@property (strong,nonatomic) GMarketList *mShop;
 
 @end

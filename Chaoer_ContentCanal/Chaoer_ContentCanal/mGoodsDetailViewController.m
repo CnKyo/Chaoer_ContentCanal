@@ -154,6 +154,10 @@
 - (void)mCollectionAction:(UIButton *)sender{
     
 }
+- (void)initData{
+
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

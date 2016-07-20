@@ -69,6 +69,12 @@
         [self.cellDelegate cell:self JianBtnDidClicked:sender.selected andIndexPath:self.indexPath];
     }
     
+    if ([self.cellDelegate respondsToSelector:@selector(cell:JianBtnDidClicked:andIndexPath:andGoods:)]) {
+        [self.cellDelegate cell:self JianBtnDidClicked:sender.selected andIndexPath:self.indexPath andGoods:self.mGoods];
+    }
+    
+    
+    
 }
 
 - (IBAction)mAddAction:(QHLButton *)sender {
@@ -77,18 +83,24 @@
         [self.cellDelegate cell:self AddBtnDidClicked:sender.selected andIndexPath:self.indexPath];
     }
     
+    if ([self.cellDelegate respondsToSelector:@selector(cell:AddBtnDidClicked:andIndexPath:andGoods:)]) {
+        [self.cellDelegate cell:self AddBtnDidClicked:sender.selected andIndexPath:self.indexPath andGoods:self.mGoods];
+        
+    }
+    
 }
 
-- (void)setMGoods:(QHLGoods *)mGoods{
+- (void)setMGoods:(GShopCarGoods *)mGoods{
 
     _mGoods = mGoods;
     
     //设置cell中的子控件数据
-    self.mSelectedBtn.selected = mGoods.selected;
-    self.mSelectedBtn.tag = [mGoods.tag intValue];
-    self.mContent.text = mGoods.introduction;
-    self.mPrice.text = [NSString stringWithFormat:@"￥:%d",[mGoods.price intValue]];
-    self.mName.text = mGoods.name;
+    self.mSelectedBtn.selected = mGoods.mSelected;
+    self.mSelectedBtn.tag = [[NSString stringWithFormat:@"%d",mGoods.mGoodsId] intValue];
+    self.mContent.text = [NSString stringWithFormat:@"数量：%d%@",mGoods.mQuantity,mGoods.mSpecifications];
+    self.mPrice.text = [NSString stringWithFormat:@"￥:%.2f",mGoods.mGoodsPrice];
+    self.mName.text = mGoods.mGoodsName;
+    self.mNum.text = [NSString stringWithFormat:@"%d",mGoods.mQuantity];
 
 }
 

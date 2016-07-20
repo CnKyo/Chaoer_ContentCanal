@@ -53,7 +53,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8o-CS-2JA">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8o-CS-2JA" customClass="mGoodsBtn">
                         <rect key="frame" x="264" y="16" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="9GU-27-XDW"/>
@@ -62,6 +62,9 @@
                         <state key="normal" backgroundImage="my_ uncollect">
                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="mFocusShopAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hyT-cX-OxQ"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGH-OR-HHc">
                         <rect key="frame" x="0.0" y="79" width="320" height="1"/>

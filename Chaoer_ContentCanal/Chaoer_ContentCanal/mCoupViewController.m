@@ -55,7 +55,7 @@
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"我的";
     self.rightBtnTitle = @"兑换";
-    mType = 1;
+    mType = 0;
     [self initView];
     [self initPopView];
 }
@@ -192,11 +192,11 @@
     
     coupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.mContent.text = mCoup.mCoupName;
-    if (mType == 2) {
+    if (mType == 1) {
         cell.mIsValid.image = [UIImage imageNamed:@"coup_ expire"];
         cell.mIsValid.hidden = NO;
 
-    }else if (mType == 3){
+    }else if (mType == 2){
         cell.mIsValid.image = [UIImage imageNamed:@"coup_beuse"];
         cell.mIsValid.hidden = NO;
     }else{

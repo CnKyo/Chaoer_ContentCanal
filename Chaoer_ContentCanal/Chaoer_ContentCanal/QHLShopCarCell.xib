@@ -157,7 +157,7 @@
                 <outlet property="mProLogo" destination="jBB-RX-QO2" id="AdC-np-gYs"/>
                 <outlet property="mSelectedBtn" destination="5dx-WL-tpa" id="4qb-fb-R2S"/>
             </connections>
-            <point key="canvasLocation" x="209" y="296"/>
+            <point key="canvasLocation" x="268" y="306"/>
         </tableViewCell>
     </objects>
     <resources>

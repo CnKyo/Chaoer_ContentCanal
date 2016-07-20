@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"购物车";
     self.rightBtnTitle = @"删除";
-
+    self.shoppingCar = [NSMutableArray new];
     self.markArr = [NSMutableArray new];
     self.deleteArr = [NSMutableArray new];
     self.selectedRows = [NSMutableArray new];
@@ -186,14 +186,36 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     return _btnsArray;
 }
 
-- (NSMutableArray *)shoppingCar {
-    if (!_shoppingCar) {
-        
-        _shoppingCar = [QHLShop shop];
-    }
-    return _shoppingCar;
-}
+//- (NSMutableArray *)shoppingCar {
+//    if (!_shoppingCar) {
+//        
+//        _shoppingCar = [QHLShop shop];
+//    }
+//    return _shoppingCar;
+//}
+- (void)headerBeganRefresh{
 
+    [self showWithStatus:@"加载中..."];
+    [[mUserInfo backNowUser] getMyShopCarList:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        [self removeEmptyView];
+        [self.shoppingCar removeAllObjects];
+        [self headerEndRefresh];
+         if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                [self.shoppingCar addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+            
+        }else{
+            [self addEmptyView:nil];
+        }
+    }];
+    
+}
 #pragma mark -添加settle accounts view
 - (void)setUpSettleAccountView {
 
@@ -222,16 +244,16 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
         if (selected) { //全选按钮 选中
             self.hiddenRightBtn = NO;
-            for (QHLShop *shop in self.shoppingCar) {
-                for (QHLGoods *good in shop.goods) {
+            for (GShopCarList *shop in self.shoppingCar) {
+                for (GShopCarGoods *good in shop.mGoodsArr) {
                     
-                    if (!good.selected) {  //判断cell中的按钮是否选中
+                    if (!good.mSelected) {  //判断cell中的按钮是否选中
                         self.count ++;
                         
                         //计算金额
-                        self.money += [good.price integerValue];
+                        self.money += good.mGoodsPrice ;
                         
-                        [self.deleteArr addObject:good.price];
+                        [self.deleteArr addObject:[NSString stringWithFormat:@"%.2f",good.mGoodsPrice]];
                         
                     }
                 }
@@ -240,11 +262,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             
         }else {  //全选按钮不选中
             self.hiddenRightBtn = YES;
-            for (QHLShop *shop in self.shoppingCar) {
-                for (QHLGoods *good in shop.goods) {
+            for (GShopCarList *shop in self.shoppingCar) {
+                for (GShopCarGoods *good in shop.mGoodsArr) {
                     self.count --;
                     
-                    self.money -= [good.price integerValue];
+                    self.money -= good.mGoodsPrice ;
                 }
             }
         }
@@ -257,11 +279,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     
     //遍历 改变tableView中的所有按钮状态
-    for (QHLShop *shop in self.shoppingCar) {
+    for (GShopCarList *shop in self.shoppingCar) {
         
-        shop.selected = selected;
-        for (QHLGoods *good in shop.goods) {
-            good.selected = selected;
+        shop.mSelected = selected;
+        for (GShopCarGoods *good in shop.mGoodsArr) {
+            good.mSelected = selected;
         }
     }
     [self.tableView reloadData];
@@ -322,13 +344,13 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (void)enumerateObjectsUsForinWithDataArray:(NSMutableArray *)dataArray modelArray:(NSMutableArray *)modelArray {
     for (id obj in dataArray) {
         
-        for (QHLShop *shops in modelArray) {
+        for (GShopCarList *shops in modelArray) {
             
-            for (QHLGoods *goods in shops.goods) {
+            for (GShopCarGoods *goods in shops.mGoodsArr) {
                 
                 if ([goods isEqual:obj]) {
                     
-                    [shops.goods removeObject:goods];
+                    [shops.mGoodsArr removeObject:goods];
                     break;
                     
                 }
@@ -339,7 +361,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     //遍历删除 shops
     for (id obj in dataArray) {
         
-        for (QHLShop *shops in modelArray) {
+        for (GShopCarList *shops in modelArray) {
             
             if ([shops isEqual:obj]) {
                 
@@ -355,22 +377,22 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     hiddenView.allSelBtnSelected = selected;
     
-    for (QHLShop *shop in self.shoppingCar) {
-        shop.selected = selected;
+    for (GShopCarList *shop in self.shoppingCar) {
+        shop.mSelected = selected;
         
         //选中的cell添加到btns数组中
         NSUInteger SectionIndex = [self.shoppingCar indexOfObject:shop];
         
-        QHLShop *shops = self.tempArray[SectionIndex];
+        GShopCarGoods *shops = self.tempArray[SectionIndex];
         
         [self handleObjectInArrays:shop documentsObject:shops selectedState:selected];
         
-        for (QHLGoods *good in shop.goods) {
-            good.selected = selected;
+        for (GShopCarGoods *good in shop.mGoodsArr) {
+            good.mSelected = selected;
             
-            NSUInteger rowIndex = [shop.goods indexOfObject:good];
+            NSUInteger rowIndex = [shop.mGoodsArr indexOfObject:good];
             
-            QHLGoods *goods = [self.tempArray[SectionIndex] goods][rowIndex];
+            GShopCarGoods *goods = [self.tempArray[SectionIndex] goods][rowIndex];
             
             [self handleObjectInArrays:good documentsObject:goods selectedState:selected];
         }
@@ -408,14 +430,14 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         [NSKeyedArchiver archiveRootObject:self.shoppingCar toFile:SMGoodsModelPath];
         
         //遍历 改变tableView中的所有按钮状态
-        for (QHLShop *shop in self.shoppingCar) {
+        for (GShopCarList *shop in self.shoppingCar) {
             
             //设置表头视图中的按钮状态
-            shop.selected = NO;
-            for (QHLGoods *good in shop.goods) {
+            shop.mSelected = NO;
+            for (GShopCarGoods *good in shop.mGoodsArr) {
                 
                 //设置cell中按钮的选中状态
-                good.selected = NO;
+                good.mSelected = NO;
                 
             }
         }
@@ -442,14 +464,14 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         self.money = 0;
         self.count = 0;
         
-        for (QHLShop *shop in self.shoppingCar) {
+        for (GShopCarList *shop in self.shoppingCar) {
             
-            for (QHLGoods *good in shop.goods) {
+            for (GShopCarGoods *good in shop.mGoodsArr) {
                 
-                if (good.selected) {
+                if (good.mSelected) {
                     
                     self.count ++;
-                    self.money += [good.price integerValue];
+                    self.money += good.mGoodsPrice;
                     
                 }
             }
@@ -461,17 +483,17 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
         
         //self.shoppingCar 不为空的话 做下面循环遍历
-        for (QHLShop *shop in self.shoppingCar) {
+        for (GShopCarList *shop in self.shoppingCar) {
             
             //定义一个bool值 遍历结束后  NO:表示该组cell中有cell的btn都是选中的   YES:表示该组cell中有cell的btn是未选中的
             BOOL cellsState = NO;
             
             //设置按钮cell所在的表头视图的按钮状态
-            for (QHLGoods *goods in shop.goods) {
+            for (GShopCarGoods *goods in shop.mGoodsArr) {
                 
-                if (!goods.selected) {
+                if (!goods.mSelected) {
                     
-                    shop.selected = NO;
+                    shop.mSelected = NO;
                     
                     [self.tableView reloadData];
                     
@@ -485,15 +507,15 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             
             if (!cellsState) {
                 //能执行到此处,就说明该组cell的按钮 都是选中状态
-                shop.selected = YES;
+                shop.mSelected = YES;
                 
                 [self.tableView reloadData];
             }
         }
         
         //根据表透视图的按钮状态设置全选按钮的状态
-        for (QHLShop *shop in self.shoppingCar) {
-            if (!shop.selected) {
+        for (GShopCarList *shop in self.shoppingCar) {
+            if (!shop.mSelected) {
                 
                 self.settleMentView.btnSelected = NO;
                 
@@ -513,15 +535,15 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
 #pragma mark - 设置每组表格数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    QHLShop *shop = self.shoppingCar[section];
-    return shop.goods.count;
+    GShopCarList *shop = self.shoppingCar[section];
+    return shop.mGoodsArr.count;
 }
 
 #pragma mark - 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //获取模型
-    QHLShop *shop = self.shoppingCar[indexPath.section];
-    QHLGoods *goods = shop.goods[indexPath.row];
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
+    GShopCarGoods *goods = shop.mGoodsArr[indexPath.row];
     
     //创建cell
     QHLShopCarCell *cell = [QHLShopCarCell cellWithTableView:tableView];
@@ -538,7 +560,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     QHLHeaderView *headerView = [QHLHeaderView headerWithTableView:tableView];
     //获取模型
-    QHLShop *shop = self.shoppingCar[section];
+    GShopCarList *shop = self.shoppingCar[section];
     headerView.shop = shop;
     headerView.imgView.image = [UIImage imageNamed:@"ppt_my_msg"];
     headerView.section = section;
@@ -550,79 +572,64 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     mShopCarHeaderSection *mFooter = [mShopCarHeaderSection shareFooterView];
+    GShopCarList *shop = self.shoppingCar[section];
+
+    CGFloat price = 0.0;
     
+    for (GShopCarGoods *mGoods in shop.mGoodsArr) {
+        price += mGoods.mGoodsPrice;
+    }
+    NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
+    mFooter.mTotalMoney.attributedText = [[NSString stringWithFormat:@"总金额:<color>¥%.2f</color>",price] attributedStringWithStyleBook:mStyle1];
     return mFooter;
 }
 #pragma mark - 设置cell侧滑按钮
 - (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    QHLShop *shop = self.shoppingCar[indexPath.section];
-    
-//    //顶置按钮
-//    UITableViewRowAction *toTapAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"顶置" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//        
-//        //顶置(把某一个元素交换到第一个)
-//        [shop.goods exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
-//        //刷新UI
-//        NSIndexPath *firstIndexPath =[NSIndexPath indexPathForRow:0 inSection:indexPath.section];
-//        [tableView moveRowAtIndexPath:indexPath toIndexPath:firstIndexPath];
-//        
-//        //设为不可编辑
-//        [tableView setEditing:NO animated:YES];
-//        
-//    }];
-//    toTapAction.backgroundColor = [UIColor lightGrayColor];
-//    
-//    //设为已读
-//    UITableViewRowAction *readedAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"设为已读" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//        
-//        //设为不可编辑
-//        [tableView setEditing:NO animated:YES];
-//    }];
-//    readedAction.backgroundColor = [UIColor orangeColor];
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
     
     //删除
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         //删除数据
-        [shop.goods removeObjectAtIndex:indexPath.row];
+        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
         
         
-        if (!shop.goods.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }
         [tableView reloadData];
         
         if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             
             //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.goods removeObject:shops.goods[indexPath.row]];
+            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
             
-            if (!shops.goods.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
                 [self.tempArray removeObject:shops];
             }
         }
         
-        for (QHLGoods *good in shop.goods) {
-            if (!good.selected) {
-                shop.selected = NO;
+        for (GShopCarGoods *good in shop.mGoodsArr) {
+            if (!good.mSelected) {
+                shop.mSelected = NO;
                 [self setButtonSelectState:NO];
                 [tableView reloadData];
                 return;
             }
         }
         
-        shop.selected = YES;
+        shop.mSelected = YES;
         if (self.state == QHLViewStateEdited) {
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
         }
         [tableView reloadData];
         
-        for (QHLShop *shop in self.shoppingCar) {
-            if (!shop.selected) {
+        for (GShopCarList *shop in self.shoppingCar) {
+            if (!shop.mSelected) {
                 [self setButtonSelectState:NO];
                 return;
             }
@@ -658,49 +665,49 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 #pragma mark - cell的删除代理方法
 - (void)cell:(QHLShopCarCell *)cell deleteBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
     //获取模型
-    QHLShop *shop = self.shoppingCar[indexPath.section];
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
     
     if (!isSelected) {
                //删除数据
-        [shop.goods removeObjectAtIndex:indexPath.row];
+        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
         
         
-        if (!shop.goods.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }
         [self.tableView reloadData];
         
         if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             
             //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.goods removeObject:shops.goods[indexPath.row]];
+            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
             
-            if (!shops.goods.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
                 [self.tempArray removeObject:shops];
             }
         }
         
-        for (QHLGoods *good in shop.goods) {
-            if (!good.selected) {
-                shop.selected = NO;
+        for (GShopCarGoods *good in shop.mGoodsArr) {
+            if (!good.mSelected) {
+                shop.mSelected = NO;
                 [self setButtonSelectState:NO];
                 [self.tableView reloadData];
                 return;
             }
         }
         
-        shop.selected = YES;
+        shop.mSelected = YES;
         if (self.state == QHLViewStateEdited) {
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
         }
         [self.tableView reloadData];
         
-        for (QHLShop *shop in self.shoppingCar) {
-            if (!shop.selected) {
+        for (GShopCarList *shop in self.shoppingCar) {
+            if (!shop.mSelected) {
                 [self setButtonSelectState:NO];
                 return;
             }
@@ -715,11 +722,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     BOOL selected = !selBtnSelectState;
     
     //获取模型
-    QHLShop *shop = self.shoppingCar[indexPath.section];
-    QHLGoods *good = shop.goods[indexPath.row];
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
+    GShopCarGoods *good = shop.mGoodsArr[indexPath.row];
     
     //设置按钮所在的cell的按钮的选中状态
-    good.selected = selected;
+    good.mSelected = selected;
     
     if (self.state == QHLViewStateNormal) { //判断当前view的state
         
@@ -727,13 +734,13 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 self.count ++;
                 
                 //添加金额
-                self.money += [good.price integerValue];
+                self.money += good.mGoodsPrice;
             
         }else {
                 self.count --;
                 
                 //减去金额
-                self.money -= [good.price integerValue];
+                self.money -= good.mGoodsPrice;
         }
         
         self.settleMentView.count = self.count;
@@ -742,8 +749,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     } else { //edit 状态
         
         //获取沙盒数组中的模型
-        QHLShop *shops = self.tempArray[indexPath.section];
-        QHLGoods *goods = shops.goods[indexPath.row];
+        GShopCarList *shops = self.tempArray[indexPath.section];
+        GShopCarGoods *goods = shops.mGoodsArr[indexPath.row];
         
         [self handleObjectInArrays:good documentsObject:goods selectedState:selected];
         
@@ -752,11 +759,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     
     //设置按钮cell所在的表头视图的按钮状态
-    for (QHLGoods *goods in shop.goods) {
+    for (GShopCarGoods *goods in shop.mGoodsArr) {
         
-        if (!goods.selected) {
+        if (!goods.mSelected) {
             
-            shop.selected = NO;
+            shop.mSelected = NO;
             [self.tableView reloadData];
             
             if (self.state == QHLViewStateNormal) {
@@ -766,7 +773,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             } else {
                 
                 //获取沙盒数组中的模型
-                QHLShop *shops = self.tempArray[indexPath.section];
+                GShopCarList *shops = self.tempArray[indexPath.section];
                 
                 [self.btnsArray removeObject:shop];
                 [self.documentArray removeObject:shops];
@@ -779,11 +786,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
     
     //能执行到此处,就说明该组cell的按钮 都是选中状态
-    shop.selected = YES;
+    shop.mSelected = YES;
     
     if (self.state == QHLViewStateEdited) {
         //获取沙盒数组中的模型
-        QHLShop *shops = self.tempArray[indexPath.section];
+        GShopCarList *shops = self.tempArray[indexPath.section];
         
         [self.btnsArray addObject:shop];
         [self.documentArray addObject:shops];
@@ -792,8 +799,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     [self.tableView reloadData];
     
     //根据表透视图的按钮状态设置全选按钮的状态
-    for (QHLShop *shop in self.shoppingCar) {
-        if (!shop.selected) {
+    for (GShopCarList *shop in self.shoppingCar) {
+        if (!shop.mSelected) {
             
             [self setButtonSelectState:NO];
             
@@ -806,39 +813,79 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
 
     MLLog(@"加。。。");
+    
+    
+    
 }
 - (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
     MLLog(@"减。。。");
     
 }
+- (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath andGoods:(GShopCarGoods *)mGood{
 
+    //获取模型
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
+    GShopCarGoods *goods = shop.mGoodsArr[indexPath.row];
+    
+    if (mGood.mGoodsId == goods.mGoodsId) {
+        if (shop.mGoodsArr.count<=1) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+            [self.shoppingCar removeObjectAtIndex:indexPath.section];
+        }else{
+            if (mGood.mQuantity<=1) {
+                [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
+                
+            }else{
+                goods.mQuantity-=1;
+                goods.mGoodsPrice-=mGood.mGoodsPrice;
+            }
+            
+        }
+        
+    }
+    [self.tableView reloadData];
+    
+
+    
+}
+
+- (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath andGoods:(GShopCarGoods *)mGood{
+    //获取模型
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
+    GShopCarGoods *goods = shop.mGoodsArr[indexPath.row];
+    
+    if (mGood.mGoodsId == goods.mGoodsId) {
+        goods.mQuantity+=1;
+        goods.mGoodsPrice=goods.mGoodsPrice*goods.mQuantity;
+    }
+    [self.tableView reloadData];
+}
 #pragma mark - headerView的代理方法
 - (void)headerView:(QHLHeaderView *)headerView selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andSection:(NSInteger)section {
     
     BOOL selected = !selBtnSelectState;
     
     //获取对应的模型
-    QHLShop *shop = self.shoppingCar[section];
+    GShopCarList *shop = self.shoppingCar[section];
     
     //设置表头view的按钮状态
-    shop.selected = selected;
+    shop.mSelected = selected;
     
     if (self.state == QHLViewStateNormal) {
         
         if (selected) {
-            for (QHLGoods *good in shop.goods) {
+            for (GShopCarGoods *good in shop.mGoodsArr) {
                 //判断表头所在的cell组中  cell中的按钮 是否选中,当不选中的情况下 执行下面代码
-                if (!good.selected) {
+                if (!good.mSelected) {
                         self.count ++;
                         //添加金额
-                        self.money += [good.price integerValue];
+                        self.money += good.mGoodsPrice;
                 }
             }
         } else { //这边不用做判断,表头视图中的cell中的按钮 都是选中状态
-            for (QHLGoods *good in shop.goods) {
+            for (GShopCarGoods *good in shop.mGoodsArr) {
                     self.count --;
                     //添加金额
-                    self.money -= [good.price integerValue];
+                    self.money -= good.mGoodsPrice;
             }
         }
         
@@ -846,28 +893,28 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         self.settleMentView.money = self.money;
         
     } else {  //edit 状态
-        QHLShop *shops = self.tempArray[section];
+        GShopCarList *shops = self.tempArray[section];
         
         [self handleObjectInArrays:shop documentsObject:shops selectedState:selected];
         
-        NSInteger count = shop.goods.count;
+        NSInteger count = shop.mGoodsArr.count;
         for (int i = 0; i < count; i++) {
             
-            [self handleObjectInArrays:shop.goods[i] documentsObject:shops.goods[i] selectedState:selected];
+            [self handleObjectInArrays:shop.mGoodsArr[i] documentsObject:shops.mGoodsArr[i] selectedState:selected];
             
         }
     }
     
     //设置表头所在组cell的按钮状态
-    for (QHLGoods *good in shop.goods) {
-        good.selected = selected;
+    for (GShopCarGoods *good in shop.mGoodsArr) {
+        good.mSelected = selected;
     }
     [self.tableView reloadData];
     
     
         //设置全选按钮的选中状态
-    for (QHLShop *shop in self.shoppingCar) {
-        if (!shop.selected) {
+    for (GShopCarList *shop in self.shoppingCar) {
+        if (!shop.mSelected) {
             
             [self setButtonSelectState:NO];
             
@@ -913,49 +960,49 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 //选择编辑的方式,按照选择的方式对表进行处理
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    QHLShop *shop = self.shoppingCar[indexPath.section];
+    GShopCarList *shop = self.shoppingCar[indexPath.section];
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //删除数据
-        [shop.goods removeObjectAtIndex:indexPath.row];
+        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
         
         
-        if (!shop.goods.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }
         [tableView reloadData];
         
         if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             
             //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.goods removeObject:shops.goods[indexPath.row]];
+            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
             
-            if (!shops.goods.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
                 [self.tempArray removeObject:shops];
             }
         }
         
-        for (QHLGoods *good in shop.goods) {
-            if (!good.selected) {
-                shop.selected = NO;
+        for (GShopCarGoods *good in shop.mGoodsArr) {
+            if (!good.mSelected) {
+                shop.mSelected = NO;
                 [self setButtonSelectState:NO];
                 [tableView reloadData];
                 return;
             }
         }
         
-        shop.selected = YES;
+        shop.mSelected = YES;
         if (self.state == QHLViewStateEdited) {
             //根据indexPath获取到QHLShop对象
-            QHLShop *shops = self.tempArray[indexPath.section];
+            GShopCarList *shops = self.tempArray[indexPath.section];
             [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
         }
         [tableView reloadData];
         
-        for (QHLShop *shop in self.shoppingCar) {
-            if (!shop.selected) {
+        for (GShopCarList *shop in self.shoppingCar) {
+            if (!shop.mSelected) {
                 [self setButtonSelectState:NO];
                 return;
             }

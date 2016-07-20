@@ -3776,7 +3776,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             
             
             for (NSDictionary *dic in info.mData) {
-                [tempArr addObject:[[GCollectionSHop alloc] initWithObj:dic]];
+                [tempArr addObject:[[GMarketList alloc] initWithObj:dic]];
             }
             
             block(info,tempArr);
@@ -3787,6 +3787,67 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 
+}
+
+#pragma mark----获取购物车
+/**
+ *  获取购物车
+ *
+ *  @param block 返回值
+ */
+- (void)getMyShopCarList:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/cart/shoppingCart" parameters:para call:^(mBaseData * _Nonnull info) {
+        NSMutableArray *tempArr = [NSMutableArray new];
+        if (info.mSucess) {
+            
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GShopCarList alloc] initWithObj:dic]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+    
+}
+#pragma mark----修改购物车
+/**
+ *  修改购物车
+ *
+ *  @param mShopCarId 购物车id
+ *  @param mType      操作类型
+ *  @param block      返回值
+ */
+- (void)modifyShopCar:(int)mShopCarId andType:(int)mType  block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mShopCarId]] forKey:@"cartId"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/shop/upGoodsNum" parameters:para call:^(mBaseData * _Nonnull info) {
+    
+        if (info.mSucess) {
+ 
+            block(info);
+        }else{
+            block(info);
+        }
+    }];
+    
+    
 }
 @end
 
@@ -5783,7 +5844,7 @@ bool pptbined = NO;
     self.mShopId = [[obj objectForKeyMy:@"id"] intValue];
     self.mShopAddress = [obj objectForKeyMy:@"address"];
     self.mShopName = [obj objectForKeyMy:@"shopName"];
-    self.mShopLogo = [obj objectForKeyMy:@"shopLogo"];
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
  
     
     
@@ -5975,5 +6036,75 @@ bool pptbined = NO;
     
 }
 
+
+@end
+
+@implementation GShopCarList
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mGoodsArr = [NSMutableArray new];
+    
+    NSMutableArray *mCampain = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKey:@"campaign"]) {
+        [mCampain addObject:[[GCampain alloc] initWithObj:dic]];
+    }
+    self.mActivity = mCampain;
+    
+    NSMutableArray *mGoodsArr = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKey:@"goodsList"]) {
+        [mGoodsArr addObject:[[GShopCarGoods alloc] initWithObj:dic]];
+    }
+    [self.mGoodsArr addObjectsFromArray:mGoodsArr];
+    
+    self.mShopLogo = [obj objectForKeyMy:@"shop_logo"];
+    
+    self.mShopId = [[obj objectForKeyMy:@"shop_id"] intValue];
+    
+    self.mShopName = [obj objectForKeyMy:@"shop_name"];
+    
+    
+}
+
+@end
+
+@implementation GShopCarGoods
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goods_img"]];
+    
+    self.mGoodsId = [[obj objectForKeyMy:@"goodsId"] intValue];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mQuantity = [[obj objectForKeyMy:@"quantity"] intValue];
+    self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
+
+    self.mGoodsName = [obj objectForKeyMy:@"goods_name"];
+    self.mSmallImg = [obj objectForKeyMy:@"small_image"];
+    self.mSpecifications = [obj objectForKeyMy:@"specifications"];
+
+    
+}
 
 @end

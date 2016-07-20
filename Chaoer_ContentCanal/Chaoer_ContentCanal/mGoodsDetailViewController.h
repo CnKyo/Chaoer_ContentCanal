@@ -12,4 +12,6 @@
 
 @property (strong,nonatomic)MGoods *mSGoods;
 
+@property (assign,nonatomic) int  mShopId;
+
 @end

@@ -13,7 +13,7 @@
 @interface QHLHeaderView ()
 @property (nonatomic, weak) QHLButton *selBtn;
 @property (nonatomic, weak) UILabel *name;
-@property (nonatomic, weak) UILabel *introduction;
+@property (nonatomic, weak) WPHotspotLabel *introduction;
 @property (nonatomic, weak) UIView *mLine;
 
 @end
@@ -107,7 +107,7 @@
     //frame
     name.x = CGRectGetMaxX(self.imgView.frame) + 10;
     name.y = 10;
-    name.width = 80;
+    name.width = 200;
     name.height = 25;
     
     [self.contentView addSubview:name];
@@ -117,12 +117,13 @@
 
 #pragma mark - 设置introduction
 - (void)setUpIntroLabel {
-    UILabel *introduction = [[UILabel alloc] init];
+    WPHotspotLabel *introduction = [[WPHotspotLabel alloc] init];
     self.introduction = introduction;
+    introduction.font = [UIFont systemFontOfSize:14];
     //frame
     introduction.x = CGRectGetMaxX(self.imgView.frame) + 10;
     introduction.y = 40;
-    introduction.width = 200;
+    introduction.width = 300;
     introduction.height = 15;
     
     [self.contentView addSubview:introduction];
@@ -140,14 +141,35 @@
     line.backgroundColor = [UIColor colorWithRed:0.84 green:0.84 blue:0.84 alpha:0.75];
     [self.contentView addSubview:line];
 }
-- (void)setShop:(QHLShop *)shop {
-    _shop = shop;
+- (void)setShop:(GShopCarList *)shop {
     
+    NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
+
+    
+    _shop = shop;
     //设置数据
-    self.selBtn.selected = shop.selected;
-    self.selBtn.tag = [shop.tag intValue];
-    self.name.text = shop.name;
-    self.introduction.text = shop.introduction;
+    self.selBtn.selected = shop.mSelected;
+    self.selBtn.tag = shop.mShopId;
+    self.name.text = shop.mShopName;
+    NSString *mAct = nil;
+    
+    if (shop.mActivity.count <= 0) {
+        mAct = @"该店铺暂无任何优惠活动";
+    }else if (shop.mActivity.count == 1){
+        GCampain *mC = shop.mActivity[0];
+        
+        if (mC.mType == 2) {
+            mAct = @"打折";
+        }else if (mC.mType == 1){
+            mAct = @"满减";
+        }else{
+            mAct = @"首单";
+        }
+        self.introduction.attributedText = [[NSString stringWithFormat:@"<color>%@</color> :%@",mAct,mC.mContent] attributedStringWithStyleBook:mStyle1];
+
+    }
+    
+
 }
 
 

@@ -109,5 +109,12 @@
     
 }
 
+- (IBAction)mFocusShopAction:(mGoodsBtn *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithFocusShopClick:andShop:)]) {
+        [self.delegate cellWithFocusShopClick:self.mIndexPaths andShop:sender.mShop];
+
+    }
+}
 
 @end

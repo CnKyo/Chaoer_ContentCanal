@@ -233,6 +233,7 @@
    
     [self verifyBadge];
 }
+#pragma mark ----店铺收藏事件
 - (void)mShopCollectAction:(UIButton *)sender{
 
     if (mIsFoucs == 0) {
@@ -378,6 +379,7 @@
         
     }else{
         mShopCarBadge.hidden = NO;
+        mShopCarBadge.text = [NSString stringWithFormat:@"%d",mShopCarNum];
         
     }
 }

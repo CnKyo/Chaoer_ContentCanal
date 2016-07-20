@@ -112,11 +112,11 @@
             if (resb.mSucess) {
                 if (mArr.count <= 0) {
                     [self addEmptyView:nil];
-                    return ;
                 }else{
                     [self.tempArray addObjectsFromArray:mArr];
-                    [self.tableView reloadData];
                 }
+                [self.tableView reloadData];
+
             }else{
                 
                 [self  showErrorStatus:resb.mMessage];
@@ -256,9 +256,12 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return self.tempArray.count;
-    
+    if (mType == 0) {
+
+        return self.tempArray.count%2==0?self.tempArray.count/2:self.tempArray.count/2+1;
+    }else{
+        return self.tempArray.count;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -351,10 +354,23 @@
         cellId = @"cell";
 
         mCommunityMyViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        GCollectionSHop *mShopN = self.tempArray[indexPath.row];
         
-        cell.mLeftTagImg.hidden = cell.mRightTagImg.hidden = YES;
-
+        
+        GMarketList *mShopN = self.tempArray[indexPath.row];
+        cell.mIndexPaths = indexPath;
+        cell.mName.text = mShopN.mShopName;
+        
+        cell.delegate = self;
+        cell.mCollectNum.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopN.mOpenTime,mShopN.mCloseTime];
+        [cell.mImg sd_setImageWithURL:[NSURL URLWithString:mShopN.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+        cell.mCollectBtn.mShop = mShopN;
+        
+//        if (!mShopN.mIsFocus) {
+        
+            [cell.mCollectBtn setBackgroundImage:[UIImage imageNamed:@"my_ collect"] forState:0];
+//        }else{
+//            [cell.mCollectBtn setBackgroundImage:[UIImage imageNamed:@"my_ uncollect"] forState:0];
+//        }
     
         return cell;
 
@@ -374,9 +390,7 @@
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
-    [self.tableView reloadData];
-//    [self.tableView headerBeginRefreshing];
-    
+    [self headerBeganRefresh];
 }
 
 #pragma mark---- cell的点击代理方法
@@ -425,6 +439,44 @@
         }
         
     }];
+    
+}
+- (void)cellWithFocusShopClick:(NSIndexPath *)mIndexPath andShop:(GMarketList *)mShop{
+
+    NSMutableArray *mARR = [NSMutableArray new];
+    [mARR removeAllObjects];
+    [mARR addObjectsFromArray:self.tempArray];
+    
+//    int type = mShop.mIsFocus?0:1;
+    
+    [self showWithStatus:@"正在操作中..."];
+    [[mUserInfo backNowUser] collectShop:mShop.mShopId andType:0 block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self.tempArray removeAllObjects];
+//            for (GCollectionSHop *ms in self.tempArray) {
+//                if (mShop.mShopId == ms.mShopId) {
+//                    
+//                    ms.mIsFocus = type;
+//       
+//                    [self.tableView reloadData];
+//                }
+//            }
+            
+            [mARR removeObjectAtIndex:mIndexPath.row];
+            [self.tempArray addObjectsFromArray:mARR];
+            [self.tableView deleteRowsAtIndexPaths:@[mIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
+
+
+            
+        }else{
+            
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+   
     
 }
 

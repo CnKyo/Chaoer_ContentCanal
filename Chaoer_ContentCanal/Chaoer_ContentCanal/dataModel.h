@@ -1268,6 +1268,22 @@
  *  @param block 返回值
  */
 - (void)getMyStoreCollection:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----获取购物车
+/**
+ *  获取购物车
+ *
+ *  @param block 返回值
+ */
+- (void)getMyShopCarList:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----修改购物车
+/**
+ *  修改购物车
+ *
+ *  @param mShopCarId 购物车id
+ *  @param mType      操作类型
+ *  @param block      返回值
+ */
+- (void)modifyShopCar:(int)mShopCarId andType:(int)mType  block:(void(^)(mBaseData *resb))block;
 @end
 
 @interface SMessage : NSObject
@@ -3055,6 +3071,8 @@
  */
 @property (nonatomic,strong) NSString *mShopLogo;
 
+@property (nonatomic,assign) BOOL mIsFocus;
+
 -(id)initWithObj:(NSDictionary *)obj;
 
 @end
@@ -3282,5 +3300,86 @@
 @property (nonatomic,strong) NSString *mContent;
 
 -(id)initWithObj:(NSDictionary *)obj;
+
+@end
+
+/**
+ *  购物车店铺对象
+ */
+@interface GShopCarList : NSObject
+@property (assign,nonatomic) BOOL mSelected;
+
+/**
+ *  活动数组
+ */
+@property (nonatomic,strong) NSArray *mActivity;
+/**
+ *  商品数组
+ */
+@property (nonatomic,strong) NSMutableArray *mGoodsArr;
+/**
+ *  店铺logo
+ */
+@property (strong,nonatomic) NSString *mShopLogo;
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  店铺id
+ */
+@property (assign,nonatomic) int mShopId;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+
+@end
+/**
+ *  购物车商品对象
+ */
+@interface GShopCarGoods : NSObject
+@property (assign,nonatomic) BOOL mSelected;
+
+/**
+ *  规格
+ */
+@property (assign,nonatomic) int mQuantity;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  商品id
+ */
+@property (assign,nonatomic) int mGoodsId;
+/**
+ *  商品价格
+ */
+@property (assign,nonatomic) CGFloat mGoodsPrice;
+/**
+ *  固定价格
+ */
+@property (assign,nonatomic) CGFloat mStaticGoodPrice;
+/**
+ *  规格
+ */
+@property (strong,nonatomic) NSString *mSpecifications;
+/**
+ *  小图
+ */
+@property (strong,nonatomic) NSString *mSmallImg;
+/**
+ *  商品图片
+ */
+@property (strong,nonatomic) NSString *mGoodsImg;
+
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString *mGoodsName;
+
+
+-(id)initWithObj:(NSDictionary *)obj;
+
 
 @end

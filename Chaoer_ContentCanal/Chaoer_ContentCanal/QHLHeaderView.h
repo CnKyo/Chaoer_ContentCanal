@@ -18,7 +18,7 @@
 @end
 
 @interface QHLHeaderView : UITableViewHeaderFooterView
-@property (nonatomic, strong) QHLShop *shop;
+@property (nonatomic, strong) GShopCarList *shop;
 
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, assign) NSInteger section;

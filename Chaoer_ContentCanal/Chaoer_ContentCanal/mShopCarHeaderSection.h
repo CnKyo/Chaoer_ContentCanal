@@ -42,7 +42,7 @@
 /**
  *  总金额
  */
-@property (weak, nonatomic) IBOutlet UILabel *mTotalMoney;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mTotalMoney;
 /**
  *  初始化方法
  *

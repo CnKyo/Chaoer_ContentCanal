@@ -12,7 +12,7 @@
 
 @class QHLShopCarCell;
 @class QHLButton;
-
+@class GShopCarGoods;
 @protocol WKTableViewCellDelegate <NSObject>
 /**
  *  选中按钮代理方法
@@ -32,6 +32,8 @@
  */
 - (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath;
 
+- (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath andGoods:(GShopCarGoods *)mGood;
+
 /**
  *  商品加按钮代理方法
  *
@@ -40,6 +42,9 @@
  *  @param indexPath  选择的索引
  */
 - (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath;
+
+- (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath andGoods:(GShopCarGoods *)mGood;
+
 @end
 @interface QHLShopCarCell : UITableViewCell
 /**
@@ -55,7 +60,7 @@
 /**
  *  商品模型
  */
-@property (nonatomic, strong) QHLGoods *mGoods;
+@property (nonatomic, strong) GShopCarGoods *mGoods;
 
 @property (weak, nonatomic) IBOutlet QHLButton *mSelectedBtn;
 
