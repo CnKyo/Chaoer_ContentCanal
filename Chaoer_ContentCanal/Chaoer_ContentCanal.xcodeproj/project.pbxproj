@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040089C21D3F119300921BFA /* mGoodsBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 040089C11D3F119300921BFA /* mGoodsBtn.m */; };
 		04040DEB1D20BEBD008C3C31 /* mMarketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */; };
 		04040DEC1D20BEBD008C3C31 /* mMarketDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */; };
 		04040DEF1D20BEFA008C3C31 /* mMarketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DEE1D20BEFA008C3C31 /* mMarketHeaderView.m */; };
@@ -889,6 +890,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040089C01D3F119300921BFA /* mGoodsBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGoodsBtn.h; sourceTree = "<group>"; };
+		040089C11D3F119300921BFA /* mGoodsBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGoodsBtn.m; sourceTree = "<group>"; };
 		04040DE81D20BEBD008C3C31 /* mMarketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMarketDetailViewController.h; sourceTree = "<group>"; };
 		04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMarketDetailViewController.m; sourceTree = "<group>"; };
 		04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMarketDetailViewController.xib; sourceTree = "<group>"; };
@@ -3469,6 +3472,8 @@
 				04F89C0B1D1D0FED006A3976 /* mCommunityHeaderView.h */,
 				04F89C0C1D1D0FED006A3976 /* mCommunityHeaderView.m */,
 				04F89C0E1D1D0FF6006A3976 /* mCommunityHeaderView.xib */,
+				040089C01D3F119300921BFA /* mGoodsBtn.h */,
+				040089C11D3F119300921BFA /* mGoodsBtn.m */,
 				04F89C201D1D310E006A3976 /* 订单 */,
 				04F89C171D1D276C006A3976 /* 优惠卷 */,
 			);
@@ -5419,7 +5424,7 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 9RKHC7JB9Y;
+						DevelopmentTeam = 3RCJDNZPPN;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -5888,6 +5893,7 @@
 				04EEADCF1D0FAED900FA97C6 /* UIView+HDExtension.m in Sources */,
 				040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */,
 				04648C711CB50389006823C9 /* senderSubView.m in Sources */,
+				040089C21D3F119300921BFA /* mGoodsBtn.m in Sources */,
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
 				04D9F4F31D274B2600518F6F /* mNavAddressViewController.m in Sources */,
 				04678F531CB7916A0074AA80 /* keyChain.m in Sources */,
@@ -6464,7 +6470,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b176939-9cc3-48ec-be25-ced2abc08485";
 			};
 			name = Debug;
 		};
@@ -6475,7 +6481,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Choi hui to fuzhou software technology co., LTD";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6521,7 +6527,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7b176939-9cc3-48ec-be25-ced2abc08485";
 			};
 			name = Release;
 		};

@@ -3121,8 +3121,20 @@
  *  商品列表
  */
 @property (nonatomic,strong) NSArray *mProductList;
+/**
+ *  费用
+ */
+@property (nonatomic,assign) CGFloat mFreePrice;
+/**
+ *  关注
+ */
+@property (nonatomic,assign) int mFocus;
 
 
+/**
+ *  活动数据
+ */
+@property (strong,nonatomic) NSArray *mActivityArr;
 -(id)initWithObj:(NSDictionary *)obj;
 
 
@@ -3252,6 +3264,22 @@
  */
 @property (nonatomic,strong) NSString *mBigImg;
 
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+/**
+ *  超市首页活动对象
+ */
+@interface GCampain : NSObject
+/**
+ *  类型
+ */
+@property (assign,nonatomic) int mType;
+/**
+ *  内容
+ */
+@property (nonatomic,strong) NSString *mContent;
 
 -(id)initWithObj:(NSDictionary *)obj;
 

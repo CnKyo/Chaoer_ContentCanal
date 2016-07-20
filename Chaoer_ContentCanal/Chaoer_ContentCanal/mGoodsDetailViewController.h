@@ -10,4 +10,6 @@
 
 @interface mGoodsDetailViewController : BaseVC
 
+@property (strong,nonatomic)MGoods *mSGoods;
+
 @end

@@ -40,6 +40,9 @@
     [self.mRightCollect addTarget:self action:@selector(mRightAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
+    [self.mLeftAdd addTarget:self action:@selector(mLeftAddAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mRightAdd addTarget:self action:@selector(mRightAddAction:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)mLeftAction:(UIButton *)sender{
@@ -67,5 +70,44 @@
     
     
 }
+
+
+- (void)mLeftAddAction:(mGoodsBtn *)sender{
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithLeftAddShopCar:andGoods:)]) {
+        [self.delegate cellWithLeftAddShopCar:sender.tag andGoods:sender.mGood];
+    }
+    
+    
+}
+
+- (void)mRightAddAction:(mGoodsBtn *)sender{
+
+    if ([self.delegate respondsToSelector:@selector(cellWithRightAddShopCar:andGoods:)]) {
+        [self.delegate cellWithRightAddShopCar:sender.tag andGoods:sender.mGood];
+    }
+    
+    
+
+}
+
+- (IBAction)mLeftDetailAction:(mGoodsBtn *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithLeftDetailClick:andGoods:)]) {
+        [self.delegate cellWithLeftDetailClick:sender.tag andGoods:sender.mGood];
+    }
+    
+    
+    
+}
+
+- (IBAction)mRightDetailAction:(mGoodsBtn *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithRightDetailClick:andGoods:)]) {
+        [self.delegate cellWithRightDetailClick:sender.tag andGoods:sender.mGood];
+    }
+    
+}
+
 
 @end

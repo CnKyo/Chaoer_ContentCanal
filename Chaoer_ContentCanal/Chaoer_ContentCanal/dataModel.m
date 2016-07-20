@@ -5815,8 +5815,19 @@ bool pptbined = NO;
     
     self.mSalesNum = [[obj objectForKeyMy:@"salesNum"] intValue];
     self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
-
+    self.mFocus = [[obj objectForKeyMy:@"focus"] intValue];
+    
     self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
+    
+    
+    
+    NSMutableArray *mActivit = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"campaign"]) {
+        [mActivit addObject:[[GCampain alloc] initWithObj:dic]];
+    }
+    
+    self.mActivityArr = mActivit;
 
 }
 
@@ -5939,5 +5950,30 @@ bool pptbined = NO;
     
 
 }
+
+@end
+
+@implementation GCampain
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mContent = [obj objectForKeyMy:@"content"];
+    
+    self.mType = [[obj objectForKeyMy:@"type"] intValue];
+
+    
+    
+    
+}
+
 
 @end

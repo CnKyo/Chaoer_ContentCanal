@@ -285,6 +285,8 @@
     if (mType == 0) {
         cellId = @"cell2";
         mCommunityMyViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         cell.delegate = self;
         
         MGoods *mGoods1 = self.tempArray[indexPath.row*2];
@@ -295,7 +297,7 @@
             mGoods2 = [self.tempArray objectAtIndex:indexPath.row*2+1];
             cell.mRightView.hidden = NO;
         }
-        
+  
         cell.mLeftName.text = mGoods1.mGoodsName;
         cell.mLeftContent.text = mGoods1.mGoodsDetail;
         cell.mLeftNum.text = [NSString stringWithFormat:@"月销：%d",mGoods1.mSalesNum];

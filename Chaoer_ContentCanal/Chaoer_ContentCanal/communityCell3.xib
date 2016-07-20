@@ -171,7 +171,7 @@
                 <outlet property="mSenderPrice" destination="kC0-Fw-4de" id="x8P-aD-Thd"/>
                 <outlet property="mWorkTime" destination="WnP-ZS-ZJx" id="u5I-QR-F4G"/>
             </connections>
-            <point key="canvasLocation" x="185" y="347.5"/>
+            <point key="canvasLocation" x="242" y="336.5"/>
         </tableViewCell>
     </objects>
 </document>

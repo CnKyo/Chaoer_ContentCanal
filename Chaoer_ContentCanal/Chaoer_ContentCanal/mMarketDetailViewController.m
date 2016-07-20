@@ -21,7 +21,10 @@
 #import "mClassMoreViewController.h"
 #import "QHLShoppingCarController.h"
 @interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,TypeViewDelegate,WKGoodsCellDelegate>
-
+/**
+ *  购物车数组
+ */
+@property (strong,nonatomic) NSMutableArray *mShopCarArr;
 
 @end
 
@@ -69,6 +72,7 @@
     
     NSMutableArray *mDataSource;
     
+    
 }
 @synthesize mShopId;
 
@@ -88,6 +92,10 @@
     mClass = [NSMutableArray new];
     mDataSource = [NSMutableArray new];
     mLeftType  = mRightType = mShopCollect = 0;
+    
+    self.mShopCarArr = [NSMutableArray new];
+    
+    
     [self currentArrar];
     [self initView];
 }
@@ -120,7 +128,61 @@
     
     mHeaderView = [mMarketHeaderView shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 150);
-    mHeaderView.mName.text = _mShopList.mShopName;
+    CGRect mRR = mHeaderView.frame;
+    
+    if (_mShopList.mActivityArr.count <= 0) {
+        mRR.size.height = 90;
+        
+    }else if (_mShopList.mActivityArr.count == 1){
+        mRR.size.height = 120;
+        GCampain *mAct = _mShopList.mActivityArr[0];
+        NSString *mC = nil;
+        
+        if (mAct.mType == 2) {
+            mC = @"打折";
+        }else if (mAct.mType == 1){
+            mC = @"满减";
+        }else{
+            mC = @"首单";
+        }
+        mHeaderView.mActivity1.text = mC;
+        mHeaderView.mActivityContent1.text = mAct.mContent;
+        
+    }else{
+        
+        mRR.size.height = 150;
+        GCampain *mAct = _mShopList.mActivityArr[0];
+        GCampain *mAct2 = _mShopList.mActivityArr[1];
+        
+        NSString *mC = nil;
+        NSString *mC2 = nil;
+        
+        if (mAct.mType == 2) {
+            mC2 = @"打折";
+        }else if (mAct.mType == 1){
+            mC2 = @"满减";
+        }else{
+            mC2 = @"首单";
+        }
+        
+        if (mAct2.mType == 2) {
+            mC = @"打折";
+        }else if (mAct2.mType == 1){
+            mC = @"满减";
+        }else{
+            mC = @"首单";
+        }
+        
+        mHeaderView.mActivity1.text = mC;
+        mHeaderView.mActivityContent2.text = mAct.mContent;
+        
+        mHeaderView.mActivity2.text = mC2;
+        mHeaderView.mActivityContent2.text = mAct2.mContent;
+        
+        
+    }
+    mHeaderView.frame = mRR;
+
     
     [mHeaderView.mCollectBtn addTarget:self action:@selector(mShopCollectAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -163,9 +225,13 @@
     }
 
     
-    mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"收藏数：%d",_mShopList.mSalesNum];
+    mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"收藏数：%d",_mShopList.mFocus];
     mHeaderView.mNum.text = [NSString stringWithFormat:@"全部商品：%d",_mShopList.mGoodsNum];
     
+    mHeaderView.mName.text = _mShopList.mShopName;
+    
+   
+    [self verifyBadge];
 }
 - (void)mShopCollectAction:(UIButton *)sender{
 
@@ -179,7 +245,7 @@
     [[mUserInfo backNowUser] collectShop:mShopId andType:mShopCollect block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
-            mIsFoucs = 1;
+            mIsFoucs = mShopCollect;
             [self upDatePage];
             
         }else{
@@ -211,6 +277,8 @@
         [self.tempArray removeAllObjects];
         [mClass removeAllObjects];
         if (resb.mSucess) {
+            
+            mShopCarNum = [[[resb.mData objectForKey:@"shop"] objectForKey:@"cart"] intValue];
             
             [mClass addObjectsFromArray:mClassArr];
             [self loadSectionView];
@@ -283,6 +351,7 @@
 
     [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:Class.mId andPage:1 andKeyWord:nil block:^(mBaseData *resb, NSArray *mArr) {
         if (resb.mSucess) {
+            [self verifyBadge];
             if (mArr.count<= 0) {
                 [self addEmptyView:nil];
             }else{
@@ -377,7 +446,8 @@
     cellId = @"cell";
   
     mCommunityMyViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     cell.delegate = self;
     
     MGoods *mGoods1 = self.tempArray[indexPath.row*2];
@@ -410,6 +480,17 @@
     }else{
         cell.mLeftTagImg.hidden = YES;
     }
+#pragma mark ----设置商品
+    /**
+     *  设置商品
+     */
+    cell.mLeftAdd.mGood = mGoods1;
+    cell.mRightAdd.mGood = mGoods2;
+    cell.mLeftDetailBtn.mGood = mGoods1;
+    cell.mRightDetailBtn.mGood = mGoods2;
+    /**
+     *  设置商品
+     */
     
     cell.mLeftCollect.tag = mGoods1.mGoodsId;
     
@@ -444,8 +525,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
-    [self pushViewController:goods];
+ 
 }
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
@@ -465,6 +545,8 @@
 
 
 #pragma mark---- cell的点击代理方法
+
+#pragma mark---- cell左边的收藏按钮点击代理方法
 - (void)cellWithLeftBtnClick:(NSInteger)mTag{
 
     [self showWithStatus:@"正在操作中..."];
@@ -489,6 +571,7 @@
     
     
 }
+#pragma mark---- cell右边的收藏按钮点击代理方法
 - (void)cellWithRightBtnClick:(NSInteger)mTag{
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mRightType block:^(mBaseData *resb, NSArray *mArr) {
@@ -510,6 +593,37 @@
         
     }];
     
+}
+#pragma mark---- cell左边的添加购物车按钮点击代理方法
+- (void)cellWithLeftAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
+    [self.mShopCarArr addObject:mGoods];
+    mShopCarNum+=1;
+    [self upDateShopCar];
+}
+#pragma mark---- cell右边的添加购物车按钮点击代理方法
+- (void)cellWithRightAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
+    [self.mShopCarArr addObject:mGoods];
+    mShopCarNum+=1;
+    [self upDateShopCar];
+}
+#pragma mark---- cell左边的商品详情按钮点击代理方法
+- (void)cellWithLeftDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods{
+    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
+    goods.mSGoods = mGoods;
+    [self pushViewController:goods];
+}
+#pragma mark---- cell右边的添加购物车按钮点击代理方法
+- (void)cellWithRightDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods{
+    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
+    goods.mSGoods = mGoods;
+    [self pushViewController:goods];
+    
+}
+
+- (void)upDateShopCar{
+
+    mShopCarBadge.hidden = NO;
+    mShopCarBadge.text = [NSString stringWithFormat:@"%d",mShopCarNum];
 }
 
 @end

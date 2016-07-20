@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "mGoodsBtn.h"
 /**
  *  cell的点击代理方法
  */
@@ -20,7 +21,8 @@
  */
 - (void)cellWithLeftBtnClick:(NSInteger)mTag;
 - (void)cellWithLeftBtnClick:(NSInteger)mTag andId:(int)mShopId;
-
+- (void)cellWithLeftAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods;
+- (void)cellWithLeftDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods;
 /**
  *  右边按钮的代理方法
  *
@@ -28,6 +30,8 @@
  */
 - (void)cellWithRightBtnClick:(NSInteger)mTag;
 - (void)cellWithRightBtnClick:(NSInteger)mTag andId:(int)mShopId;
+- (void)cellWithRightAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods;
+- (void)cellWithRightDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods;
 
 
 @end
@@ -94,7 +98,7 @@
 /**
  *  左边的添加按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mLeftAdd;
+@property (weak, nonatomic) IBOutlet mGoodsBtn *mLeftAdd;
 /**
  *  左边的收藏按钮
  */
@@ -103,6 +107,10 @@
  *  左边的标签
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mLeftTagImg;
+/**
+ *  左边的详情
+ */
+@property (weak, nonatomic) IBOutlet mGoodsBtn *mLeftDetailBtn;
 
 #pragma mark----右边的试图
 /**
@@ -132,7 +140,7 @@
 /**
  *  右边的添加按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mRightAdd;
+@property (weak, nonatomic) IBOutlet mGoodsBtn *mRightAdd;
 /**
  *  右边的收藏按钮
  */
@@ -141,6 +149,10 @@
  *  右边的标签
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mRightTagImg;
+/**
+ *  右边的详情
+ */
+@property (weak, nonatomic) IBOutlet mGoodsBtn *mRightDetailBtn;
 
 @property (strong,nonatomic) id <WKGoodsCellDelegate> delegate;
 
