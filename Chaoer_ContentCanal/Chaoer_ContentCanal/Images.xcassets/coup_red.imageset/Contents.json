@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "store_coup.png",
+      "filename" : "coup_red.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "store_coup-1.png",
+      "filename" : "coup_red-1.png",
       "scale" : "2x"
     },
     {

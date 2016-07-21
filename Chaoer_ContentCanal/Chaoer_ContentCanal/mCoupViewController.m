@@ -92,13 +92,12 @@
             
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
-                return ;
             }else{
             
                 [self.tempArray addObjectsFromArray:mArr];
-                [self.tableView reloadData];
             }
-            
+            [self.tableView reloadData];
+
         }else{
         
             [self showErrorStatus:resb.mMessage];
@@ -120,13 +119,12 @@
             
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
-                return ;
             }else{
                 
                 [self.tempArray addObjectsFromArray:mArr];
-                [self.tableView reloadData];
             }
-            
+            [self.tableView reloadData];
+
         }else{
             
             [self showErrorStatus:resb.mMessage];
@@ -191,7 +189,28 @@
     GCoup *mCoup = self.tempArray[indexPath.row];
     
     coupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    cell.mContent.text = mCoup.mCoupName;
+    cell.mContent.text = [NSString stringWithFormat:@"%@%@",mCoup.mCoupName,mCoup.mCoupContent];
+    cell.mMoney.text = [NSString stringWithFormat:@"¥%@",mCoup.mFacePrice];
+   
+    cell.mStore.text = mCoup.mShopName;
+    
+    [cell.mLogo sd_setImageWithURL:[NSURL URLWithString:mCoup.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    
+    UIImage *coupImg = nil;
+    
+    if ([mCoup.mCoupModel isEqualToString:@"red"]) {
+        coupImg = [UIImage imageNamed:@"coup_red"];
+    }else if ([mCoup.mCoupModel isEqualToString:@"blue"]){
+        coupImg = [UIImage imageNamed:@"coup_blue"];
+    }else{
+        coupImg = [UIImage imageNamed:@"coup_green"];
+    }
+    
+    cell.mBgkImg.image = coupImg;
+    
+    cell.mTime.text = [NSString stringWithFormat:@"过期时间:%@",mCoup.mEndTime];
+    
+    
     if (mType == 1) {
         cell.mIsValid.image = [UIImage imageNamed:@"coup_ expire"];
         cell.mIsValid.hidden = NO;
@@ -211,7 +230,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (mType != 1 ) {
+    if (mType != 0 ) {
         MLLog(@"你点他有啥用啊？");
     }else{
     
@@ -223,7 +242,7 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
-    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
     [self headerBeganRefresh];
     
     

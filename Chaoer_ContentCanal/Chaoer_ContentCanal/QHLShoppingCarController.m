@@ -113,15 +113,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 - (void)initView{
 
-//    mNavView = [homeNavView shareChatNav];
-//    mNavView.mCustomTitle.text = @"购物车";
-//    [self.view addSubview:mNavView];
-//    [mNavView makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.equalTo(self.view).offset(@0);
-//        make.height.offset(@64);
-//    }];
-    
-    
+   
     [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
@@ -229,12 +221,16 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     [self.view addSubview:settleMentView];
 }
-#pragma mark - 代理方法
+#pragma mark - 去结算代理方法
 - (void)mGoPayClick{
     MLLog(@"去结算:%@",self.deleteArr);
     comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
     [self pushViewController:comfir];
 
+}
+- (void)bottomViewGoPayDidClick:(QHLSettleMentView *)setView didClick:(BOOL)Click{
+
+    
 }
 #pragma mark - settleMentView delegate
 - (void)settleMentView:(QHLSettleMentView *)settleMentView didClickButton:(BOOL)allSelBtnSelectState {
@@ -831,12 +827,12 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         if (shop.mGoodsArr.count<=1) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }else{
-            if (mGood.mQuantity<=1) {
+            if (mGood.mQuantity==1) {
                 [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
                 
             }else{
                 goods.mQuantity-=1;
-                goods.mGoodsPrice-=mGood.mGoodsPrice;
+                goods.mTotlePrice-=mGood.mGoodsPrice;
             }
             
         }
@@ -855,7 +851,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     if (mGood.mGoodsId == goods.mGoodsId) {
         goods.mQuantity+=1;
-        goods.mGoodsPrice=goods.mGoodsPrice*goods.mQuantity;
+        goods.mTotlePrice+=goods.mGoodsPrice;
     }
     [self.tableView reloadData];
 }

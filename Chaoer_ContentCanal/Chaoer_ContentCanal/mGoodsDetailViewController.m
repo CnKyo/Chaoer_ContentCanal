@@ -59,6 +59,8 @@
     GoodsDetailNavView *mNavView;
     
     GoodsDetailNavView *mBootomView;
+    
+    SGoodsDetail *mGoods;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -90,7 +92,7 @@
     
     [self initNavBarView];
 
-    
+    [self initData];
 }
 
 #pragma mark----初始化导航条
@@ -154,8 +156,22 @@
 - (void)mCollectionAction:(UIButton *)sender{
     
 }
+#pragma mark---- 加载数据源
 - (void)initData{
-
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getGoodsDetail:_mSGoods.mGoodsId andShopId:_mShopId block:^(mBaseData *resb, SGoodsDetail *SGoods) {
+        
+        [self removeEmptyView];
+        [self dismiss];
+        if (resb.mSucess) {
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+            
+        }
+        
+    }];
     
 }
 - (void)didReceiveMemoryWarning {

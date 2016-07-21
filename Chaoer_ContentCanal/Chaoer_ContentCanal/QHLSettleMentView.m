@@ -115,7 +115,17 @@
 #pragma mark - checkOutBtn点击事件
 - (void)checkOutBtnDidClick:(QHLButton *)checkOutBtn {
     NSLog(@"%s",__func__);
-    [self.settleMentViewDelegate mGoPayClick];
+    
+    if ([self.settleMentViewDelegate respondsToSelector:@selector(mGoPayClick)]) {
+        [self.settleMentViewDelegate mGoPayClick];
+
+    }
+    
+    
+    if ([self.settleMentViewDelegate respondsToSelector:@selector(bottomViewGoPayDidClick:didClick:)]) {
+        [self.settleMentViewDelegate bottomViewGoPayDidClick:self didClick:checkOutBtn.selected];
+
+    }
 }
 
 - (void)setMoney:(NSInteger)money {

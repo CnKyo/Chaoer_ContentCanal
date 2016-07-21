@@ -64,6 +64,37 @@
 - (void)cellWithRightDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods;
 
 - (void)cellWithFocusShopClick:(NSIndexPath *)mIndexPath andShop:(GMarketList *)mShop;
+
+#pragma mark ---- 收藏cell购物车点击事件
+/**
+ *  收藏cell
+ *
+ *  @param mgoodsId 商品id
+ *  @param mShopId  店铺ID
+ */
+- (void)collectLeftAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId;
+/**
+ *  收藏cell
+ *
+ *  @param mgoodsId 商品id
+ *  @param mShopId  店铺ID
+ */
+- (void)collectRightAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId;
+#pragma mark ---- 收藏cell详情点击事件
+/**
+ *  收藏cell
+ *
+ *  @param mgoodsId 商品id
+ *  @param mShopId  店铺ID
+ */
+- (void)collectLeftDetail:(NSInteger)mgoodsId andShopId:(int)mShopId;
+/**
+ *  收藏cell
+ *
+ *  @param mgoodsId 商品id
+ *  @param mShopId  店铺ID
+ */
+- (void)collectRightDetail:(NSInteger)mgoodsId andShopId:(int)mShopId;
 @end
 
 @interface mCommunityMyViewCell : UITableViewCell
@@ -82,10 +113,7 @@
  *  名称
  */
 @property (weak, nonatomic) IBOutlet UILabel *mName;
-/**
- *  全部商品
- */
-@property (weak, nonatomic) IBOutlet UILabel *mAllNum;
+
 /**
  *  收藏数
  */

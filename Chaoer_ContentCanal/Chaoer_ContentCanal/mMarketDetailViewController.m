@@ -112,6 +112,7 @@
 
 - (void)initView{
     
+    
 
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -598,26 +599,48 @@
 }
 #pragma mark---- cell左边的添加购物车按钮点击代理方法
 - (void)cellWithLeftAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
-    [self.mShopCarArr addObject:mGoods];
-    mShopCarNum+=1;
-    [self upDateShopCar];
+    [self showWithStatus:@""];
+    
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self.mShopCarArr addObject:mGoods];
+            mShopCarNum+=1;
+            [self upDateShopCar];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+
 }
 #pragma mark---- cell右边的添加购物车按钮点击代理方法
 - (void)cellWithRightAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
-    [self.mShopCarArr addObject:mGoods];
-    mShopCarNum+=1;
-    [self upDateShopCar];
+    [self showWithStatus:@""];
+    
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self.mShopCarArr addObject:mGoods];
+            mShopCarNum+=1;
+            [self upDateShopCar];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
 }
 #pragma mark---- cell左边的商品详情按钮点击代理方法
 - (void)cellWithLeftDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods{
     mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     goods.mSGoods = mGoods;
+    goods.mShopId = mShopId;
     [self pushViewController:goods];
 }
 #pragma mark---- cell右边的添加购物车按钮点击代理方法
 - (void)cellWithRightDetailClick:(NSInteger)mTag andGoods:(MGoods *)mGoods{
     mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     goods.mSGoods = mGoods;
+    goods.mShopId = mShopId;
     [self pushViewController:goods];
     
 }

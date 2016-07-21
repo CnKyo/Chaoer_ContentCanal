@@ -78,6 +78,9 @@
         [self.delegate cellWithLeftAddShopCar:sender.tag andGoods:sender.mGood];
     }
     
+    if ([self.delegate respondsToSelector:@selector(collectLeftAddshopCar:andShopId:)]) {
+        [self.delegate collectLeftAddshopCar:sender.tag andShopId:self.mLeftShopId];
+    }
     
 }
 
@@ -87,6 +90,9 @@
         [self.delegate cellWithRightAddShopCar:sender.tag andGoods:sender.mGood];
     }
     
+    if ([self.delegate respondsToSelector:@selector(collectRightAddshopCar:andShopId:)]) {
+        [self.delegate collectRightAddshopCar:sender.tag andShopId:self.mRightShopId];
+    }
     
 
 }
@@ -97,6 +103,9 @@
         [self.delegate cellWithLeftDetailClick:sender.tag andGoods:sender.mGood];
     }
     
+    if ([self.delegate respondsToSelector:@selector(collectLeftDetail:andShopId:)]) {
+        [self.delegate collectLeftDetail:sender.tag andShopId:self.mLeftShopId];
+    }
     
     
 }
@@ -105,6 +114,10 @@
     
     if ([self.delegate respondsToSelector:@selector(cellWithRightDetailClick:andGoods:)]) {
         [self.delegate cellWithRightDetailClick:sender.tag andGoods:sender.mGood];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(collectRightDetail:andShopId:)]) {
+        [self.delegate collectRightDetail:sender.tag andShopId:self.mRightShopId];
     }
     
 }

@@ -98,7 +98,7 @@
     self.mSelectedBtn.selected = mGoods.mSelected;
     self.mSelectedBtn.tag = [[NSString stringWithFormat:@"%d",mGoods.mGoodsId] intValue];
     self.mContent.text = [NSString stringWithFormat:@"数量：%d%@",mGoods.mQuantity,mGoods.mSpecifications];
-    self.mPrice.text = [NSString stringWithFormat:@"￥:%.2f",mGoods.mGoodsPrice];
+    self.mPrice.text = [NSString stringWithFormat:@"￥:%.2f",mGoods.mTotlePrice];
     self.mName.text = mGoods.mGoodsName;
     self.mNum.text = [NSString stringWithFormat:@"%d",mGoods.mQuantity];
 

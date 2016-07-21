@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="store_coup" translatesAutoresizingMaskIntoConstraints="NO" id="JJF-aM-bLA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coup_red" translatesAutoresizingMaskIntoConstraints="NO" id="JJF-aM-bLA">
                         <rect key="frame" x="0.0" y="18" width="320" height="150"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="MCj-iC-UdD"/>
@@ -24,7 +24,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ech-rb-yUp">
                         <rect key="frame" x="0.0" y="26" width="320" height="68"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCK-Vs-6Y6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCK-Vs-6Y6">
                                 <rect key="frame" x="8" y="14" width="120" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="6nK-6z-Ogu"/>
@@ -120,6 +120,6 @@
     </objects>
     <resources>
         <image name="coup_ expire" width="146" height="120"/>
-        <image name="store_coup" width="584" height="239"/>
+        <image name="coup_red" width="584" height="239"/>
     </resources>
 </document>

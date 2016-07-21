@@ -114,6 +114,9 @@
 - (void)checkOutBtnDidClick:(QHLButton *)checkOutBtn {
     NSLog(@"%s",__func__);
     [self.bottomDelegate mGoPayAction];
+    
+    
+    
 }
 - (void)setMNum:(NSInteger)mNum{
 

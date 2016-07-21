@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     self.state = QHLViewStateNormal;
 
-    mType = 1;
+    mType = 10;
     [self initView];
     [self initBottomView];
 }
@@ -152,7 +152,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
     return _shoppingCar;
 }
+- (void)headerBeganRefresh{
 
+    
+    
+}
 #pragma mark -添加Bottomview
 - (void)initBottomView{
 
@@ -234,9 +238,13 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (mType == 1) {
+        
+    }else{
+        communityOrderDetailViewController *order = [[communityOrderDetailViewController alloc] initWithNibName:@"communityOrderDetailViewController" bundle:nil];
+        [self pushViewController:order];
+    }
     
-    communityOrderDetailViewController *order = [[communityOrderDetailViewController alloc] initWithNibName:@"communityOrderDetailViewController" bundle:nil];
-    [self pushViewController:order];
 }
 #pragma mark----分类按钮点击事件
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
@@ -244,7 +252,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     CGRect mRR = self.tableView.frame;
     
-    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+1] intValue];
+    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+10] intValue];
     [self.tableView reloadData];
     //    [self.tableView headerBeginRefreshing];
     

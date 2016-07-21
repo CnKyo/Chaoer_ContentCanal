@@ -58,6 +58,9 @@
     self.mShopHotArr = [NSMutableArray new];
     [self initLocation];
 
+    
+    
+    
     [self initView];
 
 }

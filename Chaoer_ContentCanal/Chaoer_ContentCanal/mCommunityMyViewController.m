@@ -18,6 +18,8 @@
 
 #import "shopCarViewController.h"
 #import "QHLShoppingCarController.h"
+
+#import "mGoodsDetailViewController.h"
 @interface mCommunityMyViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,WKGoodsCellDelegate>
 
 @end
@@ -292,15 +294,14 @@
 
         cell.delegate = self;
         
-        MGoods *mGoods1 = self.tempArray[indexPath.row*2];
-        MGoods *mGoods2;
+        GCollectGoods *mGoods1 = self.tempArray[indexPath.row*2];
+        GCollectGoods *mGoods2;
         if ((indexPath.row+1)*2>self.tempArray.count) {
             cell.mRightView.hidden = YES;
         }else{
             mGoods2 = [self.tempArray objectAtIndex:indexPath.row*2+1];
             cell.mRightView.hidden = NO;
         }
-  
         cell.mLeftName.text = mGoods1.mGoodsName;
         cell.mLeftContent.text = mGoods1.mGoodsDetail;
         cell.mLeftNum.text = [NSString stringWithFormat:@"月销：%d",mGoods1.mSalesNum];
@@ -316,20 +317,28 @@
         
         if (mGoods1.mGoodsHot != nil || mGoods1.mGoodsHot.length != 0) {
             cell.mLeftTagImg.image = [UIImage imageNamed:@"market_hot"];
-        }else if (mGoods1.mGoodsCampain != nil || mGoods1.mGoodsCampain.length != 0){
+        }else if (mGoods1.mCampain != nil || mGoods1.mCampain.length != 0){
             cell.mLeftTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
         }else{
             cell.mLeftTagImg.hidden = YES;
         }
-        
+        /**
+         *  设置收藏与添加购物车与详情
+         */
         cell.mLeftCollect.tag = mGoods1.mGoodsId;
         
+        cell.mLeftAdd.tag = mGoods1.mGoodsId;
+        cell.mLeftShopId = mGoods1.mShopId;
+        /**
+         *  设置收藏与添加购物车与详情
+         */
         cell.mRightName.text = mGoods2.mGoodsName;
         cell.mRightContent.text = mGoods2.mGoodsDetail;
         cell.mRightNum.text = [NSString stringWithFormat:@"月销：%d",mGoods2.mSalesNum];
         cell.mRightPrice.text = [NSString stringWithFormat:@"¥%.2f",mGoods2.mGoodsPrice];
         [cell.mRightImg sd_setImageWithURL:[NSURL URLWithString:mGoods2.mGoodsImg] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
         
+    
         if (mGoods2.mIsCollect == 0) {
             [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_empty"] forState:0];
             mRightType = 1;
@@ -337,17 +346,23 @@
             [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_real"] forState:0];
             mRightType = 0;
         }
-        
         if (mGoods2.mGoodsHot != nil || mGoods2.mGoodsHot.length != 0) {
             cell.mRightTagImg.image = [UIImage imageNamed:@"market_hot"];
-        }else if (mGoods2.mGoodsCampain != nil || mGoods2.mGoodsCampain.length != 0){
+        }else if (mGoods2.mCampain != nil || mGoods2.mCampain.length != 0){
             cell.mRightTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
         }else{
             cell.mRightTagImg.hidden = YES;
         }
+        /**
+         *  设置收藏与添加购物车与详情
+         */
         cell.mRightCollect.tag = mGoods2.mGoodsId;
 
-      
+        cell.mRightAdd.tag = mGoods2.mGoodsId;
+        cell.mRightShopId = mGoods2.mShopId;
+        /**
+         *  设置收藏与添加购物车与详情
+         */
         return cell;
 
     }else{
@@ -380,6 +395,8 @@
     
     
 }
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -401,7 +418,7 @@
         [self dismiss];
         if (resb.mSucess) {
             
-            for (MGoods *goods in self.tempArray) {
+            for (GCollectGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mLeftType;
                     
@@ -425,7 +442,7 @@
         [self dismiss];
         if (resb.mSucess) {
             
-            for (MGoods *goods in self.tempArray) {
+            for (GCollectGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mRightType;
                     
@@ -480,4 +497,51 @@
     
 }
 
+
+
+#pragma mark----设置cell收藏与添加购物车与详情
+
+- (void)collectLeftAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId{
+    [self showWithStatus:@""];
+    
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+
+}
+- (void)collectRightAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId{
+    [self showWithStatus:@""];
+    
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+
+}
+
+- (void)collectLeftDetail:(NSInteger)mgoodsId andShopId:(int)mShopId{
+    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
+    goods.mSGoods = [MGoods new];
+    goods.mSGoods.mGoodsId = [[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] ;
+    goods.mShopId = mShopId;
+    [self pushViewController:goods];
+
+}
+- (void)collectRightDetail:(NSInteger)mgoodsId andShopId:(int)mShopId{
+    mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
+    goods.mSGoods = [MGoods new];
+    goods.mSGoods.mGoodsId = [[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] ;
+    goods.mShopId = mShopId;
+    [self pushViewController:goods];
+    
+}
 @end

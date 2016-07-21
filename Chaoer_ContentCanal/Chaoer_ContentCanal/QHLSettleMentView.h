@@ -18,6 +18,7 @@
 
 - (void)settleMentView:(QHLSettleMentView *)settleMentView didClickButton:(BOOL)allSelBtnSelectState;
 
+- (void)bottomViewGoPayDidClick:(QHLSettleMentView *)setView didClick:(BOOL)Click;
 - (void)mGoPayClick;
 
 @end
