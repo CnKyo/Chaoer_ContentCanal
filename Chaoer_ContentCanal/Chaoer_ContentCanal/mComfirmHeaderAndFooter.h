@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol mFooterSwitchDelegate <NSObject>
+
+@optional
+/**
+ *  代理方法
+ *
+ *  @param mChange 状态改变
+ */
+- (void)mFooterSwitchChanged:(BOOL)mChange;
+
+@end
+
 @interface mComfirmHeaderAndFooter : UIView
 #pragma mark---- 确认订单header
 /**
@@ -47,5 +59,7 @@
  *  @return 返回view
  */
 + (mComfirmHeaderAndFooter *)initFooterView;
+
+@property (strong,nonatomic) id <mFooterSwitchDelegate> delegate;
 
 @end

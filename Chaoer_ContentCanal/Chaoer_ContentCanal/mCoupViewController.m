@@ -208,7 +208,15 @@
     
     cell.mBgkImg.image = coupImg;
     
-    cell.mTime.text = [NSString stringWithFormat:@"过期时间:%@",mCoup.mEndTime];
+    NSString *tt = nil;
+    
+    if (mCoup.mEndTime.length == 0) {
+        tt = @"永久有效";
+    }else{
+        tt = [NSString stringWithFormat:@"过期时间:%@",mCoup.mEndTime];
+    }
+    
+    cell.mTime.text = tt;
     
     
     if (mType == 1) {

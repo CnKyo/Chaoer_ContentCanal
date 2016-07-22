@@ -267,9 +267,17 @@ typedef enum _RelDic
  * @return 返回字典
  */
 + (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
+#pragma mark----字典转json字符串
+/**
+ *  字典转json字符串
+ *
+ *  @param dic 传字典
+ *
+ *  @return 返回字符串
+ */
 + (NSString*)dictionaryToJson:(NSDictionary *)dic;
 
-
++ (NSString *)arrToJson:(NSArray *)arr;
 
 #pragma mark----过滤非法字符
 + (BOOL)isHaveIllegalChar:(NSString *)str;
@@ -292,5 +300,8 @@ typedef enum _RelDic
  *  @return 返回加密内容
  */
 + (NSString *)RSAEncryptor:(NSString *)mText;
+
+
+
 
 @end

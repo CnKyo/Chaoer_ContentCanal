@@ -113,6 +113,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
 
     self.haveHeader = YES;
+    self.haveFooter = YES;
     
     
     UINib   *nib = [UINib nibWithNibName:@"communityOrderTableViewCell" bundle:nil];
@@ -153,9 +154,54 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     return _shoppingCar;
 }
 - (void)headerBeganRefresh{
+    self.page = 1;
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getMyMarketOrderList:mType andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self dismiss];
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
+        
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+            
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+    
+}
 
-    
-    
+- (void)footetBeganRefresh{
+
+    self.page ++;
+    [self showWithStatus:@"正在加载..."];
+    [[mUserInfo backNowUser] getMyMarketOrderList:mType andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self footetEndRefresh];
+        [self dismiss];
+        [self removeEmptyView];
+        
+        if (resb.mSucess) {
+            
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+            }else{
+                
+                [self.tempArray addObjectsFromArray:mArr];
+            }
+            [self.tableView reloadData];
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
 }
 #pragma mark -添加Bottomview
 - (void)initBottomView{
@@ -265,7 +311,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         mRR.size.height = DEVICE_Height-104;
         self.tableView.frame = mRR;
     }
-    
+    [self headerBeganRefresh];
 }
 
 #pragma mark - 创建表头视图

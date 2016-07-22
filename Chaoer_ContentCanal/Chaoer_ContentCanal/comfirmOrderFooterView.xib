@@ -27,6 +27,9 @@
                         <constraint firstAttribute="width" constant="49" id="n6h-a1-gOS"/>
                     </constraints>
                     <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="mUserScore:" destination="iN0-l3-epB" eventType="valueChanged" id="WAv-nf-iDT"/>
+                    </connections>
                 </switch>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tv-Do-bVw">
                     <rect key="frame" x="8" y="37" width="312" height="1"/>

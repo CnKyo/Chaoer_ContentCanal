@@ -93,6 +93,13 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mTotalMoney;
 
+@property (weak, nonatomic) IBOutlet UIImageView *mImg1;
+
+@property (weak, nonatomic) IBOutlet UILabel *mGoodsName;
+
+
+
+
 /**
  *  索引
  */
@@ -101,5 +108,13 @@
  *  代理方法
  */
 @property (nonatomic, weak) id<WKComfirDelegate> cellDelegate;
+
+
+#pragma mark ----商品价格
+
+@property (weak, nonatomic) IBOutlet UILabel *mGoodsPrice;
+
+
+
 
 @end

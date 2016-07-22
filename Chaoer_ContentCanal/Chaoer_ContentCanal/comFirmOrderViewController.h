@@ -10,4 +10,9 @@
 
 @interface comFirmOrderViewController : BaseVC
 
+/**
+ *  购物车传过来的数组
+ */
+@property (strong,nonatomic) GPayShopCar *mShopCarList;
+
 @end

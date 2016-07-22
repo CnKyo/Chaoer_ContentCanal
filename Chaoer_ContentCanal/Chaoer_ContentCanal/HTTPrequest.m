@@ -64,7 +64,10 @@ HDSingletonM(HDNetworking) // 单例实现
 //    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //申明返回的结果是json类型
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
+ 
     NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
     [contentTypes addObject:@"text/html"];
     [contentTypes addObject:@"text/plain"];
@@ -669,4 +672,96 @@ HDSingletonM(HDNetworking) // 单例实现
     
     return key;
 }
+
+
+
+- (NSMutableURLRequest *)requestWithPath:(NSString *)path withMethod:(NSString *)method withDictionary:(NSDictionary *)dictionary
+{
+    NSError *error = nil;
+    if (dictionary) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                     encoding:NSUTF8StringEncoding];
+        NSString *URLString = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,path];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+        request.HTTPMethod = method;
+        request.timeoutInterval = 20;
+        [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        request.HTTPBody = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        return request;
+    }
+    
+    return [[NSMutableURLRequest alloc] init];
+}
+
+
+-(void)GoPayPostUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback{
+    [[HTTPrequest sharedHDNetworking] networkStatusUnknown:^{
+        MLLog(@"未知网络连接");
+    } reachable:^{
+        MLLog(@"reachable");
+    } reachableViaWWAN:^{
+        MLLog(@"移动蜂窝网络");
+    } reachableViaWiFi:^{
+        MLLog(@"WiFi");
+    }];
+    
+    MLLog(@"请求地址：%@-------请求参数：%@",URLString,parameters);
+    //
+    //    if ([URLString isEqualToString:@"app/login/applogin"]) {
+    //        [self getRSAKey];
+    //    }
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //申明返回的结果是json类型
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    
+    //申明请求的数据是json类型
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    
+    
+    NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
+    [contentTypes addObject:@"text/html"];
+    [contentTypes addObject:@"text/plain"];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
+    
+    [manager POST:[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],URLString] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary *resbObj = [self deleteEmpty:responseObject];
+        
+        MLLog(@"去掉字典里的null值之后的数据---%@",resbObj);
+        
+        mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
+        
+        //        if( retob.mState == 400301 )
+        //        {//需要登陆
+        //            id oneid = [UIApplication sharedApplication].delegate;
+        //            [oneid performSelector:@selector(gotoLogin) withObject:nil afterDelay:0.4f];
+        //        }
+        callback(  retob );
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        MLLog(@" error:%@",error.description);
+        callback( [mBaseData infoWithError:@"网络请求错误"] );
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]; // 关闭状态栏动画
+    }];
+    
+
+    
+}
+
 @end

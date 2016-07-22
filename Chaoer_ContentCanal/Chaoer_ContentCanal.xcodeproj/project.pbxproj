@@ -234,6 +234,10 @@
 		04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1FD571CF846500057DEBD /* CurentLocation.m */; };
 		04C5286E1CDC8BA000572C3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C528691CDC8BA000572C3B /* libWeChatSDK.a */; };
 		04C5286F1CDC8BA000572C3B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04C5286A1CDC8BA000572C3B /* read_me.txt */; };
+		04C5B3341D42213900AA212D /* mComFirmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C5B3331D42213900AA212D /* mComFirmCell.xib */; };
+		04C5B3371D4222A900AA212D /* mComfirmHederAndFooterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5B3361D4222A900AA212D /* mComfirmHederAndFooterSection.m */; };
+		04C5B3391D4222B600AA212D /* mComfirmHederSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C5B3381D4222B600AA212D /* mComfirmHederSection.xib */; };
+		04C5B33B1D42234B00AA212D /* mComfirmFooterSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C5B33A1D42234B00AA212D /* mComfirmFooterSection.xib */; };
 		04C75DA71D058C27002D21FB /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04C75DA51D058C27002D21FB /* AlipaySDK.bundle */; };
 		04C75DA81D058C27002D21FB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA61D058C27002D21FB /* AlipaySDK.framework */; };
 		04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA91D058C37002D21FB /* libcrypto.a */; };
@@ -1319,6 +1323,11 @@
 		04C5286B1CDC8BA000572C3B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		04C5286C1CDC8BA000572C3B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		04C5286D1CDC8BA000572C3B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		04C5B3331D42213900AA212D /* mComFirmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mComFirmCell.xib; sourceTree = "<group>"; };
+		04C5B3351D4222A900AA212D /* mComfirmHederAndFooterSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mComfirmHederAndFooterSection.h; sourceTree = "<group>"; };
+		04C5B3361D4222A900AA212D /* mComfirmHederAndFooterSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mComfirmHederAndFooterSection.m; sourceTree = "<group>"; };
+		04C5B3381D4222B600AA212D /* mComfirmHederSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mComfirmHederSection.xib; sourceTree = "<group>"; };
+		04C5B33A1D42234B00AA212D /* mComfirmFooterSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mComfirmFooterSection.xib; sourceTree = "<group>"; };
 		04C75DA51D058C27002D21FB /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		04C75DA61D058C27002D21FB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		04C75DA91D058C37002D21FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -2944,6 +2953,11 @@
 				04C15D731D37B0C40097DA6C /* mComfirmOrderCell.h */,
 				04C15D741D37B0C40097DA6C /* mComfirmOrderCell.m */,
 				04C15D751D37B0C40097DA6C /* mComfirmOrderCell.xib */,
+				04C5B3331D42213900AA212D /* mComFirmCell.xib */,
+				04C5B3351D4222A900AA212D /* mComfirmHederAndFooterSection.h */,
+				04C5B3361D4222A900AA212D /* mComfirmHederAndFooterSection.m */,
+				04C5B3381D4222B600AA212D /* mComfirmHederSection.xib */,
+				04C5B33A1D42234B00AA212D /* mComfirmFooterSection.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5596,6 +5610,7 @@
 				313D76B31C98F03E004D5679 /* mBundleViewController.xib in Resources */,
 				04102E101CE41A3D006F82E2 /* pptChartsTableViewCell.xib in Resources */,
 				04648C5C1CB4EC57006823C9 /* CustomAlertView.xib in Resources */,
+				04C5B33B1D42234B00AA212D /* mComfirmFooterSection.xib in Resources */,
 				04E02E501CE6B4C900220D54 /* pptMyRateCell.xib in Resources */,
 				04648C7A1CB51DD0006823C9 /* valleteHistoryViewController.xib in Resources */,
 				746907E81BABEFCB00A4589A /* footView.xib in Resources */,
@@ -5617,6 +5632,7 @@
 				04C15D7D1D37BCDA0097DA6C /* mSelectSenTypeViewController.xib in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				04FA3E8F1D22772200EA9E34 /* goPayViewController.xib in Resources */,
+				04C5B3341D42213900AA212D /* mComFirmCell.xib in Resources */,
 				044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */,
 				04F1E3A91CD1FBFE00222946 /* mBundlePhoneViewController.xib in Resources */,
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
@@ -5684,6 +5700,7 @@
 				04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				040FB5611D191E8700D453E3 /* public_key.der in Resources */,
+				04C5B3391D4222B600AA212D /* mComfirmHederSection.xib in Resources */,
 				315442951C9A9E010047E52A /* registViewController.xib in Resources */,
 				047290461D17E4E300AA999B /* release_notes_ios.txt in Resources */,
 				040B80251CC50D50006A9489 /* WJStatusBarHUD_success.png in Resources */,
@@ -5981,6 +5998,7 @@
 				313413571CA28DC3003972E2 /* XMNAlbumModel.m in Sources */,
 				74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */,
 				040B800C1CC4DFCC006A9489 /* mGoPayViewController.m in Sources */,
+				04C5B3371D4222A900AA212D /* mComfirmHederAndFooterSection.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
 				04F89C0D1D1D0FED006A3976 /* mCommunityHeaderView.m in Sources */,
 				04648C661CB4F64E006823C9 /* senderTableViewCell.m in Sources */,

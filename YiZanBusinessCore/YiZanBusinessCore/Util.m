@@ -1225,7 +1225,15 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
 }
++ (NSString *)arrToJson:(NSArray *)arr{
+    NSError *parseError = nil;
 
+    NSData * JSONData = [NSJSONSerialization dataWithJSONObject:arr
+                                                        options:NSJSONWritingPrettyPrinted
+                                                          error:&parseError];
+    return [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+
+}
 + (CGFloat)labelTextWithWidth:(NSString *)str{
     CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:14]];
     return strsize.width;
@@ -1328,6 +1336,7 @@
     return mEncryptorStr;
     
 }
+
 
 @end
 

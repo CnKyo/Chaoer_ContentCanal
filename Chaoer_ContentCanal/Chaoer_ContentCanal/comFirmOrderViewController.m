@@ -18,7 +18,10 @@
 #import "mComfirmHeaderAndFooter.h"
 #import "mComfirmOrderCell.h"
 #import "mSelectSenTypeViewController.h"
-@interface comFirmOrderViewController ()<UITableViewDelegate,UITableViewDataSource,WKComfirDelegate>
+
+
+#import "mComfirmHederAndFooterSection.h"
+@interface comFirmOrderViewController ()<UITableViewDelegate,UITableViewDataSource,WKComfirDelegate,mFooterSwitchDelegate,mSectionDelegate>
 
 @end
 
@@ -34,7 +37,20 @@
     mComfirmHeaderAndFooter *mTableHeaderView;
     mComfirmHeaderAndFooter *mTableFooterView;
     
+    
+    /**
+     *  headerSection
+     */
+    mComfirmHederAndFooterSection *mHeaderSection;
+    /**
+     *  footerSection
+     */
+    mComfirmHederAndFooterSection *mFooterSection;
+    
+    
+    
 }
+@synthesize mShopCarList;
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     
@@ -44,18 +60,6 @@
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"确认订单";
 
-//    mScrollerView = [UIScrollView new];
-//    
-//    mScrollerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.91 alpha:1.00];
-//    [self.view addSubview:mScrollerView];
-//    
-//    [mScrollerView makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view).offset(@0);
-//        make.bottom.equalTo(self.view).offset(@50);
-//        make.top.equalTo(self.view).offset(@64);
-//    }];
-//    
-//    [self initView];
     [self initMainView];
     
 }
@@ -64,9 +68,8 @@
 
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.haveHeader = YES;
 
-    UINib   *nib = [UINib nibWithNibName:@"mComfirmOrderCell" bundle:nil];
+    UINib   *nib = [UINib nibWithNibName:@"mComFirmCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     mTableHeaderView = [mComfirmHeaderAndFooter initHeaderView];
@@ -75,12 +78,15 @@
     
     mTableFooterView = [mComfirmHeaderAndFooter initFooterView];
     mTableFooterView.frame = CGRectMake(0, 0, DEVICE_Width, 120);
+    mTableFooterView.delegate = self;
     [self.tableView setTableFooterView:mTableFooterView];
     
     
     
     mFooterView = [comfirmOrderView sharePayView];
     [mFooterView.mGoPayBtn addTarget:self action:@selector(mGoPayAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [self.view addSubview:mFooterView];
     
     [mFooterView makeConstraints:^(MASConstraintMaker *make) {
@@ -88,8 +94,19 @@
         make.height.offset(@50);
     }];
     
+    [self upDatePage];
 }
+- (void)mFooterSwitchChanged:(BOOL)mChange{
 
+    if (mChange) {
+        MLLog(@"开");
+    }else{
+        MLLog(@"关");
+    }
+    
+    
+    
+}
 - (void)initView{
     
     mMainView = [comfirmOrderView shareView];
@@ -116,6 +133,8 @@
     
 }
 
+
+
 - (void)mRecipAction:(UIButton *)sender{
     billViewController *bbb = [[billViewController alloc] initWithNibName:@"billViewController" bundle:nil];
     [self pushViewController:bbb];
@@ -136,6 +155,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)upDatePage{
+ 
+    mFooterView.mPayMoney.text = [NSString stringWithFormat:@"还需支付：¥%.2f",mShopCarList.mTotlePay];
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -146,17 +170,70 @@
 }
 */
 #pragma mark -- tableviewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+
+    GGShopArr *mShop = mShopCarList.mShopArr[section];
+    
+    float mPP = 0.0;
+    
+    for (GGPayN *mGoods in mShop.mGoodsArr) {
+        mPP += mGoods.mSPrice;
+    }
+    
+    mFooterSection = [mComfirmHederAndFooterSection shareFooter];
+    mFooterSection.mMoney.text = [NSString stringWithFormat:@"总金额:¥%.2f",mPP];
+    mFooterSection.delegate = self;
+    return mFooterSection;
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    GGShopArr *mShop = mShopCarList.mShopArr[section];
+    
+    mHeaderSection = [mComfirmHederAndFooterSection shareHeader];
+    [mHeaderSection.mShopImg sd_setImageWithURL:[NSURL URLWithString:mShop.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    mHeaderSection.mShopName.text = mShop.mShopName;
+    mHeaderSection.delegate = self;
+    return mHeaderSection;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 170;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 50;
+}
+#pragma mark ---- 留言
+- (void)sectionWithMessage:(NSIndexPath *)mIndexPath{
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath.section];
+    
+    GGPayN *mGoods = mShop.mGoodsArr[mIndexPath.row];
+}
+#pragma mark ---- 优惠券
+- (void)sectionWithCoup:(NSIndexPath *)mIndexPath{
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath.section];
+    
+    GGPayN *mGoods = mShop.mGoodsArr[mIndexPath.row];
+}
+#pragma mark ---- 配送方式
+- (void)sectionWithSendType:(NSIndexPath *)mIndexPath{
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath.section];
+    
+    GGPayN *mGoods = mShop.mGoodsArr[mIndexPath.row];
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 1;
+    return mShopCarList.mShopArr.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-
-        return 5;
-    
-    
+    GGShopArr *mShop = mShopCarList.mShopArr[section];
+    return mShop.mGoodsArr.count;
     
     
 }
@@ -164,8 +241,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        return 340;
-  
+    return 60;
+    
     
     
 }
@@ -179,26 +256,47 @@
     
     reuseCellId = @"cell";
     
+    
+    GGShopArr *mShop = mShopCarList.mShopArr[indexPath.section];
+
+    GGPayN *mGoods = mShop.mGoodsArr[indexPath.row];
+    
     mComfirmOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.cellDelegate = self;
     cell.indexPath = indexPath;
+    
+    cell.mProductNum.text = [NSString stringWithFormat:@"共%d件商品",mGoods.mNum];
+    
+    cell.mGoodsPrice.text = [NSString stringWithFormat:@"¥%.2f",mGoods.mPrice];
+    [cell.mImg1 sd_setImageWithURL:[NSURL URLWithString:mGoods.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    cell.mGoodsName.text = mGoods.mGoodsName;
     return cell;
     
 
     
 }
-
+#pragma mark ----留言
 - (void)cellDidMessageNote:(mComfirmOrderCell *)cell andIndex:(NSIndexPath *)mIndex{
     MLLog(@"exsiting---%@",mIndex);
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndex.section];
+    
+    GGPayN *mGoods = mShop.mGoodsArr[mIndex.row];
 }
+#pragma mark ----选择优惠券
 - (void)cellDidSelectedCoup:(mComfirmOrderCell *)cell andIndex:(NSIndexPath *)mIndex{
     MLLog(@"exsiting---%@",mIndex);
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndex.section];
+    
+    GGPayN *mGoods = mShop.mGoodsArr[mIndex.row];
 }
+#pragma mark ----选择配送方式
 - (void)cellDidChioceSendType:(mComfirmOrderCell *)cell andIndex:(NSIndexPath *)mIndex{
     MLLog(@"exsiting---%@",mIndex);
+    GGShopArr *mShop = mShopCarList.mShopArr[mIndex.section];
     
+    GGPayN *mGoods = mShop.mGoodsArr[mIndex.row];
     mSelectSenTypeViewController *mmm = [[mSelectSenTypeViewController alloc] initWithNibName:@"mSelectSenTypeViewController" bundle:nil];
     [self pushViewController:mmm];
     

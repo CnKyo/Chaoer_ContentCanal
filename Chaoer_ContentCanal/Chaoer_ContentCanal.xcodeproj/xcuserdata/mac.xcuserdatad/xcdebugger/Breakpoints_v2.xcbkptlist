@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
-            timestampString = "490766196.001183"
+            timestampString = "490866842.213152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "-enumerateObjectsUsForinWithDataArray:modelArray:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
-            timestampString = "490766196.001183"
+            timestampString = "490866842.213152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "-hiddenView:didClickAllSelBtn:"
             landmarkType = "5">
             <Locations>
@@ -90,11 +90,11 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/QHLShoppingCarController.m"
-                  timestampString = "490787280.609147"
+                  timestampString = "490883533.469592"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "376"
-                  endingLineNumber = "376"
+                  startingLineNumber = "425"
+                  endingLineNumber = "425"
                   offsetFromSymbolStart = "155">
                </Location>
                <Location
@@ -105,30 +105,14 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/QHLShoppingCarController.m"
-                  timestampString = "490787280.609379"
+                  timestampString = "490883533.469767"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "376"
-                  endingLineNumber = "376"
+                  startingLineNumber = "425"
+                  endingLineNumber = "425"
                   offsetFromSymbolStart = "160">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
-            timestampString = "490766152.361275"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "-mGoPayClick"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,6 +128,38 @@
             startingLineNumber = "3865"
             endingLineNumber = "3865"
             landmarkName = "-getMyMarketOrderList:andPage:block:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chaoer_ContentCanal/communityOrderViewController.m"
+            timestampString = "490860913.335008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-headerBeganRefresh"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
+            timestampString = "490871706.140173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1050"
+            endingLineNumber = "1050"
+            landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -35,6 +35,10 @@ HDSingletonH(HDNetworking) // 单例声明
 
 -(void)postUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
+
+#pragma mark ----结算
+-(void)GoPayPostUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
+
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
 #pragma mark----上传表单数据

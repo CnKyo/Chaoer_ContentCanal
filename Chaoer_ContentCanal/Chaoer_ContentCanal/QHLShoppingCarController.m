@@ -70,7 +70,13 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
 @property(nonatomic, strong) NSMutableArray *deleteArr;//删除数据的数组
 @property(nonatomic, strong) NSMutableArray *markArr;//标记数据的数组
+/**
+ *  选择的数组
+ */
 @property(nonatomic, strong) NSMutableArray *selectedRows;
+
+@property(nonatomic, strong) NSMutableArray *mShopCarIdsArr;
+@property(nonatomic, strong) NSMutableArray *mShopCarNumArr;
 
 
 @end
@@ -80,6 +86,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     homeNavView *mNavView;
     
     shopCarHeaderAndFooterView *mEmptyView;
+    
+    NSString *mShopingCarIDS;
+    
+    NSMutableArray *mJsonArr;
+
 }
 #pragma mark - viewDidLoad 方法
 - (void)viewDidLoad {
@@ -95,7 +106,10 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.markArr = [NSMutableArray new];
     self.deleteArr = [NSMutableArray new];
     self.selectedRows = [NSMutableArray new];
-    
+    self.mShopCarIdsArr = [NSMutableArray new];
+    self.mShopCarNumArr = [NSMutableArray new];
+
+    mJsonArr = [NSMutableArray new];
     [self initView];
     //添加hiddenView
     [self setUpHiddenView];
@@ -223,9 +237,40 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 #pragma mark - 去结算代理方法
 - (void)mGoPayClick{
+    [mJsonArr removeAllObjects];
     MLLog(@"去结算:%@",self.deleteArr);
-    comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
-    [self pushViewController:comfir];
+    if (self.mShopCarIdsArr.count <= 0) {
+        [self showErrorStatus:@"您还未选择商品！"];
+        return;
+    }
+    
+    for (int i =0;i<self.mShopCarIdsArr.count;i++) {
+        
+        NSString *mIds = self.mShopCarIdsArr[i];
+        NSString *mNum = self.mShopCarNumArr[i];
+
+        [mJsonArr addObject:@{@"quantity":mNum,@"shoppingCartId":mIds}];
+//        [mJsonArr addObject:[NSString stringWithFormat:@"quantity:%@,shoppingCartId:%@",mIds,mNum]];
+
+        
+    }
+     
+    [self showWithStatus:@"正在结算..."];
+    [[mUserInfo backNowUser] shopcarGoPay:mJsonArr block:^(mBaseData *resb,GPayShopCar *mShopCarList) {
+        [self dismiss];
+        if (resb.mSucess) {
+            comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
+            comfir.mShopCarList = [GPayShopCar new];
+            
+            comfir.mShopCarList = mShopCarList;
+            [self pushViewController:comfir];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+
 
 }
 - (void)bottomViewGoPayDidClick:(QHLSettleMentView *)setView didClick:(BOOL)Click{
@@ -236,6 +281,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (void)settleMentView:(QHLSettleMentView *)settleMentView didClickButton:(BOOL)allSelBtnSelectState {
     BOOL selected = !allSelBtnSelectState;
     [self.deleteArr removeAllObjects];
+    [self.mShopCarIdsArr removeAllObjects];
+    [self.mShopCarNumArr removeAllObjects];
     if (self.state == QHLViewStateNormal) { //判断当前的state状态
         
         if (selected) { //全选按钮 选中
@@ -251,6 +298,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                         
                         [self.deleteArr addObject:[NSString stringWithFormat:@"%.2f",good.mGoodsPrice]];
                         
+                        [self.mShopCarIdsArr addObject:[NSString stringWithFormat:@"%d",good.mId]];
+                        [self.mShopCarNumArr addObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
                     }
                 }
             }
@@ -579,13 +628,16 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     mFooter.mTotalMoney.attributedText = [[NSString stringWithFormat:@"总金额:<color>¥%.2f</color>",price] attributedStringWithStyleBook:mStyle1];
     return mFooter;
 }
-#pragma mark - 设置cell侧滑按钮
+#pragma mark - 侧滑删除操作设置cell侧滑按钮
 - (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GShopCarList *shop = self.shoppingCar[indexPath.section];
     
     //删除
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        
+        
         //删除数据
         [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
         
@@ -609,10 +661,21 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
         for (GShopCarGoods *good in shop.mGoodsArr) {
             if (!good.mSelected) {
+                [self showWithStatus:@"正在操作..."];
+                [[mUserInfo backNowUser] deleteShopCarGoods:good.mId block:^(mBaseData *resb) {
+                    [self dismiss];
+                    if (resb.mSucess) {
+
+                    }else{
+                        [self showErrorStatus:resb.mMessage];
+                    }
+                }];
                 shop.mSelected = NO;
                 [self setButtonSelectState:NO];
                 [tableView reloadData];
                 return;
+                
+       
             }
         }
         
@@ -732,11 +795,16 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 //添加金额
                 self.money += good.mGoodsPrice;
             
+            [self.mShopCarIdsArr addObject:[NSString stringWithFormat:@"%d",good.mId]];
+            [self.mShopCarNumArr addObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
+            
         }else {
                 self.count --;
                 
                 //减去金额
                 self.money -= good.mGoodsPrice;
+            [self.mShopCarIdsArr removeObject:[NSString stringWithFormat:@"%d",good.mId]];
+            [self.mShopCarNumArr removeObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
         }
         
         self.settleMentView.count = self.count;
@@ -824,10 +892,23 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     GShopCarGoods *goods = shop.mGoodsArr[indexPath.row];
     
     if (mGood.mGoodsId == goods.mGoodsId) {
+        
+        [self showWithStatus:@"正在操作..."];
+        [[mUserInfo backNowUser] deleteShopCarGoods:mGood.mId block:^(mBaseData *resb) {
+            [self dismiss];
+            if (resb.mSucess) {
+                
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
+
         if (shop.mGoodsArr.count<=1) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }else{
             if (mGood.mQuantity==1) {
+                
+                
                 [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
                 
             }else{
@@ -838,6 +919,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         }
         
     }
+    
     [self.tableView reloadData];
     
 
@@ -875,6 +957,10 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                         self.count ++;
                         //添加金额
                         self.money += good.mGoodsPrice;
+                    
+                    [self.mShopCarIdsArr addObject:[NSString stringWithFormat:@"%d",good.mId]];
+                    [self.mShopCarNumArr addObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
+
                 }
             }
         } else { //这边不用做判断,表头视图中的cell中的按钮 都是选中状态
@@ -882,6 +968,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                     self.count --;
                     //添加金额
                     self.money -= good.mGoodsPrice;
+                [self.mShopCarIdsArr removeObject:[NSString stringWithFormat:@"%d",good.mId]];
+                [self.mShopCarNumArr removeObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
+
             }
         }
         

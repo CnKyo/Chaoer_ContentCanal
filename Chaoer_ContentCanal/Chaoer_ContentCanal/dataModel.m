@@ -3887,6 +3887,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+//    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:@"ios" forKey:@"device"];
     
     
@@ -3933,6 +3934,67 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             block(info);
         }
     }];
+    
+    
+}
+#pragma mark----删除购物车商品
+/**
+ *  删除商品
+ *
+ *  @param mCarId 购物车ID
+ *  @param block  返回值
+ */
+- (void)deleteShopCarGoods:(int)mCarId block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mCarId]] forKey:@"cartId"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/cart/removeShoppingCart" parameters:para call:^(mBaseData * _Nonnull info) {
+        
+        if (info.mSucess) {
+            
+            block(info);
+        }else{
+            block(info);
+        }
+    }];
+    
+}
+#pragma mark ---- 购物车去结算
+/**
+ *  购物车去结算
+ *
+ *  @param mShopCarIds 购物车ID
+ *  @param block       返回值
+ 
+ */
+- (void)shopcarGoPay:(NSArray *)mShopCarIds block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+
+    [para setObject:[Util arrToJson:mShopCarIds] forKey:@"json"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/PreOrder" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        if (info.mSucess) {
+            
+        
+            block(info,[[GPayShopCar alloc] initWithObj:info.mData]);
+        }else{
+            block(info,nil);
+        }
+    }];
+    
     
     
 }
@@ -6249,4 +6311,123 @@ bool pptbined = NO;
     
 }
 
+@end
+
+@implementation GGPayN
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mShopId = [[obj objectForKeyMy:@"shopId"] intValue];
+    self.mNum = [[obj objectForKeyMy:@"quantity"] intValue];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+
+    self.mPrice = [[obj objectForKeyMy:@"goodsPrice"] floatValue];
+    
+    self.mSPrice = [[obj objectForKeyMy:@"goodsPrice"] floatValue];
+    
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    
+    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goodsImg"]];
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
+    
+    
+    self.mSPrice = self.mPrice*self.mNum;
+    
+}
+
+@end
+
+@implementation GPayShopCar
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    
+    self.mScore = [[obj objectForKeyMy:@"score"] intValue];
+    
+    self.mName = [obj objectForKeyMy:@"nickName"];
+    self.mPhone = [obj objectForKeyMy:@"moblie"];
+    self.mAddress = [obj objectForKeyMy:@"address"];
+
+    NSMutableArray *mCoupA = [NSMutableArray new];
+    for (NSDictionary *dic in [obj objectForKeyMy:@"sMCouponList"]) {
+        [mCoupA addObject:[[GCoup alloc] initWithObj:dic]];
+    }
+    
+    self.mCoupArr  = mCoupA;
+    
+    
+    NSMutableArray *mGoods = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
+        [mGoods addObject:[[GGShopArr alloc] initWithObj:dic]];
+    }
+    self.mShopArr = mGoods;
+    
+    float ppp = 0.0;
+
+    for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
+        for (NSDictionary *temp in [dic objectForKeyMy:@"goodList"]) {
+            ppp += [[temp objectForKeyMy:@"goodsPrice"] floatValue];
+        }
+    }
+    
+    self.mTotlePay = ppp;
+    
+}
+
+@end
+
+@implementation GGShopArr
+
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+//    GGPayN
+
+    self.mSendPrice = [[obj objectForKeyMy:@"deliverFee"] floatValue];
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
+    self.mShopImg = [obj objectForKeyMy:@"shopLogo"];
+    
+    self.mShopId = [[obj objectForKeyMy:@"shopId"] intValue];
+    
+    NSMutableArray *mGoods = [NSMutableArray new];
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"goodList"]) {
+        [mGoods addObject:[[GGPayN alloc] initWithObj:dic]];
+    }
+
+    self.mGoodsArr = mGoods;
+  
+    
+}
 @end

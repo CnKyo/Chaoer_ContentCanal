@@ -89,7 +89,7 @@
 + (void)getGinfo:(void(^)(mBaseData *resb))block;
 
 @end
-
+#pragma mark -----ccccccc这里添加class
 @class SVerifyMsg;
 @class GFix;
 @class SServicer;
@@ -104,7 +104,7 @@
 @class GMarketAddress;
 @class GCollectionSHop;
 @class SGoodsDetail;
-
+@class GPayShopCar;
 /**
  *  用户信息
  */
@@ -1312,6 +1312,23 @@
  *  @param block      返回值
  */
 - (void)modifyShopCar:(int)mShopCarId andType:(int)mType  block:(void(^)(mBaseData *resb))block;
+#pragma mark----删除购物车商品
+/**
+ *  删除商品
+ *
+ *  @param mCarId 购物车ID
+ *  @param block  返回值
+ */
+- (void)deleteShopCarGoods:(int)mCarId block:(void(^)(mBaseData *resb))block;
+#pragma mark ---- 购物车去结算
+/**
+ *  购物车去结算
+ *
+ *  @param mShopCarIds 购物车ID
+ *  @param block       返回值
+ 
+ */
+- (void)shopcarGoPay:(NSArray *)mShopCarIds block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block;
 @end
 
 @interface SMessage : NSObject
@@ -3498,3 +3515,141 @@
 
 
 @end
+/**
+ *  结算返回数据
+ */
+@interface GGPayN : NSObject
+/**
+ *  店铺id
+ */
+@property (assign,nonatomic) int mShopId;
+/**
+ *  数量
+ */
+@property (assign,nonatomic) int mNum;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  价格
+ */
+@property (assign,nonatomic) float mPrice;
+
+@property (assign,nonatomic) float mSPrice;
+
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString *mGoodsName;
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  商品图片    
+ */
+@property (strong,nonatomic) NSString *mGoodsImg;
+/**
+ *  优惠券id
+ */
+@property (assign,nonatomic) int mCoupId;
+/**
+ *  优惠券金额
+ */
+@property (assign,nonatomic) float mCoupPrice;
+/**
+ *  优惠券名称
+ */
+@property (strong,nonatomic) NSString *mCoupName;
+/**
+ *  配送方式id
+ */
+@property (assign,nonatomic) int mSendId;
+/**
+ *  配送费
+ */
+@property (assign,nonatomic) float mSendPrice;
+/**
+ *  配送名称
+ */
+@property (strong,nonatomic) NSString *mSendName;
+/**
+ *  留言信息
+ */
+@property (strong,nonatomic) NSString *mMessage;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+
+@end
+
+/**
+ *  购物车结算对象
+ */
+@interface GPayShopCar : NSObject
+/**
+ *  积分
+ */
+@property (assign,nonatomic) int mScore;
+/**
+ *  总共支付金额
+ */
+@property (assign,nonatomic) float mTotlePay;
+
+/**
+ *  电话
+ */
+@property (strong,nonatomic) NSString *mPhone;
+/**
+ *  姓名
+ */
+@property (strong,nonatomic) NSString *mName;
+/**
+ *  地址
+ */
+@property (strong,nonatomic) NSString *mAddress;
+/**
+ *  优惠券
+ */
+@property (strong,nonatomic) NSArray *mCoupArr;
+/**
+ *  商品
+ */
+@property (strong,nonatomic) NSArray *mShopArr;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+
+
+@end
+/**
+ *  店铺
+ */
+@interface GGShopArr : NSObject
+
+/**
+ *  商品
+ */
+@property (strong,nonatomic) NSArray *mGoodsArr;
+/**
+ *  配送
+ */
+@property (assign,nonatomic) float mSendPrice;
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  店铺id
+ */
+@property (assign,nonatomic) int mShopId;
+/**
+ *  店铺图片
+ */
+@property (strong,nonatomic) NSString *mShopImg;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+

@@ -23,6 +23,9 @@
 @property(nonatomic, strong) UIView *baseView;//背景view
 @property(nonatomic, strong) UIButton *deleteBtn;//删除
 @property(nonatomic, strong) NSMutableArray *selectedRows;
+
+@property(nonatomic, strong) NSMutableArray *mShopCarIdsArr;
+
 /** 标记是否全选 */
 @property (nonatomic ,assign)BOOL isAllSelected;
 @end
@@ -71,7 +74,7 @@
     
     self.deleteArr = [NSMutableArray array];
     self.markArr = [NSMutableArray array];
-
+    self.mShopCarIdsArr = [NSMutableArray array];
     
     [self initView];
 

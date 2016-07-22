@@ -29,4 +29,23 @@
     mComfirmHeaderAndFooter *view = [[[NSBundle mainBundle] loadNibNamed:@"comfirmOrderFooterView" owner:self options:nil] objectAtIndex:0];
     return view;
 }
+- (IBAction)mUserScore:(UISwitch *)sender {
+    
+    if (sender.on) {
+        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:)]) {
+            
+            [self.delegate mFooterSwitchChanged:YES];
+        }
+    }else{
+        
+        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:)]) {
+            [self.delegate mFooterSwitchChanged:NO];
+        }
+        
+    
+    }
+    
+    
+    
+}
 @end
