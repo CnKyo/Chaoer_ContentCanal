@@ -260,6 +260,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         [self dismiss];
         if (resb.mSucess) {
             comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
+            comfir.mShopCarList = nil;
             comfir.mShopCarList = [GPayShopCar new];
             
             comfir.mShopCarList = mShopCarList;
@@ -275,6 +276,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 - (void)bottomViewGoPayDidClick:(QHLSettleMentView *)setView didClick:(BOOL)Click{
 
+    
     
 }
 #pragma mark - settleMentView delegate

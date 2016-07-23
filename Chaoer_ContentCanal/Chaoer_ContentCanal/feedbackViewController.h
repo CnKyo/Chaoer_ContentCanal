@@ -15,4 +15,10 @@
 @property (weak, nonatomic) IBOutlet IQTextView *txView;
 ///提交按钮
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+
+/**
+ *  1是投诉2是商品备注
+ */
+@property (assign,nonatomic) int mType;
+@property (nonatomic,strong) void(^block)(NSString *mName);
 @end

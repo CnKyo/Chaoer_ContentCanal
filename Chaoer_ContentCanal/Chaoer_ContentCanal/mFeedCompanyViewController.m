@@ -13,6 +13,7 @@
 @end
 
 @implementation mFeedCompanyViewController
+@synthesize mType;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -38,9 +39,20 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    self.Title = self.mPageName = @"对公司的建议";
     
-    self.mReason.placeholder = @"在此写上您宝贵的建议:";
+    NSString *tt = nil;
+    NSString *pp = nil;
+    if (mType == 2) {
+        tt = @"请输入订单备注";
+        pp = @"请输入您的备注";
+    }else{
+        tt = @"对公司的建议";
+        pp = @"在此写上您宝贵的建议:";
+    }
+    
+    self.Title = self.mPageName = tt;
+    
+    self.mReason.placeholder = pp;
     [self.mReason setHolderToTop];
     
     self.mSendBtn.layer.masksToBounds = YES;
@@ -51,22 +63,32 @@
 }
 - (IBAction)mbtnAction:(id)sender {
     
-    if (self.mReason.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"投诉内容不能为空！"];
-        return;
+    if (mType == 2) {
+        
+        self.block(self.mReason.text);
+        
+        [self leftBtnTouched:nil];
+        
+    }else{
+        if (self.mReason.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"投诉内容不能为空！"];
+            return;
+        }
+        [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+        
+        [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.mReason.text block:^(mBaseData *resb) {
+            [SVProgressHUD dismiss];
+            if (resb.mSucess) {
+                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                [self popViewController];
+            }else{
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            }
+        }];
+
     }
     
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-
-    [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.mReason.text block:^(mBaseData *resb) {
-        [SVProgressHUD dismiss];
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            [self popViewController];
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-    }];
+    
     
 }
 

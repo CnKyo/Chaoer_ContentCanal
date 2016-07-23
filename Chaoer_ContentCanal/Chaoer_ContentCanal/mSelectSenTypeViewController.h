@@ -10,4 +10,7 @@
 
 @interface mSelectSenTypeViewController : BaseVC
 
+
+@property (nonatomic,strong) void(^block)(NSString *mName,NSString *mType);
+
 @end

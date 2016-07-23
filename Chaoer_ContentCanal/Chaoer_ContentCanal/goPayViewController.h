@@ -22,5 +22,10 @@
  *  订单编号
  */
 @property (strong,nonatomic) NSString *mOrderCode;
+/**
+ *  支付金额
+ */
+@property (assign,nonatomic) float mPayFee;
+
 
 @end

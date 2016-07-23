@@ -18,19 +18,19 @@
  *
  *  @param mIndexPath 索引
  */
-- (void)sectionWithSendType:(NSIndexPath *)mIndexPath;
+- (void)sectionWithSendType:(NSInteger)mIndexPath;
 /**
  *  优惠券
  *
  *  @param mIndexPath 索引
  */
-- (void)sectionWithCoup:(NSIndexPath *)mIndexPath;
+- (void)sectionWithCoup:(NSInteger)mIndexPath;
 /**
  *  留言
  *
  *  @param mIndexPath 索引
  */
-- (void)sectionWithMessage:(NSIndexPath *)mIndexPath;
+- (void)sectionWithMessage:(NSInteger)mIndexPath;
 
 @end
 
@@ -72,7 +72,7 @@
 /**
  *  金额
  */
-@property (weak, nonatomic) IBOutlet UILabel *mMoney;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mMoney;
 /**
  *  初始化方法
  *
@@ -85,6 +85,8 @@
  *  索引
  */
 @property (nonatomic,assign) NSIndexPath *mIndexPaths;
+
+@property (nonatomic,assign) NSInteger mSection;
 
 @property (strong,nonatomic) id<mSectionDelegate> delegate;
 

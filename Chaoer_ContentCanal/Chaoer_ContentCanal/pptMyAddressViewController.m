@@ -138,7 +138,7 @@
     
     GPPTaddress *mAddress = self.tempArray[indexPath.row];
     if (self.mType == 1) {
-        self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%d",mAddress.mId]);
+        self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%@",mAddress.mPhone]);
         [self popViewController];
     }else{
     

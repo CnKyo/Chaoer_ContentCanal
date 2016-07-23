@@ -578,7 +578,7 @@ bool g_bined = NO;
  *  @param mCode    编号
  *  @param block    返回值
  */
-- (void)payType:(int)mPayType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block{
+- (void)payType:(int)mPayType andType:(int)mmType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block{
     
     int mType;
     
@@ -588,14 +588,14 @@ bool g_bined = NO;
          */
         mType = 3;
         
-        [self Pay:mPrice andType:mType andCode:mCode block:block];
+        [self Pay:mPrice andType:mType andCode:mCode andMmType:mmType block:block];
         
     }else if (mPayType == 2){
         /**
          *  支付宝支付
          */
         mType = 4;
-        [self Pay:mPrice andType:mType andCode:mCode block:block];
+        [self Pay:mPrice andType:mType andCode:mCode  andMmType:mmType block:block];
 
     }else if (mPayType == 3){
         /**
@@ -610,34 +610,48 @@ bool g_bined = NO;
          *  余额支付
          */
         mType = 6;
-        [self Pay:mPrice andType:mType andCode:mCode block:block];
+        [self Pay:mPrice andType:mType andCode:mCode andMmType:mmType block:block];
 
 
     }
     
-//    if( [mPayType isEqualToString:@"wx"] )
-//    {
-//        [self wxPay:mPrice block:block];
-//    }
-//    else if ([mPayType isEqualToString:@"alipay"]){
-//        
-//        [self aliPay:mPrice block:block];
-//    }
-//    else{
-//        block( [mBaseData infoWithError:@"不支持的支付方式!"] );
-//        
-//    }
-    
 }
--(void)Pay:(float)Price andType:(int)mType andCode:(NSString *)mCode block:(void(^)(mBaseData* retobj))block{
+-(void)Pay:(float)Price andType:(int)mType andCode:(NSString *)mCode andMmType:(int)mmType block:(void(^)(mBaseData* retobj))block{
     NSMutableDictionary* param =    NSMutableDictionary.new;
     [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"price"];
     [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
-    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mType]] forKey:@"channel"];
     [param setObject:@"ios" forKey:@"device"];
-    [param setObject:[Util RSAEncryptor:mCode] forKey:@"code"];
     
-    [[HTTPrequest sharedHDNetworking] postUrl:@"app/payment/payment_repair" parameters:param call:^(mBaseData *info) {
+    NSString *url = nil;
+    if (mmType == 1) {
+        url = @"sm/pay/payment";
+        [param setObject:mCode forKey:@"orderIds"];
+        
+        
+        if (mType == 3) {
+            [param setObject:@"Wx" forKey:@"channel"];
+
+        }else if (mType == 4){
+            [param setObject:@"alipay" forKey:@"channel"];
+
+        }else if (mType == 1){
+            [param setObject:@"unknow" forKey:@"channel"];
+
+        }else{
+            [param setObject:@"balance" forKey:@"channel"];
+
+        }
+
+    }else{
+        url = @"app/payment/payment_repair";
+        [param setObject:[Util RSAEncryptor:mCode] forKey:@"code"];
+        [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mType]] forKey:@"channel"];
+
+
+
+    }
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:url parameters:param call:^(mBaseData *info) {
         
         if( info.mSucess )
         {
@@ -3998,6 +4012,76 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+
+#pragma mark ---- 使用优惠券
+/**
+ *  使用优惠券
+ *
+ *  @param mShopId 店铺id
+ *  @param block   返回值
+ */
+- (void)useCoup:(int)mShopId block:(void(^)(mBaseData *resb))block{
+
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mShopId]] forKey:@"shopId"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/coupon/getUserShopCoupon" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        if (info.mSucess) {
+            
+            
+            block(info);
+        }else{
+            block(info);
+        }
+    }];
+    
+}
+
+#pragma mark ---- 支付订单
+/**
+ *  支付订单
+ *
+ *  @param mOrders  订单数组
+ *  @param mUse     是否适用积分
+ *  @param mAddress 地址
+ *  @param mPhone   电话
+ *  @param block    返回值
+ */
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:NumberWithInt(mUse) forKey:@"isIntegral"];
+    [para setObject:mAddress forKey:@"userAddress"];
+    [para setObject:mPhone forKey:@"tel"];
+   
+    [para setObject:[Util arrToJson:mOrders] forKey:@"json"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/generateOrder" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        if (info.mSucess) {
+            
+            
+            block(info);
+        }else{
+            block(info);
+        }
+    }];
+
+}
+
+
 @end
 
 @implementation SMessage
@@ -6370,6 +6454,7 @@ bool pptbined = NO;
     self.mAddress = [obj objectForKeyMy:@"address"];
 
     NSMutableArray *mCoupA = [NSMutableArray new];
+    [mCoupA removeAllObjects];
     for (NSDictionary *dic in [obj objectForKeyMy:@"sMCouponList"]) {
         [mCoupA addObject:[[GCoup alloc] initWithObj:dic]];
     }
@@ -6378,22 +6463,25 @@ bool pptbined = NO;
     
     
     NSMutableArray *mGoods = [NSMutableArray new];
-    
+    [mGoods removeAllObjects];
     for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
         [mGoods addObject:[[GGShopArr alloc] initWithObj:dic]];
     }
     self.mShopArr = mGoods;
     
     float ppp = 0.0;
-
+    float mSS = 0.0;
     for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
         for (NSDictionary *temp in [dic objectForKeyMy:@"goodList"]) {
-            ppp += [[temp objectForKeyMy:@"goodsPrice"] floatValue];
+            ppp += [[temp objectForKeyMy:@"goodsPrice"] floatValue] * [[temp objectForKeyMy:@"quantity"] intValue];
         }
+        
+        mSS += [[dic objectForKeyMy:@"deliverFee"] floatValue];
     }
     
-    self.mTotlePay = ppp;
     
+    self.mTotlePay = ppp;
+    self.mSendPrice = mSS;
 }
 
 @end
@@ -6421,12 +6509,23 @@ bool pptbined = NO;
     self.mShopId = [[obj objectForKeyMy:@"shopId"] intValue];
     
     NSMutableArray *mGoods = [NSMutableArray new];
-    
+    [mGoods removeAllObjects];
     for (NSDictionary *dic in [obj objectForKeyMy:@"goodList"]) {
         [mGoods addObject:[[GGPayN alloc] initWithObj:dic]];
     }
 
     self.mGoodsArr = mGoods;
+    
+    float mPP = 0.0;
+    
+    for (NSDictionary *dic in [obj objectForKeyMy:@"goodList"]) {
+        mPP += [[dic objectForKeyMy:@"goodsPrice"] floatValue];
+    }
+ 
+    self.mTotlePrice = mPP;
+    
+    self.mSendName = @"跑跑腿配送";
+    self.mSendId = @"2";
   
     
 }

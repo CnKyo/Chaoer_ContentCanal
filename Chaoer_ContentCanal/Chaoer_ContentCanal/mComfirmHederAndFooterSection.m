@@ -39,17 +39,17 @@
 }
 - (IBAction)sendType:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(sectionWithSendType:)]) {
-        [self.delegate sectionWithSendType:self.mIndexPaths];
+        [self.delegate sectionWithSendType:self.mSection];
     }
 }
 - (IBAction)coupAction:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(sectionWithCoup:)]) {
-        [self.delegate sectionWithCoup:self.mIndexPaths];
+        [self.delegate sectionWithCoup:self.mSection];
     }
 }
 - (IBAction)noteAction:(UIButton *)sender {
     if ( [self.delegate respondsToSelector:@selector(sectionWithMessage:)]) {
-        [self.delegate sectionWithMessage:self.mIndexPaths];
+        [self.delegate sectionWithMessage:self.mSection];
     }
 }
 

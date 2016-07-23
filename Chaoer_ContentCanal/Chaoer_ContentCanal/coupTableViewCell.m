@@ -20,5 +20,12 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)mCoupAction:(UIButton *)sender {
+   
+    if ([self.delegate respondsToSelector:@selector(cellWithBtnClicked:)]) {
+        [self.delegate cellWithBtnClicked:self.mIndexPath];
+    }
+    
+}
 
 @end

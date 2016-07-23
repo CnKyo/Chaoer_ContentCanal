@@ -145,6 +145,7 @@
     }else if (indexPath.row == 2){
         UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
         feedbackViewController *f =[secondStroyBoard instantiateViewControllerWithIdentifier:@"xxx"];
+        
         [self.navigationController pushViewController:f animated:YES];
         
     }

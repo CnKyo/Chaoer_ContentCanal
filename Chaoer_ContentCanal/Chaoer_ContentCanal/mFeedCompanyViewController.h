@@ -9,6 +9,8 @@
 #import "BaseVC.h"
 #import "IQTextView.h"
 @interface mFeedCompanyViewController : BaseVC
+
+
 /**
  *  原因
  */
@@ -18,6 +20,10 @@
  *  发送
  */
 @property (strong, nonatomic) IBOutlet UIButton *mSendBtn;
-
+/**
+ *  1是投诉2是商品备注
+ */
+@property (assign,nonatomic) int mType;
+@property (nonatomic,strong) void(^block)(NSString *mName);
 
 @end

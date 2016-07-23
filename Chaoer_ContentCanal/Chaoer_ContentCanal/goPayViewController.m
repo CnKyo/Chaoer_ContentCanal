@@ -199,30 +199,51 @@
             [self showErrorStatus:@"余额不足支付失败！"];
             return;
         }
+        
         [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] payType:type andPrice:mMoney andCode:mOrderCode block:^(mBaseData *resb) {
+      
+        [[mUserInfo backNowUser] payType:type andType:mType andPrice:mMoney andCode:mOrderCode block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
-                [self popViewController];
+                
+                if (mType == 1) {
+                    [self popViewController:4];
+                }else{
+                    [self popViewController];
+                
+                }
+                
             }else{
                 [self showErrorStatus:resb.mMessage];
             }
             
         }];
         
+
+        
     }else{
         [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] payType:type andPrice:mMoney andCode:mOrderCode block:^(mBaseData *resb) {
+    
+        [[mUserInfo backNowUser] payType:type andType:mType andPrice:mMoney andCode:mOrderCode block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
-                [self popViewController];
+
+                if (mType == 1) {
+                    [self popViewController:4];
+                }else{
+                    [self popViewController];
+                    
+                }
+                
             }else{
                 [self showErrorStatus:resb.mMessage];
             }
             
         }];
+        
+ 
     }
 
 }
@@ -242,5 +263,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)leftBtnTouched:(id)sender{
 
+    [self AlertViewShow:@"订单已生成确认要离开吗？" alertViewMsg:@"离开这里将重新下单！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+    
+    
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if( buttonIndex == 1)
+    {
+        [self popViewController_3];
+   
+    }
+  }
+
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 @end

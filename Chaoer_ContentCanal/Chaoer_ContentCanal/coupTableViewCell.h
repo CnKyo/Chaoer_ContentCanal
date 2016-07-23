@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol wkCoupCellDidSelected <NSObject>
+
+@optional
+
+- (void)cellWithBtnClicked:(NSIndexPath *)mIndexPath;
+
+@end
+
+
 @interface coupTableViewCell : UITableViewCell
 /**
  *  背景
@@ -37,5 +46,9 @@
  *  是否失效还是使用
  */
 @property (weak, nonatomic) IBOutlet UIImageView *mIsValid;
+
+@property (assign,nonatomic) NSIndexPath *mIndexPath;
+
+@property (strong,nonatomic) id <wkCoupCellDidSelected> delegate;
 
 @end

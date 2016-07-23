@@ -391,7 +391,7 @@
  *  @param mCode    编号
  *  @param block    返回值
  */
-- (void)payType:(int)mPayType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block;
+- (void)payType:(int)mPayType andType:(int)mmType andPrice:(float)mPrice andCode:(NSString *)mCode block:(void(^)(mBaseData* resb))block;
 
 /**
  *  登录
@@ -1329,6 +1329,25 @@
  
  */
 - (void)shopcarGoPay:(NSArray *)mShopCarIds block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block;
+#pragma mark ---- 使用优惠券
+/**
+ *  使用优惠券
+ *
+ *  @param mShopId 店铺id
+ *  @param block   返回值
+ */
+- (void)useCoup:(int)mShopId block:(void(^)(mBaseData *resb))block;
+#pragma mark ---- 支付订单
+/**
+ *  支付订单
+ *
+ *  @param mOrders  订单数组
+ *  @param mUse     是否适用积分
+ *  @param mAddress 地址
+ *  @param mPhone   电话
+ *  @param block    返回值
+ */
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
 @end
 
 @interface SMessage : NSObject
@@ -3554,30 +3573,6 @@
  *  优惠券id
  */
 @property (assign,nonatomic) int mCoupId;
-/**
- *  优惠券金额
- */
-@property (assign,nonatomic) float mCoupPrice;
-/**
- *  优惠券名称
- */
-@property (strong,nonatomic) NSString *mCoupName;
-/**
- *  配送方式id
- */
-@property (assign,nonatomic) int mSendId;
-/**
- *  配送费
- */
-@property (assign,nonatomic) float mSendPrice;
-/**
- *  配送名称
- */
-@property (strong,nonatomic) NSString *mSendName;
-/**
- *  留言信息
- */
-@property (strong,nonatomic) NSString *mMessage;
 
 -(id)initWithObj:(NSDictionary *)obj;
 
@@ -3588,6 +3583,8 @@
  *  购物车结算对象
  */
 @interface GPayShopCar : NSObject
+
+@property (assign,nonatomic) int mIsUseScore;
 /**
  *  积分
  */
@@ -3596,6 +3593,11 @@
  *  总共支付金额
  */
 @property (assign,nonatomic) float mTotlePay;
+/**
+ *  配送费
+ */
+@property (assign,nonatomic) float mSendPrice;
+
 
 /**
  *  电话
@@ -3648,6 +3650,36 @@
  *  店铺图片
  */
 @property (strong,nonatomic) NSString *mShopImg;
+/**
+ *  优惠券金额
+ */
+@property (assign,nonatomic) float mCoupPrice;
+/**
+ *  优惠券名称
+ */
+@property (strong,nonatomic) NSString *mCoupName;
+/**
+ *  优惠券id
+ */
+@property (assign,nonatomic) int mCoupId;
+
+/**
+ *  配送方式id
+ */
+@property (strong,nonatomic) NSString *mSendId;
+/**
+ *  配送名称
+ */
+@property (strong,nonatomic) NSString *mSendName;
+/**
+ *  留言信息
+ */
+@property (strong,nonatomic) NSString *mMessage;
+/**
+ *  总金额
+ */
+@property (assign,nonatomic) float mTotlePrice;
+
 
 -(id)initWithObj:(NSDictionary *)obj;
 

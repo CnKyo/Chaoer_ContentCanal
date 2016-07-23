@@ -13,6 +13,7 @@
 @end
 
 @implementation feedbackViewController
+@synthesize mType;
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     
@@ -44,14 +45,27 @@
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     [super viewDidLoad];
-    self.Title = self.mPageName = @"公司建议";
+    
+    NSString *tt = nil;
+    NSString *pp = nil;
+    if (mType == 2) {
+        tt = @"请输入订单备注";
+        pp = @"请输入您的备注";
+    }else{
+        tt = @"对公司的建议";
+        pp = @"在此写上您宝贵的建议:";
+    }
+    
+    self.Title = self.mPageName = tt;
+    
+    self.txView.placeholder = pp;
+
     self.hiddenlll = YES;
     self.bgkView.backgroundColor = [UIColor clearColor];
     self.txView.layer.masksToBounds = YES;
     self.txView.layer.borderColor = [UIColor colorWithRed:0.855 green:0.851 blue:0.843 alpha:1].CGColor;
     self.txView.layer.borderWidth = 0.75f;
     self.txView.layer.cornerRadius = 3;
-    self.txView.placeholder = @"留下您的宝贵意见，我们将尽全力完善";
     self.okBtn.layer.masksToBounds = YES;
     self.okBtn.layer.cornerRadius = 3;
     [self.txView setHolderToTop];
@@ -62,29 +76,39 @@
     
 }
 - (void)okAction:(UIButton *)sender{
-    ///提交按钮
-    if (self.txView.text == nil || [self.txView.text isEqualToString:@""]) {
-        [self showAlertVC:@"提示" alertMsg:@"您未输入任何信息!"];
-        return;
-    }
-    if (self.txView.text.length >= 2000) {
-        [self showAlertVC:@"提示" alertMsg:@"内容长度不能超过2000个字符"];
-        return;
-    }
-    else{
-        [self showWithStatus:@"正在提交..."];
+    if (mType == 2) {
         
-        [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.txView.text block:^(mBaseData *resb) {
-            [SVProgressHUD dismiss];
-            if (resb.mSucess) { 
-                [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-                [self popViewController];
-            }else{
-                [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            }
-        }];
+        self.block(self.txView.text);
         
+        [self leftBtnTouched:nil];
+        
+    }else{
+        ///提交按钮
+        if (self.txView.text == nil || [self.txView.text isEqualToString:@""]) {
+            [self showAlertVC:@"提示" alertMsg:@"您未输入任何信息!"];
+            return;
+        }
+        if (self.txView.text.length >= 2000) {
+            [self showAlertVC:@"提示" alertMsg:@"内容长度不能超过2000个字符"];
+            return;
+        }
+        else{
+            [self showWithStatus:@"正在提交..."];
+            
+            [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.txView.text block:^(mBaseData *resb) {
+                [SVProgressHUD dismiss];
+                if (resb.mSucess) {
+                    [SVProgressHUD showSuccessWithStatus:resb.mMessage];
+                    [self popViewController];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                }
+            }];
+            
+        }
+
     }
+
     
 }
 

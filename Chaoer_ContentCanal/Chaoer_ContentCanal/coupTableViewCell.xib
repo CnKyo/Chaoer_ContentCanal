@@ -78,6 +78,16 @@
                             <constraint firstAttribute="height" constant="65" id="WWZ-uC-WFE"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsF-dv-Bgh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="mCoupAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bHb-5a-A2s"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -88,16 +98,20 @@
                     <constraint firstAttribute="trailingMargin" secondItem="TKW-EH-ZSL" secondAttribute="trailing" id="5q0-Ol-Xag"/>
                     <constraint firstItem="GfD-za-tKf" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="bottom" constant="16" id="8vF-fa-eZ8"/>
                     <constraint firstItem="JJF-aM-bLA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Bnn-Id-GMA"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wsF-dv-Bgh" secondAttribute="bottom" constant="-9" id="EhY-5M-Kua"/>
                     <constraint firstAttribute="trailingMargin" secondItem="JJF-aM-bLA" secondAttribute="trailing" constant="-8" id="IYZ-L9-QLG"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UBE-gH-OB0" secondAttribute="trailing" id="Jjg-bh-D2s"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JJF-aM-bLA" secondAttribute="bottom" constant="-8" id="O9p-Jd-R0N"/>
+                    <constraint firstItem="wsF-dv-Bgh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="OMg-8E-utw"/>
                     <constraint firstItem="UBE-gH-OB0" firstAttribute="top" secondItem="TKW-EH-ZSL" secondAttribute="bottom" constant="3" id="W1C-tU-huu"/>
+                    <constraint firstItem="wsF-dv-Bgh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Y2O-Fe-5gZ"/>
                     <constraint firstItem="GfD-za-tKf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="bnc-gl-sK6"/>
                     <constraint firstItem="sNV-lx-JL9" firstAttribute="top" secondItem="ech-rb-yUp" secondAttribute="bottom" constant="2" id="mGc-aR-Zny"/>
                     <constraint firstItem="UBE-gH-OB0" firstAttribute="leading" secondItem="GfD-za-tKf" secondAttribute="trailing" constant="8" id="uoy-Wo-IGo"/>
                     <constraint firstItem="ech-rb-yUp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="urc-Ez-TXg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ech-rb-yUp" secondAttribute="trailing" constant="-8" id="vAm-6D-Fgi"/>
                     <constraint firstItem="ech-rb-yUp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="18" id="vdd-k3-QJs"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wsF-dv-Bgh" secondAttribute="trailing" constant="-8" id="yjz-xh-PeT"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

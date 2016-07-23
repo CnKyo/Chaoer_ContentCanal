@@ -12,7 +12,7 @@
 #import "coupTableViewCell.h"
 
 #import "exchangeCoupView.h"
-@interface mCoupViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate>
+@interface mCoupViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,wkCoupCellDidSelected>
 
 
 @end
@@ -26,6 +26,7 @@
     
     exchangeCoupView *mPopView;
 }
+@synthesize mSType;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -53,7 +54,7 @@
     
     self.hiddenRightBtn = NO;
     self.hiddenlll = YES;
-    self.Title = self.mPageName = @"我的";
+    self.Title = self.mPageName = @"我的优惠券";
     self.rightBtnTitle = @"兑换";
     mType = 0;
     [self initView];
@@ -193,7 +194,8 @@
     cell.mMoney.text = [NSString stringWithFormat:@"¥%@",mCoup.mFacePrice];
    
     cell.mStore.text = mCoup.mShopName;
-    
+    cell.delegate = self;
+    cell.mIndexPath = indexPath;
     [cell.mLogo sd_setImageWithURL:[NSURL URLWithString:mCoup.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     UIImage *coupImg = nil;
@@ -238,12 +240,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (mType != 0 ) {
-        MLLog(@"你点他有啥用啊？");
-    }else{
     
-        MLLog(@"点击了啥？");
-    }
     
 }
 
@@ -309,5 +306,38 @@
 - (void)tapAction:(UITapGestureRecognizer *)sender{
 
     [self dissmissPopView];
+}
+
+- (void)cellWithBtnClicked:(NSIndexPath *)mIndexPath{
+    
+    GCoup *mCoup = self.tempArray[mIndexPath.row];
+    
+    if (mSType != 2 ) {
+        MLLog(@"你点他有啥用啊？");
+        
+    }else{
+        if (mType == 0) {
+            MLLog(@"点击了啥？");
+            
+            [self showWithStatus:@"正在操作中..."];
+            [[mUserInfo backNowUser] useCoup:self.mShopId block:^(mBaseData *resb) {
+                [self dismiss];
+                if (resb.mSucess) {
+                    self.block(mCoup.mCoupName,[NSString stringWithFormat:@"%d",mCoup.mCoupId],mCoup.mFacePrice);
+                    
+                    [self leftBtnTouched:nil];
+                    
+                }else{
+                    [self showErrorStatus:resb.mMessage];
+                    [self.tableView reloadData];
+                }
+            }];
+
+            
+        }
+        
+    }
+
+    
 }
 @end
