@@ -12,6 +12,7 @@
 		0400EDA61D45A76B009CD641 /* homeHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0400EDA41D45A76B009CD641 /* homeHotViewController.xib */; };
 		0400EDA91D45EE74009CD641 /* mActivitySubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400EDA81D45EE74009CD641 /* mActivitySubView.m */; };
 		0400EDAB1D45EE7F009CD641 /* mActivitySubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */; };
+		0400EDB11D46260F009CD641 /* mGoodsDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400EDB01D46260F009CD641 /* mGoodsDetailBottomView.m */; };
 		04040DEB1D20BEBD008C3C31 /* mMarketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */; };
 		04040DEC1D20BEBD008C3C31 /* mMarketDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */; };
 		04040DEF1D20BEFA008C3C31 /* mMarketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DEE1D20BEFA008C3C31 /* mMarketHeaderView.m */; };
@@ -906,6 +907,8 @@
 		0400EDA71D45EE74009CD641 /* mActivitySubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mActivitySubView.h; sourceTree = "<group>"; };
 		0400EDA81D45EE74009CD641 /* mActivitySubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mActivitySubView.m; sourceTree = "<group>"; };
 		0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mActivitySubView.xib; sourceTree = "<group>"; };
+		0400EDAF1D46260F009CD641 /* mGoodsDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGoodsDetailBottomView.h; sourceTree = "<group>"; };
+		0400EDB01D46260F009CD641 /* mGoodsDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGoodsDetailBottomView.m; sourceTree = "<group>"; };
 		04040DE81D20BEBD008C3C31 /* mMarketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMarketDetailViewController.h; sourceTree = "<group>"; };
 		04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMarketDetailViewController.m; sourceTree = "<group>"; };
 		04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMarketDetailViewController.xib; sourceTree = "<group>"; };
@@ -3485,7 +3488,6 @@
 				04F5FFFD1D23A87C00EFBB3C /* GoodsDetailNavView.m */,
 				04F5FFFF1D23A88700EFBB3C /* GoodsDetailNavView.xib */,
 				04B463031D24CD2500001ECB /* GoodsSearchView.xib */,
-				04F58FF01D266E8400C94C05 /* mGoodsDetailBottomView.xib */,
 				04F500011D23B44500EFBB3C /* mGoodsDetailCell.h */,
 				04F500021D23B44500EFBB3C /* mGoodsDetailCell.m */,
 				04F500031D23B44500EFBB3C /* mGoodsDetailCell.xib */,
@@ -3493,6 +3495,9 @@
 				0400EDA71D45EE74009CD641 /* mActivitySubView.h */,
 				0400EDA81D45EE74009CD641 /* mActivitySubView.m */,
 				0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */,
+				0400EDAF1D46260F009CD641 /* mGoodsDetailBottomView.h */,
+				0400EDB01D46260F009CD641 /* mGoodsDetailBottomView.m */,
+				04F58FF01D266E8400C94C05 /* mGoodsDetailBottomView.xib */,
 			);
 			name = "商品详情";
 			sourceTree = "<group>";
@@ -5966,6 +5971,7 @@
 				04A1511B1D3637B700AFCE98 /* QHLHeaderView.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,
+				0400EDB11D46260F009CD641 /* mGoodsDetailBottomView.m in Sources */,
 				04648C611CB4F1A4006823C9 /* mSenderViewController.m in Sources */,
 				04FA3E6C1D22074D00EA9E34 /* shopCarViewController.m in Sources */,
 				040FE0EA1CDB39E400270D4F /* barCodeCell.m in Sources */,

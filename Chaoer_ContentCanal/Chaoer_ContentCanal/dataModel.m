@@ -3931,7 +3931,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             
             
             for (NSDictionary *dic in info.mData) {
-                [tempArr addObject:[[GMarketList alloc] initWithObj:dic]];
+                [tempArr addObject:[[GMyMarketOrderList alloc] initWithObj:dic]];
             }
             
             block(info,tempArr);
@@ -4009,11 +4009,11 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mCarId 购物车ID
  *  @param block  返回值
  */
-- (void)deleteShopCarGoods:(int)mCarId block:(void(^)(mBaseData *resb))block{
+- (void)deleteShopCarGoods:(NSString *)mCarId block:(void(^)(mBaseData *resb))block{
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
-    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mCarId]] forKey:@"cartId"];
+    [para setObject:[Util RSAEncryptor:mCarId] forKey:@"cartIds"];
     [para setObject:@"ios" forKey:@"device"];
     
     
@@ -4063,7 +4063,42 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+#pragma mark ---- 立即购买
+/**
+ *  立即购买
+ *
+ *  @param mShopId  店铺id
+ *  @param mGoodsId 商品id
+ *  @param mNum     数量
+ *  @param block    返回值
+ */
+- (void)goBuyNow:(int)mShopId andGoodsId:(int)mGoodsId andNum:(int)mNum block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block{
 
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    
+    [para setObject:@"ios" forKey:@"device"];
+    [para setObject:NumberWithInt(mNum) forKey:@"quantity"];
+    [para setObject:NumberWithInt(mGoodsId) forKey:@"goodId"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/purchase" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        if (info.mSucess) {
+            
+            
+            block(info,[[GPayShopCar alloc] initWithObj:info.mData]);
+        }else{
+            block(info,nil);
+        }
+
+    }];
+
+    
+    
+}
 #pragma mark ---- 使用优惠券
 /**
  *  使用优惠券
@@ -6620,4 +6655,72 @@ bool pptbined = NO;
   
     
 }
+@end
+
+@implementation GMyMarketOrderList
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    //    GGPayN
+    
+    self.mDeliveFee = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"deliverFee"] floatValue];
+    self.mShopName = [[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopName"];
+    self.mShopLogo = [[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopLogo"];
+    
+    self.mShopId = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopId"] intValue];
+    
+    NSMutableArray *mGoods = [NSMutableArray new];
+    [mGoods removeAllObjects];
+    for (NSDictionary *dic in [obj objectForKeyMy:@"goods"]) {
+        [mGoods addObject:[[GMyOrderGoodsA alloc] initWithObj:dic]];
+    }
+    
+    [self.mGoodsArr addObjectsFromArray:mGoods];
+    
+ 
+    self.mOrderCode = [[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"orderCode"];
+
+    self.mState = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"state"] intValue];
+    self.mId = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"id"] intValue];
+
+    self.mCommodityPrice = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"commodityPrice"] floatValue];
+
+}
+
+@end
+
+@implementation GMyOrderGoodsA
+
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    //    GGPayN
+    
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    self.mGoodsImg = [obj objectForKeyMy:@"goodsImg"];
+
+    self.mGoodsComment = [obj objectForKeyMy:@"goodsComment"];
+
+    self.mUnitPrice = [[obj objectForKeyMy:@"unitPrice"] floatValue];
+    
+}
+
 @end

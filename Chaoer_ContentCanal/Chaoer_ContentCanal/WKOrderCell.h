@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLGoods.h"
 #import "QHLButton.h"
 @class WKOrderCell;
 @class QHLButton;
@@ -55,7 +54,7 @@
 /**
  *  商品模型
  */
-@property (nonatomic, strong) QHLGoods *goods;
+@property (nonatomic, strong) GMyOrderGoodsA *goods;
 /**
  *  索引
  */

@@ -137,13 +137,14 @@
     }
     
 }
-- (void)setShop:(QHLShop *)shop{
+- (void)setShop:(GMyMarketOrderList *)shop{
     _shop = shop;
     
     self.mSelectBtn.selected = shop.selected;
-    self.mSelectBtn.tag = [shop.tag intValue];
-    self.mName.text = shop.name;
-    self.mStatus.text = shop.introduction;
+    self.mSelectBtn.tag = shop.mShopId;
+    self.mName.text = shop.mShopName;
+    [self.mStoreImg sd_setImageWithURL:[NSURL URLWithString:shop.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+
 }
 
 @end

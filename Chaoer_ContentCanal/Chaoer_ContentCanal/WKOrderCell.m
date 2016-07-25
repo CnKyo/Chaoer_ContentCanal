@@ -148,16 +148,16 @@
 
     }
 }
-- (void)setGoods:(QHLGoods *)goods{
+- (void)setGoods:(GMyOrderGoodsA *)goods{
 
     _goods = goods;
     
     //设置cell中的子控件数据
     self.mBtn.selected = goods.selected;
-    self.mBtn.tag = [goods.tag intValue];
-    self.mContent.text = goods.introduction;
-    self.mPrice.text = [NSString stringWithFormat:@"￥:%d",[goods.price intValue]];
-    self.mName.text = goods.name;
+    self.mContent.text = goods.mGoodsComment;
+    self.mPrice.text = [NSString stringWithFormat:@"￥:%.2f",goods.mUnitPrice];
+    self.mName.text = goods.mGoodsName;
+    [self.mImgView sd_setImageWithURL:[NSURL URLWithString:goods.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
 }
 

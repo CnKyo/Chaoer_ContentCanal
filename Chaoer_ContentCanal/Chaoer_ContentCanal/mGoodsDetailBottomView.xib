@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="2bw-nP-KsJ" customClass="GoodsDetailNavView">
+        <view contentMode="scaleToFill" id="2bw-nP-KsJ" customClass="mGoodsDetailBottomView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -62,6 +62,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59j-EG-535">
                     <rect key="frame" x="140" y="0.0" width="90" height="50"/>
                     <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="DuK-GH-zwR"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="加入购物车">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,6 +85,7 @@
                 <constraint firstItem="sJK-ko-UxQ" firstAttribute="leading" secondItem="59j-EG-535" secondAttribute="trailing" id="5ec-WH-Lkx"/>
                 <constraint firstItem="59j-EG-535" firstAttribute="leading" secondItem="WeC-X5-gyM" secondAttribute="trailing" constant="25" id="5mC-4e-7MF"/>
                 <constraint firstItem="59j-EG-535" firstAttribute="width" secondItem="sJK-ko-UxQ" secondAttribute="width" id="BdF-ea-Aj6"/>
+                <constraint firstItem="sJK-ko-UxQ" firstAttribute="height" secondItem="59j-EG-535" secondAttribute="height" id="Hba-g5-2DZ"/>
                 <constraint firstAttribute="bottom" secondItem="59j-EG-535" secondAttribute="bottom" id="Mms-Zd-P7h"/>
                 <constraint firstAttribute="bottom" secondItem="WeC-X5-gyM" secondAttribute="bottom" id="NAB-NU-l5p"/>
                 <constraint firstItem="7AP-cR-8tJ" firstAttribute="top" secondItem="2bw-nP-KsJ" secondAttribute="top" constant="5" id="Nqf-HK-17a"/>
@@ -94,6 +98,13 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="NAB-NU-l5p"/>
+                    <exclude reference="Mms-Zd-P7h"/>
+                    <exclude reference="2vu-aV-kOe"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="mAddShopCarBtn" destination="59j-EG-535" id="6PQ-8c-H8P"/>
                 <outlet property="mAttentionBtn" destination="7AP-cR-8tJ" id="eKe-6p-lqA"/>
@@ -101,7 +112,7 @@
                 <outlet property="mGoodsNum" destination="vyT-xD-iiN" id="LOg-sc-hlL"/>
                 <outlet property="mShopCarBtn" destination="L46-J3-Lsa" id="5kE-4e-vCE"/>
             </connections>
-            <point key="canvasLocation" x="207" y="234"/>
+            <point key="canvasLocation" x="277" y="299"/>
         </view>
     </objects>
     <resources>

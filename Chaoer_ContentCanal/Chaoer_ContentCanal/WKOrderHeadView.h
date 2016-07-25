@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLShop.h"
 #import "QHLButton.h"
 
 @class QHLButton;
@@ -33,7 +32,7 @@
 /**
  *  店铺对象
  */
-@property (nonatomic, strong) QHLShop *shop;
+@property (nonatomic, strong) GMyMarketOrderList *shop;
 /**
  *  分组
  */

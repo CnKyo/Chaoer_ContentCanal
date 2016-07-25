@@ -288,7 +288,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     if (self.state == QHLViewStateNormal) { //判断当前的state状态
         
         if (selected) { //全选按钮 选中
-            self.hiddenRightBtn = YES;
+            self.hiddenRightBtn = NO;
             for (GShopCarList *shop in self.shoppingCar) {
                 for (GShopCarGoods *good in shop.mGoodsArr) {
                     
@@ -338,7 +338,38 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     settleMentView.btnSelected = selected;
     
 }
+#pragma mark----右边按钮的点击事件
 - (void)rightBtnTouched:(id)sender{
+    NSString *mTagIds = @"";
+
+    for ( GShopCarList *shop in self.shoppingCar) {
+        if (shop.mSelected) {
+            for (int i =0;i < shop.mGoodsArr.count;i++) {
+                GShopCarGoods *good = shop.mGoodsArr[i];
+                if (good.mSelected) {
+                    
+                        if (i == shop.mGoodsArr.count-1) {
+                            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%d",good.mId]];
+                        }else{
+                            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%d,",good.mId]];
+                        }
+    
+                }
+            }
+        }
+       
+    }
+    
+    [self showWithStatus:@"正在操作..."];
+    [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self.tempArray removeAllObjects];
+            [self.tableView reloadData];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
 
    
 
@@ -664,7 +695,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         for (GShopCarGoods *good in shop.mGoodsArr) {
             if (!good.mSelected) {
                 [self showWithStatus:@"正在操作..."];
-                [[mUserInfo backNowUser] deleteShopCarGoods:good.mId block:^(mBaseData *resb) {
+                [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
                     [self dismiss];
                     if (resb.mSucess) {
 
@@ -896,7 +927,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     if (mGood.mGoodsId == goods.mGoodsId) {
         
         [self showWithStatus:@"正在操作..."];
-        [[mUserInfo backNowUser] deleteShopCarGoods:mGood.mId block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",mGood.mId] block:^(mBaseData *resb) {
             [self dismiss];
             if (resb.mSucess) {
                 

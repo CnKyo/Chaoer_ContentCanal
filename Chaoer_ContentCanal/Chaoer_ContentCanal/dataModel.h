@@ -1336,7 +1336,7 @@
  *  @param mCarId 购物车ID
  *  @param block  返回值
  */
-- (void)deleteShopCarGoods:(int)mCarId block:(void(^)(mBaseData *resb))block;
+- (void)deleteShopCarGoods:(NSString *)mCarId block:(void(^)(mBaseData *resb))block;
 #pragma mark ---- 购物车去结算
 /**
  *  购物车去结算
@@ -1346,6 +1346,16 @@
  
  */
 - (void)shopcarGoPay:(NSArray *)mShopCarIds block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block;
+#pragma mark ---- 立即购买
+/**
+ *  立即购买
+ *
+ *  @param mShopId  店铺id
+ *  @param mGoodsId 商品id
+ *  @param mNum     数量
+ *  @param block    返回值
+ */
+- (void)goBuyNow:(int)mShopId andGoodsId:(int)mGoodsId andNum:(int)mNum block:(void(^)(mBaseData *resb,GPayShopCar *mShopCarList))block;
 #pragma mark ---- 使用优惠券
 /**
  *  使用优惠券
@@ -3517,6 +3527,11 @@
  */
 @interface SGoodsDetail : NSObject
 /**
+ *  购物车气泡
+ */
+@property (assign,nonatomic) int mBadge;
+
+/**
  *  是否收藏
  */
 @property (assign,nonatomic) BOOL mIsFocus;
@@ -3779,3 +3794,80 @@
 
 @end
 
+
+
+/**
+ *  我的订单对象
+ */
+@interface GMyMarketOrderList : NSObject
+/**
+ *  店铺di
+ */
+@property (assign,nonatomic) int mShopId;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  状态
+ */
+@property (assign,nonatomic) int mState;
+/**
+ *  配送费
+ */
+@property (assign,nonatomic) float mDeliveFee;
+/**
+ *  店铺logo
+ */
+@property (strong,nonatomic) NSString *mShopLogo;
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  订单编号
+ */
+@property (strong,nonatomic) NSString *mOrderCode;
+/**
+ *  商品总价格
+ */
+@property (assign,nonatomic) float mCommodityPrice;
+/**
+ *  商品集合
+ */
+@property (strong,nonatomic) NSMutableArray *mGoodsArr;
+
+@property (assign,nonatomic) BOOL selected;
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+
+/**
+ 商品对象
+ 
+ - returns: <#return value description#>
+ */
+@interface GMyOrderGoodsA : NSObject
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@property (assign,nonatomic) BOOL selected;
+
+/**
+ *  单价？
+ */
+@property (assign,nonatomic) float mUnitPrice;
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString *mGoodsName;
+/**
+ *  商品图片
+ */
+@property (strong,nonatomic) NSString *mGoodsImg;
+/**
+ *  商品描述
+ */
+@property (strong,nonatomic) NSString *mGoodsComment;
+
+@end
