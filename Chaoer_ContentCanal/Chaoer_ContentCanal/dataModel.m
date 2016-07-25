@@ -623,24 +623,27 @@ bool g_bined = NO;
     [param setObject:@"ios" forKey:@"device"];
     
     NSString *url = nil;
+    NSString  *mPayType = nil;
     if (mmType == 1) {
         url = @"sm/pay/payment";
         [param setObject:mCode forKey:@"orderIds"];
         
         
+        
         if (mType == 3) {
-            [param setObject:@"Wx" forKey:@"channel"];
+            mPayType = @"Wx";
 
         }else if (mType == 4){
-            [param setObject:@"alipay" forKey:@"channel"];
+            mPayType = @"alipay";
 
         }else if (mType == 1){
-            [param setObject:@"unknow" forKey:@"channel"];
-
+            mPayType = @"unknow";
         }else{
-            [param setObject:@"balance" forKey:@"channel"];
+            mPayType = @"balance";
 
         }
+        [param setObject:mPayType forKey:@"channel"];
+
 
     }else{
         url = @"app/payment/payment_repair";
@@ -3519,6 +3522,54 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 
 }
+#pragma mark----首页热卖商品店铺信息
+/**
+ *  首页热卖商品店铺信息
+ *
+ *  @param mPage    分页
+ *  @param mGoodsId 商品id
+ *  @param mLat     纬度
+ *  @param mLng     经度
+ *  @param block    返回值
+ */
+- (void)getMarketHomeHot:(int)mPage andGoodsId:(int)mGoodsId andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:NumberWithInt(mGoodsId) forKey:@"goodsId"];
+
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:NumberWithInt(10) forKey:@"rows"];
+    
+    if (mLng) {
+        [para setObject:mLng forKey:@"lng"];
+        
+    }
+    if (mLat) {
+        [para setObject:mLat forKey:@"lat"];
+        
+    }
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/home/getHotList" parameters:para call:^(mBaseData * _Nonnull info) {
+
+        if (info.mSucess) {
+            
+            NSMutableArray *tempArr = [NSMutableArray new];
+
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[[GMarketList alloc] initWithObj:dic]];
+            }
+            
+     
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+    
+}
 #pragma mark----获取社区超市社区地址
 /**
  *  获取社区超市社区地址
@@ -6142,6 +6193,12 @@ bool pptbined = NO;
     
     self.mIsCoup = [[obj objectForKeyMy:@"coupon"] intValue];
     self.mIsCollect = [[obj objectForKeyMy:@"focus"] intValue];
+    
+    if (self.mIsCollect != 0) {
+        self.mFocus = YES;
+    }else{
+        self.mFocus = NO;
+    }
 
     self.mSalesNum = [[obj objectForKeyMy:@"sales_num"] intValue];
 
@@ -6275,7 +6332,12 @@ bool pptbined = NO;
     
     self.mType = [[obj objectForKeyMy:@"type"] intValue];
 
+    self.mCode = [obj objectForKeyMy:@"code"];
     
+    self.mCondition = [[obj objectForKeyMy:@"condition"] intValue];
+
+    self.mName = [obj objectForKeyMy:@"name"];
+
     
     
 }
@@ -6368,31 +6430,60 @@ bool pptbined = NO;
 }
 - (void)fetchIt:(NSDictionary *)obj{
     
-    
-    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goods_img"]];
-    
-    self.mGoodsId = [[obj objectForKeyMy:@"id"] intValue];
-    self.mSalesNum = [[obj objectForKeyMy:@"sales_num"] intValue];
-    self.mGoodsDetailImgArr = [[obj objectForKeyMy:@"goods_details"] objectForKey:@"files"];
-    self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
-    
-    self.mMarketPrice = [[obj objectForKeyMy:@"market_price"] floatValue];
-    
-    self.mGoodsName = [obj objectForKeyMy:@"goods_name"];
-    
     NSMutableArray *mAct = [NSMutableArray new];
     
-    for (NSDictionary *dic in [obj objectForKeyMy:@"campaign"]) {
+    for (NSDictionary *dic in [obj objectForKeyMy:@"campaignList"]) {
         [mAct addObject:[[GCampain alloc] initWithObj:dic]];
     }
     
-    self.mCampain = mAct;
+    self.mCampainArr = mAct;
     
-    self.mGoodsDscribe = [obj objectForKeyMy:@"describe"];
-    self.mGoodsTag = [obj objectForKeyMy:@"tag"];
     self.mFocus = [[obj objectForKeyMy:@"focus"] intValue];
+    self.mMarketPrice = [[obj objectForKeyMy:@"market_price"] floatValue];
+    self.mGoodsName = [obj objectForKeyMy:@"goods_name"];
+    self.mHot = [obj objectForKeyMy:@"hot"];
+    self.mTag = [obj objectForKeyMy:@"tag"];
+    self.mGoodsSalesNum = [[obj objectForKeyMy:@"goods_salesNum"] intValue];
+    self.mShopImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shop_logo"]];
     
+    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goods_img"]];
+    self.mShopSalesNum = [[obj objectForKeyMy:@"shop_salesNum"] intValue];
+    self.mFreePrice = [[obj objectForKeyMy:@"free_price"] floatValue];
+    self.mCloseTime = [obj objectForKeyMy:@"closing_time"];
     
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
+    self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
+
+    self.mGoodsDscribe = [obj objectForKeyMy:@"describe"];
+    self.mDelivePrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
+
+    
+    self.mGoodsPrice = [[obj objectForKeyMy:@"deliver_price"] floatValue];
+    self.mOpenTime = [obj objectForKeyMy:@"opening_time"];
+    self.mAddress = [obj objectForKeyMy:@"addr"];
+
+    NSMutableArray *mImagss = [NSMutableArray new];
+    
+    for (NSString *mss in [[obj objectForKeyMy:@"goods_details"] objectForKey:@"files"]) {
+        [mImagss addObject:mss];
+    }
+    
+    self.mGoodsDetailImgArr = mImagss;
+    
+    self.mImgStatus = [[[obj objectForKeyMy:@"goods_details"] objectForKeyMy:@"state"] intValue];
+    
+    self.mShopCampain = [obj objectForKeyMy:@"campaign"];
+    self.mShopName = [obj objectForKeyMy:@"shop_name"];
+
+    self.mShopId = [[obj objectForKeyMy:@"shop_id"] intValue];
+    
+    if (self.mFocus != 0) {
+        self.mIsFocus = YES;
+    }else{
+        self.mIsFocus = NO;
+    }
+
 }
 
 @end

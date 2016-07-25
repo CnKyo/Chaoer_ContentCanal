@@ -7,20 +7,25 @@
 //
 
 #import "mGoodsDetailCell.h"
-#import "mCommunityNavView.h"
 
+#import "mActivitySubView.h"
 @implementation mGoodsDetailCell
 {
-
-    mCommunityNavView *mSubView;
+    
+    
+    CGFloat mActivityDetailH;
+    
+    mActivitySubView *mActView;
 
 }
 
 - (void)layoutSubviews{
 
     [super layoutSubviews];
-    self.mScrollerView.showsVerticalScrollIndicator = FALSE;
-    self.mScrollerView.showsHorizontalScrollIndicator = FALSE;
+
+//    [self initData];
+    
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,49 +38,57 @@
     // Configure the view for the selected state
 }
 
-- (void)setMDataSource:(NSArray *)mDataSource{
 
-    for (UIView *view in self.mScrollerView.subviews) {
-        [view removeFromSuperview];
-    }
+-(void)setMGoodsDetail:(SGoodsDetail *)mGoodsDetail{
     
-    int x = 5;
-    int w = 100;
-    int tag = 0;
     
-    for (int i =0; i<mDataSource.count; i++) {
-        mSubView = [mCommunityNavView shaeScrollerSubView];
-//        mSubView.frame = CGRectMake(x, 0, w-10, 130);
-        mSubView.mSName.text = mDataSource[i];
-        mSubView.mSBtn.tag = tag;
-        [mSubView.mSBtn addTarget:self action:@selector(msBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodsDetail.mGoodsImg] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
+      [self.mShopLogo sd_setImageWithURL:[NSURL URLWithString:mGoodsDetail.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    self.mShopName.text = mGoodsDetail.mShopName;
+    self.mAllGoodsNum.text = [NSString stringWithFormat:@"所有商品：%d",mGoodsDetail.mGoodsNum];
+    self.mFocusNum.text = [NSString stringWithFormat:@"关注数:%d",mGoodsDetail.mFocus];
+    
+    
+    CGRect mActFrame = self.mShopDetailView.frame;
+    
+    
+    if (mGoodsDetail.mCampainArr.count<=0) {
         
-        if (i%2 == 1) {
-            mSubView.backgroundColor = [UIColor redColor];
-        }
+    }else{
         
-        [self.mScrollerView addSubview:mSubView];
-        [mSubView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mScrollerView).offset(x);
-            make.top.equalTo(self.mScrollerView).offset(@0);
-            make.width.offset(w-10);
-            make.height.offset(@130);
+        CGFloat xx = 0.0;
+        CGFloat yy = self.mFocusNum.mbottom+3;
+        
+        for (GCampain *mAct in mGoodsDetail.mCampainArr) {
             
-        }];
+            mActView = [mActivitySubView shareView];
+            mActView.frame = CGRectMake(xx, yy, self.contentView.mwidth, 30);
+            mActView.mName.text = mAct.mName;
+            mActView.mContent.text = mAct.mContent;
+            [self.mShopDetailView addSubview:mActView];
+            
+            yy += 30;
+            
+            mActivityDetailH = yy;
+            
+        }
+        mActFrame.size.height = mActivityDetailH-94;
+        self.mShopDetailView.frame = mActFrame;
         
+        self.mCellH = 248+mActivityDetailH-94;
         
-        x+=w;
-        tag++;
-
     }
-
+    self.mGoodsName.text = mGoodsDetail.mGoodsName;
+    self.mGoodsContent.text = mGoodsDetail.mGoodsDscribe;
     
-    self.mScrollerView.contentSize = CGSizeMake(x, self.mScrollerView.mheight);
-}
-
-- (void)msBtnAction:(UIButton *)sender{
+    self.mOldPrice.text = [NSString stringWithFormat:@"原价:¥%.2f元",mGoodsDetail.mMarketPrice];
     
-    [self.delegate cellDidSelectedWithIndex:sender.tag];
+    self.mNoewPrice.text = [NSString stringWithFormat:@"现价:¥%.2f元",mGoodsDetail.mGoodsPrice];
+    
+    self.mAddress.text = mGoodsDetail.mAddress;
+    self.mSalesNum.text = [NSString stringWithFormat:@"%d",mGoodsDetail.mShopSalesNum];
+    self.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f元",mGoodsDetail.mDelivePrice];
+    _mGoodsDetailH = 150+[Util labelText:mGoodsDetail.mGoodsDscribe fontSize:14 labelWidth:self.mGoodsContent.mwidth]-20;
 }
 
 @end

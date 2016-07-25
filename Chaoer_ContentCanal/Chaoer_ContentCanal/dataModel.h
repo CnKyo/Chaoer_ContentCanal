@@ -1195,8 +1195,17 @@
  *  @param block 返回值
  */
 - (void)getMarketHome:(int)mPage andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mBanerArr,NSArray *mShopArr,NSArray *mHotArr))block;
-
-
+#pragma mark----首页热卖商品店铺信息
+/**
+ *  首页热卖商品店铺信息
+ *
+ *  @param mPage    分页
+ *  @param mGoodsId 商品id
+ *  @param mLat     纬度
+ *  @param mLng     经度
+ *  @param block    返回值
+ */
+- (void)getMarketHomeHot:(int)mPage andGoodsId:(int)mGoodsId andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 #pragma mark----获取社区超市社区地址
 /**
  *  获取社区超市社区地址
@@ -1223,6 +1232,14 @@
  *  @param block    返回值
  */
 - (void)findGoodsWithShop:(int)mShopId andCatigory:(int)mClassId andPage:(int)mPage andKeyWord:(NSString *)mKey block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark---- *  搜索商品，店铺
+/**
+ *  搜索商品，店铺
+ *
+ *  @param mKeyWords 关键字
+ *  @param block     返回值
+ */
+- (void)searchGoodsAndShop:(NSString *)mKeyWords block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 #pragma mark---- 获取商品详情
 /**
  *  获取商品详情
@@ -3225,9 +3242,14 @@
  */
 @property (nonatomic,assign) int mIsCoup;
 /**
- *  是否收藏
+ *  收藏数
  */
 @property (nonatomic,assign) int mIsCollect;
+/**
+ *  是否收藏
+ */
+@property (nonatomic,assign) BOOL mFocus;
+
 /**
  *  销量
  */
@@ -3387,6 +3409,20 @@
  *  内容
  */
 @property (nonatomic,strong) NSString *mContent;
+/**
+ *  编号
+ */
+@property (nonatomic,strong) NSString *mCode;
+/**
+ *  姓名
+ */
+@property (nonatomic,strong) NSString *mName;
+/**
+ *  条件
+ */
+@property (assign,nonatomic) int mCondition;
+
+
 
 -(id)initWithObj:(NSDictionary *)obj;
 
@@ -3481,25 +3517,91 @@
  */
 @interface SGoodsDetail : NSObject
 /**
+ *  是否收藏
+ */
+@property (assign,nonatomic) BOOL mIsFocus;
+
+/**
+ *  活动
+ */
+@property (strong,nonatomic) NSArray *mCampainArr;
+/**
+ *  收藏数
+ */
+@property (assign,nonatomic) int mFocus;
+/**
+ *  市场价
+ */
+@property (assign,nonatomic) CGFloat mMarketPrice;
+/**
  *  商品名称
  */
 @property (strong,nonatomic) NSString *mGoodsName;
+/**
+ *  热卖
+ */
+@property (strong,nonatomic) NSString *mHot;
+/**
+ *  标签
+ */
+@property (strong,nonatomic) NSString *mTag;
+/**
+ *  商品销量
+ */
+@property (assign,nonatomic) int mGoodsSalesNum;
 /**
  *  商品id
  */
 @property (assign,nonatomic) int mGoodsId;
 /**
- *  销量
+ *  店铺图片
  */
-@property (assign,nonatomic) int mSalesNum;
+@property (strong,nonatomic) NSString *mShopImg;
+/**
+ *  商品图片
+ */
+@property (strong,nonatomic) NSString *mGoodsImg;
+/**
+ *  店铺销量
+ */
+@property (assign,nonatomic) int mShopSalesNum;
+/**
+ *  免配送费金额
+ */
+@property (assign,nonatomic) CGFloat mFreePrice;
+/**
+ *  下班时间
+ */
+@property (strong,nonatomic) NSString *mCloseTime;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  商品数量
+ */
+@property (assign,nonatomic) int mGoodsNum;
+/**
+ *  商品价格
+ */
+@property (assign,nonatomic) CGFloat mGoodsPrice;
 /**
  *  商品详情
  */
 @property (strong,nonatomic) NSString *mGoodsDscribe;
 /**
- *  商品图片
+ *  配送费？
  */
-@property (strong,nonatomic) NSString *mGoodsImg;
+@property (assign,nonatomic) CGFloat mDelivePrice;
+/**
+ *  上班时间
+ */
+@property (strong,nonatomic) NSString *mOpenTime;
+/**
+ *  产地
+ */
+@property (strong,nonatomic) NSString *mAddress;
+
 /**
  *  商品详情图片组
  */
@@ -3509,26 +3611,18 @@
  */
 @property (assign,nonatomic) int mImgStatus;
 /**
- *  平台价
+ *  店铺促销活动
  */
-@property (assign,nonatomic) CGFloat mMarketPrice;
-/**
- *  商品价
- */
-@property (assign,nonatomic) CGFloat mGoodsPrice;
-/**
- *  活动
- */
-@property (strong,nonatomic) NSArray *mCampain;
-/**
- *  收藏数
- */
-@property (assign,nonatomic) int mFocus;
-/**
- *  商品标签
- */
-@property (strong,nonatomic) NSString *mGoodsTag;
+@property (strong,nonatomic) NSString *mShopCampain;
 
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  店铺id
+ */
+@property (assign,nonatomic) int mShopId;
 -(id)initWithObj:(NSDictionary *)obj;
 
 

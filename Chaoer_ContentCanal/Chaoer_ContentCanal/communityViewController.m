@@ -17,6 +17,7 @@
 #import "mMarketDetailViewController.h"
 
 #import "mNavAddressViewController.h"
+#import "homeHotViewController.h"
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
@@ -192,6 +193,13 @@
 
     
 }
+#pragma mark -----加载热卖商品
+/**
+ *  加载热卖商品
+ */
+- (void)loadHotData{
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -249,7 +257,7 @@
         GMarketList *mShopList = self.mShopArr[indexPath.row];
 
         if (mShopList.mActivityArr.count <= 0) {
-            return 105;
+            return 100;
             
         }else if (mShopList.mActivityArr.count == 1){
             return 135;
@@ -287,6 +295,8 @@
         reuseCellId = @"cell2";
         
         communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         cell.delegate = self;
         [cell setMScrollerSourceArr:self.mShopHotArr];
         return cell;
@@ -390,6 +400,12 @@
 #pragma mark----滚动的代理方法
 - (void)cellWithScrollerViewSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%ld个",(long)mIndex);
+    GHot *mHot = self.mShopHotArr[mIndex];
+    homeHotViewController *hhh = [[homeHotViewController alloc] initWithNibName:@"homeHotViewController" bundle:nil];
+    hhh.mGoodId = mHot.mId;
+    hhh.mLat = _mLat;
+    hhh.mLng = _mLng;
+    [self pushViewController:hhh];
     
     
 }

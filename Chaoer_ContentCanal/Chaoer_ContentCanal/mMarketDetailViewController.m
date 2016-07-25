@@ -132,7 +132,9 @@
     CGRect mRR = mHeaderView.frame;
     
     if (_mShopList.mActivityArr.count <= 0) {
-        mRR.size.height = 90;
+        mRR.size.height = 82;
+        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = YES;
+        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = YES;
         
     }else if (_mShopList.mActivityArr.count == 1){
         mRR.size.height = 120;
@@ -146,6 +148,8 @@
         }else{
             mC = @"首单";
         }
+        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = NO;
+        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = YES;
         mHeaderView.mActivity1.text = mC;
         mHeaderView.mActivityContent1.text = mAct.mContent;
         
@@ -179,7 +183,8 @@
         
         mHeaderView.mActivity2.text = mC2;
         mHeaderView.mActivityContent2.text = mAct2.mContent;
-        
+        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = NO;
+        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = NO;
         
     }
     mHeaderView.frame = mRR;
@@ -468,12 +473,12 @@
     cell.mLeftNum.text = [NSString stringWithFormat:@"月销：%d",mGoods1.mSalesNum];
     cell.mLeftPrice.text = [NSString stringWithFormat:@"¥%.2f",mGoods1.mGoodsPrice];
     [cell.mLeftImg sd_setImageWithURL:[NSURL URLWithString:mGoods1.mGoodsImg] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
-    if (mGoods1.mIsCollect == 0) {
-        [cell.mLeftCollect setBackgroundImage:[UIImage imageNamed:@"collection_empty"] forState:0];
-        mLeftType = 1;
-    }else{
+    if (mGoods1.mFocus) {
         [cell.mLeftCollect setBackgroundImage:[UIImage imageNamed:@"collection_real"] forState:0];
-        mLeftType = 0;
+
+    }else{
+        [cell.mLeftCollect setBackgroundImage:[UIImage imageNamed:@"collection_empty"] forState:0];
+
     }
     
     if (mGoods1.mGoodsHot != nil || mGoods1.mGoodsHot.length != 0) {
@@ -503,12 +508,12 @@
     cell.mRightPrice.text = [NSString stringWithFormat:@"¥%.2f",mGoods2.mGoodsPrice];
     [cell.mRightImg sd_setImageWithURL:[NSURL URLWithString:mGoods2.mGoodsImg] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
     
-    if (mGoods2.mIsCollect == 0) {
-        [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_empty"] forState:0];
-        mRightType = 1;
-    }else{
+    if (mGoods2.mFocus) {
         [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_real"] forState:0];
-        mRightType = 0;
+
+    }else{
+        [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_empty"] forState:0];
+
     }
     
     if (mGoods2.mGoodsHot != nil || mGoods2.mGoodsHot.length != 0) {
@@ -552,6 +557,17 @@
 #pragma mark---- cell左边的收藏按钮点击代理方法
 - (void)cellWithLeftBtnClick:(NSInteger)mTag{
 
+    for (MGoods *goods in self.tempArray) {
+        if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
+            if (goods.mFocus) {
+                mLeftType = 0;
+            }else{
+                mLeftType = 1;
+            }
+            
+        }
+    }
+    
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mLeftType block:^(mBaseData *resb, NSArray *mArr) {
         [self dismiss];
@@ -559,8 +575,12 @@
             
             for (MGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
-                    goods.mIsCollect = mLeftType;
-                    
+
+                    if (mLeftType == 1) {
+                        goods.mFocus = YES;
+                    }else{
+                        goods.mFocus = NO;
+                    }
                 }
             }
             
@@ -576,6 +596,17 @@
 }
 #pragma mark---- cell右边的收藏按钮点击代理方法
 - (void)cellWithRightBtnClick:(NSInteger)mTag{
+    
+    for (MGoods *goods in self.tempArray) {
+        if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
+            if (goods.mFocus) {
+                mRightType = 0;
+            }else{
+                mRightType = 1;
+            }
+            
+        }
+    }
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mRightType block:^(mBaseData *resb, NSArray *mArr) {
         [self dismiss];
@@ -583,8 +614,11 @@
             
             for (MGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
-                    goods.mIsCollect = mRightType;
-                    
+                    if (mRightType == 1) {
+                        goods.mFocus = YES;
+                    }else{
+                        goods.mFocus = NO;
+                    }
                 }
             }
             

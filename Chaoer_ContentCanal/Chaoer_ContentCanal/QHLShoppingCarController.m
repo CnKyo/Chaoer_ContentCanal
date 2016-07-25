@@ -288,7 +288,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     if (self.state == QHLViewStateNormal) { //判断当前的state状态
         
         if (selected) { //全选按钮 选中
-            self.hiddenRightBtn = NO;
+            self.hiddenRightBtn = YES;
             for (GShopCarList *shop in self.shoppingCar) {
                 for (GShopCarGoods *good in shop.mGoodsArr) {
                     

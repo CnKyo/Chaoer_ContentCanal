@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		040089C21D3F119300921BFA /* mGoodsBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 040089C11D3F119300921BFA /* mGoodsBtn.m */; };
+		0400EDA51D45A76B009CD641 /* homeHotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400EDA31D45A76B009CD641 /* homeHotViewController.m */; };
+		0400EDA61D45A76B009CD641 /* homeHotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0400EDA41D45A76B009CD641 /* homeHotViewController.xib */; };
+		0400EDA91D45EE74009CD641 /* mActivitySubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400EDA81D45EE74009CD641 /* mActivitySubView.m */; };
+		0400EDAB1D45EE7F009CD641 /* mActivitySubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */; };
 		04040DEB1D20BEBD008C3C31 /* mMarketDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */; };
 		04040DEC1D20BEBD008C3C31 /* mMarketDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */; };
 		04040DEF1D20BEFA008C3C31 /* mMarketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04040DEE1D20BEFA008C3C31 /* mMarketHeaderView.m */; };
@@ -896,6 +900,12 @@
 /* Begin PBXFileReference section */
 		040089C01D3F119300921BFA /* mGoodsBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mGoodsBtn.h; sourceTree = "<group>"; };
 		040089C11D3F119300921BFA /* mGoodsBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mGoodsBtn.m; sourceTree = "<group>"; };
+		0400EDA21D45A76B009CD641 /* homeHotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homeHotViewController.h; sourceTree = "<group>"; };
+		0400EDA31D45A76B009CD641 /* homeHotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homeHotViewController.m; sourceTree = "<group>"; };
+		0400EDA41D45A76B009CD641 /* homeHotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeHotViewController.xib; sourceTree = "<group>"; };
+		0400EDA71D45EE74009CD641 /* mActivitySubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mActivitySubView.h; sourceTree = "<group>"; };
+		0400EDA81D45EE74009CD641 /* mActivitySubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mActivitySubView.m; sourceTree = "<group>"; };
+		0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mActivitySubView.xib; sourceTree = "<group>"; };
 		04040DE81D20BEBD008C3C31 /* mMarketDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMarketDetailViewController.h; sourceTree = "<group>"; };
 		04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMarketDetailViewController.m; sourceTree = "<group>"; };
 		04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMarketDetailViewController.xib; sourceTree = "<group>"; };
@@ -2481,6 +2491,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0400EDA11D45A74E009CD641 /* 首页热卖 */ = {
+			isa = PBXGroup;
+			children = (
+				0400EDA21D45A76B009CD641 /* homeHotViewController.h */,
+				0400EDA31D45A76B009CD641 /* homeHotViewController.m */,
+				0400EDA41D45A76B009CD641 /* homeHotViewController.xib */,
+			);
+			name = "首页热卖";
+			sourceTree = "<group>";
+		};
 		04040DE71D20BE9E008C3C31 /* 超市详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3470,6 +3490,9 @@
 				04F500021D23B44500EFBB3C /* mGoodsDetailCell.m */,
 				04F500031D23B44500EFBB3C /* mGoodsDetailCell.xib */,
 				04B462FB1D24B43800001ECB /* mGoodsDetailHotCell.xib */,
+				0400EDA71D45EE74009CD641 /* mActivitySubView.h */,
+				0400EDA81D45EE74009CD641 /* mActivitySubView.m */,
+				0400EDAA1D45EE7F009CD641 /* mActivitySubView.xib */,
 			);
 			name = "商品详情";
 			sourceTree = "<group>";
@@ -4446,6 +4469,7 @@
 				04F89C031D1CE08B006A3976 /* communityCell1.xib */,
 				04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */,
 				31EEB31C1C93B6E700B61A86 /* communityCell3.xib */,
+				0400EDA11D45A74E009CD641 /* 首页热卖 */,
 				04D9F4FA1D2757B600518F6F /* 备注or留言or评价 */,
 				04D9F4EF1D274B0D00518F6F /* 选择地址 */,
 				04FA3E901D22840100EA9E34 /* 订单详情 */,
@@ -5629,6 +5653,7 @@
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
 				046400881CF9279D0090A475 /* chatNavView.xib in Resources */,
 				04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */,
+				0400EDAB1D45EE7F009CD641 /* mActivitySubView.xib in Resources */,
 				04C15D7D1D37BCDA0097DA6C /* mSelectSenTypeViewController.xib in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				04FA3E8F1D22772200EA9E34 /* goPayViewController.xib in Resources */,
@@ -5664,6 +5689,7 @@
 				04F89C001D1CD3A9006A3976 /* communityCell2.xib in Resources */,
 				04AD8A961CE3200C00A3F87F /* depositViewController.xib in Resources */,
 				04F500051D23B44500EFBB3C /* mGoodsDetailCell.xib in Resources */,
+				0400EDA61D45A76B009CD641 /* homeHotViewController.xib in Resources */,
 				04648C731CB50394006823C9 /* senderSubView.xib in Resources */,
 				317E46331CAD26A900217C60 /* RongCloudKit.strings in Resources */,
 				3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */,
@@ -5876,6 +5902,7 @@
 				742FB9031B5CDEB3005A1AFA /* NSMutableString+TagReplace.m in Sources */,
 				04648C791CB51DD0006823C9 /* valleteHistoryViewController.m in Sources */,
 				749BEA111B32779800BABCA6 /* MJPhotoToolbar.m in Sources */,
+				0400EDA91D45EE74009CD641 /* mActivitySubView.m in Sources */,
 				04C15D601D3765110097DA6C /* WKOrderBottomView.m in Sources */,
 				3123CC481C92CFCD00C3B928 /* mFixViewController.m in Sources */,
 				04FE0DDA1CFC4AEB003CAF88 /* WKPickerView.m in Sources */,
@@ -5890,6 +5917,7 @@
 				3182A1691CA620CC0084E890 /* GiFHUD.m in Sources */,
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
 				044A247F1CB4B25700A6379C /* msgViewController.m in Sources */,
+				0400EDA51D45A76B009CD641 /* homeHotViewController.m in Sources */,
 				3182A16E1CA636460084E890 /* mTopUpBalanceView.m in Sources */,
 				7487DC161B4E17F000C40220 /* MASConstraint.m in Sources */,
 				7470E1511B9C07B800ECEC69 /* leavVC.m in Sources */,

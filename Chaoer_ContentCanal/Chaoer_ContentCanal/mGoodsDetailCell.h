@@ -7,23 +7,56 @@
 //
 
 #import <UIKit/UIKit.h>
-/**
- *  设置代理
- */
-@protocol mHotGoodsSelectedDelegate <NSObject>
-
-@optional
-/**
- *  代理方法
- *
- *  @param index 返回索引
- */
-- (void)cellDidSelectedWithIndex:(NSInteger)index;
-
-@end
 
 @interface mGoodsDetailCell : UITableViewCell
 #pragma mark----第一种cell类型
+/**
+ *  店铺详情view
+ */
+@property (weak, nonatomic) IBOutlet UIView *mShopDetailView;
+/**
+ *  店铺logo
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mShopLogo;
+/**
+ *  热卖
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *mHot;
+/**
+ *  店铺名称
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mShopName;
+/**
+ *  所有商品
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mAllGoodsNum;
+/**
+ *  关注数
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mFocusNum;
+///**
+// *  活动view
+// */
+//@property (weak, nonatomic) IBOutlet UIView *mActivityView;
+/**
+ *  店铺名称约束
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mShopNameLeft;
+
+/**
+ *  活动数组
+ */
+@property (strong,nonatomic) NSArray *mActivityArr;
+
+/**
+ *  cell的高
+ */
+@property (assign,nonatomic) CGFloat mCellH;
+
+
+@property (strong,nonatomic) SGoodsDetail *mGoodsDetail;
+
+#pragma mark ----第二种cell样式
 /**
  *  商品图片
  */
@@ -45,41 +78,18 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mOldPrice;
 /**
- *  产地
+ *  地址
  */
 @property (weak, nonatomic) IBOutlet UILabel *mAddress;
 /**
- *  产地
+ *  销量
  */
-@property (weak, nonatomic) IBOutlet UILabel *mAddresss;
+@property (weak, nonatomic) IBOutlet UILabel *mSalesNum;
 /**
- *  规格
+ *  配送费
  */
-@property (weak, nonatomic) IBOutlet UILabel *mRule;
-/**
- *  规格
- */
-@property (weak, nonatomic) IBOutlet UILabel *mRules;
-/**
- *  是否有货
- */
-@property (weak, nonatomic) IBOutlet UILabel *mHave;
-/**
- *  是否有货
- */
-@property (weak, nonatomic) IBOutlet UILabel *mHaves;
+@property (weak, nonatomic) IBOutlet UILabel *mSendPrice;
 
-#pragma mark----第二种cell类型
-/**
- *  滚动视图
- */
-@property (weak, nonatomic) IBOutlet UIScrollView *mScrollerView;
-/**
- *  代理方法
- */
-@property (strong,nonatomic) id <mHotGoodsSelectedDelegate> delegate;
-/**
- *  滚动数据源
- */
-@property (strong,nonatomic) NSArray *mDataSource;
+@property (assign,nonatomic) CGFloat mGoodsDetailH;
+
 @end

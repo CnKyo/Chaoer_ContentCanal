@@ -48,7 +48,52 @@
     view.mGoodsNum.layer.masksToBounds = YES;
     view.mGoodsNum.layer.cornerRadius = view.mGoodsNum.mwidth/2;
     
-    return view;}
+    [view.mAttentionBtn addTarget:self action:@selector(mAttentionAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view.mShopCarBtn addTarget:self action:@selector(mShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view.mAddShopCarBtn addTarget:self action:@selector(mAddShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [view.mBuyNowBtn addTarget:self action:@selector(mBuyNowAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    return view;
+}
 
+
+#pragma mark----关注按钮
+- (void)mAttentionAction:(UIButton *)sender{
+    
+    if ([self.delegate respondsToSelector:@selector(mFocusClick:)]) {
+        [self.delegate mFocusClick:sender.selected];
+    }
+    
+    
+    
+}
+#pragma mark----购物车按钮
+- (void)mShopCarAction:(UIButton *)sender{
+    
+    if ([self.delegate respondsToSelector:@selector(mShopCarClick:)]) {
+        [self.delegate mShopCarClick:sender.selected];
+    }
+    
+    
+}
+#pragma mark----添加购物车按钮
+- (void)mAddShopCarAction:(UIButton *)sender{
+    
+    
+    if ([self.delegate respondsToSelector:@selector(mAddShopCarClick:)]) {
+        [self.delegate mAddShopCarClick:sender.selected];
+    }
+    
+}
+#pragma mark----立即购买按钮
+- (void)mBuyNowAction:(UIButton *)sender{
+    
+    if ([self.delegate respondsToSelector:@selector(mBuyClick:)]) {
+            [self.delegate mBuyClick:sender.selected];
+    }
+    
+
+}
 
 @end

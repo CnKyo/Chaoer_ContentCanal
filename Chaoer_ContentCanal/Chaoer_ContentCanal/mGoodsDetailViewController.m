@@ -37,7 +37,7 @@
 #define kTOOLHEIGHT 50.f
 
 @interface mGoodsDetailViewController ()
-<UITableViewDataSource, UITableViewDelegate,mHotGoodsSelectedDelegate>
+<UITableViewDataSource, UITableViewDelegate,wkBottomDelegate>
 
 /** 商品详情整体 */
 @property(strong,nonatomic)UIScrollView *scrollView;
@@ -46,7 +46,7 @@
 @property(strong,nonatomic)UITableView *mTableView;
 
 /** 第二页 */
-@property (nonatomic, strong) UIView *twoPageView;
+@property (nonatomic, strong) UIScrollView *twoPageView;
 /** 网页 */
 @property (strong,nonatomic)  UIWebView *webView;
 @property (nonatomic,strong)    NSMutableArray  *mSubArr;
@@ -55,22 +55,27 @@
 
 @implementation mGoodsDetailViewController
 {
-
-    GoodsDetailNavView *mNavView;
     
     GoodsDetailNavView *mBootomView;
+    /**
+     *  商品详情对象
+     */
+    SGoodsDetail *mGoodsDetail;
+    /**
+     *  是否选择收藏
+     */
+    BOOL mSelected;
     
-    SGoodsDetail *mGoods;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.mPageName  = @"商品详情";
-    self.hiddenNavBar = YES;
+    self.mPageName = self.Title = @"商品详情";
+    self.hiddenNavBar = NO;
     self.hiddenlll = YES;
-    self.hiddenBackBtn = YES;
+    self.hiddenBackBtn = NO;
     self.hiddenRightBtn = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.mSubArr = [NSMutableArray new];
@@ -82,42 +87,26 @@
         [self.mSubArr addObject:sr];
     }
 
-
-    // 添加子控件
-    [self addSubView];
-
-    // 配置上拉和下拉操作
-    [self configureRefresh];
-
-    
-    [self initNavBarView];
-
     [self initData];
+
+   
+    
+    
+
 }
 
 #pragma mark----初始化导航条
 - (void)initNavBarView{
-
-    mNavView = [GoodsDetailNavView shareView];
-    [mNavView.mBackBtn addTarget:self action:@selector(mBackAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mNavView.mShareBtn addTarget:self action:@selector(mShareAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mNavView.mCollectBtn addTarget:self action:@selector(mCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:mNavView];
-    
-    [mNavView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view).offset(@0);
-        make.height.offset(@64);
-    }];
     
     
     mBootomView = [GoodsDetailNavView shareShopCarView];
-    [mBootomView.mAttentionBtn addTarget:self action:@selector(mAttentionAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mBootomView.mShopCarBtn addTarget:self action:@selector(mShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mBootomView.mAddShopCarBtn addTarget:self action:@selector(mAddShopCarAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mBootomView.mBuyNowBtn addTarget:self action:@selector(mBuyNowAction:) forControlEvents:UIControlEventTouchUpInside];
+    mBootomView.delegate  = self;
 
-    
+    if (mGoodsDetail.mIsFocus) {
+        [mBootomView.mAttentionBtn setBackgroundImage:[UIImage imageNamed:@"mGoodsDetail_collect"] forState:0];
+    }else{
+        [mBootomView.mAttentionBtn setBackgroundImage:[UIImage imageNamed:@"mGoodsDetail_unCollect"] forState:0];
+    }
     [self.view addSubview:mBootomView];
     
     
@@ -128,9 +117,48 @@
     }];
 
 }
-#pragma mark----关注按钮
-- (void)mAttentionAction:(UIButton *)sender{
 
+- (void)upDatePage{
+
+
+    if (mGoodsDetail.mIsFocus) {
+        [mBootomView.mCollectBtn setBackgroundImage:nil forState:0];
+    }else{
+        [mBootomView.mCollectBtn setBackgroundImage:nil forState:0];
+    }
+    
+}
+#pragma mark----关注按钮
+- (void)mFocusClick:(BOOL)mIsClick{
+
+    if (mGoodsDetail.mIsFocus) {
+        mSelected = NO;
+    }else{
+        mSelected = YES;
+    }
+    
+    [self showWithStatus:@"正在操作中..."];
+    [[mUserInfo backNowUser] collectGoods:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andType:mSelected block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        if (resb.mSucess) {
+            
+            
+            
+            [self upDatePage];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+
+}
+- (void)mAddShopCarClick:(BOOL)mIsClick{
+
+}
+- (void)mBuyClick:(BOOL)mIsClick{
+
+}
+- (void)mShopCarClick:(BOOL)mIsClick{
 }
 #pragma mark----购物车按钮
 - (void)mShopCarAction:(UIButton *)sender{
@@ -144,18 +172,7 @@
 - (void)mBuyNowAction:(UIButton *)sender{
     
 }
-#pragma mark----返回按钮
-- (void)mBackAction:(UIButton *)sender{
-    [self popViewController];
-}
-#pragma mark----分享按钮
-- (void)mShareAction:(UIButton *)sender{
-    
-}
-#pragma mark----收藏按钮
-- (void)mCollectionAction:(UIButton *)sender{
-    
-}
+
 #pragma mark---- 加载数据源
 - (void)initData{
     [self showWithStatus:@"正在加载..."];
@@ -164,10 +181,19 @@
         [self removeEmptyView];
         [self dismiss];
         if (resb.mSucess) {
+            mGoodsDetail = SGoods;
+            // 添加子控件
+            [self addSubView];
             
+            // 配置上拉和下拉操作
+            [self configureRefresh];
+            [self initNavBarView];
+            [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
-            [self addEmptyView:nil];
+//            [self addEmptyView:nil];
+            [self performSelector:@selector(leftBtnTouched:) withObject:self afterDelay:1.0];
+        
             
         }
         
@@ -219,9 +245,36 @@
 }
 
 #pragma mark - 第二页
-- (UIView *)twoPageView {
+- (UIScrollView *)twoPageView {
     if (!_twoPageView) {
-        _twoPageView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), self.tableView.kwidth, self.tableView.kheight)];
+        _twoPageView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), self.tableView.kwidth, self.tableView.kheight)];
+        CGRect TTframe = _twoPageView.frame;
+        
+        CGFloat mYY;
+        
+        if (mGoodsDetail.mGoodsDetailImgArr.count <= 0) {
+            
+        }else{
+            for (int i= 0; i<mGoodsDetail.mGoodsDetailImgArr.count; i++) {
+                NSString *mSS = mGoodsDetail.mGoodsDetailImgArr[i];
+                NSString *mUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mSS];
+                
+                UIImageView *mImg = [UIImageView new];
+                mImg.frame = CGRectMake(0, mYY, self.tableView.frame.size.width, 120);
+                mImg.backgroundColor = [UIColor whiteColor];
+                [mImg sd_setImageWithURL:[NSURL URLWithString:mUrl  ] placeholderImage:[UIImage imageNamed:@"img_default"]];
+                [_twoPageView addSubview:mImg];
+                mYY+=120;
+            }
+            
+            TTframe.size.height = mYY;
+            _twoPageView.frame = TTframe;
+            
+            _twoPageView.contentSize = CGSizeMake(self.tableView.frame.size.width, mYY+30);
+            
+        }
+        
+        
     }
     return _twoPageView;
 }
@@ -238,7 +291,7 @@
     [self.view    addSubview:self.scrollView];
     [self.scrollView  addSubview:self.tableView];
     [self.scrollView  addSubview:self.twoPageView];
-    [self.twoPageView addSubview:self.webView];
+//    [self.twoPageView addSubview:self.webView];
 }
 
 - (void)configureRefresh {
@@ -251,7 +304,7 @@
         [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
             self.scrollView.contentOffset = CGPointMake(0, self.scrollView.kheight);
         } completion:^(BOOL finished) {
-            [self.tableView.footer endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         }];
     }];
     footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
@@ -261,7 +314,7 @@
     [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStatePulling];
     [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStateRefreshing];
 
-    self.tableView.footer = footer;
+    self.tableView.mj_footer = footer;
     
     
     // 2.设置 UIWebView 下拉显示商品详情
@@ -271,7 +324,7 @@
             self.scrollView.contentOffset = CGPointMake(0, 0);
         } completion:^(BOOL finished) {
             //结束加载
-            [self.webView.scrollView.header endRefreshing];
+            [self.twoPageView.mj_header endRefreshing];
         }];
     }];
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -285,49 +338,73 @@
 
     header.stateLabel.textColor = [UIColor blackColor];
     header.stateLabel.font = [UIFont systemFontOfSize:12.f];
-    self.webView.scrollView.header = header;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+    self.twoPageView.mj_header = header;
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+
     
+
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 345;
+    
+    
+    if (indexPath.section == 0) {
+        NSString *cellId = nil;
+        
+        cellId = @"cell";
+        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setMGoodsDetail:mGoodsDetail];
+        return cell.mCellH;
     }else{
-        return 130;
+    
+        NSString *cellId = nil;
+        cellId = @"cell2";
+        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [cell setMGoodsDetail:mGoodsDetail];
+        return cell.mGoodsDetailH;
     }
     
+
+  
     
 }
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    
+    
+    
+    return 1;
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
+    return  2;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *cellId = nil;
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         cellId = @"cell";
         mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+        
+        [cell setMGoodsDetail:mGoodsDetail];
         return cell;
-
     }else{
     
         cellId = @"cell2";
         mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [cell setMDataSource:self.mSubArr];
+        cell.mGoodsDetail = mGoodsDetail;
         return cell;
     }
     
-
 
 
 }

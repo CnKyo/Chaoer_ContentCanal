@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol wkBottomDelegate <NSObject>
+
+@optional
+/**
+ *  关注
+ *
+ *  @param mIsClick <#mIsClick description#>
+ */
+- (void)mFocusClick:(BOOL)mIsClick;
+
+- (void)mShopCarClick:(BOOL)mIsClick;
+
+- (void)mAddShopCarClick:(BOOL)mIsClick;
+
+- (void)mBuyClick:(BOOL)mIsClick;
+
+@end
+
 @interface GoodsDetailNavView : UIView
 #pragma mark----商品详情导航条
 /**
@@ -80,6 +98,6 @@
  */
 + (GoodsDetailNavView *)shareShopCarView;
 
-
+@property (strong,nonatomic) id <wkBottomDelegate> delegate;
 
 @end
