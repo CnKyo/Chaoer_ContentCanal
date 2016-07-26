@@ -263,8 +263,18 @@
             return 135;
             
         }else{
-        
-            return 165;
+            NSString *reuseCellId = nil;
+
+            reuseCellId = @"cell3";
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            
+            GMarketList *mShopList = self.mShopArr[indexPath.row];
+            [cell setMShopList:mShopList];
+            
+            
+            
+            return cell.mCellH;
 
         }
         
@@ -306,81 +316,11 @@
         reuseCellId = @"cell3";
         communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
 
-        if (self.mShopArr.count == 0 || !self.mShopArr) {
-            
-        }else{
-            GMarketList *mShopList = self.mShopArr[indexPath.row];
-            cell.mName.text = mShopList.mShopName;
-            [cell.mLogo sd_setImageWithURL:[NSURL URLWithString:mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
-            cell.mWorkTime.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopList.mOpenTime,mShopList.mCloseTime];
-            cell.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
-
-            cell.mNum.text = [NSString stringWithFormat:@"全部商品：%d 收藏数：%d",mShopList.mGoodsNum,mShopList.mFocus];
-            cell.mSenderPrice.text = [NSString stringWithFormat:@"配送费:%.2f",mShopList.mFreePrice];
-            
-            
-            if (mShopList.mActivityArr.count <= 0) {
-                cell.mActivity2.hidden = cell.mActivityContent2.hidden = YES;
-                cell.mActivity.hidden = cell.mContent.hidden = YES;
-
-            }else if (mShopList.mActivityArr.count == 1){
-                cell.mActivity2.hidden = cell.mActivityContent2.hidden = YES;
-                cell.mActivity.hidden = cell.mContent.hidden = NO;
-                
-                GCampain *mAct = mShopList.mActivityArr[0];
-                
-                NSString *mC = nil;
-                
-                if (mAct.mType == 2) {
-                    mC = @"打折";
-                }else if (mAct.mType == 1){
-                    mC = @"满减";
-                }else{
-                    mC = @"首单";
-                }
-                cell.mActivity.text = mC;
-                cell.mContent.text = mAct.mContent;
-
-            }else{
-                cell.mActivity2.hidden = cell.mActivityContent2.hidden = NO;
-                cell.mActivity.hidden = cell.mContent.hidden = NO;
-                
-                GCampain *mAct = mShopList.mActivityArr[0];
-                GCampain *mAct2 = mShopList.mActivityArr[1];
-
-                NSString *mC = nil;
-                NSString *mC2 = nil;
-
-                if (mAct.mType == 2) {
-                    mC2 = @"打折";
-                }else if (mAct.mType == 1){
-                    mC2 = @"满减";
-                }else{
-                    mC2 = @"首单";
-                }
-                
-                if (mAct2.mType == 2) {
-                    mC = @"打折";
-                }else if (mAct2.mType == 1){
-                    mC = @"满减";
-                }else{
-                    mC = @"首单";
-                }
-                
-                cell.mActivity.text = mC;
-                cell.mContent.text = mAct.mContent;
-                
-                cell.mActivity2.text = mC2;
-                cell.mActivityContent2.text = mAct2.mContent;
-
-            
-            }
-        }
+        GMarketList *mShopList = self.mShopArr[indexPath.row];
+        [cell setMShopList:mShopList];
         
         
-        
-        
-        
+   
         return cell;
     }
 

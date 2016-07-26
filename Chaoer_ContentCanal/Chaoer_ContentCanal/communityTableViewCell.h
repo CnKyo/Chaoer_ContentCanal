@@ -65,14 +65,7 @@
  *  距离
  */
 @property (strong, nonatomic) IBOutlet UILabel *mDistance;
-/**
- *  活动
- */
-@property (strong, nonatomic) IBOutlet UILabel *mActivity;
-/**
- *  活动内容
- */
-@property (strong, nonatomic) IBOutlet UILabel *mContent;
+
 /**
  *  商品数量粉丝数量
  */
@@ -81,14 +74,7 @@
  *  营业时间
  */
 @property (weak, nonatomic) IBOutlet UILabel *mWorkTime;
-/**
- *  活动2
- */
-@property (weak, nonatomic) IBOutlet UILabel *mActivity2;
-/**
- *  活动2内容
- */
-@property (weak, nonatomic) IBOutlet UILabel *mActivityContent2;
+
 /**
  *  配送价
  */
@@ -96,5 +82,12 @@
 
 @property (weak, nonatomic) IBOutlet UIView *mLine;
 
+
+
 @property (assign,nonatomic) CGFloat mCellH;
+@property (weak, nonatomic) IBOutlet UIView *mActivityView;
+
+
+@property (strong,nonatomic)GMarketList *mShopList;
+
 @end

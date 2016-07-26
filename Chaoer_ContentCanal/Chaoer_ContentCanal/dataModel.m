@@ -626,7 +626,7 @@ bool g_bined = NO;
     NSString  *mPayType = nil;
     if (mmType == 1) {
         url = @"sm/pay/payment";
-        [param setObject:mCode forKey:@"orderIds"];
+        [param setObject:[Util RSAEncryptor:mCode] forKey:@"orderIds"];
         
         
         
@@ -648,7 +648,7 @@ bool g_bined = NO;
     }else{
         url = @"app/payment/payment_repair";
         [param setObject:[Util RSAEncryptor:mCode] forKey:@"code"];
-        [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mType]] forKey:@"channel"];
+        [param setObject:NumberWithInt(mType) forKey:@"channel"];
 
 
 

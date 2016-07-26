@@ -20,6 +20,8 @@
 
 #import "mClassMoreViewController.h"
 #import "QHLShoppingCarController.h"
+#import "mActivitySubView.h"
+
 @interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,TypeViewDelegate,WKGoodsCellDelegate>
 /**
  *  购物车数组
@@ -71,7 +73,7 @@
     NSMutableArray *mClass;
     
     NSMutableArray *mDataSource;
-    
+    mActivitySubView *mActView;
     
 }
 @synthesize mShopId;
@@ -133,58 +135,29 @@
     
     if (_mShopList.mActivityArr.count <= 0) {
         mRR.size.height = 82;
-        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = YES;
-        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = YES;
         
-    }else if (_mShopList.mActivityArr.count == 1){
-        mRR.size.height = 120;
-        GCampain *mAct = _mShopList.mActivityArr[0];
-        NSString *mC = nil;
+    }else {
+               
         
-        if (mAct.mType == 2) {
-            mC = @"打折";
-        }else if (mAct.mType == 1){
-            mC = @"满减";
-        }else{
-            mC = @"首单";
-        }
-        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = NO;
-        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = YES;
-        mHeaderView.mActivity1.text = mC;
-        mHeaderView.mActivityContent1.text = mAct.mContent;
-        
-    }else{
-        
-        mRR.size.height = 150;
-        GCampain *mAct = _mShopList.mActivityArr[0];
-        GCampain *mAct2 = _mShopList.mActivityArr[1];
-        
-        NSString *mC = nil;
-        NSString *mC2 = nil;
-        
-        if (mAct.mType == 2) {
-            mC2 = @"打折";
-        }else if (mAct.mType == 1){
-            mC2 = @"满减";
-        }else{
-            mC2 = @"首单";
+        CGFloat mYY = 0;
+
+        for (UIView *vvv in mHeaderView.mActView.subviews) {
+            [vvv removeFromSuperview];
         }
         
-        if (mAct2.mType == 2) {
-            mC = @"打折";
-        }else if (mAct2.mType == 1){
-            mC = @"满减";
-        }else{
-            mC = @"首单";
+        for (GCampain *mAct in _mShopList.mActivityArr) {
+            mActView = [mActivitySubView shareView];
+            
+            mActView.frame = CGRectMake(0, mYY, mHeaderView.size.width, 30);
+            
+            mActView.mName.text = mAct.mName;
+            mActView.mContent.text = mAct.mContent;
+            [mHeaderView.mActView addSubview:mActView];
+            mYY += 32;
+
         }
-        
-        mHeaderView.mActivity1.text = mC;
-        mHeaderView.mActivityContent2.text = mAct.mContent;
-        
-        mHeaderView.mActivity2.text = mC2;
-        mHeaderView.mActivityContent2.text = mAct2.mContent;
-        mHeaderView.mActivity1.hidden = mHeaderView.mActivity2.hidden = NO;
-        mHeaderView.mActivityContent1.hidden = mHeaderView.mActivityContent2.hidden = NO;
+        mRR.size.height = 90 + mYY;
+
         
     }
     mHeaderView.frame = mRR;
@@ -230,7 +203,7 @@
         [mHeaderView.mCollectBtn setBackgroundImage:[UIImage imageNamed:@"my_ collect"] forState:0];
     }
 
-    
+    [mHeaderView.mLogo sd_setImageWithURL:[NSURL URLWithString:_mShopList.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"收藏数：%d",_mShopList.mFocus];
     mHeaderView.mNum.text = [NSString stringWithFormat:@"全部商品：%d",_mShopList.mGoodsNum];
     

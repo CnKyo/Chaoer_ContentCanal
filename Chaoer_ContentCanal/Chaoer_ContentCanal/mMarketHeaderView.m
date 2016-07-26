@@ -22,12 +22,7 @@
 
     
     mMarketHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"mMarketHeaderView" owner:self options:nil] objectAtIndex:0];
-    
-    view.mLogo.layer.masksToBounds = view.mActivity1.layer.masksToBounds = view.mActivity2.layer.masksToBounds = YES;
-    view.mLogo.layer.cornerRadius = view.mActivity1.layer.cornerRadius = view.mActivity2.layer.cornerRadius = 3;
-    
-    
-    
+
     return view;
 }
 

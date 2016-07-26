@@ -8,6 +8,8 @@
 
 #import "communityTableViewCell.h"
 #import "mCommunityNavView.h"
+
+#import "mActivitySubView.h"
 @implementation communityTableViewCell
 {
     DCPicScrollView  *mScrollerView;
@@ -30,9 +32,6 @@
     
     self.mLogo.layer.masksToBounds = YES;
     self.mLogo.layer.cornerRadius = 3;
-    
-    self.mActivity.layer.masksToBounds = self.mActivity2.layer.masksToBounds = YES;
-    self.mActivity.layer.cornerRadius = self.mActivityContent2.layer.cornerRadius =  2;
     
     
 }
@@ -122,4 +121,44 @@
     [self.delegate cellWithScrollerViewSelectedIndex:sender.tag];
 }
 
+
+- (void)setMShopList:(GMarketList *)mShopList{
+    self.mName.text = mShopList.mShopName;
+    [self.mLogo sd_setImageWithURL:[NSURL URLWithString:mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    self.mWorkTime.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopList.mOpenTime,mShopList.mCloseTime];
+    self.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
+    
+    self.mNum.text = [NSString stringWithFormat:@"全部商品：%d 收藏数：%d",mShopList.mGoodsNum,mShopList.mFocus];
+    self.mSenderPrice.text = [NSString stringWithFormat:@"配送费:%.2f",mShopList.mFreePrice];
+    
+    
+    if (mShopList.mActivityArr.count <= 0) {
+        self.mCellH =100;
+
+    }else {
+        
+        CGFloat mYY = 0;
+        
+        for (UIView *vvv in self.mActivityView.subviews) {
+            [vvv removeFromSuperview];
+        }
+        
+        for (GCampain *mAct in mShopList.mActivityArr) {
+            
+            mActivitySubView *mActView = [mActivitySubView shareView];
+            
+            mActView.frame = CGRectMake(0, mYY, self.contentView.size.width, 30);
+            
+            mActView.mName.text = mAct.mName;
+            mActView.mContent.text = mAct.mContent;
+            [self.mActivityView addSubview:mActView];
+            mYY += 32;
+        }
+        self.mCellH =100+ mYY;
+    }
+    
+    
+
+
+}
 @end
