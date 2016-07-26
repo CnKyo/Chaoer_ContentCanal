@@ -30,7 +30,7 @@
 /**
  *  订单状态
  */
-@property (weak, nonatomic) IBOutlet UILabel *mOrderStatus;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mOrderStatus;
 /**
  *  查看按钮
  */
@@ -45,10 +45,7 @@
  *  背景
  */
 @property (weak, nonatomic) IBOutlet UIView *mBgk;
-/**
- *  商品信息
- */
-@property (weak, nonatomic) IBOutlet UILabel *mGoodsMsg;
+
 /**
  *  商品图片
  */
@@ -61,17 +58,20 @@
  *  商品说明
  */
 @property (weak, nonatomic) IBOutlet UILabel *mGoodsDetail;
-/**
- *  商品规格
- */
-@property (weak, nonatomic) IBOutlet UILabel *mGoodsRule;
-/**
- *  商品价格
- */
-@property (weak, nonatomic) IBOutlet UILabel *mGoodsPrice;
+
 /**
  *  总金额
  */
-@property (weak, nonatomic) IBOutlet UILabel *mTotleMoney;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mTotleMoney;
+
+
+@property (strong,nonatomic)GMyOrderGoodsA *mGoodInfo;
+
+
+@property (strong,nonatomic)GMyMarketOrderInfo *mOrderInfo;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mGoodsDetailH;
+
+
 
 @end

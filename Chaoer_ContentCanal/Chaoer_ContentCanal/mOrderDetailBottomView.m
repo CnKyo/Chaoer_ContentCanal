@@ -25,6 +25,7 @@
     view.mCheckBtn.layer.masksToBounds = YES;
     view.mCheckBtn.layer.cornerRadius = 3;
     
+    
     return view;
 }
 
@@ -35,6 +36,13 @@
     view.mBgkView.layer.cornerRadius = 3;
     
     return view;
+}
+
+
+- (IBAction)mCheckBtnAction:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(mBottomViewWithBtnClick:)]) {
+        [self.delegate mBottomViewWithBtnClick:self.mOrderInfo];
+    }
 }
 
 @end

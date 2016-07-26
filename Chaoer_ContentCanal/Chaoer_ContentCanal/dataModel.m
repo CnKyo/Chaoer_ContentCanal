@@ -3941,6 +3941,81 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
     
 }
+#pragma mark ----- 获取订单详情
+/**
+ *  获取订单详情
+ *
+ *  @param mOrderCode 订单编号
+ *  @param block      返回值
+ */
+- (void)getMyMarketOrderDetail:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/goods/getGoodsDetails" parameters:para call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+           
+            
+            block(info,[[GMyMarketOrderInfo alloc] initWithObj:info.mData]);
+        }else{
+            block(info,nil);
+        }
+    }];
+    
+}
+
+#pragma mark ----- 评价订单
+/**
+ *  评价订单
+ *
+ *  @param mShopId       店铺id
+ *  @param mOrderCode    订单编号
+ *  @param mContent      评价内容
+ *  @param mSatisfaction 满意度
+ *  @param mSenderRate   配送评价
+ *  @param mGoodsRate    商品评价
+ *  @param block         返回值
+ */
+- (void)mRateMyMarketOrder:(int)mShopId andOrderCode:(NSString *)mOrderCode andContent:(NSString *)mContent andSatisfaction:(int)mSatisfaction andSenderRate:(int)mSenderRate andGoods:(int)mGoodsRate block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+//    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
+    
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    
+    if (mContent) {
+        [para setObject:mContent forKey:@"context"];
+    }
+    
+    [para setObject:NumberWithInt(mSatisfaction) forKey:@"satisfaction"];
+
+    [para setObject:NumberWithInt(mSenderRate) forKey:@"dispatching"];
+    [para setObject:NumberWithInt(mGoodsRate) forKey:@"goods"];
+    [para setObject:@"ios" forKey:@"device"];
+
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/userComment" parameters:para call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+            
+            
+            block(info);
+            
+        }else{
+            
+            block(info);
+            
+        }
+    }];
+    
+}
 #pragma mark----获取购物车
 /**
  *  获取购物车
@@ -6203,7 +6278,7 @@ bool pptbined = NO;
     
     NSMutableArray *mActivit = [NSMutableArray new];
     
-    for (NSDictionary *dic in [obj objectForKeyMy:@"campaign"]) {
+    for (NSDictionary *dic in [obj objectForKeyMy:@"campaignList"]) {
         [mActivit addObject:[[GCampain alloc] initWithObj:dic]];
     }
     
@@ -6675,7 +6750,7 @@ bool pptbined = NO;
     
     self.mDeliveFee = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"deliverFee"] floatValue];
     self.mShopName = [[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopName"];
-    self.mShopLogo = [[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopLogo"];
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopLogo"]];
     
     self.mShopId = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"shopId"] intValue];
     
@@ -6694,6 +6769,10 @@ bool pptbined = NO;
     self.mId = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"id"] intValue];
 
     self.mCommodityPrice = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"commodityPrice"] floatValue];
+    
+    
+    self.mIsComment = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"isComment"] intValue];
+    
 
 }
 
@@ -6716,10 +6795,85 @@ bool pptbined = NO;
     //    GGPayN
     
     self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
-    self.mGoodsImg = [obj objectForKeyMy:@"goodsImg"];
+    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goodsImg"]];
 
     self.mGoodsComment = [obj objectForKeyMy:@"goodsComment"];
 
+    self.mUnitPrice = [[obj objectForKeyMy:@"unitPrice"] floatValue];
+    
+}
+
+@end
+
+@implementation GMyMarketOrderInfo
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    self.mGoodsArr = [NSMutableArray new];
+    //    GGPayN
+    
+    self.mDeliveFee = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"deliverFee"] floatValue];
+    self.mShopName = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopName"];
+    self.mShopLogo = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopLogo"];
+    
+    self.mShopId = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopId"] intValue];
+    
+    NSMutableArray *mGoods = [NSMutableArray new];
+    [mGoods removeAllObjects];
+    for (NSDictionary *dic in [obj objectForKeyMy:@"goodslist"]) {
+        [mGoods addObject:[[GMyOrderGoodsA alloc] initWithObj:dic]];
+    }
+    
+    [self.mGoodsArr addObjectsFromArray:mGoods];
+    
+    
+    self.mOrderCode = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"orderCode"];
+    
+    self.mState = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"state"] intValue];
+    self.mId = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"id"] intValue];
+    
+    self.mCommodityPrice = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"commodityPrice"] floatValue];
+    
+    
+    self.mAddress = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"address"];
+    self.mDistributionMode = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"distributionMode"] intValue];
+    self.mAddTime = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"addTime"];
+        
+    self.mIsComment = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"isComment"] intValue];
+}
+
+@end
+
+@implementation GMyOrderGoodsDetailList
+
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    //    GGPayN
+    
+    self.mGoodsName = [obj objectForKeyMy:@"goodsName"];
+    self.mGoodsImg = [obj objectForKeyMy:@"goodsImg"];
+    
+    self.mGoodsComment = [obj objectForKeyMy:@"goodsComment"];
+    
     self.mUnitPrice = [[obj objectForKeyMy:@"unitPrice"] floatValue];
     
 }

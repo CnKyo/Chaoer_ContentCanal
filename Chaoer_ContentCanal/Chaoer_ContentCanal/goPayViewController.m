@@ -274,8 +274,13 @@
 {
     if( buttonIndex == 1)
     {
-        [self popViewController_3];
-   
+        if (mType == 1) {
+            
+            [self popViewController_3];
+        }else{
+            [self popViewController];
+        }
+        
     }
   }
 

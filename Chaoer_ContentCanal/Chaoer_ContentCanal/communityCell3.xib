@@ -165,6 +165,7 @@
                 <outlet property="mActivityContent2" destination="9BP-JB-bqA" id="6cH-fc-6cB"/>
                 <outlet property="mContent" destination="Zyd-HR-3ak" id="DhN-7O-FOd"/>
                 <outlet property="mDistance" destination="nUe-xn-PgF" id="MhO-HA-Tph"/>
+                <outlet property="mLine" destination="ztL-tW-Qfo" id="nJK-jL-Twh"/>
                 <outlet property="mLogo" destination="gxa-VI-2yK" id="oqF-YE-2Ve"/>
                 <outlet property="mName" destination="ZZD-7R-bge" id="5Qo-2q-mEX"/>
                 <outlet property="mNum" destination="2Eg-hf-zd2" id="fkc-v0-x3K"/>

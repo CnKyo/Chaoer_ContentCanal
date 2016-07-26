@@ -9,7 +9,7 @@
 #import "mMarketRateViewController.h"
 #import "StarsView.h"
 #import "mMarkeyRateCell.h"
-@interface mMarketRateViewController ()<StartWithRateIndexDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface mMarketRateViewController ()<StartWithRateIndexDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 
 @end
 
@@ -32,7 +32,28 @@
     NSInteger mTwo;
     NSInteger mThree;
     
+    NSString *mContent;
+    
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];    
+    /**
+     IQKeyboardManager为自定义收起键盘
+     **/
+    [[IQKeyboardManager sharedManager] setEnable:YES];///视图开始加载键盘位置开启调整
+    [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];///是否启用自定义工具栏
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;///启用手势
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
+    
+}
+
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     [super viewDidLoad];
@@ -48,6 +69,8 @@
     mPro = nil;
     
     mOne = mTwo = mThree = 1;
+    
+    mContent = nil;
     
     [self initView];
 }
@@ -75,8 +98,26 @@
     
     
 }
+
+#pragma mark ---- 提交评价
 - (void)mBtnAction:(UIButton *)sender{
     MLLog(@"提交");
+    
+    [self showWithStatus:@"正在提交..."];
+    [[mUserInfo backNowUser] mRateMyMarketOrder:_mShopId andOrderCode:_mOrderCode andContent:mContent andSatisfaction:[[NSString stringWithFormat:@"%ld",(long)mOne] intValue] andSenderRate:[[NSString stringWithFormat:@"%ld",(long)mTwo] intValue] andGoods:[[NSString stringWithFormat:@"%ld",(long)mThree] intValue] block:^(mBaseData *resb) {
+        [self dismiss];
+        if (resb.mSucess) {
+            
+            [self showSuccessStatus:resb.mMessage];
+            [self popViewController];
+            
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+        
+    }];
 }
 - (void)StartWithRateIndex:(NSInteger)mIndex andStarsViewTag:(NSInteger)mTag{
     mIndex = mIndex+1;
@@ -224,10 +265,28 @@
     cell.mSenderStatus.text = mSend;
     cell.mProductStatus.text = mPro;
     
+    
+    
+    [cell.mProductImg sd_setImageWithURL:[NSURL URLWithString:_mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    
+    cell.mName.text = _mName;
+    
+    
+    cell.mDetail.text = [NSString stringWithFormat:@"商品总价:¥%.2f元",_mTotlaPrice];
+    
+    cell.mRateTx.delegate = self;
+    
+    
     return cell;
     
     
     
 }
 
+- (void)textViewDidEndEditing:(UITextView *)textView{
+
+    MLLog(@"%@",textView.text);
+    mContent = textView.text;
+
+}
 @end

@@ -18,6 +18,8 @@
 #import "WKOrderCell.h"
 #import "WKOrderBottomView.h"
 #import "WKOrderHeadView.h"
+#import "goPayViewController.h"
+#import "mMarketRateViewController.h"
 
 #define SMGoodsModelPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"goods.archive"]
 
@@ -68,6 +70,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     WKSegmentControl    *mSegmentView;
     int mType;
+    
+    NSMutableArray *mJsonArr;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -80,6 +84,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     self.deleteArr = [NSMutableArray new];
     self.mTempArr = [NSMutableArray new];
+    mJsonArr = [NSMutableArray new];
     self.state = QHLViewStateNormal;
 
     mType = 10;
@@ -89,7 +94,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (void)initView{
     
     
-    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"未付款", @"进行中",@"已完成",@"待评价"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
+    mSegmentView = [WKSegmentControl initWithSegmentControlFrame:CGRectMake(0, 64, DEVICE_Width, 40) andTitleWithBtn:@[@"未付款", @"进行中",@"待评价"] andBackgroudColor:[UIColor whiteColor] andBtnSelectedColor:M_CO andBtnTitleColor:M_TextColor1 andUndeLineColor:M_CO andBtnTitleFont:[UIFont systemFontOfSize:15] andInterval:20 delegate:self andIsHiddenLine:NO andType:1];
     
     [self.view addSubview:mSegmentView];
     
@@ -133,6 +138,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         }else{
             [self addEmptyView:nil];
             [self showErrorStatus:resb.mMessage];
+            [self.tableView reloadData];
+
         }
     }];
     
@@ -159,6 +166,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         }else{
             [self addEmptyView:nil];
             [self showErrorStatus:resb.mMessage];
+            [self.tableView reloadData];
+
         }
     }];
 }
@@ -214,58 +223,47 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (mType == 10) {
-        //获取模型
-//        GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
-//        GMyOrderGoodsA *goods = shop.mGoodsArr[indexPath.row];
-//        //创建cell
-//        WKOrderCell *cell = [WKOrderCell cellWithTableView:tableView];
-//        cell.goods = goods;
-//        cell.mImgView.image = [UIImage imageNamed:@"ppt_my_msg"];
-//        cell.indexPath = indexPath;
-//        //cell代理
-//        cell.WKCellDelegate = self;
-//        return cell;
 
-//    }else{
     GMyMarketOrderList *shop = self.mTempArr[indexPath.row];
 
         //创建cell
     communityOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.mShop = shop;
     [cell setMShop:shop];
+    
     cell.delegate = self;
+    cell.mShop = [GMyMarketOrderList new];
+    cell.mShop = shop;
+    
+    cell.mdobtn.mShop = shop;
+    
+    
     return cell;
 
-
-//    }
-   
-    
-    
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if (mType == 10) {
-//        
-//    }else{
+
     GMyMarketOrderList *shop = self.mTempArr[indexPath.row];
     
     communityOrderDetailViewController *order = [[communityOrderDetailViewController alloc] initWithNibName:@"communityOrderDetailViewController" bundle:nil];
     order.mShop = [GMyMarketOrderList new];
     order.mShop = shop;
     [self pushViewController:order];
-//    }
     
 }
 #pragma mark----分类按钮点击事件
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
-//    CGRect mRR = self.tableView.frame;
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+10] intValue];
+    
+    if (mType == 12) {
+        mType = 13;
+    }
+    
     [self.tableView reloadData];
     //    [self.tableView headerBeginRefreshing];
     
@@ -707,5 +705,29 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     [self setButtonSelectState:YES];
 
+}
+#pragma mark ---- 支付按钮事件
+- (void)cellWithBtnClickAction:(GMyMarketOrderList *)mShop{
+
+    if (mShop.mState == 10) {
+        
+        goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
+        goPay.mMoney = mShop.mCommodityPrice;
+        goPay.mOrderCode = mShop.mOrderCode;
+        goPay.mType = 3;
+        [self pushViewController:goPay];
+        
+    
+    }if (mShop.mState == 13) {
+        mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
+        mmm.mName = mShop.mShopName;
+        mmm.mShopImg = mShop.mShopLogo;
+        mmm.mTotlaPrice = mShop.mCommodityPrice;
+        mmm.mShopId = mShop.mShopId;
+        mmm.mOrderCode = mShop.mOrderCode;
+        
+        [self pushViewController:mmm];
+    }
+    
 }
 @end

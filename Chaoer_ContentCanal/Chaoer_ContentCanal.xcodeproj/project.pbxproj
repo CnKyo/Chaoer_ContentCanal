@@ -265,6 +265,7 @@
 		04D49C7D1CE730DC00BAD649 /* complaintViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D49C7B1CE730DC00BAD649 /* complaintViewController.xib */; };
 		04D49C811CE730EF00BAD649 /* complaintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C7F1CE730EF00BAD649 /* complaintTableViewCell.m */; };
 		04D49C821CE730EF00BAD649 /* complaintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */; };
+		04D5D15A1D474E4D000E8087 /* mMarketMyOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5D1591D474E4D000E8087 /* mMarketMyOrderBtn.m */; };
 		04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652821CF002E900E26209 /* mFixRestCell.xib */; };
 		04D652871CF00E8700E26209 /* comfirOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D652851CF00E8700E26209 /* comfirOrderViewController.m */; };
 		04D652881CF00E8700E26209 /* comfirOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652861CF00E8700E26209 /* comfirOrderViewController.xib */; };
@@ -1370,6 +1371,8 @@
 		04D49C7E1CE730EF00BAD649 /* complaintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = complaintTableViewCell.h; sourceTree = "<group>"; };
 		04D49C7F1CE730EF00BAD649 /* complaintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = complaintTableViewCell.m; sourceTree = "<group>"; };
 		04D49C801CE730EF00BAD649 /* complaintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = complaintTableViewCell.xib; sourceTree = "<group>"; };
+		04D5D1581D474E4D000E8087 /* mMarketMyOrderBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMarketMyOrderBtn.h; sourceTree = "<group>"; };
+		04D5D1591D474E4D000E8087 /* mMarketMyOrderBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMarketMyOrderBtn.m; sourceTree = "<group>"; };
 		04D652821CF002E900E26209 /* mFixRestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixRestCell.xib; sourceTree = "<group>"; };
 		04D652841CF00E8700E26209 /* comfirOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comfirOrderViewController.h; sourceTree = "<group>"; };
 		04D652851CF00E8700E26209 /* comfirOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = comfirOrderViewController.m; sourceTree = "<group>"; };
@@ -3545,6 +3548,9 @@
 				04F89C211D1D312C006A3976 /* communityOrderTableViewCell.h */,
 				04F89C221D1D312C006A3976 /* communityOrderTableViewCell.m */,
 				04F89C231D1D312C006A3976 /* communityOrderTableViewCell.xib */,
+				04D5D1581D474E4D000E8087 /* mMarketMyOrderBtn.h */,
+				04D5D1591D474E4D000E8087 /* mMarketMyOrderBtn.m */,
+				04FA3E901D22840100EA9E34 /* 订单详情 */,
 				04C15D551D3729190097DA6C /* View */,
 			);
 			name = "订单";
@@ -4477,7 +4483,6 @@
 				0400EDA11D45A74E009CD641 /* 首页热卖 */,
 				04D9F4FA1D2757B600518F6F /* 备注or留言or评价 */,
 				04D9F4EF1D274B0D00518F6F /* 选择地址 */,
-				04FA3E901D22840100EA9E34 /* 订单详情 */,
 				04FA3E7E1D22645200EA9E34 /* 确定订单 */,
 				04FA3E681D22073700EA9E34 /* 购物车 */,
 				04040DE71D20BE9E008C3C31 /* 超市详情 */,
@@ -5968,6 +5973,7 @@
 				04102CB71D2A506D003A0C56 /* UIScrollView+MJRefresh.m in Sources */,
 				04D9F5061D275C2900518F6F /* mMessageOrNoteView.m in Sources */,
 				04F5FFE21D23576400EFBB3C /* communityOrderDetailViewController.m in Sources */,
+				04D5D15A1D474E4D000E8087 /* mMarketMyOrderBtn.m in Sources */,
 				04A1511B1D3637B700AFCE98 /* QHLHeaderView.m in Sources */,
 				313D76E01C994740004D5679 /* mPublicWalerViewController.m in Sources */,
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,

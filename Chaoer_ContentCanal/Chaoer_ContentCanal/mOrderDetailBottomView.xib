@@ -31,6 +31,9 @@
                     <state key="normal" title="查看物流">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="mCheckBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="UrE-0J-Mwy"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

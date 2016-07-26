@@ -15,7 +15,9 @@
 #import "mMarketRateViewController.h"
 
 #import "mOrderDetailBottomView.h"
-@interface communityOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "goPayViewController.h"
+
+@interface communityOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,orderBottomViewBtnclick>
 
 @end
 
@@ -25,6 +27,8 @@
     
     mOrderDetailBottomView *mHeaderSection;
     mOrderDetailBottomView *mBottomView;
+    
+    GMyMarketOrderInfo *mOrderInfo;
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -55,6 +59,7 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
     
     mBottomView = [mOrderDetailBottomView shareView];
+    mBottomView.delegate = self;
     [self.view addSubview:mBottomView];
     
     [mBottomView makeConstraints:^(MASConstraintMaker *make) {
@@ -64,6 +69,92 @@
     }];
     
 
+}
+- (void)upDatePage{
+    mBottomView.mOrderInfo = [GMyMarketOrderInfo new];
+    mBottomView.mOrderInfo = mOrderInfo;
+    mBottomView.mTotal.text = [NSString stringWithFormat:@"合计：¥%.2f元",mOrderInfo.mCommodityPrice];
+    
+    NSString *mTT = nil;
+    
+    if (mOrderInfo.mState == 10) {
+        mTT = @"去支付";
+    }else if(mOrderInfo.mState == 11){
+        mTT = @"进行中";
+
+    }else if(mOrderInfo.mState == 12){
+        mTT = @"确认完成";
+
+    }else{
+        
+        if (mOrderInfo.mIsComment == 1) {
+            mTT = @"已评价";
+            
+            mBottomView.mCheckBtn.enabled = NO;
+            [mBottomView.mCheckBtn setTitle:mTT forState:0];
+  
+        }else{
+            mTT = @"待评价";
+            
+            mBottomView.mCheckBtn.enabled = YES;
+            [mBottomView.mCheckBtn setTitle:mTT forState:0];
+        }
+
+
+    }
+    
+    [mBottomView.mCheckBtn setTitle:mTT forState:0];
+}
+#pragma mark ---- 地步按钮的相应事件
+- (void)mBottomViewWithBtnClick:(GMyMarketOrderInfo *)mBottomOrderInfo{
+    
+    if (mBottomOrderInfo.mState == 10) {
+        MLLog(@"去支付");
+        goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
+        goPay.mMoney = mBottomOrderInfo.mCommodityPrice;
+        goPay.mOrderCode = mBottomOrderInfo.mOrderCode;
+        goPay.mType = 3;
+        [self pushViewController:goPay];
+
+
+    }else if(mBottomOrderInfo.mState == 11){
+        MLLog(@"进行中");
+
+    }else if(mBottomOrderInfo.mState == 12){
+        MLLog(@"确认完成");
+        
+    }else{
+        MLLog(@"去评价");
+        mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
+        mmm.mName = mOrderInfo.mShopName;
+        mmm.mShopImg = mOrderInfo.mShopLogo;
+        mmm.mTotlaPrice = mOrderInfo.mCommodityPrice;
+        mmm.mShopId = mOrderInfo.mShopId;
+        mmm.mOrderCode = mOrderInfo.mOrderCode;
+        
+        [self pushViewController:mmm];
+    }
+}
+- (void)headerBeganRefresh{
+    [self showWithStatus:@"加载中..."];
+    
+    [[mUserInfo backNowUser] getMyMarketOrderDetail:self.mShop.mOrderCode block:^(mBaseData *resb, GMyMarketOrderInfo *mOrder) {
+        
+        [self dismiss];
+        [self headerEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            mOrderInfo = [GMyMarketOrderInfo new];
+            mOrderInfo = mOrder;
+            [self upDatePage];
+            [self.tableView reloadData];
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -99,6 +190,10 @@
     }else{
 
         mHeaderSection = [mOrderDetailBottomView shareSectionView];
+        
+        [mHeaderSection.mStoreImg sd_setImageWithURL:[NSURL URLWithString:mOrderInfo.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+        mHeaderSection.mName.text = mOrderInfo.mShopName;
+        
         return mHeaderSection;
     }
     
@@ -110,7 +205,7 @@
     if (section == 0) {
         return 1;
     }else{
-        return 5;
+        return mOrderInfo.mGoodsArr.count;
     }
     
     
@@ -123,7 +218,17 @@
     if (indexPath.section == 0) {
         return 340;
     }else{
-        return 145;
+        GMyOrderGoodsA *mGoods = mOrderInfo.mGoodsArr[indexPath.row];
+        
+        NSString *reuseCellId = nil;
+        
+        reuseCellId = @"cell2";
+        
+        communityOrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        
+        
+        
+        return 145+[Util labelText:mGoods.mGoodsComment fontSize:13 labelWidth:cell.mGoodsDetail.mwidth]-16;
     }
     
     
@@ -142,16 +247,18 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.mCheckBtn addTarget:self action:@selector(mCaheckAction:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [cell setMOrderInfo:mOrderInfo];
         return cell;
         
     }else{
+        
+        GMyOrderGoodsA *mGoods = mOrderInfo.mGoodsArr[indexPath.row];
         
         reuseCellId = @"cell2";
         
         communityOrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        [cell setMGoodInfo:mGoods];
         
         return cell;
     }
@@ -160,11 +267,24 @@
 }
 
 - (void)mCaheckAction:(UIButton *)sender{
-//    orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
-//    [self pushViewController:orderS];
     
-    mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
-    [self pushViewController:mmm];
+    
+    if (mOrderInfo.mState == 10) {
+        
+    }else if(mOrderInfo.mState == 11){
+        orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
+        [self pushViewController:orderS];
+
+    }else if (mOrderInfo.mState == 12){
+        orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
+        [self pushViewController:orderS];
+
+    }else{
+        orderStatusViewController *orderS = [[orderStatusViewController alloc] initWithNibName:@"orderStatusViewController" bundle:nil];
+        [self pushViewController:orderS];
+
+    }
+
     
 }
 @end

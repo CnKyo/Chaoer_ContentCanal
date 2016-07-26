@@ -105,6 +105,8 @@
 @class GCollectionSHop;
 @class SGoodsDetail;
 @class GPayShopCar;
+@class GMyMarketOrderList;
+@class GMyMarketOrderInfo;
 /**
  *  用户信息
  */
@@ -1312,6 +1314,27 @@
  *  @param block   返回值
  */
 - (void)getMyMarketOrderList:(int)mStatus andPage:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark ----- 获取订单详情
+/**
+ *  获取订单详情
+ *
+ *  @param mOrderCode 订单编号
+ *  @param block      返回值
+ */
+- (void)getMyMarketOrderDetail:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block;
+#pragma mark ----- 评价订单
+/**
+ *  评价订单
+ *
+ *  @param mShopId       店铺id
+ *  @param mOrderCode    订单编号
+ *  @param mContent      评价内容
+ *  @param mSatisfaction 满意度
+ *  @param mSenderRate   配送评价
+ *  @param mGoodsRate    商品评价
+ *  @param block         返回值
+ */
+- (void)mRateMyMarketOrder:(int)mShopId andOrderCode:(NSString *)mOrderCode andContent:(NSString *)mContent andSatisfaction:(int)mSatisfaction andSenderRate:(int)mSenderRate andGoods:(int)mGoodsRate block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----获取购物车
 /**
@@ -3838,6 +3861,9 @@
 @property (strong,nonatomic) NSMutableArray *mGoodsArr;
 
 @property (assign,nonatomic) BOOL selected;
+
+@property (assign,nonatomic) int mIsComment;
+
 -(id)initWithObj:(NSDictionary *)obj;
 
 @end
@@ -3871,3 +3897,100 @@
 @property (strong,nonatomic) NSString *mGoodsComment;
 
 @end
+
+
+/**
+ *  我的订单对象
+ */
+@interface GMyMarketOrderInfo : NSObject
+/**
+ *  店铺di
+ */
+@property (assign,nonatomic) int mShopId;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  状态
+ */
+@property (assign,nonatomic) int mState;
+/**
+ *  配送费
+ */
+@property (assign,nonatomic) float mDeliveFee;
+/**
+ *  店铺logo
+ */
+@property (strong,nonatomic) NSString *mShopLogo;
+/**
+ *  店铺名称
+ */
+@property (strong,nonatomic) NSString *mShopName;
+/**
+ *  订单编号
+ */
+@property (strong,nonatomic) NSString *mOrderCode;
+/**
+ *  商品总价格
+ */
+@property (assign,nonatomic) float mCommodityPrice;
+/**
+ *  商品集合
+ */
+@property (strong,nonatomic) NSMutableArray *mGoodsArr;
+
+@property (assign,nonatomic) BOOL selected;
+/**
+ *  订单评价内容
+ */
+@property (strong,nonatomic) NSString *mOrderRate;
+/**
+ *  地址
+ */
+@property (strong,nonatomic) NSString *mAddress;
+/**
+ *  总体评价
+ */
+@property (assign,nonatomic) int mDistributionMode;
+/**
+ *  创建时间
+ */
+@property (strong,nonatomic) NSString *mAddTime;
+
+@property (assign,nonatomic) int mIsComment;
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@end
+
+/**
+ 商品对象
+ 
+ - returns: <#return value description#>
+ */
+@interface GMyOrderGoodsDetailList : NSObject
+
+-(id)initWithObj:(NSDictionary *)obj;
+
+@property (assign,nonatomic) BOOL selected;
+
+/**
+ *  单价？
+ */
+@property (assign,nonatomic) float mUnitPrice;
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString *mGoodsName;
+/**
+ *  商品图片
+ */
+@property (strong,nonatomic) NSString *mGoodsImg;
+/**
+ *  商品描述
+ */
+@property (strong,nonatomic) NSString *mGoodsComment;
+
+@end
+

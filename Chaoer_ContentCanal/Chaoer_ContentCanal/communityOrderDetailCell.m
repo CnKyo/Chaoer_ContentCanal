@@ -30,4 +30,55 @@
     
 }
 
+
+- (void)setMGoodInfo:(GMyOrderGoodsA *)mGoodInfo{
+
+    NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
+
+    [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodInfo.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    self.mGoodsName.text = mGoodInfo.mGoodsName;
+    self.mTotleMoney.attributedText = [[NSString stringWithFormat:@"商品金额:<color>¥%.2f</color>",mGoodInfo.mUnitPrice] attributedStringWithStyleBook:mStyle1];
+    self.mGoodsDetail.text = mGoodInfo.mGoodsComment;
+    
+    self.mGoodsDetailH.constant = [Util labelText:mGoodInfo.mGoodsComment fontSize:13 labelWidth:self.mGoodsDetail.mwidth];
+    
+}
+
+- (void)setMOrderInfo:(GMyMarketOrderInfo *)mOrderInfo{
+    NSDictionary *mStyle1 = @{@"color": [UIColor redColor],@"font":[UIFont systemFontOfSize:18]};
+
+    self.mOrderAddress.text = mOrderInfo.mAddress;
+    
+    NSString *mS = nil;
+    
+    if (mOrderInfo.mState == 10) {
+        mS = @"待支付";
+        self.mCheckBtn.hidden = YES;
+    }else if(mOrderInfo.mState == 11){
+        mS = @"进行中";
+        self.mCheckBtn.hidden = YES;
+    }else if (mOrderInfo.mState == 12){
+        mS = @"已完成";
+        self.mCheckBtn.hidden = YES;
+    }else{
+        
+        if (mOrderInfo.mIsComment == 1) {
+            mS = @"已评价";
+        }else{
+            mS = @"待评价";
+        }
+        
+        
+        self.mCheckBtn.hidden = YES;
+    }
+    
+    self.mOrderStatus.attributedText = [[NSString stringWithFormat:@"订单状态:  <color><font>%@</font></color>",mS] attributedStringWithStyleBook:mStyle1];
+    
+    self.mOrderCode.text = [NSString stringWithFormat:@"订单编号:%@",mOrderInfo.mOrderCode];
+    
+    self.mCreateTime.text = [NSString stringWithFormat:@"下单时间:%@",mOrderInfo.mAddTime];
+    
+    
+}
+
 @end

@@ -66,7 +66,7 @@
                                     <constraint firstAttribute="height" constant="1" id="lIq-fP-Jk2"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单状态：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poq-b8-q1G">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单状态：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poq-b8-q1G" customClass="WPHotspotLabel">
                                 <rect key="frame" x="8" y="166" width="216" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="V9o-ri-FAx"/>

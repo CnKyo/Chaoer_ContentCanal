@@ -94,4 +94,7 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mSenderPrice;
 
+@property (weak, nonatomic) IBOutlet UIView *mLine;
+
+@property (assign,nonatomic) CGFloat mCellH;
 @end

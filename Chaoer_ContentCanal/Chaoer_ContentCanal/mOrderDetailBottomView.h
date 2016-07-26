@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class GMyMarketOrderInfo;
+/**
+ *  代理
+ */
+@protocol orderBottomViewBtnclick <NSObject>
+
+@optional
+/**
+ *  底部按钮的代理方法
+ *
+ *  @param mOrderInfo 订单对象
+ */
+- (void)mBottomViewWithBtnClick:(GMyMarketOrderInfo *)mBottomOrderInfo;
+
+@end
+
 @interface mOrderDetailBottomView : UIView
 #pragma mark ---- 订单详情底部view
 /**
@@ -43,5 +59,10 @@
  *  @return 返回view
  */
 + (mOrderDetailBottomView *)shareSectionView;
+
+@property (strong,nonatomic) GMyMarketOrderInfo *mOrderInfo;
+
+@property (strong,nonatomic) id <orderBottomViewBtnclick> delegate;
+
 
 @end

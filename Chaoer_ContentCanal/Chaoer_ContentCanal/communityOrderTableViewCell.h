@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WPHotspotLabel.h"
+#import "mMarketMyOrderBtn.h"
 @class GMyMarketOrderList;
 @protocol cellWithBtnClickDelegate <NSObject>
 
@@ -45,7 +46,7 @@
 /**
  *  按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *mdobtn;
+@property (weak, nonatomic) IBOutlet mMarketMyOrderBtn *mdobtn;
 
 @property (strong,nonatomic) GMyMarketOrderList *mShop;
 

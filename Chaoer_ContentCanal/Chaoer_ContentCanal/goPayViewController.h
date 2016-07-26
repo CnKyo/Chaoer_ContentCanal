@@ -11,7 +11,7 @@
 @interface goPayViewController : BaseVC
 
 /**
- *  1是社区生活订单 2是报修订单
+ *  1是社区生活订单 2是报修订单 3是我的界面
  */
 @property (assign,nonatomic) int mType;
 /**
