@@ -10,4 +10,7 @@
 
 @interface communityOrderDetailViewController : BaseVC
 
+@property (strong,nonatomic) GMyMarketOrderList *mShop;
+
+
 @end

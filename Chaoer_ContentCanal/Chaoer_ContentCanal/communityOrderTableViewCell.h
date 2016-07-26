@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPHotspotLabel.h"
+@class GMyMarketOrderList;
+@protocol cellWithBtnClickDelegate <NSObject>
+
+@optional
+
+- (void)cellWithBtnClickAction:(GMyMarketOrderList *)mShop;
+
+@end
 
 @interface communityOrderTableViewCell : UITableViewCell
 /**
@@ -16,7 +25,7 @@
 /**
  *  订单编号
  */
-@property (weak, nonatomic) IBOutlet UILabel *mOrderCode;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mOrderCode;
 /**
  *  图片
  */
@@ -32,12 +41,14 @@
 /**
  *  价格
  */
-@property (weak, nonatomic) IBOutlet UILabel *mPrice;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mPrice;
 /**
  *  按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mdobtn;
 
+@property (strong,nonatomic) GMyMarketOrderList *mShop;
 
+@property (strong,nonatomic) id <cellWithBtnClickDelegate> delegate;
 
 @end

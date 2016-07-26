@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
 };
 
-@interface communityOrderViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,WKHeaderViewDelegate,WKOrderCellDelegate,WKOrderBottomDelegate>
+@interface communityOrderViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,WKHeaderViewDelegate,WKOrderCellDelegate,WKOrderBottomDelegate,cellWithBtnClickDelegate>
 
 
 @property (nonatomic, strong) WKOrderBottomView *mBottomView;
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     mType = 10;
     [self initView];
-    [self initBottomView];
+//    [self initBottomView];
 }
 - (void)initView{
     
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     [self.view addSubview:mSegmentView];
     
-    [self loadTableView:CGRectMake(0, 40, DEVICE_Width, DEVICE_Height-164) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0, 40, DEVICE_Width, DEVICE_Height-104) delegate:self dataSource:self];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
     
@@ -189,52 +189,56 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    if (mType == 10) {
+//    if (mType == 10) {
 
-        return self.mTempArr.count;
-    }else{
+//        return self.mTempArr.count;
+//    }else{
         return 1;
-    }
+//    }
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (mType == 10) {
-        GMyMarketOrderList *shop = self.mTempArr[section];
-        return shop.mGoodsArr.count;
-    }else{
-        return 5;
-    }
+//    if (mType == 10) {
+//        GMyMarketOrderList *shop = self.mTempArr[section];
+//        return shop.mGoodsArr.count;
+//    }else{
+//        return 5;
+//    }
     
 
-    
+    return self.mTempArr.count;
+
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (mType == 10) {
+//    if (mType == 10) {
         //获取模型
-        GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
-        GMyOrderGoodsA *goods = shop.mGoodsArr[indexPath.row];
+//        GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
+//        GMyOrderGoodsA *goods = shop.mGoodsArr[indexPath.row];
+//        //创建cell
+//        WKOrderCell *cell = [WKOrderCell cellWithTableView:tableView];
+//        cell.goods = goods;
+//        cell.mImgView.image = [UIImage imageNamed:@"ppt_my_msg"];
+//        cell.indexPath = indexPath;
+//        //cell代理
+//        cell.WKCellDelegate = self;
+//        return cell;
+
+//    }else{
+    GMyMarketOrderList *shop = self.mTempArr[indexPath.row];
+
         //创建cell
-        WKOrderCell *cell = [WKOrderCell cellWithTableView:tableView];
-        cell.goods = goods;
-        cell.mImgView.image = [UIImage imageNamed:@"ppt_my_msg"];
-        cell.indexPath = indexPath;
-        //cell代理
-        cell.WKCellDelegate = self;
-        return cell;
-
-    }else{
-       
-        //创建cell
-        communityOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        
-        return cell;
+    communityOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.mShop = shop;
+    [cell setMShop:shop];
+    cell.delegate = self;
+    return cell;
 
 
-    }
+//    }
    
     
     
@@ -243,225 +247,229 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (mType == 10) {
-        
-    }else{
-        communityOrderDetailViewController *order = [[communityOrderDetailViewController alloc] initWithNibName:@"communityOrderDetailViewController" bundle:nil];
-        [self pushViewController:order];
-    }
+//    if (mType == 10) {
+//        
+//    }else{
+    GMyMarketOrderList *shop = self.mTempArr[indexPath.row];
+    
+    communityOrderDetailViewController *order = [[communityOrderDetailViewController alloc] initWithNibName:@"communityOrderDetailViewController" bundle:nil];
+    order.mShop = [GMyMarketOrderList new];
+    order.mShop = shop;
+    [self pushViewController:order];
+//    }
     
 }
 #pragma mark----分类按钮点击事件
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
-    CGRect mRR = self.tableView.frame;
+//    CGRect mRR = self.tableView.frame;
     
     mType = [[NSString stringWithFormat:@"%ld",(long)mIndex+10] intValue];
     [self.tableView reloadData];
     //    [self.tableView headerBeginRefreshing];
     
-    if (mType == 10) {
-        self.mBottomView.hidden = NO;
-        mRR.size.height = DEVICE_Height-164;
-        self.tableView.frame = mRR;
-    }else{
-        self.mBottomView.hidden = YES;
-        mRR.size.height = DEVICE_Height-104;
-        self.tableView.frame = mRR;
-    }
+//    if (mType == 10) {
+//        self.mBottomView.hidden = NO;
+//        mRR.size.height = DEVICE_Height-164;
+//        self.tableView.frame = mRR;
+//    }else{
+//        self.mBottomView.hidden = YES;
+//        mRR.size.height = DEVICE_Height-104;
+//        self.tableView.frame = mRR;
+//    }
     [self headerBeganRefresh];
 }
 
 #pragma mark - 创建表头视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (mType == 10) {
-        WKOrderHeadView *headerView = [WKOrderHeadView headerWithTableView:tableView];
-        //获取模型
-        GMyMarketOrderList *shop = self.mTempArr[section];
-        headerView.shop = shop;
-        headerView.mStoreImg.image = [UIImage imageNamed:@"ppt_my_msg"];
-        headerView.section = section;
-        //headerView代理
-        headerView.WKHeaderViewDelegate = self;
-        return headerView;
-
-    }else{
-        return nil;
-    }
-    
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    if (mType == 10) {
-        mShopCarHeaderSection *mFooter = [mShopCarHeaderSection shareFooterView];
-        
-        return mFooter;
-    }else{
-        return nil;
-    }
-    
-
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    if (mType == 10) {
+//        WKOrderHeadView *headerView = [WKOrderHeadView headerWithTableView:tableView];
+//        //获取模型
+//        GMyMarketOrderList *shop = self.mTempArr[section];
+//        headerView.shop = shop;
+//        headerView.mStoreImg.image = [UIImage imageNamed:@"ppt_my_msg"];
+//        headerView.section = section;
+//        //headerView代理
+//        headerView.WKHeaderViewDelegate = self;
+//        return headerView;
+//
+//    }else{
+//        return nil;
+//    }
+//    
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    
+//    if (mType == 10) {
+//        mShopCarHeaderSection *mFooter = [mShopCarHeaderSection shareFooterView];
+//        
+//        return mFooter;
+//    }else{
+//        return nil;
+//    }
+//    
+//
+//}
 #pragma mark - 设置cell侧滑按钮
 #pragma mark -- tableviewDelegate
 //是否可以编辑  默认的时YES
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
+//}
 
 //选择编辑的方式,按照选择的方式对表进行处理
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
-
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //删除数据
-        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
-        
-        
-        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
-            [self.mTempArr removeObjectAtIndex:indexPath.section];
-        }
-        [tableView reloadData];
-        
-        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
-            //根据indexPath获取到QHLShop对象
-            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
-            
-            //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
-            
-            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
-                [self.mTempArr removeObject:shops];
-            }
-        }
-        
-        for (GMyOrderGoodsA *good in shop.mGoodsArr) {
-            if (!good.selected) {
-                shop.selected = NO;
-                [self setButtonSelectState:NO];
-                [tableView reloadData];
-                return;
-            }
-        }
-        
-        shop.selected = YES;
-        if (self.state == QHLViewStateEdited) {
-            //根据indexPath获取到QHLShop对象
-            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
-            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
-        }
-        [tableView reloadData];
-        
-        for (GMyMarketOrderList *shop in self.mTempArr) {
-            if (!shop.selected) {
-                [self setButtonSelectState:NO];
-                return;
-            }
-        }
-        [self setButtonSelectState:YES];
-        [tableView reloadData];
-
-    }
-    
-}
-
-//选择你要对表进行处理的方式  默认是删除方式
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  UITableViewCellEditingStyleDelete ;
-}
-
-//修改删除按钮的文字
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
-}
-
-- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
-    
-    //删除
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        //删除数据
-        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
-        
-        
-        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
-            [self.mTempArr removeObjectAtIndex:indexPath.section];
-        }
-        [tableView reloadData];
-        
-        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
-            //根据indexPath获取到QHLShop对象
-            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
-            
-            //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
-            
-            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
-                [self.mTempArr removeObject:shops];
-            }
-        }
-        
-        for (GMyOrderGoodsA *good in shop.mGoodsArr) {
-            if (!good.selected) {
-                shop.selected = NO;
-                [self setButtonSelectState:NO];
-                [tableView reloadData];
-                return;
-            }
-        }
-        
-        shop.selected = YES;
-        if (self.state == QHLViewStateEdited) {
-            //根据indexPath获取到QHLShop对象
-            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
-            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
-        }
-        [tableView reloadData];
-        
-        for (GMyMarketOrderList *shop in self.mTempArr) {
-            if (!shop.selected) {
-                [self setButtonSelectState:NO];
-                return;
-            }
-        }
-        [self setButtonSelectState:YES];
-        
-    }];
-    
-    //    return @[deleteAction, readedAction, toTapAction];
-    return @[deleteAction];
-    
-}
-
-#pragma mark - 设置表头视图高度
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (mType == 10) {
-        return 65;
-    }else{
-        return 0;
-    }
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-
-    if (mType == 10) {
-        return 50;
-    }else{
-        
-        return 0;
-    }
-    
-}
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
+//
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        //删除数据
+//        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
+//        
+//        
+//        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+//            [self.mTempArr removeObjectAtIndex:indexPath.section];
+//        }
+//        [tableView reloadData];
+//        
+//        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
+//            //根据indexPath获取到QHLShop对象
+//            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
+//            
+//            //移除该对象goods数组中的下标为indexPath.row的元素
+//            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
+//            
+//            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+//                [self.mTempArr removeObject:shops];
+//            }
+//        }
+//        
+//        for (GMyOrderGoodsA *good in shop.mGoodsArr) {
+//            if (!good.selected) {
+//                shop.selected = NO;
+//                [self setButtonSelectState:NO];
+//                [tableView reloadData];
+//                return;
+//            }
+//        }
+//        
+//        shop.selected = YES;
+//        if (self.state == QHLViewStateEdited) {
+//            //根据indexPath获取到QHLShop对象
+//            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
+//            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
+//        }
+//        [tableView reloadData];
+//        
+//        for (GMyMarketOrderList *shop in self.mTempArr) {
+//            if (!shop.selected) {
+//                [self setButtonSelectState:NO];
+//                return;
+//            }
+//        }
+//        [self setButtonSelectState:YES];
+//        [tableView reloadData];
+//
+//    }
+//    
+//}
+//
+////选择你要对表进行处理的方式  默认是删除方式
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return  UITableViewCellEditingStyleDelete ;
+//}
+//
+////修改删除按钮的文字
+//-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return @"删除";
+//}
+//
+//- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    GMyMarketOrderList *shop = self.mTempArr[indexPath.section];
+//    
+//    //删除
+//    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//        //删除数据
+//        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
+//        
+//        
+//        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+//            [self.mTempArr removeObjectAtIndex:indexPath.section];
+//        }
+//        [tableView reloadData];
+//        
+//        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
+//            //根据indexPath获取到QHLShop对象
+//            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
+//            
+//            //移除该对象goods数组中的下标为indexPath.row的元素
+//            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
+//            
+//            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+//                [self.mTempArr removeObject:shops];
+//            }
+//        }
+//        
+//        for (GMyOrderGoodsA *good in shop.mGoodsArr) {
+//            if (!good.selected) {
+//                shop.selected = NO;
+//                [self setButtonSelectState:NO];
+//                [tableView reloadData];
+//                return;
+//            }
+//        }
+//        
+//        shop.selected = YES;
+//        if (self.state == QHLViewStateEdited) {
+//            //根据indexPath获取到QHLShop对象
+//            GMyMarketOrderList *shops = self.mTempArr[indexPath.section];
+//            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
+//        }
+//        [tableView reloadData];
+//        
+//        for (GMyMarketOrderList *shop in self.mTempArr) {
+//            if (!shop.selected) {
+//                [self setButtonSelectState:NO];
+//                return;
+//            }
+//        }
+//        [self setButtonSelectState:YES];
+//        
+//    }];
+//    
+//    //    return @[deleteAction, readedAction, toTapAction];
+//    return @[deleteAction];
+//    
+//}
+//
+//#pragma mark - 设置表头视图高度
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    if (mType == 10) {
+//        return 65;
+//    }else{
+//        return 0;
+//    }
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//
+//    if (mType == 10) {
+//        return 50;
+//    }else{
+//        
+//        return 0;
+//    }
+//    
+//}
 #pragma mark - 设置cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     
-    if (mType == 10) {
-        return 85;
-    }else{
+//    if (mType == 10) {
+//        return 85;
+//    }else{
         return 150;
-    }
+//    }
 }
 
 #pragma mark - 根据不同的选中状态来设置底部view的隐藏&显示

@@ -6670,6 +6670,7 @@ bool pptbined = NO;
 }
 - (void)fetchIt:(NSDictionary *)obj{
     
+    self.mGoodsArr = [NSMutableArray new];
     //    GGPayN
     
     self.mDeliveFee = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"deliverFee"] floatValue];
