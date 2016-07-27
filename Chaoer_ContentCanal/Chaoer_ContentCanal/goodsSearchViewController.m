@@ -24,7 +24,9 @@
     
     mSearchHeaderSectionView *mSectionView;
     
-    NSMutableArray *mDataArr;
+    
+    NSMutableArray *mHistoryArr;
+    NSMutableArray *mHotArr;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -58,10 +60,11 @@
     self.hiddenRightBtn = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    mDataArr = [NSMutableArray new];
-    
+    mHotArr = [NSMutableArray new];
+    mHistoryArr = [NSMutableArray new];
+
     for (int i = 0; i<10; i++) {
-        [mDataArr addObject:[NSString stringWithFormat:@"这是第%d个",i]];
+        [mHistoryArr addObject:[NSString stringWithFormat:@"这是第%d个",i]];
     }
     
     
@@ -111,6 +114,25 @@
     
 }
 
+- (void)headerBeganRefresh{
+
+    
+    [self showWithStatus:@"加载中..."];
+    [[mUserInfo backNowUser] getHotSearch:^(mBaseData *resb, NSArray *mArr) {
+        [self headerEndRefresh];
+        [self dismiss];
+        [mHotArr removeAllObjects];
+        if (resb.mSucess) {
+            [mHotArr addObjectsFromArray:mArr];
+            [self.tableView reloadData];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+            [self addEmptyView:nil];
+        }
+        
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -165,9 +187,8 @@
     cellId = @"cell";
     
     mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    [cell setMDataSource:mHotArr];
     
-    [cell setMDataSource:mDataArr];
-
     return cell.mHight;
 }
 
@@ -181,8 +202,11 @@
     mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
-    [cell setMDataSource:mDataArr];
-    
+    if (indexPath.section == 1) {
+        [cell setMDataSource:mHotArr];
+    }else{
+        [cell setMDataSource:mHotArr];
+    }
     return cell;
     
 }

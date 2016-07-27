@@ -1242,6 +1242,13 @@
  *  @param block     返回值
  */
 - (void)searchGoodsAndShop:(NSString *)mKeyWords block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----热门推荐搜索
+/**
+ *  热门推荐搜索
+ *
+ *  @param block 返回值
+ */
+- (void)getHotSearch:(void(^)(mBaseData *resb,NSArray *mArr))block;
 #pragma mark---- 获取商品详情
 /**
  *  获取商品详情

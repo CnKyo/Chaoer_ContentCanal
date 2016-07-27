@@ -3683,6 +3683,34 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+#pragma mark----热门推荐搜索
+/**
+ *  热门推荐搜索
+ *
+ *  @param block 返回值
+ */
+- (void)getHotSearch:(void(^)(mBaseData *resb,NSArray *mArr))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/product/hotSearch" parameters:para call:^(mBaseData * _Nonnull info) {
+        
+        NSMutableArray *tempArr = [NSMutableArray new];
+        
+        if (info.mSucess) {
+            
+            for (NSDictionary *dic in info.mData) {
+                [tempArr addObject:[dic objectForKeyMy:@"goodsKeywords"]];
+            }
+            
+            block(info,tempArr);
+        }else{
+            block(info,nil);
+        }
+    }];
+    
+}
 #pragma mark---- 获取商品详情
 - (void)getGoodsDetail:(int)mGoodsId andShopId:(int)mShopId block:(void(^)(mBaseData *resb,SGoodsDetail *SGoods))block{
 
