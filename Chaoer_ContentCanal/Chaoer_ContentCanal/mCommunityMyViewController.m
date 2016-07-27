@@ -14,6 +14,7 @@
 
 #import "communityOrderViewController.h"
 #import "mCoupViewController.h"
+#import "mMarketDetailViewController.h"
 
 
 #import "shopCarViewController.h"
@@ -302,6 +303,7 @@
             mGoods2 = [self.tempArray objectAtIndex:indexPath.row*2+1];
             cell.mRightView.hidden = NO;
         }
+        cell.mLeftDetailBtn.tag = mGoods1.mGoodsId;
         cell.mLeftName.text = mGoods1.mGoodsName;
         cell.mLeftContent.text = mGoods1.mGoodsDetail;
         cell.mLeftNum.text = [NSString stringWithFormat:@"月销：%d",mGoods1.mSalesNum];
@@ -332,6 +334,8 @@
         /**
          *  设置收藏与添加购物车与详情
          */
+        cell.mRightDetailBtn.tag = mGoods2.mGoodsId;
+
         cell.mRightName.text = mGoods2.mGoodsName;
         cell.mRightContent.text = mGoods2.mGoodsDetail;
         cell.mRightNum.text = [NSString stringWithFormat:@"月销：%d",mGoods2.mSalesNum];
@@ -400,6 +404,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (mType == 1) {
+    
+        GMarketList *mShopN = self.tempArray[indexPath.row];
+        
+        mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+        market.mShopList = GMarketList.new;
+        market.mShopList = mShopN;
+        market.mShopId = mShopN.mShopId;
+        
+        [self pushViewController:market];
+    }
     
 }
 

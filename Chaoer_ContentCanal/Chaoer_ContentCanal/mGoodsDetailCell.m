@@ -52,9 +52,7 @@
     CGRect mActFrame = self.mShopDetailView.frame;
     
     
-    if (mGoodsDetail.mCampainArr.count<=0) {
-        
-    }else{
+    
         
         CGFloat xx = 0.0;
         CGFloat yy = self.mFocusNum.mbottom+3;
@@ -77,7 +75,7 @@
         
         self.mCellH = 248+mActivityDetailH-94;
         
-    }
+    
     self.mGoodsName.text = mGoodsDetail.mGoodsName;
     self.mGoodsContent.text = mGoodsDetail.mGoodsDscribe;
     

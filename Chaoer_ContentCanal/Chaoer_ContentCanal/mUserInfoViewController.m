@@ -37,7 +37,7 @@
 
 - (void)loadUserInfo{
 
-    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+    [[mUserInfo backNowUser] getNowUserInfo:[mUserInfo backNowUser].mHistorySearchArr block:^(mBaseData *resb, mUserInfo *user) {
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
         }else{

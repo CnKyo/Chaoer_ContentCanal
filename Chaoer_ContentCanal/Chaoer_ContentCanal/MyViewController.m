@@ -283,7 +283,8 @@
 
 - (void)headerBeganRefresh{
     
-    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+    [[mUserInfo backNowUser] getNowUserInfo:[mUserInfo backNowUser].mHistorySearchArr block:^(mBaseData *resb, mUserInfo *user) {
+        
         [self headerEndRefresh];
         
         [self DissMissEmptyView];

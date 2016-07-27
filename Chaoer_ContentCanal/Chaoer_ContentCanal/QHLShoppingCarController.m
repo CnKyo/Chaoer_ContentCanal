@@ -296,7 +296,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                         self.count ++;
                         
                         //计算金额
-                        self.money += good.mGoodsPrice ;
+                        self.money += good.mGoodsPrice*good.mQuantity ;
                         
                         [self.deleteArr addObject:[NSString stringWithFormat:@"%.2f",good.mGoodsPrice]];
                         
@@ -313,7 +313,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 for (GShopCarGoods *good in shop.mGoodsArr) {
                     self.count --;
                     
-                    self.money -= good.mGoodsPrice ;
+                    self.money -= good.mGoodsPrice * good.mQuantity;
                 }
             }
         }
@@ -549,7 +549,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 if (good.mSelected) {
                     
                     self.count ++;
-                    self.money += good.mGoodsPrice;
+                    self.money += good.mGoodsPrice * good.mQuantity;
                     
                 }
             }
@@ -655,7 +655,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     CGFloat price = 0.0;
     
     for (GShopCarGoods *mGoods in shop.mGoodsArr) {
-        price += mGoods.mGoodsPrice;
+        price += mGoods.mGoodsPrice *mGoods.mQuantity;
     }
     NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
     mFooter.mTotalMoney.attributedText = [[NSString stringWithFormat:@"总金额:<color>¥%.2f</color>",price] attributedStringWithStyleBook:mStyle1];
@@ -826,7 +826,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 self.count ++;
                 
                 //添加金额
-                self.money += good.mGoodsPrice;
+                self.money += good.mGoodsPrice * good.mQuantity;
             
             [self.mShopCarIdsArr addObject:[NSString stringWithFormat:@"%d",good.mId]];
             [self.mShopCarNumArr addObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
@@ -835,7 +835,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 self.count --;
                 
                 //减去金额
-                self.money -= good.mGoodsPrice;
+                self.money -= good.mGoodsPrice * good.mQuantity;
             [self.mShopCarIdsArr removeObject:[NSString stringWithFormat:@"%d",good.mId]];
             [self.mShopCarNumArr removeObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
         }
@@ -970,7 +970,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
     [self.tableView reloadData];
 }
-#pragma mark - headerView的代理方法
+#pragma mark - 表头headerView的代理方法
 - (void)headerView:(QHLHeaderView *)headerView selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andSection:(NSInteger)section {
     
     BOOL selected = !selBtnSelectState;
@@ -989,7 +989,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 if (!good.mSelected) {
                         self.count ++;
                         //添加金额
-                        self.money += good.mGoodsPrice;
+                        self.money += good.mGoodsPrice * good.mQuantity;
                     
                     [self.mShopCarIdsArr addObject:[NSString stringWithFormat:@"%d",good.mId]];
                     [self.mShopCarNumArr addObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
@@ -1000,7 +1000,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             for (GShopCarGoods *good in shop.mGoodsArr) {
                     self.count --;
                     //添加金额
-                    self.money -= good.mGoodsPrice;
+                    self.money -= good.mGoodsPrice * good.mQuantity;
                 [self.mShopCarIdsArr removeObject:[NSString stringWithFormat:@"%d",good.mId]];
                 [self.mShopCarNumArr removeObject:[NSString stringWithFormat:@"%d",good.mQuantity]];
 

@@ -66,6 +66,10 @@
     BOOL mSelected;
     
 }
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     [super viewDidLoad];
@@ -83,13 +87,12 @@
 
     [self initView];
 
-    [self initData];
 
 }
 
 #pragma mark----初始化导航条
 - (void)initView{
-    
+
     
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 114)];
@@ -108,6 +111,9 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
     UINib   *nib = [UINib nibWithNibName:@"mGoodsDetailCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+    
+    self.haveHeader = YES;
+    self.haveFooter = YES;
     
     nib = [UINib nibWithNibName:@"mGoodsDetailHotCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
@@ -158,34 +164,17 @@
     MLLog(@"adsdasd");
 }
 - (void)headerBeganRefresh{
+    [self initData];
 
     // 动画时间
-    CGFloat duration = 0.3f;
-    
-    // 1.设置 UITableView 上拉显示商品详情
-    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            self.scrollView.contentOffset = CGPointMake(0, self.scrollView.kheight);
-        } completion:^(BOOL finished) {
-            [self.tableView.mj_footer endRefreshing];
-        }];
-    }];
-    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
-    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
-    
-    [footer setTitle:@"继续拖动，查看图文详情" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStatePulling];
-    [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStateRefreshing];
-    
-    self.tableView.mj_footer = footer;
-    
-    
+    CGFloat duration = 0.4f;
     // 2.设置 UIWebView 下拉显示商品详情
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         //设置动画效果
         [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
             self.scrollView.contentOffset = CGPointMake(0, 0);
         } completion:^(BOOL finished) {
+            [self headerEndRefresh];
             //结束加载
             [self.twoPageView.mj_header endRefreshing];
         }];
@@ -203,8 +192,38 @@
     header.stateLabel.font = [UIFont systemFontOfSize:12.f];
     self.twoPageView.mj_header = header;
     //    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
-    
+    [self headerEndRefresh];
 
+    
+    [self.tableView reloadData];
+
+}
+- (void)footetBeganRefresh{
+    [self initData];
+
+    // 动画时间
+    CGFloat duration = 0.4f;
+    
+    // 1.设置 UITableView 上拉显示商品详情
+    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+            self.scrollView.contentOffset = CGPointMake(0, self.scrollView.kheight);
+        } completion:^(BOOL finished) {
+            [self footetEndRefresh];
+            [self.tableView.mj_footer endRefreshing];
+        }];
+    }];
+    footer.automaticallyHidden = NO; // 关闭自动隐藏(若为YES，cell无数据时，不会执行上拉操作)
+    footer.stateLabel.backgroundColor = self.tableView.backgroundColor;
+    
+    [footer setTitle:@"继续拖动，查看图文详情" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStatePulling];
+    [footer setTitle:@"松开，即可查看图文详情" forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_footer = footer;
+    [self footetEndRefresh];
+
+    
 }
 - (void)upDatePage{
 
@@ -246,7 +265,7 @@
         _twoPageView.contentSize = CGSizeMake(self.tableView.frame.size.width, mYY+30);
         
     }
-    
+    [self.tableView reloadData];
 }
 
 #pragma mark----关注按钮
@@ -326,7 +345,7 @@
 - (void)initData{
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getGoodsDetail:_mSGoods.mGoodsId andShopId:_mShopId block:^(mBaseData *resb, SGoodsDetail *SGoods) {
-        
+        [self headerEndRefresh];
         [self removeEmptyView];
         [self dismiss];
         if (resb.mSucess) {
@@ -334,11 +353,9 @@
             // 添加子控件
             [self upDatePage];
 
-            [self headerBeganRefresh];
             [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
-//            [self addEmptyView:nil];
             [self performSelector:@selector(leftBtnTouched:) withObject:self afterDelay:1.0];
         
             
@@ -368,7 +385,7 @@
 {
     
     
-    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         NSString *cellId = nil;
         
         cellId = @"cell";
@@ -392,37 +409,34 @@
     
 }
 #pragma mark - UITableViewDataSource Methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
-    
-    return 1;
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-
-    return  2;
+    
+    return  1;
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    
+    return 2;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *cellId = nil;
     
-    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         cellId = @"cell";
-        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [cell setMGoodsDetail:mGoodsDetail];
-        return cell;
+    
     }else{
     
         cellId = @"cell2";
-        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.mGoodsDetail = mGoodsDetail;
-        return cell;
+      
     }
+    mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    [cell setMGoodsDetail:mGoodsDetail];
+    return cell;
 
 
 }

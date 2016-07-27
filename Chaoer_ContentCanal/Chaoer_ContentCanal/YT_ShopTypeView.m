@@ -37,7 +37,7 @@
 //绘制UI
 -(void)initZhongXiaoTypeViewUI
 {
-    _scView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-40, 40)];
+    _scView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
     _scView.backgroundColor=[UIColor whiteColor];
     
     _scView.layer.masksToBounds = YES;
@@ -71,33 +71,32 @@
             [_scView addSubview:_lineView];
         }
     }
+    
+    
     _scView.contentSize = CGSizeMake(rect.origin.x+rect.size.width, _scView.frame.size.height);//设置滚动区域大小
     
-    UIView *vvv= [UIView new];
-    vvv.backgroundColor = [UIColor whiteColor];
-    vvv.frame = CGRectMake(_scView.frame.size.width-1, 0, 40, 40);
-    
-    vvv.layer.masksToBounds = YES;
-    vvv.layer.borderColor = [UIColor colorWithRed:0.83 green:0.83 blue:0.83 alpha:0.75].CGColor;
-    vvv.layer.borderWidth = 0.5;
-
-    [self addSubview:vvv];
-    
-    UIImageView *iii = [UIImageView new];
-    iii.frame = CGRectMake(10, 10, 20, 20);
-    iii.image = [UIImage imageNamed:@"mMarket_more"];
-    [vvv addSubview:iii];
-    
-    _xiaLaBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//    _xiaLaBtn.backgroundColor=[UIColor lightGrayColor];
-    [_xiaLaBtn setTitleColor:typeViewTitleColor forState:UIControlStateNormal];
-    _xiaLaBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-//    [_xiaLaBtn setBackgroundImage:[UIImage imageNamed:@"mMarket_more"] forState:0];
-//    [_xiaLaBtn setTitle:@"更多" forState:UIControlStateNormal];
-//    [_xiaLaBtn setTitle:@"⬆︎" forState:UIControlStateSelected];
-    [_xiaLaBtn addTarget:self action:@selector(xiaLaBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    _xiaLaBtn.selected=NO;
-    [vvv addSubview:_xiaLaBtn];
+//    UIView *vvv= [UIView new];
+//    vvv.backgroundColor = [UIColor whiteColor];
+//    vvv.frame = CGRectMake(_scView.frame.size.width-1, 0, 40, 40);
+//    
+//    vvv.layer.masksToBounds = YES;
+//    vvv.layer.borderColor = [UIColor colorWithRed:0.83 green:0.83 blue:0.83 alpha:0.75].CGColor;
+//    vvv.layer.borderWidth = 0.5;
+//
+//    [self addSubview:vvv];
+//    
+//    UIImageView *iii = [UIImageView new];
+//    iii.frame = CGRectMake(10, 10, 20, 20);
+//    iii.image = [UIImage imageNamed:@"mMarket_more"];
+//    [vvv addSubview:iii];
+//    
+//    _xiaLaBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    [_xiaLaBtn setTitleColor:typeViewTitleColor forState:UIControlStateNormal];
+//    _xiaLaBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//
+//    [_xiaLaBtn addTarget:self action:@selector(xiaLaBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    _xiaLaBtn.selected=NO;
+//    [vvv addSubview:_xiaLaBtn];
     
     _yanZhanView=[[UIView alloc] initWithFrame:CGRectMake(0, 45, self.frame.size.width, 0)];
     _yanZhanView.backgroundColor=yanZhanTypeViewBgColor;

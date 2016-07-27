@@ -266,6 +266,13 @@
  */
 @property (nonatomic,assign) int mLegworkUserId;
 
+
+#pragma mark --- 社区超市历史搜索
+/**
+ *  历史搜索
+ */
+@property (strong,nonatomic) NSArray *mHistorySearchArr;
+
 -(id)initWithObj:(NSDictionary*)obj;
 
 -(void)fetchIt:(NSDictionary*)obj;
@@ -338,9 +345,12 @@
  *
  *  @param block 返回值
  */
-- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block;
+//- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block;
+
+- (void)getNowUserInfo:(NSArray *)mArr block:(void(^)(mBaseData *resb,mUserInfo *user))block;
 
 +(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid block:(void(^)(mBaseData* resb, mUserInfo*user))block;
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid andArr:(NSArray *)mArr block:(void(^)(mBaseData* resb, mUserInfo*user))block;
 
 +(void)saveUserInfo:(NSDictionary *)dccat;
 #pragma mark----更新app
@@ -1304,6 +1314,15 @@
  *  @param block   返回值
  */
 - (void)getCoupList:(int)mPage andStats:(int)mStatus block:(void(^)(mBaseData *resb,NSArray *mArr))block;
+#pragma mark----领取优惠卷
+/**
+ *  领取优惠卷
+ *
+ *  @param mShopId 店铺id
+ *  @param mCoupId 优惠券ID
+ *  @param block   返回值
+ */
+- (void)getCoup:(int)mShopId andCoupId:(int)mCoupId block:(void(^)(mBaseData *resb,NSString *mUrl))block;
 
 #pragma mark----获取收藏的店铺
 /**
@@ -3749,7 +3768,7 @@
 /**
  *  地址
  */
-@property (strong,nonatomic) NSString *mAddress;
+@property (strong,nonatomic) NSArray *mAddress;
 /**
  *  优惠券
  */
@@ -3758,6 +3777,10 @@
  *  商品
  */
 @property (strong,nonatomic) NSArray *mShopArr;
+
+
+
+
 
 -(id)initWithObj:(NSDictionary *)obj;
 
@@ -3819,6 +3842,28 @@
  */
 @property (assign,nonatomic) float mTotlePrice;
 
+/**
+ *  优惠活动名称
+ */
+@property (strong,nonatomic) NSString *mCampainName;
+/**
+ *  优惠描述
+ */
+@property (strong,nonatomic) NSString *mDescript;
+/**
+ *  优惠内容
+ */
+@property (strong,nonatomic) NSString *mCampainContent;
+/**
+ *  活动匹配条件
+ */
+@property (assign,nonatomic) int mCondition;
+/**
+ *  优惠活动id
+ */
+@property (assign,nonatomic) int mCampainId;
+
+@property (assign,nonatomic) int mApplyAll;
 
 -(id)initWithObj:(NSDictionary *)obj;
 

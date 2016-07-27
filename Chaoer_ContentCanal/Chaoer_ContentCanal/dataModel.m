@@ -194,8 +194,14 @@ bool g_bined = NO;
     
 }
 - (void)fetchIt:(NSDictionary *)obj{
+     
     
     
+    NSArray *mArr =  [obj objectForKeyMy:@"marr"];
+    
+    self.mHistorySearchArr = mArr;
+ 
+   
     self.mLoginId = [[obj objectForKeyMy:@"loginId"] intValue];
     
     self.mNickName = [obj objectForKeyMy:@"nickName"];
@@ -763,7 +769,9 @@ bool g_bined = NO;
     [para setObject:@"ios" forKey:@"device"];
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/login/applogin" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:mPwd andOpenId:nil block:block];
+//        [self dealUserSession:info andPhone:mPwd andOpenId:nil block:block];
+        [self dealUserSession:info andPhone:mPwd andOpenId:nil andArr:[mUserInfo backNowUser].mHistorySearchArr block:block];
+        
     }];
     
 //    [[HTTPrequest sharedHDNetworking] POST:@"app/login/applogin" parameters:para success:^(id  _Nonnull responseObject) {
@@ -814,14 +822,48 @@ bool g_bined = NO;
 
 }
 
-- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block{
+//- (void)getNowUserInfo:(void(^)(mBaseData *resb,mUserInfo *user))block{
+//
+//    NSMutableDictionary *para = [NSMutableDictionary new];
+//    
+//    if (![mUserInfo backNowUser].mUserId) {
+//        
+//        [para setObject:@"0" forKey:@"identity"];
+//
+//    }else{
+//        [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+//    }
+//    if([mUserInfo backNowUser].mLoginType){
+//        [para setObject:NumberWithInt([mUserInfo backNowUser].mLoginType) forKey:@"loginType"];
+//    }
+//    
+//    if ([mUserInfo backNowUser].mOpenId) {
+//        [para setObject:[mUserInfo backNowUser].mOpenId forKey:@"openid"];
+//
+//    }
+//    
+//    [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
+//        
+//        if (info.mSucess) {
+//            [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
+//        }else{
+//            block (info,[mUserInfo backNowUser]);
+//        }
+//        
+//        
+//
+//    }];
+//
+//
+//}
+- (void)getNowUserInfo:(NSArray *)mArr block:(void(^)(mBaseData *resb,mUserInfo *user))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     if (![mUserInfo backNowUser].mUserId) {
         
         [para setObject:@"0" forKey:@"identity"];
-
+        
     }else{
         [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     }
@@ -831,22 +873,30 @@ bool g_bined = NO;
     
     if ([mUserInfo backNowUser].mOpenId) {
         [para setObject:[mUserInfo backNowUser].mOpenId forKey:@"openid"];
-
+        
     }
+    
+ 
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/appFindUser" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
-            [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
+//            [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId block:block];
+            
+            if (!mArr) {
+                [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId andArr:[mUserInfo backNowUser].mHistorySearchArr block:block];
+            }else{
+                [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId andArr:mArr block:block];
+            }
+            
+
         }else{
             block (info,[mUserInfo backNowUser]);
         }
         
         
-
+        
     }];
-
-
 }
 
 
@@ -889,6 +939,8 @@ bool g_bined = NO;
 
         }
         
+        [tdic setObject:[mUserInfo backNowUser].mHistorySearchArr forKey:@"marr"];
+
         mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
         tmpdic = tdic;
         if ([tu isVaildUser]) {
@@ -906,7 +958,50 @@ bool g_bined = NO;
     block( info , [mUserInfo backNowUser] );
     
 }
-
++(void)dealUserSession:(mBaseData*)info andPhone:(NSString *)mPara andOpenId:(NSString *)mOpenid andArr:(NSArray *)mArr block:(void(^)(mBaseData* resb, mUserInfo*user))block
+{
+    
+#warning 返回的数据是整个用户信息对象
+    if ( info.mSucess || info.mState == 200011) {
+        NSDictionary* tmpdic = info.mData;
+        
+        NSMutableDictionary* tdic = [[NSMutableDictionary alloc]initWithDictionary:info.mData];
+        //        NSString* fucktoken = [info.mcoredat objectForKeyMy:@"token"];
+        //        if( fucktoken.length )
+        //            [tdic setObject:fucktoken forKey:@"token"];
+        //        else
+        //        {//如果没有token,那弄原来的
+        ////            [tdic setObject:[SUser currentUser].mToken forKey:@"token"];
+        //        }
+        
+        if (mPara) {
+            [tdic setObject:mPara forKey:@"mPwd"];
+        }
+        if (mOpenid) {
+            [tdic setObject:mOpenid forKey:@"mOpenId"];
+            
+        }
+        if (mArr) {
+            [tdic setObject:mArr forKey:@"marr"];
+        }
+        
+        mUserInfo* tu = [[mUserInfo alloc]initWithObj:tdic];
+        tmpdic = tdic;
+        if ([tu isVaildUser]) {
+            [mUserInfo saveUserInfo:tmpdic];
+            g_user = nil;
+            
+        }
+        
+        [mUserInfo openPush];
+        
+        
+    }
+    
+    
+    block( info , [mUserInfo backNowUser] );
+    
+}
 
 #pragma mark----更新app
 /**
@@ -3901,6 +3996,39 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
 }
+
+#pragma mark----领取优惠卷
+/**
+ *  领取优惠卷
+ *
+ *  @param mShopId 店铺id
+ *  @param mCoupId 优惠券ID
+ *  @param block   返回值
+ */
+- (void)getCoup:(int)mShopId andCoupId:(int)mCoupId block:(void(^)(mBaseData *resb,NSString *mUrl))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mShopId]] forKey:@"shopId"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mCoupId]] forKey:@"couponId"];
+
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/coupon/coupon_receive" parameters:para call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+            
+            NSString *url = [NSString stringWithFormat:@"%@sm/coupon/coupon_receive?userId=%@&shopId=%@&couponId=%@&device=ios",[HTTPrequest returnNowURL],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mShopId]],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mCoupId]]];
+            block(info,url);
+        }else{
+            block(info,nil);
+        }
+    }];
+
+    
+
+}
 #pragma mark----获取收藏的店铺
 /**
  *  获取收藏的店铺
@@ -6676,11 +6804,11 @@ bool pptbined = NO;
     
     
     
-    self.mScore = [[obj objectForKeyMy:@"score"] intValue];
+    self.mScore = [[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"score"] intValue];
     
-    self.mName = [obj objectForKeyMy:@"nickName"];
-    self.mPhone = [obj objectForKeyMy:@"moblie"];
-    self.mAddress = [obj objectForKeyMy:@"address"];
+    self.mName = [[obj objectForKeyMy:@"userInfo"]objectForKeyMy:@"nickName"];
+    self.mPhone = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"moblie"];
+    self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"];
 
     NSMutableArray *mCoupA = [NSMutableArray new];
     [mCoupA removeAllObjects];
@@ -6695,6 +6823,8 @@ bool pptbined = NO;
     [mGoods removeAllObjects];
     for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
         [mGoods addObject:[[GGShopArr alloc] initWithObj:dic]];
+        
+        
     }
     self.mShopArr = mGoods;
     
@@ -6711,6 +6841,9 @@ bool pptbined = NO;
     
     self.mTotlePay = ppp;
     self.mSendPrice = mSS;
+    
+
+
 }
 
 @end
@@ -6756,7 +6889,20 @@ bool pptbined = NO;
     self.mSendName = @"跑跑腿配送";
     self.mSendId = @"2";
   
+    if ([[obj objectForKeyMy:@"shopCampaign"] isKindOfClass:[NSString class]]) {
+       
+    }else{
+        self.mCondition = [[[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"condition"] intValue];
+        self.mCampainId = [[[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"id"] intValue];
+        self.mCampainContent = [[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"content"];
+        self.mCampainName = [[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"name"];
+        self.mDescript = [[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"description"];
+        self.mApplyAll = [[[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"applyAll"] intValue];
+
+    }
     
+    
+  
 }
 @end
 

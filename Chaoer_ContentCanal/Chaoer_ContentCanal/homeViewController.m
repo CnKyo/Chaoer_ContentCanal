@@ -127,7 +127,7 @@
 }
 - (void)upDateUserInfo{
 
-    [[mUserInfo backNowUser] getNowUserInfo:^(mBaseData *resb, mUserInfo *user) {
+    [[mUserInfo backNowUser] getNowUserInfo:[mUserInfo backNowUser].mHistorySearchArr block:^(mBaseData *resb, mUserInfo *user) {
       
         
         if (resb.mSucess) {

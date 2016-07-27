@@ -27,6 +27,8 @@
     
     NSMutableArray *mHistoryArr;
     NSMutableArray *mHotArr;
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -63,9 +65,6 @@
     mHotArr = [NSMutableArray new];
     mHistoryArr = [NSMutableArray new];
 
-    for (int i = 0; i<10; i++) {
-        [mHistoryArr addObject:[NSString stringWithFormat:@"这是第%d个",i]];
-    }
     
     
     [self initNavBarView];
@@ -93,10 +92,54 @@
     
 }
 - (void)mSearchAction:(UIButton *)sender{
+    
+    [mHistoryArr addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
+    
+    if (mHistoryArr.count>=10) {
+        [mHistoryArr removeObjectAtIndex:0];
+    }
+    [mHistoryArr addObject:mNavView.mSearchTx.text];
+
+    [self.tempArray removeAllObjects];
+    [[mUserInfo backNowUser] getNowUserInfo:mHistoryArr block:^(mBaseData *resb, mUserInfo *user) {
+        
+        if (resb.mSucess) {
+            [self.tempArray addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
+            [self.tableView reloadData];
+            self.block(mNavView.mSearchTx.text);
+            [self popViewController];
+        }else{
+            
+        }
+    }];
+
+}
+#pragma mark ----清楚内容
+- (void)mCleanAction:(UIButton *)sender{
+    
+    NSMutableArray *mA = [NSMutableArray new];
+    
+    [mA addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
+
+    [self showWithStatus:@"正在操作中..."];
+    [self.tempArray removeAllObjects];
+    [[mUserInfo backNowUser] getNowUserInfo:self.tempArray block:^(mBaseData *resb, mUserInfo *user) {
+        [self dismiss];
+        if (resb.mSucess) {
+            [self showSuccessStatus:@"清除成功"];
+            [self.tempArray addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
+            [self.tableView reloadData];
+
+        }else{
+            [self showSuccessStatus:@"清除失败"];
+            [self.tempArray addObjectsFromArray:mA];
+            [self.tableView reloadData];
+        }
+    }];
+    
 
     
 }
-
 - (void)initView{
 
 
@@ -116,14 +159,25 @@
 
 - (void)headerBeganRefresh{
 
+    NSMutableArray *mARRR = [NSMutableArray new];
+    [mARRR addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
+    
+    if (mARRR.count>=10) {
+        [mARRR removeObjectAtIndex:0];
+    }
     
     [self showWithStatus:@"加载中..."];
     [[mUserInfo backNowUser] getHotSearch:^(mBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
         [self dismiss];
+        [self.tempArray removeAllObjects];
+
         [mHotArr removeAllObjects];
         if (resb.mSucess) {
             [mHotArr addObjectsFromArray:mArr];
+            MLLog(@"%@",[mUserInfo backNowUser].mHistorySearchArr);
+            [self.tempArray addObjectsFromArray:mARRR];
+
             [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
@@ -166,9 +220,7 @@
     return mSectionView;
     
 }
-- (void)mCleanAction:(UIButton *)sender{
-    
-}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 50;
@@ -182,14 +234,28 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellId = nil;
-    
-    cellId = @"cell";
-    
-    mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    [cell setMDataSource:mHotArr];
-    
-    return cell.mHight;
+
+    if (indexPath.section == 1) {
+        NSString *cellId = nil;
+        
+        cellId = @"cell";
+        
+        mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        [cell setMDataSource:mHotArr];
+        
+        return cell.mHight;
+
+    }else{
+        NSString *cellId = nil;
+        
+        cellId = @"cell";
+        
+        mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        [cell setMDataSource:self.tempArray];
+        
+        return cell.mHight;
+
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -202,18 +268,33 @@
     mGoodsSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
+    cell.mSection = indexPath;
     if (indexPath.section == 1) {
         [cell setMDataSource:mHotArr];
     }else{
-        [cell setMDataSource:mHotArr];
+        [cell setMDataSource:self.tempArray];
     }
     return cell;
     
 }
 
-- (void)cellDidSelectedWithIndex:(NSInteger)index{
-    MLLog(@"点击了%ld",(long)index);
-    [self popViewController];
+- (void)cellDidSelectedWithIndex:(NSInteger)index andSection:(NSIndexPath *)mSection{
+    if (mSection.section == 1) {
+        
+        NSString *str = mHotArr[index];
+        MLLog(@"点击了%@",str);
+        self.block(str);
+
+        [self popViewController];
+
+    }else{
+        NSString *str = self.tempArray[index];
+        MLLog(@"点击了%@",str);
+        self.block(str);
+        [self popViewController];
+
+    }
 }
+
 
 @end

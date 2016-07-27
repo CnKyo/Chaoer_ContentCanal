@@ -13,7 +13,7 @@
 
 @optional
 
-- (void)cellDidSelectedWithIndex:(NSInteger)index;
+- (void)cellDidSelectedWithIndex:(NSInteger)index andSection:(NSIndexPath *)mSection;
 
 @end
 
@@ -31,5 +31,7 @@
 
 
 @property (strong,nonatomic) id <cellDidSelectedDelegate> delegate;
+
+@property (assign,nonatomic) NSIndexPath *mSection;
 
 @end

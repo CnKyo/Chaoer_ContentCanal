@@ -52,7 +52,7 @@
     
     [super viewDidLoad];
     
-    self.hiddenRightBtn = NO;
+    self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"我的优惠券";
     self.rightBtnTitle = @"兑换";

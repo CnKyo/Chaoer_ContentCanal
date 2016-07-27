@@ -84,10 +84,10 @@
     [mTableHeaderView.mAddressBtn addTarget:self action:@selector(AddressAction:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *add = nil;
-    if (mShopCarList.mAddress.length == 0) {
+    if (mShopCarList.mAddress.count <= 0) {
         add = @"请选择收货地址";
     }else{
-        add = mShopCarList.mAddress;
+        add = mShopCarList.mAddress[0];
     }
     
     mTableHeaderView.mAddress.text = add;
@@ -151,16 +151,17 @@
 }
 - (void)mGoPayAction:(UIButton *)sender{
     
-    if (mShopCarList.mAddress.length == 0) {
+    if (mShopCarList.mAddress.count <= 0) {
         [self showErrorStatus:@"亲，您还没选择收货地址呐～～"];
         return;
     }
     
     NSMutableArray *mParaData = [NSMutableArray new];
     
-    NSMutableDictionary *para = [NSMutableDictionary new];
     
     for (GGShopArr *mShop in mShopCarList.mShopArr) {
+        NSMutableDictionary *para = [NSMutableDictionary new];
+
         [para setObject:NumberWithInt(mShop.mShopId) forKey:@"shopId"];
         [para setObject:mShop.mSendId forKey:@"distributionMode"];
         if (mShop.mMessage.length != 0) {
@@ -250,7 +251,11 @@
     mFooterSection = [mComfirmHederAndFooterSection shareFooter];
     mFooterSection.mSection = section;
     
-    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"总金额:<color>¥%.2f</color> ",mPP] attributedStringWithStyleBook:mStyle1];
+    if (mShop.mDescript.length == 0) {
+        mShop.mDescript = @"暂无优惠";
+    }
+    
+    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color> ",mShop.mDescript,mPP] attributedStringWithStyleBook:mStyle1];
 
     [mFooterSection.mSenderType setTitle:mShop.mSendName forState:0];
     

@@ -68,6 +68,10 @@
 }
 - (void)msBtnAction:(UIButton *)sender{
     
-    [self.delegate cellDidSelectedWithIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(cellDidSelectedWithIndex:andSection:)]) {
+        [self.delegate cellDidSelectedWithIndex:sender.tag andSection:self.mSection];
+
+    }
+    
 }
 @end

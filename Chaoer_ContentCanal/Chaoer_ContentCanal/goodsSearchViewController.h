@@ -10,4 +10,8 @@
 
 @interface goodsSearchViewController : BaseVC
 
+
+@property (nonatomic,strong) void(^block)(NSString *mName);
+
+
 @end

@@ -46,6 +46,11 @@
      */
     UIButton *mShopCarBtn;
     /**
+     *  优惠券按钮
+     */
+    UIButton *mCoupBtn;
+    
+    /**
      *  购物车view
      */
     UIView *mShopCarView;
@@ -74,10 +79,23 @@
     
     NSMutableArray *mDataSource;
     mActivitySubView *mActView;
+    /**
+     *  搜索关键字
+     */
+    NSString *mKeyWords;
+    /**
+     *  搜索分类的索引
+     */
+    int mWIndex;
     
 }
 @synthesize mShopId;
 
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self headerBeganRefresh];
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
 
@@ -97,6 +115,7 @@
     
     self.mShopCarArr = [NSMutableArray new];
     
+    mKeyWords = nil;
     
     [self currentArrar];
     [self initView];
@@ -167,6 +186,17 @@
     
     [self.tableView setTableHeaderView:mHeaderView];
   
+    
+    mCoupBtn = [UIButton new];
+    mCoupBtn.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-180, 60, 60);
+    
+    [mCoupBtn setBackgroundImage:[UIImage imageNamed:@"market_coup"] forState:0];
+    [mCoupBtn addTarget:self action:@selector(mCoupAction:) forControlEvents:UIControlEventTouchUpInside];
+    mCoupBtn.backgroundColor = [UIColor clearColor];
+    mCoupBtn.hidden = YES;
+    [self.view addSubview:mCoupBtn];
+    
+    
     mShopCarView = [UIView new];
     mShopCarView.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-100, 60, 60);
     mShopCarView.backgroundColor = [UIColor clearColor];
@@ -193,10 +223,17 @@
     
 
 
+
 }
 
 - (void)upDatePage{
 
+    if (mIsCP != 0) {
+        mCoupBtn.hidden = NO;
+    }else{
+        mCoupBtn.hidden = YES;
+    }
+    
     if (mIsFoucs == 0) {
         [mHeaderView.mCollectBtn setBackgroundImage:[UIImage imageNamed:@"my_ uncollect"] forState:0];
     }else{
@@ -204,13 +241,32 @@
     }
 
     [mHeaderView.mLogo sd_setImageWithURL:[NSURL URLWithString:_mShopList.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
-    mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"收藏数：%d",_mShopList.mFocus];
-    mHeaderView.mNum.text = [NSString stringWithFormat:@"全部商品：%d",_mShopList.mGoodsNum];
+    mHeaderView.mNum.text = [NSString stringWithFormat:@"全部商品：%d  收藏数：%d",_mShopList.mGoodsNum,_mShopList.mFocus];
+    mHeaderView.mCollectNum.textColor = M_CO;
+    mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"营业时间：%@-%@",_mShopList.mOpenTime,_mShopList.mCloseTime];
     
     mHeaderView.mName.text = _mShopList.mShopName;
     
    
     [self verifyBadge];
+    [self loadSectionView];
+
+}
+#pragma mark ----领取优惠券按钮
+- (void)mCoupAction:(UIButton *)sender{
+
+    
+    NSString *url = [NSString stringWithFormat:@"%@/sm/coupon/coupon_receive?userId=%@&shopId=%@&couponId=%@&device=ios",[HTTPrequest returnNowURL],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mShopId]],[Util RSAEncryptor:[NSString stringWithFormat:@"%d",mIsCP]]];
+    
+    
+    
+    WebVC* vc = [[WebVC alloc]init];
+    vc.mName = @"领取优惠券";
+    vc.mUrl = url;
+    [self pushViewController:vc];
+
+    
+    
 }
 #pragma mark ----店铺收藏事件
 - (void)mShopCollectAction:(UIButton *)sender{
@@ -261,7 +317,6 @@
             mShopCarNum = [[[resb.mData objectForKey:@"shop"] objectForKey:@"cart"] intValue];
             
             [mClass addObjectsFromArray:mClassArr];
-            [self loadSectionView];
             mIsCP = mIsCoup;
             mIsFoucs = mIsCollect;
             [self upDatePage];
@@ -290,8 +345,7 @@
         [mClass removeAllObjects];
 
         if (resb.mSucess) {
-            mIsCP = mIsCoup;
-            mIsFoucs = mIsCollect;
+           
             [mClass addObjectsFromArray:mClassArr];
             [self loadSectionView];
             [self upDatePage];
@@ -322,13 +376,17 @@
         NSLog(@"取消？");
     }
 }
+#pragma mark ---- 点击查询分类商品
 - (void)clickBtnIndex:(NSInteger)mIndex{
     NSLog(@"%ld",(long)mIndex);
+    
     
     
     GClassN *Class = mClass[mIndex];
     [self.tempArray removeAllObjects];
 
+    mWIndex = Class.mId;
+    
     [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:Class.mId andPage:1 andKeyWord:nil block:^(mBaseData *resb, NSArray *mArr) {
         if (resb.mSucess) {
             [self verifyBadge];
@@ -346,6 +404,30 @@
         }
         
     }];
+}
+
+- (void)initSearch{
+    [self showWithStatus:@"正在搜索中..."];
+    [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:mWIndex andPage:1 andKeyWord:mKeyWords block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
+        [self.tempArray removeAllObjects];
+        if (resb.mSucess) {
+            [self verifyBadge];
+            if (mArr.count<= 0) {
+                [self addEmptyView:nil];
+            }else{
+                [self.tempArray addObjectsFromArray:mArr];
+                
+            }
+            [self.tableView reloadData];
+            
+            
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+
 }
 
 /**
@@ -520,6 +602,15 @@
 - (void)rightBtnTouched:(id)sender{
 
     goodsSearchViewController *mSearch = [[goodsSearchViewController alloc] initWithNibName:@"goodsSearchViewController" bundle:nil];
+    mSearch.block = ^(NSString *content){
+   
+        mKeyWords = content;
+        
+        [self initSearch];
+        
+        
+    };
+
     [self pushViewController:mSearch];
     
 }
