@@ -1295,7 +1295,7 @@
  *  @param mGoodsId 商品id
  *  @param block    返回值
  */
-- (void)addGoodsToShopCar:(int)mShopId andGoodsId:(int)mGoodsId block:(void(^)(mBaseData *resb))block;
+- (void)addGoodsToShopCar:(int)mShopId andGoodsId:(int)mGoodsId andNum:(int)mNum block:(void(^)(mBaseData *resb))block;
 #pragma mark----获取我的收藏商品
 /**
  *  获取我的收藏商品
@@ -1361,6 +1361,14 @@
  *  @param block         返回值
  */
 - (void)mRateMyMarketOrder:(int)mShopId andOrderCode:(NSString *)mOrderCode andContent:(NSString *)mContent andSatisfaction:(int)mSatisfaction andSenderRate:(int)mSenderRate andGoods:(int)mGoodsRate block:(void(^)(mBaseData *resb))block;
+#pragma mark ----- 取消订单
+/**
+ *  取消订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param block      返回值
+ */
+- (void)cancelMarketOrder:(NSString *)mOrderCode block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----获取购物车
 /**
@@ -3249,6 +3257,10 @@
  *  商品数量
  */
 @property (nonatomic,assign) int mGoodsNum;
+/**
+ *  id
+ */
+@property (nonatomic,assign) int mId;
 
 /**
  *  店铺id
@@ -3277,11 +3289,13 @@
 /**
  *  费用
  */
-@property (nonatomic,assign) CGFloat mFreePrice;
+@property (nonatomic,assign) float mFreePrice;
 /**
  *  关注
  */
 @property (nonatomic,assign) int mFocus;
+
+@property (nonatomic,assign) float mDeliverPrice;
 
 
 /**
@@ -3632,7 +3646,7 @@
 /**
  *  免配送费金额
  */
-@property (assign,nonatomic) CGFloat mFreePrice;
+@property (assign,nonatomic) float mFreePrice;
 /**
  *  下班时间
  */
@@ -3648,7 +3662,7 @@
 /**
  *  商品价格
  */
-@property (assign,nonatomic) CGFloat mGoodsPrice;
+@property (assign,nonatomic) float mGoodsPrice;
 /**
  *  商品详情
  */
@@ -3656,7 +3670,7 @@
 /**
  *  配送费？
  */
-@property (assign,nonatomic) CGFloat mDelivePrice;
+@property (assign,nonatomic) float mDelivePrice;
 /**
  *  上班时间
  */
@@ -3876,6 +3890,11 @@
  */
 @interface GMyMarketOrderList : NSObject
 /**
+ *  是否可取消(1--可取消，0--不可取消(隐藏按钮))
+ */
+@property (assign,nonatomic) BOOL mIsCancel;
+
+/**
  *  店铺di
  */
 @property (assign,nonatomic) int mShopId;
@@ -3928,6 +3947,11 @@
 @interface GMyOrderGoodsA : NSObject
 
 -(id)initWithObj:(NSDictionary *)obj;
+
+/**
+ *  数量
+ */
+@property (assign,nonatomic) int mNum;
 
 @property (assign,nonatomic) BOOL selected;
 

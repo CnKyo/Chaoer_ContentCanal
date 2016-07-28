@@ -37,7 +37,7 @@
 
     [self.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodInfo.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     self.mGoodsName.text = mGoodInfo.mGoodsName;
-    self.mTotleMoney.attributedText = [[NSString stringWithFormat:@"商品金额:<color>¥%.2f</color>",mGoodInfo.mUnitPrice] attributedStringWithStyleBook:mStyle1];
+    self.mTotleMoney.attributedText = [[NSString stringWithFormat:@"商品金额:<color>¥%.2f</color>  数量:<color> X %d</color>",mGoodInfo.mUnitPrice,mGoodInfo.mNum] attributedStringWithStyleBook:mStyle1];
     self.mGoodsDetail.text = mGoodInfo.mGoodsComment;
     
     self.mGoodsDetailH.constant = [Util labelText:mGoodInfo.mGoodsComment fontSize:13 labelWidth:self.mGoodsDetail.mwidth];

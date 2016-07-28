@@ -109,7 +109,7 @@
     address.block = ^(NSString *Lat,NSString *Lng,NSString *mId){
         MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
         
-        mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置：%@",mId];
+        mNavView.mAddress.text = [NSString stringWithFormat:@"%@",mId];
         self.mLat = Lat;
         self.mLng = Lng;
         [self headerBeganRefresh];
@@ -187,6 +187,7 @@
             
         }else{
             [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
         }
         
     }];
@@ -357,7 +358,7 @@
     mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
     market.mShopList = GMarketList.new;
     market.mShopList = mShopList;
-    market.mShopId = mShopList.mShopId;
+    market.mShopId = mShopList.mId;
     
     [self pushViewController:market];
     

@@ -235,7 +235,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     cell.mShop = shop;
     
     cell.mdobtn.mShop = shop;
-    
+    cell.mCancelBtn.mShop = shop;
     
     return cell;
 
@@ -730,4 +730,51 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
     
 }
+#pragma mark ---- 取消按钮事件
+/**
+ *  取消按钮事件
+ *
+ *  @param mShop 带过来的对象
+ */
+- (void)cellWithCancelBtnClick:(GMyMarketOrderList *)mShop{
+    [self showWithStatus:@"正在取消..."];
+    [[mUserInfo backNowUser] cancelMarketOrder:mShop.mOrderCode block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            [self showSuccessStatus:@"取消成功"];
+            
+            [self headerBeganRefresh];
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+        }
+        
+    }];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+        
+        if( buttonIndex == 1)
+        {
+            
+       
+            
+            
+            
+        }
+        
+    
+    
+}
+
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
+
 @end

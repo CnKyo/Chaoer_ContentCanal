@@ -3902,14 +3902,14 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mGoodsId 商品id
  *  @param block    返回值
  */
-- (void)addGoodsToShopCar:(int)mShopId andGoodsId:(int)mGoodsId block:(void(^)(mBaseData *resb))block{
+- (void)addGoodsToShopCar:(int)mShopId andGoodsId:(int)mGoodsId andNum:(int)mNum block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
     [para setObject:NumberWithInt(mGoodsId) forKey:@"goodsId"];
-    [para setObject:@"1" forKey:@"quantity"];
+    [para setObject:NumberWithInt(mNum) forKey:@"quantity"];
     [para setObject:@"ios" forKey:@"device"];
 
 
@@ -4170,6 +4170,39 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
             
         }
     }];
+    
+}
+#pragma mark ----- 取消订单
+/**
+ *  取消订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param block      返回值
+ */
+- (void)cancelMarketOrder:(NSString *)mOrderCode block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+
+    [para setObject:[Util RSAEncryptor:mOrderCode] forKey:@"orderCode"];
+ 
+    [para setObject:@"ios" forKey:@"device"];
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/cancel" parameters:para call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+            
+            
+            block(info);
+            
+        }else{
+            
+            block(info);
+            
+        }
+    }];
+    
     
 }
 #pragma mark----获取购物车
@@ -6415,8 +6448,9 @@ bool pptbined = NO;
 - (void)fetchIt:(NSDictionary *)obj{
     
     
-    
-    self.mShopId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+
+    self.mShopId = [[obj objectForKeyMy:@"shopId"] intValue];
     self.mDisTance = [obj objectForKeyMy:@"distance"];
     self.mShopName = [obj objectForKeyMy:@"shopName"];
     
@@ -6439,7 +6473,9 @@ bool pptbined = NO;
     }
     
     self.mActivityArr = mActivit;
-
+    
+    self.mFreePrice = [[obj objectForKeyMy:@"freePrice"] floatValue];
+    self.mDeliverPrice = [[obj objectForKeyMy:@"deliverPrice"] floatValue];
 }
 
 @end
@@ -6956,6 +6992,10 @@ bool pptbined = NO;
     self.mIsComment = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"isComment"] intValue];
     
 
+    int mCancel = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"isCancel"] intValue];
+    
+    self.mIsCancel = mCancel?0:1;
+    
 }
 
 @end
@@ -6982,6 +7022,11 @@ bool pptbined = NO;
     self.mGoodsComment = [obj objectForKeyMy:@"goodsComment"];
 
     self.mUnitPrice = [[obj objectForKeyMy:@"unitPrice"] floatValue];
+    
+    
+    self.mNum = [[obj objectForKeyMy:@"number"] intValue];
+    
+//    self.mUnitPrice = self.mUnitPrice * self.mNum;
     
 }
 

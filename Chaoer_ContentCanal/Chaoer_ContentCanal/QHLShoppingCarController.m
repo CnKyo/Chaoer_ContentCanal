@@ -634,7 +634,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.mGoods = goods;
-    cell.mProLogo.image = [UIImage imageNamed:@"ppt_my_msg"];
+    [cell.mProLogo sd_setImageWithURL:[NSURL URLWithString:goods.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+
     cell.indexPath = indexPath;
     //cell代理
     cell.cellDelegate = self;
@@ -648,7 +649,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     //获取模型
     GShopCarList *shop = self.shoppingCar[section];
     headerView.shop = shop;
-    headerView.imgView.image = [UIImage imageNamed:@"ppt_my_msg"];
+//    headerView.imgView.image = [UIImage imageNamed:@"ppt_my_msg"];
+    [headerView.imgView sd_setImageWithURL:[NSURL URLWithString:shop.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    
     headerView.section = section;
     //headerView代理
     headerView.headerViewDelegate = self;

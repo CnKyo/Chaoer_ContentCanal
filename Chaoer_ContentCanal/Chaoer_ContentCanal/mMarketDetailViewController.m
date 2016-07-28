@@ -722,7 +722,9 @@
 - (void)cellWithLeftAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
     [self showWithStatus:@""];
     
-    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId block:^(mBaseData *resb) {
+
+    
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId andNum:1 block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             [self.mShopCarArr addObject:mGoods];
@@ -739,7 +741,7 @@
 - (void)cellWithRightAddShopCar:(NSInteger)mTag andGoods:(MGoods *)mGoods{
     [self showWithStatus:@""];
     
-    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId andNum:1 block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             [self.mShopCarArr addObject:mGoods];

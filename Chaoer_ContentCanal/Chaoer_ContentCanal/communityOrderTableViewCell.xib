@@ -69,15 +69,25 @@
                             <constraint firstAttribute="height" constant="1" id="Wv8-Un-XxV"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总价：¥1950" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlM-n3-48I" customClass="WPHotspotLabel">
-                        <rect key="frame" x="8" y="119" width="234" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总价：¥1950" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="mlM-n3-48I" customClass="WPHotspotLabel">
+                        <rect key="frame" x="8" y="119" width="154" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Aps-7Y-QbN"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQB-UT-lgm" customClass="mMarketMyOrderBtn">
+                        <rect key="frame" x="170" y="115" width="65" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="取消订单">
+                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="mCancelAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1aq-Ql-oP3"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ib-f2-Pfq" customClass="mMarketMyOrderBtn">
                         <rect key="frame" x="247" y="115" width="65" height="30"/>
                         <constraints>
@@ -93,9 +103,11 @@
                     <constraint firstItem="5Af-WF-yxn" firstAttribute="top" secondItem="VAR-O0-u9G" secondAttribute="bottom" constant="8" id="0CT-T5-4Ap"/>
                     <constraint firstItem="59p-1o-YcZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="167-0G-BTn"/>
                     <constraint firstAttribute="trailingMargin" secondItem="keP-7b-GjG" secondAttribute="trailing" id="4Ky-cH-FIR"/>
-                    <constraint firstItem="3ib-f2-Pfq" firstAttribute="leading" secondItem="mlM-n3-48I" secondAttribute="trailing" constant="5" id="51u-M0-gFA"/>
+                    <constraint firstItem="3ib-f2-Pfq" firstAttribute="leading" secondItem="mlM-n3-48I" secondAttribute="trailing" constant="70" id="51u-M0-gFA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3ib-f2-Pfq" secondAttribute="trailing" id="6bs-UW-OxK"/>
+                    <constraint firstItem="BQB-UT-lgm" firstAttribute="height" secondItem="3ib-f2-Pfq" secondAttribute="height" id="7AF-TW-j9T"/>
                     <constraint firstItem="5Af-WF-yxn" firstAttribute="leading" secondItem="CAo-qS-LX8" secondAttribute="trailing" constant="8" id="8gx-Q8-QQc"/>
+                    <constraint firstItem="3ib-f2-Pfq" firstAttribute="leading" secondItem="BQB-UT-lgm" secondAttribute="trailing" constant="12" id="A82-yH-xdi"/>
                     <constraint firstItem="VAR-O0-u9G" firstAttribute="leading" secondItem="80O-9E-LVh" secondAttribute="trailing" constant="10" id="AoX-dZ-tzU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="TL2-yH-c0s" secondAttribute="trailing" constant="-8" id="BOd-Uu-HNd"/>
                     <constraint firstItem="TL2-yH-c0s" firstAttribute="top" secondItem="CAo-qS-LX8" secondAttribute="bottom" constant="8" id="ERv-5o-vCA"/>
@@ -103,20 +115,29 @@
                     <constraint firstAttribute="trailingMargin" secondItem="59p-1o-YcZ" secondAttribute="trailing" constant="-8" id="Ncb-f5-ddf"/>
                     <constraint firstItem="mlM-n3-48I" firstAttribute="top" secondItem="TL2-yH-c0s" secondAttribute="bottom" constant="8" id="S0c-ch-l7w"/>
                     <constraint firstAttribute="leadingMargin" secondItem="80O-9E-LVh" secondAttribute="leading" id="Uwj-kz-WcI"/>
+                    <constraint firstItem="BQB-UT-lgm" firstAttribute="leading" secondItem="mlM-n3-48I" secondAttribute="trailing" constant="8" id="XwX-7P-yXv"/>
                     <constraint firstItem="TL2-yH-c0s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="aSF-LM-ggq"/>
                     <constraint firstItem="CAo-qS-LX8" firstAttribute="top" secondItem="VAR-O0-u9G" secondAttribute="bottom" constant="8" id="bhI-mm-KwI"/>
                     <constraint firstItem="keP-7b-GjG" firstAttribute="top" secondItem="5Af-WF-yxn" secondAttribute="bottom" constant="2" id="g6D-cd-sBX"/>
                     <constraint firstItem="keP-7b-GjG" firstAttribute="leading" secondItem="CAo-qS-LX8" secondAttribute="trailing" constant="8" id="gMv-vk-H2m"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5Af-WF-yxn" secondAttribute="trailing" id="mfF-hW-qaC"/>
                     <constraint firstItem="3ib-f2-Pfq" firstAttribute="top" secondItem="TL2-yH-c0s" secondAttribute="bottom" constant="4" id="moV-Dx-zjM"/>
+                    <constraint firstItem="BQB-UT-lgm" firstAttribute="top" secondItem="TL2-yH-c0s" secondAttribute="bottom" constant="4" id="n7u-mT-xUG"/>
                     <constraint firstAttribute="leadingMargin" secondItem="mlM-n3-48I" secondAttribute="leading" id="p4R-s5-bkV"/>
+                    <constraint firstItem="BQB-UT-lgm" firstAttribute="width" secondItem="3ib-f2-Pfq" secondAttribute="width" id="q2C-UG-GSA"/>
                     <constraint firstItem="59p-1o-YcZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="rmu-5w-Emd"/>
                     <constraint firstItem="VAR-O0-u9G" firstAttribute="top" secondItem="59p-1o-YcZ" secondAttribute="bottom" constant="8" id="xoi-UX-nrg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VAR-O0-u9G" secondAttribute="trailing" id="yrm-F2-MDy"/>
                     <constraint firstAttribute="leadingMargin" secondItem="CAo-qS-LX8" secondAttribute="leading" id="znF-IH-4Mv"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="51u-M0-gFA"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mCancelBtn" destination="BQB-UT-lgm" id="mty-g3-WaG"/>
                 <outlet property="mContent" destination="keP-7b-GjG" id="I8T-rg-ggR"/>
                 <outlet property="mLogo" destination="CAo-qS-LX8" id="sjh-7A-ra1"/>
                 <outlet property="mNane" destination="5Af-WF-yxn" id="9jl-VX-8xS"/>

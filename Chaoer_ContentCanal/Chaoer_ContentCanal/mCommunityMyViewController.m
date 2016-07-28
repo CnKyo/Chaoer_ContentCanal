@@ -527,7 +527,7 @@
 - (void)collectLeftAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId{
     [self showWithStatus:@""];
     
-    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
@@ -540,7 +540,7 @@
 - (void)collectRightAddshopCar:(NSInteger)mgoodsId andShopId:(int)mShopId{
     [self showWithStatus:@""];
     
-    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];

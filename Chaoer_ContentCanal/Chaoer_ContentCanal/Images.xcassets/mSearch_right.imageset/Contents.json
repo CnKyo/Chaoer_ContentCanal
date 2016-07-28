@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "search-1副本.png",
+      "filename" : "mSearch_right.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "search-1副本-1.png",
+      "filename" : "mSearch_right-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "search-1副本-2.png",
       "scale" : "3x"
     }
   ],

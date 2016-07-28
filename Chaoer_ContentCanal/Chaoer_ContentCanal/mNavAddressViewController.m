@@ -102,9 +102,9 @@
 
             }else{
                 [self.tempArray addObjectsFromArray:mArr];
-                [self.tableView reloadData];
             }
-            
+            [self.tableView reloadData];
+
             
         }else{
             [self addEmptyView:nil];

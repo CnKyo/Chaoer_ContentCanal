@@ -39,7 +39,7 @@
 #define kTOOLHEIGHT 50.f
 
 @interface mGoodsDetailViewController ()
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate,mGoodsDetailBuyDelegate>
 
 /** 商品详情整体 */
 @property(strong,nonatomic)UIScrollView *scrollView;
@@ -54,7 +54,9 @@
 
 @implementation mGoodsDetailViewController
 {
-    
+    /**
+     *  底部view
+     */
     mGoodsDetailBottomView *mBootomView;
     /**
      *  商品详情对象
@@ -64,6 +66,17 @@
      *  是否选择收藏
      */
     BOOL mSelected;
+    /**
+     *  底部购买view
+     */
+    mGoodsDetailBottomView *mBuyView;
+
+    
+    UIView *mBgkView;
+    
+    int mNum;
+    
+    int mType;
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -84,12 +97,127 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
-
+    mNum = 1;
     [self initView];
-
+    [self initBottomBuyView];
 
 }
+#pragma mark ----加载底部购买view
+- (void)initBottomBuyView{
 
+    mBgkView = [UIView new];
+    mBgkView.frame = self.view.bounds;
+    mBgkView.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.3];
+    mBgkView.alpha = 0;
+    [self.view addSubview:mBgkView];
+    
+    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [mBgkView addGestureRecognizer:mTap];
+    
+    mBuyView = [mGoodsDetailBottomView shareBuyView];
+    mBuyView.frame = CGRectMake(0, DEVICE_Height, self.view.frame.size.width, 160);
+    mBuyView.delegate = self;
+    [self.view addSubview:mBuyView];
+//    [mBuyView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view).offset(@0);
+//        make.bottom.equalTo(self.view.bottom).offset(@150);
+//        make.width.offset(DEVICE_Width);
+//        make.height.offset(@150);
+//    }];
+    
+}
+- (void)tapAction:(UITapGestureRecognizer *)sender{
+    [self hiddenBuyView];
+}
+- (void)upDateBuyView{
+
+    [mBuyView.mGoodsImg sd_setImageWithURL:[NSURL URLWithString:mGoodsDetail.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    mBuyView.mGoodsName.text = mGoodsDetail.mGoodsName;
+    mBuyView.mGoodsPrice.text = [NSString stringWithFormat:@"¥%.2f元",mGoodsDetail.mGoodsPrice*mNum];
+    
+    mBuyView.mNum.text = [NSString stringWithFormat:@"%d",mNum];
+}
+- (void)showBuyView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mBgkView.alpha = 1;
+        CGRect mRR = mBuyView.frame;
+        mRR.origin.y = DEVICE_Height-160;
+        mBuyView.frame = mRR;
+        
+    }];
+}
+- (void)hiddenBuyView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mBgkView.alpha = 0;
+        CGRect mRR = mBuyView.frame;
+        mRR.origin.y = DEVICE_Height;
+        mBuyView.frame = mRR;
+        
+    }];
+}
+#pragma mark----底部购买关闭按钮
+- (void)mGoodsDetailCloseActionView{
+    [self hiddenBuyView];
+}
+#pragma mark----底部购买添加按钮
+- (void)mGoodsDetailAddActionView{
+    
+    mNum+=1;
+    [self upDateBuyView];
+}
+#pragma mark----底部购买减按钮
+- (void)mGoodsDetailJianActionView{
+    
+    if (mNum <= 1) {
+        return;
+    }else{
+        mNum-=1;
+        [self upDateBuyView];
+    }
+    
+    
+}
+#pragma mark----底部购买确定按钮
+- (void)mGoodsDetailOkActionView{
+    
+    if (mType == 2) {
+        [self showWithStatus:@"正在购买..."];
+        [[mUserInfo backNowUser] goBuyNow:mGoodsDetail.mShopId andGoodsId:_mSGoods.mGoodsId andNum:mNum block:^(mBaseData *resb, GPayShopCar *mShopCarList) {
+            [self dismiss];
+            if (resb.mSucess) {
+                comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
+                comfir.mShopCarList = nil;
+                comfir.mShopCarList = [GPayShopCar new];
+                
+                comfir.mShopCarList = mShopCarList;
+                [self pushViewController:comfir];
+                [self hiddenBuyView];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+            
+        }];
+
+    }else{
+        [self showWithStatus:@""];
+        
+        [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andNum:mNum block:^(mBaseData *resb) {
+            
+            [self dismiss];
+            if (resb.mSucess) {
+                mGoodsDetail.mBadge+=mNum;
+                [self upDatePage];
+                [self hiddenBuyView];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
+
+    }
+    
+   
+    
+}
 #pragma mark----初始化导航条
 - (void)initView{
 
@@ -226,7 +354,7 @@
     
 }
 - (void)upDatePage{
-
+    [self upDateBuyView];
     if (mGoodsDetail.mBadge <= 0) {
         mBootomView.mGoodsNum.hidden = YES;
     }else{
@@ -303,18 +431,11 @@
 }
 #pragma mark----添加购物车按钮
 - (void)mAddShopCarAction:(UIButton *)sender{
-    [self showWithStatus:@""];
     
-    [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId block:^(mBaseData *resb) {
-        [self dismiss];
-        if (resb.mSucess) {
-            mGoodsDetail.mBadge+=1;
-            [self upDatePage];
-            
-        }else{
-            [self showErrorStatus:resb.mMessage];
-        }
-    }];
+    mType = 3;
+    
+    [self showBuyView];
+    
     
 
    
@@ -322,22 +443,11 @@
 }
 #pragma mark----立即购买按钮
 - (void)mBuyNowAction:(UIButton *)sender{
-    [self showWithStatus:@"正在购买..."];
-    [[mUserInfo backNowUser] goBuyNow:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andNum:1 block:^(mBaseData *resb, GPayShopCar *mShopCarList) {
-        [self dismiss];
-        if (resb.mSucess) {
-            comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
-            comfir.mShopCarList = nil;
-            comfir.mShopCarList = [GPayShopCar new];
-            
-            comfir.mShopCarList = mShopCarList;
-            [self pushViewController:comfir];
+    
+    mType = 2;
+    
+    [self showBuyView];
 
-        }else{
-            [self showErrorStatus:resb.mMessage];
-        }
-        
-    }];
     
 }
 

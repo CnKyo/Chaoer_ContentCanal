@@ -30,6 +30,13 @@
     [self.mdobtn addTarget:self action:@selector(mBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
+- (IBAction)mCancelAction:(mMarketMyOrderBtn *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(cellWithCancelBtnClick:)]) {
+        [self.delegate cellWithCancelBtnClick:sender.mShop];
+    }
+    
+}
 
 - (void)mBtnAction:(mMarketMyOrderBtn *)sender{
 
@@ -68,12 +75,12 @@
         self.mdobtn.layer.borderWidth = 0.5;
     }else if (mShop.mState == 11){
         mTT = @"进行中";
-        self.mdobtn.enabled = YES;
+        self.mdobtn.enabled = NO;
         [self.mdobtn setTitle:mTT forState:0];
-        [self.mdobtn setTitleColor:M_CO forState:0];
+        [self.mdobtn setTitleColor:[UIColor lightGrayColor] forState:0];
         self.mdobtn.layer.masksToBounds = YES;
         self.mdobtn.layer.cornerRadius = 3;
-        self.mdobtn.layer.borderColor = M_CO.CGColor;
+        self.mdobtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.mdobtn.layer.borderWidth = 0.5;
     }else if (mShop.mState == 12){
         
@@ -116,5 +123,14 @@
 
     }
 
+    
+    self.mCancelBtn.layer.masksToBounds = YES;
+    self.mCancelBtn.layer.cornerRadius = 3;
+    self.mCancelBtn.layer.borderColor = [UIColor redColor].CGColor;
+    self.mCancelBtn.layer.borderWidth = 0.5;
+    
+    
+    self.mCancelBtn.hidden = mShop.mIsCancel?YES:NO;
+    
 }
 @end

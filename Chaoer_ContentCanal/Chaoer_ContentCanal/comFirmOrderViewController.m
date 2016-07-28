@@ -87,7 +87,7 @@
     if (mShopCarList.mAddress.length <= 0) {
         add = @"请选择收货地址";
     }else{
-        add = mShopCarList.mAddress;
+        add = [NSString stringWithFormat:@"%@-%@\n%@",mShopCarList.mName,mShopCarList.mPhone,mShopCarList.mAddress];
     }
     
     mTableHeaderView.mAddress.text = add;
@@ -216,7 +216,7 @@
 - (void)upDatePage{
  
     mFooterView.mPayMoney.text = [NSString stringWithFormat:@"还需支付：¥%.2f",mShopCarList.mTotlePay];
-    mTableHeaderView.mAddress.text = mShopCarList.mAddress;
+    mTableHeaderView.mAddress.text = [NSString stringWithFormat:@"%@-%@\n%@",mShopCarList.mName,mShopCarList.mPhone,mShopCarList.mAddress];
     mTableFooterView.mTotalMoney.text = [NSString stringWithFormat:@"商品总金额：¥%.2f",mShopCarList.mTotlePay];
     mTableFooterView.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f",mShopCarList.mSendPrice];
 

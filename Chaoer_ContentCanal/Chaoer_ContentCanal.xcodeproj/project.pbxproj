@@ -247,6 +247,7 @@
 		04C75DA81D058C27002D21FB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA61D058C27002D21FB /* AlipaySDK.framework */; };
 		04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA91D058C37002D21FB /* libcrypto.a */; };
 		04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DAA1D058C37002D21FB /* libssl.a */; };
+		04CE8FD11D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
 		04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D476E01CC72B8400746491 /* orderTongjiViewController.xib */; };
 		04D49C581CE6D2DE00BAD649 /* pptMyMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C561CE6D2DE00BAD649 /* pptMyMsgCell.m */; };
@@ -1346,6 +1347,7 @@
 		04C75DA61D058C27002D21FB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		04C75DA91D058C37002D21FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		04C75DAA1D058C37002D21FB /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGoodsDetailBottomBuyView.xib; sourceTree = "<group>"; };
 		04D476DE1CC72B8400746491 /* orderTongjiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTongjiViewController.h; sourceTree = "<group>"; };
 		04D476DF1CC72B8400746491 /* orderTongjiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTongjiViewController.m; sourceTree = "<group>"; };
 		04D476E01CC72B8400746491 /* orderTongjiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderTongjiViewController.xib; sourceTree = "<group>"; };
@@ -3501,6 +3503,7 @@
 				0400EDAF1D46260F009CD641 /* mGoodsDetailBottomView.h */,
 				0400EDB01D46260F009CD641 /* mGoodsDetailBottomView.m */,
 				04F58FF01D266E8400C94C05 /* mGoodsDetailBottomView.xib */,
+				04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */,
 			);
 			name = "商品详情";
 			sourceTree = "<group>";
@@ -5651,6 +5654,7 @@
 				31BBE2A11C91479A006C553D /* mCustomHomeView.xib in Resources */,
 				746BFC231BAFDA0C006AAEA6 /* changeNameViewController.xib in Resources */,
 				74DDE8F61BAC05AA004878D1 /* myMoneyHeader.xib in Resources */,
+				04CE8FD11D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib in Resources */,
 				3135F8241C97E29800EF9569 /* editMessageViewController.xib in Resources */,
 				043F38D91CEAC9D4000041EC /* releaseCell6.xib in Resources */,
 				04E5A81D1CE5C50400A2D111 /* pptMyAddressViewController.xib in Resources */,

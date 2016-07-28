@@ -135,11 +135,11 @@
     self.mDistance.layer.borderWidth = 0.5;
     self.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
     
-    self.mWorkTime.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color>",mShopList.mOpenTime,mShopList.mCloseTime] attributedStringWithStyleBook:mStyle];
+    self.mWorkTime.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color> 满:<color>%.2f元</color>免配送费 ",mShopList.mOpenTime,mShopList.mCloseTime,mShopList.mFreePrice] attributedStringWithStyleBook:mStyle];
     
     
-    self.mNum.attributedText = [[NSString stringWithFormat:@"全部商品：<color>%d</color> 收藏数：<color>%d</color>",mShopList.mGoodsNum,mShopList.mFocus] attributedStringWithStyleBook:mStyle];
-    self.mSenderPrice.attributedText = [[NSString stringWithFormat:@"配送费:<color>%.2f元</color>",mShopList.mFreePrice] attributedStringWithStyleBook:mStyle];
+    self.mNum.attributedText = [[NSString stringWithFormat:@"全部商品：<color>%d</color> 收藏数：<color>%d</color> ",mShopList.mGoodsNum,mShopList.mFocus] attributedStringWithStyleBook:mStyle];
+    self.mSenderPrice.attributedText = [[NSString stringWithFormat:@"配送费:<color>%.2f元</color>",mShopList.mDeliverPrice] attributedStringWithStyleBook:mStyle];
     
     
     if (mShopList.mActivityArr.count <= 0) {

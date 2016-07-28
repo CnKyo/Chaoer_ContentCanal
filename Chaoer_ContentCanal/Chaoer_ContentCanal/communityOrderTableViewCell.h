@@ -16,6 +16,7 @@
 
 - (void)cellWithBtnClickAction:(GMyMarketOrderList *)mShop;
 
+- (void)cellWithCancelBtnClick:(GMyMarketOrderList *)mShop;
 @end
 
 @interface communityOrderTableViewCell : UITableViewCell
@@ -47,6 +48,11 @@
  *  按钮
  */
 @property (weak, nonatomic) IBOutlet mMarketMyOrderBtn *mdobtn;
+/**
+ *  取消按钮
+ */
+@property (weak, nonatomic) IBOutlet mMarketMyOrderBtn *mCancelBtn;
+
 
 @property (strong,nonatomic) GMyMarketOrderList *mShop;
 

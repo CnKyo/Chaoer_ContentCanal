@@ -204,7 +204,7 @@
     mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
     market.mShopList = GMarketList.new;
     market.mShopList = mShopList;
-    market.mShopId = mShopList.mShopId;
+    market.mShopId = mShopList.mId;
     
     [self pushViewController:market];
     
