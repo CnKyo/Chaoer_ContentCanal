@@ -109,7 +109,7 @@
     address.block = ^(NSString *Lat,NSString *Lng,NSString *mId){
         MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
         
-        mNavView.mAddress.text = [NSString stringWithFormat:@"%@",mId];
+        mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置:%@",mId];
         self.mLat = Lat;
         self.mLng = Lng;
         [self headerBeganRefresh];
@@ -188,6 +188,7 @@
         }else{
             [self addEmptyView:nil];
             [self showErrorStatus:resb.mMessage];
+            [self popViewController];
         }
         
     }];

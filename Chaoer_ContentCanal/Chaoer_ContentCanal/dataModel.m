@@ -630,7 +630,7 @@ bool g_bined = NO;
     
     NSString *url = nil;
     NSString  *mPayType = nil;
-    if (mmType == 1) {
+    if (mmType != 2 ) {
         url = @"sm/pay/payment";
         [param setObject:[Util RSAEncryptor:mCode] forKey:@"orderIds"];
         
