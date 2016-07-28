@@ -317,14 +317,15 @@
             mLeftType = 0;
         }
         
-        if (mGoods1.mGoodsHot != nil || mGoods1.mGoodsHot.length != 0) {
-            cell.mLeftTagImg.image = [UIImage imageNamed:@"market_hot"];
-        }else if (mGoods1.mCampain != nil || mGoods1.mCampain.length != 0){
+        if ([mGoods1.mCampain isEqualToString:@"促销"]) {
             cell.mLeftTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
+            
+        }else if ([mGoods1.mGoodsHot isEqualToString:@"热卖"]){
+            cell.mLeftTagImg.image = [UIImage imageNamed:@"market_hot"];
+            
         }else{
             cell.mLeftTagImg.hidden = YES;
-        }
-        /**
+        }        /**
          *  设置收藏与添加购物车与详情
          */
         cell.mLeftCollect.tag = mGoods1.mGoodsId;
@@ -350,10 +351,12 @@
             [cell.mRightCollect setBackgroundImage:[UIImage imageNamed:@"collection_real"] forState:0];
             mRightType = 0;
         }
-        if (mGoods2.mGoodsHot != nil || mGoods2.mGoodsHot.length != 0) {
-            cell.mRightTagImg.image = [UIImage imageNamed:@"market_hot"];
-        }else if (mGoods2.mCampain != nil || mGoods2.mCampain.length != 0){
+        if ([mGoods2.mCampain isEqualToString:@"促销"]) {
             cell.mRightTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
+            
+            
+        }else if ([mGoods2.mGoodsHot isEqualToString:@"热卖"]){
+            cell.mRightTagImg.image = [UIImage imageNamed:@"market_hot"];
         }else{
             cell.mRightTagImg.hidden = YES;
         }
@@ -370,6 +373,8 @@
         return cell;
 
     }else{
+        NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
+
         cellId = @"cell";
 
         mCommunityMyViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -380,7 +385,9 @@
         cell.mName.text = mShopN.mShopName;
         
         cell.delegate = self;
-        cell.mCollectNum.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopN.mOpenTime,mShopN.mCloseTime];
+        
+        
+        cell.mCollectNum.attributedText = [[NSString stringWithFormat:@"营业时间：<color>%@-%@</color>",mShopN.mOpenTime,mShopN.mCloseTime] attributedStringWithStyleBook:mStyle];
         [cell.mImg sd_setImageWithURL:[NSURL URLWithString:mShopN.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
         cell.mCollectBtn.mShop = mShopN;
         

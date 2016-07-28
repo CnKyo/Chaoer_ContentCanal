@@ -199,7 +199,7 @@
 
 }
 - (void)footetBeganRefresh{
-    [self initData];
+//    [self initData];
 
     // 动画时间
     CGFloat duration = 0.4f;

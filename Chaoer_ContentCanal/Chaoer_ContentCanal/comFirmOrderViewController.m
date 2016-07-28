@@ -84,10 +84,10 @@
     [mTableHeaderView.mAddressBtn addTarget:self action:@selector(AddressAction:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *add = nil;
-    if (mShopCarList.mAddress.count <= 0) {
+    if (mShopCarList.mAddress.length <= 0) {
         add = @"请选择收货地址";
     }else{
-        add = mShopCarList.mAddress[0];
+        add = mShopCarList.mAddress;
     }
     
     mTableHeaderView.mAddress.text = add;
@@ -151,7 +151,7 @@
 }
 - (void)mGoPayAction:(UIButton *)sender{
     
-    if (mShopCarList.mAddress.count <= 0) {
+    if (mShopCarList.mAddress.length <= 0) {
         [self showErrorStatus:@"亲，您还没选择收货地址呐～～"];
         return;
     }

@@ -123,13 +123,23 @@
 
 
 - (void)setMShopList:(GMarketList *)mShopList{
+    
+    NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
+    
     self.mName.text = mShopList.mShopName;
     [self.mLogo sd_setImageWithURL:[NSURL URLWithString:mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
-    self.mWorkTime.text = [NSString stringWithFormat:@"营业时间：%@-%@",mShopList.mOpenTime,mShopList.mCloseTime];
+    
+    self.mDistance.layer.masksToBounds = YES;
+    self.mDistance.layer.cornerRadius = 3;
+    self.mDistance.layer.borderColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75].CGColor;
+    self.mDistance.layer.borderWidth = 0.5;
     self.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
     
-    self.mNum.text = [NSString stringWithFormat:@"全部商品：%d 收藏数：%d",mShopList.mGoodsNum,mShopList.mFocus];
-    self.mSenderPrice.text = [NSString stringWithFormat:@"配送费:%.2f",mShopList.mFreePrice];
+    self.mWorkTime.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color>",mShopList.mOpenTime,mShopList.mCloseTime] attributedStringWithStyleBook:mStyle];
+    
+    
+    self.mNum.attributedText = [[NSString stringWithFormat:@"全部商品：<color>%d</color> 收藏数：<color>%d</color>",mShopList.mGoodsNum,mShopList.mFocus] attributedStringWithStyleBook:mStyle];
+    self.mSenderPrice.attributedText = [[NSString stringWithFormat:@"配送费:<color>%.2f元</color>",mShopList.mFreePrice] attributedStringWithStyleBook:mStyle];
     
     
     if (mShopList.mActivityArr.count <= 0) {
@@ -152,6 +162,21 @@
             mActView.mName.text = mAct.mName;
             mActView.mContent.text = mAct.mContent;
             [self.mActivityView addSubview:mActView];
+            if ([mAct.mCode isEqualToString:@"A"]) {
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
+            }else if ([mAct.mCode isEqualToString:@"B"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.82 green:0.47 blue:0.62 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"C"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.52 green:0.76 blue:0.22 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"D"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.16 green:0.53 blue:1.00 alpha:0.75];
+                
+            }else{
+                mActView.mName.backgroundColor = M_CO;
+                
+            }
             mYY += 32;
         }
         self.mCellH =100+ mYY;

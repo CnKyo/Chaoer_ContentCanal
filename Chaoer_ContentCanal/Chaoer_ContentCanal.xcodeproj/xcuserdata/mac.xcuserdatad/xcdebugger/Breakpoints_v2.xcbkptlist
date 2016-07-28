@@ -58,28 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
-            timestampString = "491140550.983859"
+            timestampString = "491363891.946845"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1083"
-            endingLineNumber = "1083"
+            startingLineNumber = "1091"
+            endingLineNumber = "1091"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/QHLShoppingCarController.m"
-            timestampString = "491299997.153895"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
-            landmarkName = "-cell:selBtnDidClickToChangeAllSelBtn:andIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

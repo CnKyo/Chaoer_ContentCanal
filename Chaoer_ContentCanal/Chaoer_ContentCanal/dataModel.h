@@ -3768,7 +3768,7 @@
 /**
  *  地址
  */
-@property (strong,nonatomic) NSArray *mAddress;
+@property (strong,nonatomic) NSString *mAddress;
 /**
  *  优惠券
  */

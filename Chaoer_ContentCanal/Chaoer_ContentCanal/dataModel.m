@@ -6808,7 +6808,15 @@ bool pptbined = NO;
     
     self.mName = [[obj objectForKeyMy:@"userInfo"]objectForKeyMy:@"nickName"];
     self.mPhone = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"moblie"];
-    self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"];
+    
+    if ([[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"] isKindOfClass:[NSArray class]]) {
+        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"][0];
+    }else{
+        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"];
+    }
+    
+    
+
 
     NSMutableArray *mCoupA = [NSMutableArray new];
     [mCoupA removeAllObjects];

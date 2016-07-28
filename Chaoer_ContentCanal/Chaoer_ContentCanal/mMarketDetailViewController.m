@@ -94,7 +94,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    [self headerBeganRefresh];
+//    [self headerBeganRefresh];
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -171,7 +171,24 @@
             
             mActView.mName.text = mAct.mName;
             mActView.mContent.text = mAct.mContent;
+            if ([mAct.mCode isEqualToString:@"A"]) {
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
+            }else if ([mAct.mCode isEqualToString:@"B"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.82 green:0.47 blue:0.62 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"C"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.52 green:0.76 blue:0.22 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"D"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.16 green:0.53 blue:1.00 alpha:0.75];
+                
+            }else{
+                mActView.mName.backgroundColor = M_CO;
+                
+            }
             [mHeaderView.mActView addSubview:mActView];
+            
+       
             mYY += 32;
 
         }
@@ -227,6 +244,7 @@
 }
 
 - (void)upDatePage{
+    NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
 
     if (mIsCP != 0) {
         mCoupBtn.hidden = NO;
@@ -241,10 +259,11 @@
     }
 
     [mHeaderView.mLogo sd_setImageWithURL:[NSURL URLWithString:_mShopList.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
-    mHeaderView.mNum.text = [NSString stringWithFormat:@"全部商品：%d  收藏数：%d",_mShopList.mGoodsNum,_mShopList.mFocus];
-    mHeaderView.mCollectNum.textColor = M_CO;
-    mHeaderView.mCollectNum.text = [NSString stringWithFormat:@"营业时间：%@-%@",_mShopList.mOpenTime,_mShopList.mCloseTime];
     
+    mHeaderView.mCollectNum.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color>",_mShopList.mOpenTime,_mShopList.mCloseTime] attributedStringWithStyleBook:mStyle];
+    
+    
+    mHeaderView.mNum.attributedText = [[NSString stringWithFormat:@"全部商品：<color>%d</color> 收藏数：<color>%d</color>",_mShopList.mGoodsNum,_mShopList.mFocus] attributedStringWithStyleBook:mStyle];
     mHeaderView.mName.text = _mShopList.mShopName;
     
    
@@ -536,10 +555,12 @@
 
     }
     
-    if (mGoods1.mGoodsHot != nil || mGoods1.mGoodsHot.length != 0) {
-        cell.mLeftTagImg.image = [UIImage imageNamed:@"market_hot"];
-    }else if (mGoods1.mGoodsCampain != nil || mGoods1.mGoodsCampain.length != 0){
+    if ([mGoods1.mGoodsCampain isEqualToString:@"促销"]) {
         cell.mLeftTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
+
+    }else if ([mGoods1.mGoodsHot isEqualToString:@"热卖"]){
+        cell.mLeftTagImg.image = [UIImage imageNamed:@"market_hot"];
+
     }else{
         cell.mLeftTagImg.hidden = YES;
     }
@@ -571,10 +592,12 @@
 
     }
     
-    if (mGoods2.mGoodsHot != nil || mGoods2.mGoodsHot.length != 0) {
-        cell.mRightTagImg.image = [UIImage imageNamed:@"market_hot"];
-    }else if (mGoods2.mGoodsCampain != nil || mGoods2.mGoodsCampain.length != 0){
+    if ([mGoods2.mGoodsCampain isEqualToString:@"促销"]) {
         cell.mRightTagImg.image = [UIImage imageNamed:@"market_ Promotion"];
+
+
+    }else if ([mGoods2.mGoodsHot isEqualToString:@"热卖"]){
+        cell.mRightTagImg.image = [UIImage imageNamed:@"market_hot"];
     }else{
         cell.mRightTagImg.hidden = YES;
     }

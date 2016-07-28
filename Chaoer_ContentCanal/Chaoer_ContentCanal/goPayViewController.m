@@ -276,7 +276,7 @@
     {
         if (mType == 1) {
             
-            [self popViewController_3];
+            [self popViewController_2];
         }else{
             [self popViewController];
         }

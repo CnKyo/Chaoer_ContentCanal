@@ -64,21 +64,21 @@
 /**
  *  距离
  */
-@property (strong, nonatomic) IBOutlet UILabel *mDistance;
+@property (strong, nonatomic) IBOutlet WPHotspotLabel *mDistance;
 
 /**
  *  商品数量粉丝数量
  */
-@property (weak, nonatomic) IBOutlet UILabel *mNum;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mNum;
 /**
  *  营业时间
  */
-@property (weak, nonatomic) IBOutlet UILabel *mWorkTime;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mWorkTime;
 
 /**
  *  配送价
  */
-@property (weak, nonatomic) IBOutlet UILabel *mSenderPrice;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mSenderPrice;
 
 @property (weak, nonatomic) IBOutlet UIView *mLine;
 

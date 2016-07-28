@@ -25,7 +25,7 @@
     
     
     view.mName.layer.masksToBounds = YES;
-    view.mName.layer.cornerRadius = 10;
+    view.mName.layer.cornerRadius = 8;
     
     return view;
 

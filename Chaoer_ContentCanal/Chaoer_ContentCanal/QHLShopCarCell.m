@@ -96,6 +96,14 @@
     
     //设置cell中的子控件数据
     self.mSelectedBtn.selected = mGoods.mSelected;
+    
+    if (mGoods.mSelected) {
+        self.mAddBtn.enabled = self.mJianBtn.enabled = NO;
+    }else{
+        self.mAddBtn.enabled = self.mJianBtn.enabled = YES;
+    }
+    
+    
     self.mSelectedBtn.tag = [[NSString stringWithFormat:@"%d",mGoods.mGoodsId] intValue];
     self.mContent.text = [NSString stringWithFormat:@"数量：%d%@",mGoods.mQuantity,mGoods.mSpecifications];
     self.mPrice.text = [NSString stringWithFormat:@"￥:%.2f",mGoods.mTotlePrice];

@@ -92,6 +92,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     NSMutableArray *mJsonArr;
 
 }
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self headerBeganRefresh];
+}
 #pragma mark - viewDidLoad 方法
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
@@ -213,9 +218,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 [self addEmptyView:nil];
             }else{
                 [self.shoppingCar addObjectsFromArray:mArr];
-                [self.tableView reloadData];
             }
-            
+             [self.tableView reloadData];
+
         }else{
             [self addEmptyView:nil];
         }
@@ -364,8 +369,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
-            [self.tempArray removeAllObjects];
+            [self.shoppingCar removeAllObjects];
             [self.tableView reloadData];
+//            [self headerBeganRefresh];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -625,6 +631,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     //创建cell
     QHLShopCarCell *cell = [QHLShopCarCell cellWithTableView:tableView];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     cell.mGoods = goods;
     cell.mProLogo.image = [UIImage imageNamed:@"ppt_my_msg"];
     cell.indexPath = indexPath;
