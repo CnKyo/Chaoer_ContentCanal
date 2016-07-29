@@ -91,7 +91,7 @@
     mActFrame.size.height = mActivityDetailH-94;
     self.mShopDetailView.frame = mActFrame;
     
-    self.mCellH = 248+mActivityDetailH-94;
+    self.mCellH = 319+mActivityDetailH-94;
     
     
     self.mGoodsName.text = mGoodsDetail.mGoodsName;

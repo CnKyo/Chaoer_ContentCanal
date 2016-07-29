@@ -24,10 +24,12 @@
 
     self.mOpratorView.layer.masksToBounds = self.mJianBtn.layer.masksToBounds = self.mAddBtn.layer.masksToBounds = YES;
     self.mOpratorView.layer.cornerRadius = 5;
-    self.mOpratorView.layer.borderColor = [UIColor redColor].CGColor;
+    self.mOpratorView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mOpratorView.layer.borderWidth = 0.5;
     
-    
+    self.mJianBtn.layer.masksToBounds = self.mAddBtn.layer.masksToBounds = YES;
+    self.mJianBtn.layer.borderColor = self.mAddBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.mJianBtn.layer.borderWidth = self.mAddBtn.layer.borderWidth = 0.5;
     
 }
 + (instancetype)cellWithTableView:(UITableView *)tableView {

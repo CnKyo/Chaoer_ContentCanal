@@ -147,7 +147,7 @@
         if (regeocode)
         {
             MLLog(@"reGeocode:%@", regeocode);
-            mNavView.mAddress.text = [NSString stringWithFormat:@"%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置：%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
    
             MLLog(@"location:%@", location);
             _mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
@@ -168,9 +168,15 @@
     [self.mSubArr removeAllObjects];
     [self.mShopArr removeAllObjects];
     [self.mShopHotArr removeAllObjects];
-    for (int i =0; i<10; i++) {
-        NSString *sr = [NSString stringWithFormat:@"第%d个",i];
-        [self.mSubArr addObject:sr];
+  
+    
+    if (!_mLat) {
+        [self headerEndRefresh];
+
+        [self showErrorStatus:@"定位失败，请重新选择社区!"];
+        [self addressAction:nil];
+        
+        return;
     }
     
     [[mUserInfo backNowUser] getMarketHome:self.page andLat:_mLat andLng:_mLng block:^(mBaseData *resb, NSArray *mBanerArr, NSArray *mShopArr,NSArray *mHotArr) {
@@ -408,12 +414,12 @@
 #pragma mark----cellbaner的代理方法
 - (void)cellDidSelectedBanerIndex:(NSInteger)mIndex{
 
-    MBaner *banar = self.mBanerArr[mIndex];
-    
-    WebVC *w = [WebVC new];
-    w.mName = banar.mName;
-    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
-    [self pushViewController:w];
+//    MBaner *banar = self.mBanerArr[mIndex];
+//    
+//    WebVC *w = [WebVC new];
+//    w.mName = banar.mName;
+//    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
+//    [self pushViewController:w];
 
 }
 #pragma mark----滚动的代理方法

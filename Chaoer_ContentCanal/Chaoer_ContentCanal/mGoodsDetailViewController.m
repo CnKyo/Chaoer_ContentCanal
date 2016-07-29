@@ -368,29 +368,27 @@
         [mBootomView.mAttentionBtn setBackgroundImage:[UIImage imageNamed:@"mGoodsDetail_unCollect"] forState:0];
     }
     
-    CGRect TTframe = _twoPageView.frame;
-    
+   
     CGFloat mYY;
     
     if (mGoodsDetail.mGoodsDetailImgArr.count <= 0) {
         
     }else{
+        
         for (int i= 0; i<mGoodsDetail.mGoodsDetailImgArr.count; i++) {
             NSString *mSS = mGoodsDetail.mGoodsDetailImgArr[i];
             NSString *mUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mSS];
             
             UIImageView *mImg = [UIImageView new];
-            mImg.frame = CGRectMake(0, mYY, self.tableView.frame.size.width, 120);
+            mImg.frame = CGRectMake(0, mYY, self.tableView.frame.size.width, 200);
             mImg.backgroundColor = [UIColor whiteColor];
             [mImg sd_setImageWithURL:[NSURL URLWithString:mUrl  ] placeholderImage:[UIImage imageNamed:@"img_default"]];
             [_twoPageView addSubview:mImg];
-            mYY+=120;
+            mYY+=200;
         }
+
         
-        TTframe.size.height = mYY;
-        _twoPageView.frame = TTframe;
-        
-        _twoPageView.contentSize = CGSizeMake(self.tableView.frame.size.width, mYY+30);
+        _twoPageView.contentSize = CGSizeMake(self.tableView.frame.size.width, mYY);
         
     }
     [self.tableView reloadData];

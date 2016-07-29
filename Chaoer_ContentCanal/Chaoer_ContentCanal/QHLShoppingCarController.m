@@ -738,7 +738,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
                     [self dismiss];
                     if (resb.mSucess) {
-
+                        [self headerBeganRefresh];
                     }else{
                         [self showErrorStatus:resb.mMessage];
                     }
@@ -970,14 +970,23 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",mGood.mId] block:^(mBaseData *resb) {
             [self dismiss];
             if (resb.mSucess) {
-                
+
             }else{
                 [self showErrorStatus:resb.mMessage];
             }
         }];
 
-        if (shop.mGoodsArr.count<=1) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
-            [self.shoppingCar removeObjectAtIndex:indexPath.section];
+        if (shop.mGoodsArr.count<=1) {
+            if (mGood.mQuantity==1) {
+                [self.shoppingCar removeObjectAtIndex:indexPath.section];
+                [self headerBeganRefresh];
+
+            }else{
+                goods.mQuantity-=1;
+                goods.mTotlePrice-=mGood.mGoodsPrice;
+            }
+            
+
         }else{
             if (mGood.mQuantity==1) {
                 
@@ -988,8 +997,10 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 goods.mQuantity-=1;
                 goods.mTotlePrice-=mGood.mGoodsPrice;
             }
-            
         }
+    
+        
+        
         
     }
     

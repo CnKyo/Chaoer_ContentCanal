@@ -258,7 +258,7 @@
         [mHeaderView.mCollectBtn setBackgroundImage:[UIImage imageNamed:@"my_ collect"] forState:0];
     }
 
-    [mHeaderView.mLogo sd_setImageWithURL:[NSURL URLWithString:_mShopList.mShopImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [mHeaderView.mLogo sd_setImageWithURL:[NSURL URLWithString:_mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
     
     mHeaderView.mCollectNum.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color>",_mShopList.mOpenTime,_mShopList.mCloseTime] attributedStringWithStyleBook:mStyle];
     
@@ -757,6 +757,7 @@
     mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     goods.mSGoods = mGoods;
     goods.mShopId = mShopId;
+    goods.mIsCollecte = mGoods.mFocus;
     [self pushViewController:goods];
 }
 #pragma mark---- cell右边的添加购物车按钮点击代理方法
@@ -764,6 +765,8 @@
     mGoodsDetailViewController *goods = [[mGoodsDetailViewController alloc] initWithNibName:@"mGoodsDetailViewController" bundle:nil];
     goods.mSGoods = mGoods;
     goods.mShopId = mShopId;
+    goods.mIsCollecte = mGoods.mFocus;
+
     [self pushViewController:goods];
     
 }

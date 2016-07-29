@@ -77,7 +77,7 @@
     mHeaderView = [mCommunityHeaderView shareView];
     mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 130);
     
-
+    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     UIImage *mHead = nil;
     

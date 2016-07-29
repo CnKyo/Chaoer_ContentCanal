@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlV-xG-06P">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlV-xG-06P">
                     <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nQ-5l-NHb">
@@ -39,7 +39,7 @@
                         <constraint firstAttribute="bottom" secondItem="8nQ-5l-NHb" secondAttribute="bottom" id="pj5-pO-iD3"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布跑跑腿配送需支付酬劳费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-JK-e5c">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布跑跑腿配送需支付酬劳费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-JK-e5c">
                     <rect key="frame" x="8" y="122" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="2lR-0d-lmr"/>
@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wy-k3-kK3">
-                    <rect key="frame" x="0.0" y="151" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1q8-ET-8Hd">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -73,7 +73,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自取不需要配送费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh4-Ee-adk">
-                    <rect key="frame" x="8" y="209" width="304" height="21"/>
+                    <rect key="frame" x="8" y="122" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="aWc-7O-ScC"/>
                     </constraints>
@@ -82,7 +82,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWR-dA-7IP">
-                    <rect key="frame" x="0.0" y="238" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="151" width="320" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbz-BF-aLp">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -106,7 +106,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="由店铺负责安排配送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk1-Iw-zwr">
-                    <rect key="frame" x="8" y="296" width="304" height="21"/>
+                    <rect key="frame" x="8" y="209" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="8FN-Qk-BeV"/>
                     </constraints>
@@ -126,6 +126,7 @@
                 <constraint firstItem="CWR-dA-7IP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L8b-JX-crK"/>
                 <constraint firstItem="Pk1-Iw-zwr" firstAttribute="top" secondItem="CWR-dA-7IP" secondAttribute="bottom" constant="8" id="Mg1-2h-Pmw"/>
                 <constraint firstItem="GlV-xG-06P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nel-cT-x3O"/>
+                <constraint firstItem="7wy-k3-kK3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Spr-4L-40P"/>
                 <constraint firstAttribute="trailing" secondItem="7wy-k3-kK3" secondAttribute="trailing" id="UjM-qp-gXY"/>
                 <constraint firstItem="7wy-k3-kK3" firstAttribute="top" secondItem="eqB-JK-e5c" secondAttribute="bottom" constant="8" id="XXu-Un-Upe"/>
                 <constraint firstItem="eqB-JK-e5c" firstAttribute="top" secondItem="GlV-xG-06P" secondAttribute="bottom" constant="8" id="cbk-WX-ect"/>
@@ -137,6 +138,11 @@
                 <constraint firstItem="GlV-xG-06P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="zze-cg-1kl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="XXu-Un-Upe"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

@@ -20,18 +20,28 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff4-e7-Qk0">
                     <rect key="frame" x="53" y="14" width="259" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7B-52-WnY">
+                    <rect key="frame" x="0.0" y="49" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30180495689655173" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Tai-o1-9wU"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="G7B-52-WnY" firstAttribute="top" secondItem="ekq-hR-SLY" secondAttribute="bottom" constant="4" id="9As-45-RqL"/>
                 <constraint firstItem="ekq-hR-SLY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="9lX-j0-LsF"/>
                 <constraint firstAttribute="bottom" secondItem="ekq-hR-SLY" secondAttribute="bottom" constant="5" id="J0B-e7-qei"/>
                 <constraint firstItem="ekq-hR-SLY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="OPS-I3-CUT"/>
                 <constraint firstItem="ff4-e7-Qk0" firstAttribute="leading" secondItem="ekq-hR-SLY" secondAttribute="trailing" constant="8" id="SBv-Jc-LVZ"/>
                 <constraint firstItem="ff4-e7-Qk0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="bnc-Ae-VHv"/>
                 <constraint firstAttribute="trailing" secondItem="ff4-e7-Qk0" secondAttribute="trailing" constant="8" id="eWr-wU-8pl"/>
+                <constraint firstItem="G7B-52-WnY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r49-dZ-LkN"/>
+                <constraint firstAttribute="trailing" secondItem="G7B-52-WnY" secondAttribute="trailing" id="wdL-97-vCQ"/>
                 <constraint firstAttribute="bottom" secondItem="ff4-e7-Qk0" secondAttribute="bottom" constant="15" id="xgC-yL-nuI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

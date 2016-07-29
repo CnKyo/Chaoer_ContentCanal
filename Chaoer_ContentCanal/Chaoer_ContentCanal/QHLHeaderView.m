@@ -106,7 +106,7 @@
     self.name = name;
     //frame
     name.x = CGRectGetMaxX(self.imgView.frame) + 10;
-    name.y = 10;
+    name.y = 15;
     name.width = 200;
     name.height = 25;
     
