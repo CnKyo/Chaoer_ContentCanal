@@ -50,7 +50,6 @@
 @interface RSKImageScrollView : UIScrollView
 
 @property (nonatomic, strong) UIImageView *zoomView;
-@property (nonatomic, assign) BOOL aspectFill;
 
 - (void)displayImage:(UIImage *)image;
 

@@ -223,7 +223,13 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 3;
+ 
+    if (self.mShopHotArr.count<=0) {
+        return 2;
+    }else{
+        return 3;
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
@@ -234,14 +240,22 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    if (section == 0) {
-        return 1;
-    }else if (section == 1){
-        return 1;
+    if (self.mShopHotArr.count <= 0) {
+        if (section == 0) {
+            return 1;
+        }else{
+            return self.mShopArr.count;
+        }
     }else{
-        return self.mShopArr.count;
+        if (section == 0) {
+            return 1;
+        }else if (section == 1){
+            return 1;
+        }else{
+            return self.mShopArr.count;
+        }
     }
+ 
     
     
     
@@ -249,37 +263,70 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section == 0) {
-        return 120;
-    }else if (indexPath.section == 1){
-        return 210;
-    }else{
-        
-        GMarketList *mShopList = self.mShopArr[indexPath.row];
-
-        if (mShopList.mActivityArr.count <= 0) {
-            return 100;
-            
-        }else if (mShopList.mActivityArr.count == 1){
-            return 135;
-            
+    if (self.mShopHotArr.count <= 0) {
+        if (indexPath.section == 0) {
+            return 120;
         }else{
-            NSString *reuseCellId = nil;
-
-            reuseCellId = @"cell3";
-            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-            
             
             GMarketList *mShopList = self.mShopArr[indexPath.row];
-            [cell setMShopList:mShopList];
             
+            if (mShopList.mActivityArr.count <= 0) {
+                return 100;
+                
+            }else if (mShopList.mActivityArr.count == 1){
+                return 135;
+                
+            }else{
+                NSString *reuseCellId = nil;
+                
+                reuseCellId = @"cell3";
+                communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+                
+                
+                GMarketList *mShopList = self.mShopArr[indexPath.row];
+                [cell setMShopList:mShopList];
+                
+                
+                
+                return cell.mCellH;
+                
+            }
             
-            
-            return cell.mCellH;
-
         }
-        
+
+    }else{
+        if (indexPath.section == 0) {
+            return 120;
+        }else if (indexPath.section == 1){
+            return 210;
+        }else{
+            
+            GMarketList *mShopList = self.mShopArr[indexPath.row];
+            
+            if (mShopList.mActivityArr.count <= 0) {
+                return 100;
+                
+            }else if (mShopList.mActivityArr.count == 1){
+                return 135;
+                
+            }else{
+                NSString *reuseCellId = nil;
+                
+                reuseCellId = @"cell3";
+                communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+                
+                
+                GMarketList *mShopList = self.mShopArr[indexPath.row];
+                [cell setMShopList:mShopList];
+                
+                
+                
+                return cell.mCellH;
+                
+            }
+            
+        }
+
     }
     
     
@@ -291,41 +338,71 @@
     
     NSString *reuseCellId = nil;
     
-    if (indexPath.section == 0) {
-        reuseCellId = @"cell1";
-        
-        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.delegate = self;
-        [cell setMDataSourceArr:self.mBanerArr];
-        
-        return cell;
-
-    }else if (indexPath.section == 1){
-        reuseCellId = @"cell2";
-        
-        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        cell.delegate = self;
-        [cell setMScrollerSourceArr:self.mShopHotArr];
-        return cell;
+    if (self.mShopHotArr.count <= 0) {
+        if (indexPath.section == 0) {
+            reuseCellId = @"cell1";
+            
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.delegate = self;
+            [cell setMDataSourceArr:self.mBanerArr];
+            
+            return cell;
+            
+        }else{
+            
+            reuseCellId = @"cell3";
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            GMarketList *mShopList = self.mShopArr[indexPath.row];
+            [cell setMShopList:mShopList];
+            
+            
+            
+            return cell;
+        }
 
     }else{
-    
-        reuseCellId = @"cell3";
-        communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        if (indexPath.section == 0) {
+            reuseCellId = @"cell1";
+            
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.delegate = self;
+            [cell setMDataSourceArr:self.mBanerArr];
+            
+            return cell;
+            
+        }else if (indexPath.section == 1){
+            reuseCellId = @"cell2";
+            
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.delegate = self;
+            [cell setMScrollerSourceArr:self.mShopHotArr];
+            return cell;
+            
+        }else{
+            
+            reuseCellId = @"cell3";
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
+            GMarketList *mShopList = self.mShopArr[indexPath.row];
+            [cell setMShopList:mShopList];
+            
+            
+            
+            return cell;
+        }
 
-        GMarketList *mShopList = self.mShopArr[indexPath.row];
-        [cell setMShopList:mShopList];
-        
-        
-   
-        return cell;
     }
-
+    
+   
     
 }
 #pragma mark----cellbaner的代理方法
