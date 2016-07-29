@@ -5475,7 +5475,7 @@
 				TargetAttributes = {
 					741B8D8A1B326EFA002104A0 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 3RCJDNZPPN;
+						DevelopmentTeam = 5FKH22H2X2;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -6530,9 +6530,9 @@
 					"-lc++",
 					"-DEBUG",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
+				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b176939-9cc3-48ec-be25-ced2abc08485";
+				PROVISIONING_PROFILE = "34abfb37-e79a-46fd-af15-efb7073f625b";
 			};
 			name = Debug;
 		};
@@ -6543,7 +6543,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Chaoer_ContentCanal/Chaoer_ContentCanal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Choi hui to fuzhou software technology co., LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ping Tang (5FKH22H2X2)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6587,9 +6587,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zl.buyer.com;
+				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b176939-9cc3-48ec-be25-ced2abc08485";
+				PROVISIONING_PROFILE = "34abfb37-e79a-46fd-af15-efb7073f625b";
 			};
 			name = Release;
 		};
