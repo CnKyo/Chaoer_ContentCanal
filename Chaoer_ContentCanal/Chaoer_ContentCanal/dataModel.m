@@ -637,7 +637,7 @@ bool g_bined = NO;
         
         
         if (mType == 3) {
-            mPayType = @"Wx";
+            mPayType = @"wx";
 
         }else if (mType == 4){
             mPayType = @"alipay";
@@ -1050,8 +1050,8 @@ bool g_bined = NO;
     
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/appModfiyUser" parameters:para call:^(mBaseData *info) {
+        [self dealUserSession:info andPhone:[mUserInfo backNowUser].mPhone andOpenId:nil andArr:[mUserInfo backNowUser].mHistorySearchArr block:block];
         
-        [self dealUserSession:info andPhone:nil andOpenId:nil block:block];
 
     }];
     

@@ -25,6 +25,9 @@
 #import "shopCarHeaderAndFooterView.h"
 
 #import "QHLShopCarCell.h"
+
+#import "mCommunityMyViewController.h"
+
 #define SMGoodsModelPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"goods.archive"]
 
 typedef NS_ENUM(NSInteger, QHLViewState){
@@ -115,6 +118,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.mShopCarNumArr = [NSMutableArray new];
 
     mJsonArr = [NSMutableArray new];
+    
+    _mType = 1;
+    
     [self initView];
     //添加hiddenView
     [self setUpHiddenView];
@@ -154,6 +160,8 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     mEmptyView = [shopCarHeaderAndFooterView shareHeaderView];
     mEmptyView.alpha = 0;
+    [mEmptyView.mGoShopBtn addTarget:self action:@selector(GoShopAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mEmptyView.mMyBtn addTarget:self action:@selector(GoMyCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mEmptyView];
     
     [mEmptyView makeConstraints:^(MASConstraintMaker *make) {
@@ -172,7 +180,24 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         mEmptyView.alpha = 0;
     }];
 }
+- (void)GoShopAction:(UIButton *)sender{
+    if (_mType == 1) {
+    [self popViewController];
+    }else{
+    
+        [self popViewController_2];
+    }
+    
+}
+- (void)GoMyCollectionAction:(UIButton *)sender{
+    if (_mType == 1) {
+        mCommunityMyViewController *my = [mCommunityMyViewController new];
+        [self pushViewController:my];
 
+    }else{
+        [self popViewController];
+    }
+}
 #pragma mark - 懒加载
 - (NSMutableArray *)tempArray {
     if (!_mtempArray) {
@@ -216,13 +241,17 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
+                [self showEmptyView];
+
             }else{
                 [self.shoppingCar addObjectsFromArray:mArr];
+                [self dissmissEmptyView];
+
             }
              [self.tableView reloadData];
-
         }else{
             [self addEmptyView:nil];
+            [self showEmptyView];
         }
     }];
     

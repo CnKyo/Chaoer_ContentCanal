@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface QHLShoppingCarController : BaseVC
+/**
+ *  1是超市详情进入  2是我的界面进入
+ */
+@property (assign,nonatomic) int mType;
 
 @end
