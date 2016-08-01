@@ -785,7 +785,9 @@ bool g_bined = NO;
  
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/login" parameters:mOpenId call:^(mBaseData *info) {
         
-        [self dealUserSession:info andPhone:nil andOpenId:[mOpenId objectForKey:@"openid"] block:block];
+//        [self dealUserSession:info andPhone:nil andOpenId:[mOpenId objectForKey:@"openid"] block:block];
+        [self dealUserSession:info andPhone:nil andOpenId:[mOpenId objectForKey:@"openid"] andArr:[mUserInfo backNowUser].mHistorySearchArr block:block];
+
     }];
     
     
@@ -799,7 +801,8 @@ bool g_bined = NO;
     [para setObject:mOpenId forKey:@"openid"];
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/wxPhoneBind" parameters:para call:^(mBaseData *info) {
-        [self dealUserSession:info andPhone:mPwd  andOpenId:mOpenId block:block];
+//        [self dealUserSession:info andPhone:mPwd  andOpenId:mOpenId block:block];
+        [self dealUserSession:info andPhone:mPwd andOpenId:mOpenId andArr:[mUserInfo backNowUser].mHistorySearchArr block:block];
     }];
     
 }
