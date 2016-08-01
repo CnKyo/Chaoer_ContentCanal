@@ -205,7 +205,61 @@
     [dateFormatter setDateFormat:@"yyyyMMdd"];
     return [dateFormatter stringFromDate:dat];
 }
+/**
+ *  获取当前时间
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getNowTime{
 
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    MLLog(@"返回的时间是:%@",dateString);
+    return dateString;
+}
+
++ (NSString *)currentTime{
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy:MM:dd"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    MLLog(@"返回的时间是:%@",dateString);
+    return dateString;
+}
+#pragma mark----*  比较2个时间的大小
+/**
+ *  比较2个时间的大小
+ *
+ *  @param date01 时间1
+ *  @param date02 时间2
+ *
+ *  @return 返回int
+ */
++(int)compareDate:(NSString*)date01 withDate:(NSString*)date02{
+    
+    int ci;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy:MM:dd HH:mm"];
+    NSDate *dt1 = [[NSDate alloc] init];
+    NSDate *dt2 = [[NSDate alloc] init];
+    dt1 = [df dateFromString:date01];
+    dt2 = [df dateFromString:date02];
+    NSComparisonResult result = [dt1 compare:dt2];
+    switch (result)
+    {
+            //date02比date01大
+        case NSOrderedAscending: ci=1; break;
+            //date02比date01小
+        case NSOrderedDescending: ci=-1; break;
+            //date02=date01
+        case NSOrderedSame: ci=0; break;
+        default: NSLog(@"erorr dates %@, %@", dt2, dt1); break;
+    }
+    return ci;
+    
+}
 
 +(NSString*)getTimeStringPoint:(NSDate*)dat   //date转字符串 2015.03.23 08:00:00
 {

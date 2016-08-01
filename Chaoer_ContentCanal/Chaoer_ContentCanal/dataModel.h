@@ -3528,6 +3528,28 @@
  */
 @property (assign,nonatomic) int mShopId;
 
+/**
+ *  下班时间
+ */
+@property (strong,nonatomic) NSString *mCloseTime;
+/**
+ *  上班时间
+ */
+@property (strong,nonatomic) NSString *mOpenTime;
+/**
+ *  商品数量
+ */
+@property (assign,nonatomic) int mGoodsNum;
+/**
+ *  销量
+ */
+@property (assign,nonatomic) int mSalesNum;
+/**
+ *  是否能下单
+ */
+@property (assign,nonatomic) BOOL mIsCanOrder;
+
+
 -(id)initWithObj:(NSDictionary *)obj;
 
 

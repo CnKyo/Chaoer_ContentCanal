@@ -103,11 +103,12 @@
 #pragma mark - 设置name
 - (void)setUpNameLabel {
     UILabel *name = [[UILabel alloc] init];
+    name.font = [UIFont systemFontOfSize:15];
     self.name = name;
     //frame
     name.x = CGRectGetMaxX(self.imgView.frame) + 10;
-    name.y = 15;
-    name.width = 200;
+    name.y = 10;
+    name.width = 300;
     name.height = 25;
     
     [self.contentView addSubview:name];
@@ -150,24 +151,18 @@
     //设置数据
     self.selBtn.selected = shop.mSelected;
     self.selBtn.tag = shop.mShopId;
-    self.name.text = shop.mShopName;
-    NSString *mAct = nil;
+    NSString *mAct = @"营业时间";
+    NSString *mTime = nil;
     
-    if (shop.mActivity.count <= 0) {
-        mAct = @"该店铺暂无任何优惠活动";
-    }else if (shop.mActivity.count == 1){
-        GCampain *mC = shop.mActivity[0];
-        
-        if (mC.mType == 2) {
-            mAct = @"打折";
-        }else if (mC.mType == 1){
-            mAct = @"满减";
-        }else{
-            mAct = @"首单";
-        }
-        self.introduction.attributedText = [[NSString stringWithFormat:@"<color>%@</color> :%@",mAct,mC.mContent] attributedStringWithStyleBook:mStyle1];
-
+    if (shop.mIsCanOrder) {
+        mTime = @"";
+    }else{
+        mTime = @"商家休息中";
     }
+    self.name.text = [NSString stringWithFormat:@"%@  %@",shop.mShopName,mTime];
+
+    self.introduction.attributedText = [[NSString stringWithFormat:@"%@:<color>%@-%@</color>",mAct,shop.mOpenTime,shop.mCloseTime] attributedStringWithStyleBook:mStyle1];
+
     
 
 }

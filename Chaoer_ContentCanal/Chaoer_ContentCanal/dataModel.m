@@ -6686,6 +6686,27 @@ bool pptbined = NO;
     self.mShopName = [obj objectForKeyMy:@"shop_name"];
     
     
+    self.mCloseTime = [obj objectForKeyMy:@"closing_time"];
+    self.mOpenTime = [obj objectForKeyMy:@"opening_time"];
+    self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
+    self.mSalesNum = [[obj objectForKeyMy:@"salesNum"] intValue];
+    
+    
+    NSString *mNow = [NSString stringWithFormat:@"%@ %@",[Util currentTime],[Util getNowTime]];
+    
+    NSString *mOpenT = [NSString stringWithFormat:@"%@ %@",[Util currentTime],self.mOpenTime];
+    NSString *mCloseT = [NSString stringWithFormat:@"%@ %@",[Util currentTime],self.mCloseTime];
+    
+    int mII = [Util compareDate:mNow withDate:mOpenT];
+    int mIII = [Util compareDate:mNow withDate:mCloseT];
+    
+
+    if (mII == -1 && mIII == 1) {
+        self.mIsCanOrder = YES;
+    }else{
+        self.mIsCanOrder = NO;
+    }
+    
 }
 
 @end

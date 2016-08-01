@@ -35,18 +35,36 @@ typedef enum _RelDic
 
 
 +(UIImage*)scaleImg:(UIImage*)org maxsize:(CGFloat)maxsize; //缩放图片
-
+/**
+ *  时间戳转date
+ *
+ *  @param second 时间戳
+ *
+ *  @return 返回date
+ */
 +(NSDate*)dateWithInt:(double)second;
 
 +(NSString*)getTimeStringPointSecond:(double)second;//2015.06.18. 12:12:00
 
 +(NSString*)getTimeStringHourSecond:(double)second;
-
+/**
+ *  时间戳转时间字符串
+ *
+ *  @param second 时间戳
+ *
+ *  @return 返回date
+ */
 +(NSString*)getTimeStringWithP:(double)time;//获取时间 2015.04.15
 
 +(NSString*)getTimeString:(NSDate*)dat bfull:(BOOL)bfull;   //date转字符串
-
-+(NSString*)getTimeStringPoint:(NSDate*)dat;   //date转字符串 2015.03.23 08:00:00
+/**
+ *  date转字符串 2015.03.23 08:00:00
+ *
+ *  @param dat <#dat description#>
+ *
+ *  @return <#return value description#>
+ */
++(NSString*)getTimeStringPoint:(NSDate*)dat;   //
 
 +(NSString*)getTimeStringHour:(NSDate*)dat;   //date转字符串 2015-03-23 08:00
 
@@ -56,6 +74,28 @@ typedef enum _RelDic
 +(NSString*)getTimeStringS:(NSDate*)dat;   //date转字符串 2015年03月23日 08:00
 
 +(NSString*)getTimeStringSS:(NSDate*)dat;   //date转字符串 20150415
+#pragma mark----获取当前时间
+/**
+ *  获取当前时间
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)getNowTime;
+
++ (NSString *)currentTime;
+#pragma mark----*  比较2个时间的大小
+/**
+ *  比较2个时间的大小
+ *
+ *  @param date01 时间1
+ *  @param date02 时间2
+ *
+ *  @return 返回int
+ */
++(int)compareDate:(NSString*)date01 withDate:(NSString*)date02;
+
+
+
 
 //如果 base是 父view,那么就是距离父的边距
 +(void)relPosUI:(UIView*)base dif:(CGFloat)dif tag:(UIView*)tag tagatdic:(RelDic)dic;
