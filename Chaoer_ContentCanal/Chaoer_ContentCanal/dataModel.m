@@ -6515,7 +6515,7 @@ bool pptbined = NO;
     self.mGoodsName = [obj objectForKeyMy:@"goods_name"];
     self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
     self.mGoodsDetail = [obj objectForKeyMy:@"describe"];
-    self.mGoodsImg = [obj objectForKeyMy:@"goods_img"];
+    self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goods_img"]];
 
 
     
@@ -6679,12 +6679,33 @@ bool pptbined = NO;
     }
     [self.mGoodsArr addObjectsFromArray:mGoodsArr];
     
-    self.mShopLogo = [obj objectForKeyMy:@"shop_logo"];
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shop_logo"]];
     
     self.mShopId = [[obj objectForKeyMy:@"shop_id"] intValue];
     
     self.mShopName = [obj objectForKeyMy:@"shop_name"];
     
+    
+    self.mCloseTime = [obj objectForKeyMy:@"closing_time"];
+    self.mOpenTime = [obj objectForKeyMy:@"opening_time"];
+    self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
+    self.mSalesNum = [[obj objectForKeyMy:@"salesNum"] intValue];
+    
+    
+    NSString *mNow = [NSString stringWithFormat:@"%@ %@",[Util currentTime],[Util getNowTime]];
+    
+    NSString *mOpenT = [NSString stringWithFormat:@"%@ %@",[Util currentTime],self.mOpenTime];
+    NSString *mCloseT = [NSString stringWithFormat:@"%@ %@",[Util currentTime],self.mCloseTime];
+    
+    int mII = [Util compareDate:mNow withDate:mOpenT];
+    int mIII = [Util compareDate:mNow withDate:mCloseT];
+    
+
+    if (mII == -1 && mIII == 1) {
+        self.mIsCanOrder = YES;
+    }else{
+        self.mIsCanOrder = NO;
+    }
     
 }
 
@@ -6783,11 +6804,11 @@ bool pptbined = NO;
 
     self.mShopId = [[obj objectForKeyMy:@"shop_id"] intValue];
     
-    if (self.mFocus != 0) {
-        self.mIsFocus = YES;
-    }else{
-        self.mIsFocus = NO;
-    }
+//    if (self.mFocus != 0) {
+//        self.mIsFocus = YES;
+//    }else{
+//        self.mIsFocus = NO;
+//    }
 
 }
 
@@ -6913,7 +6934,7 @@ bool pptbined = NO;
 
     self.mSendPrice = [[obj objectForKeyMy:@"deliverFee"] floatValue];
     self.mShopName = [obj objectForKeyMy:@"shopName"];
-    self.mShopImg = [obj objectForKeyMy:@"shopLogo"];
+    self.mShopImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
     
     self.mShopId = [[obj objectForKeyMy:@"shopId"] intValue];
     
@@ -6933,7 +6954,7 @@ bool pptbined = NO;
  
     self.mTotlePrice = mPP;
     
-    self.mSendName = @"跑跑腿配送";
+    self.mSendName = @"上门自取";
     self.mSendId = @"2";
   
     if ([[obj objectForKeyMy:@"shopCampaign"] isKindOfClass:[NSString class]]) {
@@ -7053,7 +7074,7 @@ bool pptbined = NO;
     
     self.mDeliveFee = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"deliverFee"] floatValue];
     self.mShopName = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopName"];
-    self.mShopLogo = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopLogo"];
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopLogo"]];
     
     self.mShopId = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"shopId"] intValue];
     

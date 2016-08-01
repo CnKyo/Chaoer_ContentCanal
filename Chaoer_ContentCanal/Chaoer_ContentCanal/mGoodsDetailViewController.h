@@ -14,4 +14,5 @@
 
 @property (assign,nonatomic) int  mShopId;
 
+@property (assign,nonatomic) BOOL mIsCollecte;
 @end

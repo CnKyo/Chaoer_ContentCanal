@@ -40,10 +40,11 @@
     view.mAddView.layer.masksToBounds = YES;
     view.mAddView.layer.cornerRadius = 3;
     view.mAddView.layer.borderWidth = 0.5;
-    view.mAddView.layer.borderColor = [UIColor redColor].CGColor;
+    view.mAddView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     view.mJianBtn.layer.masksToBounds = view.mAddBtn.layer.masksToBounds = YES;
-    view.mJianBtn.layer.cornerRadius = view.mAddBtn.layer.cornerRadius = 3;
+    view.mJianBtn.layer.borderColor = view.mAddBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    view.mJianBtn.layer.borderWidth = view.mAddBtn.layer.borderWidth = 0.5;
     
     return view;
     

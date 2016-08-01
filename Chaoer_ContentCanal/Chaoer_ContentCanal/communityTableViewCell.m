@@ -99,7 +99,7 @@
     int tag = 0;
     for (GHot *mHot in mScrollerSourceArr) {
         mSubView = [mCommunityNavView shaeScrollerSubView];
-        mSubView.frame = CGRectMake(x, 0, w-5, self.mScrollerView.mheight);
+        mSubView.frame = CGRectMake(x, 0, w, self.mScrollerView.mheight);
         mSubView.mSName.text = mHot.mGoodsName;
         mSubView.mSOldPrice.text = [NSString stringWithFormat:@"¥%.2f",mHot.mMarketPrice];
         mSubView.mSNowPrice.text = [NSString stringWithFormat:@"¥%.2f",mHot.mNowPrice];
@@ -108,7 +108,9 @@
         [mSubView.mSBtn addTarget:self action:@selector(msBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.mScrollerView addSubview:mSubView];
         
-        x+=w;
+
+        
+        x+=w+5;
         tag++;
     }
     
