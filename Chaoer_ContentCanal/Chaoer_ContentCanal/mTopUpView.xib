@@ -287,7 +287,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Q9-k0-XE5">
                     <rect key="frame" x="20" y="365" width="280" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Sck-3z-iKB"/>
                     </constraints>
@@ -340,6 +340,6 @@
         <image name="goPay_bank" width="38" height="36"/>
         <image name="goPay_wechat" width="38" height="36"/>
         <image name="ppt_add_address_normal" width="32" height="32"/>
-        <image name="ppt_add_address_selected" width="32" height="32"/>
+        <image name="ppt_add_address_selected" width="34" height="34"/>
     </resources>
 </document>

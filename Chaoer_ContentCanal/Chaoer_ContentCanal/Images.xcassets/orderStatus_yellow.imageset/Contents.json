@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "orderStatus_yellow.png",
+      "filename" : "修理完成图标.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "orderStatus_yellow-1.png",
+      "filename" : "修理完成图标-1.png",
       "scale" : "2x"
     },
     {

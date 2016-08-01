@@ -106,7 +106,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.80000000000000004" green="0.40000000000000002" blue="0.0" alpha="0.20344827586206896" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.26333512931034481" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="Wpa-3s-iQJ" firstAttribute="leading" secondItem="kzz-r8-1jf" secondAttribute="leading" id="1M7-kd-2Z5"/>
                                 <constraint firstAttribute="trailing" secondItem="Ijd-nD-NJx" secondAttribute="trailing" id="AQn-tx-sXs"/>
@@ -122,7 +122,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="kzz-r8-1jf" firstAttribute="top" secondItem="dWo-vG-ugW" secondAttribute="bottom" constant="11" id="0xM-MO-ZIW"/>
                         <constraint firstAttribute="height" constant="180" id="0z9-ST-rNF"/>

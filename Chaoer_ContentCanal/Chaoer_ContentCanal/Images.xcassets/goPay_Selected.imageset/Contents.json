@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "goPay_Selected.png",
+      "filename" : "选择图标.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "goPay_Selected-1.png",
+      "filename" : "选择图标-1.png",
       "scale" : "2x"
     },
     {

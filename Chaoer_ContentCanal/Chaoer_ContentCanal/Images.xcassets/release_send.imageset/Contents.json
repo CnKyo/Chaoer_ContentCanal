@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "release_send.png",
+      "filename" : "送东西.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "release_send-1.png",
+      "filename" : "送东西-1.png",
       "scale" : "2x"
     },
     {

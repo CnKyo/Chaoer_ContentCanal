@@ -46,7 +46,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByD-WK-MLe">
-                            <rect key="frame" x="80" y="212" width="160" height="40"/>
+                            <rect key="frame" x="80" y="217" width="160" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcc-Kk-N9e">
                                     <rect key="frame" x="0.0" y="5" width="70" height="30"/>
@@ -101,7 +101,7 @@
                         <constraint firstItem="GRn-di-ROT" firstAttribute="top" secondItem="yNc-XK-Kpp" secondAttribute="top" constant="40" id="V7B-VB-zBs"/>
                         <constraint firstAttribute="trailing" secondItem="lCE-a1-0d0" secondAttribute="trailing" constant="8" id="bV2-eU-jOw"/>
                         <constraint firstItem="ctp-sB-72m" firstAttribute="top" secondItem="yNc-XK-Kpp" secondAttribute="top" id="kPh-9y-x8B"/>
-                        <constraint firstItem="ByD-WK-MLe" firstAttribute="top" secondItem="lCE-a1-0d0" secondAttribute="bottom" constant="20" id="wzM-aT-SMq"/>
+                        <constraint firstItem="ByD-WK-MLe" firstAttribute="top" secondItem="lCE-a1-0d0" secondAttribute="bottom" constant="25" id="wzM-aT-SMq"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EF4-6n-RB3">
@@ -253,7 +253,7 @@
     </objects>
     <resources>
         <image name="icon_redbag" width="48" height="50"/>
-        <image name="vallet_bgk" width="320" height="261"/>
+        <image name="vallet_bgk" width="640" height="499"/>
         <image name="vallete_btn" width="166" height="72"/>
         <image name="vallete_history" width="24" height="26"/>
         <image name="vallete_order" width="24" height="26"/>

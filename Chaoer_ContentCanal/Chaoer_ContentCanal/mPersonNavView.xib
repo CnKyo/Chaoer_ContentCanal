@@ -58,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.90980392156862744" green="0.53725490196078429" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="xr0-gB-nnu" firstAttribute="centerY" secondItem="pec-2a-Kk2" secondAttribute="centerY" id="91u-h6-ZTk"/>
                 <constraint firstItem="pec-2a-Kk2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="Iwd-7K-jIh"/>
@@ -82,7 +82,7 @@
                 <outlet property="mMsgBtn" destination="YaO-Ah-xgs" id="bmR-YR-uEh"/>
                 <outlet property="mSetupBtn" destination="pec-2a-Kk2" id="KPT-Uf-Z4C"/>
             </connections>
-            <point key="canvasLocation" x="81" y="296"/>
+            <point key="canvasLocation" x="185" y="296"/>
         </view>
     </objects>
     <resources>

@@ -42,7 +42,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-TC-gXw" customClass="mOrderButton">
                         <rect key="frame" x="252" y="41" width="60" height="25"/>
-                        <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="WZn-NE-aIH"/>
                             <constraint firstAttribute="height" constant="25" id="Y13-K7-ic7"/>

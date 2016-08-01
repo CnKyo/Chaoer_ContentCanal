@@ -48,7 +48,7 @@
                     </constraints>
                     <state key="normal" backgroundImage="collect_white"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-YD-nTd">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-YD-nTd">
                     <rect key="frame" x="287" y="29" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="KaQ-JH-I6X"/>
@@ -57,7 +57,7 @@
                     <state key="normal" backgroundImage="share_white"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="H03-Ig-fbv" firstAttribute="centerX" secondItem="z7v-Q5-T4r" secondAttribute="centerX" id="4MT-zf-6MM"/>
                 <constraint firstItem="MaI-YD-nTd" firstAttribute="top" secondItem="z7v-Q5-T4r" secondAttribute="top" constant="29" id="CSz-uf-LIK"/>

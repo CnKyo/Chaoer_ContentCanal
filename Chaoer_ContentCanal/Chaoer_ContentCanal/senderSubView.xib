@@ -156,12 +156,13 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-3O-3D4">
                     <rect key="frame" x="60" y="436" width="200" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="11f-N5-N5X"/>
                         <constraint firstAttribute="width" constant="200" id="M5b-VG-Umu"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="赚取佣金" backgroundImage="comfir_unselected">
+                    <state key="normal" title="赚取佣金">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="selected" backgroundImage="comfir_selected"/>
@@ -243,6 +244,5 @@
     </objects>
     <resources>
         <image name="comfir_selected" width="412" height="104"/>
-        <image name="comfir_unselected" width="412" height="104"/>
     </resources>
 </document>

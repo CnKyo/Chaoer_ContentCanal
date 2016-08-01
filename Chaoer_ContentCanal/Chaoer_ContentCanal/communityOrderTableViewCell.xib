@@ -95,7 +95,7 @@
                             <constraint firstAttribute="height" constant="30" id="w7Q-He-WTw"/>
                         </constraints>
                         <state key="normal" title="去支付">
-                            <color key="titleColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                 </subviews>

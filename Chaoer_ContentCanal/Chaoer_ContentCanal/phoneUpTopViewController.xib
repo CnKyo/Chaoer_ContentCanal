@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,9 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mBaseBgkImg" translatesAutoresizingMaskIntoConstraints="NO" id="jI6-wo-y6V">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3x-5e-1cy">
                     <rect key="frame" x="0.0" y="79" width="320" height="210"/>
                     <subviews>
@@ -214,7 +211,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oW-PP-ow8">
                     <rect key="frame" x="15" y="339" width="290" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lZR-BI-8Md"/>
                     </constraints>
@@ -224,17 +221,13 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.24695581896551724" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="9oW-PP-ow8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="2yO-BT-8VC"/>
                 <constraint firstItem="A3x-5e-1cy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AG7-Iv-GEQ"/>
-                <constraint firstAttribute="trailing" secondItem="jI6-wo-y6V" secondAttribute="trailing" id="H2m-KW-vEV"/>
                 <constraint firstItem="9oW-PP-ow8" firstAttribute="top" secondItem="A3x-5e-1cy" secondAttribute="bottom" constant="50" id="M2R-90-LrM"/>
                 <constraint firstAttribute="trailing" secondItem="9oW-PP-ow8" secondAttribute="trailing" constant="15" id="NsR-9I-L3T"/>
-                <constraint firstAttribute="bottom" secondItem="jI6-wo-y6V" secondAttribute="bottom" id="OQg-FZ-9OP"/>
-                <constraint firstItem="jI6-wo-y6V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="WhP-4C-mdZ"/>
                 <constraint firstItem="A3x-5e-1cy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="erd-dQ-Qid"/>
-                <constraint firstItem="jI6-wo-y6V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lh2-ga-xs8"/>
                 <constraint firstAttribute="trailing" secondItem="A3x-5e-1cy" secondAttribute="trailing" id="wm2-lA-5sV"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -244,7 +237,6 @@
         </view>
     </objects>
     <resources>
-        <image name="mBaseBgkImg" width="640" height="1136"/>
         <image name="paytype_selected" width="120" height="46"/>
         <image name="paytype_unselected" width="120" height="46"/>
     </resources>

@@ -219,7 +219,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPb-E3-91b">
                     <rect key="frame" x="10" y="345" width="300" height="40"/>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.53725490200000003" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="K31-XT-SXs"/>
                     </constraints>

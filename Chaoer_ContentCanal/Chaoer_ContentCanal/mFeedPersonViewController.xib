@@ -30,9 +30,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mBaseBgkImg" translatesAutoresizingMaskIntoConstraints="NO" id="Kji-Hp-csI">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-c7-KBv">
                     <rect key="frame" x="0.0" y="79" width="320" height="280"/>
                     <subviews>
@@ -295,7 +292,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vo-s9-UD8">
                     <rect key="frame" x="15" y="377" width="290" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="SqN-hD-Rtq"/>
                     </constraints>
@@ -308,12 +305,8 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.24771012931034483" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Kji-Hp-csI" secondAttribute="bottom" id="6Re-FB-IyQ"/>
-                <constraint firstItem="Kji-Hp-csI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="AA9-SU-9Ab"/>
-                <constraint firstAttribute="trailing" secondItem="Kji-Hp-csI" secondAttribute="trailing" id="Stv-iP-0od"/>
-                <constraint firstItem="Kji-Hp-csI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Tll-dk-r4N"/>
                 <constraint firstItem="2Vo-s9-UD8" firstAttribute="top" secondItem="GFx-c7-KBv" secondAttribute="bottom" constant="18" id="WHy-oA-8Lg"/>
                 <constraint firstItem="2Vo-s9-UD8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WjC-4U-dp3"/>
                 <constraint firstItem="GFx-c7-KBv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Zyw-qG-FgM"/>
@@ -325,7 +318,4 @@
             <point key="canvasLocation" x="275" y="256"/>
         </view>
     </objects>
-    <resources>
-        <image name="mBaseBgkImg" width="640" height="1136"/>
-    </resources>
 </document>

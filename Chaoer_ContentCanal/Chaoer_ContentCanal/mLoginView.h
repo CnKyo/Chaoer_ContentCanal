@@ -22,6 +22,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTx;
 ///验证码输入框
 @property (weak, nonatomic) IBOutlet UITextField *codeTx;
+/**
+ *  忘记密码
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mForgetBtn;
+/**
+ *  注册
+ */
+@property (strong, nonatomic) IBOutlet UIButton *mRegistBtn;
+
+
++(mLoginView *)shareView;
+
 
 /**
  *  腾讯登陆
@@ -35,16 +47,13 @@
  *  新浪登陆
  */
 @property (strong, nonatomic) IBOutlet UIButton *mSinaLogin;
-/**
- *  忘记密码
- */
-@property (strong, nonatomic) IBOutlet UIButton *mForgetBtn;
-/**
- *  注册
- */
-@property (strong, nonatomic) IBOutlet UIButton *mRegistBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *mView1;
 
-+(mLoginView *)shareView;
+@property (weak, nonatomic) IBOutlet UIView *mView2;
+
+@property (weak, nonatomic) IBOutlet UIView *mView3;
+
++ (mLoginView *)shareBottomView;
 
 @end

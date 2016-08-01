@@ -67,7 +67,6 @@
         make.bottom.equalTo(self.view).offset(@0);
         make.height.offset(@50);
     }];
-    
 
 }
 - (void)upDatePage{

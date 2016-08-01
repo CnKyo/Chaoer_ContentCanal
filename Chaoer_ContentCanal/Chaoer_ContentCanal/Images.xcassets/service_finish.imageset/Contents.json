@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "service_finish.png",
+      "filename" : "订单完成.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "service_finish-1.png",
+      "filename" : "订单完成-1.png",
       "scale" : "2x"
     },
     {

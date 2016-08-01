@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "vallet_bgk.png",
+      "filename" : "钱包_01(1).png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "钱包-背景x2.png",
+      "filename" : "钱包_01(1)-1.png",
       "scale" : "2x"
     },
     {

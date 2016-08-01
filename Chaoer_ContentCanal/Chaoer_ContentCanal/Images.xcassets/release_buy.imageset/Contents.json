@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "release_buy.png",
+      "filename" : "商品卖送.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "release_buy-1.png",
+      "filename" : "商品卖送-1.png",
       "scale" : "2x"
     },
     {
