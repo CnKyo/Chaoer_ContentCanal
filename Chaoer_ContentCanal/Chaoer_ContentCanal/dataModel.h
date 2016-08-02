@@ -3620,6 +3620,10 @@
  *  是否收藏
  */
 @property (assign,nonatomic) BOOL mIsFocus;
+/**
+ *  图片数组
+ */
+@property (strong,nonatomic) NSArray *mImgArr;
 
 /**
  *  活动

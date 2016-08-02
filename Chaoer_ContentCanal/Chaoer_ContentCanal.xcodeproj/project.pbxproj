@@ -172,6 +172,8 @@
 		048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8331CB63B6800383DF8 /* MovieAddComment1.xib */; };
 		048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048FD8371CB642CD00383DF8 /* evolutionViewController.m */; };
 		048FD83A1CB642CD00383DF8 /* evolutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048FD8381CB642CD00383DF8 /* evolutionViewController.xib */; };
+		049D1AF41D50A56000ED1596 /* mCheckMoreActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D1AF31D50A56000ED1596 /* mCheckMoreActivityView.m */; };
+		049D1AF61D50A56B00ED1596 /* mCheckMoreActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049D1AF51D50A56B00ED1596 /* mCheckMoreActivityView.xib */; };
 		04A150FF1D36173800AFCE98 /* mShopCarHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */; };
 		04A151011D36174300AFCE98 /* mShopCarHeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */; };
 		04A151031D36260100AFCE98 /* mShopCarFooterSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */; };
@@ -1151,6 +1153,9 @@
 		048FD8361CB642CD00383DF8 /* evolutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolutionViewController.h; sourceTree = "<group>"; };
 		048FD8371CB642CD00383DF8 /* evolutionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = evolutionViewController.m; sourceTree = "<group>"; };
 		048FD8381CB642CD00383DF8 /* evolutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = evolutionViewController.xib; sourceTree = "<group>"; };
+		049D1AF21D50A56000ED1596 /* mCheckMoreActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCheckMoreActivityView.h; sourceTree = "<group>"; };
+		049D1AF31D50A56000ED1596 /* mCheckMoreActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCheckMoreActivityView.m; sourceTree = "<group>"; };
+		049D1AF51D50A56B00ED1596 /* mCheckMoreActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCheckMoreActivityView.xib; sourceTree = "<group>"; };
 		04A150FD1D36173800AFCE98 /* mShopCarHeaderSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mShopCarHeaderSection.h; sourceTree = "<group>"; };
 		04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mShopCarHeaderSection.m; sourceTree = "<group>"; };
 		04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mShopCarHeaderSection.xib; sourceTree = "<group>"; };
@@ -3494,6 +3499,9 @@
 				0400EDB01D46260F009CD641 /* mGoodsDetailBottomView.m */,
 				04F58FF01D266E8400C94C05 /* mGoodsDetailBottomView.xib */,
 				04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */,
+				049D1AF21D50A56000ED1596 /* mCheckMoreActivityView.h */,
+				049D1AF31D50A56000ED1596 /* mCheckMoreActivityView.m */,
+				049D1AF51D50A56B00ED1596 /* mCheckMoreActivityView.xib */,
 			);
 			name = "商品详情";
 			sourceTree = "<group>";
@@ -5611,6 +5619,7 @@
 				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
 				04E5A7EE1CE5823300A2D111 /* pptMyViewController.xib in Resources */,
 				04E5A7FE1CE5AB3A00A2D111 /* choulaoCell.xib in Resources */,
+				049D1AF61D50A56B00ED1596 /* mCheckMoreActivityView.xib in Resources */,
 				040B80191CC50C08006A9489 /* LCProgressHUD.bundle in Resources */,
 				749BEA0A1B32779800BABCA6 /* MBProgressHUD.bundle in Resources */,
 				741B8D9F1B326EFA002104A0 /* LaunchScreen.xib in Resources */,
@@ -6140,6 +6149,7 @@
 				31462CEC1CB3B07100E67836 /* UIColor+Extensions.m in Sources */,
 				16A987BD1C0397F100D55C4A /* Util.m in Sources */,
 				0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */,
+				049D1AF41D50A56000ED1596 /* mCheckMoreActivityView.m in Sources */,
 				31671DD21CA1332A001DAEBA /* hasCodeViewController.m in Sources */,
 				315442881C9A54800047E52A /* mFeedPersonViewController.m in Sources */,
 				749BE99C1B32756800BABCA6 /* IQSegmentedNextPrevious.m in Sources */,

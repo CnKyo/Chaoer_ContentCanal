@@ -6773,6 +6773,13 @@ bool pptbined = NO;
     self.mShopImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shop_logo"]];
     
     self.mGoodsImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"goods_img"]];
+    
+    
+    NSMutableArray *mImgArrs = [NSMutableArray new];
+    
+    [mImgArrs addObject:self.mGoodsImg];
+    self.mImgArr = mImgArrs;
+    
     self.mShopSalesNum = [[obj objectForKeyMy:@"shop_salesNum"] intValue];
     self.mFreePrice = [[obj objectForKeyMy:@"free_price"] floatValue];
     self.mCloseTime = [obj objectForKeyMy:@"closing_time"];
@@ -6780,12 +6787,11 @@ bool pptbined = NO;
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
     self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
+    self.mDelivePrice = [[obj objectForKeyMy:@"deliver_price"] floatValue];
 
     self.mGoodsDscribe = [obj objectForKeyMy:@"describe"];
-    self.mDelivePrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
 
     
-    self.mGoodsPrice = [[obj objectForKeyMy:@"deliver_price"] floatValue];
     self.mOpenTime = [obj objectForKeyMy:@"opening_time"];
     self.mAddress = [obj objectForKeyMy:@"addr"];
 

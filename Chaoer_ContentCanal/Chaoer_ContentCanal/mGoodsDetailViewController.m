@@ -15,6 +15,9 @@
 #import "QHLShoppingCarController.h"
 #import "comFirmOrderViewController.h"
 
+#import "mCheckMoreActivityView.h"
+#import "mActivitySubView.h"
+
 // 当前设备屏幕尺寸
 #define kSCREEN_RECT        ([UIScreen mainScreen].bounds)
 // 当前设备屏幕宽度
@@ -39,7 +42,7 @@
 #define kTOOLHEIGHT 50.f
 
 @interface mGoodsDetailViewController ()
-<UITableViewDataSource, UITableViewDelegate,mGoodsDetailBuyDelegate>
+<UITableViewDataSource, UITableViewDelegate,mGoodsDetailBuyDelegate,cellCheckMoreActivityDelegate>
 
 /** 商品详情整体 */
 @property(strong,nonatomic)UIScrollView *scrollView;
@@ -78,6 +81,13 @@
     
     int mType;
     
+    /**
+     * 优惠活动view
+     */
+    mCheckMoreActivityView *mActivityView;
+    mActivitySubView *mActView;
+
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
 
@@ -100,6 +110,7 @@
     mNum = 1;
     [self initView];
     [self initBottomBuyView];
+    [self initActivityVire];
 
 }
 #pragma mark ----加载底部购买view
@@ -118,12 +129,6 @@
     mBuyView.frame = CGRectMake(0, DEVICE_Height, self.view.frame.size.width, 160);
     mBuyView.delegate = self;
     [self.view addSubview:mBuyView];
-//    [mBuyView makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view).offset(@0);
-//        make.bottom.equalTo(self.view.bottom).offset(@150);
-//        make.width.offset(DEVICE_Width);
-//        make.height.offset(@150);
-//    }];
     
 }
 - (void)tapAction:(UITapGestureRecognizer *)sender{
@@ -153,6 +158,72 @@
         mRR.origin.y = DEVICE_Height;
         mBuyView.frame = mRR;
         
+    }];
+}
+- (void)upDateActivity{
+
+    mActivityView.mShopName.text = mGoodsDetail.mShopName;
+    mActivityView.mContent.text = [NSString stringWithFormat:@"月售:%d   营业时间: %@-%@",mGoodsDetail.mShopSalesNum,mGoodsDetail.mOpenTime,mGoodsDetail.mCloseTime];
+    
+    
+    for (int i=0; i<mGoodsDetail.mCampainArr.count; i++) {
+        
+        GCampain *mCampain = mGoodsDetail.mCampainArr[i];
+        mActView = [mActivitySubView shareView];
+        mActView.backgroundColor = [UIColor clearColor];
+        mActView.frame = CGRectMake(0, 30*i, mActivityView.mCampainView.mwidth, 30);
+        mActView.mContent.textColor = [UIColor whiteColor];
+        mActView.mName.text = mCampain.mName;
+        mActView.mContent.text = mCampain.mContent;
+        
+        if ([mCampain.mCode isEqualToString:@"A"]) {
+            mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
+        }else if ([mCampain.mCode isEqualToString:@"B"]){
+            mActView.mName.backgroundColor = [UIColor colorWithRed:0.82 green:0.47 blue:0.62 alpha:0.75];
+            
+        }else if ([mCampain.mCode isEqualToString:@"C"]){
+            mActView.mName.backgroundColor = [UIColor colorWithRed:0.52 green:0.76 blue:0.22 alpha:0.75];
+            
+        }else if ([mCampain.mCode isEqualToString:@"D"]){
+            mActView.mName.backgroundColor = [UIColor colorWithRed:0.16 green:0.53 blue:1.00 alpha:0.75];
+            
+        }else{
+            mActView.mName.backgroundColor = M_CO;
+            
+        }
+
+        
+        [mActivityView.mCampainView addSubview:mActView];
+        
+    }
+
+    
+}
+#pragma mark----加载优惠活动view
+- (void)initActivityVire{
+    mActivityView = [mCheckMoreActivityView shareView];
+    mActivityView.frame = self.view.bounds;
+    mActivityView.alpha = 0;
+    [mActivityView.mCloseBtn addTarget:self action:@selector(mCloseAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:mActivityView];
+}
+#pragma mark----关闭按钮
+- (void)mCloseAction:(UIButton *)sender{
+
+    [self dissActivityView];
+}
+#pragma mark----展示按钮
+- (void)showActivityView{
+
+    [UIView animateWithDuration:0.25 animations:^{
+        mActivityView.alpha = 1;
+    }];
+}
+#pragma mark----关闭按钮
+- (void)dissActivityView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mActivityView.alpha = 0;
     }];
 }
 #pragma mark----底部购买关闭按钮
@@ -368,8 +439,22 @@
         [mBootomView.mAttentionBtn setBackgroundImage:[UIImage imageNamed:@"mGoodsDetail_unCollect"] forState:0];
     }
     
+    UILabel *mContent = [UILabel new];
+    mContent.font = [UIFont systemFontOfSize:15];
+    mContent.textColor = [UIColor colorWithRed:0.17 green:0.17 blue:0.17 alpha:1.00];
+    mContent.numberOfLines = 0;
+    mContent.frame = CGRectMake(5, 0, _twoPageView.mwidth-10, 50);
+    mContent.text = mGoodsDetail.mGoodsDscribe;
+    
+    
+    CGFloat mH = [Util labelText:mGoodsDetail.mGoodsDscribe fontSize:15 labelWidth:_twoPageView.mwidth-10];
+    
+    CGRect  mRR = mContent.frame;
+    mRR.size.height = mH+50;
+    mContent.frame = mRR;
    
-    CGFloat mYY;
+    [_twoPageView addSubview:mContent];
+    CGFloat mYY = mContent.mbottom;
     
     if (mGoodsDetail.mGoodsDetailImgArr.count <= 0) {
         
@@ -460,7 +545,7 @@
             mGoodsDetail = SGoods;
             // 添加子控件
             [self upDatePage];
-
+            [self upDateActivity];
             [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
@@ -494,22 +579,10 @@
     
     
     if (indexPath.row == 0) {
-        NSString *cellId = nil;
-        
-        cellId = @"cell";
-        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setMGoodsDetail:mGoodsDetail];
-        return cell.mCellH;
+        return 300;
     }else{
-    
-        NSString *cellId = nil;
-        cellId = @"cell2";
-        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [cell setMGoodsDetail:mGoodsDetail];
-        return cell.mGoodsDetailH;
+        return 250;
+
     }
     
 
@@ -534,17 +607,22 @@
     
     if (indexPath.row == 0) {
         cellId = @"cell";
+        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        [cell setMImgArr:mGoodsDetail.mImgArr];
+        return cell;
     
     }else{
     
         cellId = @"cell2";
-      
+        mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        [cell setMGoodsDetail:mGoodsDetail];
+        return cell;
     }
-    mGoodsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [cell setMGoodsDetail:mGoodsDetail];
-    return cell;
+
 
 
 }
@@ -561,5 +639,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
+#pragma mark----查看更多优惠活动按钮
+- (void)cellWithCheckMoreActivityBtn{
 
+    [self showActivityView];
+}
 @end

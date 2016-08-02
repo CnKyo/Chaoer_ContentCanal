@@ -8,67 +8,38 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  查看更多活动代理方法
+ */
+@protocol cellCheckMoreActivityDelegate <NSObject>
+
+@optional
+/**
+ *  实现代理方法
+ */
+- (void)cellWithCheckMoreActivityBtn;
+
+@end
+
 @interface mGoodsDetailCell : UITableViewCell
+
+
 #pragma mark----第一种cell类型
-/**
- *  店铺详情view
- */
-@property (weak, nonatomic) IBOutlet UIView *mShopDetailView;
-/**
- *  店铺logo
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mShopLogo;
-/**
- *  热卖
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mHot;
-/**
- *  店铺名称
- */
-@property (weak, nonatomic) IBOutlet UILabel *mShopName;
-/**
- *  所有商品
- */
-@property (weak, nonatomic) IBOutlet UILabel *mAllGoodsNum;
-/**
- *  关注数
- */
-@property (weak, nonatomic) IBOutlet UILabel *mFocusNum;
-///**
-// *  活动view
-// */
-//@property (weak, nonatomic) IBOutlet UIView *mActivityView;
-/**
- *  店铺名称约束
- */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mShopNameLeft;
 
 /**
- *  活动数组
+ *  图片数组
  */
-@property (strong,nonatomic) NSArray *mActivityArr;
-
+@property (strong,nonatomic) NSArray *mImgArr;
 /**
- *  cell的高
+ *  商品对象
  */
-@property (assign,nonatomic) CGFloat mCellH;
-
-
 @property (strong,nonatomic) SGoodsDetail *mGoodsDetail;
 
 #pragma mark ----第二种cell样式
 /**
- *  商品图片
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mGoodsImg;
-/**
  *  商品名称
  */
 @property (weak, nonatomic) IBOutlet UILabel *mGoodsName;
-/**
- *  商品内容
- */
-@property (weak, nonatomic) IBOutlet UILabel *mGoodsContent;
 /**
  *  现价
  */
@@ -77,6 +48,10 @@
  *  原价
  */
 @property (weak, nonatomic) IBOutlet UILabel *mOldPrice;
+/**
+ *  营业时间
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mWorkTime;
 /**
  *  地址
  */
@@ -89,7 +64,29 @@
  *  配送费
  */
 @property (weak, nonatomic) IBOutlet UILabel *mSendPrice;
+/**
+ *  活动标签
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivTag;
+/**
+ *  活动内容
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mActivContent;
+/**
+ *  查看更多
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mCheckMore;
+/**
+ *  关注
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mFocus;
+/**
+ *  库存
+ */
+@property (weak, nonatomic) IBOutlet UILabel *mInventry;
 
-@property (assign,nonatomic) CGFloat mGoodsDetailH;
+@property (weak, nonatomic) IBOutlet UILabel *mActTitle;
+
+@property (strong,nonatomic) id<cellCheckMoreActivityDelegate> delegate;
 
 @end
