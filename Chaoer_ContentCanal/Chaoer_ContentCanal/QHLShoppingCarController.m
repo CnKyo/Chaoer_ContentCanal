@@ -284,7 +284,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         NSString *mNum = self.mShopCarNumArr[i];
 
         [mJsonArr addObject:@{@"quantity":mNum,@"shoppingCartId":mIds}];
-//        [mJsonArr addObject:[NSString stringWithFormat:@"quantity:%@,shoppingCartId:%@",mIds,mNum]];
 
         
     }

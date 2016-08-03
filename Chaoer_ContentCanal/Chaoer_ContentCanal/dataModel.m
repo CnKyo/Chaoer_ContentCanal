@@ -6874,12 +6874,12 @@ bool pptbined = NO;
     
     self.mName = [[obj objectForKeyMy:@"userInfo"]objectForKeyMy:@"nickName"];
     self.mPhone = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"moblie"];
-    
-    if ([[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"] isKindOfClass:[NSArray class]]) {
-        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"][0];
-    }else{
-        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"];
-    }
+#warning 这里不能这样子返回地址数据
+//    if ([[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"] isKindOfClass:[NSArray class]]) {
+//        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"][0];
+//    }else{
+//        self.mAddress = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"address"];
+//    }
     
     
 

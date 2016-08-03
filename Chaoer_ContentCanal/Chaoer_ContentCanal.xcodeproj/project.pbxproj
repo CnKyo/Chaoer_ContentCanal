@@ -104,6 +104,12 @@
 		04223D9E1CC0E77100CB6249 /* utilityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04223D9D1CC0E77100CB6249 /* utilityView.xib */; };
 		042410621D0FFE4F00B4A61A /* FixNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042410601D0FFE4F00B4A61A /* FixNewCell.m */; };
 		042410631D0FFE4F00B4A61A /* FixNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042410611D0FFE4F00B4A61A /* FixNewCell.xib */; };
+		043195191D51887B008EEF82 /* valletCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 043195171D51887B008EEF82 /* valletCell1.m */; };
+		0431951A1D51887B008EEF82 /* valletCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043195181D51887B008EEF82 /* valletCell1.xib */; };
+		0431951C1D518896008EEF82 /* valletCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0431951B1D518896008EEF82 /* valletCell2.xib */; };
+		0431951E1D51889E008EEF82 /* valletCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0431951D1D51889E008EEF82 /* valletCell3.xib */; };
+		043195201D518C98008EEF82 /* walletHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0431951F1D518C98008EEF82 /* walletHeaderView.xib */; };
+		043195241D51DA5E008EEF82 /* YSProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043195231D51DA5E008EEF82 /* YSProgressView.m */; };
 		043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D61CEAA3CE000041EC /* releaseCell5.xib */; };
 		043F38D91CEAC9D4000041EC /* releaseCell6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D81CEAC9D4000041EC /* releaseCell6.xib */; };
 		044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24771CB4A85700A6379C /* kitchenTableViewCell.m */; };
@@ -1053,6 +1059,14 @@
 		0424105F1D0FFE4F00B4A61A /* FixNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixNewCell.h; sourceTree = "<group>"; };
 		042410601D0FFE4F00B4A61A /* FixNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixNewCell.m; sourceTree = "<group>"; };
 		042410611D0FFE4F00B4A61A /* FixNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixNewCell.xib; sourceTree = "<group>"; };
+		043195161D51887B008EEF82 /* valletCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valletCell1.h; sourceTree = "<group>"; };
+		043195171D51887B008EEF82 /* valletCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = valletCell1.m; sourceTree = "<group>"; };
+		043195181D51887B008EEF82 /* valletCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = valletCell1.xib; sourceTree = "<group>"; };
+		0431951B1D518896008EEF82 /* valletCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = valletCell2.xib; sourceTree = "<group>"; };
+		0431951D1D51889E008EEF82 /* valletCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = valletCell3.xib; sourceTree = "<group>"; };
+		0431951F1D518C98008EEF82 /* walletHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = walletHeaderView.xib; sourceTree = "<group>"; };
+		043195221D51DA5E008EEF82 /* YSProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProgressView.h; sourceTree = "<group>"; };
+		043195231D51DA5E008EEF82 /* YSProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSProgressView.m; sourceTree = "<group>"; };
 		043F38D61CEAA3CE000041EC /* releaseCell5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell5.xib; sourceTree = "<group>"; };
 		043F38D81CEAC9D4000041EC /* releaseCell6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell6.xib; sourceTree = "<group>"; };
 		044A24761CB4A85700A6379C /* kitchenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kitchenTableViewCell.h; sourceTree = "<group>"; };
@@ -2650,6 +2664,15 @@
 			name = "发布";
 			sourceTree = "<group>";
 		};
+		043195211D51DA4B008EEF82 /* YSProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				043195221D51DA5E008EEF82 /* YSProgressView.h */,
+				043195231D51DA5E008EEF82 /* YSProgressView.m */,
+			);
+			name = YSProgressView;
+			sourceTree = "<group>";
+		};
 		044A247B1CB4B23100A6379C /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4244,9 +4267,15 @@
 			children = (
 				31462CDE1CB38D7600E67836 /* walletViewController.h */,
 				31462CDF1CB38D7600E67836 /* walletViewController.m */,
+				043195161D51887B008EEF82 /* valletCell1.h */,
+				043195171D51887B008EEF82 /* valletCell1.m */,
+				043195181D51887B008EEF82 /* valletCell1.xib */,
+				0431951B1D518896008EEF82 /* valletCell2.xib */,
+				0431951D1D51889E008EEF82 /* valletCell3.xib */,
 				31462CE11CB38E0400E67836 /* walletView.h */,
 				31462CE21CB38E0400E67836 /* walletView.m */,
 				31462CE41CB38E0F00E67836 /* walletView.xib */,
+				0431951F1D518C98008EEF82 /* walletHeaderView.xib */,
 				04648C761CB51DD0006823C9 /* valleteHistoryViewController.h */,
 				04648C771CB51DD0006823C9 /* valleteHistoryViewController.m */,
 				04648C781CB51DD0006823C9 /* valleteHistoryViewController.xib */,
@@ -5050,6 +5079,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				043195211D51DA4B008EEF82 /* YSProgressView */,
 				0461EC671D33A9040080A3ED /* WKRateView */,
 				04D9F5091D279E5A00518F6F /* YT_ShopTypeView */,
 				04D9F5001D275B2900518F6F /* WKLabel */,
@@ -5702,6 +5732,7 @@
 				3135F8181C97D5EE00EF9569 /* mCodeNameViewController.xib in Resources */,
 				0464008A1CF935B40090A475 /* msgCell.xib in Resources */,
 				312D08B71CAA1C560006F0FA /* read_me.txt in Resources */,
+				0431951A1D51887B008EEF82 /* valletCell1.xib in Resources */,
 				0461EC6F1D33A9160080A3ED /* Star.png in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
 				0472903C1D17E47C00AA999B /* RongCloud.bundle in Resources */,
@@ -5730,6 +5761,7 @@
 				04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */,
 				04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */,
 				04D652831CF002E900E26209 /* mFixRestCell.xib in Resources */,
+				043195201D518C98008EEF82 /* walletHeaderView.xib in Resources */,
 				3154427F1C9A40EB0047E52A /* mFeedManageViewController.xib in Resources */,
 				040FB5611D191E8700D453E3 /* public_key.der in Resources */,
 				04C5B3391D4222B600AA212D /* mComfirmHederSection.xib in Resources */,
@@ -5789,6 +5821,7 @@
 				04E5A8281CE5E57C00A2D111 /* Address.plist in Resources */,
 				04F500001D23A88700EFBB3C /* GoodsDetailNavView.xib in Resources */,
 				74DDE8F81BAC0D33004878D1 /* setupView.xib in Resources */,
+				0431951E1D51889E008EEF82 /* valletCell3.xib in Resources */,
 				04BD179D1D0E59BE001792DA /* mCustomTxView.xib in Resources */,
 				312D08B91CAA1C560006F0FA /* ShareSDK.bundle in Resources */,
 				04C15D6A1D37929A0097DA6C /* mOrderDetailHeaderSectionView.xib in Resources */,
@@ -5822,6 +5855,7 @@
 				04E5A80C1CE5B3ED00A2D111 /* pptMyInfoViewController.xib in Resources */,
 				04D49C821CE730EF00BAD649 /* complaintTableViewCell.xib in Resources */,
 				04648C621CB4F1A4006823C9 /* mSenderViewController.xib in Resources */,
+				0431951C1D518896008EEF82 /* valletCell2.xib in Resources */,
 				04F9E5CF1CED4D8B00FCA8B7 /* LICENSE in Resources */,
 				7470E1521B9C07B800ECEC69 /* leavVC.xib in Resources */,
 				3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */,
@@ -5896,6 +5930,7 @@
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
 				048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */,
+				043195241D51DA5E008EEF82 /* YSProgressView.m in Sources */,
 				04102CE01D2A509F003A0C56 /* MJRefreshGifHeader.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				310EB5EF1CA2499D005C61F4 /* UIView+Subviews.m in Sources */,
@@ -6046,6 +6081,7 @@
 				04F2284F1CEEEBD6004E8702 /* choiceArearViewController.m in Sources */,
 				047695FC1CE094C900D282C5 /* mCommunityDetailView.m in Sources */,
 				749BE9A01B32756800BABCA6 /* IQToolbar.m in Sources */,
+				043195191D51887B008EEF82 /* valletCell1.m in Sources */,
 				310EB5F51CA258A8005C61F4 /* CWStarRateView.m in Sources */,
 				04EEADD61D0FAF5200FA97C6 /* AFHTTPSessionManager.m in Sources */,
 				04102CC41D2A507D003A0C56 /* MJRefreshBackFooter.m in Sources */,

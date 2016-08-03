@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "UICountingLabel.h"
+/**
+ *  扫描代理
+ */
+@protocol valletHeaderScanDelegate <NSObject>
+
+@optional
+/**
+ *  代理方法
+ */
+- (void)valletHeaderScanAction;
+
+@end
 
 @interface walletView : UIView
 
@@ -51,5 +63,16 @@
  *  @return view
  */
 + (walletView *)shareView;
+
+#pragma mark----钱包headerview
+
+/**
+ *  扫描按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mScanBtn;
+
+@property (strong,nonatomic) id <valletHeaderScanDelegate> delegate;
+
++ (walletView *)shareHeaderView;
 
 @end

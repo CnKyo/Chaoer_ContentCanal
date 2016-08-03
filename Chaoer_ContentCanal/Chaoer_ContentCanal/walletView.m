@@ -23,4 +23,19 @@
     return view;
 }
 
+
++ (walletView *)shareHeaderView{
+    walletView *view = [[[NSBundle mainBundle] loadNibNamed:@"walletHeaderView" owner:self options:nil] objectAtIndex:0];
+    
+    return view;
+}
+
+- (IBAction)mScanAvtion:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(valletHeaderScanAction)]) {
+        [self.delegate valletHeaderScanAction];
+    }
+}
+
+
+
 @end

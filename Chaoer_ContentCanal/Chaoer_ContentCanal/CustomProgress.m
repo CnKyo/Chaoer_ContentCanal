@@ -23,9 +23,11 @@
         if (mType == 1) {
             bgimg.layer.cornerRadius = 8;
 
-        }else{
+        }else if(mType == 2){
             bgimg.layer.cornerRadius = 4;
 
+        }else{
+            bgimg.layer.cornerRadius = 2;
         }
         [bgimg.layer setMasksToBounds:YES];
 
@@ -36,9 +38,11 @@
         if (mType == 1) {
             leftimg.layer.cornerRadius = 8;
             
-        }else{
+        }else if(mType == 2){
             leftimg.layer.cornerRadius = 4;
             
+        }else{
+            leftimg.layer.cornerRadius = 2;
         }
 
         [leftimg.layer setMasksToBounds:YES];

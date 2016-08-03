@@ -21,7 +21,9 @@
 #import "cashViewController.h"
 #import "needCodeViewController.h"
 #import "verifyBankViewController.h"
-@interface walletViewController ()
+
+#import "valletCell1.h"
+@interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate>
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView3;
@@ -31,12 +33,13 @@
 {
     walletView *mView;
     
+    walletView *mHeaderView;
+
 }
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
-    [self loadData];
-    [self upDateUserInfo];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,160 +50,53 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
     self.navBar.hidden = YES;
-    [self loadData];
+
     [self initView];
     
 }
-- (void)upDateUserInfo{
+- (void)initView{
     
-    [[mUserInfo backNowUser] getNowUserInfo:[mUserInfo backNowUser].mHistorySearchArr block:^(mBaseData *resb, mUserInfo *user) {
-        
-        
-        if (resb.mSucess) {
-            
-        }else{
-            
-        }
-    }];
-}
-- (void)loadData{
+    mHeaderView = [walletView shareHeaderView];
+    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
+    mHeaderView.delegate = self;
+    [self.view addSubview:mHeaderView];
 
-//    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
+    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-114) delegate:self dataSource:self];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.haveHeader = YES;
+    UINib   *nib = [UINib nibWithNibName:@"valletCell1" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
+    nib = [UINib nibWithNibName:@"valletCell2" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+
+    nib = [UINib nibWithNibName:@"valletCell3" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell3"];
+
+    
+}
+#pragma mark0----扫描按钮
+- (void)valletHeaderScanAction{
+
+}
+- (void)headerBeganRefresh{
+
     [[mUserInfo backNowUser] getWallete:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
+        [self headerEndRefresh];
         if (resb.mSucess) {
-            [SVProgressHUD dismiss];
-//            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            
             [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
             [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];
             [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
-            
-            
-            
-            mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
-            mView.mBalanceLb.format = @"¥%.1f";
-            [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
-            
-            
-            mView.mScore.method = UILabelCountingMethodEaseInOut;
-            mView.mScore.format = @"积分：%d";
-            [mView.mScore countFrom:0 to:[mUserInfo backNowUser].mCredit];
-            
+
+            [self.tableView reloadData];
         }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            [self showErrorStatus:resb.mMessage];
         }
     }];
-}
 
-- (void)initView{
 
-    mView = [walletView shareView];
-    mView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
-    
-    
-    [mView.withdrawalBtn addTarget:self action:@selector(tixianAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.topupBtn addTarget:self action:@selector(topupAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mOrderBtn addTarget:self action:@selector(orderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mHistoryBtn addTarget:self action:@selector(historyAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mView.mRedBagBtn addTarget:self action:@selector(redbagAction:) forControlEvents:UIControlEventTouchUpInside];
 
-    
-    [self.view addSubview:mView];
-
-    mView.mBalanceLb.method = UILabelCountingMethodEaseInOut;
-    mView.mBalanceLb.format = @"¥%.1f";
-    [mView.mBalanceLb countFrom:0 to:[mUserInfo backNowUser].mMoney];
-    
-    
-    mView.mScore.method = UILabelCountingMethodEaseInOut;
-    mView.mScore.format = @"积分：%d";
-    [mView.mScore countFrom:0 to:[mUserInfo backNowUser].mCredit];
-    
-    
-    CGFloat mLevel;
-    if ([mUserInfo backNowUser].mMoney <= 100) {
-        mLevel = [mUserInfo backNowUser].mMoney+0.01;
-    }else if ([mUserInfo backNowUser].mMoney >= 100){
-        mLevel = [mUserInfo backNowUser].mMoney*0.1+0.01;
-    }else if ([mUserInfo backNowUser].mMoney >= 1000){
-        mLevel = [mUserInfo backNowUser].mMoney*0.01+0.01;
-    }
-    
-    
-    self.circleProgressView = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(0, 0, mView.mBalanceView.mwidth, mView.mBalanceView.mheight)];
-    self.circleProgressView.percent = mLevel;
-    [mView.mBalanceView addSubview:self.circleProgressView];
-    
-    self.circleProgressView2 = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(8.f,8.f, mView.mBalanceView.mwidth-16, mView.mBalanceView.mheight-16)];
-    self.circleProgressView2.percent = mLevel;
-    [mView.mBalanceView addSubview:self.circleProgressView2];
-    
-    self.circleProgressView3 = [[LXCircleAnimationView alloc] initWithFrame:CGRectMake(10.f,10.f, mView.mBalanceView.mwidth-20, mView.mBalanceView.mheight-20)];
-    self.circleProgressView3.percent = mLevel;
-    [mView.mBalanceView addSubview:self.circleProgressView3];
-
-    
-}
-
-#pragma mark----提现
-- (void)tixianAction:(UIButton *)sender{
-  
-    
-    if ([mUserInfo backNowUser].mIsRegist == 0 ) {
-    
-        
-        [self AlertViewShow:@"找不到银行卡！" alertViewMsg:@"需要绑定银行卡才！" alertViewCancelBtnTiele:@"取消" alertTag:12];
-
-        return;
-            
-        
-    }else{
-        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-            
-            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"实名认证之后才能提现！" alertViewCancelBtnTiele:@"取消" alertTag:13];
-            
-            return;
-        }else{
-            
-            cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
-            [self pushViewController:ccc];
-            
-        }
-        
-    }
-    
-
-}
-#pragma mark----充值
-- (void)topupAction:(UIButton *)sender{
-  
-    
-    mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
-    [self pushViewController:ppp];
-}
-#pragma mark----我的积分
-- (void)orderAction:(UIButton *)sender{
- 
-    
-    valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
-    vvv.mType = 2;
-    [self pushViewController:vvv];
-}
-#pragma mark----我的红包
-- (void)redbagAction:(UIButton *)sender{
-
-    
-    myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
-    [self pushViewController:mmm];
-    
-}
-#pragma mark----交易记录
-- (void)historyAction:(UIButton *)sender{
-
-    valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
-    vvv.mType = 1;
-    [self pushViewController:vvv];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -250,6 +146,135 @@
     al.delegate = self;
     al.tag = tag;
     [al show];
+}
+
+
+
+
+
+#pragma mark -- tableviewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
+{
+    return 1;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return 3;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return 278;
+    }else if (indexPath.row == 1){
+        return 120;
+    }else{
+        return 200;
+    }
+    
+    
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *reuseCellId = nil;
+    if (indexPath.row == 0) {
+        reuseCellId = @"cell";
+    }else if (indexPath.row == 1){
+        reuseCellId = @"cell2";
+    }else{
+        reuseCellId = @"cell3";
+    }
+    
+    
+    valletCell1 *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    [cell setMTopFourBtnArr:@[@"充值",@"转账",@"提现",@"收款"]];
+    
+    
+    [cell setMFBalance:[mUserInfo backNowUser].mMoney];
+    [cell setMFScore:[mUserInfo backNowUser].mCredit];
+    [cell setMFDays:24];
+    cell.delegate = self;
+    
+    return cell;
+    
+    
+    
+}
+
+#pragma mark----cell按钮点击的代理方法
+- (void)cellWithHistoryBtnSelectedIndex:(NSInteger)mIndex{
+
+    if (mIndex == 0) {
+        valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
+        vvv.mType = 1;
+        [self pushViewController:vvv];
+    }else if (mIndex == 1){
+        valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
+        vvv.mType = 2;
+        [self pushViewController:vvv];
+
+    }else if (mIndex == 2){
+        myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
+        [self pushViewController:mmm];
+    }else{
+    
+        
+    }
+    
+}
+#pragma mark----顶部4个按钮
+- (void)cellWithFourBtnSelectedIndex:(NSInteger)mIndex{
+    
+    if (mIndex == 2) {
+        if ([mUserInfo backNowUser].mIsRegist == 0 ) {
+            
+            
+            [self AlertViewShow:@"找不到银行卡！" alertViewMsg:@"需要绑定银行卡才！" alertViewCancelBtnTiele:@"取消" alertTag:12];
+            
+            return;
+            
+            
+        }else{
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"实名认证之后才能提现！" alertViewCancelBtnTiele:@"取消" alertTag:13];
+                
+                return;
+            }else{
+                
+                cashViewController *ccc = [[cashViewController alloc] initWithNibName:@"cashViewController" bundle:nil];
+                [self pushViewController:ccc];
+                
+            }
+            
+        }
+
+    }else if (mIndex == 0){
+        mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
+        [self pushViewController:ppp];
+
+    }else if (mIndex == 2){
+    
+    }else{
+    
+    }
+    
+
+}
+#pragma mark----详情规则按钮
+- (void)cellWithRuleBtnAction{
+
+}
+#pragma mark----签到按钮
+- (void)cellWithRegistBtnAction{
+
 }
 
 @end
