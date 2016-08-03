@@ -887,6 +887,17 @@
 		B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B2D48CA11BEC53FF00482EB8 /* UIImage+RTTint.podspec */; };
 		B2D5394C1BA97763009170A8 /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */; };
 		B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D539511BA97F64009170A8 /* JSBadgeView.m */; };
+		DF8344181D51D570002C4FD6 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344141D51D570002C4FD6 /* APIClient.m */; };
+		DF8344191D51D570002C4FD6 /* APIObjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344161D51D570002C4FD6 /* APIObjectDefine.m */; };
+		DF83441E1D51DCB2002C4FD6 /* UIView+AutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */; };
+		DF8344261D51DD51002C4FD6 /* CookCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344211D51DD51002C4FD6 /* CookCategoryTVC.m */; };
+		DF8344271D51DD51002C4FD6 /* CookTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344231D51DD51002C4FD6 /* CookTVC.m */; };
+		DF8344281D51DD51002C4FD6 /* CookDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344251D51DD51002C4FD6 /* CookDetailVC.m */; };
+		DF83442C1D51DD95002C4FD6 /* TagsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83442B1D51DD95002C4FD6 /* TagsTableCell.m */; };
+		DF8344341D51DE67002C4FD6 /* SKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83442F1D51DE67002C4FD6 /* SKTag.m */; };
+		DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344311D51DE67002C4FD6 /* SKTagButton.m */; };
+		DF8344361D51DE67002C4FD6 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344331D51DE67002C4FD6 /* SKTagView.m */; };
+		DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2409,6 +2420,29 @@
 		B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		B2D539501BA97F64009170A8 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		B2D539511BA97F64009170A8 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		DF8344131D51D570002C4FD6 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		DF8344141D51D570002C4FD6 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
+		DF8344151D51D570002C4FD6 /* APIObjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIObjectDefine.h; sourceTree = "<group>"; };
+		DF8344161D51D570002C4FD6 /* APIObjectDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIObjectDefine.m; sourceTree = "<group>"; };
+		DF8344171D51D570002C4FD6 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
+		DF83441C1D51DCB2002C4FD6 /* UIView+AutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoSize.h"; sourceTree = "<group>"; };
+		DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoSize.m"; sourceTree = "<group>"; };
+		DF8344201D51DD51002C4FD6 /* CookCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookCategoryTVC.h; sourceTree = "<group>"; };
+		DF8344211D51DD51002C4FD6 /* CookCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookCategoryTVC.m; sourceTree = "<group>"; };
+		DF8344221D51DD51002C4FD6 /* CookTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookTVC.h; sourceTree = "<group>"; };
+		DF8344231D51DD51002C4FD6 /* CookTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookTVC.m; sourceTree = "<group>"; };
+		DF8344241D51DD51002C4FD6 /* CookDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookDetailVC.h; sourceTree = "<group>"; };
+		DF8344251D51DD51002C4FD6 /* CookDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookDetailVC.m; sourceTree = "<group>"; };
+		DF83442A1D51DD95002C4FD6 /* TagsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableCell.h; sourceTree = "<group>"; };
+		DF83442B1D51DD95002C4FD6 /* TagsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableCell.m; sourceTree = "<group>"; };
+		DF83442E1D51DE67002C4FD6 /* SKTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTag.h; sourceTree = "<group>"; };
+		DF83442F1D51DE67002C4FD6 /* SKTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTag.m; sourceTree = "<group>"; };
+		DF8344301D51DE67002C4FD6 /* SKTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTagButton.h; sourceTree = "<group>"; };
+		DF8344311D51DE67002C4FD6 /* SKTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagButton.m; sourceTree = "<group>"; };
+		DF8344321D51DE67002C4FD6 /* SKTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTagView.h; sourceTree = "<group>"; };
+		DF8344331D51DE67002C4FD6 /* SKTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagView.m; sourceTree = "<group>"; };
+		DF83443E1D51F397002C4FD6 /* ImageTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextTableViewCell.h; sourceTree = "<group>"; };
+		DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4495,6 +4529,7 @@
 		31F544781CAE0BE100307B83 /* 厨房 */ = {
 			isa = PBXGroup;
 			children = (
+				DF83441F1D51DD30002C4FD6 /* cookNew */,
 				31F544791CAE0C4100307B83 /* kitchenViewController.h */,
 				31F5447A1CAE0C4100307B83 /* kitchenViewController.m */,
 				044A24761CB4A85700A6379C /* kitchenTableViewCell.h */,
@@ -4581,6 +4616,7 @@
 		741B8D8D1B326EFA002104A0 /* Chaoer_ContentCanal */ = {
 			isa = PBXGroup;
 			children = (
+				DF8344111D51D4DE002C4FD6 /* Alan */,
 				04678F4D1CB7908C0074AA80 /* Chaoer_ContentCanal.entitlements */,
 				749BEA611B32B26200BABCA6 /* mainVC */,
 				749BEA4E1B3277DA00BABCA6 /* EXT */,
@@ -5417,6 +5453,83 @@
 			path = "UIImage-RTTint-lib";
 			sourceTree = "<group>";
 		};
+		DF8344111D51D4DE002C4FD6 /* Alan */ = {
+			isa = PBXGroup;
+			children = (
+				DF83441A1D51DC9E002C4FD6 /* Additions */,
+				DF83441B1D51DC9E002C4FD6 /* OpenSourceLib */,
+				DF8344121D51D570002C4FD6 /* Custom */,
+			);
+			path = Alan;
+			sourceTree = "<group>";
+		};
+		DF8344121D51D570002C4FD6 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				DF8344131D51D570002C4FD6 /* APIClient.h */,
+				DF8344141D51D570002C4FD6 /* APIClient.m */,
+				DF8344151D51D570002C4FD6 /* APIObjectDefine.h */,
+				DF8344161D51D570002C4FD6 /* APIObjectDefine.m */,
+				DF8344171D51D570002C4FD6 /* CustomDefine.h */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		DF83441A1D51DC9E002C4FD6 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				DF83441C1D51DCB2002C4FD6 /* UIView+AutoSize.h */,
+				DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		DF83441B1D51DC9E002C4FD6 /* OpenSourceLib */ = {
+			isa = PBXGroup;
+			children = (
+				DF83442D1D51DE67002C4FD6 /* SKTagView */,
+			);
+			path = OpenSourceLib;
+			sourceTree = "<group>";
+		};
+		DF83441F1D51DD30002C4FD6 /* cookNew */ = {
+			isa = PBXGroup;
+			children = (
+				DF8344291D51DD7E002C4FD6 /* cell */,
+				DF8344201D51DD51002C4FD6 /* CookCategoryTVC.h */,
+				DF8344211D51DD51002C4FD6 /* CookCategoryTVC.m */,
+				DF8344221D51DD51002C4FD6 /* CookTVC.h */,
+				DF8344231D51DD51002C4FD6 /* CookTVC.m */,
+				DF8344241D51DD51002C4FD6 /* CookDetailVC.h */,
+				DF8344251D51DD51002C4FD6 /* CookDetailVC.m */,
+			);
+			name = cookNew;
+			sourceTree = "<group>";
+		};
+		DF8344291D51DD7E002C4FD6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				DF83443E1D51F397002C4FD6 /* ImageTextTableViewCell.h */,
+				DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */,
+				DF83442A1D51DD95002C4FD6 /* TagsTableCell.h */,
+				DF83442B1D51DD95002C4FD6 /* TagsTableCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		DF83442D1D51DE67002C4FD6 /* SKTagView */ = {
+			isa = PBXGroup;
+			children = (
+				DF83442E1D51DE67002C4FD6 /* SKTag.h */,
+				DF83442F1D51DE67002C4FD6 /* SKTag.m */,
+				DF8344301D51DE67002C4FD6 /* SKTagButton.h */,
+				DF8344311D51DE67002C4FD6 /* SKTagButton.m */,
+				DF8344321D51DE67002C4FD6 /* SKTagView.h */,
+				DF8344331D51DE67002C4FD6 /* SKTagView.m */,
+			);
+			path = SKTagView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5855,6 +5968,7 @@
 				04F2283A1CEEE4EB004E8702 /* ActionSheetDatePicker.m in Sources */,
 				04040DEF1D20BEFA008C3C31 /* mMarketHeaderView.m in Sources */,
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
+				DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */,
 				313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */,
 				313413611CA28DC3003972E2 /* XMNPhotoPickerController.m in Sources */,
 				04E093071CEA3EB700D3090E /* myTagViewController.m in Sources */,
@@ -5898,6 +6012,7 @@
 				048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */,
 				04102CE01D2A509F003A0C56 /* MJRefreshGifHeader.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
+				DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */,
 				310EB5EF1CA2499D005C61F4 /* UIView+Subviews.m in Sources */,
 				04E5A7ED1CE5823300A2D111 /* pptMyViewController.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -5942,9 +6057,11 @@
 				04EEADCF1D0FAED900FA97C6 /* UIView+HDExtension.m in Sources */,
 				040FE0DE1CDB20C200270D4F /* barCodeViewController.m in Sources */,
 				04648C711CB50389006823C9 /* senderSubView.m in Sources */,
+				DF8344261D51DD51002C4FD6 /* CookCategoryTVC.m in Sources */,
 				040089C21D3F119300921BFA /* mGoodsBtn.m in Sources */,
 				16E9CAD91BAC00BC00C48B8A /* DYUIButton.m in Sources */,
 				04D9F4F31D274B2600518F6F /* mNavAddressViewController.m in Sources */,
+				DF83441E1D51DCB2002C4FD6 /* UIView+AutoSize.m in Sources */,
 				04678F531CB7916A0074AA80 /* keyChain.m in Sources */,
 				74F5FC3B1B53A6E800307EED /* mMyDeatailView.m in Sources */,
 				315442941C9A9E010047E52A /* registViewController.m in Sources */,
@@ -6081,6 +6198,7 @@
 				749BEA101B32779800BABCA6 /* MJPhotoProgressView.m in Sources */,
 				04102CE11D2A509F003A0C56 /* MJRefreshNormalHeader.m in Sources */,
 				3134135E1CA28DC3003972E2 /* XMNPhotoManager.m in Sources */,
+				DF8344281D51DD51002C4FD6 /* CookDetailVC.m in Sources */,
 				04102CB41D2A506D003A0C56 /* MJRefreshConst.m in Sources */,
 				04648C531CB4E0C0006823C9 /* msgDetailViewController.m in Sources */,
 				04648C6D1CB5035A006823C9 /* senderDetailViewController.m in Sources */,
@@ -6144,6 +6262,7 @@
 				B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */,
 				04F9E5D61CED4D8B00FCA8B7 /* NSObject+MJCoding.m in Sources */,
 				310EB5DC1CA24107005C61F4 /* choiseServicerViewController.m in Sources */,
+				DF8344191D51D570002C4FD6 /* APIObjectDefine.m in Sources */,
 				7487DC1C1B4E17F000C40220 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				749BE9E51B32777F00BABCA6 /* MMLocationManager.m in Sources */,
 				31462CEC1CB3B07100E67836 /* UIColor+Extensions.m in Sources */,
@@ -6191,6 +6310,7 @@
 				318D56761C9FDD150045B5FB /* fixTableViewCell.m in Sources */,
 				04EEADC61D0FAED900FA97C6 /* Foundation+HDLog.m in Sources */,
 				0453DC011CF88F9C006C9B6B /* LTPickerView.m in Sources */,
+				DF8344271D51DD51002C4FD6 /* CookTVC.m in Sources */,
 				04EEADD71D0FAF5200FA97C6 /* AFURLSessionManager.m in Sources */,
 				16A987BC1C0397F100D55C4A /* NSObject+myobj.m in Sources */,
 				749BEA0C1B32779800BABCA6 /* MJPhoto.m in Sources */,
@@ -6200,6 +6320,7 @@
 				04F2283D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m in Sources */,
 				04E5A8111CE5B47A00A2D111 /* pptMyInfoCell.m in Sources */,
 				04A151241D3637CD00AFCE98 /* UIView+QHLExtension.m in Sources */,
+				DF8344341D51DE67002C4FD6 /* SKTag.m in Sources */,
 				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
 				313413641CA28DC3003972E2 /* XMNVideoPreviewController.m in Sources */,
 				318D566A1C9C012B0045B5FB /* MHSheetView.m in Sources */,
@@ -6251,6 +6372,7 @@
 				04D49C681CE706CD00BAD649 /* pptDetailCell.m in Sources */,
 				04102E1D1CE431CF006F82E2 /* UIView+Extnesion.m in Sources */,
 				3135F83F1C9801D700EF9569 /* myRedBagViewController.m in Sources */,
+				DF8344361D51DE67002C4FD6 /* SKTagView.m in Sources */,
 				04AD8A901CE3103200A3F87F /* openPPTViewController.m in Sources */,
 				04F9E5D01CED4D8B00FCA8B7 /* MJExtensionConst.m in Sources */,
 				04FAE7E11D2CA2E200341585 /* mFixOrderDetailTableViewCell.m in Sources */,
@@ -6297,6 +6419,7 @@
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				04F89C0A1D1D0FCC006A3976 /* mCommunityMyViewController.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,
+				DF83442C1D51DD95002C4FD6 /* TagsTableCell.m in Sources */,
 				04B3BB011D13E979000C7B2E /* Base64.m in Sources */,
 				31BBE2901C913EF3006C553D /* homeViewController.m in Sources */,
 				04EEADCE1D0FAED900FA97C6 /* UIView+AutoLayout.m in Sources */,
@@ -6310,6 +6433,7 @@
 				749BEA5A1B32783500BABCA6 /* UIView+SuperView.m in Sources */,
 				04F9E5D51CED4D8B00FCA8B7 /* NSObject+MJClass.m in Sources */,
 				740089561B38F22A00618BA0 /* TabBarC.m in Sources */,
+				DF8344181D51D570002C4FD6 /* APIClient.m in Sources */,
 				04BD179B1D0E59B3001792DA /* mCustomTxView.m in Sources */,
 				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
 				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8oH-xL-MNs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1117,10 +1117,10 @@
             </objects>
             <point key="canvasLocation" x="1362" y="768"/>
         </scene>
-        <!--Kitchen View Controller-->
+        <!--Cook CategoryTVC-->
         <scene sceneID="pN1-F9-XiF">
             <objects>
-                <viewController id="CcP-zl-1Zz" customClass="kitchenViewController" sceneMemberID="viewController">
+                <viewController id="CcP-zl-1Zz" customClass="CookCategoryTVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nnK-4Q-3MY"/>
                         <viewControllerLayoutGuide type="bottom" id="BM4-dg-KMu"/>
@@ -1332,7 +1332,7 @@
                                                                     <constraint firstAttribute="width" secondItem="s27-za-6Ln" secondAttribute="height" multiplier="1:1" id="Kco-y3-Wff"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="商品管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkU-Lp-thb">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkU-Lp-thb">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.27843137254901962" green="0.28235294117647058" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
@@ -1382,7 +1382,7 @@
                                                                     <constraint firstAttribute="width" secondItem="iSn-Ig-11i" secondAttribute="height" multiplier="1:1" id="5p5-Yw-So3"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="服务管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdN-vv-DC2">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdN-vv-DC2">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1424,7 +1424,7 @@
                                                                     <constraint firstAttribute="width" secondItem="eia-3l-Qvk" secondAttribute="height" multiplier="1:1" id="5i9-qe-qZu"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="评价管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xII-hn-Fis">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评价管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xII-hn-Fis">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1471,7 +1471,7 @@
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="经营分析" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waf-FZ-MPQ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经营分析" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waf-FZ-MPQ">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1513,7 +1513,7 @@
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="店铺信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq0-FK-9U5">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店铺信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq0-FK-9U5">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1561,7 +1561,7 @@
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="店铺对账" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdQ-ps-1cA">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店铺对账" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdQ-ps-1cA">
                                                                 <rect key="frame" x="21" y="72" width="64" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" red="0.2784313725" green="0.28235294119999998" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3051,7 +3051,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RIX-2t-gew" id="8Gm-Kp-Omm">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leH-Yx-gzA">
@@ -3066,7 +3066,7 @@
                                                     <color key="textColor" red="0.56470588239999997" green="0.56862745100000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Z3-RDB">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Z3-RDB">
                                                     <rect key="frame" x="242" y="18" width="30" height="30"/>
                                                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                                     <constraints>
@@ -3135,7 +3135,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TfP-Kj-lCK" id="p52-Y2-UEU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziz-K9-BfO">
