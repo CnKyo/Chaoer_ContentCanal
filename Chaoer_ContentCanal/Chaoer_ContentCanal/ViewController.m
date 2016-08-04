@@ -43,6 +43,7 @@
 
 
 #import "RSAEncryptor.h"
+#import "APIClient.h"
 
 
 @interface ViewController ()<UITextFieldDelegate,WJAdsViewDelegate>
@@ -112,6 +113,15 @@
     [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[APIClient sharedClient] userUpdateProfilePhotoWithTag:self photo:IMG(@"DefaultImg.png") call:^(APIObject *info) {
+        
+    }];
 }
 
 

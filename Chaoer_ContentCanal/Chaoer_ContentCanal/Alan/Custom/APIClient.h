@@ -40,4 +40,6 @@ typedef void (^TableBlock)(int totalpage, NSArray *tableArr, APIObject* info);
 -(void)cookListWithTag:(NSObject *)tag cookId:(NSString *)cid name:(NSString *)name pageIndex:(int)page call:(TableBlock)callback;
 -(void)cookInfoWithTag:(NSObject *)tag cookId:(NSString *)cid call:(void (^)(CookObject* item, APIObject* info))callback;
 
+-(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIObject* info))callback;
+
 @end

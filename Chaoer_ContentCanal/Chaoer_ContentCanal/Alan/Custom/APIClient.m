@@ -130,6 +130,19 @@
     [self addConnection:operation group:key];
 }
 
+-(void)postWithGroup:(NSString *)key path:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlockBack:(void (^)(id <AFMultipartFormData> formData))block call:(void (^)(NSError *error, id responseObject))callback
+{
+    id operation = nil;
+    operation = [self POST:URLString parameters:parameters constructingBodyWithBlock:block progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        callback(nil, responseObject);
+        [self removeConnection:operation group:key];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        callback(error, nil);
+        [self removeConnection:operation group:key];
+    }];
+    [self addConnection:operation group:key];
+}
+
 -(void)loadWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(APIObject* info))callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
@@ -234,6 +247,18 @@
     [self loadWithTag:tag path:@"/v1/cook/menu/query" parameters:paramDic call:^(APIObject *info) {
         CookObject *it = [CookObject mj_objectWithKeyValues:info.result];
         callback(it, info);
+    }];
+}
+
+
+
+-(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIObject* info))callback
+{
+    [self postWithGroup:NSStringFromClass([tag class]) path:@"http://120.27.111.122/resource/userInfo/uploadUserProfileImg" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
+        [formData appendPartWithFileData:imgData name:@"pic" fileName:@"img.png" mimeType:@"image/png"];
+    } call:^(NSError *error, id responseObject) {
+        
     }];
 }
 
