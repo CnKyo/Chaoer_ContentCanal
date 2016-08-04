@@ -40,6 +40,25 @@ HDSingletonH(HDNetworking) // 单例声明
 -(void)GoPayPostUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
 
 - (void)getUrl:(NSString *)URLString parameters:(id)parameters call:(void (^)( mBaseData* info))callback;
+#pragma mark ----上传单张图片方法
+/**
+ *  上传单张图片方法
+ *
+ *  @param URLString 请求地址
+ *  @param mImg      图片
+ *  @param callback  返回值
+ */
+- (void)postImg:(NSString *)URLString andImg:(UIImage *)mImg call:(void (^)( mBaseData* info))callback;
+
+#pragma mark----上传视频.
+/**
+ *  上传视频
+ *
+ *  @param URLString 请求地址
+ *  @param mImg      图片
+ *  @param callback  返回值
+ */
+- (void)postVedio:(NSString *)URLString andVedioUrl:(NSURL *)mVedioUrl call:(void (^)( mBaseData* info))callback;
 
 #pragma mark----上传表单数据
 /**

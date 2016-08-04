@@ -130,8 +130,9 @@
     [self addConnection:operation group:key];
 }
 
--(void)postWithGroup:(NSString *)key path:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlockBack:(void (^)(id <AFMultipartFormData> formData))block call:(void (^)(NSError *error, id responseObject))callback
+-(void)postWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlockBack:(void (^)(id <AFMultipartFormData> formData))block call:(void (^)(NSError *error, id responseObject))callback
 {
+    NSString *key = NSStringFromClass([tag class]);
     id operation = nil;
     operation = [self POST:URLString parameters:parameters constructingBodyWithBlock:block progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         callback(nil, responseObject);
@@ -254,12 +255,14 @@
 
 -(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIObject* info))callback
 {
-    [self postWithGroup:NSStringFromClass([tag class]) path:@"http://120.27.111.122/resource/userInfo/uploadUserProfileImg" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+    
+    [self postWithTag:tag path:@"http://120.27.111.122/resource/userInfo/uploadUserProfileImg" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
         NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
         [formData appendPartWithFileData:imgData name:@"pic" fileName:@"img.png" mimeType:@"image/png"];
     } call:^(NSError *error, id responseObject) {
         
     }];
+    
 }
 
 

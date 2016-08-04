@@ -67,6 +67,8 @@
     NSString    *mBlockServiceName;
     NSString    *mBlockServiceId;
     
+    NSURL *mVURL;
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -139,7 +141,7 @@
     mAddressArr = [NSMutableArray new];
     mACommunityId = nil;
     mTime = nil;
-    
+    mVURL = nil;
     mAddressStr = nil;
     mImgUrlString = nil;
     mVideoUrlString = nil;
@@ -389,23 +391,23 @@
         
         self.assets = [assets copy];
         
-        NSMutableDictionary *para = [NSMutableDictionary new];
-        [para setObject:@"apply" forKey:@"type"];
-        [para setObject:mImgData forKey:@"file"];
         
         NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/warranty/uploadWarrantyImg",[HTTPrequest returnNowURL]];
-        TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
-        manage.delegate = self;
-        [manage uploadFileWithURL:mUrlStr params:para andData:mImgData fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
+            [SVProgressHUD dismiss];
             
-            if (connectionError) {
-                MLLog(@"请求出错 %@",connectionError);
+            
+            if (info.mSucess) {
+                [LCProgressHUD showSuccess:@"图片上传成功！"];
+                mImgUrlString = [info.mData objectForKey:@"pic"];
+                
             }else{
-                MLLog(@"请求返回：\n%@",response);
+                [LCProgressHUD showFailure:info.mMessage];
             }
+       
         }];
 
-        
+       
     }];
     //3. 设置选择完视频的block回调
     [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
@@ -446,28 +448,22 @@
 }
 #pragma mark----上传视频
 - (void)upLoadVideo{
-    
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    
-    
-    [para setObject:mVedioData forKey:@"video"];
-    
-    MLLog(@"上传的参数是：%@",para);
-    
-    [LBProgressHUD showHUDto:self.view withTips:@"正在上传视频..." animated:YES];
-    
+   
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@/app/upload/uploadVideo",[HTTPrequest returnNowURL]];
-    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
-    manage.delegate = self;
     
-    [manage uploadFileWithURL:mUrlStr params:para andData:mVedioData fileKey:@"video" filePath:mVedioPath completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (connectionError) {
-            MLLog(@"请求出错 %@",connectionError);
+    
+    [[HTTPrequest sharedHDNetworking] postVedio:mUrlStr andVedioUrl:mVURL call:^(mBaseData * _Nonnull info) {
+        if (info.mSucess) {
+            
+            [LCProgressHUD showSuccess:@"视频上传成功！"];
+            
+            mVideoUrlString = [info.mData objectForKey:@"video"];
+            
         }else{
-            MLLog(@"请求返回：\n%@",response);
+            [LCProgressHUD showFailure:info.mMessage];
         }
+        
     }];
-    
 }
 
 - (void)block:(mBaseData *)resb{
@@ -782,8 +778,11 @@
                     [LCProgressHUD showSuccess:@"视频处理完成"];
                     mVedioData = [NSData dataWithContentsOfURL:exporter.outputURL];
                     mSelecte = 2;
-                    [self upLoadVideo];
                     
+                    mVURL = exporter.outputURL;
+                    
+                    [self upLoadVideo];
+            
                     //视频转码成功,删除原始文件
                     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
                     break;

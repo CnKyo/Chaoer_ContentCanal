@@ -11,7 +11,7 @@
 #import "editMessageViewController.h"
 #import "RSKImageCropper.h"
 #import "TFFileUploadManager.h"
-
+#import "APIClient.h"
 @interface mUserInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UITextFieldDelegate,THHHTTPDelegate>
 
 @end
@@ -306,64 +306,26 @@
     
     self.mHeaderImg.image = tempImage;
     
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-    
-    NSData *imageData = UIImagePNGRepresentation(tempImage);
-    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-    [imageData writeToFile:aPath atomically:YES];
-    
-    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
-    UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
-
-    
-    tempImage = [Util scaleImg:imageView3.image maxsize:200];
-    
-    NSData *mmm = UIImagePNGRepresentation(tempImage);
-
-       
-    NSMutableDictionary *para = [NSMutableDictionary new];
-    
-    
-    
-    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-
-    [para setObject:imageData forKey:@"file"];
-
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
-    
+ 
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
-    TFFileUploadManager *manage = [TFFileUploadManager shareInstance];
-    manage.delegate = self;
-    [manage uploadFileWithURL:mUrlStr params:para andData:mmm fileKey:@"pic" filePath:aPath  completeHander:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        if (connectionError) {
-            MLLog(@"请求出错 %@",connectionError);
+
+    [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
+        [SVProgressHUD dismiss];
+        if (info.mSucess) {
+            [SVProgressHUD showSuccessWithStatus:info.mMessage];
+            mIsEdit = YES;
+            mHeaderUrl = [info.mData objectForKey:@"pic"];
+            
+            [self rightBtnTouched:nil];
+            
         }else{
-            MLLog(@"请求返回：\n%@",response);
+            mIsEdit = NO;
+            [SVProgressHUD showErrorWithStatus:info.mMessage];
         }
+
     }];
     
-}
-
-
-- (void)block:(mBaseData *)resb{
-    
-    
-    if (resb.mSucess) {
-        [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-        mIsEdit = YES;
-        mHeaderUrl = [resb.mData objectForKey:@"pic"];
-        
-        [self rightBtnTouched:nil];
-        
-    }else{
-        mIsEdit = NO;
-        [SVProgressHUD showErrorWithStatus:resb.mMessage];
-    }
     
 }
 

@@ -34,6 +34,16 @@ typedef void (^TableBlock)(int totalpage, NSArray *tableArr, APIObject* info);
  *  @param key 网络链接所属于的组
  */
 - (void)removeConnections:(NSString *)key;
+/**
+ *  上传图片方法
+ *
+ *  @param tag        tag
+ *  @param URLString  请求地址
+ *  @param parameters 参数
+ *  @param block      返回值
+ *  @param callback   返回值
+ */
+-(void)postWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlockBack:(void (^)(id <AFMultipartFormData> formData))block call:(void (^)(NSError *error, id responseObject))callback;
 
 
 -(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIObject* info))callback;

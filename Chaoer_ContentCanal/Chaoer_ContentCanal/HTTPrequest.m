@@ -15,6 +15,7 @@
 #import "dataModel.h"
 
 #import "MJExtension.h"
+#import "APIClient.h"
 
 #pragma mark -
 #pragma mark APIClient
@@ -165,7 +166,99 @@ HDSingletonM(HDNetworking) // 单例实现
     
     
 }
+#pragma mark ----上传单张图片方法
+/**
+ *  上传单张图片方法
+ *
+ *  @param URLString 请求地址
+ *  @param mImg      图片
+ *  @param callback  返回值
+ */
+- (void)postImg:(NSString *)URLString andImg:(UIImage *)mImg call:(void (^)( mBaseData* info))callback{
 
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [[APIClient sharedClient] postWithTag:self path:URLString parameters:para constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+        
+        NSData *data = UIImageJPEGRepresentation(mImg, 1.0);
+        
+        [formData appendPartWithFileData:data name:@"pic" fileName:@"image.png" mimeType:@"image/png"];
+        
+    } call:^(NSError *error, id responseObject) {
+        
+        if (error) {
+            MLLog(@"error:%@",error.description);
+            callback( [mBaseData infoWithError:@"网络请求错误"] );
+        }
+        
+        if (responseObject) {
+            MLLog(@"%@",responseObject);
+            MLLog(@"data:%@",responseObject);
+            
+            NSDictionary *resbObj = [self deleteEmpty:responseObject];
+            
+            MLLog(@"去掉字典里的null值之后的数据：%@",resbObj);
+            
+            mBaseData   *retob = [[mBaseData alloc]initWithObj:resbObj];
+    
+            callback(  retob );
+
+            
+        }
+        
+    }];
+}
+#pragma mark----上传视频.
+/**
+ *  上传视频
+ *
+ *  @param URLString 请求地址
+ *  @param mImg      图片
+ *  @param callback  返回值
+ */
+- (void)postVedio:(NSString *)URLString andVedioUrl:(NSURL *)mVedioUrl call:(void (^)( mBaseData* info))callback{
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
+    
+    [manager POST:URLString parameters:para constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+    
+        [formData appendPartWithFileURL:mVedioUrl name:@"video" fileName:@"video.mp4" mimeType:@"video/mp4" error:nil];
+        
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (responseObject)
+        {
+            NSString *mD = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            MLLog(@"%@",mD);
+            mBaseData *mdata = [[mBaseData alloc] initWithObj:[Util dictionaryWithJsonString:mD]];
+
+            callback( mdata );
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (error)
+        {
+            MLLog(@"%@",error);
+            
+            mBaseData *mdata = [mBaseData infoWithError:@"视频处理失败"];
+            callback( mdata );
+
+        }
+    }];
+
+}
 
 
 + (NSString *)returnNowURL{
