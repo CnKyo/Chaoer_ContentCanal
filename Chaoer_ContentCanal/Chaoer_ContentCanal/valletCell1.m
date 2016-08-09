@@ -120,7 +120,7 @@
     self.mDays.text = [NSString stringWithFormat:@"%d天",mFDays];
     
     if (mProgress == nil) {
-        mProgress = [[YSProgressView alloc] initWithFrame:CGRectMake(0, 0, self.mSliderView.mwidth, self.mSliderView.mheight)];
+        mProgress = [[YSProgressView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, self.mSliderView.mheight)];
         mProgress.progressValue = mFDays;
         [self.mSliderView addSubview:mProgress];
 
