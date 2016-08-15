@@ -10,11 +10,15 @@
 #import "mCommunityNavView.h"
 
 #import "mActivitySubView.h"
+
+#import "ZLSubProductView.h"
 @implementation communityTableViewCell
 {
     DCPicScrollView  *mScrollerView;
     
-    mCommunityNavView *mSubView;
+//    mCommunityNavView *mSubView;
+    
+    ZLSubProductView *mVView;
 
 }
 - (void)awakeFromNib {
@@ -97,22 +101,18 @@
     int x = 5;
     int w = 100;
     int tag = 0;
-    for (GHot *mHot in mScrollerSourceArr) {
-        mSubView = [mCommunityNavView shaeScrollerSubView];
-        mSubView.frame = CGRectMake(x, 0, w, self.mScrollerView.mheight);
-        mSubView.mSName.text = mHot.mGoodsName;
-        mSubView.mSOldPrice.text = [NSString stringWithFormat:@"¥%.2f",mHot.mMarketPrice];
-        mSubView.mSNowPrice.text = [NSString stringWithFormat:@"¥%.2f",mHot.mNowPrice];
-        [mSubView.mImg sd_setImageWithURL:[NSURL URLWithString:mHot.mSmallImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
-        mSubView.mSBtn.tag = tag;
-        [mSubView.mSBtn addTarget:self action:@selector(msBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.mScrollerView addSubview:mSubView];
-        
 
+    for (GHot *mHot in mScrollerSourceArr) {
+        
+        mVView = [ZLSubProductView initWithFrame:CGRectMake(x, 0, w, self.mScrollerView.mheight) andImg:mHot.mSmallImg andProductName:mHot.mGoodsName andOlPrice:mHot.mMarketPrice andNowPrice:mHot.mNowPrice];
+        mVView.mBtn.tag = tag;
+        [mVView.mBtn addTarget:self action:@selector(msBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mScrollerView addSubview:mVView];
         
         x+=w+5;
         tag++;
     }
+    
     
     self.mScrollerView.contentSize = CGSizeMake(x, self.mScrollerView.mheight);
     

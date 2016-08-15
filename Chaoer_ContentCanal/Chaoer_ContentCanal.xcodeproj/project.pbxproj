@@ -110,6 +110,7 @@
 		0431951E1D51889E008EEF82 /* valletCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0431951D1D51889E008EEF82 /* valletCell3.xib */; };
 		043195201D518C98008EEF82 /* walletHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0431951F1D518C98008EEF82 /* walletHeaderView.xib */; };
 		043195241D51DA5E008EEF82 /* YSProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043195231D51DA5E008EEF82 /* YSProgressView.m */; };
+		043274081D61A9E200E36D8A /* ZLSubProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043274071D61A9E200E36D8A /* ZLSubProductView.m */; };
 		043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D61CEAA3CE000041EC /* releaseCell5.xib */; };
 		043F38D91CEAC9D4000041EC /* releaseCell6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F38D81CEAC9D4000041EC /* releaseCell6.xib */; };
 		044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A24771CB4A85700A6379C /* kitchenTableViewCell.m */; };
@@ -1078,6 +1079,8 @@
 		0431951F1D518C98008EEF82 /* walletHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = walletHeaderView.xib; sourceTree = "<group>"; };
 		043195221D51DA5E008EEF82 /* YSProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProgressView.h; sourceTree = "<group>"; };
 		043195231D51DA5E008EEF82 /* YSProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSProgressView.m; sourceTree = "<group>"; };
+		043274061D61A9E200E36D8A /* ZLSubProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSubProductView.h; sourceTree = "<group>"; };
+		043274071D61A9E200E36D8A /* ZLSubProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSubProductView.m; sourceTree = "<group>"; };
 		043F38D61CEAA3CE000041EC /* releaseCell5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell5.xib; sourceTree = "<group>"; };
 		043F38D81CEAC9D4000041EC /* releaseCell6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell6.xib; sourceTree = "<group>"; };
 		044A24761CB4A85700A6379C /* kitchenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kitchenTableViewCell.h; sourceTree = "<group>"; };
@@ -2705,6 +2708,15 @@
 				043195231D51DA5E008EEF82 /* YSProgressView.m */,
 			);
 			name = YSProgressView;
+			sourceTree = "<group>";
+		};
+		043274091D61BB2200E36D8A /* GeneralSubView */ = {
+			isa = PBXGroup;
+			children = (
+				043274061D61A9E200E36D8A /* ZLSubProductView.h */,
+				043274071D61A9E200E36D8A /* ZLSubProductView.m */,
+			);
+			name = GeneralSubView;
 			sourceTree = "<group>";
 		};
 		044A247B1CB4B23100A6379C /* 消息 */ = {
@@ -5115,6 +5127,7 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				043274091D61BB2200E36D8A /* GeneralSubView */,
 				043195211D51DA4B008EEF82 /* YSProgressView */,
 				0461EC671D33A9040080A3ED /* WKRateView */,
 				04D9F5091D279E5A00518F6F /* YT_ShopTypeView */,
@@ -6394,6 +6407,7 @@
 				04FA3E8E1D22772200EA9E34 /* goPayViewController.m in Sources */,
 				04102CA11D2A3643003A0C56 /* billView.m in Sources */,
 				04EEAE051D0FAFCA00FA97C6 /* UIWebView+AFNetworking.m in Sources */,
+				043274081D61A9E200E36D8A /* ZLSubProductView.m in Sources */,
 				749BEA411B3277AA00BABCA6 /* SDWebImageDownloader.m in Sources */,
 				042238EC1CD3046D00D1784B /* RCChatViewController.m in Sources */,
 				16E9CAD81BAC00BC00C48B8A /* DYMgr.m in Sources */,

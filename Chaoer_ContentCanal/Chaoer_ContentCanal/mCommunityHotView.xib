@@ -66,7 +66,7 @@
                 <outlet property="mSNowPrice" destination="E7d-SR-BxE" id="yne-hq-MKQ"/>
                 <outlet property="mSOldPrice" destination="R1W-hO-hbF" id="CUL-Oa-NMq"/>
             </connections>
-            <point key="canvasLocation" x="92" y="408"/>
+            <point key="canvasLocation" x="89" y="378"/>
         </view>
     </objects>
 </document>
