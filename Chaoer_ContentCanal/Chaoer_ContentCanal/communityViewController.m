@@ -18,6 +18,8 @@
 
 #import "mNavAddressViewController.h"
 #import "homeHotViewController.h"
+#import "DryCleanVC.h"
+
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
 
@@ -437,6 +439,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 1) {
+        DryCleanVC *vc = [[DryCleanVC alloc] init];
+        vc.hiddenTabBar = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    
     GMarketList *mShopList = self.mShopArr[indexPath.row];
 
     mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];

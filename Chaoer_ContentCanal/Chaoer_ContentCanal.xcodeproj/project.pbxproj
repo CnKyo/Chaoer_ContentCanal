@@ -894,6 +894,36 @@
 		B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B2D48CA11BEC53FF00482EB8 /* UIImage+RTTint.podspec */; };
 		B2D5394C1BA97763009170A8 /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */; };
 		B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D539511BA97F64009170A8 /* JSBadgeView.m */; };
+		DF10D8191D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */; };
+		DF10D81D1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */; };
+		DF10D8201D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */; };
+		DF10D8241D64099F00220FB0 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8231D64099F00220FB0 /* HMSegmentedControl.m */; };
+		DF10D8271D6409C500220FB0 /* DryCleanOrderTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */; };
+		DF10D82A1D640AC900220FB0 /* QUScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8291D640AC900220FB0 /* QUScrollVC.m */; };
+		DF10D83D1D640FBA00220FB0 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF10D82D1D640FBA00220FB0 /* DateTools.bundle */; };
+		DF10D83E1D640FBA00220FB0 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8301D640FBA00220FB0 /* DTConstants.m */; };
+		DF10D83F1D640FBA00220FB0 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8321D640FBA00220FB0 /* DTError.m */; };
+		DF10D8401D640FBA00220FB0 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8341D640FBA00220FB0 /* DTTimePeriod.m */; };
+		DF10D8411D640FBA00220FB0 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8361D640FBA00220FB0 /* DTTimePeriodChain.m */; };
+		DF10D8421D640FBA00220FB0 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8381D640FBA00220FB0 /* DTTimePeriodCollection.m */; };
+		DF10D8431D640FBA00220FB0 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D83A1D640FBA00220FB0 /* DTTimePeriodGroup.m */; };
+		DF10D8441D640FBA00220FB0 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D83C1D640FBA00220FB0 /* NSDate+DateTools.m */; };
+		DF10D8471D6418BC00220FB0 /* DryCleanTimeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */; };
+		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */; };
+		DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */; };
+		DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */; };
+		DF535EFF1D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF81D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m */; };
+		DF535F001D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EFA1D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m */; };
+		DF535F011D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EFC1D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m */; };
+		DF535F021D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EFE1D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.m */; };
+		DF535F091D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F071D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m */; };
+		DF535F101D62B442006E1598 /* DryCleanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F0F1D62B442006E1598 /* DryCleanVC.m */; };
+		DF535F151D62BA1E006E1598 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF535F121D62BA1E006E1598 /* Images.xcassets */; };
+		DF535F161D62BA1E006E1598 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F141D62BA1E006E1598 /* RatingBar.m */; };
+		DF535F191D62BAB1006E1598 /* RatingBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F181D62BAB1006E1598 /* RatingBarView.m */; };
+		DF535F1C1D62F134006E1598 /* UIImage+QUAdditons.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */; };
+		DF535F201D63088B006E1598 /* ShopCommentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */; };
+		DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */; };
 		DF8344181D51D570002C4FD6 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344141D51D570002C4FD6 /* APIClient.m */; };
 		DF8344191D51D570002C4FD6 /* APIObjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344161D51D570002C4FD6 /* APIObjectDefine.m */; };
 		DF83441E1D51DCB2002C4FD6 /* UIView+AutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */; };
@@ -2437,6 +2467,65 @@
 		B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		B2D539501BA97F64009170A8 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		B2D539511BA97F64009170A8 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		DF10D8171D63ECBE00220FB0 /* DryCleanShopServerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanShopServerDetailVC.h; sourceTree = "<group>"; };
+		DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanShopServerDetailVC.m; sourceTree = "<group>"; };
+		DF10D81B1D63F7A700220FB0 /* DryCleanOrderSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderSubmitVC.h; sourceTree = "<group>"; };
+		DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderSubmitVC.m; sourceTree = "<group>"; };
+		DF10D81E1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderSubmitTableViewCell.h; sourceTree = "<group>"; };
+		DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderSubmitTableViewCell.m; sourceTree = "<group>"; };
+		DF10D8221D64099F00220FB0 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		DF10D8231D64099F00220FB0 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		DF10D8251D6409C500220FB0 /* DryCleanOrderTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderTimeVC.h; sourceTree = "<group>"; };
+		DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderTimeVC.m; sourceTree = "<group>"; };
+		DF10D8281D640AC900220FB0 /* QUScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUScrollVC.h; sourceTree = "<group>"; };
+		DF10D8291D640AC900220FB0 /* QUScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUScrollVC.m; sourceTree = "<group>"; };
+		DF10D82D1D640FBA00220FB0 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
+		DF10D82E1D640FBA00220FB0 /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTools.h; sourceTree = "<group>"; };
+		DF10D82F1D640FBA00220FB0 /* DTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTConstants.h; sourceTree = "<group>"; };
+		DF10D8301D640FBA00220FB0 /* DTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTConstants.m; sourceTree = "<group>"; };
+		DF10D8311D640FBA00220FB0 /* DTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTError.h; sourceTree = "<group>"; };
+		DF10D8321D640FBA00220FB0 /* DTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTError.m; sourceTree = "<group>"; };
+		DF10D8331D640FBA00220FB0 /* DTTimePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriod.h; sourceTree = "<group>"; };
+		DF10D8341D640FBA00220FB0 /* DTTimePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriod.m; sourceTree = "<group>"; };
+		DF10D8351D640FBA00220FB0 /* DTTimePeriodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodChain.h; sourceTree = "<group>"; };
+		DF10D8361D640FBA00220FB0 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodChain.m; sourceTree = "<group>"; };
+		DF10D8371D640FBA00220FB0 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodCollection.h; sourceTree = "<group>"; };
+		DF10D8381D640FBA00220FB0 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		DF10D8391D640FBA00220FB0 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		DF10D83A1D640FBA00220FB0 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		DF10D83B1D640FBA00220FB0 /* NSDate+DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateTools.h"; sourceTree = "<group>"; };
+		DF10D83C1D640FBA00220FB0 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTools.m"; sourceTree = "<group>"; };
+		DF10D8451D6418BC00220FB0 /* DryCleanTimeChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanTimeChooseView.h; sourceTree = "<group>"; };
+		DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanTimeChooseView.m; sourceTree = "<group>"; };
+		DF10D8481D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderCommitSubmitVC.h; sourceTree = "<group>"; };
+		DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommitSubmitVC.m; sourceTree = "<group>"; };
+		DF10D84B1D64715F00220FB0 /* DryCleanServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanServerTableViewCell.h; sourceTree = "<group>"; };
+		DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanServerTableViewCell.m; sourceTree = "<group>"; };
+		DF535EF31D62AA4C006E1598 /* HouseKeepShopTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseKeepShopTVC.h; sourceTree = "<group>"; };
+		DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseKeepShopTVC.m; sourceTree = "<group>"; };
+		DF535EF71D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		DF535EF81D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		DF535EF91D62AC27006E1598 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		DF535EFA1D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		DF535EFB1D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		DF535EFC1D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		DF535EFD1D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		DF535EFE1D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
+		DF535F061D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseKeepShopInfoTableViewCell.h; sourceTree = "<group>"; };
+		DF535F071D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseKeepShopInfoTableViewCell.m; sourceTree = "<group>"; };
+		DF535F0E1D62B442006E1598 /* DryCleanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanVC.h; sourceTree = "<group>"; };
+		DF535F0F1D62B442006E1598 /* DryCleanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanVC.m; sourceTree = "<group>"; };
+		DF535F121D62BA1E006E1598 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DF535F131D62BA1E006E1598 /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
+		DF535F141D62BA1E006E1598 /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
+		DF535F171D62BAB1006E1598 /* RatingBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBarView.h; sourceTree = "<group>"; };
+		DF535F181D62BAB1006E1598 /* RatingBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBarView.m; sourceTree = "<group>"; };
+		DF535F1A1D62F134006E1598 /* UIImage+QUAdditons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QUAdditons.h"; sourceTree = "<group>"; };
+		DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QUAdditons.m"; sourceTree = "<group>"; };
+		DF535F1E1D63088B006E1598 /* ShopCommentTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCommentTVC.h; sourceTree = "<group>"; };
+		DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCommentTVC.m; sourceTree = "<group>"; };
+		DF535F211D6308BC006E1598 /* ShopCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCommentTableViewCell.h; sourceTree = "<group>"; };
+		DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCommentTableViewCell.m; sourceTree = "<group>"; };
 		DF8344131D51D570002C4FD6 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		DF8344141D51D570002C4FD6 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		DF8344151D51D570002C4FD6 /* APIObjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIObjectDefine.h; sourceTree = "<group>"; };
@@ -4891,6 +4980,8 @@
 		748255501B74693200A81E4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DF535F0B1D62B1B0006E1598 /* DryClean */,
+				DF535EF01D62AA3F006E1598 /* HouseKeep */,
 				31BBE28E1C913EF3006C553D /* homeViewController.h */,
 				31BBE28F1C913EF3006C553D /* homeViewController.m */,
 				31F5447C1CAE12B900307B83 /* homeNavView.h */,
@@ -5496,6 +5587,135 @@
 			path = "UIImage-RTTint-lib";
 			sourceTree = "<group>";
 		};
+		DF10D8211D64099F00220FB0 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				DF10D8221D64099F00220FB0 /* HMSegmentedControl.h */,
+				DF10D8231D64099F00220FB0 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		DF10D82C1D640FBA00220FB0 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				DF10D82D1D640FBA00220FB0 /* DateTools.bundle */,
+				DF10D82E1D640FBA00220FB0 /* DateTools.h */,
+				DF10D82F1D640FBA00220FB0 /* DTConstants.h */,
+				DF10D8301D640FBA00220FB0 /* DTConstants.m */,
+				DF10D8311D640FBA00220FB0 /* DTError.h */,
+				DF10D8321D640FBA00220FB0 /* DTError.m */,
+				DF10D8331D640FBA00220FB0 /* DTTimePeriod.h */,
+				DF10D8341D640FBA00220FB0 /* DTTimePeriod.m */,
+				DF10D8351D640FBA00220FB0 /* DTTimePeriodChain.h */,
+				DF10D8361D640FBA00220FB0 /* DTTimePeriodChain.m */,
+				DF10D8371D640FBA00220FB0 /* DTTimePeriodCollection.h */,
+				DF10D8381D640FBA00220FB0 /* DTTimePeriodCollection.m */,
+				DF10D8391D640FBA00220FB0 /* DTTimePeriodGroup.h */,
+				DF10D83A1D640FBA00220FB0 /* DTTimePeriodGroup.m */,
+				DF10D83B1D640FBA00220FB0 /* NSDate+DateTools.h */,
+				DF10D83C1D640FBA00220FB0 /* NSDate+DateTools.m */,
+			);
+			path = DateTools;
+			sourceTree = "<group>";
+		};
+		DF535EF01D62AA3F006E1598 /* HouseKeep */ = {
+			isa = PBXGroup;
+			children = (
+				DF535EF11D62AA3F006E1598 /* Cell */,
+				DF535EF21D62AA3F006E1598 /* View */,
+				DF535EF31D62AA4C006E1598 /* HouseKeepShopTVC.h */,
+				DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */,
+			);
+			path = HouseKeep;
+			sourceTree = "<group>";
+		};
+		DF535EF11D62AA3F006E1598 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DF535F061D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.h */,
+				DF535F071D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DF535EF21D62AA3F006E1598 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DF535EF61D62AC27006E1598 /* UITableView-FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF535EF71D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.h */,
+				DF535EF81D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m */,
+				DF535EF91D62AC27006E1598 /* UITableView+FDKeyedHeightCache.h */,
+				DF535EFA1D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m */,
+				DF535EFB1D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.h */,
+				DF535EFC1D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m */,
+				DF535EFD1D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.h */,
+				DF535EFE1D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.m */,
+			);
+			path = "UITableView-FDTemplateLayoutCell";
+			sourceTree = "<group>";
+		};
+		DF535F0B1D62B1B0006E1598 /* DryClean */ = {
+			isa = PBXGroup;
+			children = (
+				DF535F0C1D62B1B0006E1598 /* Cell */,
+				DF535F0D1D62B1B0006E1598 /* View */,
+				DF535F0E1D62B442006E1598 /* DryCleanVC.h */,
+				DF535F0F1D62B442006E1598 /* DryCleanVC.m */,
+				DF535F1E1D63088B006E1598 /* ShopCommentTVC.h */,
+				DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */,
+				DF10D8171D63ECBE00220FB0 /* DryCleanShopServerDetailVC.h */,
+				DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */,
+				DF10D81B1D63F7A700220FB0 /* DryCleanOrderSubmitVC.h */,
+				DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */,
+				DF10D8251D6409C500220FB0 /* DryCleanOrderTimeVC.h */,
+				DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */,
+				DF10D8481D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.h */,
+				DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */,
+			);
+			path = DryClean;
+			sourceTree = "<group>";
+		};
+		DF535F0C1D62B1B0006E1598 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DF535F211D6308BC006E1598 /* ShopCommentTableViewCell.h */,
+				DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */,
+				DF10D81E1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.h */,
+				DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */,
+				DF10D84B1D64715F00220FB0 /* DryCleanServerTableViewCell.h */,
+				DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DF535F0D1D62B1B0006E1598 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DF535F171D62BAB1006E1598 /* RatingBarView.h */,
+				DF535F181D62BAB1006E1598 /* RatingBarView.m */,
+				DF10D8451D6418BC00220FB0 /* DryCleanTimeChooseView.h */,
+				DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DF535F111D62BA1E006E1598 /* RatingBar */ = {
+			isa = PBXGroup;
+			children = (
+				DF535F121D62BA1E006E1598 /* Images.xcassets */,
+				DF535F131D62BA1E006E1598 /* RatingBar.h */,
+				DF535F141D62BA1E006E1598 /* RatingBar.m */,
+			);
+			path = RatingBar;
+			sourceTree = "<group>";
+		};
 		DF8344111D51D4DE002C4FD6 /* Alan */ = {
 			isa = PBXGroup;
 			children = (
@@ -5514,6 +5734,8 @@
 				DF8344151D51D570002C4FD6 /* APIObjectDefine.h */,
 				DF8344161D51D570002C4FD6 /* APIObjectDefine.m */,
 				DF8344171D51D570002C4FD6 /* CustomDefine.h */,
+				DF10D8281D640AC900220FB0 /* QUScrollVC.h */,
+				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -5523,6 +5745,8 @@
 			children = (
 				DF83441C1D51DCB2002C4FD6 /* UIView+AutoSize.h */,
 				DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */,
+				DF535F1A1D62F134006E1598 /* UIImage+QUAdditons.h */,
+				DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -5530,6 +5754,10 @@
 		DF83441B1D51DC9E002C4FD6 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				DF10D82C1D640FBA00220FB0 /* DateTools */,
+				DF10D8211D64099F00220FB0 /* HMSegmentedControl */,
+				DF535F111D62BA1E006E1598 /* RatingBar */,
+				DF535EF61D62AC27006E1598 /* UITableView-FDTemplateLayoutCell */,
 				DF83442D1D51DE67002C4FD6 /* SKTagView */,
 			);
 			path = OpenSourceLib;
@@ -5718,6 +5946,7 @@
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
 				04E5A8221CE5CA1D00A2D111 /* pptAddAddressViewController.xib in Resources */,
 				04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */,
+				DF535F151D62BA1E006E1598 /* Images.xcassets in Resources */,
 				04E5A7E81CE57C3000A2D111 /* pptHistoryTableViewCell2.xib in Resources */,
 				04FAE7E21D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib in Resources */,
 				04E5A7E01CE579B000A2D111 /* down_arrow@2x.png in Resources */,
@@ -5937,6 +6166,7 @@
 				040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */,
 				04FA3E6D1D22074D00EA9E34 /* shopCarViewController.xib in Resources */,
 				3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */,
+				DF10D83D1D640FBA00220FB0 /* DateTools.bundle in Resources */,
 				3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */,
 				3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */,
 				7470E14D1B9C07B800ECEC69 /* leaveCell.xib in Resources */,
@@ -6011,8 +6241,11 @@
 				749BEA671B32B33B00BABCA6 /* MyViewController.m in Sources */,
 				31F5447E1CAE12B900307B83 /* homeNavView.m in Sources */,
 				311BE2281CA14160006757E8 /* needCodeView.m in Sources */,
+				DF10D83F1D640FBA00220FB0 /* DTError.m in Sources */,
 				04E02E531CE6B70F00220D54 /* pptMyRateHeaderView.m in Sources */,
+				DF10D8471D6418BC00220FB0 /* DryCleanTimeChooseView.m in Sources */,
 				04F2283A1CEEE4EB004E8702 /* ActionSheetDatePicker.m in Sources */,
+				DF10D8441D640FBA00220FB0 /* NSDate+DateTools.m in Sources */,
 				04040DEF1D20BEFA008C3C31 /* mMarketHeaderView.m in Sources */,
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
 				DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */,
@@ -6039,6 +6272,7 @@
 				310EB5F81CA2616A005C61F4 /* serviceDetailView.m in Sources */,
 				04C15D631D3772E90097DA6C /* WKOrderHeadView.m in Sources */,
 				044F16B31CF2ED6600B6B90D /* NFPickerView.m in Sources */,
+				DF10D8191D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m in Sources */,
 				044A24791CB4A85700A6379C /* kitchenTableViewCell.m in Sources */,
 				04F2DDF21CBDFBDE0088C90F /* TFFileUploadManager.m in Sources */,
 				7487DC1D1B4E17F000C40220 /* View+MASAdditions.m in Sources */,
@@ -6056,15 +6290,19 @@
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
+				DF535F091D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m in Sources */,
 				048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */,
 				043195241D51DA5E008EEF82 /* YSProgressView.m in Sources */,
 				04102CE01D2A509F003A0C56 /* MJRefreshGifHeader.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */,
 				310EB5EF1CA2499D005C61F4 /* UIView+Subviews.m in Sources */,
+				DF10D82A1D640AC900220FB0 /* QUScrollVC.m in Sources */,
+				DF535F021D62AC27006E1598 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				04E5A7ED1CE5823300A2D111 /* pptMyViewController.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
 				318D56721C9FD4230045B5FB /* ZJAlertListView.m in Sources */,
+				DF535F101D62B442006E1598 /* DryCleanVC.m in Sources */,
 				31462CE91CB3B02C00E67836 /* LXCircleAnimationView.m in Sources */,
 				742FB9031B5CDEB3005A1AFA /* NSMutableString+TagReplace.m in Sources */,
 				04648C791CB51DD0006823C9 /* valleteHistoryViewController.m in Sources */,
@@ -6154,6 +6392,7 @@
 				742FB9041B5CDEB3005A1AFA /* NSString+WPAttributedMarkup.m in Sources */,
 				04102E211CE44241006F82E2 /* releasePPtViewController.m in Sources */,
 				318D56511C9BE28E0045B5FB /* aboutusView.m in Sources */,
+				DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */,
 				310EB5FD1CA2680F005C61F4 /* choiceServicerViewController.m in Sources */,
 				0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */,
 				041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */,
@@ -6167,7 +6406,9 @@
 				048FD8301CB62EB600383DF8 /* UICountingLabel.m in Sources */,
 				04102E261CE453D3006F82E2 /* pptReleaseView.m in Sources */,
 				04F9E5D41CED4D8B00FCA8B7 /* MJPropertyType.m in Sources */,
+				DF10D8401D640FBA00220FB0 /* DTTimePeriod.m in Sources */,
 				04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */,
+				DF535F201D63088B006E1598 /* ShopCommentTVC.m in Sources */,
 				04A151121D3637AC00AFCE98 /* QHLShop.m in Sources */,
 				04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
@@ -6176,6 +6417,7 @@
 				04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */,
 				040FB55D1D18E64500D453E3 /* mListViewController.m in Sources */,
 				04F9E5D11CED4D8B00FCA8B7 /* MJFoundation.m in Sources */,
+				DF10D8201D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m in Sources */,
 				3135F8231C97E29800EF9569 /* editMessageViewController.m in Sources */,
 				04102CC61D2A507D003A0C56 /* MJRefreshFooter.m in Sources */,
 				04A151111D3637AC00AFCE98 /* QHLGoods.m in Sources */,
@@ -6191,6 +6433,7 @@
 				04F2283F1CEEE4EB004E8702 /* DistancePickerView.m in Sources */,
 				04F9E5D91CED4D8B00FCA8B7 /* NSString+MJExtension.m in Sources */,
 				04F5FFF41D236EE400EFBB3C /* orderStatusViewController.m in Sources */,
+				DF10D8421D640FBA00220FB0 /* DTTimePeriodCollection.m in Sources */,
 				044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */,
 				04102CE51D2A5BC4003A0C56 /* BaseHeaderRefresh.m in Sources */,
 				313413551CA28DC3003972E2 /* XMNAlbumCell.m in Sources */,
@@ -6218,6 +6461,7 @@
 				04B3BB021D13E979000C7B2E /* CRSA.m in Sources */,
 				749BE9A11B32756800BABCA6 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				04540F661D1BD9C100A73F30 /* mCommunityNavView.m in Sources */,
+				DF10D8411D640FBA00220FB0 /* DTTimePeriodChain.m in Sources */,
 				04C15D6F1D37AD030097DA6C /* mComfirmHeaderAndFooter.m in Sources */,
 				749BE99D1B32756800BABCA6 /* IQTextView.m in Sources */,
 				B2D5394C1BA97763009170A8 /* StrikeThroughLabel.m in Sources */,
@@ -6229,6 +6473,7 @@
 				040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */,
 				04E5A7C91CE56A3C00A2D111 /* pptHistoryViewController.m in Sources */,
 				04F2DDFC1CBE2C460088C90F /* communityStatusTableViewCell.m in Sources */,
+				DF535EFF1D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				04102E191CE42CA7006F82E2 /* bolterViewController.m in Sources */,
 				04102E2C1CE46215006F82E2 /* releaseCell.m in Sources */,
 				318D56481C9BAD7E0045B5FB /* mGeneralSubView.m in Sources */,
@@ -6256,6 +6501,7 @@
 				744BEA741BE33CFB0094EB96 /* feedbackViewController.m in Sources */,
 				3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */,
 				749BEA4C1B3277AA00BABCA6 /* UIImageView+WebCache.m in Sources */,
+				DF535F011D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				04A1511D1D3637B700AFCE98 /* QHLSettleMentView.m in Sources */,
 				749BEA461B3277AA00BABCA6 /* UIButton+WebCache.m in Sources */,
 				311BE22E1CA14B38006757E8 /* needCodeViewController.m in Sources */,
@@ -6279,12 +6525,14 @@
 				16E9CADB1BAC00BC00C48B8A /* UIImage+DYUIImage.m in Sources */,
 				310EB6011CA26D6E005C61F4 /* makeServiceViewController.m in Sources */,
 				749BEA451B3277AA00BABCA6 /* SDWebImagePrefetcher.m in Sources */,
+				DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */,
 				04A1511C1D3637B700AFCE98 /* QHLHiddenView.m in Sources */,
 				04102CC51D2A507D003A0C56 /* MJRefreshComponent.m in Sources */,
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
 				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
 				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
 				04FAE7E51D2CAA9E00341585 /* mFixOrderFooter.m in Sources */,
+				DF10D83E1D640FBA00220FB0 /* DTConstants.m in Sources */,
 				04D9F50C1D279E7700518F6F /* YT_ShopTypeView.m in Sources */,
 				046B12EB1CE1C62100A8FB76 /* WKLeftView.m in Sources */,
 				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
@@ -6297,8 +6545,11 @@
 				04D85DD31CF6ED2C00E1A3A2 /* mGeneryEmptyView.m in Sources */,
 				04FA3E701D22077B00EA9E34 /* shopCarHeaderAndFooterView.m in Sources */,
 				7487DC181B4E17F000C40220 /* MASLayoutConstraint.m in Sources */,
+				DF535F001D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				04102CD91D2A5095003A0C56 /* MJRefreshBackStateFooter.m in Sources */,
 				04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */,
+				DF10D8271D6409C500220FB0 /* DryCleanOrderTimeVC.m in Sources */,
+				DF10D8241D64099F00220FB0 /* HMSegmentedControl.m in Sources */,
 				310EB5E61CA24445005C61F4 /* HCSStarRatingView.m in Sources */,
 				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,
 				04B463111D250ED100001ECB /* UILabel+StringWithFrame.m in Sources */,
@@ -6323,6 +6574,7 @@
 				749BE99C1B32756800BABCA6 /* IQSegmentedNextPrevious.m in Sources */,
 				749BE9D41B32772000BABCA6 /* GTMBase64.m in Sources */,
 				310EB5ED1CA2499D005C61F4 /* DLStarRatingControl.m in Sources */,
+				DF535F161D62BA1E006E1598 /* RatingBar.m in Sources */,
 				04223D9C1CC0E76300CB6249 /* utilityView.m in Sources */,
 				749BEA4B1B3277AA00BABCA6 /* UIImageView+MJWebCache.m in Sources */,
 				046B12E31CE184BC00A8FB76 /* MHSelectPickerView.m in Sources */,
@@ -6335,6 +6587,7 @@
 				04EEAE021D0FAFCA00FA97C6 /* UIImageView+AFNetworking.m in Sources */,
 				04E5A7E11CE579B000A2D111 /* MCMenuButton.m in Sources */,
 				04EEADE71D0FAFAE00FA97C6 /* AFURLRequestSerialization.m in Sources */,
+				DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m in Sources */,
 				04D652871CF00E8700E26209 /* comfirOrderViewController.m in Sources */,
 				31EEB3191C93B32F00B61A86 /* communityViewController.m in Sources */,
 				04F9E5D31CED4D8B00FCA8B7 /* MJPropertyKey.m in Sources */,
@@ -6374,6 +6627,7 @@
 				313413641CA28DC3003972E2 /* XMNVideoPreviewController.m in Sources */,
 				318D566A1C9C012B0045B5FB /* MHSheetView.m in Sources */,
 				3134135D1CA28DC3003972E2 /* XMNPhotoCollectionController.m in Sources */,
+				DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */,
 				749BEA5D1B32786600BABCA6 /* WebVC.m in Sources */,
 				3123CC381C92B04A00C3B928 /* mBalanceViewController.m in Sources */,
 				04F2283B1CEEE4EB004E8702 /* ActionSheetDistancePicker.m in Sources */,
@@ -6453,9 +6707,11 @@
 				04F9E5D21CED4D8B00FCA8B7 /* MJProperty.m in Sources */,
 				74C165631B7348F900C69390 /* forgetAndChangePwdView.m in Sources */,
 				04AB1D731CD09F1C00870617 /* WJAdsView.m in Sources */,
+				DF10D8431D640FBA00220FB0 /* DTTimePeriodGroup.m in Sources */,
 				740089541B38F22A00618BA0 /* NavC.m in Sources */,
 				04F1E3A81CD1FBFE00222946 /* mBundlePhoneViewController.m in Sources */,
 				04C15D661D3791580097DA6C /* mOrderDetailBottomView.m in Sources */,
+				DF535F1C1D62F134006E1598 /* UIImage+QUAdditons.m in Sources */,
 				04EEADCA1D0FAED900FA97C6 /* UIButton+HDExtension.m in Sources */,
 				7487DC1A1B4E17F000C40220 /* MASViewConstraint.m in Sources */,
 				74599E6A1B95AE4900678F0A /* DetailTextView.m in Sources */,
@@ -6487,11 +6743,13 @@
 				04BD179B1D0E59B3001792DA /* mCustomTxView.m in Sources */,
 				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
 				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,
+				DF10D81D1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				04EEADB01D0FAE5A00FA97C6 /* HDPicModle.m in Sources */,
 				04223D991CC0C9E400CB6249 /* JHJsonRequst.m in Sources */,
 				749BEA121B32779800BABCA6 /* MJPhotoView.m in Sources */,
+				DF535F191D62BAB1006E1598 /* RatingBarView.m in Sources */,
 				31E1A72E1CA3C04A00D3496F /* cashViewController.m in Sources */,
 				313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */,
 				04E5A8171CE5C39700A2D111 /* pptMyAddressCell.m in Sources */,

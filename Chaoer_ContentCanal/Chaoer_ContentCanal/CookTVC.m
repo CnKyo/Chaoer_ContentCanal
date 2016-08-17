@@ -144,6 +144,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     CookObject *item = [self.tempArray objectAtIndex:indexPath.row];
     CookDetailVC *vc = [[CookDetailVC alloc] init];
     vc.item = item;
