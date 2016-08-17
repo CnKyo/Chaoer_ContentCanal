@@ -18,6 +18,7 @@
 
 #import "mNavAddressViewController.h"
 #import "homeHotViewController.h"
+
 #import "DryCleanVC.h"
 
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
@@ -439,24 +440,26 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GMarketList *mShopList = self.mShopArr[indexPath.row];
     
-    if (indexPath.row == 1) {
-        DryCleanVC *vc = [[DryCleanVC alloc] init];
-        vc.hiddenTabBar = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
+    if (indexPath.row == 0) {
+        DryCleanVC *vvv= [DryCleanVC new];
+        [self pushViewController:vvv];
+    }else{
+        
+        mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+        market.mShopList = GMarketList.new;
+        market.mShopList = mShopList;
+        market.mShopId = mShopList.mId;
+        
+        [self pushViewController:market];
     }
     
     
-    GMarketList *mShopList = self.mShopArr[indexPath.row];
+    
+    
+    
 
-    mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
-    market.mShopList = GMarketList.new;
-    market.mShopList = mShopList;
-    market.mShopId = mShopList.mId;
-    
-    [self pushViewController:market];
-    
 }
 
 

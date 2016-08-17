@@ -286,6 +286,19 @@
 		04D652921CF01B9000E26209 /* goOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652901CF01B9000E26209 /* goOrderViewController.xib */; };
 		04D652951CF0229400E26209 /* goOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D652941CF0229400E26209 /* goOrderView.m */; };
 		04D652971CF022A100E26209 /* goOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D652961CF022A100E26209 /* goOrderView.xib */; };
+		04D7338D1D63FE4000F1C5DD /* mFoodComfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D7338B1D63FE4000F1C5DD /* mFoodComfirmViewController.m */; };
+		04D7338E1D63FE4000F1C5DD /* mFoodComfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7338C1D63FE4000F1C5DD /* mFoodComfirmViewController.xib */; };
+		04D733921D63FE9300F1C5DD /* mFoodComfirmHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D733911D63FE9300F1C5DD /* mFoodComfirmHeaderView.m */; };
+		04D733941D63FE9B00F1C5DD /* mFoodComfirmHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733931D63FE9B00F1C5DD /* mFoodComfirmHeaderView.xib */; };
+		04D733961D64017300F1C5DD /* mFoodComfirmSctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733951D64017300F1C5DD /* mFoodComfirmSctionView.xib */; };
+		04D733981D64020C00F1C5DD /* mFoodComfirmBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733971D64020C00F1C5DD /* mFoodComfirmBottomView.xib */; };
+		04D7339A1D6402F600F1C5DD /* mFoodComfirmFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733991D6402F600F1C5DD /* mFoodComfirmFooterView.xib */; };
+		04D7339E1D640BC700F1C5DD /* mFoodComfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D7339C1D640BC700F1C5DD /* mFoodComfirmTableViewCell.m */; };
+		04D7339F1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D7339D1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib */; };
+		04D733DC1D6457ED00F1C5DD /* mFoodClearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D733DB1D6457ED00F1C5DD /* mFoodClearView.m */; };
+		04D733DE1D6457F700F1C5DD /* mFoodClearView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733DD1D6457F700F1C5DD /* mFoodClearView.xib */; };
+		04D733E21D64604200F1C5DD /* mFoodShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D733E01D64604200F1C5DD /* mFoodShopCarCell.m */; };
+		04D733E31D64604200F1C5DD /* mFoodShopCarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D733E11D64604200F1C5DD /* mFoodShopCarCell.xib */; };
 		04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */; };
 		04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */; };
 		04D85DC51CF6D20600E1A3A2 /* UITextField+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D85DC41CF6D20600E1A3A2 /* UITextField+Shake.m */; };
@@ -368,6 +381,38 @@
 		04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */; };
 		04E5BD351CC61F6700E62795 /* WJ_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD2F1CC61F6700E62795 /* WJ_warning.png */; };
 		04E5BD361CC61F6700E62795 /* WJ_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */; };
+		04E6CE391D62ACA8000EB6B8 /* WKLeftScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE381D62ACA8000EB6B8 /* WKLeftScrollerView.m */; };
+		04E6CE3E1D62B427000EB6B8 /* mFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE3C1D62B427000EB6B8 /* mFoodViewController.m */; };
+		04E6CE3F1D62B427000EB6B8 /* mFoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE3D1D62B427000EB6B8 /* mFoodViewController.xib */; };
+		04E6CE431D62B4C9000EB6B8 /* mFoodHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE421D62B4C9000EB6B8 /* mFoodHeaderView.m */; };
+		04E6CE451D62B4E1000EB6B8 /* mFoodHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE441D62B4E1000EB6B8 /* mFoodHeaderView.xib */; };
+		04E6CE471D62BC8E000EB6B8 /* mFoodBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE461D62BC8E000EB6B8 /* mFoodBottomView.xib */; };
+		04E6CE4B1D62C073000EB6B8 /* mFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE491D62C073000EB6B8 /* mFoodTableViewCell.m */; };
+		04E6CE4C1D62C073000EB6B8 /* mFoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE4A1D62C073000EB6B8 /* mFoodTableViewCell.xib */; };
+		04E6CE4E1D62C7AC000EB6B8 /* mFoodLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE4D1D62C7AC000EB6B8 /* mFoodLeftCell.xib */; };
+		04E6CE521D62FAE9000EB6B8 /* mFoodRateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE501D62FAE9000EB6B8 /* mFoodRateTableViewCell.m */; };
+		04E6CE531D62FAE9000EB6B8 /* mFoodRateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE511D62FAE9000EB6B8 /* mFoodRateTableViewCell.xib */; };
+		04E6CE561D62FAFF000EB6B8 /* mFoodRateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE551D62FAFF000EB6B8 /* mFoodRateHeaderView.m */; };
+		04E6CE581D62FB0C000EB6B8 /* mFoodRateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE571D62FB0C000EB6B8 /* mFoodRateHeaderView.xib */; };
+		04E6CE5C1D630A6A000EB6B8 /* MYSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE5B1D630A6A000EB6B8 /* MYSegmentView.m */; };
+		04E6CE5F1D630A87000EB6B8 /* MainTouchTableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE5E1D630A87000EB6B8 /* MainTouchTableTableView.m */; };
+		04E6CE621D630AFB000EB6B8 /* ParentClassScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE611D630AFB000EB6B8 /* ParentClassScrollViewController.m */; };
+		04E6CE6A1D630B77000EB6B8 /* OneViewTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE651D630B77000EB6B8 /* OneViewTableTableViewController.m */; };
+		04E6CE6B1D630B77000EB6B8 /* SecondViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE671D630B77000EB6B8 /* SecondViewTableViewController.m */; };
+		04E6CE6C1D630B77000EB6B8 /* ThirdViewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE691D630B77000EB6B8 /* ThirdViewCollectionViewController.m */; };
+		04E6CE711D631CE4000EB6B8 /* mDetailSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE701D631CE4000EB6B8 /* mDetailSectionView.m */; };
+		04E6CE731D631CF2000EB6B8 /* mDetailSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE721D631CF2000EB6B8 /* mDetailSectionView.xib */; };
+		04E6CE771D631E2C000EB6B8 /* mCampTionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE751D631E2C000EB6B8 /* mCampTionTableViewCell.m */; };
+		04E6CE781D631E2C000EB6B8 /* mCampTionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE761D631E2C000EB6B8 /* mCampTionTableViewCell.xib */; };
+		04E6CE7A1D632020000EB6B8 /* mDetailShopImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE791D632020000EB6B8 /* mDetailShopImgCell.xib */; };
+		04E6CE7E1D633743000EB6B8 /* mFoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE7C1D633743000EB6B8 /* mFoodDetailViewController.m */; };
+		04E6CE7F1D633743000EB6B8 /* mFoodDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE7D1D633743000EB6B8 /* mFoodDetailViewController.xib */; };
+		04E6CE821D633773000EB6B8 /* mFoodDetailBottomShopCarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE811D633773000EB6B8 /* mFoodDetailBottomShopCarView.m */; };
+		04E6CE841D63377F000EB6B8 /* mFoodDetailBottomShopCarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE831D63377F000EB6B8 /* mFoodDetailBottomShopCarView.xib */; };
+		04E6CE861D6339A7000EB6B8 /* mFoodDetailSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE851D6339A7000EB6B8 /* mFoodDetailSectionView.xib */; };
+		04E6CE881D633C90000EB6B8 /* mFoodDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE871D633C90000EB6B8 /* mFoodDetailHeaderView.xib */; };
+		04E6CE8C1D633DD2000EB6B8 /* mFoodDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6CE8A1D633DD2000EB6B8 /* mFoodDetailCell.m */; };
+		04E6CE8D1D633DD2000EB6B8 /* mFoodDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE8B1D633DD2000EB6B8 /* mFoodDetailCell.xib */; };
 		04EA59AA1D34824200CC5C39 /* mMarkeyRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EA59A81D34824200CC5C39 /* mMarkeyRateCell.m */; };
 		04EA59AB1D34824200CC5C39 /* mMarkeyRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04EA59A91D34824200CC5C39 /* mMarkeyRateCell.xib */; };
 		04EEADB01D0FAE5A00FA97C6 /* HDPicModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EEADAF1D0FAE5A00FA97C6 /* HDPicModle.m */; };
@@ -1449,6 +1494,24 @@
 		04D652931CF0229400E26209 /* goOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goOrderView.h; sourceTree = "<group>"; };
 		04D652941CF0229400E26209 /* goOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goOrderView.m; sourceTree = "<group>"; };
 		04D652961CF022A100E26209 /* goOrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = goOrderView.xib; sourceTree = "<group>"; };
+		04D7338A1D63FE4000F1C5DD /* mFoodComfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodComfirmViewController.h; sourceTree = "<group>"; };
+		04D7338B1D63FE4000F1C5DD /* mFoodComfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodComfirmViewController.m; sourceTree = "<group>"; };
+		04D7338C1D63FE4000F1C5DD /* mFoodComfirmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmViewController.xib; sourceTree = "<group>"; };
+		04D733901D63FE9300F1C5DD /* mFoodComfirmHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodComfirmHeaderView.h; sourceTree = "<group>"; };
+		04D733911D63FE9300F1C5DD /* mFoodComfirmHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodComfirmHeaderView.m; sourceTree = "<group>"; };
+		04D733931D63FE9B00F1C5DD /* mFoodComfirmHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmHeaderView.xib; sourceTree = "<group>"; };
+		04D733951D64017300F1C5DD /* mFoodComfirmSctionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmSctionView.xib; sourceTree = "<group>"; };
+		04D733971D64020C00F1C5DD /* mFoodComfirmBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmBottomView.xib; sourceTree = "<group>"; };
+		04D733991D6402F600F1C5DD /* mFoodComfirmFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmFooterView.xib; sourceTree = "<group>"; };
+		04D7339B1D640BC700F1C5DD /* mFoodComfirmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodComfirmTableViewCell.h; sourceTree = "<group>"; };
+		04D7339C1D640BC700F1C5DD /* mFoodComfirmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodComfirmTableViewCell.m; sourceTree = "<group>"; };
+		04D7339D1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodComfirmTableViewCell.xib; sourceTree = "<group>"; };
+		04D733DA1D6457ED00F1C5DD /* mFoodClearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodClearView.h; sourceTree = "<group>"; };
+		04D733DB1D6457ED00F1C5DD /* mFoodClearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodClearView.m; sourceTree = "<group>"; };
+		04D733DD1D6457F700F1C5DD /* mFoodClearView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodClearView.xib; sourceTree = "<group>"; };
+		04D733DF1D64604200F1C5DD /* mFoodShopCarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodShopCarCell.h; sourceTree = "<group>"; };
+		04D733E01D64604200F1C5DD /* mFoodShopCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodShopCarCell.m; sourceTree = "<group>"; };
+		04D733E11D64604200F1C5DD /* mFoodShopCarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodShopCarCell.xib; sourceTree = "<group>"; };
 		04D85DBD1CF6991300E1A3A2 /* mFeedBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFeedBackCell.h; sourceTree = "<group>"; };
 		04D85DBE1CF6991300E1A3A2 /* mFeedBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFeedBackCell.m; sourceTree = "<group>"; };
 		04D85DBF1CF6991300E1A3A2 /* mFeedBackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFeedBackCell.xib; sourceTree = "<group>"; };
@@ -1575,6 +1638,55 @@
 		04E5BD2E1CC61F6700E62795 /* WJ_sucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_sucess@2x.png"; sourceTree = "<group>"; };
 		04E5BD2F1CC61F6700E62795 /* WJ_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WJ_warning.png; sourceTree = "<group>"; };
 		04E5BD301CC61F6700E62795 /* WJ_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WJ_warning@2x.png"; sourceTree = "<group>"; };
+		04E6CE371D62ACA8000EB6B8 /* WKLeftScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKLeftScrollerView.h; sourceTree = "<group>"; };
+		04E6CE381D62ACA8000EB6B8 /* WKLeftScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLeftScrollerView.m; sourceTree = "<group>"; };
+		04E6CE3B1D62B427000EB6B8 /* mFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodViewController.h; sourceTree = "<group>"; };
+		04E6CE3C1D62B427000EB6B8 /* mFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodViewController.m; sourceTree = "<group>"; };
+		04E6CE3D1D62B427000EB6B8 /* mFoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodViewController.xib; sourceTree = "<group>"; };
+		04E6CE411D62B4C9000EB6B8 /* mFoodHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodHeaderView.h; sourceTree = "<group>"; };
+		04E6CE421D62B4C9000EB6B8 /* mFoodHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodHeaderView.m; sourceTree = "<group>"; };
+		04E6CE441D62B4E1000EB6B8 /* mFoodHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodHeaderView.xib; sourceTree = "<group>"; };
+		04E6CE461D62BC8E000EB6B8 /* mFoodBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodBottomView.xib; sourceTree = "<group>"; };
+		04E6CE481D62C073000EB6B8 /* mFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodTableViewCell.h; sourceTree = "<group>"; };
+		04E6CE491D62C073000EB6B8 /* mFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodTableViewCell.m; sourceTree = "<group>"; };
+		04E6CE4A1D62C073000EB6B8 /* mFoodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodTableViewCell.xib; sourceTree = "<group>"; };
+		04E6CE4D1D62C7AC000EB6B8 /* mFoodLeftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodLeftCell.xib; sourceTree = "<group>"; };
+		04E6CE4F1D62FAE9000EB6B8 /* mFoodRateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodRateTableViewCell.h; sourceTree = "<group>"; };
+		04E6CE501D62FAE9000EB6B8 /* mFoodRateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodRateTableViewCell.m; sourceTree = "<group>"; };
+		04E6CE511D62FAE9000EB6B8 /* mFoodRateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodRateTableViewCell.xib; sourceTree = "<group>"; };
+		04E6CE541D62FAFF000EB6B8 /* mFoodRateHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodRateHeaderView.h; sourceTree = "<group>"; };
+		04E6CE551D62FAFF000EB6B8 /* mFoodRateHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodRateHeaderView.m; sourceTree = "<group>"; };
+		04E6CE571D62FB0C000EB6B8 /* mFoodRateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodRateHeaderView.xib; sourceTree = "<group>"; };
+		04E6CE5A1D630A6A000EB6B8 /* MYSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYSegmentView.h; sourceTree = "<group>"; };
+		04E6CE5B1D630A6A000EB6B8 /* MYSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYSegmentView.m; sourceTree = "<group>"; };
+		04E6CE5D1D630A87000EB6B8 /* MainTouchTableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTouchTableTableView.h; sourceTree = "<group>"; };
+		04E6CE5E1D630A87000EB6B8 /* MainTouchTableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTouchTableTableView.m; sourceTree = "<group>"; };
+		04E6CE601D630AFB000EB6B8 /* ParentClassScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentClassScrollViewController.h; sourceTree = "<group>"; };
+		04E6CE611D630AFB000EB6B8 /* ParentClassScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentClassScrollViewController.m; sourceTree = "<group>"; };
+		04E6CE641D630B77000EB6B8 /* OneViewTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewTableTableViewController.h; sourceTree = "<group>"; };
+		04E6CE651D630B77000EB6B8 /* OneViewTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewTableTableViewController.m; sourceTree = "<group>"; };
+		04E6CE661D630B77000EB6B8 /* SecondViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewTableViewController.h; sourceTree = "<group>"; };
+		04E6CE671D630B77000EB6B8 /* SecondViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewTableViewController.m; sourceTree = "<group>"; };
+		04E6CE681D630B77000EB6B8 /* ThirdViewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewCollectionViewController.h; sourceTree = "<group>"; };
+		04E6CE691D630B77000EB6B8 /* ThirdViewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewCollectionViewController.m; sourceTree = "<group>"; };
+		04E6CE6F1D631CE4000EB6B8 /* mDetailSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mDetailSectionView.h; sourceTree = "<group>"; };
+		04E6CE701D631CE4000EB6B8 /* mDetailSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mDetailSectionView.m; sourceTree = "<group>"; };
+		04E6CE721D631CF2000EB6B8 /* mDetailSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mDetailSectionView.xib; sourceTree = "<group>"; };
+		04E6CE741D631E2C000EB6B8 /* mCampTionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCampTionTableViewCell.h; sourceTree = "<group>"; };
+		04E6CE751D631E2C000EB6B8 /* mCampTionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCampTionTableViewCell.m; sourceTree = "<group>"; };
+		04E6CE761D631E2C000EB6B8 /* mCampTionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCampTionTableViewCell.xib; sourceTree = "<group>"; };
+		04E6CE791D632020000EB6B8 /* mDetailShopImgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mDetailShopImgCell.xib; sourceTree = "<group>"; };
+		04E6CE7B1D633743000EB6B8 /* mFoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodDetailViewController.h; sourceTree = "<group>"; };
+		04E6CE7C1D633743000EB6B8 /* mFoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodDetailViewController.m; sourceTree = "<group>"; };
+		04E6CE7D1D633743000EB6B8 /* mFoodDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodDetailViewController.xib; sourceTree = "<group>"; };
+		04E6CE801D633773000EB6B8 /* mFoodDetailBottomShopCarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodDetailBottomShopCarView.h; sourceTree = "<group>"; };
+		04E6CE811D633773000EB6B8 /* mFoodDetailBottomShopCarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodDetailBottomShopCarView.m; sourceTree = "<group>"; };
+		04E6CE831D63377F000EB6B8 /* mFoodDetailBottomShopCarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodDetailBottomShopCarView.xib; sourceTree = "<group>"; };
+		04E6CE851D6339A7000EB6B8 /* mFoodDetailSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodDetailSectionView.xib; sourceTree = "<group>"; };
+		04E6CE871D633C90000EB6B8 /* mFoodDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodDetailHeaderView.xib; sourceTree = "<group>"; };
+		04E6CE891D633DD2000EB6B8 /* mFoodDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFoodDetailCell.h; sourceTree = "<group>"; };
+		04E6CE8A1D633DD2000EB6B8 /* mFoodDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFoodDetailCell.m; sourceTree = "<group>"; };
+		04E6CE8B1D633DD2000EB6B8 /* mFoodDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFoodDetailCell.xib; sourceTree = "<group>"; };
 		04EA59A71D34824200CC5C39 /* mMarkeyRateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mMarkeyRateCell.h; sourceTree = "<group>"; };
 		04EA59A81D34824200CC5C39 /* mMarkeyRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mMarkeyRateCell.m; sourceTree = "<group>"; };
 		04EA59A91D34824200CC5C39 /* mMarkeyRateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mMarkeyRateCell.xib; sourceTree = "<group>"; };
@@ -3207,6 +3319,46 @@
 			name = "评价";
 			sourceTree = "<group>";
 		};
+		04D733891D63FE2A00F1C5DD /* 确认订单 */ = {
+			isa = PBXGroup;
+			children = (
+				04D7338A1D63FE4000F1C5DD /* mFoodComfirmViewController.h */,
+				04D7338B1D63FE4000F1C5DD /* mFoodComfirmViewController.m */,
+				04D7338C1D63FE4000F1C5DD /* mFoodComfirmViewController.xib */,
+				04D7338F1D63FE7D00F1C5DD /* View */,
+			);
+			name = "确认订单";
+			sourceTree = "<group>";
+		};
+		04D7338F1D63FE7D00F1C5DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04D733901D63FE9300F1C5DD /* mFoodComfirmHeaderView.h */,
+				04D733911D63FE9300F1C5DD /* mFoodComfirmHeaderView.m */,
+				04D733931D63FE9B00F1C5DD /* mFoodComfirmHeaderView.xib */,
+				04D733951D64017300F1C5DD /* mFoodComfirmSctionView.xib */,
+				04D733971D64020C00F1C5DD /* mFoodComfirmBottomView.xib */,
+				04D733991D6402F600F1C5DD /* mFoodComfirmFooterView.xib */,
+				04D7339B1D640BC700F1C5DD /* mFoodComfirmTableViewCell.h */,
+				04D7339C1D640BC700F1C5DD /* mFoodComfirmTableViewCell.m */,
+				04D7339D1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		04D733D91D6457DB00F1C5DD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04D733DA1D6457ED00F1C5DD /* mFoodClearView.h */,
+				04D733DB1D6457ED00F1C5DD /* mFoodClearView.m */,
+				04D733DD1D6457F700F1C5DD /* mFoodClearView.xib */,
+				04D733DF1D64604200F1C5DD /* mFoodShopCarCell.h */,
+				04D733E01D64604200F1C5DD /* mFoodShopCarCell.m */,
+				04D733E11D64604200F1C5DD /* mFoodShopCarCell.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		04D85DC21CF6D1E700E1A3A2 /* UITextFileShake */ = {
 			isa = PBXGroup;
 			children = (
@@ -3433,6 +3585,110 @@
 				04E5A8271CE5E57C00A2D111 /* AddressPickView.m */,
 			);
 			name = AddressChoice;
+			sourceTree = "<group>";
+		};
+		04E6CE361D62AC81000EB6B8 /* WKLeftScrollerView */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE371D62ACA8000EB6B8 /* WKLeftScrollerView.h */,
+				04E6CE381D62ACA8000EB6B8 /* WKLeftScrollerView.m */,
+			);
+			name = WKLeftScrollerView;
+			sourceTree = "<group>";
+		};
+		04E6CE3A1D62B40C000EB6B8 /* 餐饮 */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE3B1D62B427000EB6B8 /* mFoodViewController.h */,
+				04E6CE3C1D62B427000EB6B8 /* mFoodViewController.m */,
+				04E6CE3D1D62B427000EB6B8 /* mFoodViewController.xib */,
+				04E6CE7B1D633743000EB6B8 /* mFoodDetailViewController.h */,
+				04E6CE7C1D633743000EB6B8 /* mFoodDetailViewController.m */,
+				04E6CE7D1D633743000EB6B8 /* mFoodDetailViewController.xib */,
+				04D733891D63FE2A00F1C5DD /* 确认订单 */,
+				04E6CE631D630B34000EB6B8 /* controller */,
+				04E6CE401D62B4AC000EB6B8 /* View */,
+			);
+			name = "餐饮";
+			sourceTree = "<group>";
+		};
+		04E6CE401D62B4AC000EB6B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE411D62B4C9000EB6B8 /* mFoodHeaderView.h */,
+				04E6CE421D62B4C9000EB6B8 /* mFoodHeaderView.m */,
+				04E6CE441D62B4E1000EB6B8 /* mFoodHeaderView.xib */,
+				04E6CE461D62BC8E000EB6B8 /* mFoodBottomView.xib */,
+				04E6CE481D62C073000EB6B8 /* mFoodTableViewCell.h */,
+				04E6CE491D62C073000EB6B8 /* mFoodTableViewCell.m */,
+				04E6CE4A1D62C073000EB6B8 /* mFoodTableViewCell.xib */,
+				04E6CE4D1D62C7AC000EB6B8 /* mFoodLeftCell.xib */,
+				04E6CE6E1D631CA6000EB6B8 /* detailView */,
+				04E6CE6D1D631C98000EB6B8 /* rateView */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		04E6CE591D630A58000EB6B8 /* MYSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE5A1D630A6A000EB6B8 /* MYSegmentView.h */,
+				04E6CE5B1D630A6A000EB6B8 /* MYSegmentView.m */,
+				04E6CE5D1D630A87000EB6B8 /* MainTouchTableTableView.h */,
+				04E6CE5E1D630A87000EB6B8 /* MainTouchTableTableView.m */,
+				04E6CE601D630AFB000EB6B8 /* ParentClassScrollViewController.h */,
+				04E6CE611D630AFB000EB6B8 /* ParentClassScrollViewController.m */,
+			);
+			name = MYSegmentView;
+			sourceTree = "<group>";
+		};
+		04E6CE631D630B34000EB6B8 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				04D733D91D6457DB00F1C5DD /* view */,
+				04E6CE641D630B77000EB6B8 /* OneViewTableTableViewController.h */,
+				04E6CE651D630B77000EB6B8 /* OneViewTableTableViewController.m */,
+				04E6CE661D630B77000EB6B8 /* SecondViewTableViewController.h */,
+				04E6CE671D630B77000EB6B8 /* SecondViewTableViewController.m */,
+				04E6CE681D630B77000EB6B8 /* ThirdViewCollectionViewController.h */,
+				04E6CE691D630B77000EB6B8 /* ThirdViewCollectionViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		04E6CE6D1D631C98000EB6B8 /* rateView */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE4F1D62FAE9000EB6B8 /* mFoodRateTableViewCell.h */,
+				04E6CE501D62FAE9000EB6B8 /* mFoodRateTableViewCell.m */,
+				04E6CE511D62FAE9000EB6B8 /* mFoodRateTableViewCell.xib */,
+				04E6CE541D62FAFF000EB6B8 /* mFoodRateHeaderView.h */,
+				04E6CE551D62FAFF000EB6B8 /* mFoodRateHeaderView.m */,
+				04E6CE571D62FB0C000EB6B8 /* mFoodRateHeaderView.xib */,
+			);
+			name = rateView;
+			sourceTree = "<group>";
+		};
+		04E6CE6E1D631CA6000EB6B8 /* detailView */ = {
+			isa = PBXGroup;
+			children = (
+				04E6CE6F1D631CE4000EB6B8 /* mDetailSectionView.h */,
+				04E6CE701D631CE4000EB6B8 /* mDetailSectionView.m */,
+				04E6CE721D631CF2000EB6B8 /* mDetailSectionView.xib */,
+				04E6CE851D6339A7000EB6B8 /* mFoodDetailSectionView.xib */,
+				04E6CE741D631E2C000EB6B8 /* mCampTionTableViewCell.h */,
+				04E6CE751D631E2C000EB6B8 /* mCampTionTableViewCell.m */,
+				04E6CE761D631E2C000EB6B8 /* mCampTionTableViewCell.xib */,
+				04E6CE791D632020000EB6B8 /* mDetailShopImgCell.xib */,
+				04E6CE801D633773000EB6B8 /* mFoodDetailBottomShopCarView.h */,
+				04E6CE811D633773000EB6B8 /* mFoodDetailBottomShopCarView.m */,
+				04E6CE831D63377F000EB6B8 /* mFoodDetailBottomShopCarView.xib */,
+				04E6CE871D633C90000EB6B8 /* mFoodDetailHeaderView.xib */,
+				04E6CE891D633DD2000EB6B8 /* mFoodDetailCell.h */,
+				04E6CE8A1D633DD2000EB6B8 /* mFoodDetailCell.m */,
+				04E6CE8B1D633DD2000EB6B8 /* mFoodDetailCell.xib */,
+			);
+			name = detailView;
 			sourceTree = "<group>";
 		};
 		04EEADB21D0FAED900FA97C6 /* Category */ = {
@@ -4633,6 +4889,7 @@
 		31EEB3161C93B2EF00B61A86 /* 社区生活 */ = {
 			isa = PBXGroup;
 			children = (
+				04E6CE3A1D62B40C000EB6B8 /* 餐饮 */,
 				31EEB3171C93B32F00B61A86 /* communityViewController.h */,
 				31EEB3181C93B32F00B61A86 /* communityViewController.m */,
 				04540F641D1BD9C100A73F30 /* mCommunityNavView.h */,
@@ -5218,6 +5475,8 @@
 		749BE9CB1B3276D600BABCA6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04E6CE591D630A58000EB6B8 /* MYSegmentView */,
+				04E6CE361D62AC81000EB6B8 /* WKLeftScrollerView */,
 				043274091D61BB2200E36D8A /* GeneralSubView */,
 				043195211D51DA4B008EEF82 /* YSProgressView */,
 				0461EC671D33A9040080A3ED /* WKRateView */,
@@ -5928,6 +6187,7 @@
 				3135F8131C97BD2600EF9569 /* mFeedBackViewController.xib in Resources */,
 				04D49C741CE7189600BAD649 /* pptDetailCell4.xib in Resources */,
 				04E092FF1CE9DAE000D3090E /* mPriceView.xib in Resources */,
+				04E6CE861D6339A7000EB6B8 /* mFoodDetailSectionView.xib in Resources */,
 				310EB6021CA26D6E005C61F4 /* makeServiceViewController.xib in Resources */,
 				04B463091D24F15100001ECB /* mGoodsSearchCell.xib in Resources */,
 				04FA3E7B1D22164A00EA9E34 /* shopCarTableViewCell.xib in Resources */,
@@ -5943,6 +6203,8 @@
 				04D85DD51CF6ED3500E1A3A2 /* mGeneryEmptyView.xib in Resources */,
 				04AD8A9B1CE323B300A3F87F /* pptStatusViewController.xib in Resources */,
 				04FA3E721D22078F00EA9E34 /* shopCarHeaderView.xib in Resources */,
+				04E6CE781D631E2C000EB6B8 /* mCampTionTableViewCell.xib in Resources */,
+				04E6CE7F1D633743000EB6B8 /* mFoodDetailViewController.xib in Resources */,
 				318D56671C9C012B0045B5FB /* MHSheetFoot.xib in Resources */,
 				04E5A8221CE5CA1D00A2D111 /* pptAddAddressViewController.xib in Resources */,
 				04102E0B1CE41A17006F82E2 /* pptChartsViewController.xib in Resources */,
@@ -5952,6 +6214,7 @@
 				04E5A7E01CE579B000A2D111 /* down_arrow@2x.png in Resources */,
 				040FE0E61CDB28F200270D4F /* mSahreView.xib in Resources */,
 				313D76BD1C98FE3D004D5679 /* mZhongchouBottomView.xib in Resources */,
+				04D733961D64017300F1C5DD /* mFoodComfirmSctionView.xib in Resources */,
 				04D85DC11CF6991300E1A3A2 /* mFeedBackCell.xib in Resources */,
 				04F58FF11D266E8400C94C05 /* mGoodsDetailBottomView.xib in Resources */,
 				04D49C761CE71E3000BAD649 /* pptDetailCell5.xib in Resources */,
@@ -5993,6 +6256,7 @@
 				04D49C591CE6D2DE00BAD649 /* pptMyMsgCell.xib in Resources */,
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
+				04D7339F1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib in Resources */,
 				04D85DCA1CF6DE9400E1A3A2 /* canelHistoryViewController.xib in Resources */,
 				04C15D711D37AE260097DA6C /* mComfirmHeaderView.xib in Resources */,
 				04102CB31D2A506D003A0C56 /* MJRefresh.bundle in Resources */,
@@ -6037,6 +6301,7 @@
 				04E5A81D1CE5C50400A2D111 /* pptMyAddressViewController.xib in Resources */,
 				04648C7F1CB51E88006823C9 /* valletTCell.xib in Resources */,
 				312D08B01CAA1C560006F0FA /* ShareSDKUI.bundle in Resources */,
+				04E6CE581D62FB0C000EB6B8 /* mFoodRateHeaderView.xib in Resources */,
 				040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */,
 				04E5A8121CE5B47A00A2D111 /* pptMyInfoCell.xib in Resources */,
 				04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */,
@@ -6067,6 +6332,7 @@
 				3182DA471CAB77AD00C217AE /* AMap.bundle in Resources */,
 				31EEB32F1C94135700B61A86 /* mGoodsDetailView.xib in Resources */,
 				3135F8551C980B3C00EF9569 /* myOrderTableViewCell.xib in Resources */,
+				04E6CE531D62FAE9000EB6B8 /* mFoodRateTableViewCell.xib in Resources */,
 				04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */,
 				040FB5601D191E8700D453E3 /* private_key.p12 in Resources */,
 				31E1A72F1CA3C04A00D3496F /* cashViewController.xib in Resources */,
@@ -6077,6 +6343,7 @@
 				04D652881CF00E8700E26209 /* comfirOrderViewController.xib in Resources */,
 				04E5A8031CE5AB4E00A2D111 /* pptChoulaoViewController.xib in Resources */,
 				04540F681D1BD9CC00A73F30 /* mCommunityNavView.xib in Resources */,
+				04E6CE841D63377F000EB6B8 /* mFoodDetailBottomShopCarView.xib in Resources */,
 				04F89C001D1CD3A9006A3976 /* communityCell2.xib in Resources */,
 				04AD8A961CE3200C00A3F87F /* depositViewController.xib in Resources */,
 				04F500051D23B44500EFBB3C /* mGoodsDetailCell.xib in Resources */,
@@ -6095,7 +6362,9 @@
 				04C15D771D37B0C40097DA6C /* mComfirmOrderCell.xib in Resources */,
 				31BBE29C1C9142C9006C553D /* homeTableViewCell.xib in Resources */,
 				04B463041D24CD2500001ECB /* GoodsSearchView.xib in Resources */,
+				04E6CE881D633C90000EB6B8 /* mFoodDetailHeaderView.xib in Resources */,
 				31EEB3111C93A80500B61A86 /* mFixTableViewCell.xib in Resources */,
+				04D733941D63FE9B00F1C5DD /* mFoodComfirmHeaderView.xib in Resources */,
 				040B80261CC50D50006A9489 /* WJStatusBarHUD_success@2x.png in Resources */,
 				3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */,
 				31AF47BA1CAE65CA00A722CD /* mPersonNavView.xib in Resources */,
@@ -6133,15 +6402,18 @@
 				313D76AD1C98ED5D004D5679 /* mSetupViewController.xib in Resources */,
 				04B462FC1D24B43800001ECB /* mGoodsDetailHotCell.xib in Resources */,
 				047125891CCDEC330022BF77 /* mServiceCell.xib in Resources */,
+				04E6CE8D1D633DD2000EB6B8 /* mFoodDetailCell.xib in Resources */,
 				040B80231CC50D50006A9489 /* WJStatusBarHUD_error.png in Resources */,
 				04FA3E831D22646D00EA9E34 /* comFirmOrderViewController.xib in Resources */,
 				313D76E61C99507D004D5679 /* mJoinActivityViewController.xib in Resources */,
+				04D733DE1D6457F700F1C5DD /* mFoodClearView.xib in Resources */,
 				741B8D9C1B326EFA002104A0 /* Images.xcassets in Resources */,
 				042410631D0FFE4F00B4A61A /* FixNewCell.xib in Resources */,
 				318D56691C9C012B0045B5FB /* MHSheetHead.xib in Resources */,
 				3123CC2F1C92A87A00C3B928 /* mTopUpView.xib in Resources */,
 				04648C4F1CB4D783006823C9 /* messageCell.xib in Resources */,
 				04A151011D36174300AFCE98 /* mShopCarHeaderSection.xib in Resources */,
+				04D733E31D64604200F1C5DD /* mFoodShopCarCell.xib in Resources */,
 				313D76C41C9929AD004D5679 /* mTouzhiViewController.xib in Resources */,
 				04102C9E1D2A35B3003A0C56 /* billViewController.xib in Resources */,
 				04F5FFF51D236EE400EFBB3C /* orderStatusViewController.xib in Resources */,
@@ -6159,19 +6431,24 @@
 				313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */,
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
 				04C15D681D3791630097DA6C /* mOrderDetailBottomView.xib in Resources */,
+				04E6CE7A1D632020000EB6B8 /* mDetailShopImgCell.xib in Resources */,
+				04E6CE4C1D62C073000EB6B8 /* mFoodTableViewCell.xib in Resources */,
 				04F5FFE31D23576400EFBB3C /* communityOrderDetailViewController.xib in Resources */,
 				04BBA2E71CBD1C3F00BD1420 /* addTableViewCell.xib in Resources */,
 				04F89C1F1D1D27FE006A3976 /* coupTableViewCell.xib in Resources */,
 				310EB5E21CA241B0005C61F4 /* choiseServicerTableViewCell.xib in Resources */,
 				040FE0EB1CDB39E400270D4F /* barCodeCell.xib in Resources */,
 				04FA3E6D1D22074D00EA9E34 /* shopCarViewController.xib in Resources */,
+				04E6CE471D62BC8E000EB6B8 /* mFoodBottomView.xib in Resources */,
 				3123CC2D1C92A51100C3B928 /* mBalanceView.xib in Resources */,
 				DF10D83D1D640FBA00220FB0 /* DateTools.bundle in Resources */,
+				04E6CE451D62B4E1000EB6B8 /* mFoodHeaderView.xib in Resources */,
 				3123CC2B1C929F4300C3B928 /* wpgTableViewCell.xib in Resources */,
 				3123CC0A1C9261DA00C3B928 /* payViewController.xib in Resources */,
 				7470E14D1B9C07B800ECEC69 /* leaveCell.xib in Resources */,
 				7470E1531B9C07B800ECEC69 /* pickVC.xib in Resources */,
 				04102C991D2A0ABA003A0C56 /* mClassMoreViewController.xib in Resources */,
+				04E6CE4E1D62C7AC000EB6B8 /* mFoodLeftCell.xib in Resources */,
 				04F2DDF81CBE2BC80088C90F /* communityStatusViewController.xib in Resources */,
 				04F89C251D1D312C006A3976 /* communityOrderTableViewCell.xib in Resources */,
 				04E5A8281CE5E57C00A2D111 /* Address.plist in Resources */,
@@ -6181,19 +6458,24 @@
 				04BD179D1D0E59BE001792DA /* mCustomTxView.xib in Resources */,
 				312D08B91CAA1C560006F0FA /* ShareSDK.bundle in Resources */,
 				04C15D6A1D37929A0097DA6C /* mOrderDetailHeaderSectionView.xib in Resources */,
+				04E6CE731D631CF2000EB6B8 /* mDetailSectionView.xib in Resources */,
 				047290421D17E49300AA999B /* Emoji.plist in Resources */,
 				0461EC611D33A1800080A3ED /* mMarketRateViewController.xib in Resources */,
 				3135F8361C97FA3800EF9569 /* zhongchouViewController.xib in Resources */,
 				313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */,
 				0405834D1D194CC50060C2DE /* mBaseConverSationViewController.xib in Resources */,
+				04D7339A1D6402F600F1C5DD /* mFoodComfirmFooterView.xib in Resources */,
 				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
+				04D733981D64020C00F1C5DD /* mFoodComfirmBottomView.xib in Resources */,
 				04F5FFE81D23579100EFBB3C /* communityOrderDetailCell.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
 				312D08B31CAA1C560006F0FA /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3135F8451C9803B100EF9569 /* redBagTableViewCell.xib in Resources */,
 				31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */,
 				04648C751CB50AFE006823C9 /* senderStausCell.xib in Resources */,
+				04E6CE3F1D62B427000EB6B8 /* mFoodViewController.xib in Resources */,
 				313D76B91C98FB68004D5679 /* mZhongchouView.xib in Resources */,
+				04D7338E1D63FE4000F1C5DD /* mFoodComfirmViewController.xib in Resources */,
 				04F89C141D1D15B2006A3976 /* mCommunityMyViewCell.xib in Resources */,
 				311BE22F1CA14B38006757E8 /* needCodeViewController.xib in Resources */,
 				04E5BD311CC61F6700E62795 /* WJ_error.png in Resources */,
@@ -6284,15 +6566,20 @@
 				749BEA441B3277AA00BABCA6 /* SDWebImageManager.m in Sources */,
 				0405834C1D194CC50060C2DE /* mBaseConverSationViewController.m in Sources */,
 				7470E1501B9C07B800ECEC69 /* leaveViewController.m in Sources */,
+				04E6CE391D62ACA8000EB6B8 /* WKLeftScrollerView.m in Sources */,
 				749BE9DB1B32775D00BABCA6 /* CTAssetsPickerController.m in Sources */,
 				314586351CAE4249003EB85E /* myViewTableViewCell.m in Sources */,
 				31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */,
+				04E6CE4B1D62C073000EB6B8 /* mFoodTableViewCell.m in Sources */,
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
+				04E6CE561D62FAFF000EB6B8 /* mFoodRateHeaderView.m in Sources */,
 				749BE99E1B32756800BABCA6 /* IQBarButtonItem.m in Sources */,
 				313D76DB1C994446004D5679 /* mPublicWlerTableViewCell.m in Sources */,
 				DF535F091D62AE54006E1598 /* HouseKeepShopInfoTableViewCell.m in Sources */,
 				048FD8391CB642CD00383DF8 /* evolutionViewController.m in Sources */,
 				043195241D51DA5E008EEF82 /* YSProgressView.m in Sources */,
+				04D7338D1D63FE4000F1C5DD /* mFoodComfirmViewController.m in Sources */,
+				04E6CE521D62FAE9000EB6B8 /* mFoodRateTableViewCell.m in Sources */,
 				04102CE01D2A509F003A0C56 /* MJRefreshGifHeader.m in Sources */,
 				16E9CAD71BAC00BC00C48B8A /* DYMainLabel.m in Sources */,
 				DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */,
@@ -6322,6 +6609,7 @@
 				3182A1691CA620CC0084E890 /* GiFHUD.m in Sources */,
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
 				044A247F1CB4B25700A6379C /* msgViewController.m in Sources */,
+				04E6CE771D631E2C000EB6B8 /* mCampTionTableViewCell.m in Sources */,
 				0400EDA51D45A76B009CD641 /* homeHotViewController.m in Sources */,
 				3182A16E1CA636460084E890 /* mTopUpBalanceView.m in Sources */,
 				7487DC161B4E17F000C40220 /* MASConstraint.m in Sources */,
@@ -6337,6 +6625,7 @@
 				749BE99B1B32756800BABCA6 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				740089531B38F22A00618BA0 /* NavBar.m in Sources */,
 				749BEA3D1B3277AA00BABCA6 /* NSData+ImageContentType.m in Sources */,
+				04E6CE5C1D630A6A000EB6B8 /* MYSegmentView.m in Sources */,
 				313413531CA28DC3003972E2 /* UIView+Animations.m in Sources */,
 				313413541CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m in Sources */,
 				3154428C1C9A8B7A0047E52A /* dataModel.m in Sources */,
@@ -6394,6 +6683,7 @@
 				318D56511C9BE28E0045B5FB /* aboutusView.m in Sources */,
 				DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */,
 				310EB5FD1CA2680F005C61F4 /* choiceServicerViewController.m in Sources */,
+				04D733921D63FE9300F1C5DD /* mFoodComfirmHeaderView.m in Sources */,
 				0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */,
 				041E9D9C1D000FDE00C91D93 /* mTagButton.m in Sources */,
 				313D76C31C9929AD004D5679 /* mTouzhiViewController.m in Sources */,
@@ -6412,6 +6702,7 @@
 				04A151121D3637AC00AFCE98 /* QHLShop.m in Sources */,
 				04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
+				04E6CE8C1D633DD2000EB6B8 /* mFoodDetailCell.m in Sources */,
 				7487DC201B4E18CF00C40220 /* pwdViewController.m in Sources */,
 				04EEADCC1D0FAED900FA97C6 /* UIImage+HDExtension.m in Sources */,
 				04BBA2E61CBD1C3F00BD1420 /* addTableViewCell.m in Sources */,
@@ -6457,6 +6748,7 @@
 				043195191D51887B008EEF82 /* valletCell1.m in Sources */,
 				310EB5F51CA258A8005C61F4 /* CWStarRateView.m in Sources */,
 				04EEADD61D0FAF5200FA97C6 /* AFHTTPSessionManager.m in Sources */,
+				04E6CE621D630AFB000EB6B8 /* ParentClassScrollViewController.m in Sources */,
 				04102CC41D2A507D003A0C56 /* MJRefreshBackFooter.m in Sources */,
 				04B3BB021D13E979000C7B2E /* CRSA.m in Sources */,
 				749BE9A11B32756800BABCA6 /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -6468,6 +6760,8 @@
 				04D49C7C1CE730DC00BAD649 /* complaintViewController.m in Sources */,
 				742FB8FD1B5CDEA3005A1AFA /* WPTappableLabel.m in Sources */,
 				313413631CA28DC3003972E2 /* XMNPhotoPreviewController.m in Sources */,
+				04D733E21D64604200F1C5DD /* mFoodShopCarCell.m in Sources */,
+				04E6CE3E1D62B427000EB6B8 /* mFoodViewController.m in Sources */,
 				74DDE8FB1BAC1134004878D1 /* setupViewController.m in Sources */,
 				04EEADE21D0FAFA300FA97C6 /* AFSecurityPolicy.m in Sources */,
 				040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */,
@@ -6480,6 +6774,7 @@
 				04F5FFEF1D236ECF00EFBB3C /* mOrderStatusCell.m in Sources */,
 				04102CC31D2A507D003A0C56 /* MJRefreshAutoFooter.m in Sources */,
 				749BEA3F1B3277AA00BABCA6 /* SDWebImageCompat.m in Sources */,
+				04E6CE6A1D630B77000EB6B8 /* OneViewTableTableViewController.m in Sources */,
 				04D9F5031D275B4F00518F6F /* WKLabelView.m in Sources */,
 				3135F82D1C97EB7300EF9569 /* activityCenterViewController.m in Sources */,
 				749BEA3E1B3277AA00BABCA6 /* SDImageCache.m in Sources */,
@@ -6497,6 +6792,7 @@
 				04648C531CB4E0C0006823C9 /* msgDetailViewController.m in Sources */,
 				04648C6D1CB5035A006823C9 /* senderDetailViewController.m in Sources */,
 				313D76CD1C9933BE004D5679 /* JVFloatLabeledTextField.m in Sources */,
+				04E6CE431D62B4C9000EB6B8 /* mFoodHeaderView.m in Sources */,
 				16E9CADA1BAC00BC00C48B8A /* DYUIImageView.m in Sources */,
 				744BEA741BE33CFB0094EB96 /* feedbackViewController.m in Sources */,
 				3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */,
@@ -6507,6 +6803,7 @@
 				311BE22E1CA14B38006757E8 /* needCodeViewController.m in Sources */,
 				04F228491CEEE4F6004E8702 /* XKPEActionPickersDelegate.m in Sources */,
 				313D76AC1C98ED5D004D5679 /* mSetupViewController.m in Sources */,
+				04D7339E1D640BC700F1C5DD /* mFoodComfirmTableViewCell.m in Sources */,
 				749BEA0E1B32779800BABCA6 /* MJPhotoBrowser.m in Sources */,
 				7487DC191B4E17F000C40220 /* MASViewAttribute.m in Sources */,
 				04EEADE81D0FAFAE00FA97C6 /* AFURLResponseSerialization.m in Sources */,
@@ -6603,6 +6900,7 @@
 				31F5447B1CAE0C4100307B83 /* kitchenViewController.m in Sources */,
 				749BEA091B32779800BABCA6 /* MBProgressHUD+Add.m in Sources */,
 				04A151091D36379F00AFCE98 /* QHLShoppingCarController.m in Sources */,
+				04E6CE6C1D630B77000EB6B8 /* ThirdViewCollectionViewController.m in Sources */,
 				741B8D941B326EFA002104A0 /* AppDelegate.m in Sources */,
 				04EEADC81D0FAED900FA97C6 /* NSString+HDExtension.m in Sources */,
 				747BB8361BD0EF5D00C4C09D /* MZTimerLabel.m in Sources */,
@@ -6685,6 +6983,7 @@
 				31E1A7181CA3800D00D3496F /* makeServiceDetailView.m in Sources */,
 				04B4630C1D24F16A00001ECB /* mSearchHeaderSectionView.m in Sources */,
 				04AD8A9A1CE323B300A3F87F /* pptStatusViewController.m in Sources */,
+				04E6CE7E1D633743000EB6B8 /* mFoodDetailViewController.m in Sources */,
 				04102CE21D2A509F003A0C56 /* MJRefreshStateHeader.m in Sources */,
 				31462CEF1CB3BBE500E67836 /* UILabel+FlickerNumber.m in Sources */,
 				04EEADFD1D0FAFCA00FA97C6 /* AFAutoPurgingImageCache.m in Sources */,
@@ -6704,11 +7003,13 @@
 				31671DD61CA13344001DAEBA /* hasCodeTableViewCell.m in Sources */,
 				740089521B38F22A00618BA0 /* BaseVC.m in Sources */,
 				7470E14F1B9C07B800ECEC69 /* leaveTableViewController.m in Sources */,
+				04E6CE711D631CE4000EB6B8 /* mDetailSectionView.m in Sources */,
 				04F9E5D21CED4D8B00FCA8B7 /* MJProperty.m in Sources */,
 				74C165631B7348F900C69390 /* forgetAndChangePwdView.m in Sources */,
 				04AB1D731CD09F1C00870617 /* WJAdsView.m in Sources */,
 				DF10D8431D640FBA00220FB0 /* DTTimePeriodGroup.m in Sources */,
 				740089541B38F22A00618BA0 /* NavC.m in Sources */,
+				04D733DC1D6457ED00F1C5DD /* mFoodClearView.m in Sources */,
 				04F1E3A81CD1FBFE00222946 /* mBundlePhoneViewController.m in Sources */,
 				04C15D661D3791580097DA6C /* mOrderDetailBottomView.m in Sources */,
 				DF535F1C1D62F134006E1598 /* UIImage+QUAdditons.m in Sources */,
@@ -6744,6 +7045,7 @@
 				04F228481CEEE4F6004E8702 /* AbstractActionSheetPicker+Interface.m in Sources */,
 				04F2284A1CEEE4F6004E8702 /* XKPEWeightAndHightActionPickerDelegate.m in Sources */,
 				DF10D81D1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m in Sources */,
+				04E6CE821D633773000EB6B8 /* mFoodDetailBottomShopCarView.m in Sources */,
 				3135F84F1C980A2B00EF9569 /* myOrderViewController.m in Sources */,
 				16FBBC911BE748EE00D2C917 /* UILabel+myLabel.m in Sources */,
 				04EEADB01D0FAE5A00FA97C6 /* HDPicModle.m in Sources */,
@@ -6754,6 +7056,7 @@
 				313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */,
 				04E5A8171CE5C39700A2D111 /* pptMyAddressCell.m in Sources */,
 				313D76B71C98FB5A004D5679 /* mZhongchouView.m in Sources */,
+				04E6CE6B1D630B77000EB6B8 /* SecondViewTableViewController.m in Sources */,
 				749BE9E11B32776B00BABCA6 /* CunsomLabel.m in Sources */,
 				3123CC091C9261DA00C3B928 /* payViewController.m in Sources */,
 				04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */,
@@ -6763,6 +7066,7 @@
 				741B8D911B326EFA002104A0 /* main.m in Sources */,
 				04E5A8071CE5B27800A2D111 /* CustomProgress.m in Sources */,
 				04102CD71D2A5095003A0C56 /* MJRefreshBackGifFooter.m in Sources */,
+				04E6CE5F1D630A87000EB6B8 /* MainTouchTableTableView.m in Sources */,
 				04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */,
 				7445C0921B33A39000F330EA /* UIView+Additions.m in Sources */,
 				7487DC151B4E17F000C40220 /* MASCompositeConstraint.m in Sources */,

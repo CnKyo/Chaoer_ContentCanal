@@ -43,6 +43,7 @@
 #import "mListViewController.h"
 #import "mBaseConverSationViewController.h"
 #import "msgViewController.h"
+#import "mFoodViewController.h"
 
 #define Height (DEVICE_Width*0.67)
 
@@ -647,8 +648,11 @@
     switch (Index) {
         case 0:
         {
-            payViewController   *ppp = [[payViewController alloc] initWithNibName:@"payViewController" bundle:nil];
-            [self pushViewController:ppp];
+//            payViewController   *ppp = [[payViewController alloc] initWithNibName:@"payViewController" bundle:nil];
+//            [self pushViewController:ppp];
+            
+            mFoodViewController *view = [[mFoodViewController alloc] initWithNibName:@"mFoodViewController" bundle:nil];
+            [self pushViewController:view];
         }
             break;
         case 1:

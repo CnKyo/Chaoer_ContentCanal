@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mFoodDetailBottomShopCarView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21a-Km-sKM">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-Tf-zY2">
+                            <rect key="frame" x="240" y="0.0" width="80" height="50"/>
+                            <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="xLI-lz-amr"/>
+                            </constraints>
+                            <state key="normal" title="选好了">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="XdJ-Tf-zY2" firstAttribute="top" secondItem="21a-Km-sKM" secondAttribute="top" id="DHm-tG-Uf3"/>
+                        <constraint firstAttribute="height" constant="50" id="MF4-cZ-he4"/>
+                        <constraint firstAttribute="trailing" secondItem="XdJ-Tf-zY2" secondAttribute="trailing" id="clw-TT-Dxz"/>
+                        <constraint firstAttribute="bottom" secondItem="XdJ-Tf-zY2" secondAttribute="bottom" id="mF0-we-JN6"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="21a-Km-sKM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cvX-ug-u1p"/>
+                <constraint firstAttribute="trailing" secondItem="21a-Km-sKM" secondAttribute="trailing" id="nfm-sE-bY6"/>
+                <constraint firstItem="21a-Km-sKM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wp6-HH-dmb"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGopayBtn" destination="XdJ-Tf-zY2" id="UpM-YV-clR"/>
+            </connections>
+            <point key="canvasLocation" x="209" y="340"/>
+        </view>
+    </objects>
+</document>

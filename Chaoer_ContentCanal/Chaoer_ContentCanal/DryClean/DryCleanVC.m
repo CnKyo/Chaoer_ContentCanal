@@ -40,6 +40,7 @@
 }
 
 - (void)viewDidLoad {
+    self.hiddenTabBar = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.Title = self.mPageName = @"家政服务";
@@ -47,6 +48,7 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = NO;
     self.rightBtnTitle = @"收藏";
+    
     
     self.page = 1;
     

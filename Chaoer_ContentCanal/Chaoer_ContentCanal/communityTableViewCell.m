@@ -120,7 +120,10 @@
 
 - (void)msBtnAction:(UIButton *)sender{
 
-    [self.delegate cellWithScrollerViewSelectedIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(cellWithScrollerViewSelectedIndex:)]) {
+        [self.delegate cellWithScrollerViewSelectedIndex:sender.tag];
+    }
+    
 }
 
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mFoodHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCz-vp-zQ9">
+                    <rect key="frame" x="10" y="5" width="40" height="40"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="exs-sE-JU7"/>
+                        <constraint firstAttribute="height" constant="40" id="jr4-Mz-C0g"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mShopCarAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ThE-lZ-PY0"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKn-xv-zk6">
+                    <rect key="frame" x="35" y="0.0" width="20" height="20"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="HPs-Ol-5aw"/>
+                        <constraint firstAttribute="height" constant="20" id="sa1-k0-t0v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3i-PK-QAi" customClass="WPHotspotLabel">
+                    <rect key="frame" x="63" y="14" width="159" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfN-Go-OKQ">
+                    <rect key="frame" x="230" y="0.0" width="90" height="50"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="b3f-7r-Xr8"/>
+                    </constraints>
+                    <state key="normal" title="去结算">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="mGoPayActoin:" destination="iN0-l3-epB" eventType="touchUpInside" id="PCi-fz-NsU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="mCz-vp-zQ9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="3aJ-kb-7Cn"/>
+                <constraint firstItem="Q3i-PK-QAi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="642-3X-TlE"/>
+                <constraint firstItem="mCz-vp-zQ9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="GMk-Z9-iXc"/>
+                <constraint firstAttribute="bottom" secondItem="Q3i-PK-QAi" secondAttribute="bottom" constant="15" id="Je8-bY-stI"/>
+                <constraint firstItem="zKn-xv-zk6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OUU-0v-7sd"/>
+                <constraint firstItem="Q3i-PK-QAi" firstAttribute="leading" secondItem="zKn-xv-zk6" secondAttribute="trailing" constant="8" id="a3R-I3-pXC"/>
+                <constraint firstAttribute="trailing" secondItem="rfN-Go-OKQ" secondAttribute="trailing" id="fk9-GV-Xdl"/>
+                <constraint firstItem="rfN-Go-OKQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gd0-6r-kD2"/>
+                <constraint firstAttribute="bottom" secondItem="rfN-Go-OKQ" secondAttribute="bottom" id="iKM-J9-pAt"/>
+                <constraint firstItem="zKn-xv-zk6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="mCd-na-zDN"/>
+                <constraint firstAttribute="bottom" secondItem="mCz-vp-zQ9" secondAttribute="bottom" constant="5" id="vYL-Wq-lbR"/>
+                <constraint firstItem="rfN-Go-OKQ" firstAttribute="leading" secondItem="Q3i-PK-QAi" secondAttribute="trailing" constant="8" id="yxG-4N-adP"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGoPayBrn" destination="rfN-Go-OKQ" id="Xui-VR-hEf"/>
+                <outlet property="mNum" destination="zKn-xv-zk6" id="1Ou-VD-xFI"/>
+                <outlet property="mShopCarBtn" destination="mCz-vp-zQ9" id="QU4-Ke-hWc"/>
+                <outlet property="mTTPrice" destination="Q3i-PK-QAi" id="ztb-Ys-MM8"/>
+            </connections>
+            <point key="canvasLocation" x="205" y="342"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="mFoodComfirmHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-fe-bEs" customClass="WPHotspotLabel">
+                    <rect key="frame" x="8" y="16" width="204" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-tL-mEg">
+                    <rect key="frame" x="220" y="0.0" width="100" height="50"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="U2e-U3-o31"/>
+                    </constraints>
+                    <state key="normal" title="去支付">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mGoPayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="inY-pF-rJM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="3qP-tL-mEg" secondAttribute="trailing" id="ASX-7K-Fs4"/>
+                <constraint firstItem="3qP-tL-mEg" firstAttribute="leading" secondItem="LJ7-fe-bEs" secondAttribute="trailing" constant="8" id="JXw-oa-WIL"/>
+                <constraint firstAttribute="bottom" secondItem="3qP-tL-mEg" secondAttribute="bottom" id="Q26-am-CZ5"/>
+                <constraint firstItem="3qP-tL-mEg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YTh-m4-pM3"/>
+                <constraint firstItem="LJ7-fe-bEs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="kW8-aY-20r"/>
+                <constraint firstItem="LJ7-fe-bEs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rEG-8S-jrq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mGopayBtn" destination="3qP-tL-mEg" id="Lns-cm-VjQ"/>
+                <outlet property="mTotlePrice" destination="LJ7-fe-bEs" id="F6D-kS-W4Z"/>
+            </connections>
+            <point key="canvasLocation" x="206" y="452"/>
+        </view>
+    </objects>
+</document>

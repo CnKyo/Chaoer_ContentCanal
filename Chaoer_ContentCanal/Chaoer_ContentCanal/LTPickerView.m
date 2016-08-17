@@ -166,6 +166,15 @@
     if (self.block) {
         self.block(self,str,[self.myPickerView selectedRowInComponent:0]);
     }
+
+    if ([self.delegate respondsToSelector:@selector(LTPickerViewDidSelected:andTitle:andNum:)]) {
+        [self.delegate LTPickerViewDidSelected:self andTitle:str andNum:[self.myPickerView selectedRowInComponent:0]];
+
+    }
+    
+    
+    
+    
     [self close];
 }
 #pragma mark 取消
