@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         self.bottomView = [[UIView alloc] initWithFrame:self.bounds];
         self.topView = [[UIView alloc] initWithFrame:CGRectZero];
         
@@ -41,11 +41,11 @@
         [self addGestureRecognizer:pan];
         
         //
-        CGFloat width = frame.size.width/7.0;
+        CGFloat width = frame.size.width/5.0;
         self.starWidth = width;
         for(int i = 0;i<5;i++){
             UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width*ZOOM, width*ZOOM)];
-            img.center = CGPointMake((i+1.5)*width, frame.size.height/2);
+            img.center = CGPointMake((i+0.5)*width, frame.size.height/2);
             img.image = [UIImage imageNamed:@"bt_star_a"];
             [self.bottomView addSubview:img];
             UIImageView *img2 = [[UIImageView alloc] initWithFrame:img.frame];
