@@ -9,7 +9,9 @@
 #import "SecondViewTableViewController.h"
 #import "mFoodRateHeaderView.h"
 #import "mFoodRateTableViewCell.h"
-@interface SecondViewTableViewController ()<UITableViewDataSource,UITableViewDelegate,WKSegmentControlDelagate>
+#import "RatingBar.h"
+
+@interface SecondViewTableViewController ()<UITableViewDataSource,UITableViewDelegate,WKSegmentControlDelagate,WKRateCellImgClickDelegate>
 
 @property(nonatomic ,strong)UITableView * myTableView;
 
@@ -27,10 +29,18 @@
      *  评价headerview
      */
     mFoodRateHeaderView *mRateTableHeaderView;
+    
+    RatingBar *mRateServiceView;
+    RatingBar *mRateProducteView;
+    
+    NSArray *mImgArr;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    mImgArr = @[[UIImage imageNamed:@"setup"],[UIImage imageNamed:@"setup"],[UIImage imageNamed:@"setup"],[UIImage imageNamed:@"setup"]];
+
     
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-114)];
     _myTableView.delegate = self;
@@ -48,6 +58,13 @@
     
     mRateTableHeaderView = [mFoodRateHeaderView shareView];
     mRateTableHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 100);
+    mRateServiceView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, mRateTableHeaderView.mSericeRateView.mwidth, mRateTableHeaderView.mSericeRateView.mheight)];
+    [mRateTableHeaderView.mSericeRateView addSubview:mRateServiceView];
+    mRateProducteView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, mRateTableHeaderView.mProductRateView.mwidth, mRateTableHeaderView.mProductRateView.mheight)];
+    [mRateTableHeaderView.mProductRateView addSubview:mRateProducteView];
+
+    
+    
     _myTableView.tableHeaderView = mRateTableHeaderView;
     
     NSArray *mTT = @[@"全部",@"好评",@"中评",@"差评"];
@@ -89,10 +106,35 @@
     mFoodRateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    cell.delegate = self;
+    [cell setMRateNum:3];
+    [cell setMImgArr:mImgArr];
     
     return cell;
 }
+- (void)cellWithImgBrowserClickedAndTag:(NSInteger)mTag andSubViews:(UIView *)msubViews{
+    //1.创建图片浏览器
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    
+    //2.告诉图片浏览器显示所有的图片
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0 ; i < mImgArr.count; i++) {
+        //传递数据给浏览器
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.image = mImgArr[i];
+        photo.srcImageView = msubViews.subviews[i];
+        [photos addObject:photo];
+    }
+    brower.photos = photos;
+    
+    //3.设置默认显示的图片索引
+    brower.currentPhotoIndex = mTag;
+    
+    //4.显示浏览器
+    [brower show];
+
+}
+
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
 
     MLLog(@"%ld",(long)mIndex);

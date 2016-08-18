@@ -85,7 +85,7 @@
         [LCProgressHUD showInfoMsg:@"密码不能为空"];
         return;
     }
-    if (self.mOpenId == nil || [self.mOpenId isEqualToString:@""]) {
+    if (self.mOpenId.length <= 0) {
         MLLog(@"openid是%@",self.mOpenId);
 
         [LCProgressHUD showInfoMsg:@"用户标志码错误！"];
@@ -101,7 +101,7 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
             
-            [self popViewController];
+            [self dismissViewController_2];
 
         }else{
             [LCProgressHUD showFailure:resb.mMessage];
