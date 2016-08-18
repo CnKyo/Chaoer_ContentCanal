@@ -273,37 +273,6 @@
 
                                        }
 
-                                       
-                                       NSString *mUTFStr = [[NSString alloc] initWithString:mNickName];
-                                       [mUTFStr enumerateSubstringsInRange:NSMakeRange(0, mUTFStr.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
-                                           
-                                           
-                                           const unichar hs = [substring characterAtIndex:0];
-                                           if (0xd800 <= hs && hs <= 0xdbff) {
-                                               if (substring.length > 1) {
-                                                   const unichar ls = [substring characterAtIndex:1];
-                                                   const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
-                                                   if (0x1d000 <= uc && uc <= 0x1f77f) {
-                                                       mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                                   }
-                                               }
-                                           } else if (substring.length > 1) {
-                                               const unichar ls = [substring characterAtIndex:1];
-                                               if (ls == 0x20e3) {
-                                                   mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               }
-                                           } else {
-                                               if (0x2100 <= hs && hs <= 0x27ff) {
-                                                   mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               } else if (0x2B05 <= hs && hs <= 0x2b07) {
-                                                       mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               } else if (0x2934 <= hs && hs <= 0x2935) {
-                                                           mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               } else if (0x3297 <= hs && hs <= 0x3299) {
-                                                               mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50) {
-                                                                   mNickName = [mNickName stringByReplacingOccurrencesOfString:substring withString:@""];                                               }
-                                           }
-
-                                       }];
-                              
-                                     
-                                       
-                                       
                                        MLLog(@"性别是：%@",mSex);
                                        [para setObject:@"ios" forKey:@"device"];
 
@@ -501,28 +470,17 @@
 #pragma mark----登录成功跳转
 - (void)loginOk{
     
-
-//    self.tabBarController.selectedIndex = 1;
-
-
-//    if( self.quikTagVC )
-//    {
-//        [self setToViewController_2:self.quikTagVC];
-//    }
-//    else
-//    {
-//        [self popViewController_2];
-    [self dismissViewController];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
-
-//    }
     
+    if (![mUserInfo backNowUser].mUserId) {
+        otherLoginViewController *ooo = [[otherLoginViewController alloc] initWithNibName:@"otherLoginViewController" bundle:nil];
+        ooo.mType = [mUserInfo backNowUser].mLoginType;
+        ooo.mOpenId = mOpenID;
+        [self presentModalViewController:ooo];
+    }else{
+        [self dismissViewController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:self];
+    }
 
-//    [((AppDelegate*)[UIApplication sharedApplication].delegate) dealFuncTab];
-  
-    
-    
-    
     
 }
 

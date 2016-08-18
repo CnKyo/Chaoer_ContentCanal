@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WKRateCellImgClickDelegate <NSObject>
+
+@optional
+
+- (void)cellWithImgBrowserClickedAndTag:(NSInteger)mTag andSubViews:(UIView *)msubViews;
+
+@end
+
 @interface mFoodRateTableViewCell : UITableViewCell
 
 /**
@@ -38,5 +46,15 @@
  *  高度约束
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mImgsViewH;
+/**
+ *  评分
+ */
+@property(nonatomic,assign) NSInteger mRateNum;
+/**
+ *  图片数组
+ */
+@property(nonatomic,strong) NSArray *mImgArr;
 
+
+@property (strong,nonatomic) id<WKRateCellImgClickDelegate>delegate;
 @end

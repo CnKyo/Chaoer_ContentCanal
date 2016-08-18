@@ -799,6 +799,8 @@ bool g_bined = NO;
     [para setObject:mLoginName forKey:@"loginName"];
     [para setObject:mPwd forKey:@"passWord"];
     [para setObject:mOpenId forKey:@"openid"];
+    [para setObject:@"ios" forKey:@"device"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mLoginType) forKey:@"loginType"];
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/wxBind/wxPhoneBind" parameters:para call:^(mBaseData *info) {
 //        [self dealUserSession:info andPhone:mPwd  andOpenId:mOpenId block:block];
