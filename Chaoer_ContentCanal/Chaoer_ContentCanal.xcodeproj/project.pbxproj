@@ -939,6 +939,16 @@
 		B2D48CA51BEC53FF00482EB8 /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B2D48CA11BEC53FF00482EB8 /* UIImage+RTTint.podspec */; };
 		B2D5394C1BA97763009170A8 /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */; };
 		B2D539521BA97F64009170A8 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D539511BA97F64009170A8 /* JSBadgeView.m */; };
+		DF0591AE1D6554C900445128 /* dryClean_ad.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591AC1D6554C900445128 /* dryClean_ad.png */; };
+		DF0591AF1D6554C900445128 /* dryClean_huodong.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591AD1D6554C900445128 /* dryClean_huodong.png */; };
+		DF0591B21D6555C100445128 /* dryClean_address.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591B01D6555C100445128 /* dryClean_address.png */; };
+		DF0591B81D655D3700445128 /* dryClean_calltel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591B51D655D3700445128 /* dryClean_calltel@2x.png */; };
+		DF0591B91D655D3700445128 /* dryClean_cart_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591B61D655D3700445128 /* dryClean_cart_gray@2x.png */; };
+		DF0591BA1D655D3700445128 /* dryClean_cart_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591B71D655D3700445128 /* dryClean_cart_green@2x.png */; };
+		DF0591BD1D65610400445128 /* dryClean_address_choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591BB1D65610400445128 /* dryClean_address_choose@2x.png */; };
+		DF0591BE1D65610400445128 /* dryClean_time_choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591BC1D65610400445128 /* dryClean_time_choose@2x.png */; };
+		DF0591C01D65638800445128 /* dryClean_addPic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0591BF1D65638800445128 /* dryClean_addPic.png */; };
+		DF0591C41D658BAC00445128 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0591C31D658BAC00445128 /* RateView.m */; };
 		DF10D8191D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */; };
 		DF10D81D1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */; };
 		DF10D8201D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */; };
@@ -2579,6 +2589,17 @@
 		B2D5394B1BA97763009170A8 /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		B2D539501BA97F64009170A8 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		B2D539511BA97F64009170A8 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		DF0591AC1D6554C900445128 /* dryClean_ad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_ad.png; sourceTree = "<group>"; };
+		DF0591AD1D6554C900445128 /* dryClean_huodong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_huodong.png; sourceTree = "<group>"; };
+		DF0591B01D6555C100445128 /* dryClean_address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_address.png; sourceTree = "<group>"; };
+		DF0591B51D655D3700445128 /* dryClean_calltel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dryClean_calltel@2x.png"; sourceTree = "<group>"; };
+		DF0591B61D655D3700445128 /* dryClean_cart_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dryClean_cart_gray@2x.png"; sourceTree = "<group>"; };
+		DF0591B71D655D3700445128 /* dryClean_cart_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dryClean_cart_green@2x.png"; sourceTree = "<group>"; };
+		DF0591BB1D65610400445128 /* dryClean_address_choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dryClean_address_choose@2x.png"; sourceTree = "<group>"; };
+		DF0591BC1D65610400445128 /* dryClean_time_choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dryClean_time_choose@2x.png"; sourceTree = "<group>"; };
+		DF0591BF1D65638800445128 /* dryClean_addPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_addPic.png; sourceTree = "<group>"; };
+		DF0591C21D658BAC00445128 /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
+		DF0591C31D658BAC00445128 /* RateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
 		DF10D8171D63ECBE00220FB0 /* DryCleanShopServerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanShopServerDetailVC.h; sourceTree = "<group>"; };
 		DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanShopServerDetailVC.m; sourceTree = "<group>"; };
 		DF10D81B1D63F7A700220FB0 /* DryCleanOrderSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderSubmitVC.h; sourceTree = "<group>"; };
@@ -5846,6 +5867,31 @@
 			path = "UIImage-RTTint-lib";
 			sourceTree = "<group>";
 		};
+		DF0591AA1D65519C00445128 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DF0591BF1D65638800445128 /* dryClean_addPic.png */,
+				DF0591BB1D65610400445128 /* dryClean_address_choose@2x.png */,
+				DF0591BC1D65610400445128 /* dryClean_time_choose@2x.png */,
+				DF0591B51D655D3700445128 /* dryClean_calltel@2x.png */,
+				DF0591B61D655D3700445128 /* dryClean_cart_gray@2x.png */,
+				DF0591B71D655D3700445128 /* dryClean_cart_green@2x.png */,
+				DF0591B01D6555C100445128 /* dryClean_address.png */,
+				DF0591AC1D6554C900445128 /* dryClean_ad.png */,
+				DF0591AD1D6554C900445128 /* dryClean_huodong.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF0591C11D658BAC00445128 /* RateView */ = {
+			isa = PBXGroup;
+			children = (
+				DF0591C21D658BAC00445128 /* RateView.h */,
+				DF0591C31D658BAC00445128 /* RateView.m */,
+			);
+			path = RateView;
+			sourceTree = "<group>";
+		};
 		DF10D8211D64099F00220FB0 /* HMSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -5978,6 +6024,7 @@
 		DF8344111D51D4DE002C4FD6 /* Alan */ = {
 			isa = PBXGroup;
 			children = (
+				DF0591AA1D65519C00445128 /* Resources */,
 				DF83441A1D51DC9E002C4FD6 /* Additions */,
 				DF83441B1D51DC9E002C4FD6 /* OpenSourceLib */,
 				DF8344121D51D570002C4FD6 /* Custom */,
@@ -6013,6 +6060,7 @@
 		DF83441B1D51DC9E002C4FD6 /* OpenSourceLib */ = {
 			isa = PBXGroup;
 			children = (
+				DF0591C11D658BAC00445128 /* RateView */,
 				DF10D82C1D640FBA00220FB0 /* DateTools */,
 				DF10D8211D64099F00220FB0 /* HMSegmentedControl */,
 				DF535F111D62BA1E006E1598 /* RatingBar */,
@@ -6194,6 +6242,7 @@
 				048FD8351CB63B6800383DF8 /* MovieAddComment1.xib in Resources */,
 				0453DC021CF88F9C006C9B6B /* LTPickerView.xib in Resources */,
 				04AD8AA01CE326CC00A3F87F /* pptHeaderView.xib in Resources */,
+				DF0591AF1D6554C900445128 /* dryClean_huodong.png in Resources */,
 				04E5BD341CC61F6700E62795 /* WJ_sucess@2x.png in Resources */,
 				040B80241CC50D50006A9489 /* WJStatusBarHUD_error@2x.png in Resources */,
 				04D49C6B1CE70CAA00BAD649 /* pptDetailCell2.xib in Resources */,
@@ -6201,6 +6250,7 @@
 				313D76DC1C994446004D5679 /* mPublicWlerTableViewCell.xib in Resources */,
 				04C15D6C1D37A77B0097DA6C /* comfirmOrderFooterView.xib in Resources */,
 				04D85DD51CF6ED3500E1A3A2 /* mGeneryEmptyView.xib in Resources */,
+				DF0591C01D65638800445128 /* dryClean_addPic.png in Resources */,
 				04AD8A9B1CE323B300A3F87F /* pptStatusViewController.xib in Resources */,
 				04FA3E721D22078F00EA9E34 /* shopCarHeaderView.xib in Resources */,
 				04E6CE781D631E2C000EB6B8 /* mCampTionTableViewCell.xib in Resources */,
@@ -6255,6 +6305,7 @@
 				3182A1721CA67B390084E890 /* verifyBankCardView.xib in Resources */,
 				04D49C591CE6D2DE00BAD649 /* pptMyMsgCell.xib in Resources */,
 				04E5BD331CC61F6700E62795 /* WJ_sucess.png in Resources */,
+				DF0591B91D655D3700445128 /* dryClean_cart_gray@2x.png in Resources */,
 				311BE22A1CA1416A006757E8 /* needCodeView.xib in Resources */,
 				04D7339F1D640BC700F1C5DD /* mFoodComfirmTableViewCell.xib in Resources */,
 				04D85DCA1CF6DE9400E1A3A2 /* canelHistoryViewController.xib in Resources */,
@@ -6277,6 +6328,7 @@
 				04D49C721CE7144A00BAD649 /* pptDetailCell3.xib in Resources */,
 				04D6528D1CF010C000E26209 /* mComfirOrderDetailView.xib in Resources */,
 				04F228501CEEEBD6004E8702 /* choiceArearViewController.xib in Resources */,
+				DF0591BD1D65610400445128 /* dryClean_address_choose@2x.png in Resources */,
 				04FA3E8A1D226E3800EA9E34 /* acountView.xib in Resources */,
 				31F544801CAE12C400307B83 /* homeNavView.xib in Resources */,
 				04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */,
@@ -6299,6 +6351,7 @@
 				3135F8241C97E29800EF9569 /* editMessageViewController.xib in Resources */,
 				043F38D91CEAC9D4000041EC /* releaseCell6.xib in Resources */,
 				04E5A81D1CE5C50400A2D111 /* pptMyAddressViewController.xib in Resources */,
+				DF0591B21D6555C100445128 /* dryClean_address.png in Resources */,
 				04648C7F1CB51E88006823C9 /* valletTCell.xib in Resources */,
 				312D08B01CAA1C560006F0FA /* ShareSDKUI.bundle in Resources */,
 				04E6CE581D62FB0C000EB6B8 /* mFoodRateHeaderView.xib in Resources */,
@@ -6310,6 +6363,7 @@
 				046400881CF9279D0090A475 /* chatNavView.xib in Resources */,
 				04E5A7CA1CE56A3C00A2D111 /* pptHistoryViewController.xib in Resources */,
 				0400EDAB1D45EE7F009CD641 /* mActivitySubView.xib in Resources */,
+				DF0591BE1D65610400445128 /* dryClean_time_choose@2x.png in Resources */,
 				04C15D7D1D37BCDA0097DA6C /* mSelectSenTypeViewController.xib in Resources */,
 				31B990341C96A535002E34A5 /* serviceViewController.xib in Resources */,
 				04FA3E8F1D22772200EA9E34 /* goPayViewController.xib in Resources */,
@@ -6357,6 +6411,7 @@
 				0431951A1D51887B008EEF82 /* valletCell1.xib in Resources */,
 				0461EC6F1D33A9160080A3ED /* Star.png in Resources */,
 				16A987C51C03986200D55C4A /* ReleaseNotes.txt in Resources */,
+				DF0591BA1D655D3700445128 /* dryClean_cart_green@2x.png in Resources */,
 				0472903C1D17E47C00AA999B /* RongCloud.bundle in Resources */,
 				04E02E4B1CE6B46E00220D54 /* pptMyRateViewController.xib in Resources */,
 				04C15D771D37B0C40097DA6C /* mComfirmOrderCell.xib in Resources */,
@@ -6369,6 +6424,7 @@
 				3123CC1A1C92962E00C3B928 /* canPayView.xib in Resources */,
 				31AF47BA1CAE65CA00A722CD /* mPersonNavView.xib in Resources */,
 				04648C691CB4FD80006823C9 /* mySenderCell.xib in Resources */,
+				DF0591AE1D6554C900445128 /* dryClean_ad.png in Resources */,
 				04F2DDFD1CBE2C460088C90F /* communityStatusTableViewCell.xib in Resources */,
 				0411A9041D3CB37C00402511 /* homeTableCell2.xib in Resources */,
 				046B12E41CE184BC00A8FB76 /* MHSelectPickerView.xib in Resources */,
@@ -6419,6 +6475,7 @@
 				04F5FFF51D236EE400EFBB3C /* orderStatusViewController.xib in Resources */,
 				04C75DA71D058C27002D21FB /* AlipaySDK.bundle in Resources */,
 				04EA59AB1D34824200CC5C39 /* mMarkeyRateCell.xib in Resources */,
+				DF0591B81D655D3700445128 /* dryClean_calltel@2x.png in Resources */,
 				04AD8AA71CE3319200A3F87F /* pptTableViewCell.xib in Resources */,
 				04D49C7D1CE730DC00BAD649 /* complaintViewController.xib in Resources */,
 				040B80271CC50D50006A9489 /* WJStatusBarHUD_warning.png in Resources */,
@@ -7023,6 +7080,7 @@
 				04D6528B1CF010B700E26209 /* mComfirOrderDetailView.m in Sources */,
 				04F89C2B1D1D3A19006A3976 /* exchangeCoupView.m in Sources */,
 				04A151211D3637C100AFCE98 /* UILabel+QHLExtension.m in Sources */,
+				DF0591C41D658BAC00445128 /* RateView.m in Sources */,
 				74DDE8F21BAC0330004878D1 /* myMoneyViewController.m in Sources */,
 				04F89C0A1D1D0FCC006A3976 /* mCommunityMyViewController.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,

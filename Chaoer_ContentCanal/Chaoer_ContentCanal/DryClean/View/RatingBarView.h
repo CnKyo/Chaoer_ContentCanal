@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RatingBar.h"
 #import "UIView+AutoSize.h"
+#import "RateView.h"
 
 @interface RatingBarView : UIView
 
-@property(nonatomic,strong) RatingBar *bar;
+@property(nonatomic,strong) RateView *bar;
+//@property(nonatomic,strong) RatingBar *bar;
 @property(nonatomic,strong) UILabel *barLable;
 
-- (id)initWithSize:(CGSize)size;
+- (id)initWithHight:(CGFloat)starSize;
 
 @end

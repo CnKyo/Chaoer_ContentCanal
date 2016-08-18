@@ -170,10 +170,10 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if (indexPath.section == 0) {
-            cell.imageView.image = IMG(@"m_local.png");
+            cell.imageView.image = IMG(@"dryClean_address_choose.png");
             cell.textLabel.text = @"请选择服务地址";
         } else if (indexPath.section == 1) {
-            cell.imageView.image = IMG(@"m_local.png");
+            cell.imageView.image = IMG(@"dryClean_time_choose.png");
             cell.textLabel.text = @"请选择服务时间";
         }
         

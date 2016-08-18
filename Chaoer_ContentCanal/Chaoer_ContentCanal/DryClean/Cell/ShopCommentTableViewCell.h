@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
 #import "RatingBar.h"
+#import "RateView.h"
 
 @interface ShopCommentTableViewCell : UITableViewCell
 @property(strong, nonatomic) UIImageView*       iconImgView;
 @property(strong, nonatomic) UILabel*           nikeLable;
-@property(strong, nonatomic) RatingBar*         barView;
+@property(strong, nonatomic) RateView*         barView;
 @property(strong, nonatomic) UILabel*           commentLable;
 @property(strong, nonatomic) UILabel*           timeLable;
 

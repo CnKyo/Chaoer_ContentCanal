@@ -32,9 +32,9 @@
         
         [self.thumbImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
-            make.top.equalTo(superView.top).offset(padding/2);
-            make.bottom.equalTo(superView.bottom).offset(-padding/2);
-            make.width.equalTo(_thumbImgView.mas_height);
+            make.top.equalTo(superView.top).offset(padding);
+            make.bottom.equalTo(superView.bottom).offset(-padding);
+            make.width.equalTo(_thumbImgView.mas_height).multipliedBy(0.9);
         }];
         [self.nameLable makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_thumbImgView.right).offset(padding/2);

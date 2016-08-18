@@ -11,7 +11,6 @@
 #import "DateTools.h"
 #import "DryCleanTimeChooseView.h"
 #import "UIImage+QUAdditons.h"
-#import "RatingBar.h"
 
 @interface DryCleanOrderTimeVC ()
 @property(strong,nonatomic) NSMutableArray *dateArr;
@@ -87,6 +86,7 @@
     }];
     [noteLable makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(chView);
+        make.height.equalTo(30);
         make.top.equalTo(chView.bottom).offset(padding/2);
     }];
     
