@@ -8,7 +8,7 @@
 
 #import "DryCleanOrderCommitSubmitVC.h"
 #import "UIView+AutoSize.h"
-#import "RatingBar.h"
+#import "RateView.h"
 #import "APIClient.h"
 #import "UIImage+QUAdditons.h"
 
@@ -94,7 +94,15 @@
         view.frame = CGRectMake(0, 0, DEVICE_Width, 70);
         UILabel *noteLable = [view newUILableWithText:@"满意" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:18] textAlignment:QU_TextAlignmentCenter];
         noteLable.frame = CGRectMake(0, 0, view.bounds.size.width, 30);
-        RatingBar *barView = [[RatingBar alloc] initWithFrame:CGRectMake((view.bounds.size.width-250)/2, 30, 250, 30)];
+        
+        RateView *barView = [RateView rateViewWithRating:3.7f];
+        //bar.rating = 4.0f;
+        barView.starNormalColor = [UIColor colorWithRed:0.804 green:0.808 blue:0.812 alpha:1.000];
+        barView.starFillColor = [UIColor colorWithRed:0.976 green:0.675 blue:0.165 alpha:1.000];
+        //barView.starSize = 30;
+        barView.padding = 30/4;
+        barView.frame = CGRectMake((view.bounds.size.width-200)/2, 30, 200, 30);
+        //RatingBar *barView = [[RatingBar alloc] initWithFrame:CGRectMake((view.bounds.size.width-250)/2, 30, 250, 30)];
         [view addSubview:barView];
         view;
     });
@@ -104,7 +112,7 @@
         UIView *lastView = nil;
         for (int i=0; i<4; i++) {
             UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(editPicMethod:)];
-            [btn setBackgroundImage:IMG(@"DefaultImg.png") forState:UIControlStateNormal];
+            [btn setBackgroundImage:IMG(@"dryClean_addPic.png") forState:UIControlStateNormal];
             [btn makeConstraints:^(MASConstraintMaker *make) {
                 if (lastView == nil) {
                     make.left.equalTo(view.left);

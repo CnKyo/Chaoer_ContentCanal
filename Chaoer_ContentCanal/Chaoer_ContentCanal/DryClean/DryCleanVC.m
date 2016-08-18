@@ -17,6 +17,7 @@
 #import "DryCleanOrderCommitSubmitVC.h"
 #import "DryCleanServerTableViewCell.h"
 #import "DryCleanOrderSubmitVC.h"
+#import "RateView.h"
 
 
 @interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -124,10 +125,13 @@
         UIView *aView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UILabel *nameLable = [view newUILableWithText:@"超尔干洗店" textColor:[UIColor blackColor] font:font1];
-            RatingBarView *bar = [[RatingBarView alloc] initWithSize:CGSizeMake(200, 25)];
+//            RateView *bar = [RateView rateViewWithRating:3.7f];
+//            bar.backgroundColor = [UIColor redColor];
+//            bar.rating = 4.0f;
+            RatingBarView *bar = [[RatingBarView alloc] initWithHight:20];
             [view addSubview:bar];
             UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goYudingMethod:) title:@"去预约" titleColor:[UIColor whiteColor] titleFont:font1];
-            [btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
             [nameLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.top.equalTo(view.top).offset(padding/2);
@@ -136,13 +140,15 @@
             [bar makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(nameLable.mas_left);
                 make.top.equalTo(nameLable.mas_bottom);
+                make.height.equalTo(40);
+                make.width.equalTo(200);
             }];
             [btn makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(nameLable.mas_right).offset(padding/2);
                 make.centerY.equalTo(nameLable.mas_bottom);
                 make.right.equalTo(view.mas_right).offset(-padding);
-                make.width.equalTo(70);
-                make.height.equalTo(30);
+                make.width.equalTo(80);
+                make.height.equalTo(35);
             }];
             [view makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(nameLable.bottom).offset(30);
@@ -152,16 +158,16 @@
         UIView *lineView1 = [contentView newDefaultLineView];
         UIView *bView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
-            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"m_local.png")];
-            UILabel *addressLable = [view newUILableWithText:@"重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎" textColor:[UIColor blackColor] font:font2];
+            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"dryClean_address.png")];
+            UILabel *addressLable = [view newUILableWithText:@"重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎" textColor:[UIColor colorWithRed:0.439 green:0.443 blue:0.447 alpha:1.000] font:font2];
             addressLable.numberOfLines = 0;
             UIView *lineView11 = [view newDefaultLineView];
             
-            UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goCallTelMethod:) imgNormal:IMG(@"m_local.png")];
+            UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goCallTelMethod:) imgNormal:IMG(@"dryClean_calltel.png")];
             
             [iconImgView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.mas_left).offset(padding);
-                make.width.height.equalTo(15);
+                make.width.height.equalTo(9);
                 make.centerY.equalTo(view.mas_centerY);
             }];
             [addressLable makeConstraints:^(MASConstraintMaker *make) {
@@ -186,10 +192,10 @@
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goCommentMethod:)];
             [view addGestureRecognizer:tapGesture];
-            RatingBarView *bar = [[RatingBarView alloc] initWithSize:CGSizeMake(250, 30)];
+            RatingBarView *bar = [[RatingBarView alloc] initWithHight:25];
             [view addSubview:bar];
             UILabel *countLable = [view newUILableWithText:@"100人评价" textColor:[UIColor grayColor] font:font2 textAlignment:QU_TextAlignmentRight];
-            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"m_local.png")];
+            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"jiantou1.png")];
             [bar makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.mas_left).offset(padding);
                 make.top.equalTo(view.mas_top).offset(padding/2);
@@ -197,25 +203,26 @@
             [iconImgView makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(view.mas_right).offset(-padding);
                 make.centerY.equalTo(view.mas_centerY);
-                make.width.height.equalTo(15);
+                make.width.equalTo(7);
+                make.height.equalTo(13);
             }];
             [countLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(bar.mas_right).offset(padding/2);
-                make.right.equalTo(iconImgView.mas_left);
+                make.right.equalTo(iconImgView.mas_left).offset(-padding/2);
                 make.top.bottom.equalTo(view);
             }];
             view;
         });
         UIView *dView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
-            UIImageView *iconImgView1 = [view newUIImageViewWithImg:IMG(@"m_local.png")];
-            UILabel *iconLable1 = [view newUILableWithText:@"商家公告" textColor:[UIColor grayColor] font:font1];
+            UIImageView *iconImgView1 = [view newUIImageViewWithImg:IMG(@"dryClean_ad.png")];
+            UILabel *iconLable1 = [view newUILableWithText:@"商家公告" textColor:[UIColor colorWithRed:0.404 green:0.408 blue:0.412 alpha:1.000] font:font1];
             UIView *lineView11 = [view newDefaultLineView];
-            UILabel *noteLable = [view newUILableWithText:@"商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告" textColor:[UIColor grayColor] font:font1];
+            UILabel *noteLable = [view newUILableWithText:@"商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告" textColor:[UIColor colorWithRed:0.439 green:0.443 blue:0.447 alpha:1.000] font:font2];
             noteLable.numberOfLines = 0;
-            UIImageView *iconImgView2 = [view newUIImageViewWithImg:IMG(@"m_local.png")];
-            UILabel *iconLable2 = [view newUILableWithText:@"活动说明" textColor:[UIColor grayColor] font:font1];
-            UILabel *huodongLable = [view newUILableWithText:@"商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告" textColor:[UIColor grayColor] font:font1];
+            UIImageView *iconImgView2 = [view newUIImageViewWithImg:IMG(@"dryClean_huodong.png")];
+            UILabel *iconLable2 = [view newUILableWithText:@"活动说明" textColor:[UIColor colorWithRed:0.404 green:0.408 blue:0.412 alpha:1.000] font:font1];
+            UILabel *huodongLable = [view newUILableWithText:@"商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告" textColor:[UIColor colorWithRed:0.439 green:0.443 blue:0.447 alpha:1.000] font:font2];
             huodongLable.numberOfLines = 0;
             
             [iconImgView1 makeConstraints:^(MASConstraintMaker *make) {
@@ -322,7 +329,7 @@
     
     UIView *cartView = ({
         UIView *view = [self.segSelect1View newUIViewWithBgColor:[UIColor colorWithRed:0.910 green:0.918 blue:0.922 alpha:1.000]];
-        UIButton *cartBtn = [view newUIButtonWithTarget:self mehotd:@selector(showCartView:) bgImgNormal:IMG(@"icon_headerdefault.png")];
+        UIButton *cartBtn = [view newUIButtonWithTarget:self mehotd:@selector(showCartView:) bgImgNormal:IMG(@"dryClean_cart_gray.png")];
         UILabel *priceLable = [view newUILableWithText:@"￥10" textColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000] font:[UIFont systemFontOfSize:18]];
         UIView *lineView = [view newUIViewWithBgColor:[UIColor colorWithRed:0.808 green:0.812 blue:0.816 alpha:1.000]];
         UILabel *noteLable = [view newUILableWithText:@"取衣费：2元" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:13]];

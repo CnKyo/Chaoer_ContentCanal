@@ -29,8 +29,18 @@
             UIView *view = [superView newUIViewWithBgColor:[UIColor whiteColor]];
             
             self.nikeLable = [view newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
-            self.barView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
-            [view addSubview:_barView];
+            
+            RateView *bar = [RateView rateViewWithRating:3.7f];
+            //bar.rating = 4.0f;
+            bar.starNormalColor = [UIColor colorWithRed:0.804 green:0.808 blue:0.812 alpha:1.000];
+            bar.starFillColor = [UIColor colorWithRed:0.976 green:0.675 blue:0.165 alpha:1.000];
+            bar.starSize = 20;
+            bar.padding = 5;
+            [view addSubview:bar];
+            self.barView = bar;
+            
+            //self.barView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, 100, 25)];
+            //[view addSubview:_barView];
             
             self.commentLable = [view newUILableWithText:@"" textColor:[UIColor blackColor] font:font];
             self.commentLable.numberOfLines = 0;

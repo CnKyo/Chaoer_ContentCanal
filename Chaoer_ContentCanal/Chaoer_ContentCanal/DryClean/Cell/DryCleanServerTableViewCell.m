@@ -7,6 +7,7 @@
 //
 
 #import "DryCleanServerTableViewCell.h"
+#import "UIImage+QUAdditons.h"
 
 @implementation DryCleanServerTableViewCell
 
@@ -29,9 +30,18 @@
         
         self.priceLable = [superView newUILableWithText:@"" textColor:[UIColor redColor] font:font];
         
-        self.jianBtn = [superView newUIButtonWithTarget:self mehotd:@selector(jianCountMethod:) bgImgNormal:IMG(@"icon_headerdefault.png")];
+        self.jianBtn = [superView newUIButtonWithTarget:self mehotd:@selector(jianCountMethod:) title:@"-" titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]];
         self.countLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font textAlignment:QU_TextAlignmentCenter];
-        self.addBtn = [superView newUIButtonWithTarget:self mehotd:@selector(addCountMethod:) bgImgNormal:IMG(@"icon_headerdefault.png")];
+        self.addBtn = [superView newUIButtonWithTarget:self mehotd:@selector(addCountMethod:) title:@"+" titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]];
+        
+        UIColor *color = [UIColor colorWithRed:0.518 green:0.753 blue:0.125 alpha:1.000];
+        UIImage *img = [UIImage imageFromColor:color targetSize:CGSizeMake(40, 40)];
+        [self.jianBtn setBackgroundImage:img forState:UIControlStateNormal];
+        [self.addBtn setBackgroundImage:img forState:UIControlStateNormal];
+        self.jianBtn.layer.cornerRadius = 3;
+        self.jianBtn.layer.masksToBounds = YES;
+        self.addBtn.layer.cornerRadius = 3;
+        self.addBtn.layer.masksToBounds = YES;
         
         [self.thumbImgView makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superView.left).offset(padding);
