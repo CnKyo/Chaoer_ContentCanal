@@ -44,15 +44,23 @@
             btn.frame=CGRectMake(i*(frame.size.width/self.controllers.count), 0, frame.size.width/self.controllers.count, 41);
             btn.tag=i;
             [btn setTitle:self.nameArray[i] forState:(UIControlStateNormal)];
+            
+        
             [btn setTitleColor:[UIColor colorWithRed:77/255. green:77/255. blue:77/255. alpha:1] forState:(UIControlStateNormal)];
-            [btn setTitleColor:[UIColor colorWithRed:77/255. green:77/255. blue:77/255. alpha:1] forState:(UIControlStateSelected)];
+            [btn setTitleColor:M_CO forState:(UIControlStateSelected)];
+            
+            
             [btn addTarget:self action:@selector(Click:) forControlEvents:(UIControlEventTouchUpInside)];
             btn.titleLabel.font=[UIFont systemFontOfSize:17.];
             
-            //            if (i==0)
-            //            {btn.selected=YES ;self.seleBtn=btn;
-            //                btn.titleLabel.font=[UIFont systemFontOfSize:19];
-            //            } else { btn.selected=NO; }
+            if (i==0)
+            {
+                btn.selected=YES ;
+                self.seleBtn=btn;
+                
+            } else {
+                btn.selected=NO;
+            }
             
             [self.segmentView addSubview:btn];
         }
@@ -62,7 +70,7 @@
         [self.segmentView addSubview:self.down];
         
         self.line=[[UILabel alloc]initWithFrame:CGRectMake((avgWidth-lineW)/2,41-lineH, lineW, lineH)];
-        self.line.backgroundColor = [UIColor colorWithRed:26/255. green:27/255. blue:30/255. alpha:1];
+        self.line.backgroundColor = M_CO;
         self.line.tag=100;
         [self.segmentView addSubview:self.line];
     }

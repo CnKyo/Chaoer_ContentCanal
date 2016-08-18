@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "09评论_大星星.png",
+      "filename" : "segment_normal.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "09评论_大星星-1.png",
+      "filename" : "segment_normal-1.png",
       "scale" : "2x"
     },
     {

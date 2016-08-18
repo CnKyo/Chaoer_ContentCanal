@@ -98,7 +98,36 @@
             }
             
             
-        }else{
+        }
+        else if(mType == 3){
+            btn.frame =  CGRectMake(10+i * mBtnWith, 8, mBtnWith-20, self.bounds.size.height - 16);
+            
+            
+            [btn setTitle:mArray[i] forState:UIControlStateNormal];
+            [btn.titleLabel setFont:self.FWHBtnFont];
+            
+            
+            
+            btn.tag = i + 1;
+            [btn addTarget:self action:@selector(changeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            
+            [btn setBackgroundImage:[UIImage imageNamed:@"segment_normal"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"segment_selected"] forState:UIControlStateSelected];
+            if (i == 0) {
+                
+                if (mTotleCount==2) {
+                    y = _FWHInterVal*2;
+                }else if (mTotleCount>2){
+                    y = _FWHInterVal;
+                }
+                
+            }
+            
+            
+        }
+        else{
             
             btn.frame =  CGRectMake(i * mBtnWith, 0, mBtnWith, self.bounds.size.height - 2);
             

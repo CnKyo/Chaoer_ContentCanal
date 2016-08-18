@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "bt_star_b.png"
+      "filename" : "09评论_大灰色.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "bt_star_a@2x.png"
+      "filename" : "09评论_大灰色-1.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
