@@ -70,7 +70,7 @@
     
     self.page = 1;
     
-    [[APIClient sharedClient] cookListWithTag:self cookId:_item.categoryInfo.ctgId name:@"" pageIndex:self.page call:^(int totalpage, NSArray *tableArr, APIObject *info) {
+    [[APIClient sharedClient] cookListWithTag:self cookId:_item.categoryInfo.ctgId name:@"" pageIndex:self.page call:^(int totalpage, NSArray *tableArr, APIShareSdkObject *info) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
@@ -94,7 +94,7 @@
     
     self.page ++;
     
-    [[APIClient sharedClient] cookListWithTag:self cookId:_item.categoryInfo.ctgId name:@"" pageIndex:self.page call:^(int totalpage, NSArray *tableArr, APIObject *info) {
+    [[APIClient sharedClient] cookListWithTag:self cookId:_item.categoryInfo.ctgId name:@"" pageIndex:self.page call:^(int totalpage, NSArray *tableArr, APIShareSdkObject *info) {
         [self footetEndRefresh];
         [self removeEmptyView];
         

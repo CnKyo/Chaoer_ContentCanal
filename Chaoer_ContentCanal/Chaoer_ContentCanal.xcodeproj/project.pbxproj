@@ -964,7 +964,7 @@
 		DF10D8431D640FBA00220FB0 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D83A1D640FBA00220FB0 /* DTTimePeriodGroup.m */; };
 		DF10D8441D640FBA00220FB0 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D83C1D640FBA00220FB0 /* NSDate+DateTools.m */; };
 		DF10D8471D6418BC00220FB0 /* DryCleanTimeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */; };
-		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */; };
+		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */; };
 		DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */; };
 		DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */; };
 		DF535EFF1D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF81D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m */; };
@@ -977,8 +977,8 @@
 		DF535F161D62BA1E006E1598 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F141D62BA1E006E1598 /* RatingBar.m */; };
 		DF535F191D62BAB1006E1598 /* RatingBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F181D62BAB1006E1598 /* RatingBarView.m */; };
 		DF535F1C1D62F134006E1598 /* UIImage+QUAdditons.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */; };
-		DF535F201D63088B006E1598 /* ShopCommentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */; };
 		DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */; };
+		DF5739D11D669E80004AF029 /* DryCleanOrderCommentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */; };
 		DF8344181D51D570002C4FD6 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344141D51D570002C4FD6 /* APIClient.m */; };
 		DF8344191D51D570002C4FD6 /* APIObjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344161D51D570002C4FD6 /* APIObjectDefine.m */; };
 		DF83441E1D51DCB2002C4FD6 /* UIView+AutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */; };
@@ -2630,8 +2630,7 @@
 		DF10D83C1D640FBA00220FB0 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTools.m"; sourceTree = "<group>"; };
 		DF10D8451D6418BC00220FB0 /* DryCleanTimeChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanTimeChooseView.h; sourceTree = "<group>"; };
 		DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanTimeChooseView.m; sourceTree = "<group>"; };
-		DF10D8481D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderCommitSubmitVC.h; sourceTree = "<group>"; };
-		DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommitSubmitVC.m; sourceTree = "<group>"; };
+		DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommentSubmitVC.m; sourceTree = "<group>"; };
 		DF10D84B1D64715F00220FB0 /* DryCleanServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanServerTableViewCell.h; sourceTree = "<group>"; };
 		DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanServerTableViewCell.m; sourceTree = "<group>"; };
 		DF535EF31D62AA4C006E1598 /* HouseKeepShopTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseKeepShopTVC.h; sourceTree = "<group>"; };
@@ -2655,10 +2654,11 @@
 		DF535F181D62BAB1006E1598 /* RatingBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBarView.m; sourceTree = "<group>"; };
 		DF535F1A1D62F134006E1598 /* UIImage+QUAdditons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QUAdditons.h"; sourceTree = "<group>"; };
 		DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QUAdditons.m"; sourceTree = "<group>"; };
-		DF535F1E1D63088B006E1598 /* ShopCommentTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCommentTVC.h; sourceTree = "<group>"; };
-		DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCommentTVC.m; sourceTree = "<group>"; };
+		DF535F1E1D63088B006E1598 /* DryCleanOrderCommentTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderCommentTVC.h; sourceTree = "<group>"; };
 		DF535F211D6308BC006E1598 /* ShopCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCommentTableViewCell.h; sourceTree = "<group>"; };
 		DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCommentTableViewCell.m; sourceTree = "<group>"; };
+		DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommentTVC.m; sourceTree = "<group>"; };
+		DF66B77F1D669EE3006189AF /* DryCleanOrderCommentSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderCommentSubmitVC.h; sourceTree = "<group>"; };
 		DF8344131D51D570002C4FD6 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		DF8344141D51D570002C4FD6 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		DF8344151D51D570002C4FD6 /* APIObjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIObjectDefine.h; sourceTree = "<group>"; };
@@ -5973,16 +5973,16 @@
 				DF535F0D1D62B1B0006E1598 /* View */,
 				DF535F0E1D62B442006E1598 /* DryCleanVC.h */,
 				DF535F0F1D62B442006E1598 /* DryCleanVC.m */,
-				DF535F1E1D63088B006E1598 /* ShopCommentTVC.h */,
-				DF535F1F1D63088B006E1598 /* ShopCommentTVC.m */,
 				DF10D8171D63ECBE00220FB0 /* DryCleanShopServerDetailVC.h */,
 				DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */,
 				DF10D81B1D63F7A700220FB0 /* DryCleanOrderSubmitVC.h */,
 				DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */,
 				DF10D8251D6409C500220FB0 /* DryCleanOrderTimeVC.h */,
 				DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */,
-				DF10D8481D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.h */,
-				DF10D8491D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m */,
+				DF535F1E1D63088B006E1598 /* DryCleanOrderCommentTVC.h */,
+				DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */,
+				DF66B77F1D669EE3006189AF /* DryCleanOrderCommentSubmitVC.h */,
+				DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */,
 			);
 			path = DryClean;
 			sourceTree = "<group>";
@@ -6035,10 +6035,10 @@
 		DF8344121D51D570002C4FD6 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				DF8344131D51D570002C4FD6 /* APIClient.h */,
-				DF8344141D51D570002C4FD6 /* APIClient.m */,
 				DF8344151D51D570002C4FD6 /* APIObjectDefine.h */,
 				DF8344161D51D570002C4FD6 /* APIObjectDefine.m */,
+				DF8344131D51D570002C4FD6 /* APIClient.h */,
+				DF8344141D51D570002C4FD6 /* APIClient.m */,
 				DF8344171D51D570002C4FD6 /* CustomDefine.h */,
 				DF10D8281D640AC900220FB0 /* QUScrollVC.h */,
 				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
@@ -6755,7 +6755,6 @@
 				04F9E5D41CED4D8B00FCA8B7 /* MJPropertyType.m in Sources */,
 				DF10D8401D640FBA00220FB0 /* DTTimePeriod.m in Sources */,
 				04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */,
-				DF535F201D63088B006E1598 /* ShopCommentTVC.m in Sources */,
 				04A151121D3637AC00AFCE98 /* QHLShop.m in Sources */,
 				04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
@@ -6823,6 +6822,7 @@
 				04EEADE21D0FAFA300FA97C6 /* AFSecurityPolicy.m in Sources */,
 				040B80291CC50D50006A9489 /* WJStatusBarHUD.m in Sources */,
 				04E5A7C91CE56A3C00A2D111 /* pptHistoryViewController.m in Sources */,
+				DF5739D11D669E80004AF029 /* DryCleanOrderCommentTVC.m in Sources */,
 				04F2DDFC1CBE2C460088C90F /* communityStatusTableViewCell.m in Sources */,
 				DF535EFF1D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				04102E191CE42CA7006F82E2 /* bolterViewController.m in Sources */,
@@ -6941,7 +6941,7 @@
 				04EEAE021D0FAFCA00FA97C6 /* UIImageView+AFNetworking.m in Sources */,
 				04E5A7E11CE579B000A2D111 /* MCMenuButton.m in Sources */,
 				04EEADE71D0FAFAE00FA97C6 /* AFURLRequestSerialization.m in Sources */,
-				DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommitSubmitVC.m in Sources */,
+				DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m in Sources */,
 				04D652871CF00E8700E26209 /* comfirOrderViewController.m in Sources */,
 				31EEB3191C93B32F00B61A86 /* communityViewController.m in Sources */,
 				04F9E5D31CED4D8B00FCA8B7 /* MJPropertyKey.m in Sources */,

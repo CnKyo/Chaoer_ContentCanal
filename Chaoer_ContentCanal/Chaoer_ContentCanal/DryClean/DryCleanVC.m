@@ -12,13 +12,12 @@
 #import "UIImageView+AFNetworking.h"
 #import "RatingBarView.h"
 #import "UIImage+QUAdditons.h"
-#import "ShopCommentTVC.h"
+#import "DryCleanOrderCommentTVC.h"
 #import "DryCleanShopServerDetailVC.h"
-#import "DryCleanOrderCommitSubmitVC.h"
+#import "DryCleanOrderCommentSubmitVC.h"
 #import "DryCleanServerTableViewCell.h"
 #import "DryCleanOrderSubmitVC.h"
 #import "RateView.h"
-
 
 @interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UISegmentedControl *segControl;
@@ -29,6 +28,18 @@
 @property(nonatomic,strong) UITableView*    classTableView;
 @property(nonatomic,strong) NSMutableArray* classArr;
 @property(nonatomic,assign) NSInteger       classIndex; //选择哪一种类别
+
+
+
+@property(nonatomic,strong) UIImageView*    shopImgView;
+@property(nonatomic,strong) UILabel*        shopNameLable;
+@property(nonatomic,strong) UILabel*        shopAddressLable;
+@property(nonatomic,strong) UILabel*        shopDesLable;
+@property(nonatomic,strong) UILabel*        shopCampaignLable;
+
+@property(nonatomic,strong) DryClearnShopObject* shopItem;
+@property(nonatomic,assign) int                 shopCoupon;
+@property(nonatomic,assign) int                 shopFocus;
 @end
 
 
@@ -49,7 +60,7 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = NO;
     self.rightBtnTitle = @"收藏";
-    
+    [self setRightBtnWidth:70];
     
     self.page = 1;
     
@@ -62,6 +73,18 @@
     self.classArr = [NSMutableArray arrayWithObjects:@"分类1",@"分类2",@"分类3",@"分类4",@"分类5", nil];
     
     [self selectClassIndex:0];
+    
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [[APIClient sharedClient] dryClearnShopInfoWithTag:self shopId:@"9" call:^(DryClearnShopObject *item, int coupon, int focus, APIObject *info) {
+        if (item != nil) {
+            self.shopItem = item;
+            self.shopCoupon = coupon;
+            self.shopFocus = focus;
+            [self reloadShopInfoUI];
+            [SVProgressHUD dismiss];
+        } else
+            [SVProgressHUD showErrorWithStatus:info.message];
+    }];
     
 }
 - (void)initView{
@@ -121,46 +144,69 @@
         }];
         
         UIImageView *imgView = [contentView newUIImageViewWithImg:IMG(@"DefaultImg.png")];
+        self.shopImgView = imgView;
         
         UIView *aView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UILabel *nameLable = [view newUILableWithText:@"超尔干洗店" textColor:[UIColor blackColor] font:font1];
-//            RateView *bar = [RateView rateViewWithRating:3.7f];
-//            bar.backgroundColor = [UIColor redColor];
-//            bar.rating = 4.0f;
-            RatingBarView *bar = [[RatingBarView alloc] initWithHight:20];
-            [view addSubview:bar];
             UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goYudingMethod:) title:@"去预约" titleColor:[UIColor whiteColor] titleFont:font1];
             [btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
+            self.shopNameLable = nameLable;
             [nameLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.top.equalTo(view.top).offset(padding/2);
-                make.height.equalTo(25);
-            }];
-            [bar makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(nameLable.mas_left);
-                make.top.equalTo(nameLable.mas_bottom);
-                make.height.equalTo(40);
-                make.width.equalTo(200);
+                make.bottom.equalTo(view.bottom).offset(-padding/2);
             }];
             [btn makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(nameLable.mas_right).offset(padding/2);
-                make.centerY.equalTo(nameLable.mas_bottom);
+                make.centerY.equalTo(view.centerY);
                 make.right.equalTo(view.mas_right).offset(-padding);
                 make.width.equalTo(80);
                 make.height.equalTo(35);
             }];
-            [view makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(nameLable.bottom).offset(30);
-            }];
             view;
         });
+//        UIView *aView = ({
+//            UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
+//            UILabel *nameLable = [view newUILableWithText:@"超尔干洗店" textColor:[UIColor blackColor] font:font1];
+////            RateView *bar = [RateView rateViewWithRating:3.7f];
+////            bar.backgroundColor = [UIColor redColor];
+////            bar.rating = 4.0f;
+//            RatingBarView *bar = [[RatingBarView alloc] initWithHight:20];
+//            [view addSubview:bar];
+//            UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goYudingMethod:) title:@"去预约" titleColor:[UIColor whiteColor] titleFont:font1];
+//            [btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
+//            self.shopNameLable = nameLable;
+//            [nameLable makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(view.left).offset(padding);
+//                make.top.equalTo(view.top).offset(padding/2);
+//                make.height.equalTo(25);
+//            }];
+//            [bar makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(nameLable.mas_left);
+//                make.top.equalTo(nameLable.mas_bottom);
+//                make.height.equalTo(40);
+//                make.width.equalTo(200);
+//            }];
+//            [btn makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(nameLable.mas_right).offset(padding/2);
+//                make.centerY.equalTo(nameLable.mas_bottom);
+//                make.right.equalTo(view.mas_right).offset(-padding);
+//                make.width.equalTo(80);
+//                make.height.equalTo(35);
+//            }];
+//            [view makeConstraints:^(MASConstraintMaker *make) {
+//                make.bottom.equalTo(nameLable.bottom).offset(30);
+//            }];
+//            view;
+//        });
         UIView *lineView1 = [contentView newDefaultLineView];
         UIView *bView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"dryClean_address.png")];
             UILabel *addressLable = [view newUILableWithText:@"重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎重庆龙虎" textColor:[UIColor colorWithRed:0.439 green:0.443 blue:0.447 alpha:1.000] font:font2];
             addressLable.numberOfLines = 0;
+            self.shopAddressLable = addressLable;
             UIView *lineView11 = [view newDefaultLineView];
             
             UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goCallTelMethod:) imgNormal:IMG(@"dryClean_calltel.png")];
@@ -188,31 +234,31 @@
             }];
             view;
         });
-        UIView *cView = ({
-            UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
-            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goCommentMethod:)];
-            [view addGestureRecognizer:tapGesture];
-            RatingBarView *bar = [[RatingBarView alloc] initWithHight:25];
-            [view addSubview:bar];
-            UILabel *countLable = [view newUILableWithText:@"100人评价" textColor:[UIColor grayColor] font:font2 textAlignment:QU_TextAlignmentRight];
-            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"jiantou1.png")];
-            [bar makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(view.mas_left).offset(padding);
-                make.top.equalTo(view.mas_top).offset(padding/2);
-            }];
-            [iconImgView makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(view.mas_right).offset(-padding);
-                make.centerY.equalTo(view.mas_centerY);
-                make.width.equalTo(7);
-                make.height.equalTo(13);
-            }];
-            [countLable makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(bar.mas_right).offset(padding/2);
-                make.right.equalTo(iconImgView.mas_left).offset(-padding/2);
-                make.top.bottom.equalTo(view);
-            }];
-            view;
-        });
+//        UIView *cView = ({
+//            UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
+//            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goCommentMethod:)];
+//            [view addGestureRecognizer:tapGesture];
+//            RatingBarView *bar = [[RatingBarView alloc] initWithHight:25];
+//            [view addSubview:bar];
+//            UILabel *countLable = [view newUILableWithText:@"100人评价" textColor:[UIColor grayColor] font:font2 textAlignment:QU_TextAlignmentRight];
+//            UIImageView *iconImgView = [view newUIImageViewWithImg:IMG(@"jiantou1.png")];
+//            [bar makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(view.mas_left).offset(padding);
+//                make.top.equalTo(view.mas_top).offset(padding/2);
+//            }];
+//            [iconImgView makeConstraints:^(MASConstraintMaker *make) {
+//                make.right.equalTo(view.mas_right).offset(-padding);
+//                make.centerY.equalTo(view.mas_centerY);
+//                make.width.equalTo(7);
+//                make.height.equalTo(13);
+//            }];
+//            [countLable makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(bar.mas_right).offset(padding/2);
+//                make.right.equalTo(iconImgView.mas_left).offset(-padding/2);
+//                make.top.bottom.equalTo(view);
+//            }];
+//            view;
+//        });
         UIView *dView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UIImageView *iconImgView1 = [view newUIImageViewWithImg:IMG(@"dryClean_ad.png")];
@@ -224,6 +270,8 @@
             UILabel *iconLable2 = [view newUILableWithText:@"活动说明" textColor:[UIColor colorWithRed:0.404 green:0.408 blue:0.412 alpha:1.000] font:font1];
             UILabel *huodongLable = [view newUILableWithText:@"商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告商家公告" textColor:[UIColor colorWithRed:0.439 green:0.443 blue:0.447 alpha:1.000] font:font2];
             huodongLable.numberOfLines = 0;
+            self.shopDesLable = noteLable;
+            self.shopCampaignLable = huodongLable;
             
             [iconImgView1 makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.mas_left).offset(padding);
@@ -274,6 +322,7 @@
         [aView updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(contentView);
             make.top.equalTo(imgView.mas_bottom).offset(padding);
+            make.height.equalTo(aView.mas_width).multipliedBy(0.15);
         }];
         [lineView1 makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(contentView);
@@ -285,14 +334,14 @@
             make.top.equalTo(lineView1.mas_bottom);
             make.height.equalTo(aView.mas_height);
         }];
-        [cView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(contentView);
-            make.top.equalTo(bView.mas_bottom).offset(padding);
-            make.height.equalTo(40);
-        }];
+//        [cView makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(contentView);
+//            make.top.equalTo(bView.mas_bottom).offset(padding);
+//            make.height.equalTo(40);
+//        }];
         [dView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(contentView);
-            make.top.equalTo(cView.mas_bottom).offset(padding);
+            make.top.equalTo(bView.mas_bottom).offset(padding);
         }];
         
         [contentView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -395,11 +444,33 @@
     }
 }
 
+
 -(void)segControlChange:(id)sender
 {
     UISegmentedControl* control = (UISegmentedControl*)sender;
     [self loadSegSelectIndex:control.selectedSegmentIndex];
 }
+
+
+
+-(void)reloadShopInfoUI
+{
+    
+    self.rightBtnTitle = _shopFocus > 0 ? @"已收藏" : @"未收藏";
+    
+    
+    [self.shopImgView setImageWithURL:[NSURL imageurl:_shopItem.shopLogo] placeholderImage:IMG(@"DefaultImg.png")];
+    self.shopNameLable.text = _shopItem.shopName.length > 0 ? _shopItem.shopName : @"暂无";
+    self.shopAddressLable.text = _shopItem.address.length > 0 ? _shopItem.address : @"暂无";
+    self.shopDesLable.text = _shopItem.shopDes.length > 0 ? _shopItem.shopDes : @"暂无";
+    
+    NSMutableString *str = [NSMutableString string];
+    for (DryClearnShopCampaignObject *it in _shopItem.campaignList) {
+        [str appendFormat:@"%@ %@ %@", it.name, it.condition, it.content];
+    }
+    self.shopCampaignLable.text = str.length > 0 ? str : @"暂无";
+}
+
 
 #pragma mark - TableView
 
@@ -432,7 +503,7 @@
     self.page = 1;
     
     //[SVProgressHUD showWithStatus:@"加载类别中..."];
-    [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIObject *info) {
+    [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIShareSdkObject *info) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
@@ -588,14 +659,20 @@
 //打电话
 -(void)goCallTelMethod:(UIButton *)sender
 {
-    DryCleanOrderCommitSubmitVC *vc = [[DryCleanOrderCommitSubmitVC alloc] init];
-    vc.hiddenTabBar = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (_shopItem.shopTel.length > 0) {
+        NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_shopItem.shopTel];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    } else
+        [SVProgressHUD showErrorWithStatus:@"暂无电话"];
+   
+//    DryCleanOrderCommentSubmitVC *vc = [[DryCleanOrderCommentSubmitVC alloc] init];
+//    vc.hiddenTabBar = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)goCommentMethod:(id)sender
 {
-    ShopCommentTVC *vc = [[ShopCommentTVC alloc] init];
+    DryCleanOrderCommentTVC *vc = [[DryCleanOrderCommentTVC alloc] init];
     vc.hiddenTabBar = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

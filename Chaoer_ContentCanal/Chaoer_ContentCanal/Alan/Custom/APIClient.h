@@ -8,10 +8,11 @@
 
 #import "AFNetworking.h"
 #import "APIObjectDefine.h"
+#import "dataModel.h"
 
 
-typedef void (^TableArrBlock)(NSArray *tableArr, APIObject* info);
-typedef void (^TableBlock)(int totalpage, NSArray *tableArr, APIObject* info);
+typedef void (^TableArrBlock)(NSArray *tableArr, APIShareSdkObject* info);
+typedef void (^TableBlock)(int totalpage, NSArray *tableArr, APIShareSdkObject* info);
 
 
 
@@ -46,10 +47,17 @@ typedef void (^TableBlock)(int totalpage, NSArray *tableArr, APIObject* info);
 -(void)postWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlockBack:(void (^)(id <AFMultipartFormData> formData))block call:(void (^)(NSError *error, id responseObject))callback;
 
 
--(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIObject* info))callback;
+-(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIShareSdkObject* info))callback;
 -(void)cookListWithTag:(NSObject *)tag cookId:(NSString *)cid name:(NSString *)name pageIndex:(int)page call:(TableBlock)callback;
--(void)cookInfoWithTag:(NSObject *)tag cookId:(NSString *)cid call:(void (^)(CookObject* item, APIObject* info))callback;
+-(void)cookInfoWithTag:(NSObject *)tag cookId:(NSString *)cid call:(void (^)(CookObject* item, APIShareSdkObject* info))callback;
 
--(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIObject* info))callback;
+-(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIShareSdkObject* info))callback;
+
+
+
+
+
+-(void)dryClearnShopInfoWithTag:(NSObject *)tag shopId:(NSString *)sid call:(void (^)(DryClearnShopObject* item, int coupon, int focus, APIObject* info))callback;
+
 
 @end

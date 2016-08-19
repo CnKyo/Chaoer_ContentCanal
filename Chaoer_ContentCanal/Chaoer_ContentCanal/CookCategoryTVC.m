@@ -62,7 +62,7 @@ static NSString *const kTagsTableCellReuseIdentifier = @"TagsTableCell";
     self.page = 1;
     
     [SVProgressHUD showWithStatus:@"加载类别中..."];
-    [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIObject *info) {
+    [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIShareSdkObject *info) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];

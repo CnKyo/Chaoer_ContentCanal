@@ -144,25 +144,25 @@
     [self addConnection:operation group:key];
 }
 
--(void)loadWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(APIObject* info))callback
+-(void)loadWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(APIShareSdkObject* info))callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
     if ([parameters isKindOfClass:[NSDictionary class]])
         [paramDic addEntriesFromDictionary:parameters];
     [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:paramDic call:^(NSError *error, id responseObject) {
-        APIObject *info = nil;
+        APIShareSdkObject *info = nil;
         if (error == nil) {
             NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
             //        NSString *result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
             //        NSLog(@"\n\n ---APIObject----result:-----------%@", result);
-            info = [APIObject mj_objectWithKeyValues:responseObject];
+            info = [APIShareSdkObject mj_objectWithKeyValues:responseObject];
             if (info==nil)
-                info = [APIObject infoWithErrorMessage:@"网络错误"];
+                info = [APIShareSdkObject infoWithErrorMessage:@"网络错误"];
             //        else if (info.data == nil)
             //            info.state = BOOL_NO;
         } else {
             NSLog(@"\n\n ---APIObject----result error:-----------%@", error);
-            info = [APIObject infoWithError:error];
+            info = [APIShareSdkObject infoWithError:error];
         }
         
         callback(info);
@@ -174,7 +174,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
     if ([parameters isKindOfClass:[NSDictionary class]])
         [dic addEntriesFromDictionary:parameters];
-    [self loadWithTag:tag path:URLString parameters:dic call:^(APIObject *info) {
+    [self loadWithTag:tag path:URLString parameters:dic call:^(APIShareSdkObject *info) {
         int newPage = kNoneNumber;
         int total = kNoneNumber;
         NSArray *newArr = nil;
@@ -192,8 +192,6 @@
 
 
 
-
-
 #pragma mark - 菜谱
 
 /**
@@ -202,9 +200,9 @@
  *  @param tag      url链接对象
  *  @param callback 返回分类信息
  */
--(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIObject* info))callback
+-(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIShareSdkObject* info))callback
 {
-    [self loadWithTag:tag path:@"/v1/cook/category/query" parameters:nil call:^(APIObject *info) {
+    [self loadWithTag:tag path:@"/v1/cook/category/query" parameters:nil call:^(APIShareSdkObject *info) {
         CookCategoryObject *it = [CookCategoryObject mj_objectWithKeyValues:info.result];
         callback(it, info);
     }];
@@ -227,7 +225,7 @@
         [paramDic setValidStr:name forKey:@"name"];
     else if (cid.length > 0)
         [paramDic setValidStr:cid forKey:@"cid"];
-    [self tableListWithTag:tag path:@"/v1/cook/menu/search" parameters:paramDic pageIndex:page subClass:[CookObject class] call:^(int totalpage, NSArray *tableArr, APIObject *info) {
+    [self tableListWithTag:tag path:@"/v1/cook/menu/search" parameters:paramDic pageIndex:page subClass:[CookObject class] call:^(int totalpage, NSArray *tableArr, APIShareSdkObject *info) {
         callback(totalpage, tableArr, info);
     }];
 }
@@ -241,11 +239,11 @@
  *  @param cid      菜谱ID
  *  @param callback 返回菜谱信息
  */
--(void)cookInfoWithTag:(NSObject *)tag cookId:(NSString *)cid call:(void (^)(CookObject* item, APIObject* info))callback
+-(void)cookInfoWithTag:(NSObject *)tag cookId:(NSString *)cid call:(void (^)(CookObject* item, APIShareSdkObject* info))callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setValidStr:cid forKey:@"cid"];
-    [self loadWithTag:tag path:@"/v1/cook/menu/query" parameters:paramDic call:^(APIObject *info) {
+    [self loadWithTag:tag path:@"/v1/cook/menu/query" parameters:paramDic call:^(APIShareSdkObject *info) {
         CookObject *it = [CookObject mj_objectWithKeyValues:info.result];
         callback(it, info);
     }];
@@ -253,7 +251,7 @@
 
 
 
--(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIObject* info))callback
+-(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIShareSdkObject* info))callback
 {
     
     [self postWithTag:tag path:@"http://120.27.111.122/resource/userInfo/uploadUserProfileImg" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
@@ -264,6 +262,66 @@
     }];
     
 }
+
+
+
+
+
+
+
+
+#pragma mark - API
+-(void)loadAPIWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
+    if ([parameters isKindOfClass:[NSDictionary class]])
+        [paramDic addEntriesFromDictionary:parameters];
+    [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:paramDic call:^(NSError *error, id responseObject) {
+        APIObject *info = nil;
+        if (error == nil) {
+            NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
+            info = [APIObject mj_objectWithKeyValues:responseObject];
+            if (info==nil)
+                info = [APIObject infoWithErrorMessage:@"网络错误"];
+        } else {
+            NSLog(@"\n\n ---APIObject----result error:-----------%@", error);
+            info = [APIObject infoWithError:error];
+        }
+        
+        callback(info);
+    }];
+}
+
+
+
+
+/**
+ *  获取干洗店铺信息
+ *
+ *  @param tag      链接对象
+ *  @param sid      商铺id
+ *  @param callback 返回数据
+ */
+-(void)dryClearnShopInfoWithTag:(NSObject *)tag shopId:(NSString *)sid call:(void (^)(DryClearnShopObject* item, int coupon, int focus, APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setValidStr:sid forKey:@"shopId"];
+    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/index" parameters:paramDic call:^(APIObject *info) {
+        if (info.data != nil) {
+            int couponCount = [[info.data objectWithKey:@"coupon"] intValue]; //优惠券数量
+            int focusId = [[info.data objectWithKey:@"focus"] intValue]; //用户收藏表记录id
+            NSDictionary *shopDic = [info.data objectForKey:@"shop"];
+            DryClearnShopObject *it = [DryClearnShopObject mj_objectWithKeyValues:shopDic];
+            callback(it, couponCount, focusId, info);
+        } else
+            callback(nil, 0, 0, info);
+    }];
+}
+
+
+
+
 
 
 @end

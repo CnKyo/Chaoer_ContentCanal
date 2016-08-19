@@ -82,7 +82,7 @@
                 make.right.equalTo(_barView.mas_left);
             }];
             [self.barView makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(view.mas_right);
+                make.right.equalTo(view.mas_right).offset(-padding);
                 make.top.equalTo(view.mas_top).offset(padding/2);
             }];
             [self.commentLable makeConstraints:^(MASConstraintMaker *make) {
