@@ -8,6 +8,6 @@
 
 #import "QUScrollVC.h"
 
-@interface DryCleanOrderCommitSubmitVC : QUScrollVC
+@interface DryCleanOrderCommentSubmitVC : QUScrollVC
 
 @end

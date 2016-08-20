@@ -8,6 +8,6 @@
 
 #import "BaseVC.h"
 
-@interface ShopCommentTVC : BaseVC
+@interface DryCleanOrderCommentTVC : BaseVC
 
 @end

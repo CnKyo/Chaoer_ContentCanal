@@ -46,6 +46,23 @@
 
 
 
+@implementation NSURL (AFObjectDefine)
++ (NSURL*)imageurl:(NSString*)str
+{
+    NSString *newStr = @"";
+    if (str.length > 0) {
+        if ([str hasPrefix:@"http://"] || [str hasPrefix:@"https://"])
+            newStr =  str;
+        else
+            newStr = [NSString stringWithFormat:@"%@%@", [HTTPrequest currentResourceUrl], str];
+    }
+    return [NSURL URLWithString:newStr];
+}
+@end
+
+
+
+
 
 @implementation APIObjectDefine
 
@@ -53,11 +70,11 @@
 
 #pragma mark -
 #pragma mark APIObject
-@implementation APIObject
+@implementation APIShareSdkObject
 
-+(APIObject *)infoWithError:(NSError *)error
++(APIShareSdkObject *)infoWithError:(NSError *)error
 {
-    APIObject *info = [[APIObject alloc] init];
+    APIShareSdkObject *info = [[APIShareSdkObject alloc] init];
     NSString *des = [error.userInfo objectWithKey:@"NSLocalizedDescription"];
     if (des.length > 0)
         info.msg = des;
@@ -67,9 +84,9 @@
     return info;
 }
 
-+(APIObject *)infoWithErrorMessage:(NSString *)errMsg
++(APIShareSdkObject *)infoWithErrorMessage:(NSString *)errMsg
 {
-    APIObject *info = [[APIObject alloc] init];
+    APIShareSdkObject *info = [[APIShareSdkObject alloc] init];
     info.msg       = errMsg;
     info.retCode = 0;
     return info;
@@ -179,144 +196,59 @@
 
 
 
-@implementation MobileAddressObject
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
+
+
+@implementation APIObject
+
++(APIObject *)infoWithError:(NSError *)error
 {
-    return @{@"operatorS": @"operator"};
+    APIObject *info = [[APIObject alloc] init];
+    NSString *des = [error.userInfo objectWithKey:@"NSLocalizedDescription"];
+    if (des.length > 0)
+        info.message = des;
+    else
+        info.message       = @"网络请示失败，请检查网络";
+    info.state = 0;
+    return info;
+}
+
++(APIObject *)infoWithErrorMessage:(NSString *)errMsg
+{
+    APIObject *info = [[APIObject alloc] init];
+    info.message       = errMsg;
+    info.state = 0;
+    return info;
 }
 @end
 
 
 
-
-
-@implementation AddressDistrictObject
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
-{
-    return @{@"iD": @"id"};
-}
+@implementation DryClearnShopCampaignObject
 @end
 
-@implementation AddressCityObject
+@implementation DryClearnShopObject
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
-    return @{@"iD": @"id"};
+    return @{@"iD" : @"id"};
 }
 + (NSDictionary *)mj_objectClassInArray
 {
-    return @{@"district" : @"AddressDistrictObject"};
+    return @{@"campaignList" : @"DryClearnShopCampaignObject"};
 }
 @end
 
-@implementation AddressProvinceObject
+
+@implementation DryClearnShopClassObject
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
-    return @{@"iD": @"id"};
-}
-+ (NSDictionary *)mj_objectClassInArray
-{
-    return @{@"city" : @"AddressCityObject"};
-}
-@end
-
-@implementation AddressPostCodeObject
-@end
-
-
-
-
-
-@implementation WeatherFutureObject
-@end
-
-@implementation WeatherObject
-+ (NSDictionary *)mj_objectClassInArray
-{
-    return @{@"future" : @"WeatherFutureObject"};
+    return @{@"iD" : @"id"};
 }
 @end
 
 
-
-
-@implementation EnvironmentFutureObject
-@end
-
-@implementation EnvironmentHourObject
-@end
-
-@implementation EnvironmentObject
-+ (NSDictionary *)mj_objectClassInArray
-{
-    return @{@"fetureData" : @"EnvironmentFutureObject",
-             @"hourData" : @"EnvironmentHourObject"};
-}
-@end
-
-
-
-
-@implementation HistoryDayEventObject
-@end
-
-
-
-
-
-
-@implementation DictionaryObject
-@end
-
-@implementation IdiomObject
-@end
-
-@implementation CalendarObject
-@end
-
-@implementation HoroscopeObject
-@end
-@implementation DreamObject
-@end
-
-@implementation IdcardObject
-@end
-
-
-@implementation BankCardObject
-@end
-
-
-
-@implementation HealthObject
+@implementation DryClearnShopServerObject
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
-    return @{@"iD": @"id"};
+    return @{@"iD" : @"id"};
 }
 @end
-
-
-
-@implementation WeixinCategoryObject
-@end
-@implementation WeixinObject
-+ (NSDictionary *)mj_replacedKeyFromPropertyName
-{
-    return @{@"iD": @"id"};
-}
-@end
-
-
-@implementation AwardObject
-@end
-@implementation LotteryObject
-+ (NSDictionary *)mj_objectClassInArray
-{
-    return @{@"lotteryDetails" : @"AwardObject"};
-}
-@end
-
-
-@implementation OilPriceObject
-@end
-
-

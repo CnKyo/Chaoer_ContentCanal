@@ -11,12 +11,20 @@
 #import "RatingBar.h"
 #import "APIClient.h"
 #import "UIImage+QUAdditons.h"
-
+#import "UIImageView+AFNetworking.h"
 
 @interface DryCleanShopServerDetailVC ()
 @property(nonatomic,strong) UIScrollView*       scrollView;
 @property(nonatomic,strong) UIView*             scrollContentView;
+
+@property(nonatomic,strong) UIImageView*        imgView;
+@property(nonatomic,strong) UILabel*            nameLable;
+@property(nonatomic,strong) TTTAttributedLabel* priceLable;
+@property(nonatomic,strong) UILabel*            standardlable;
+@property(nonatomic,strong) UILabel*            describeLable;
 @end
+
+
 
 @implementation DryCleanShopServerDetailVC
 
@@ -37,6 +45,21 @@
     self.page = 1;
     
     [self initView];
+    
+    [self reloadUIWithData];
+    
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [[APIClient sharedClient] dryClearnShopServerInfoWithTag:self serverId:_item.iD call:^(DryClearnShopServerObject *item, APIObject *info) {
+        if (info.state == RESP_STATUS_YES && item!=nil) {
+            self.item = item;
+            [self reloadUIWithData];
+
+            [SVProgressHUD dismiss];
+        } else {
+            if (info.message.length > 0)
+                [SVProgressHUD showErrorWithStatus:info.message];
+        }
+    }];
     
 }
 
@@ -72,6 +95,7 @@
         
         
         UIImageView *imgView = [contentView newUIImageViewWithImg:IMG(@"DefaultImg.png")];
+        self.imgView = imgView;
         
         UIView *aView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
@@ -88,6 +112,8 @@
                                                                                          }];
             attributedLabel.text = attString;
             [view addSubview:attributedLabel];
+            self.nameLable = nameLable;
+            self.priceLable = attributedLabel;
             [nameLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.top.bottom.equalTo(view);
@@ -114,6 +140,7 @@
             });
             UILabel *notelable = [view newUILableWithText:@"爱上的的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上地方阿的发生的发生的发的沙发上的发生的发生地方爱上的发生的发生达到" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:13]];
             notelable.numberOfLines = 0;
+            self.standardlable = notelable;
             [infoView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.equalTo(view);
                 make.height.equalTo(infoView.mas_width).multipliedBy(0.1);
@@ -143,6 +170,7 @@
             });
             UILabel *notelable = [view newUILableWithText:@"爱上的的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上的发生的发生的发的沙发上的爱迪生发生的发的沙发上的发的沙发上地方阿的发生的发生的发的沙发上的发生的发生地方爱上的发生的发生达到" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:13]];
             notelable.numberOfLines = 0;
+            self.describeLable = notelable;
             [infoView makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.equalTo(view);
                 make.height.equalTo(infoView.mas_width).multipliedBy(0.1);
@@ -205,6 +233,15 @@
         make.bottom.equalTo(btnView.top);
     }];
 
+}
+
+-(void)reloadUIWithData
+{
+    [self.imgView setImageWithURL:[NSURL imageurl:_item.image] placeholderImage:IMG(@"DefaultImg.png")];
+    self.nameLable.text = _item.type.length > 0 ? _item.type : @"暂无";
+    self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", _item.price];
+    self.standardlable.text = _item.standard.length > 0 ? _item.standard : @"暂无";
+    self.describeLable.text = _item.describe.length > 0 ? _item.describe : @"暂无";
 }
 
 

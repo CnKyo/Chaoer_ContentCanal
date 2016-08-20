@@ -7,7 +7,10 @@
 //干洗店铺服务详情界面
 
 #import "BaseVC.h"
+#import "APIClient.h"
 
 @interface DryCleanShopServerDetailVC : BaseVC
+
+@property(nonatomic, strong) DryClearnShopServerObject* item;
 
 @end

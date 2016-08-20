@@ -6,17 +6,17 @@
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "DryCleanOrderCommitSubmitVC.h"
+#import "DryCleanOrderCommentSubmitVC.h"
 #import "UIView+AutoSize.h"
 #import "RateView.h"
 #import "APIClient.h"
 #import "UIImage+QUAdditons.h"
 
-@interface DryCleanOrderCommitSubmitVC ()
+@interface DryCleanOrderCommentSubmitVC ()
 
 @end
 
-@implementation DryCleanOrderCommitSubmitVC
+@implementation DryCleanOrderCommentSubmitVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
