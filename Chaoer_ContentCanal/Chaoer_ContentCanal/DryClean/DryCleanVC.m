@@ -18,8 +18,18 @@
 #import "DryCleanServerTableViewCell.h"
 #import "DryCleanOrderSubmitVC.h"
 #import "RateView.h"
+#import "mFoodHeaderView.h"
+#import "mFoodClearView.h"
+#import "mFoodShopCarCell.h"
 
-@interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource, WKFoodHeaderViewDelegate, WKFoodShopCarCellDelegate>
+{
+    mFoodHeaderView *mBottomView;
+    
+    mFoodClearView *mClearView;
+    int mNum;
+    int mTTPrice;
+}
 @property(nonatomic,strong) UISegmentedControl *segControl;
 @property(nonatomic,strong) UIScrollView*       scrollView;
 @property(nonatomic,strong) UIView*             scrollContentView;
@@ -29,6 +39,9 @@
 @property(nonatomic,strong) NSMutableArray* classArr;
 @property(nonatomic,assign) NSInteger       classIndex; //选择哪一种类别
 
+@property(nonatomic,strong) UITableView *   mShopCarListView;
+@property(nonatomic,strong) UIView *        mShopCarBgkView;
+@property(nonatomic,strong) NSMutableArray* mShopCartArr;
 
 
 @property(nonatomic,strong) UIImageView*    shopImgView;
@@ -40,6 +53,7 @@
 @property(nonatomic,strong) DryClearnShopObject* shopItem;
 @property(nonatomic,assign) int                 shopCoupon;
 @property(nonatomic,assign) int                 shopFocus;
+
 @end
 
 
@@ -65,28 +79,18 @@
     self.page = 1;
     
     [self initView];
+    [self initShopCarView];
     
-    self.segControl.selectedSegmentIndex = 0;
-    [self loadSegSelectIndex:0];
+    //self.classArr = [NSMutableArray arrayWithObjects:@"分类1",@"分类2",@"分类3",@"分类4",@"分类5", nil];
+    self.classArr = [NSMutableArray array];
+    self.mShopCartArr = [NSMutableArray array];
     
 
-    self.classArr = [NSMutableArray arrayWithObjects:@"分类1",@"分类2",@"分类3",@"分类4",@"分类5", nil];
-    
-    [self selectClassIndex:0];
-    
-    [SVProgressHUD showWithStatus:@"加载中..."];
-    [[APIClient sharedClient] dryClearnShopInfoWithTag:self shopId:@"9" call:^(DryClearnShopObject *item, int coupon, int focus, APIObject *info) {
-        if (item != nil) {
-            self.shopItem = item;
-            self.shopCoupon = coupon;
-            self.shopFocus = focus;
-            [self reloadShopInfoUI];
-            [SVProgressHUD dismiss];
-        } else
-            [SVProgressHUD showErrorWithStatus:info.message];
-    }];
-    
+    self.segControl.selectedSegmentIndex = 0;
+    [self loadSegSelectIndex:0];
 }
+
+
 - (void)initView{
     
     
@@ -149,21 +153,22 @@
         UIView *aView = ({
             UIView *view = [contentView newUIViewWithBgColor:[UIColor whiteColor]];
             UILabel *nameLable = [view newUILableWithText:@"超尔干洗店" textColor:[UIColor blackColor] font:font1];
-            UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goYudingMethod:) title:@"去预约" titleColor:[UIColor whiteColor] titleFont:font1];
-            [btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
+            //UIButton *btn = [view newUIButtonWithTarget:self mehotd:@selector(goYudingMethod:) title:@"去预约" titleColor:[UIColor whiteColor] titleFont:font1];
+            //[btn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
             self.shopNameLable = nameLable;
             [nameLable makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(view.left).offset(padding);
                 make.top.equalTo(view.top).offset(padding/2);
                 make.bottom.equalTo(view.bottom).offset(-padding/2);
+                make.right.equalTo(view.right).offset(-padding);
             }];
-            [btn makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(nameLable.mas_right).offset(padding/2);
-                make.centerY.equalTo(view.centerY);
-                make.right.equalTo(view.mas_right).offset(-padding);
-                make.width.equalTo(80);
-                make.height.equalTo(35);
-            }];
+//            [btn makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(nameLable.mas_right).offset(padding/2);
+//                make.centerY.equalTo(view.centerY);
+//                make.right.equalTo(view.mas_right).offset(-padding);
+//                make.width.equalTo(80);
+//                make.height.equalTo(35);
+//            }];
             view;
         });
 //        UIView *aView = ({
@@ -370,55 +375,62 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.996 green:1.000 blue:1.000 alpha:1.000];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.segSelect1View addSubview:self.tableView];
     
-
-    
-    UIView *cartView = ({
-        UIView *view = [self.segSelect1View newUIViewWithBgColor:[UIColor colorWithRed:0.910 green:0.918 blue:0.922 alpha:1.000]];
-        UIButton *cartBtn = [view newUIButtonWithTarget:self mehotd:@selector(showCartView:) bgImgNormal:IMG(@"dryClean_cart_gray.png")];
-        UILabel *priceLable = [view newUILableWithText:@"￥10" textColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000] font:[UIFont systemFontOfSize:18]];
-        UIView *lineView = [view newUIViewWithBgColor:[UIColor colorWithRed:0.808 green:0.812 blue:0.816 alpha:1.000]];
-        UILabel *noteLable = [view newUILableWithText:@"取衣费：2元" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:13]];
-        UIButton *submmitBtn = [view newUIButtonWithTarget:self mehotd:@selector(goSubmmitMethod:) title:@"去结算" titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:18]];
-        [submmitBtn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
-        [cartBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view.left).offset(padding);
-            make.top.equalTo(view.top).offset(padding/2);
-            make.bottom.equalTo(view.bottom).offset(-padding/2);
-            make.width.equalTo(cartBtn.mas_height);
-        }];
-        [priceLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(cartBtn.right).offset(padding/2);
-            make.top.bottom.equalTo(cartBtn);
-        }];
-        [lineView makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(priceLable.right).offset(padding);
-            make.height.equalTo(view.mas_height).multipliedBy(0.6);
-            make.width.equalTo(OnePixNumber);
-            make.centerY.equalTo(view.centerY);
-        }];
-        [noteLable makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(lineView.right).offset(padding);
-            make.top.bottom.equalTo(cartBtn);
-            make.right.lessThanOrEqualTo(submmitBtn.left).offset(-padding/2);
-        }];
-        [submmitBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.right.top.bottom.equalTo(view);
-            make.width.equalTo(submmitBtn.mas_height).multipliedBy(1.5);
-        }];
-        view;
-    });
-    [cartView makeConstraints:^(MASConstraintMaker *make) {
+    mBottomView = [mFoodHeaderView shareBottomView];
+    mBottomView.delegate = self;
+    mBottomView.mNum.hidden = YES;
+    [self.segSelect1View addSubview:mBottomView];
+    [mBottomView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.segSelect1View);
-        make.height.equalTo(cartView.mas_width).multipliedBy(0.15);
+        make.height.offset(@50);
     }];
+    
+//    UIView *cartView = ({
+//        UIView *view = [self.segSelect1View newUIViewWithBgColor:[UIColor colorWithRed:0.910 green:0.918 blue:0.922 alpha:1.000]];
+//        UIButton *cartBtn = [view newUIButtonWithTarget:self mehotd:@selector(showCartView:) bgImgNormal:IMG(@"dryClean_cart_gray.png")];
+//        UILabel *priceLable = [view newUILableWithText:@"￥10" textColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000] font:[UIFont systemFontOfSize:18]];
+//        UIView *lineView = [view newUIViewWithBgColor:[UIColor colorWithRed:0.808 green:0.812 blue:0.816 alpha:1.000]];
+//        UILabel *noteLable = [view newUILableWithText:@"取衣费：2元" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:13]];
+//        UIButton *submmitBtn = [view newUIButtonWithTarget:self mehotd:@selector(goSubmmitMethod:) title:@"去结算" titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:18]];
+//        [submmitBtn setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000]] forState:UIControlStateNormal];
+//        [cartBtn makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(view.left).offset(padding);
+//            make.top.equalTo(view.top).offset(padding/2);
+//            make.bottom.equalTo(view.bottom).offset(-padding/2);
+//            make.width.equalTo(cartBtn.mas_height);
+//        }];
+//        [priceLable makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(cartBtn.right).offset(padding/2);
+//            make.top.bottom.equalTo(cartBtn);
+//        }];
+//        [lineView makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(priceLable.right).offset(padding);
+//            make.height.equalTo(view.mas_height).multipliedBy(0.6);
+//            make.width.equalTo(OnePixNumber);
+//            make.centerY.equalTo(view.centerY);
+//        }];
+//        [noteLable makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(lineView.right).offset(padding);
+//            make.top.bottom.equalTo(cartBtn);
+//            make.right.lessThanOrEqualTo(submmitBtn.left).offset(-padding/2);
+//        }];
+//        [submmitBtn makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.top.bottom.equalTo(view);
+//            make.width.equalTo(submmitBtn.mas_height).multipliedBy(1.5);
+//        }];
+//        view;
+//    });
+//    [cartView makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.bottom.equalTo(self.segSelect1View);
+//        make.height.equalTo(cartView.mas_width).multipliedBy(0.15);
+//    }];
     
     [self.classTableView makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.segSelect1View);
-        make.bottom.equalTo(cartView.top);
+        make.bottom.equalTo(mBottomView.top);
         make.width.equalTo(classTableViewWidth);
     }];
     [self.tableView updateConstraints:^(MASConstraintMaker *make) {
@@ -428,7 +440,6 @@
     }];
     
     self.haveHeader = YES;
-    self.haveFooter = YES;
 }
 
 -(void)loadSegSelectIndex:(NSInteger)index
@@ -437,10 +448,39 @@
         [self.view bringSubviewToFront:self.scrollView];
         self.scrollView.hidden = NO;
         self.segSelect1View.hidden = YES;
+        
+        if (_shopItem == nil) {
+            [SVProgressHUD showWithStatus:@"加载中..."];
+            [[APIClient sharedClient] dryClearnShopInfoWithTag:self shopId:9 call:^(DryClearnShopObject *item, int coupon, int focus, APIObject *info) {
+                if (item != nil) {
+                    self.shopItem = item;
+                    self.shopCoupon = coupon;
+                    self.shopFocus = focus;
+                    [self reloadShopInfoUI];
+                    [SVProgressHUD dismiss];
+                } else
+                    [SVProgressHUD showErrorWithStatus:info.message];
+            }];
+        }
+
     } else {
         [self.view bringSubviewToFront:self.segSelect1View];
         self.scrollView.hidden = YES;
         self.segSelect1View.hidden = NO;
+        
+        if (self.classArr.count == 0) {
+            [SVProgressHUD showWithStatus:@"加载中..."];
+            [[APIClient sharedClient] dryClearnShopClassListWithTag:self shopId:9 call:^(NSArray *tableArr, APIObject *info) {
+                if (tableArr.count > 0) {
+                    [self.classArr setArray:tableArr];
+                    [self.classTableView reloadData];
+                    [self selectClassIndex:0];
+                    
+                    [SVProgressHUD dismiss];
+                } else
+                    [SVProgressHUD showErrorWithStatus:info.message];
+            }];
+        }
     }
 }
 
@@ -455,9 +495,7 @@
 
 -(void)reloadShopInfoUI
 {
-    
-    self.rightBtnTitle = _shopFocus > 0 ? @"已收藏" : @"未收藏";
-    
+    [self reloadShopFocusType];
     
     [self.shopImgView setImageWithURL:[NSURL imageurl:_shopItem.shopLogo] placeholderImage:IMG(@"DefaultImg.png")];
     self.shopNameLable.text = _shopItem.shopName.length > 0 ? _shopItem.shopName : @"暂无";
@@ -469,6 +507,10 @@
         [str appendFormat:@"%@ %@ %@", it.name, it.condition, it.content];
     }
     self.shopCampaignLable.text = str.length > 0 ? str : @"暂无";
+}
+-(void)reloadShopFocusType
+{
+    self.rightBtnTitle = _shopFocus > 0 ? @"已收藏" : @"未收藏";
 }
 
 
@@ -503,17 +545,15 @@
     self.page = 1;
     
     //[SVProgressHUD showWithStatus:@"加载类别中..."];
-    [[APIClient sharedClient] cookCategoryQueryWithTag:self call:^(CookCategoryObject *item, APIShareSdkObject *info) {
+    [[APIClient sharedClient] dryClearnShopServerListWithTag:self shopId:9 classId:1 call:^(NSArray *tableArr, APIObject *info) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
         
-        for (int i=0; i<10; i++) {
-            [self.tempArray addObject:@"111"];
-        }
+        [self.tempArray setArray:tableArr];
         
-        if (info.retCode == RETCODE_SUCCESS) {
-            if (item == nil) {
+        if (info.state == RESP_STATUS_YES) {
+            if (tableArr == nil) {
                 [self addEmptyViewWithImg:nil];
                 return ;
             }
@@ -521,13 +561,28 @@
             [SVProgressHUD dismiss];
         } else {
             [self addEmptyViewWithImg:nil];
-            [SVProgressHUD showErrorWithStatus:info.msg];
+            [SVProgressHUD showErrorWithStatus:info.message];
         }
     }];
 }
 
 
 #pragma mark -- tableviewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (tableView == self.mShopCarListView) {
+        return 40;
+    }
+    return 0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (tableView == self.mShopCarListView) {
+        mClearView = [mFoodClearView shareView];
+        [mClearView.mClearnBtn addTarget:self action:@selector(mClearAction:) forControlEvents:UIControlEventTouchUpInside];
+        return mClearView;
+    }
+    return nil;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == _classTableView) {
@@ -536,8 +591,20 @@
     } else if (tableView == self.tableView) {
         if (self.tempArray.count > 0)
             return self.tempArray.count;
+    } else if (tableView == self.mShopCarListView) {
+        return self.mShopCartArr.count;
     }
     return 0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView==self.tableView ) {
+        return 80;
+    } else if(tableView == self.mShopCarListView){
+        return 40;
+    }
+    return 50;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -553,7 +620,7 @@
 //            imgView.tag = 10;
             UILabel *lable = [cell.contentView newUILableWithText:@"" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14] textAlignment:QU_TextAlignmentCenter];
             lable.tag = 11;
-            int padding = 10;
+            //int padding = 10;
             [lable makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(superView);
             }];
@@ -568,24 +635,39 @@
 //                make.bottom.equalTo(superView.bottom).offset(-padding/2);
 //            }];
         }
-        UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:10];
+        //UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:10];
         UILabel *lable = (UILabel *)[cell.contentView viewWithTag:11];
         if (_classIndex == indexPath.row) {
             lable.textColor = [UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000];
-            lable.backgroundColor = COLOR_NavBar;
-        } else {
-            lable.textColor = [UIColor grayColor];
             lable.backgroundColor = [UIColor whiteColor];
+//            lable.textColor = [UIColor whiteColor];
+//            lable.backgroundColor = [UIColor colorWithRed:0.518 green:0.745 blue:0.129 alpha:1.000];
+        } else {
+            lable.textColor = [UIColor colorWithWhite:0.3 alpha:1];
+            lable.backgroundColor = [UIColor colorWithRed:0.961 green:0.965 blue:0.969 alpha:1.000];
         }
         
-        id obj = [self.classArr objectAtIndex:indexPath.row];
-        if ([obj isKindOfClass:[NSString class]]) {
-            lable.text = obj;
-        }
+        DryClearnShopClassObject* item = [self.classArr objectAtIndex:indexPath.row];
+        lable.text = item.name;
         
         return cell;
         
         
+    } else if (tableView == self.mShopCarListView){
+        static NSString *CellIdentifier = @"ClassGoodsTableViewCell3";
+        
+        mFoodShopCarCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.mIndexPath = indexPath;
+        cell.delegate = self;
+        
+        DryClearnShopServerObject* item = [self.mShopCartArr objectAtIndex:indexPath.row];
+        cell.mName.text = item.type.length>0 ? item.type : @"暂无";
+        cell.mNum.text =  StringWithInt(item.count);
+        
+        
+        return cell;
     } else {
         static NSString *CellIdentifier = @"ClassGoodsTableViewCell2";
         DryCleanServerTableViewCell *cell = (DryCleanServerTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -593,21 +675,27 @@
             cell= [[DryCleanServerTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             //cell.backgroundColor = [UIColor clearColor];
         }
-        cell.nameLable.text = @"标题11111";
-        cell.priceLable.text = @"￥100";
-        cell.countLable.text = @"1";
+        DryClearnShopServerObject* item = [self.tempArray objectAtIndex:indexPath.row];
+        cell.nameLable.text = item.type.length>0 ? item.type : @"暂无";
+        cell.priceLable.text = [NSString stringWithFormat:@"￥%.2f", item.price];
+        [cell.thumbImgView setImageWithURL:[NSURL imageurl:item.image] placeholderImage:IMG(@"DefaultImg.png")];
+        
+        cell.count = [self countFromCartDicWithId:item.iD];
+
+        cell.jianCallBack = ^(int count) {
+            item.count = count;
+            [self setCartArrWithItem:item];
+        };
+        cell.addCallBack = ^(int count) {
+            item.count = count;
+            [self setCartArrWithItem:item];
+        };
         
         return cell;
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView==self.tableView ) {
-        return 80;
-    }
-    return 60;
-}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -616,12 +704,215 @@
     if (_classTableView == tableView) {
         [self selectClassIndex:indexPath.row];
         
-    } else {
-
+    } else if (self.tableView == tableView) {
+        if (self.tempArray.count > indexPath.row) {
+            DryClearnShopServerObject* item = [self.tempArray objectAtIndex:indexPath.row];
+            
+            DryCleanShopServerDetailVC *vc = [[DryCleanShopServerDetailVC alloc] init];
+            vc.item = item;
+            vc.hiddenTabBar = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
+#pragma mark----购物车数据处理
+-(void)setCartArrWithItem:(DryClearnShopServerObject *)item
+{
+    BOOL isNew = YES;
+    for (int i=0; i<_mShopCartArr.count; i++) {
+        DryClearnShopServerObject *it = [_mShopCartArr objectAtIndex:i];
+        if (it.iD == item.iD) {
+            isNew = NO;
+            if (item.count > 0) {
+                it.count = item.count;
+                [self.mShopCartArr replaceObjectAtIndex:i withObject:it];
+                
+                [self.mShopCarListView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            } else {
+                [self.mShopCartArr removeObjectAtIndex:i];
+                
+                if (self.mShopCartArr.count > 0)
+                    [self.mShopCarListView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                else
+                    [self.mShopCarListView reloadData];
+            }
+            break;
+        }
+    }
+    
+    if (isNew == YES) {
+        [self.mShopCartArr addObject:item];
+        
+        [self.mShopCarListView reloadData];
+    }
+    
+    [self upDatePage];
+}
 
+-(int)countFromCartDicWithId:(int)iD
+{
+    int count = 0;
+    for (DryClearnShopServerObject *it in _mShopCartArr) {
+        if (it.iD == iD) {
+            count = it.count;
+            break;
+        }
+    }
+    return count;
+}
+
+-(int)totalCountFromCartArr
+{
+    int count = 0;
+    for (DryClearnShopServerObject *it in _mShopCartArr)
+        count += it.count;
+    return count;
+}
+
+
+//-(void)setCartDicWithCount:(int)count iD:(int)iD
+//{
+//    NSString *key = StringWithInt(iD);
+//    NSString *value = StringWithInt(count);
+//    [self.mShopCarCountDic setObject:value forKey:key];
+//    
+//    [self upDatePage];
+//}
+//
+//-(int)countFromCartDicWithId:(int)iD
+//{
+//    NSString *key = StringWithInt(iD);
+//    NSString *value = [self.mShopCarCountDic objectWithKey:key];
+//    if (value != nil)
+//        return [value intValue];
+//    return 0;
+//}
+//
+//-(int)totalCountFromCartDic
+//{
+//    int count = 0;
+//    NSArray *values = [self.mShopCarCountDic allValues];
+//    for (NSString *valueStr in values) {
+//        count +=  [valueStr intValue];
+//    }
+//    return count;
+//}
+
+
+
+#pragma mark----headerview和bottomview的代理方法
+- (void)upDatePage{
+    int count = [self totalCountFromCartArr];
+    
+    if (count <= 0) {
+        mBottomView.mNum.hidden = YES;
+        mBottomView.mGoPayBrn.enabled = NO;
+    }else{
+        mBottomView.mNum.hidden = NO;
+        mBottomView.mGoPayBrn.enabled = YES;
+        mBottomView.mNum.text = [NSString stringWithFormat:@"%i",count];
+    }
+    
+}
+
+#pragma mark----去结算的代理方法
+- (void)WKFoodViewBottomGoPayCilicked{
+
+    
+}
+#pragma mark----购物车的代理方法
+- (void)WKFoodViewBottomShopCarCilicked{
+    [self showShopList];
+}
+
+#pragma mark----cell减按钮和加按钮的代理方法
+- (void)WKFoodShopCarCellWithJianAction:(NSInteger)mIndex indexPath:(NSIndexPath *)mIndexPath
+{
+    DryClearnShopServerObject* item = [self.mShopCartArr objectAtIndex:mIndexPath.row];
+    item.count --;
+    [self setCartArrWithItem:item];
+    
+    [self.tableView reloadData];
+}
+
+- (void)WKFoodShopCarCellWithAddAction:(NSInteger)mIndex indexPath:(NSIndexPath *)mIndexPath
+{
+    DryClearnShopServerObject* item = [self.mShopCartArr objectAtIndex:mIndexPath.row];
+    item.count ++;
+    [self setCartArrWithItem:item];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark----展现购物车view
+- (void)initShopCarView{
+    
+    self.mShopCarBgkView = [UIView new];
+    self.mShopCarBgkView.frame = CGRectMake(0, -50, DEVICE_Width, DEVICE_Height-50);
+    self.mShopCarBgkView.backgroundColor = [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.75];
+    self.mShopCarBgkView.alpha = 0;
+    [self.view addSubview:self.mShopCarBgkView];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [self.mShopCarBgkView addGestureRecognizer:tap];
+    
+    
+    self.mShopCarListView = [UITableView new];
+    
+    self.mShopCarListView.frame = CGRectMake(0, self.mShopCarBgkView.mheight, DEVICE_Width, DEVICE_Height/2);
+    
+    self.mShopCarListView.delegate = self;
+    self.mShopCarListView.dataSource = self;
+    self.mShopCarListView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.mShopCarListView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
+    self.mShopCarListView.showsVerticalScrollIndicator = NO;
+    self.mShopCarListView.showsHorizontalScrollIndicator = NO;
+    UINib   *nib = [UINib nibWithNibName:@"mFoodShopCarCell" bundle:nil];
+    [self.mShopCarListView registerNib:nib forCellReuseIdentifier:@"ClassGoodsTableViewCell3"];
+    self.mShopCarListView.alpha = 0;
+    [self.mShopCarBgkView addSubview:self.mShopCarListView];
+    
+    
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)sender{
+    
+    [self hiddenShopList];
+}
+- (void)showShopList{
+    [self.view bringSubviewToFront:self.mShopCarBgkView];
+    [self.mShopCarListView reloadData];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.mShopCarBgkView.alpha = 1;
+        self.mShopCarListView.alpha = 1;
+        
+        CGRect mSR = self.mShopCarListView.frame;
+        mSR.origin.y = DEVICE_Height/2;
+        self.mShopCarListView.frame = mSR;
+    }];
+}
+
+- (void)hiddenShopList{
+    [UIView animateWithDuration:0.25 animations:^{
+        self.mShopCarBgkView.alpha = 0;
+        self.mShopCarListView.alpha = 01;
+        
+        CGRect mSR = self.mShopCarListView.frame;
+        mSR.origin.y = self.mShopCarBgkView.mheight;
+        self.mShopCarListView.frame = mSR;
+    }];
+}
+- (void)mClearAction:(UIButton *)sender{
+    
+    [self.mShopCartArr removeAllObjects];
+    [self.mShopCarListView reloadData];
+    [self.tableView reloadData];
+    [self upDatePage];
+    MLLog(@"清空购物车");
+}
 
 
 #pragma mark - BtnMethod
@@ -630,6 +921,21 @@
 -(void)rightBtnTouched:(id)sender
 {
     //todo
+    BOOL actionNext = _shopFocus > 0 ? NO : YES;
+    
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [[APIClient sharedClient] dryClearnShopCollectWithTag:self shopId:9 actionType:actionNext call:^(APIObject *info) {
+        if (info.state == RESP_STATUS_YES) {
+            self.shopFocus = actionNext ? 1 : 0;
+            [self reloadShopFocusType];
+            
+            if (info.message.length > 0)
+                [SVProgressHUD showSuccessWithStatus:info.message];
+        } else {
+            if (info.message.length > 0)
+                [SVProgressHUD showErrorWithStatus:info.message];
+        }
+    }];
 }
 
 //显示购物车列表

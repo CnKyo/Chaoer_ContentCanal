@@ -169,7 +169,7 @@
     }];
 }
 
--(void)tableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TableBlock)callback
+-(void)tableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TableShareSdkBlock)callback
 {
     NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
     if ([parameters isKindOfClass:[NSDictionary class]])
@@ -202,7 +202,7 @@
  */
 -(void)cookCategoryQueryWithTag:(NSObject *)tag call:(void (^)(CookCategoryObject* item, APIShareSdkObject* info))callback
 {
-    [self loadWithTag:tag path:@"/v1/cook/category/query" parameters:nil call:^(APIShareSdkObject *info) {
+    [self loadWithTag:tag path:@"http://apicloud.mob.com/v1/cook/category/query" parameters:nil call:^(APIShareSdkObject *info) {
         CookCategoryObject *it = [CookCategoryObject mj_objectWithKeyValues:info.result];
         callback(it, info);
     }];
@@ -218,14 +218,14 @@
  *  @param page     页码数
  *  @param callback 返回订单列表
  */
--(void)cookListWithTag:(NSObject *)tag cookId:(NSString *)cid name:(NSString *)name pageIndex:(int)page call:(TableBlock)callback
+-(void)cookListWithTag:(NSObject *)tag cookId:(NSString *)cid name:(NSString *)name pageIndex:(int)page call:(TableShareSdkBlock)callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     if (name.length > 0)
         [paramDic setValidStr:name forKey:@"name"];
     else if (cid.length > 0)
         [paramDic setValidStr:cid forKey:@"cid"];
-    [self tableListWithTag:tag path:@"/v1/cook/menu/search" parameters:paramDic pageIndex:page subClass:[CookObject class] call:^(int totalpage, NSArray *tableArr, APIShareSdkObject *info) {
+    [self tableListWithTag:tag path:@"http://apicloud.mob.com/v1/cook/menu/search" parameters:paramDic pageIndex:page subClass:[CookObject class] call:^(int totalpage, NSArray *tableArr, APIShareSdkObject *info) {
         callback(totalpage, tableArr, info);
     }];
 }
@@ -243,7 +243,7 @@
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setValidStr:cid forKey:@"cid"];
-    [self loadWithTag:tag path:@"/v1/cook/menu/query" parameters:paramDic call:^(APIShareSdkObject *info) {
+    [self loadWithTag:tag path:@"http://apicloud.mob.com/v1/cook/menu/query" parameters:paramDic call:^(APIShareSdkObject *info) {
         CookObject *it = [CookObject mj_objectWithKeyValues:info.result];
         callback(it, info);
     }];
@@ -293,6 +293,19 @@
 }
 
 
+-(void)loadAPITableListWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(NSDictionary *)parameters pageIndex:(int)page subClass:(Class)aClass call:(TableArrBlock)callback
+{
+    NSMutableDictionary *dic = [NSMutableDictionary quDicWithPage:page pageRow:TABLE_PAGE_ROW];
+    if ([parameters isKindOfClass:[NSDictionary class]])
+        [dic addEntriesFromDictionary:parameters];
+    [self loadAPIWithTag:tag path:URLString parameters:dic call:^(APIObject *info) {
+        NSArray *newArr = nil;
+        if (info.state == RESP_STATUS_YES && [info.data isKindOfClass:[NSArray class]]) {
+            newArr = [aClass mj_objectArrayWithKeyValuesArray:info.data];
+        }
+        callback(newArr, info);
+    }];
+}
 
 
 /**
@@ -302,10 +315,10 @@
  *  @param sid      商铺id
  *  @param callback 返回数据
  */
--(void)dryClearnShopInfoWithTag:(NSObject *)tag shopId:(NSString *)sid call:(void (^)(DryClearnShopObject* item, int coupon, int focus, APIObject* info))callback
+-(void)dryClearnShopInfoWithTag:(NSObject *)tag shopId:(int)sid call:(void (^)(DryClearnShopObject* item, int coupon, int focus, APIObject* info))callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setValidStr:sid forKey:@"shopId"];
+    [paramDic setInt:sid forKey:@"shopId"];
     [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
     [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/index" parameters:paramDic call:^(APIObject *info) {
         if (info.data != nil) {
@@ -320,8 +333,82 @@
 }
 
 
+/**
+ *  干洗店铺收藏接口
+ *
+ *  @param tag      链接对象
+ *  @param sid      商铺id
+ *  @param collect  type=1收藏操作，type=0取消操作
+ *  @param callback 返回成功失败
+ */
+-(void)dryClearnShopCollectWithTag:(NSObject *)tag shopId:(int)sid actionType:(BOOL)collect call:(void (^)(APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"shopId"];
+    [paramDic setObject:[NSString stringWithFormat:@"%i",collect] forKey:@"type"];
+    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/collectShop" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
 
 
+/**
+ *  干洗店铺商品分类列表接口
+ *
+ *  @param tag      链接对象
+ *  @param sid      商铺id
+ *  @param callback 返回列表
+ */
+-(void)dryClearnShopClassListWithTag:(NSObject *)tag shopId:(int)sid call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"shopId"];
+    [paramDic setObject:@"0" forKey:@"classify"];
+    [self loadAPITableListWithTag:tag path:@"http://192.168.1.114/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopClassObject class] call:^(NSArray *tableArr, APIObject *info) {
+        callback(tableArr, info);
+    }];
+}
 
+
+/**
+ *  干洗店铺商品服务列表接口
+ *
+ *  @param tag      链接对象
+ *  @param sid      商铺id
+ *  @param cid      分类id
+ *  @param callback 返回列表
+ */
+-(void)dryClearnShopServerListWithTag:(NSObject *)tag shopId:(int)sid classId:(int)cid call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"shopId"];
+    [paramDic setInt:cid forKey:@"classify"];
+    [self loadAPITableListWithTag:tag path:@"http://192.168.1.114/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopServerObject class] call:^(NSArray *tableArr, APIObject *info) {
+        callback(tableArr, info);
+    }];
+}
+
+
+/**
+ *  干洗店铺商品服务详情信息接口
+ *
+ *  @param tag      链接对象
+ *  @param sid      服务id
+ *  @param callback 返回信息
+ */
+-(void)dryClearnShopServerInfoWithTag:(NSObject *)tag serverId:(int)sid call:(void (^)(DryClearnShopServerObject *item, APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"classify"];
+    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/classifyInfo" parameters:paramDic call:^(APIObject *info) {
+        if (info.data != nil) {
+            DryClearnShopServerObject *it = [DryClearnShopServerObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        } else
+            callback(nil, info);
+    }];
+}
 
 @end

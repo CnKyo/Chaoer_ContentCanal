@@ -26,5 +26,7 @@ const static int kNoneNumber = -1000;  //定义无用的初始值
 const static int kSuccessNumber = 200;  //定义的成功返回值
 const static int kFailNumber = 500;  //定义的失败返回值
 
+static int const RESP_STATUS_YES                  = 200000;             //成功
+
 
 #endif /* CustomDefine_h */

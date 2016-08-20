@@ -12,9 +12,9 @@
 
 @optional
 
-- (void)WKFoodShopCarCellWithJianAction:(NSInteger)mIndex;
+- (void)WKFoodShopCarCellWithJianAction:(NSInteger)mIndex indexPath:(NSIndexPath *)mIndexPath;
 
-- (void)WKFoodShopCarCellWithAddAction:(NSInteger)mIndex;
+- (void)WKFoodShopCarCellWithAddAction:(NSInteger)mIndex indexPath:(NSIndexPath *)mIndexPath;
 
 @end
 

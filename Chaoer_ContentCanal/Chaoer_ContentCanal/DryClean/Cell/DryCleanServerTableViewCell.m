@@ -75,6 +75,9 @@
             make.right.equalTo(_countLable.left);
             make.left.greaterThanOrEqualTo(_nameLable.right).offset(padding/2);
         }];
+        
+        
+        self.count = 0;
     }
     return self;
 }
@@ -91,15 +94,43 @@
 }
 
 
+-(void)setCount:(int)count
+{
+    _count = count;
+    
+    [self loadUIWithCount];
+}
+
+
+-(void)loadUIWithCount
+{
+    if (_count > 0) {
+        self.countLable.hidden = NO;
+        self.jianBtn.hidden = NO;
+    } else {
+        self.countLable.hidden = YES;
+        self.jianBtn.hidden = YES;
+    }
+    self.countLable.text = [NSString stringWithFormat:@"%i", _count];
+}
+
 -(void)jianCountMethod:(UIButton *)sender
 {
-    
+    if (_count > 0) {
+        self.count --;
+        
+        if (self.jianCallBack)
+            self.jianCallBack(_count);
+    }
 }
 
 
 -(void)addCountMethod:(UIButton *)sender
 {
+    self.count ++;
     
+    if (self.addCallBack)
+        self.addCallBack(_count);
 }
 
 @end

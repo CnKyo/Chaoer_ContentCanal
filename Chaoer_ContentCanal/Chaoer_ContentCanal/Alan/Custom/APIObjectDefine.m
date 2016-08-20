@@ -227,6 +227,10 @@
 @end
 
 @implementation DryClearnShopObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
 + (NSDictionary *)mj_objectClassInArray
 {
     return @{@"campaignList" : @"DryClearnShopCampaignObject"};
@@ -234,7 +238,17 @@
 @end
 
 
+@implementation DryClearnShopClassObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
+@end
 
 
-
-
+@implementation DryClearnShopServerObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
+@end

@@ -17,4 +17,10 @@
 @property(strong, nonatomic) UIButton*          jianBtn;
 @property(strong, nonatomic) UILabel*           countLable;
 @property(strong, nonatomic) UIButton*          addBtn;
+
+@property(assign, nonatomic) int                count;
+
+@property (nonatomic, copy) void (^jianCallBack)(int count);
+@property (nonatomic, copy) void (^addCallBack)(int count);
+
 @end

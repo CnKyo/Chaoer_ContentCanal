@@ -137,3 +137,33 @@
 @end
 
 
+//干洗店铺商品分类信息
+@interface DryClearnShopClassObject : NSObject
+@property (nonatomic, assign) int                   iD;              //id
+@property (nonatomic, strong) NSString *            name;              //
+@property (nonatomic, strong) NSString *            image;              //
+@end
+
+
+//干洗店铺商品服务信息
+@interface DryClearnShopServerObject : NSObject
+@property (nonatomic, assign) int                   iD;              //id
+@property (nonatomic, assign) double                price;              //
+@property (nonatomic, strong) NSString *            type;              //
+@property (nonatomic, strong) NSString *            image;              //
+@property (nonatomic, strong) NSString *            standard;              //
+@property (nonatomic, strong) NSString *            describe;              //
+
+@property (nonatomic, assign) int                   count;              //本地定义购物数量
+@end
+
+
+
+
+
+
+
+
+
+
+

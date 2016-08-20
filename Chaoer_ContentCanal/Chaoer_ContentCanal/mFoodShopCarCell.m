@@ -23,8 +23,8 @@
 
 - (IBAction)mJianAction:(UIButton *)sender {
 
-    if ([self.delegate respondsToSelector:@selector(WKFoodShopCarCellWithJianAction:)]) {
-        [self.delegate WKFoodShopCarCellWithJianAction:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(WKFoodShopCarCellWithJianAction:indexPath:)]) {
+        [self.delegate WKFoodShopCarCellWithJianAction:sender.tag indexPath:self.mIndexPath];
     }
     
 }
@@ -32,8 +32,8 @@
 
 - (IBAction)mAddAction:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(WKFoodShopCarCellWithAddAction:)]) {
-        [self.delegate WKFoodShopCarCellWithAddAction:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(WKFoodShopCarCellWithAddAction:indexPath:)]) {
+        [self.delegate WKFoodShopCarCellWithAddAction:sender.tag indexPath:self.mIndexPath];
     }
     
     
