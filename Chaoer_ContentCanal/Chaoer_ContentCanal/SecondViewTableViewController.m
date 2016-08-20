@@ -58,9 +58,12 @@
     
     mRateTableHeaderView = [mFoodRateHeaderView shareView];
     mRateTableHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 100);
+    
     mRateServiceView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, mRateTableHeaderView.mSericeRateView.mwidth, mRateTableHeaderView.mSericeRateView.mheight)];
+    mRateServiceView.enable = NO;
     [mRateTableHeaderView.mSericeRateView addSubview:mRateServiceView];
     mRateProducteView = [[RatingBar alloc] initWithFrame:CGRectMake(0, 0, mRateTableHeaderView.mProductRateView.mwidth, mRateTableHeaderView.mProductRateView.mheight)];
+    mRateProducteView.enable = NO;
     [mRateTableHeaderView.mProductRateView addSubview:mRateProducteView];
 
     

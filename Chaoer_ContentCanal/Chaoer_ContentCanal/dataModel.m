@@ -7138,3 +7138,28 @@ bool pptbined = NO;
 }
 
 @end
+
+@implementation GFoodCategry
+
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mName = [obj objectForKeyMy:@"name"];
+    self.mSuperId = [obj objectForKeyMy:@"superiorId"];
+    
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    
+    
+}
+
+@end

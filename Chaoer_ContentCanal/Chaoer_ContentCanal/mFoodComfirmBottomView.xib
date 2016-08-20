@@ -11,6 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcI-Ix-3H5">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30075431034482758" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MIz-zi-1FO"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJ7-fe-bEs" customClass="WPHotspotLabel">
                     <rect key="frame" x="8" y="16" width="204" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -34,9 +41,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3qP-tL-mEg" secondAttribute="trailing" id="ASX-7K-Fs4"/>
+                <constraint firstItem="bcI-Ix-3H5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HgU-hM-CLm"/>
                 <constraint firstItem="3qP-tL-mEg" firstAttribute="leading" secondItem="LJ7-fe-bEs" secondAttribute="trailing" constant="8" id="JXw-oa-WIL"/>
                 <constraint firstAttribute="bottom" secondItem="3qP-tL-mEg" secondAttribute="bottom" id="Q26-am-CZ5"/>
+                <constraint firstAttribute="trailing" secondItem="bcI-Ix-3H5" secondAttribute="trailing" id="T9P-Mw-Qcs"/>
                 <constraint firstItem="3qP-tL-mEg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YTh-m4-pM3"/>
+                <constraint firstItem="bcI-Ix-3H5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iD3-nT-88y"/>
                 <constraint firstItem="LJ7-fe-bEs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="kW8-aY-20r"/>
                 <constraint firstItem="LJ7-fe-bEs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rEG-8S-jrq"/>
             </constraints>

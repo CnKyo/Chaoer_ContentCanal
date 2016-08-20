@@ -198,15 +198,15 @@ static CGFloat const headViewHeight = 120;
         
         OneViewTableTableViewController * First=[[OneViewTableTableViewController alloc]init];
         
-        SecondViewTableViewController * Second=[[SecondViewTableViewController alloc]init];
+//        SecondViewTableViewController * Second=[[SecondViewTableViewController alloc]init];
         
         ThirdViewCollectionViewController * Third=[[ThirdViewCollectionViewController alloc]init];
         
-        NSArray *controllers=@[First,Second,Third];
+        NSArray *controllers=@[First,Third];
         
-        NSArray *titleArray =@[@"点餐",@"评价",@"详情"];
+        NSArray *titleArray =@[@"点餐",@"详情"];
         
-        MYSegmentView * rcs=[[MYSegmentView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-64) controllers:controllers titleArray:titleArray ParentController:self lineWidth:DEVICE_Width/5 lineHeight:3.];
+        MYSegmentView * rcs=[[MYSegmentView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-64) controllers:controllers titleArray:titleArray ParentController:self lineWidth:DEVICE_Width/2 lineHeight:3.];
         
         _RCSegView = rcs;
     }

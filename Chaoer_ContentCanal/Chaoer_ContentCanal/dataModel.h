@@ -1432,6 +1432,11 @@
  *  @param block    返回值
  */
 - (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
+
+
+
+#pragma mark----餐饮店铺接口
+
 @end
 
 @interface SMessage : NSObject
@@ -4096,3 +4101,25 @@
 
 @end
 
+#pragma mark -----餐饮分类
+/**
+ 餐饮分类
+ 
+ - returns:
+ */
+@interface GFoodCategry : NSObject
+-(id)initWithObj:(NSDictionary *)obj;
+/**
+ *  分类id
+ */
+@property (assign,nonatomic) int mId;
+/**
+ *  分类名称
+ */
+@property (strong,nonatomic) NSString *mName;
+/**
+ *  弗雷id
+ */
+@property (strong,nonatomic) NSString *mSuperId;
+
+@end
