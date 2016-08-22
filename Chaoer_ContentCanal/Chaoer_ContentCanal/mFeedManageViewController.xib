@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJS-Da-W6D">
-                    <rect key="frame" x="0.0" y="79" width="320" height="250"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="250"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您要投诉的小区是：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8T-QZ-4yi">
                             <rect key="frame" x="20" y="15" width="280" height="30"/>
@@ -126,7 +126,7 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgU-SO-P1f">
-                    <rect key="frame" x="15" y="349" width="290" height="40"/>
+                    <rect key="frame" x="15" y="334" width="290" height="40"/>
                     <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bSt-EK-KWl"/>
@@ -144,13 +144,13 @@
             <constraints>
                 <constraint firstItem="SgU-SO-P1f" firstAttribute="top" secondItem="FJS-Da-W6D" secondAttribute="bottom" constant="20" id="4tp-EJ-qhe"/>
                 <constraint firstAttribute="trailing" secondItem="SgU-SO-P1f" secondAttribute="trailing" constant="15" id="8bz-mk-rM1"/>
-                <constraint firstItem="FJS-Da-W6D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Rid-Bl-k0o"/>
+                <constraint firstItem="FJS-Da-W6D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Rid-Bl-k0o"/>
                 <constraint firstItem="SgU-SO-P1f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WME-F2-S2m"/>
                 <constraint firstAttribute="trailing" secondItem="FJS-Da-W6D" secondAttribute="trailing" id="aiG-1y-Wcd"/>
                 <constraint firstItem="FJS-Da-W6D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tat-ZU-BA9"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="190" y="286"/>
+            <point key="canvasLocation" x="218" y="269"/>
         </view>
     </objects>
 </document>

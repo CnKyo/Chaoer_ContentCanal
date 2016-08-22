@@ -14,7 +14,8 @@
 
 
 #import "canalViewController.h"
-
+#import "needCodeViewController.h"
+#import "verifyBankViewController.h"
 #import "payFeeViewController.h"
 @interface wpgViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,6 +25,8 @@
 {
     
     canPayView *mHeaderView;
+    
+    NSArray *mImg;
 }
 - (void)viewDidLoad {
 
@@ -44,29 +47,29 @@
 }
 
 - (void)initView{
-
-    UIImageView *mbgk = [UIImageView new];
-    CGRect  mrr = self.view.bounds;
-    mrr.origin.y = 64;
-    mbgk.frame = mrr;
-    mbgk.image = [UIImage imageNamed:@"mBaseBgkImg"];
-    [self.view addSubview:mbgk];
+    
+    mImg = @[[UIImage imageNamed:@"quik_canal"],[UIImage imageNamed:@"quik_power"]];
+    
+    [self.tempArray addObject:@"物管费"];
+    [self.tempArray addObject:@"水电气费"];
+    
     
     mHeaderView = [canPayView shareHeaderView];
+    
     mHeaderView.frame = CGRectMake(0, 64, DEVICE_Width, 50);
+    
+    mHeaderView.mYue.text = [NSString stringWithFormat:@"账户余额：¥%.2f元",[mUserInfo backNowUser].mMoney];
     [mHeaderView.mChongzhi addTarget:self action:@selector(mTopupAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mHeaderView];
 
     
-    [self loadTableView:CGRectMake(0, 124, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
-
+    [self loadTableView:CGRectMake(0, 50, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UINib   *nib = [UINib nibWithNibName:@"wpgTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
     
-    [self.tempArray addObject:@"水费"];
-    [self.tempArray addObject:@"电费"];
-    [self.tempArray addObject:@"燃气费"];
+    [self.tableView reloadData];
 
     
     
@@ -89,7 +92,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return 2;
     
 }
 
@@ -106,7 +109,7 @@
     wpgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
     cell.mName.text = self.tempArray[indexPath.row];
-    
+    cell.mLogo.image = mImg[indexPath.row];
     return cell;
     
 }
@@ -115,20 +118,32 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *mTT = nil;
     
     if (indexPath.row == 0) {
-        mTT = @"缴费-水费";
-    }if (indexPath.row == 1) {
-        mTT = @"缴费-电费";
-    }if(indexPath.row == 2){
-        mTT = @"缴费-燃气费";
+        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+            return;
+        }
+        
+   
+        canalViewController *ccc= [canalViewController new];
+        
+        ccc.mTitel= @"缴费－物管费";
+        [self pushViewController:ccc];
+        
+
+    }else{
+
+        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+            return;
+        }
+        
+        payFeeViewController *ccc= [[payFeeViewController alloc] initWithNibName:@"payFeeViewController" bundle:nil];
+        
+        ccc.mTitel= @"水电气费";
+        [self pushViewController:ccc];
     }
-    payFeeViewController *ccc= [[payFeeViewController alloc] initWithNibName:@"payFeeViewController" bundle:nil];
-    
-    ccc.mTitel= mTT;
-    [self pushViewController:ccc];
-    
     
 }
 
@@ -147,5 +162,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if( buttonIndex == 1)
+    {
+        
+        needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
+        nnn.Type = 1;
+        
+        [self pushViewController:nnn];
+        
+        
+        
+        
+    }
+}
 
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"去认证", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 @end

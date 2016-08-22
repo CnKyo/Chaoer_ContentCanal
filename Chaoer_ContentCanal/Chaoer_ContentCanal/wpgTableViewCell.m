@@ -15,7 +15,7 @@
 }
 - (void)layoutSubviews{
     _mLogo.layer.masksToBounds = YES;
-    _mLogo.layer.cornerRadius = _mLogo.mwidth/2;
+    _mLogo.layer.cornerRadius = 3;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

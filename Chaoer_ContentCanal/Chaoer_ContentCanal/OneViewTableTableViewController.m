@@ -68,6 +68,8 @@
     
     [self.view addSubview:_mRightTableView];
     
+    
+    
     mBottomView = [mFoodHeaderView shareBottomView];
     mBottomView.delegate = self;
     mBottomView.mNum.hidden = YES;
@@ -97,6 +99,7 @@
     }];
 
     [self initShopCarView];
+    [self loadData];
 }
 - (void)upDatePage{
 
@@ -110,6 +113,18 @@
         mBottomView.mNum.text = [NSString stringWithFormat:@"%d",mNum];
 
     }
+    
+}
+- (void)loadData{
+    
+    
+    [[mUserInfo backNowUser] getFoodShopInfo:8 andPage:1 andCategaryId:0 block:^(mBaseData *resb, NSArray *mCategry, NSArray *mList) {
+        if (resb.mSucess) {
+            
+        }else{
+        
+        }
+    }];
     
 }
 - (void)didReceiveMemoryWarning {

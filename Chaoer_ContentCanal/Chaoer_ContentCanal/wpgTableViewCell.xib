@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,9 +15,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPB-K3-Lhf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30250538793103449" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="rm4-hi-hEz"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="02z-zV-c0X">
                         <rect key="frame" x="15" y="10" width="40" height="40"/>
-                        <color key="backgroundColor" red="0.87058823529999996" green="0.45098039220000002" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="8wa-sO-1Iy"/>
                             <constraint firstAttribute="width" constant="40" id="CWu-Nt-l23"/>
@@ -56,10 +63,13 @@
                     <constraint firstItem="EN7-a7-dVB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="46p-Kg-I1s"/>
                     <constraint firstItem="02z-zV-c0X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="B2G-vl-bdW"/>
                     <constraint firstItem="088-DS-lKi" firstAttribute="leading" secondItem="02z-zV-c0X" secondAttribute="trailing" constant="8" id="JHR-Xa-RXa"/>
+                    <constraint firstItem="xPB-K3-Lhf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Kzw-0y-t7r"/>
+                    <constraint firstItem="xPB-K3-Lhf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="NE9-64-l0H"/>
                     <constraint firstItem="eWT-wG-fhN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="Srk-7O-iaU"/>
                     <constraint firstItem="EN7-a7-dVB" firstAttribute="leading" secondItem="eWT-wG-fhN" secondAttribute="trailing" constant="8" id="Yh2-KG-8t7"/>
                     <constraint firstItem="088-DS-lKi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="hO3-h7-OSz"/>
                     <constraint firstItem="02z-zV-c0X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="kMv-Rm-Rp6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xPB-K3-Lhf" secondAttribute="trailing" constant="-8" id="rfS-9j-wzS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="EN7-a7-dVB" secondAttribute="trailing" id="uZ2-Al-DU5"/>
                 </constraints>
                 <variation key="default">

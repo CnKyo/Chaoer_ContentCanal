@@ -91,9 +91,7 @@
     mUnitArr = [NSMutableArray new];
     mFloorArr = [NSMutableArray new];
     Arrtemp = [NSMutableArray new];
-    self.mBgkView.layer.masksToBounds = YES;
-    self.mBgkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
-    self.mBgkView.layer.borderWidth = 1;
+
     
     self.mSubmit.layer.masksToBounds = YES;
     self.mSubmit.layer.cornerRadius = 3;

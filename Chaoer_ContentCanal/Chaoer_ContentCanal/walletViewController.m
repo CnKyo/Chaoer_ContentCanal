@@ -23,6 +23,7 @@
 #import "verifyBankViewController.h"
 
 #import "valletCell1.h"
+#import "ScanViewController.h"
 @interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate>
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
@@ -78,7 +79,9 @@
 }
 #pragma mark0----扫描按钮
 - (void)valletHeaderScanAction{
-
+    ScanViewController *mmm = [ScanViewController new];
+    self.navigationController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:mmm animated:YES];
 }
 - (void)headerBeganRefresh{
 

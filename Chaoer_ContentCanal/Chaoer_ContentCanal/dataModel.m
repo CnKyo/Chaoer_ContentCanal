@@ -4435,8 +4435,95 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
 
 }
+#pragma mark----餐饮店铺信息接口
+/**
+ *  餐饮店铺信息接口
+ *
+ *  @param mShopId     店铺id
+ *  @param mPage       fenyr
+ *  @param mCategaryId 分类id
+ *  @param block       返回值
+ */
+- (void)getFoodShopInfo:(int)mShopId andPage:(int)mPage andCategaryId:(int)mCategaryId block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block{
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:@"device" forKey:@"ios"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
 
+    [para setObject:NumberWithInt(mPage) forKey:@"page"];
+    [para setObject:@"10" forKey:@"rows"];
+    [para setObject:NumberWithInt(mCategaryId) forKey:@"class"];
 
+    
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/food/index" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        if (info.mSucess) {
+            
+            
+            NSMutableArray *mClass = [NSMutableArray new];
+            NSMutableArray *mList = [NSMutableArray new];
+            
+            
+            
+            
+            
+            block(info,mClass,mList);
+        }else{
+            block(info,nil,nil);
+        }
+    }];
+}
+#pragma mark----餐饮店铺接口
+/**
+ *  餐饮店铺信息接口
+ *
+ *  @param mPage    分页
+ *  @param mLevel   分类id
+ *  @param block    返回值
+ */
+#pragma mark----餐饮店铺分类信息接口
+/**
+ *  餐饮店铺分类信息接口
+ *
+ *  @param mPage    分页
+ *  @param mLevel   分类id
+ *  @param block    返回值
+ */
+- (void)getFoodShopCategaryInfo:(int)mShopId andPage:(int)mPage andLevel:(int)mLevel block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt(mPage) forKey:@"userId"];
+    [para setObject:NumberWithInt(mLevel) forKey:@"isIntegral"];
+    [para setObject:@"20" forKey:@"pageSize"];
+    [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
+
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"sm/food/class/getClassification" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        if (info.mSucess) {
+            
+            
+            NSMutableArray *mClass = [NSMutableArray new];
+            NSMutableArray *mList = [NSMutableArray new];
+            
+            
+            
+            
+            
+            block(info,mClass,mList);
+        }else{
+            block(info,nil,nil);
+        }
+    }];
+    
+
+    
+}
 @end
 
 @implementation SMessage

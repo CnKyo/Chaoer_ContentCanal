@@ -147,11 +147,11 @@
     mArr1 = @[dic,dic2,dic3];
     
     
-    NSMutableDictionary *dic4 = [NSMutableDictionary new];
-    [dic4 setObject:@"活动中心" forKey:@"name"];
-    [dic4 setObject:img4 forKey:@"img"];
-    [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
-    [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
+//    NSMutableDictionary *dic4 = [NSMutableDictionary new];
+//    [dic4 setObject:@"活动中心" forKey:@"name"];
+//    [dic4 setObject:img4 forKey:@"img"];
+//    [dic4 setObject:NumberWithInt(4) forKey:@"ppp"];
+//    [dic4 setObject:NumberWithInt(2) forKey:@"hidden"];
 
 
     NSMutableDictionary *dic5 = [NSMutableDictionary new];
@@ -160,11 +160,11 @@
     [dic5 setObject:NumberWithInt(5) forKey:@"ppp"];
     [dic5 setObject:NumberWithInt(2) forKey:@"hidden"];
 
-    NSMutableDictionary *dic6 = [NSMutableDictionary new];
-    [dic6 setObject:@"出租房" forKey:@"name"];
-    [dic6 setObject:img6 forKey:@"img"];
-    [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
-    [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
+//    NSMutableDictionary *dic6 = [NSMutableDictionary new];
+//    [dic6 setObject:@"出租房" forKey:@"name"];
+//    [dic6 setObject:img6 forKey:@"img"];
+//    [dic6 setObject:NumberWithInt(6) forKey:@"ppp"];
+//    [dic6 setObject:NumberWithInt(2) forKey:@"hidden"];
 
     
     NSMutableDictionary *dic7 = [NSMutableDictionary new];
@@ -173,7 +173,7 @@
     [dic7 setObject:NumberWithInt(7) forKey:@"ppp"];
     [dic7 setObject:NumberWithInt(2) forKey:@"hidden"];
     
-    mArr2 = @[dic4,dic5,dic6,dic7];
+    mArr2 = @[dic5,dic7];
     
     [self.tempArray addObject:mArr1];
     [self.tempArray addObject:mArr2];
@@ -540,29 +540,18 @@
         {
 
             MLLog(@"我的二维码");
-            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
+//            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
 
-//            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
-//            
-//            [self pushViewController:bbb];
-
+            barCodeViewController * bbb = [[barCodeViewController alloc] initWithNibName:@"barCodeViewController" bundle:nil];
             
-        }
-            break;
-        case 4:
-        {
+            [self pushViewController:bbb];
 
-            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
-            //            activityCenterViewController *mmm = [[activityCenterViewController alloc] initWithNibName:@"activityCenterViewController" bundle:nil];
-            //            [self pushViewController:mmm];
-            
             
         }
             break;
         case 5:
         {
-     
-            
+
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
@@ -571,19 +560,13 @@
             orderTongjiViewController *oo = [[orderTongjiViewController alloc] initWithNibName:@"orderTongjiViewController" bundle:nil];
             
             [self pushViewController:oo];
-
-
-        }
-            break;
-        case 6:
-        {
-            [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];
-
             
         }
             break;
         case 7:
         {
+     
+            
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 return;
@@ -592,9 +575,12 @@
             needCodeViewController *nnn = [[needCodeViewController alloc] initWithNibName:@"needCodeViewController" bundle:nil];
             nnn.Type = 3;
             [self pushViewController:nnn];
-            
+
+
+
         }
             break;
+
         default:
             break;
     }

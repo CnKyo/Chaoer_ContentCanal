@@ -107,10 +107,12 @@
     [self.mReason setHolderToTop];
     self.mBgtkView.layer.masksToBounds = YES;
     self.mBgtkView.layer.borderColor = [UIColor colorWithRed:0.82 green:0.82 blue:0.84 alpha:1].CGColor;
-    self.mBgtkView.layer.borderWidth = 1;
+    self.mBgtkView.layer.borderWidth = 0.5;
     
     self.mSubmitBtn.layer.masksToBounds = YES;
     self.mSubmitBtn.layer.cornerRadius = 3;
+    
+    
 }
 
 

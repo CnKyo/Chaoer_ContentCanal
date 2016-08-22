@@ -36,7 +36,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lY-bL-IUH">
-                    <rect key="frame" x="24" y="39" width="80" height="40"/>
+                    <rect key="frame" x="50" y="39" width="80" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wechat_three" translatesAutoresizingMaskIntoConstraints="NO" id="87W-bG-Nzu">
                             <rect key="frame" x="5" y="5" width="30" height="30"/>
@@ -73,48 +73,8 @@
                         <constraint firstAttribute="bottom" secondItem="gYc-7T-RAq" secondAttribute="bottom" constant="10" id="voJ-tW-cge"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="If5-9L-KBs">
-                    <rect key="frame" x="120" y="39" width="80" height="40"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sina_three" translatesAutoresizingMaskIntoConstraints="NO" id="fwh-fd-YvS">
-                            <rect key="frame" x="5" y="5" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="hr0-yr-cP2"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaf-Yz-Bc2">
-                            <rect key="frame" x="38" y="9" width="42" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGa-RR-DgZ">
-                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="fwh-fd-YvS" firstAttribute="leading" secondItem="If5-9L-KBs" secondAttribute="leading" constant="5" id="4ey-l6-gqC"/>
-                        <constraint firstItem="fwh-fd-YvS" firstAttribute="top" secondItem="If5-9L-KBs" secondAttribute="top" constant="5" id="9YY-7C-lAR"/>
-                        <constraint firstAttribute="height" constant="40" id="D3F-df-NSD"/>
-                        <constraint firstItem="mGa-RR-DgZ" firstAttribute="top" secondItem="If5-9L-KBs" secondAttribute="top" id="Idy-JJ-Huc"/>
-                        <constraint firstItem="Jaf-Yz-Bc2" firstAttribute="leading" secondItem="fwh-fd-YvS" secondAttribute="trailing" constant="3" id="Qc9-2c-oOH"/>
-                        <constraint firstAttribute="bottom" secondItem="Jaf-Yz-Bc2" secondAttribute="bottom" constant="10" id="S9K-vI-bpT"/>
-                        <constraint firstAttribute="trailing" secondItem="mGa-RR-DgZ" secondAttribute="trailing" id="TiM-n5-sx6"/>
-                        <constraint firstAttribute="width" constant="80" id="buz-Ag-q1d"/>
-                        <constraint firstItem="mGa-RR-DgZ" firstAttribute="leading" secondItem="If5-9L-KBs" secondAttribute="leading" id="mz0-cF-gd5"/>
-                        <constraint firstAttribute="bottom" secondItem="fwh-fd-YvS" secondAttribute="bottom" constant="5" id="s0f-Ro-qau"/>
-                        <constraint firstItem="Jaf-Yz-Bc2" firstAttribute="top" secondItem="If5-9L-KBs" secondAttribute="top" constant="9" id="u1i-u7-cP3"/>
-                        <constraint firstAttribute="trailing" secondItem="Jaf-Yz-Bc2" secondAttribute="trailing" id="uhc-qI-fZI"/>
-                        <constraint firstAttribute="bottom" secondItem="mGa-RR-DgZ" secondAttribute="bottom" id="zpY-vE-rcR"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="on8-1C-4MP">
-                    <rect key="frame" x="220" y="39" width="80" height="40"/>
+                    <rect key="frame" x="190" y="39" width="80" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tencent_three" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-Rf-vhH">
                             <rect key="frame" x="5" y="5" width="30" height="30"/>
@@ -156,30 +116,26 @@
             <constraints>
                 <constraint firstItem="NyR-zD-max" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="0Rh-hn-xTd"/>
                 <constraint firstItem="on8-1C-4MP" firstAttribute="top" secondItem="NyR-zD-max" secondAttribute="bottom" constant="8" id="2S1-5P-i5d"/>
-                <constraint firstItem="If5-9L-KBs" firstAttribute="top" secondItem="NyR-zD-max" secondAttribute="bottom" constant="8" id="BZY-Mt-YWw"/>
+                <constraint firstAttribute="trailing" secondItem="on8-1C-4MP" secondAttribute="trailing" constant="50" id="9eZ-3R-HSX"/>
                 <constraint firstItem="NRd-Um-ZzR" firstAttribute="leading" secondItem="NyR-zD-max" secondAttribute="trailing" constant="9" id="CZG-Hx-1XD"/>
                 <constraint firstItem="NyR-zD-max" firstAttribute="leading" secondItem="5Qz-6e-wgf" secondAttribute="trailing" constant="9" id="FdT-GQ-eMe"/>
-                <constraint firstItem="on8-1C-4MP" firstAttribute="width" secondItem="If5-9L-KBs" secondAttribute="width" id="GM8-Ft-V2j"/>
-                <constraint firstItem="8lY-bL-IUH" firstAttribute="height" secondItem="If5-9L-KBs" secondAttribute="height" id="Hiy-3T-4my"/>
-                <constraint firstItem="If5-9L-KBs" firstAttribute="leading" secondItem="8lY-bL-IUH" secondAttribute="trailing" constant="16" id="J4q-GU-y3Y"/>
                 <constraint firstItem="5Qz-6e-wgf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="NGa-Ez-Sun"/>
                 <constraint firstItem="8lY-bL-IUH" firstAttribute="top" secondItem="NyR-zD-max" secondAttribute="bottom" constant="8" id="NqP-J6-S8I"/>
-                <constraint firstItem="8lY-bL-IUH" firstAttribute="width" secondItem="If5-9L-KBs" secondAttribute="width" id="USq-nt-SbB"/>
+                <constraint firstItem="8lY-bL-IUH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="WSh-ao-j0x"/>
                 <constraint firstItem="NyR-zD-max" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Xk1-pz-AYv"/>
                 <constraint firstItem="NRd-Um-ZzR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ZKg-vp-ZRD"/>
+                <constraint firstItem="on8-1C-4MP" firstAttribute="leading" secondItem="8lY-bL-IUH" secondAttribute="trailing" constant="60" id="dAo-LQ-7Y6"/>
                 <constraint firstItem="5Qz-6e-wgf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="dES-l1-QIO"/>
-                <constraint firstItem="If5-9L-KBs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gci-1Q-FqD"/>
-                <constraint firstItem="on8-1C-4MP" firstAttribute="leading" secondItem="If5-9L-KBs" secondAttribute="trailing" constant="20" id="pAD-vm-vsn"/>
+                <constraint firstItem="8lY-bL-IUH" firstAttribute="bottom" secondItem="on8-1C-4MP" secondAttribute="bottom" id="fJs-at-otU"/>
+                <constraint firstItem="on8-1C-4MP" firstAttribute="leading" secondItem="NRd-Um-ZzR" secondAttribute="leading" id="hDu-Tn-rCz"/>
                 <constraint firstAttribute="trailing" secondItem="NRd-Um-ZzR" secondAttribute="trailing" constant="10" id="wEk-Cr-0DU"/>
-                <constraint firstItem="on8-1C-4MP" firstAttribute="height" secondItem="If5-9L-KBs" secondAttribute="height" id="wY8-V4-4s6"/>
+                <constraint firstAttribute="bottom" secondItem="8lY-bL-IUH" secondAttribute="bottom" constant="26" id="yoG-6Z-Yfo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="mSinaLogin" destination="mGa-RR-DgZ" id="NSo-ZX-jKB"/>
                 <outlet property="mTencentLogin" destination="veF-7j-Izf" id="ZF5-Lu-L1G"/>
                 <outlet property="mView1" destination="8lY-bL-IUH" id="mlR-hv-mDE"/>
-                <outlet property="mView2" destination="If5-9L-KBs" id="iPe-UA-Cb4"/>
                 <outlet property="mView3" destination="on8-1C-4MP" id="VRd-Ni-StX"/>
                 <outlet property="mWechatLogin" destination="Bgd-LP-KO1" id="UkB-He-3YQ"/>
             </connections>
@@ -187,7 +143,6 @@
         </view>
     </objects>
     <resources>
-        <image name="sina_three" width="46" height="46"/>
         <image name="tencent_three" width="48" height="48"/>
         <image name="wechat_three" width="50" height="50"/>
     </resources>

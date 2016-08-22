@@ -1433,10 +1433,27 @@
  */
 - (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
 
+#pragma mark----餐饮店铺信息接口
+/**
+ *  餐饮店铺信息接口
+ *
+ *  @param mShopId     店铺id
+ *  @param mPage       fenyr
+ *  @param mCategaryId 分类id
+ *  @param block       返回值
+ */
+- (void)getFoodShopInfo:(int)mShopId andPage:(int)mPage andCategaryId:(int)mCategaryId block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block;
 
 
-#pragma mark----餐饮店铺接口
-
+#pragma mark----餐饮店铺分类信息接口
+/**
+ *  餐饮店铺分类信息接口
+ *
+ *  @param mPage    分页
+ *  @param mLevel   分类id
+ *  @param block    返回值
+ */
+- (void)getFoodShopCategaryInfo:(int)mShopId andPage:(int)mPage andLevel:(int)mLevel block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block;
 @end
 
 @interface SMessage : NSObject
