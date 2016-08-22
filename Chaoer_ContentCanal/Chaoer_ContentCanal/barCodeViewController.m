@@ -21,6 +21,8 @@
     mBarCodeView *mShareView;
     
     BOOL isYes;
+    
+    NSString *mBarCodeURL;
 
 }
 - (void)viewDidLoad {
@@ -29,7 +31,10 @@
     self.Title = self.mPageName = @"我的二维码名片";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
+    
+    self.hiddenRightBtn = YES;
     self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
+    mBarCodeURL = nil;
     [SVProgressHUD dismiss];
     [self initView];
 
@@ -45,10 +50,28 @@
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.93 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    
+    self.haveHeader = YES;
     UINib   *nib = [UINib nibWithNibName:@"barCodeCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 }
+
+- (void)headerBeganRefresh{
+
+    [self showWithStatus:@"正在验证..."];
+    [[mUserInfo backNowUser] getMyBarCode:^(mBaseData *resb,NSString *mBarCodeUrl) {
+        [self headerEndRefresh];
+        if (resb.mSucess) {
+            [self showSuccessStatus:resb.mMessage];
+            mBarCodeURL = mBarCodeUrl;
+            [self.tableView reloadData];
+                    
+        }else{
+        
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
+}
+
 - (void)loadShareView{
  
     
@@ -166,6 +189,8 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
     [cell.mHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+    
+    [cell.mBarCode sd_setImageWithURL:[NSURL URLWithString:mBarCodeURL] placeholderImage:[UIImage imageNamed:@"DefaultImg"]];
     
     cell.mNickName.text = [mUserInfo backNowUser].mNickName;
     cell.mIdentify.text = [mUserInfo backNowUser].mIdentity;

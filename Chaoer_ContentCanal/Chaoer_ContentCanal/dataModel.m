@@ -4563,7 +4563,26 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
     
 }
+#pragma mark----转账接口
+/**
+ *  获取我的二维码
+ *
+ *  @param block 返回值
+ */
+- (void)getMyBarCode:(void(^)(mBaseData *resb,NSString *mBarCodeUrl))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/getCard" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        block(info,[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[info.mData objectForKey:@"tdCode"]]);
+    }];
+    
+    
+}
 @end
 
 @implementation SMessage

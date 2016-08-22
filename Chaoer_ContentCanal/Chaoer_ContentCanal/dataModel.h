@@ -1473,6 +1473,14 @@
  */
 - (void)transferMoney:(NSString *)mAcount andMoney:(int)mMonry block:(void(^)(mBaseData *resb))block;
 
+#pragma mark----转账接口
+/**
+ *  获取我的二维码
+ *
+ *  @param block 返回值
+ */
+- (void)getMyBarCode:(void(^)(mBaseData *resb,NSString *mBarCodeUrl))block;
+
 @end
 
 @interface SMessage : NSObject
