@@ -1454,6 +1454,25 @@
  *  @param block    返回值
  */
 - (void)getFoodShopCategaryInfo:(int)mShopId andPage:(int)mPage andLevel:(int)mLevel block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block;
+
+#pragma mark----验证账户接口
+/**
+ *  验证转账账户手机
+ *
+ *  @param mAcount 账户
+ *  @param block   返回值
+ */
+- (void)codeAcount:(NSString *)mAcount block:(void(^)(mBaseData *resb))block;
+#pragma mark----转账接口
+/**
+ *  转账
+ *
+ *  @param mAcount 转账账户
+ *  @param mMonry  金额
+ *  @param block   返回值
+ */
+- (void)transferMoney:(NSString *)mAcount andMoney:(int)mMonry block:(void(^)(mBaseData *resb))block;
+
 @end
 
 @interface SMessage : NSObject

@@ -24,6 +24,7 @@
 
 #import "valletCell1.h"
 #import "ScanViewController.h"
+#import "transferViewController.h"
 @interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate>
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
@@ -263,8 +264,9 @@
         mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
         [self pushViewController:ppp];
 
-    }else if (mIndex == 2){
-    
+    }else if (mIndex == 1){
+        transferViewController *ttt = [[transferViewController alloc] initWithNibName:@"transferViewController" bundle:nil];
+        [self pushViewController:ttt];
     }else{
     
     }

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="transferViewController">
+            <connections>
+                <outlet property="mAcountTx" destination="r9z-fW-sCd" id="LCD-fw-Qf1"/>
+                <outlet property="mAtention" destination="XeN-fU-jTO" id="mef-6s-mfr"/>
+                <outlet property="mMoneyTx" destination="7p8-Ug-8g7" id="ZVg-1H-VX9"/>
+                <outlet property="mOkBtn" destination="A2q-oH-Rrh" id="amJ-Md-qzw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5I-FA-jDu">
+                    <rect key="frame" x="0.0" y="79" width="320" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转入账户：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biO-5f-w4w">
+                            <rect key="frame" x="5" y="15" width="70" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="LJT-05-WNm"/>
+                                <constraint firstAttribute="width" constant="70" id="zSb-qm-AVP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您要转入的账户" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="r9z-fW-sCd">
+                            <rect key="frame" x="72" y="10" width="240" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="biO-5f-w4w" firstAttribute="leading" secondItem="N5I-FA-jDu" secondAttribute="leading" constant="5" id="6Z0-jn-eYx"/>
+                        <constraint firstItem="r9z-fW-sCd" firstAttribute="leading" secondItem="biO-5f-w4w" secondAttribute="trailing" constant="-3" id="QAp-WR-TZS"/>
+                        <constraint firstAttribute="bottom" secondItem="r9z-fW-sCd" secondAttribute="bottom" constant="10" id="V8d-U5-Dz0"/>
+                        <constraint firstAttribute="trailing" secondItem="r9z-fW-sCd" secondAttribute="trailing" constant="8" id="gCV-WP-Kos"/>
+                        <constraint firstItem="r9z-fW-sCd" firstAttribute="top" secondItem="N5I-FA-jDu" secondAttribute="top" constant="10" id="kMi-Nw-Isz"/>
+                        <constraint firstAttribute="height" constant="50" id="pJh-ig-oZG"/>
+                        <constraint firstItem="biO-5f-w4w" firstAttribute="centerY" secondItem="N5I-FA-jDu" secondAttribute="centerY" id="yQl-8M-f91"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入您要转入的手机账户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeN-fU-jTO">
+                    <rect key="frame" x="8" y="137" width="304" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="fCz-HD-dnC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojN-Gn-kgl">
+                    <rect key="frame" x="0.0" y="165" width="320" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转入金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmE-4A-y1z">
+                            <rect key="frame" x="5" y="15" width="70" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="4tG-Va-mq1"/>
+                                <constraint firstAttribute="height" constant="20" id="bdt-5C-Ey0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您要转入的金额" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7p8-Ug-8g7">
+                            <rect key="frame" x="72" y="10" width="240" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="7p8-Ug-8g7" firstAttribute="leading" secondItem="SmE-4A-y1z" secondAttribute="trailing" constant="-3" id="11v-ev-u9i"/>
+                        <constraint firstAttribute="bottom" secondItem="7p8-Ug-8g7" secondAttribute="bottom" constant="10" id="7jx-qo-3wE"/>
+                        <constraint firstAttribute="trailing" secondItem="7p8-Ug-8g7" secondAttribute="trailing" constant="8" id="Xz3-UR-XGy"/>
+                        <constraint firstAttribute="height" constant="50" id="aUI-hY-xah"/>
+                        <constraint firstItem="SmE-4A-y1z" firstAttribute="leading" secondItem="ojN-Gn-kgl" secondAttribute="leading" constant="5" id="buK-XP-ns5"/>
+                        <constraint firstItem="7p8-Ug-8g7" firstAttribute="top" secondItem="ojN-Gn-kgl" secondAttribute="top" constant="10" id="cqo-qM-hOy"/>
+                        <constraint firstItem="SmE-4A-y1z" firstAttribute="centerY" secondItem="ojN-Gn-kgl" secondAttribute="centerY" id="iH9-ts-ZxJ"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转账金额不能高于5000元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6u2-Rv-1K2">
+                    <rect key="frame" x="8" y="223" width="304" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="8fk-qc-PDi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2q-oH-Rrh">
+                    <rect key="frame" x="10" y="260" width="300" height="40"/>
+                    <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="K64-Sp-Kkd"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="确认转账">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mOkAction:" destination="-1" eventType="touchUpInside" id="tUV-Fe-xon"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.25274784482758622" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="6u2-Rv-1K2" firstAttribute="top" secondItem="ojN-Gn-kgl" secondAttribute="bottom" constant="8" id="9ra-Z5-Ct6"/>
+                <constraint firstItem="A2q-oH-Rrh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Axb-Uk-Hl2"/>
+                <constraint firstItem="XeN-fU-jTO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="BTD-Bl-WXO"/>
+                <constraint firstItem="XeN-fU-jTO" firstAttribute="top" secondItem="N5I-FA-jDu" secondAttribute="bottom" constant="8" id="Dfu-mQ-aNa"/>
+                <constraint firstItem="ojN-Gn-kgl" firstAttribute="top" secondItem="XeN-fU-jTO" secondAttribute="bottom" constant="8" id="DgY-Gw-bGF"/>
+                <constraint firstAttribute="trailing" secondItem="XeN-fU-jTO" secondAttribute="trailing" constant="8" id="Q89-li-zxp"/>
+                <constraint firstItem="A2q-oH-Rrh" firstAttribute="top" secondItem="6u2-Rv-1K2" secondAttribute="bottom" constant="17" id="W96-KU-4cQ"/>
+                <constraint firstAttribute="trailing" secondItem="N5I-FA-jDu" secondAttribute="trailing" id="Y0V-BU-gtW"/>
+                <constraint firstItem="N5I-FA-jDu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aDz-gh-SIF"/>
+                <constraint firstItem="6u2-Rv-1K2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="aaI-Bz-HaY"/>
+                <constraint firstItem="ojN-Gn-kgl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fqZ-qL-3gR"/>
+                <constraint firstAttribute="trailing" secondItem="ojN-Gn-kgl" secondAttribute="trailing" id="mlV-I4-ZAP"/>
+                <constraint firstItem="N5I-FA-jDu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="nqd-C4-TJM"/>
+                <constraint firstAttribute="trailing" secondItem="6u2-Rv-1K2" secondAttribute="trailing" constant="8" id="ocW-1f-EZG"/>
+                <constraint firstAttribute="trailing" secondItem="A2q-oH-Rrh" secondAttribute="trailing" constant="10" id="qWj-CE-iV8"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

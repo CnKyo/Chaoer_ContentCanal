@@ -4448,7 +4448,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     NSMutableDictionary *para = [NSMutableDictionary new];
     [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
-    [para setObject:@"device" forKey:@"ios"];
+    [para setObject:@"ios" forKey:@"device"];
     [para setObject:NumberWithInt(mShopId) forKey:@"shopId"];
 
     [para setObject:NumberWithInt(mPage) forKey:@"page"];
@@ -4476,14 +4476,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         }
     }];
 }
-#pragma mark----餐饮店铺接口
-/**
- *  餐饮店铺信息接口
- *
- *  @param mPage    分页
- *  @param mLevel   分类id
- *  @param block    返回值
- */
+
 #pragma mark----餐饮店铺分类信息接口
 /**
  *  餐饮店铺分类信息接口
@@ -4524,6 +4517,53 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+
+
+#pragma mark----验证账户接口
+/**
+ *  验证转账账户手机
+ *
+ *  @param mAcount 账户
+ *  @param block   返回值
+ */
+- (void)codeAcount:(NSString *)mAcount block:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:mAcount forKey:@"account"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/verification/verificationAccount" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+        
+        block(info);
+       
+    }];
+    
+}
+
+#pragma mark----转账接口
+/**
+ *  转账
+ *
+ *  @param mAcount 转账账户
+ *  @param mMonry  金额
+ *  @param block   返回值
+ */
+- (void)transferMoney:(NSString *)mAcount andMoney:(int)mMonry block:(void(^)(mBaseData *resb))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:mAcount forKey:@"account"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:NumberWithInt(mMonry) forKey:@"money"];
+    [para setObject:@"ios" forKey:@"device"];
+
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/wallet/transfer" parameters:para  call:^(mBaseData * _Nonnull info) {
+        
+       block(info);
+    }];
+    
+}
+
 @end
 
 @implementation SMessage
