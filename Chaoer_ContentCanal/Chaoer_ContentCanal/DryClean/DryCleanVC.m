@@ -824,7 +824,7 @@
     double money = 0;
     for (DryClearnShopServerObject *it in _mShopCartArr) {
         count += it.count;
-        money += it.price;
+        money += (it.price * it.count);
     }
     
     if (count <= 0) {
