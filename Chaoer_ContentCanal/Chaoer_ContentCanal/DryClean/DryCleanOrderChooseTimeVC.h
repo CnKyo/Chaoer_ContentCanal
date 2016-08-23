@@ -7,7 +7,11 @@
 //干洗订单选择时间界面
 
 #import "QUScrollVC.h"
+#import "APIClient.h"
 
-@interface DryCleanOrderTimeVC : QUScrollVC
+@interface DryCleanOrderChooseTimeVC : QUScrollVC
+@property(nonatomic,assign) int shopId; //店铺id
+
+@property (nonatomic, copy) void (^chooseCallBack)(NSString* dateStr, NSString* timeStr);
 
 @end

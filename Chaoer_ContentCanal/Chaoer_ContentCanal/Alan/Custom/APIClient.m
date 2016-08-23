@@ -7,6 +7,7 @@
 //
 
 #import "APIClient.h"
+#import "HTTPrequest.h"
 
 #pragma mark -
 #pragma mark NSMutableDictionary
@@ -45,7 +46,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //[APIClient loadDefault];
-        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://apicloud.mob.com"]];
+        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://192.168.1.120/"]];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
         _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         
@@ -273,10 +274,11 @@
 #pragma mark - API
 -(void)loadAPIWithTag:(NSObject *)tag path:(NSString *)URLString parameters:(id)parameters call:(void (^)(APIObject* info))callback
 {
-    NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
-    if ([parameters isKindOfClass:[NSDictionary class]])
-        [paramDic addEntriesFromDictionary:parameters];
-    [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:paramDic call:^(NSError *error, id responseObject) {
+//    NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
+//    if ([parameters isKindOfClass:[NSDictionary class]])
+//        [paramDic addEntriesFromDictionary:parameters];
+    NSLog(@"parameters:%@", parameters);
+    [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:parameters call:^(NSError *error, id responseObject) {
         APIObject *info = nil;
         if (error == nil) {
             NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
@@ -319,9 +321,9 @@
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:sid forKey:@"shopId"];
-    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
-    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/index" parameters:paramDic call:^(APIObject *info) {
-        if (info.data != nil) {
+    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"/clean/shop/index" parameters:paramDic call:^(APIObject *info) {
+        if (info.data != nil  && [info.data isKindOfClass:[NSDictionary class]]) {
             int couponCount = [[info.data objectWithKey:@"coupon"] intValue]; //优惠券数量
             int focusId = [[info.data objectWithKey:@"focus"] intValue]; //用户收藏表记录id
             NSDictionary *shopDic = [info.data objectForKey:@"shop"];
@@ -346,8 +348,8 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:sid forKey:@"shopId"];
     [paramDic setObject:[NSString stringWithFormat:@"%i",collect] forKey:@"type"];
-    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
-    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/collectShop" parameters:paramDic call:^(APIObject *info) {
+    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"/clean/shop/collectShop" parameters:paramDic call:^(APIObject *info) {
         callback(info);
     }];
 }
@@ -365,7 +367,7 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:sid forKey:@"shopId"];
     [paramDic setObject:@"0" forKey:@"classify"];
-    [self loadAPITableListWithTag:tag path:@"http://192.168.1.114/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopClassObject class] call:^(NSArray *tableArr, APIObject *info) {
+    [self loadAPITableListWithTag:tag path:@"/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopClassObject class] call:^(NSArray *tableArr, APIObject *info) {
         callback(tableArr, info);
     }];
 }
@@ -384,7 +386,7 @@
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:sid forKey:@"shopId"];
     [paramDic setInt:cid forKey:@"classify"];
-    [self loadAPITableListWithTag:tag path:@"http://192.168.1.114/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopServerObject class] call:^(NSArray *tableArr, APIObject *info) {
+    [self loadAPITableListWithTag:tag path:@"/clean/shop/classify" parameters:paramDic pageIndex:0 subClass:[DryClearnShopServerObject class] call:^(NSArray *tableArr, APIObject *info) {
         callback(tableArr, info);
     }];
 }
@@ -401,8 +403,8 @@
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
     [paramDic setInt:sid forKey:@"classify"];
-    [paramDic setInt:[mUserInfo backNowUser].mLoginId forKey:@"userId"];
-    [self loadAPIWithTag:tag path:@"http://192.168.1.114/clean/shop/classifyInfo" parameters:paramDic call:^(APIObject *info) {
+    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [self loadAPIWithTag:tag path:@"/clean/shop/classifyInfo" parameters:paramDic call:^(APIObject *info) {
         if (info.data != nil) {
             DryClearnShopServerObject *it = [DryClearnShopServerObject mj_objectWithKeyValues:info.data];
             callback(it, info);
@@ -410,5 +412,71 @@
             callback(nil, info);
     }];
 }
+
+
+
+/**
+ *  干洗店铺营业时间
+ *
+ *  @param tag      链接对象
+ *  @param sid      店铺id
+ *  @param dateStr  营业时间 如20160822
+ *  @param callback 返回当天营业时间段
+ */
+-(void)dryClearnShopOpeningTimeListWithTag:(NSObject *)tag shopId:(int)sid dateStr:(NSString *)dateStr call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"shopId"];
+    [paramDic setObject:dateStr forKey:@"time"];
+    [self loadAPIWithTag:tag path:@"/clean/order/pretimes" parameters:paramDic call:^(APIObject *info) {
+        if (info.data != nil) {
+            callback(info.data, info);
+        } else
+            callback(nil, info);
+    }];
+}
+
+
+/**
+ *  干洗店铺商品结算订单信息获取接口
+ *
+ *  @param tag      链接对象
+ *  @param sid      服务id
+ *  @param cartStr  购物车json数据
+ *  @param callback 返回信息
+ */
+-(void)dryClearnShopOrderInfoWithTag:(NSObject *)tag serverId:(int)sid cartJson:(NSString *)cartStr call:(void (^)(DryClearnShopOrderShowObject *item, APIObject* info))callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:sid forKey:@"shopId"];
+    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [paramDic setValidStr:cartStr forKey:@"cartJson"];
+    [paramDic setObject:@"ios" forKey:@"device"];
+    [self loadAPIWithTag:tag path:@"/clean/order/preorder" parameters:paramDic call:^(APIObject *info) {
+        if (info.data != nil) {
+            DryClearnShopOrderShowObject *it = [DryClearnShopOrderShowObject mj_objectWithKeyValues:info.data];
+            callback(it, info);
+        } else
+            callback(nil, info);
+    }];
+}
+
+
+/**
+ *  干洗店铺商品结算订单提交生成接口
+ *
+ *  @param tag      链接对象
+ *  @param it       提交信息对象
+ *  @param callback 返回信息
+ */
+-(void)dryClearnShopOrderSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderPostObject *)it call:(void (^)(APIObject* info))callback
+{
+    NSDictionary *paramDic = [it mj_keyValues];
+    [self loadAPIWithTag:tag path:@"/clean/order/placeorder" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
 
 @end

@@ -6,18 +6,22 @@
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //
 
-#import "DryCleanOrderTimeVC.h"
+#import "DryCleanOrderChooseTimeVC.h"
 #import "HMSegmentedControl.h"
 #import "DateTools.h"
 #import "DryCleanTimeChooseView.h"
 #import "UIImage+QUAdditons.h"
 
-@interface DryCleanOrderTimeVC ()
-@property(strong,nonatomic) NSMutableArray *dateArr;
+@interface DryCleanOrderChooseTimeVC ()
+@property(strong,nonatomic) NSMutableArray *dateArr; //seg的标题arr
 @property(strong,nonatomic) HMSegmentedControl *segControl;
+
+@property(strong,nonatomic) NSMutableDictionary *timeDic;
+@property(strong,nonatomic) DryCleanTimeChooseView *chooseView;
+@property(strong,nonatomic) NSMutableDictionary *chooseTimeDic;
 @end
 
-@implementation DryCleanOrderTimeVC
+@implementation DryCleanOrderChooseTimeVC
 
 -(void)loadView
 {
@@ -33,12 +37,28 @@
     self.hiddenRightBtn = YES;
     
     self.dateArr = [NSMutableArray array];
+    self.timeDic = [NSMutableDictionary dictionary];
+    self.chooseTimeDic = [NSMutableDictionary dictionary];
+    
     [self loadDateArr];
     
     self.page = 1;
     
     [self.view bringSubviewToFront:self.scrollView];
     [self initView];
+    
+    
+    [self.segControl setSelectedSegmentIndex:0 animated:YES];
+    
+    __weak DryCleanOrderChooseTimeVC *safeSelf = self;
+    self.chooseView.chooseCallBack = ^(NSString* timeStr) {
+        if (timeStr.length > 0) {
+            [safeSelf.chooseTimeDic removeAllObjects];
+            
+            NSString *str = [safeSelf dateStrWithSegIndex:safeSelf.segControl.selectedSegmentIndex];
+            [safeSelf.chooseTimeDic setObject:timeStr forKey:str];
+        }
+    };
 }
 
 
@@ -74,9 +94,10 @@
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.961 green:0.965 blue:0.969 alpha:1.000];
     self.scrollContentView.backgroundColor = [UIColor colorWithRed:0.961 green:0.965 blue:0.969 alpha:1.000];
     
-    NSArray *arr = [NSArray arrayWithObjects:@"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", nil];
-    DryCleanTimeChooseView *chView = [[DryCleanTimeChooseView alloc] initWithArr:arr];
+    //NSArray *arr = [NSArray arrayWithObjects:@"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", @"111", nil];
+    DryCleanTimeChooseView *chView = [[DryCleanTimeChooseView alloc] init];
     [self.scrollContentView addSubview:chView];
+    self.chooseView = chView;
     UILabel *noteLable = [self.scrollContentView newUILableWithText:@"提示：最长可预约七天内的服务时间" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];
     noteLable.numberOfLines = 0;
     [chView updateConstraints:^(MASConstraintMaker *make) {
@@ -123,23 +144,62 @@
 
 -(void)goSubmmitMethod:(id)sender
 {
-    
+    if (_chooseTimeDic.count > 0) {
+        NSArray *keys = [_chooseTimeDic allKeys];
+        NSString *key = [keys objectAtIndex:0];
+        NSString *val = [_chooseTimeDic objectForKey:key];
+        if (self.chooseCallBack)
+            self.chooseCallBack(key, val);
+        
+        [self popViewController];
+    } else
+        [SVProgressHUD showErrorWithStatus:@"请选择时间"];
 }
 
+-(NSString *)dateStrWithSegIndex:(NSInteger)index
+{
+    NSDate *date = [[NSDate date] dateByAddingDays:index];
+    NSString *dateStr = [date formattedDateWithFormat:@"yyyyMMdd"];
+    return dateStr;
+}
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl
 {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    
+    NSDate *date = [[NSDate date] dateByAddingDays:segmentedControl.selectedSegmentIndex];
+    NSString *dateStr = [date formattedDateWithFormat:@"yyyyMMdd"];
+    
+    NSString *dateTimeChooseStr = [self.chooseTimeDic objectForKey:dateStr];
+    
+    NSArray *arr = [self.timeDic objectForKey:dateStr];
+    if (arr.count > 0) {
+        [self.chooseView loadUIWithTitleArr:arr chooseTime:dateTimeChooseStr];
+    } else {
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [[APIClient sharedClient] dryClearnShopOpeningTimeListWithTag:self shopId:_shopId dateStr:dateStr call:^(NSArray *tableArr, APIObject *info) {
+            
+            if (tableArr.count > 0) {
+                [self.timeDic setObject:tableArr forKey:dateStr];
+                
+                [SVProgressHUD dismiss];
+            } else
+                [SVProgressHUD showErrorWithStatus:info.message];
+            
+            [self.chooseView loadUIWithTitleArr:tableArr chooseTime:dateTimeChooseStr];
+        }];
+    }
 }
 
 
 -(void)loadDateArr
 {
+    int dayShow = 2;
     NSDate *currentDate = [NSDate date];
     
     [self.dateArr removeAllObjects];
     NSCalendar *calendar =[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    for (int i=0; i<7; i++) {
+    for (int i=0; i<dayShow; i++) {
         NSDate *date = [currentDate dateByAddingDays:i];
         NSInteger weekday = [date weekdayWithCalendar:calendar];
         NSInteger month = [date monthWithCalendar:calendar];

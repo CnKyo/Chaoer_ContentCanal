@@ -224,7 +224,26 @@
 
 
 @implementation DryClearnShopCampaignObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
+
+//计算折扣后金额
+-(double)campaignWithMoney:(double)money
+{
+    double newMoney = money;
+    if ([_code isEqualToString:@"A"]) { //减去规定金额
+        newMoney = money - _price;
+    } else if ([_code isEqualToString:@"B"]) { //折扣
+        newMoney = money * (_price / 10);
+    }
+    return newMoney;
+}
+
 @end
+
+
 
 @implementation DryClearnShopObject
 + (NSDictionary *)mj_replacedKeyFromPropertyName
@@ -251,4 +270,58 @@
 {
     return @{@"iD" : @"id"};
 }
+@end
+
+
+
+@implementation CouponsObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id",
+             @"desc" : @"description"};
+}
+
+//计算折扣后金额
+-(double)couponWithMoney:(double)money
+{
+    double newMoney = money;
+    if ([_typeCode isEqualToString:@"A"]) { //减去规定金额
+        newMoney = money - _facePrice;
+    } else if ([_typeCode isEqualToString:@"B"]) { //折扣
+        newMoney = money * (_facePrice / 10);
+    }
+    return newMoney;
+}
+
+@end
+
+
+@implementation AddressObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
+@end
+
+
+
+@implementation DryClearnShopOrderShowObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"userScore" : @"user.score",
+             @"userRate" : @"user.rate",
+             @"userMoney" : @"user.money"};
+}
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"coupons" : @"CouponsObject"};
+}
+
+
+@end
+
+
+
+@implementation DryClearnShopOrderPostObject
 @end
