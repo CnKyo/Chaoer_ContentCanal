@@ -10,4 +10,6 @@
 
 @interface DryCleanVC : BaseVC
 
+@property(nonatomic,assign) int shopId;
+
 @end

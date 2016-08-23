@@ -6,11 +6,13 @@
 //  Copyright © 2016年 zongyoutec.com. All rights reserved.
 //干洗店铺服务详情界面
 
-#import "BaseVC.h"
+#import "QUScrollVC.h"
 #import "APIClient.h"
 
-@interface DryCleanShopServerDetailVC : BaseVC
+@interface DryCleanShopServerDetailVC : QUScrollVC
 
 @property(nonatomic, strong) DryClearnShopServerObject* item;
+
+@property (nonatomic, copy) void (^addCallBack)(int count);
 
 @end

@@ -17,4 +17,6 @@
 
 @property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId);
 
+@property (nonatomic,strong) void(^blockGPPTaddress)(GPPTaddress *item);
+
 @end

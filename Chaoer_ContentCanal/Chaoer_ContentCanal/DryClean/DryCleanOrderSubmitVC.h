@@ -7,7 +7,12 @@
 //干洗订单提交界面
 
 #import "BaseVC.h"
+#import "APIClient.h"
 
 @interface DryCleanOrderSubmitVC : BaseVC
+
+@property(nonatomic,assign) int shopId;
+@property(nonatomic,strong) NSMutableArray* goodsArr;
+@property(nonatomic,strong) DryClearnShopOrderShowObject *showInfoItem;
 
 @end

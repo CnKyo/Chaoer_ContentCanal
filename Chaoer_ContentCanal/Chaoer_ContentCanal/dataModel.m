@@ -6467,6 +6467,8 @@ bool pptbined = NO;
     self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
     self.mFocus = [[obj objectForKeyMy:@"focus"] intValue];
     
+    self.mType = [[obj objectForKeyMy:@"type"] intValue];
+    
     self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
     
     

@@ -112,9 +112,11 @@
 @interface DryClearnShopCampaignObject : NSObject
 @property (nonatomic, assign) int                   type;              //id
 @property (nonatomic, strong) NSString *            condition;              //
-@property (nonatomic, strong) NSString *            code;              //电话
+@property (nonatomic, strong) NSString *            code;              //
 @property (nonatomic, strong) NSString *            name;              //
 @property (nonatomic, strong) NSString *            content;              //
+@property (nonatomic, assign) double                price;              //
+-(double)campaignWithMoney:(double)money;
 @end
 
 
@@ -131,8 +133,8 @@
 @property (nonatomic, strong) NSString *            closingTime;              //
 @property (nonatomic, assign) double                lat;              //
 @property (nonatomic, assign) double                lng;              //
-@property (nonatomic, strong) NSString *            deliverPrice;              //
-@property (nonatomic, strong) NSString *            freePrice;              //
+@property (nonatomic, assign) double                deliverPrice;              //配送费
+@property (nonatomic, assign) double                freePrice;              //免配送金额
 @property (nonatomic, strong) NSMutableArray *      campaignList;              //活动
 @end
 
@@ -159,11 +161,58 @@
 
 
 
+//优惠券
+@interface CouponsObject : NSObject
+@property (nonatomic, assign) int                   iD;              //id
+@property (nonatomic, strong) NSString *            type;              //
+@property (nonatomic, strong) NSString *            code;              //
+@property (nonatomic, strong) NSString *            typeCode;              //
+@property (nonatomic, strong) NSString *            pass;              //
+@property (nonatomic, strong) NSString *            name;              //
+@property (nonatomic, strong) NSString *            shopName;              //
+@property (nonatomic, strong) NSString *            desc;              //
+@property (nonatomic, assign) double                effective;              //
+@property (nonatomic, assign) double                enoughMoney;              //
+@property (nonatomic, assign) double                facePrice;              //
+-(double)couponWithMoney:(double)money;
+@end
 
 
+//地址信息
+@interface AddressObject : NSObject
+@property (nonatomic, assign) int                   iD;              //id
+@property (nonatomic, strong) NSString *            address;              //
+@property (nonatomic, strong) NSString *            phone;              //
+@property (nonatomic, strong) NSString *            sex;              //
+@property (nonatomic, strong) NSString *            userName;              //
+@end
 
 
+//干洗店铺订单界面显示数据
+@interface DryClearnShopOrderShowObject : NSObject
+@property (nonatomic, strong) DryClearnShopObject * shop;              //
+@property (nonatomic, assign) double                money;              //
+@property (nonatomic, strong) NSMutableArray *      coupons;              //可选的优惠券
+@property (nonatomic, strong) AddressObject *       addr;              //
+@property (nonatomic, assign) int                   userScore;              //用户积分
+@property (nonatomic, assign) double                userMoney;              //用户余额
+@property (nonatomic, assign) double                userRate;              //用户积分抵扣金额比例
+@end
 
 
+//干洗店铺订单界面生成订单上传数据
+@interface DryClearnShopOrderPostObject : NSObject
+@property (nonatomic, assign) int                   shopId;              //id
+@property (nonatomic, assign) int                   userId;              //id
+@property (nonatomic, strong) NSString *            name;              //收货人姓名
+@property (nonatomic, strong) NSString *            mobile;              //收货人手机号
+@property (nonatomic, strong) NSString *            address;              //收货人地址
+@property (nonatomic, strong) NSString *            times;              //收货时间，如：20160809 09:00~10:00
+@property (nonatomic, assign) int                   coupon;              //优惠券id，默认为0
+@property (nonatomic, assign) int                   campaing;              //活动id，默认为0
+@property (nonatomic, assign) BOOL                  score;              //是否使用积分抵现
+@property (nonatomic, strong) NSString *            device;              //值：ios
+@property (nonatomic, strong) NSString *            cartJson;              //购物信息，如：[{"classify":1,"quantity":2}]
+@end
 
 
