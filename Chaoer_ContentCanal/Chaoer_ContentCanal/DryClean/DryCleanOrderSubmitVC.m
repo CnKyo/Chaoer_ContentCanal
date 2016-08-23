@@ -157,7 +157,7 @@ typedef enum {
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
             goPay.mMoney = [[info.data objectForKey:@"price"] floatValue];
             goPay.mOrderCode = [info.data objectForKey:@"orderCode"];
-            goPay.mType = 1;
+            goPay.mType = 4;
             [self pushViewController:goPay];
 
             

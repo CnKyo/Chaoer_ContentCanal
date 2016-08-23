@@ -54,7 +54,7 @@
     mComfirmHederAndFooterSection *mFooterSection;
     
     
-    
+    int isCoup;
 }
 @synthesize mShopCarList;
 - (void)viewDidLoad {
@@ -65,7 +65,7 @@
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"确认订单";
-
+    isCoup = 0;
     [self initMainView];
     
 }
@@ -127,14 +127,19 @@
 
 }
 - (void)mFooterSwitchChanged:(BOOL)mChange{
-
-    if (mChange) {
-        MLLog(@"开");
-        mShopCarList.mIsUseScore = 1;
+    if (isCoup == 1) {
+        [self showErrorStatus:@"您已使用优惠卷，不能再使用积分了哟！"];
+        return;
     }else{
-        MLLog(@"关");
-        mShopCarList.mIsUseScore = 0;
+        if (mChange) {
+            MLLog(@"开");
+            mShopCarList.mIsUseScore = 1;
+        }else{
+            MLLog(@"关");
+            mShopCarList.mIsUseScore = 0;
+        }
     }
+    
     
     
     
@@ -192,7 +197,7 @@
     }
     
     [self showWithStatus:@"正在结算..."];
-    [[mUserInfo backNowUser] payFeeOrder:mParaData andUseSore:mShopCarList.mIsUseScore andAddress:mShopCarList.mAddress andPhone:mShopCarList.mPhone block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] payFeeOrder:mParaData andUseSore:mShopCarList.mIsUseScore andAddress:mShopCarList.mAddress andPhone:mShopCarList.mPhone andIsCoup:isCoup block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
@@ -320,29 +325,42 @@
 }
 #pragma mark ---- 优惠券
 - (void)sectionWithCoup:(NSInteger)mIndexPath{
-    GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath];
     
-    mCoupViewController *coup = [mCoupViewController new];
-    coup.mSType = 2;
-    coup.block = ^(NSString *content,NSString *mid,NSString *mPrice){
-        mShop.mCoupName = content;
-        mShop.mCoupId = [mid intValue];
-        mShop.mCoupPrice = [mPrice floatValue];
+    
+    if (mShopCarList.mIsUseScore == 1) {
+        [self showErrorStatus:@"您已使用积分，不能再使用优惠卷了哟！"];
+        return;
+    }else{
+        GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath];
         
-        float mp = 0.0;
-        
-        mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
-        
-        if (mp <= 0) {
-            mp = 0;
-        }
-        
-        mShopCarList.mTotlePay = mp;
-        [self upDatePage];
-        [self.tableView reloadData];
-    };
-    [self pushViewController:coup];
+        mCoupViewController *coup = [mCoupViewController new];
+        coup.mSType = 2;
+        coup.block = ^(NSString *content,NSString *mid,NSString *mPrice){
+            mShop.mCoupName = content;
+            mShop.mCoupId = [mid intValue];
+            mShop.mCoupPrice = [mPrice floatValue];
+            if (mid.length == 0) {
+                isCoup = 0;
+            }else{
+                isCoup = 1;
+            }
+            float mp = 0.0;
+            
+            mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
+            
+            if (mp <= 0) {
+                mp = 0;
+            }
+            
+            mShopCarList.mTotlePay = mp;
+            [self upDatePage];
+            [self.tableView reloadData];
+        };
+        [self pushViewController:coup];
 
+    }
+    
+    
 }
 #pragma mark ---- 配送方式
 - (void)sectionWithSendType:(NSInteger)mIndexPath{

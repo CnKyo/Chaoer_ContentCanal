@@ -257,7 +257,7 @@ bool g_bined = NO;
     
     int isSign = [[obj objectForKeyMy:@"is_SignIn"] boolValue];
     
-    self.mIsSign = isSign?1:0;
+    self.mIsSign = isSign?0:1;
 
 }
 
@@ -629,41 +629,73 @@ bool g_bined = NO;
     
 }
 -(void)Pay:(float)Price andType:(int)mType andCode:(NSString *)mCode andMmType:(int)mmType block:(void(^)(mBaseData* retobj))block{
+    
+    /**
+     *  *  1是社区生活订单 2是报修订单 3是我的界面 4 是干洗订单
+     */
     NSMutableDictionary* param =    NSMutableDictionary.new;
-    [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"price"];
     [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
     [param setObject:@"ios" forKey:@"device"];
     
     NSString *url = nil;
     NSString  *mPayType = nil;
-    if (mmType != 2 ) {
-        url = @"sm/pay/payment";
-        [param setObject:[Util RSAEncryptor:mCode] forKey:@"orderIds"];
+    if(mmType == 4){
         
+        url = @"clean/pay/payment";
+        [param setObject:[Util RSAEncryptor:mCode] forKey:@"orderCode"];
         
+        [param setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community"];
         
         if (mType == 3) {
             mPayType = @"wx";
+            [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"amount"];
+            [param setObject:[Util RSAEncryptor:@"0"] forKey:@"wallet"];
 
         }else if (mType == 4){
             mPayType = @"alipay";
+            [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"amount"];
+            [param setObject:[Util RSAEncryptor:@"0"] forKey:@"wallet"];
 
         }else if (mType == 1){
             mPayType = @"unknow";
         }else{
             mPayType = @"balance";
+            [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"wallet"];
+            [param setObject:[Util RSAEncryptor:@"0"] forKey:@"amount"];
 
         }
         [param setObject:mPayType forKey:@"channel"];
-
-
-    }else{
+        
+        
+    } else  if (mmType == 1 || mmType == 3) {
+        url = @"sm/pay/payment";
+        [param setObject:[Util RSAEncryptor:mCode] forKey:@"orderIds"];
+        [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"price"];
+        
+        
+        
+        if (mType == 3) {
+            mPayType = @"wx";
+            
+        }else if (mType == 4){
+            mPayType = @"alipay";
+            
+        }else if (mType == 1){
+            mPayType = @"unknow";
+        }else{
+            mPayType = @"balance";
+            
+        }
+        [param setObject:mPayType forKey:@"channel"];
+        
+        
+    } else{
+    
         url = @"app/payment/payment_repair";
+        [param setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%.2f",Price]] forKey:@"price"];
+
         [param setObject:[Util RSAEncryptor:mCode] forKey:@"code"];
         [param setObject:NumberWithInt(mType) forKey:@"channel"];
-
-
-
     }
     
     [[HTTPrequest sharedHDNetworking] postUrl:url parameters:param call:^(mBaseData *info) {
@@ -4115,15 +4147,23 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mOrderCode 订单编号
  *  @param block      返回值
  */
-- (void)getMyMarketOrderDetail:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block{
+- (void)getMyMarketOrderDetail:(NSString *)mOrderCode andOrderType:(int)mType block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:mOrderCode forKey:@"orderCode"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
     
+    NSString *mUrl = nil;
     
-    [[HTTPrequest sharedHDNetworking] postUrl:@"app/shop/goods/getGoodsDetails" parameters:para call:^(mBaseData * _Nonnull info) {
+    if (mType == 3) {
+        mUrl = @"clean/order/getGoodsDetails";
+    }else{
+        mUrl = @"app/shop/goods/getGoodsDetails";
+    }
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData * _Nonnull info) {
         if (info.mSucess) {
            
             
@@ -4190,7 +4230,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mOrderCode 订单编号
  *  @param block      返回值
  */
-- (void)cancelMarketOrder:(NSString *)mOrderCode block:(void(^)(mBaseData *resb))block{
+- (void)cancelMarketOrder:(NSString *)mOrderCode andOrderType:(int)mType block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
@@ -4199,6 +4239,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:[Util RSAEncryptor:mOrderCode] forKey:@"orderCode"];
  
     [para setObject:@"ios" forKey:@"device"];
+    [para setObject:NumberWithInt(mType) forKey:@"type"];
     
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/cancel" parameters:para call:^(mBaseData * _Nonnull info) {
@@ -4415,7 +4456,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mPhone   电话
  *  @param block    返回值
  */
-- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block{
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
@@ -4426,7 +4467,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
    
     [para setObject:[Util arrToJson:mOrders] forKey:@"json"];
     [para setObject:@"ios" forKey:@"device"];
-    
+    [para setObject:NumberWithInt(mIsCoup) forKey:@"isCoupon"];
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/generateOrder" parameters:para  call:^(mBaseData * _Nonnull info) {
         
@@ -7278,7 +7319,8 @@ bool pptbined = NO;
     int mCancel = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"isCancel"] intValue];
     
     self.mIsCancel = mCancel?0:1;
-    
+    self.mType = [[[obj objectForKeyMy:@"shopInfo"] objectForKeyMy:@"type"] intValue];
+
 }
 
 @end

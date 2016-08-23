@@ -137,7 +137,7 @@
 - (void)headerBeganRefresh{
     [self showWithStatus:@"加载中..."];
     
-    [[mUserInfo backNowUser] getMyMarketOrderDetail:self.mShop.mOrderCode block:^(mBaseData *resb, GMyMarketOrderInfo *mOrder) {
+    [[mUserInfo backNowUser] getMyMarketOrderDetail:self.mShop.mOrderCode andOrderType:self.mShop.mType block:^(mBaseData *resb, GMyMarketOrderInfo *mOrder) {
         
         [self dismiss];
         [self headerEndRefresh];
@@ -150,6 +150,7 @@
         }else{
             [self addEmptyView:nil];
             [self showErrorStatus:resb.mMessage];
+            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:0.35];
         }
         
     }];

@@ -1356,7 +1356,7 @@
  *  @param mOrderCode 订单编号
  *  @param block      返回值
  */
-- (void)getMyMarketOrderDetail:(NSString *)mOrderCode block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block;
+- (void)getMyMarketOrderDetail:(NSString *)mOrderCode andOrderType:(int)mType block:(void(^)(mBaseData *resb,GMyMarketOrderInfo *mOrder))block;
 #pragma mark ----- 评价订单
 /**
  *  评价订单
@@ -1377,7 +1377,7 @@
  *  @param mOrderCode 订单编号
  *  @param block      返回值
  */
-- (void)cancelMarketOrder:(NSString *)mOrderCode block:(void(^)(mBaseData *resb))block;
+- (void)cancelMarketOrder:(NSString *)mOrderCode andOrderType:(int)mType block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----获取购物车
 /**
@@ -1440,7 +1440,7 @@
  *  @param mPhone   电话
  *  @param block    返回值
  */
-- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone block:(void(^)(mBaseData *resb))block;
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----餐饮店铺信息接口
 /**
@@ -4042,6 +4042,10 @@
 @property (assign,nonatomic) BOOL selected;
 
 @property (assign,nonatomic) int mIsComment;
+/**
+ *  订单类型
+ */
+@property (assign,nonatomic) int mType;
 
 -(id)initWithObj:(NSDictionary *)obj;
 

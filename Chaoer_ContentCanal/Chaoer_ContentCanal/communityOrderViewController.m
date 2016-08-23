@@ -738,7 +738,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
  */
 - (void)cellWithCancelBtnClick:(GMyMarketOrderList *)mShop{
     [self showWithStatus:@"正在取消..."];
-    [[mUserInfo backNowUser] cancelMarketOrder:mShop.mOrderCode block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] cancelMarketOrder:mShop.mOrderCode andOrderType:mShop.mType block:^(mBaseData *resb) {
         if (resb.mSucess) {
             [self showSuccessStatus:@"取消成功"];
             
