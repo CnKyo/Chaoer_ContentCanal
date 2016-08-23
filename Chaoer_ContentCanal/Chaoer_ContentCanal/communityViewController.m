@@ -277,30 +277,16 @@
             return 120;
         }else{
             
+            NSString *reuseCellId = nil;
+            
+            reuseCellId = @"cell3";
+            communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+            
             GMarketList *mShopList = self.mShopArr[indexPath.row];
+            [cell setMShopList:mShopList];
             
-            if (mShopList.mActivityArr.count <= 0) {
-                return 100;
-                
-            }else if (mShopList.mActivityArr.count == 1){
-                return 135;
-                
-            }else{
-                NSString *reuseCellId = nil;
-                
-                reuseCellId = @"cell3";
-                communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-                
-                
-                GMarketList *mShopList = self.mShopArr[indexPath.row];
-                [cell setMShopList:mShopList];
-                
-                
-                
-                return cell.mCellH;
-                
-            }
-            
+            return cell.mCellH;
+         
         }
 
     }else{
