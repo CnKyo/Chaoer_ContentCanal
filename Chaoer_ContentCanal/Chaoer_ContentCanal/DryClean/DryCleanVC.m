@@ -21,6 +21,7 @@
 #import "mFoodHeaderView.h"
 #import "mFoodClearView.h"
 #import "mFoodShopCarCell.h"
+#import "BaseHeaderRefresh.h"
 
 @interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource, WKFoodHeaderViewDelegate, WKFoodShopCarCellDelegate>
 {
@@ -38,6 +39,8 @@
 @property(nonatomic,strong) UITableView*    classTableView;
 @property(nonatomic,strong) NSMutableArray* classArr;
 @property(nonatomic,assign) NSInteger       classIndex; //选择哪一种类别
+@property(nonatomic,strong) DryClearnShopClassObject* classChooseItem;
+
 
 @property(nonatomic,strong) UITableView *   mShopCarListView;
 @property(nonatomic,strong) UIView *        mShopCarBgkView;
@@ -77,6 +80,8 @@
     [self setRightBtnWidth:70];
     
     self.page = 1;
+    self.shopId = 2;
+    self.classIndex = -1;
     
     [self initView];
     [self initShopCarView];
@@ -88,6 +93,8 @@
 
     self.segControl.selectedSegmentIndex = 0;
     [self loadSegSelectIndex:0];
+    
+    [self upDatePage];
 }
 
 
@@ -439,7 +446,13 @@
         make.right.equalTo(self.segSelect1View.right);
     }];
     
-    self.haveHeader = YES;
+    //self.haveHeader = YES;
+    //[self headerEndRefresh];
+    
+    BaseHeaderRefresh *mHeader = [BaseHeaderRefresh headerWithRefreshingTarget:self refreshingAction:@selector(headerBeganRefresh)];
+    mHeader.lastUpdatedTimeLabel.hidden = YES;
+    mHeader.stateLabel.hidden = YES;
+    self.tableView.mj_header = mHeader;
 }
 
 -(void)loadSegSelectIndex:(NSInteger)index
@@ -451,7 +464,7 @@
         
         if (_shopItem == nil) {
             [SVProgressHUD showWithStatus:@"加载中..."];
-            [[APIClient sharedClient] dryClearnShopInfoWithTag:self shopId:9 call:^(DryClearnShopObject *item, int coupon, int focus, APIObject *info) {
+            [[APIClient sharedClient] dryClearnShopInfoWithTag:self shopId:_shopId call:^(DryClearnShopObject *item, int coupon, int focus, APIObject *info) {
                 if (item != nil) {
                     self.shopItem = item;
                     self.shopCoupon = coupon;
@@ -470,7 +483,7 @@
         
         if (self.classArr.count == 0) {
             [SVProgressHUD showWithStatus:@"加载中..."];
-            [[APIClient sharedClient] dryClearnShopClassListWithTag:self shopId:9 call:^(NSArray *tableArr, APIObject *info) {
+            [[APIClient sharedClient] dryClearnShopClassListWithTag:self shopId:_shopId call:^(NSArray *tableArr, APIObject *info) {
                 if (tableArr.count > 0) {
                     [self.classArr setArray:tableArr];
                     [self.classTableView reloadData];
@@ -522,6 +535,7 @@
         if (_classArr.count > row) {
             if (row != _classIndex) {
                 self.classIndex = row;
+                self.classChooseItem = [_classArr objectAtIndex:row];
                 [self.classTableView reloadData];
                 [self restartTableView];
             }
@@ -545,7 +559,7 @@
     self.page = 1;
     
     //[SVProgressHUD showWithStatus:@"加载类别中..."];
-    [[APIClient sharedClient] dryClearnShopServerListWithTag:self shopId:9 classId:1 call:^(NSArray *tableArr, APIObject *info) {
+    [[APIClient sharedClient] dryClearnShopServerListWithTag:self shopId:_shopId classId:_classChooseItem.iD call:^(NSArray *tableArr, APIObject *info) {
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
@@ -713,6 +727,8 @@
             vc.hiddenTabBar = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
+    } else if (self.mShopCarListView == tableView) {
+
     }
 }
 
@@ -803,7 +819,13 @@
 
 #pragma mark----headerview和bottomview的代理方法
 - (void)upDatePage{
-    int count = [self totalCountFromCartArr];
+    
+    int count = 0;
+    double money = 0;
+    for (DryClearnShopServerObject *it in _mShopCartArr) {
+        count += it.count;
+        money += it.price;
+    }
     
     if (count <= 0) {
         mBottomView.mNum.hidden = YES;
@@ -814,13 +836,45 @@
         mBottomView.mNum.text = [NSString stringWithFormat:@"%i",count];
     }
     
+    NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
+    mBottomView.mTTPrice.attributedText = [[NSString stringWithFormat:@"合计:<color>¥%.2f</color> ",money] attributedStringWithStyleBook:mStyle1];
 }
 
 #pragma mark----去结算的代理方法
 - (void)WKFoodViewBottomGoPayCilicked{
-
     
+    if (_mShopCartArr.count > 0) {
+        NSMutableArray *arr = [NSMutableArray array];
+        for (DryClearnShopServerObject *it in _mShopCartArr) {
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:StringWithInt(it.iD),@"classify",  StringWithInt(it.count),@"quantity", nil];
+            [arr addObject:dic];
+        }
+        
+        NSString *str = [arr mj_JSONString];
+        
+        [SVProgressHUD showWithStatus:@"处理中..."];
+        [[APIClient sharedClient] dryClearnShopOrderInfoWithTag:self serverId:_shopId cartJson:str call:^(DryClearnShopOrderShowObject *item, APIObject *info) {
+            if (info.state == RESP_STATUS_YES && item!=nil) {
+
+                DryCleanOrderSubmitVC *vc = [[DryCleanOrderSubmitVC alloc] init];
+                vc.shopId = _shopId;
+                vc.showInfoItem = item;
+                vc.goodsArr = _mShopCartArr;
+                vc.hiddenTabBar = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+                [SVProgressHUD dismiss];
+            } else {
+                if (info.message.length > 0)
+                    [SVProgressHUD showErrorWithStatus:info.message];
+            }
+        }];
+        
+    } else
+        [SVProgressHUD showErrorWithStatus:@"请先加入购物车，亲"];
 }
+
+
 #pragma mark----购物车的代理方法
 - (void)WKFoodViewBottomShopCarCilicked{
     [self showShopList];
@@ -948,18 +1002,14 @@
 //去结算
 -(void)goSubmmitMethod:(id)sender
 {
-    DryCleanOrderSubmitVC *vc = [[DryCleanOrderSubmitVC alloc] init];
-    vc.hiddenTabBar = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 
 //去预约
 -(void)goYudingMethod:(UIButton *)sender
 {
-    DryCleanShopServerDetailVC *vc = [[DryCleanShopServerDetailVC alloc] init];
-    vc.hiddenTabBar = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 //打电话

@@ -10,7 +10,10 @@
 #import "UIView+AutoSize.h"
 
 @interface DryCleanTimeChooseView : UIView
+@property(nonatomic, strong) NSArray *arr;
 
-- (id)initWithArr:(NSArray *)arr;
+-(void)loadUIWithTitleArr:(NSArray *)arr chooseTime:(NSString *)timeStr;
+
+@property (nonatomic, copy) void (^chooseCallBack)(NSString* timeStr);
 
 @end

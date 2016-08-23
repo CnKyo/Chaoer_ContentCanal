@@ -1190,7 +1190,7 @@
 		DF10D81D1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */; };
 		DF10D8201D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */; };
 		DF10D8241D64099F00220FB0 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8231D64099F00220FB0 /* HMSegmentedControl.m */; };
-		DF10D8271D6409C500220FB0 /* DryCleanOrderTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */; };
+		DF10D8271D6409C500220FB0 /* DryCleanOrderChooseTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8261D6409C500220FB0 /* DryCleanOrderChooseTimeVC.m */; };
 		DF10D82A1D640AC900220FB0 /* QUScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8291D640AC900220FB0 /* QUScrollVC.m */; };
 		DF10D83D1D640FBA00220FB0 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF10D82D1D640FBA00220FB0 /* DateTools.bundle */; };
 		DF10D83E1D640FBA00220FB0 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8301D640FBA00220FB0 /* DTConstants.m */; };
@@ -1203,6 +1203,8 @@
 		DF10D8471D6418BC00220FB0 /* DryCleanTimeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */; };
 		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */; };
 		DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */; };
+		DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */ = {isa = PBXBuildFile; fileRef = DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */; };
+		DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */; };
 		DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */; };
 		DF535EFF1D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF81D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.m */; };
 		DF535F001D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EFA1D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m */; };
@@ -3335,8 +3337,8 @@
 		DF10D81F1D63FA4E00220FB0 /* DryCleanOrderSubmitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderSubmitTableViewCell.m; sourceTree = "<group>"; };
 		DF10D8221D64099F00220FB0 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		DF10D8231D64099F00220FB0 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
-		DF10D8251D6409C500220FB0 /* DryCleanOrderTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderTimeVC.h; sourceTree = "<group>"; };
-		DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderTimeVC.m; sourceTree = "<group>"; };
+		DF10D8251D6409C500220FB0 /* DryCleanOrderChooseTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderChooseTimeVC.h; sourceTree = "<group>"; };
+		DF10D8261D6409C500220FB0 /* DryCleanOrderChooseTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderChooseTimeVC.m; sourceTree = "<group>"; };
 		DF10D8281D640AC900220FB0 /* QUScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUScrollVC.h; sourceTree = "<group>"; };
 		DF10D8291D640AC900220FB0 /* QUScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUScrollVC.m; sourceTree = "<group>"; };
 		DF10D82D1D640FBA00220FB0 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
@@ -3360,6 +3362,9 @@
 		DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommentSubmitVC.m; sourceTree = "<group>"; };
 		DF10D84B1D64715F00220FB0 /* DryCleanServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanServerTableViewCell.h; sourceTree = "<group>"; };
 		DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanServerTableViewCell.m; sourceTree = "<group>"; };
+		DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_serverliucheng.png; sourceTree = "<group>"; };
+		DF385F061D68522700F5B93E /* DryCleanOrderChooseCouponTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderChooseCouponTVC.h; sourceTree = "<group>"; };
+		DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderChooseCouponTVC.m; sourceTree = "<group>"; };
 		DF535EF31D62AA4C006E1598 /* HouseKeepShopTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseKeepShopTVC.h; sourceTree = "<group>"; };
 		DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseKeepShopTVC.m; sourceTree = "<group>"; };
 		DF535EF71D62AC27006E1598 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
@@ -7111,6 +7116,7 @@
 		DF0591AA1D65519C00445128 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */,
 				DF0591BF1D65638800445128 /* dryClean_addPic.png */,
 				DF0591BB1D65610400445128 /* dryClean_address_choose@2x.png */,
 				DF0591BC1D65610400445128 /* dryClean_time_choose@2x.png */,
@@ -7218,12 +7224,14 @@
 				DF10D8181D63ECBE00220FB0 /* DryCleanShopServerDetailVC.m */,
 				DF10D81B1D63F7A700220FB0 /* DryCleanOrderSubmitVC.h */,
 				DF10D81C1D63F7A700220FB0 /* DryCleanOrderSubmitVC.m */,
-				DF10D8251D6409C500220FB0 /* DryCleanOrderTimeVC.h */,
-				DF10D8261D6409C500220FB0 /* DryCleanOrderTimeVC.m */,
+				DF10D8251D6409C500220FB0 /* DryCleanOrderChooseTimeVC.h */,
+				DF10D8261D6409C500220FB0 /* DryCleanOrderChooseTimeVC.m */,
 				DF535F1E1D63088B006E1598 /* DryCleanOrderCommentTVC.h */,
 				DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */,
 				DF66B77F1D669EE3006189AF /* DryCleanOrderCommentSubmitVC.h */,
 				DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */,
+				DF385F061D68522700F5B93E /* DryCleanOrderChooseCouponTVC.h */,
+				DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */,
 			);
 			path = DryClean;
 			sourceTree = "<group>";
@@ -7766,6 +7774,7 @@
 				0405834D1D194CC50060C2DE /* mBaseConverSationViewController.xib in Resources */,
 				04D7339A1D6402F600F1C5DD /* mFoodComfirmFooterView.xib in Resources */,
 				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
+				DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */,
 				04D733981D64020C00F1C5DD /* mFoodComfirmBottomView.xib in Resources */,
 				04F5FFE81D23579100EFBB3C /* communityOrderDetailCell.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
@@ -7995,6 +8004,7 @@
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
 				318D56681C9C012B0045B5FB /* MHSheetHead.m in Sources */,
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
+				DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */,
 				04E02E4F1CE6B4C900220D54 /* pptMyRateCell.m in Sources */,
 				04FACEA61D6A982C0038CF7B /* ZXMultiDetector.m in Sources */,
 				318D56641C9C012B0045B5FB /* MHSheetCell.m in Sources */,
@@ -8279,7 +8289,7 @@
 				DF535F001D62AC27006E1598 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				04102CD91D2A5095003A0C56 /* MJRefreshBackStateFooter.m in Sources */,
 				04102E0F1CE41A3D006F82E2 /* pptChartsTableViewCell.m in Sources */,
-				DF10D8271D6409C500220FB0 /* DryCleanOrderTimeVC.m in Sources */,
+				DF10D8271D6409C500220FB0 /* DryCleanOrderChooseTimeVC.m in Sources */,
 				DF10D8241D64099F00220FB0 /* HMSegmentedControl.m in Sources */,
 				310EB5E61CA24445005C61F4 /* HCSStarRatingView.m in Sources */,
 				3135F8441C9803B100EF9569 /* redBagTableViewCell.m in Sources */,

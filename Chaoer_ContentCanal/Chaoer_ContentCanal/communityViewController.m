@@ -428,11 +428,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GMarketList *mShopList = self.mShopArr[indexPath.row];
     
-    if (indexPath.row == 0) {
+    if (mShopList.mType == 3) {
         DryCleanVC *vvv= [DryCleanVC new];
+        vvv.shopId = mShopList.mId;
         [self pushViewController:vvv];
-    }else{
         
+    } else {
         mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
         market.mShopList = GMarketList.new;
         market.mShopList = mShopList;
@@ -440,11 +441,6 @@
         
         [self pushViewController:market];
     }
-    
-    
-    
-    
-    
 
 }
 

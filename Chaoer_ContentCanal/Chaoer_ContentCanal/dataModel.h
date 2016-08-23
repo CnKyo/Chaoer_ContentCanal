@@ -3378,6 +3378,7 @@
 
 @property (nonatomic,assign) float mDeliverPrice;
 
+@property (nonatomic,assign) int mType; //type为1是超市  3是干洗
 
 /**
  *  活动数据

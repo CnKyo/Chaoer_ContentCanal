@@ -63,6 +63,8 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)dryClearnShopClassListWithTag:(NSObject *)tag shopId:(int)sid call:(TableArrBlock)callback;
 -(void)dryClearnShopServerListWithTag:(NSObject *)tag shopId:(int)sid classId:(int)cid call:(TableArrBlock)callback;
 -(void)dryClearnShopServerInfoWithTag:(NSObject *)tag serverId:(int)sid call:(void (^)(DryClearnShopServerObject *item, APIObject* info))callback;
+-(void)dryClearnShopOpeningTimeListWithTag:(NSObject *)tag shopId:(int)sid dateStr:(NSString *)dateStr call:(TableArrBlock)callback;
+-(void)dryClearnShopOrderInfoWithTag:(NSObject *)tag serverId:(int)sid cartJson:(NSString *)cartStr call:(void (^)(DryClearnShopOrderShowObject *item, APIObject* info))callback;
 
-
+-(void)dryClearnShopOrderSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderPostObject *)it call:(void (^)(APIObject* info))callback;
 @end
