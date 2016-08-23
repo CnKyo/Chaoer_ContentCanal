@@ -119,13 +119,22 @@
 - (void)setMFDays:(int)mFDays{
     self.mDays.text = [NSString stringWithFormat:@"%d天",mFDays];
     
-    if (mProgress == nil) {
-        mProgress = [[YSProgressView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, self.mSliderView.mheight)];
-        mProgress.progressValue = mFDays;
-        [self.mSliderView addSubview:mProgress];
-
+    for (YSProgressView *vvv in self.mSliderView.subviews) {
+        [vvv removeFromSuperview];
     }
     
+    mProgress = [[YSProgressView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, self.mSliderView.mheight)];
+    mProgress.progressValue = mFDays;
+    [self.mSliderView addSubview:mProgress];
+
+    
+    NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
+
+    if ([mUserInfo backNowUser].mIsSign) {
+        self.mRegistContent.attributedText =[[NSString stringWithFormat:@"今日签到<color>+1</color> "] attributedStringWithStyleBook:mStyle];
+
+    }
+
     
 }
 

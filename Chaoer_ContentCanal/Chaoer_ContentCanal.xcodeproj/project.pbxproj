@@ -766,6 +766,8 @@
 		04FAD0D51D6A9BB50038CF7B /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAD0D41D6A9BB50038CF7B /* ScanViewController.m */; };
 		04FAD0DC1D6AE3440038CF7B /* transferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAD0DA1D6AE3440038CF7B /* transferViewController.m */; };
 		04FAD0DD1D6AE3440038CF7B /* transferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FAD0DB1D6AE3440038CF7B /* transferViewController.xib */; };
+		04FAD0E01D6B1F140038CF7B /* mPayFeeBarCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAD0DF1D6B1F140038CF7B /* mPayFeeBarCodeView.m */; };
+		04FAD0E21D6B1F200038CF7B /* mPayFeeBarCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FAD0E11D6B1F200038CF7B /* mPayFeeBarCodeView.xib */; };
 		04FAE7E11D2CA2E200341585 /* mFixOrderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE7DF1D2CA2E200341585 /* mFixOrderDetailTableViewCell.m */; };
 		04FAE7E21D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FAE7E01D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib */; };
 		04FAE7E51D2CAA9E00341585 /* mFixOrderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAE7E41D2CAA9E00341585 /* mFixOrderFooter.m */; };
@@ -2621,6 +2623,9 @@
 		04FAD0D91D6AE3440038CF7B /* transferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transferViewController.h; sourceTree = "<group>"; };
 		04FAD0DA1D6AE3440038CF7B /* transferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = transferViewController.m; sourceTree = "<group>"; };
 		04FAD0DB1D6AE3440038CF7B /* transferViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = transferViewController.xib; sourceTree = "<group>"; };
+		04FAD0DE1D6B1F140038CF7B /* mPayFeeBarCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mPayFeeBarCodeView.h; sourceTree = "<group>"; };
+		04FAD0DF1D6B1F140038CF7B /* mPayFeeBarCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mPayFeeBarCodeView.m; sourceTree = "<group>"; };
+		04FAD0E11D6B1F200038CF7B /* mPayFeeBarCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mPayFeeBarCodeView.xib; sourceTree = "<group>"; };
 		04FAE7DE1D2CA2E200341585 /* mFixOrderDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mFixOrderDetailTableViewCell.h; sourceTree = "<group>"; };
 		04FAE7DF1D2CA2E200341585 /* mFixOrderDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mFixOrderDetailTableViewCell.m; sourceTree = "<group>"; };
 		04FAE7E01D2CA2E200341585 /* mFixOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mFixOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -5924,6 +5929,9 @@
 				04648C7B1CB51E88006823C9 /* valletTCell.h */,
 				04648C7C1CB51E88006823C9 /* valletTCell.m */,
 				04648C7D1CB51E88006823C9 /* valletTCell.xib */,
+				04FAD0DE1D6B1F140038CF7B /* mPayFeeBarCodeView.h */,
+				04FAD0DF1D6B1F140038CF7B /* mPayFeeBarCodeView.m */,
+				04FAD0E11D6B1F200038CF7B /* mPayFeeBarCodeView.xib */,
 				04FAD0CF1D6A999B0038CF7B /* Controller */,
 			);
 			name = "钱包";
@@ -7566,6 +7574,7 @@
 				31F544801CAE12C400307B83 /* homeNavView.xib in Resources */,
 				04BBA2E21CBD1B2000BD1420 /* addAddressViewController.xib in Resources */,
 				74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */,
+				04FAD0E21D6B1F200038CF7B /* mPayFeeBarCodeView.xib in Resources */,
 				31671DD71CA13344001DAEBA /* hasCodeTableViewCell.xib in Resources */,
 				3135F84A1C9807EC00EF9569 /* mRedBagHeader.xib in Resources */,
 				04E02E551CE6B71700220D54 /* pptMyRateHeaderView.xib in Resources */,
@@ -8359,6 +8368,7 @@
 				741B8D941B326EFA002104A0 /* AppDelegate.m in Sources */,
 				04EEADC81D0FAED900FA97C6 /* NSString+HDExtension.m in Sources */,
 				747BB8361BD0EF5D00C4C09D /* MZTimerLabel.m in Sources */,
+				04FAD0E01D6B1F140038CF7B /* mPayFeeBarCodeView.m in Sources */,
 				04FACFEF1D6A98C60038CF7B /* ZXResult.m in Sources */,
 				16A987BA1C0397F100D55C4A /* CBCUtil.m in Sources */,
 				04D85DC01CF6991300E1A3A2 /* mFeedBackCell.m in Sources */,

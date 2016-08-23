@@ -273,6 +273,15 @@
  */
 @property (strong,nonatomic) NSArray *mHistorySearchArr;
 
+/**
+ *  签到天数
+ */
+@property (assign,nonatomic) int mSignDay;
+/**
+ *  是否已经签到
+ */
+@property (assign,nonatomic) BOOL mIsSign;
+
 -(id)initWithObj:(NSDictionary*)obj;
 
 -(void)fetchIt:(NSDictionary*)obj;
@@ -1454,6 +1463,14 @@
  *  @param block    返回值
  */
 - (void)getFoodShopCategaryInfo:(int)mShopId andPage:(int)mPage andLevel:(int)mLevel block:(void(^)(mBaseData *resb,NSArray*mCategry,NSArray*mList))block;
+#pragma mark----签到
+/**
+ *  签到
+ *
+ *  @param block 返回值
+ */
+- (void)signDay:(void(^)(mBaseData *resb))block;
+
 
 #pragma mark----验证账户接口
 /**
@@ -1480,7 +1497,22 @@
  *  @param block 返回值
  */
 - (void)getMyBarCode:(void(^)(mBaseData *resb,NSString *mBarCodeUrl))block;
-
+#pragma mark----收款二维码
+/**
+ *  获取我的收款二维码
+ *
+ *  @param block 返回值
+ */
+- (void)getPayFeeBarCode:(void(^)(mBaseData *resb,NSString *mBarCodeUrl))block;
+#pragma mark----获取收款纪录
+/**
+ *  获取收款纪录
+ *
+ *  @param mType 纪录类型
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getTransFerHistory:(int)mType andPage:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block;
 @end
 
 @interface SMessage : NSObject
@@ -4165,5 +4197,44 @@
  *  弗雷id
  */
 @property (strong,nonatomic) NSString *mSuperId;
+
+@end
+
+
+#pragma mark----收款纪录
+@interface GTransferHistory : NSObject
+/**
+ *  添加时间
+ */
+@property (strong,nonatomic) NSString *mAddTime;
+/**
+ *  类型
+ */
+@property (strong,nonatomic) NSString *mChannel;
+/**
+ *  描述
+ */
+@property (strong,nonatomic) NSString *mDescription;
+/**
+ *  订单编号
+ */
+@property (strong,nonatomic) NSString *mOrderCode;
+/**
+ *  支付时间
+ */
+@property (strong,nonatomic) NSString *mPayTime;
+/**
+ *  电话
+ */
+@property (strong,nonatomic) NSString *mPhone;
+/**
+ *  状态
+ */
+@property (assign,nonatomic) int mStatus;
+/**
+ *  id
+ */
+@property (assign,nonatomic) int mId;
+-(id)initWithObj:(NSDictionary *)obj;
 
 @end

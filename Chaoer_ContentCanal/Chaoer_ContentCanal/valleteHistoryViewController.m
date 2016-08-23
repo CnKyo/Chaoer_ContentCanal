@@ -24,8 +24,10 @@
     
     if (self.mType == 2) {
         str = @"积分纪录";
-    }else{
+    }else if(self.mType == 1){
         str = @"交易纪录";
+    }else{
+        str = @"收款纪录";
     }
     
     self.page = 1;
@@ -58,34 +60,61 @@
 - (void)headerBeganRefresh{
 
     self.page = 1;
+    if (self.mType == 3) {
+        [[mUserInfo backNowUser] getTransFerHistory:4 andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
+            [self.tempArray removeAllObjects];
+            [self headerEndRefresh];
+            
+            [self DissMissEmptyView];
+            
+            if (resb.mSucess) {
+                [SVProgressHUD dismiss];
+                if (mArr.count <= 0) {
+                    [self ShowEmptyViewWithTitle:@"暂时没有数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+                    return ;
+                }
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self ShowEmptyViewWithTitle:nil andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+                
+            }
 
-    [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
-        
-        [self.tempArray removeAllObjects];
-        [self headerEndRefresh];
-        
-        [self DissMissEmptyView];
-        
-        if (resb.mSucess) {
-            [SVProgressHUD dismiss];
-            if (mArr.count <= 0) {
-                [self ShowEmptyViewWithTitle:@"暂时没有数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
-                return ;
+        }];
+    }else{
+    
+        [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+            
+            [self.tempArray removeAllObjects];
+            [self headerEndRefresh];
+            
+            [self DissMissEmptyView];
+            
+            if (resb.mSucess) {
+                [SVProgressHUD dismiss];
+                if (mArr.count <= 0) {
+                    [self ShowEmptyViewWithTitle:@"暂时没有数据!" andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+                    return ;
+                }
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self ShowEmptyViewWithTitle:nil andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
+                
             }
             
-            [self.tempArray addObjectsFromArray:mArr];
-            [self.tableView reloadData];
             
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self ShowEmptyViewWithTitle:nil andImg:nil andIsHiddenBtn:NO andHaveTabBar:NO];
-            
-        }
-
+        }];
         
-    }];
-    
+    }
 }
 
 
@@ -93,31 +122,57 @@
 
 
     self.page ++;
-    
-    [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
-        
-        [self footetEndRefresh];
-        
-        [self removeEmptyView];
-        if (resb.mSucess) {
-            [SVProgressHUD dismiss];
+    if (self.mType == 3) {
+        [[mUserInfo backNowUser] getTransFerHistory:4 andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
+            [self footetEndRefresh];
             
-            if (mArr.count <= 0) {
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                [SVProgressHUD dismiss];
+                
+                if (mArr.count <= 0) {
+                    [self addEmptyViewWithImg:nil];
+                    return ;
+                }
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
                 [self addEmptyViewWithImg:nil];
-                return ;
+                
+            }
+
+        }];
+    }else{
+    
+        [[mUserInfo backNowUser] getScoreList:self.mType andPage:self.page andNum:10 block:^(mBaseData *resb, NSArray *mArr) {
+            
+            [self footetEndRefresh];
+            
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                [SVProgressHUD dismiss];
+                
+                if (mArr.count <= 0) {
+                    [self addEmptyViewWithImg:nil];
+                    return ;
+                }
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+                
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:resb.mMessage];
+                [self addEmptyViewWithImg:nil];
+                
             }
             
-            [self.tempArray addObjectsFromArray:mArr];
-            [self.tableView reloadData];
-            
-        }else{
-            
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self addEmptyViewWithImg:nil];
-            
-        }
-
-    }];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,32 +213,19 @@
 {
     NSString *reuseCellId = @"cell";
     
-    
-    GScroe *mScore = self.tempArray[indexPath.row];
-    
     valletTCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
     if (self.mType == 1) {
         cell.mImf.image = [UIImage imageNamed:@"score_cell"];
-    }else{
+        [cell setMObj:self.tempArray[indexPath.row]];
+    }else if (self.mType == 2){
         cell.mImf.image = [UIImage imageNamed:@"topup_cell"];
-    }
-    
-    cell.mTime.text = mScore.mAddTime;
-    
-    int mType = mScore.mType;
-    
-    if (mType == 2) {
-        cell.mStatus.text = @"充值";
-        cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
-
+        [cell setMObj:self.tempArray[indexPath.row]];
     }else{
-        cell.mStatus.text = @"支付";
-        cell.mScore.text = [NSString stringWithFormat:@"%d积分",mScore.mScore];
-
+        cell.mImf.image = [UIImage imageNamed:@"score_cell"];
+        
+        [cell setMTransfer:self.tempArray[indexPath.row]];
     }
-    cell.mtitle.text = mScore.mDescribe;
-    
-    
     
     return cell;
     

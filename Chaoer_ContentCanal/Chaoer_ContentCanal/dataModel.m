@@ -253,6 +253,12 @@ bool g_bined = NO;
     self.mLegworkUserId = [[obj objectForKeyMy:@"legworkUserId"] intValue];
     
     self.mCommunityId = [[obj objectForKeyMy:@"community_id"] intValue];
+    self.mSignDay = [[obj objectForKeyMy:@"signDays"] intValue];
+    
+    int isSign = [[obj objectForKeyMy:@"is_SignIn"] boolValue];
+    
+    self.mIsSign = isSign?1:0;
+
 }
 
 + (BOOL)isNeedLogin{
@@ -4518,7 +4524,24 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
 }
 
-
+#pragma mark----签到
+/**
+ *  签到
+ *
+ *  @param block 返回值
+ */
+- (void)signDay:(void(^)(mBaseData *resb))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/signIn/signIn" parameters:para  call:^(mBaseData * _Nonnull info) {
+     
+        block(info);
+        
+    }];
+    
+}
 #pragma mark----验证账户接口
 /**
  *  验证转账账户手机
@@ -4582,6 +4605,86 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     }];
     
     
+}
+#pragma mark----收款二维码
+/**
+ *  获取我的收款二维码
+ *
+ *  @param block 返回值
+ */
+- (void)getPayFeeBarCode:(void(^)(mBaseData *resb,NSString *mBarCodeUrl))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:@"ios" forKey:@"device"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/bj/pay/authCode" parameters:para call:^(mBaseData * _Nonnull info) {
+        block (info,[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],info.mData]);
+    }];
+    
+    
+    
+}
+
+#pragma mark----获取收款纪录
+/**
+ *  获取收款纪录
+ *
+ *  @param mType 纪录类型
+ *  @param mPage 分页
+ *  @param block 返回值
+ */
+- (void)getTransFerHistory:(int)mType andPage:(int)mPage block:(void(^)(mBaseData *resb,NSArray *mArr))block{
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+    NSString *mChanel = nil;
+    
+    switch (mType) {
+        case 1:
+        {
+            mChanel = @"wx";
+        }
+            break;
+        case 2:
+        {
+            mChanel = @"alipay";
+        }
+            break;
+        case 3:
+        {
+            mChanel = @"balance";
+        }
+            break;
+        case 4:
+        {
+            mChanel = @"bj";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    [para setObject:mChanel forKey:@"channel"];
+    [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
+    [para setObject:@"ios" forKey:@"device"];
+    [para setObject:NumberWithInt(mPage) forKey:@"pageNumber"];
+    [para setObject:NumberWithInt(10) forKey:@"pageSize"];
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/rechargeOrder/findrechargeOrder" parameters:para call:^(mBaseData * _Nonnull info) {
+        
+        if (info.mSucess) {
+            NSMutableArray *tempArr = [NSMutableArray new];
+            
+            for ( NSDictionary *dic in [info.mData objectForKey:@"orderList"]) {
+                [tempArr addObject:[[GTransferHistory alloc] initWithObj:dic]];
+            }
+            
+            block (info,tempArr);
+        }else{
+            block (info,nil);
+        }
+        
+    }];
 }
 @end
 
@@ -7305,6 +7408,35 @@ bool pptbined = NO;
     
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     
+    
+}
+
+@end
+#pragma mark----收款纪录
+@implementation GTransferHistory
+
+-(id)initWithObj:(NSDictionary *)obj{
+    self = [super init];
+    if( self && obj != nil )
+    {
+        [self fetchIt:obj];
+    }
+    return self;
+    
+}
+- (void)fetchIt:(NSDictionary *)obj{
+    
+    
+    self.mAddTime = [obj objectForKeyMy:@"addTime"];
+    self.mChannel = [obj objectForKeyMy:@"channel"];
+    self.mDescription = [obj objectForKeyMy:@"description"];
+    self.mOrderCode = [obj objectForKeyMy:@"orderCode"];
+    self.mPayTime = [obj objectForKeyMy:@"payTime"];
+    self.mPhone = [obj objectForKeyMy:@"phone"];
+
+    self.mId = [[obj objectForKeyMy:@"id"] intValue];
+    self.mStatus = [[obj objectForKeyMy:@"status"] intValue];
+
     
 }
 

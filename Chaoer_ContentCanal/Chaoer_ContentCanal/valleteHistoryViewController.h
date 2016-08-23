@@ -11,7 +11,7 @@
 @interface valleteHistoryViewController : BaseVC
 
 /**
- *  现实类型 1是积分 2是交易记录
+ *  现实类型 1是积分 2是交易记录 3是收款纪录
  */
 @property (assign,nonatomic) int    mType;
 

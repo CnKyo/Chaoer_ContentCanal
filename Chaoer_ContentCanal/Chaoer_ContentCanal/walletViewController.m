@@ -25,7 +25,11 @@
 #import "valletCell1.h"
 #import "ScanViewController.h"
 #import "transferViewController.h"
-@interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate>
+#import "mPayFeeBarCodeView.h"
+#import "WJAdsView.h"
+#import "AppDelegate.h"
+
+@interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate,WJAdsViewDelegate,UIApplicationDelegate>
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView3;
@@ -36,6 +40,10 @@
     walletView *mView;
     
     walletView *mHeaderView;
+    
+    mPayFeeBarCodeView *mBarCodeView;
+    
+    NSString *mBarCodeStr;
 
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -52,8 +60,9 @@
     self.hiddenlll = YES;
     self.hiddenRightBtn = YES;
     self.navBar.hidden = YES;
-
+    mBarCodeStr = nil;
     [self initView];
+    [self initBarCodeView];
     
 }
 - (void)initView{
@@ -92,7 +101,10 @@
             [mUserInfo backNowUser].mUserId = [[resb.mData objectForKey:@"user_id"] intValue];
             [mUserInfo backNowUser].mMoney = [[resb.mData objectForKey:@"money"] floatValue];
             [mUserInfo backNowUser].mCredit = [[resb.mData objectForKey:@"score"] intValue];
-
+            [mUserInfo backNowUser].mSignDay =[[resb.mData objectForKey:@"signDays"] intValue];
+            int isSign = [[resb.mData objectForKey:@"is_SignIn"] boolValue];
+            
+            [mUserInfo backNowUser].mIsSign = isSign?1:0;
             [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];
@@ -203,7 +215,7 @@
     
     [cell setMFBalance:[mUserInfo backNowUser].mMoney];
     [cell setMFScore:[mUserInfo backNowUser].mCredit];
-    [cell setMFDays:24];
+    [cell setMFDays:[mUserInfo backNowUser].mSignDay];
     cell.delegate = self;
     
     return cell;
@@ -228,7 +240,9 @@
         myRedBagViewController *mmm = [[myRedBagViewController alloc] initWithNibName:@"myRedBagViewController" bundle:nil];
         [self pushViewController:mmm];
     }else{
-    
+        valleteHistoryViewController *vvv = [[valleteHistoryViewController alloc] initWithNibName:@"valleteHistoryViewController" bundle:nil];
+        vvv.mType = 3;
+        [self pushViewController:vvv];
         
     }
     
@@ -268,7 +282,17 @@
         transferViewController *ttt = [[transferViewController alloc] initWithNibName:@"transferViewController" bundle:nil];
         [self pushViewController:ttt];
     }else{
-    
+        [self showWithStatus:@"正在操作中..."];
+        [[mUserInfo backNowUser] getPayFeeBarCode:^(mBaseData *resb, NSString *mBarCodeUrl) {
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                mBarCodeStr = mBarCodeUrl;
+                [self showAdsView];
+            }else{
+            
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
     }
     
 
@@ -280,6 +304,103 @@
 #pragma mark----签到按钮
 - (void)cellWithRegistBtnAction{
 
+    
+    if ([mUserInfo backNowUser].mIsSign) {
+        [self showErrorStatus:@"今天您已经签过到了哦！"];
+    }else{
+    
+        [self showWithStatus:@"正在签到..."];
+        [[mUserInfo backNowUser] signDay:^(mBaseData *resb) {
+            if (resb.mSucess) {
+                [self showSuccessStatus:resb.mMessage];
+                [self headerBeganRefresh];
+                
+            }else{
+            
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
+    }
 }
+
+- (void)initBarCodeView{
+
+    mBarCodeView = [mPayFeeBarCodeView shareView];
+    mBarCodeView.frame = self.view.bounds;
+    mBarCodeView.alpha = 0;
+    [mBarCodeView.mCloseBtn addTarget:self action:@selector(mCloseAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mBarCodeView];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [mBarCodeView addGestureRecognizer:tap];
+}
+- (void)showBarCode{
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        mBarCodeView.alpha = 1;
+        [mBarCodeView.mImg sd_setImageWithURL:[NSURL URLWithString:mBarCodeStr] placeholderImage:[UIImage imageNamed:@"img_default"]];
+        
+    }];
+    
+
+}
+
+- (void)hiddenBarCode{
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        mBarCodeView.alpha = 0;
+        
+        
+    }];
+    
+}
+- (void)mCloseAction:(UIButton *)sender{
+
+    [self hiddenBarCode];
+}
+- (void)tap{
+    [self hiddenBarCode];
+
+    
+}
+#pragma mark----加载弹框
+- (void)showAdsView{
+    
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.backgroundColor = [UIColor colorWithWhite:20
+                                                   alpha:0.3];
+    WJAdsView *adsView = [[WJAdsView alloc] initWithWindow:app.window];
+    adsView.tag = 10;
+    adsView.delegate = self;
+    
+    UIView *vvvv = [UIView new];
+    vvvv.frame = CGRectMake(0, 0,adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.height);
+    
+    UIImageView *iii = [UIImageView new];
+    iii.frame = vvvv.bounds;
+    [iii sd_setImageWithURL:[NSURL URLWithString:mBarCodeStr] placeholderImage:[UIImage imageNamed:@"img_default"]];
+    [vvvv addSubview:iii];
+    
+    [self.view addSubview:adsView];
+    adsView.containerSubviews = @[vvvv];
+    [adsView showAnimated:YES];
+}
+- (void)hide{
+    WJAdsView *adsView = (WJAdsView *)[self.view viewWithTag:10];
+    [adsView hideAnimated:YES];
+}
+- (void)wjAdsViewDidAppear:(WJAdsView *)view{
+    MLLog(@"视图出现");
+}
+- (void)wjAdsViewDidDisAppear:(WJAdsView *)view{
+    MLLog(@"视图消失");
+}
+
+- (void)wjAdsViewTapMainContainView:(WJAdsView *)view currentSelectIndex:(long)selectIndex{
+    MLLog(@"点击主内容视图:--%ld",selectIndex);
+}
+
 
 @end
