@@ -326,8 +326,8 @@
     DryClearnShopOrderCommentPostObject *it = [DryClearnShopOrderCommentPostObject new];
     it.device = @"ios";
     it.userId = [Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]];
-    it.shopId = _orderItem.mShopId;
-    it.orderCode = _orderItem.mOrderCode;
+    it.shopId = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", _orderItem.mShopId]];
+    it.orderCode = [Util RSAEncryptor:_orderItem.mOrderCode];
     it.context = _noteTextView.text;
     it.satisfaction = [NSString stringWithFormat:@"%.1f", rate];
     it.images = imgStr;

@@ -16,7 +16,7 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://op.juhe.cn/ofpay/public/";
+static NSString* const  kAFAppDotNetAPIBaseURLStringJuhe    = @"http://op.juhe.cn/ofpay/public/";
 
 @implementation JHJsonRequst
 HDSingletonM(HDNetworking) // 单例实现
@@ -76,7 +76,7 @@ HDSingletonM(HDNetworking) // 单例实现
 
 
 + (NSString *)returnNowURL{
-    return kAFAppDotNetAPIBaseURLString;
+    return kAFAppDotNetAPIBaseURLStringJuhe;
 }
 
 @end
