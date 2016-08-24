@@ -7,6 +7,7 @@
 //
 
 #import "goPayViewController.h"
+#import "QUCustomDefine.h"
 
 @interface goPayViewController ()
 /**
@@ -82,11 +83,22 @@
     self.mGoPayBtn.layer.masksToBounds = self.mBalanceBtn.layer.masksToBounds = YES;
     self.mGoPayBtn.layer.cornerRadius = self.mBalanceBtn.layer.cornerRadius = 3;
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleUserPaySuccess:)
+                                                 name:MyOrderPaySuccessNotification
+                                               object:nil];
     
     self.mBalance.text = [NSString stringWithFormat:@"余额:%.2f元",[mUserInfo backNowUser].mMoney];
     self.mPayMoney.text = [NSString stringWithFormat:@"¥%.2f元",mMoney];
 }
+
+
+-(void)handleUserPaySuccess:(NSNotification *)note
+{
+    [self popVCWithPaySuccess];
+}
+
+
 #pragma mark----去充值
 - (IBAction)mGoBalanceAction:(UIButton *)sender {
     mBalanceViewController *ppp = [[mBalanceViewController alloc] initWithNibName:@"mBalanceViewController" bundle:nil];
@@ -207,12 +219,7 @@
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
                 
-                if (mType == 1) {
-                    [self popViewController:4];
-                }else{
-                    [self popViewController];
-                
-                }
+                [self popVCWithPaySuccess];
                 
             }else{
                 [self showErrorStatus:resb.mMessage];
@@ -230,12 +237,13 @@
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
 
-                if (mType == 1) {
-                    [self popViewController:4];
-                }else{
-                    [self popViewController];
-                    
-                }
+                [self popVCWithPaySuccess];
+//                if (mType == 1) {
+//                    [self popViewController:4];
+//                }else{
+//                    [self popViewController];
+//                    
+//                }
                 
             }else{
                 [self showErrorStatus:resb.mMessage];
@@ -248,6 +256,22 @@
 
 }
 
+-(void)popVCWithPaySuccess
+{
+    if (_mIsPushFromOrderVC == YES) {
+        [self popViewController];
+    } else {
+        if (mType == 1) {
+            [self popViewController:4];
+        } else if (mType == 4) {
+            
+            [self popViewController_2];
+            
+        } else{
+            [self popViewController];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -274,12 +298,21 @@
 {
     if( buttonIndex == 1)
     {
-        if (mType == 1) {
-            
-            [self popViewController_2];
-        }else{
+        if (_mIsPushFromOrderVC == YES) {
             [self popViewController];
+        } else {
+            if (mType == 1) {
+                
+                [self popViewController_2];
+            } else if (mType == 4) {
+                
+                [self popViewController_2];
+                
+            } else{
+                [self popViewController];
+            }
         }
+
         
     }
   }

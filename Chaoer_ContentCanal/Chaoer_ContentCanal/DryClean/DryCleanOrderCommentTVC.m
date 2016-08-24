@@ -11,6 +11,7 @@
 #import "ShopCommentTableViewCell.h"
 #import "APIClient.h"
 #import "RatingBarView.h"
+#import "QUCustomDefine.h"
 
 static NSString * const GJShopCommentCellIndentifier = @"ShopCommentTableViewCell";
 

@@ -28,4 +28,5 @@
 @property (assign,nonatomic) float mPayFee;
 
 
+@property (assign,nonatomic) BOOL mIsPushFromOrderVC; //是否为订单跳转进入该界面，否则为购物车逻辑进入
 @end

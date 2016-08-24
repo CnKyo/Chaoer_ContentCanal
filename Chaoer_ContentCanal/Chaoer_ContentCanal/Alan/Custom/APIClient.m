@@ -8,6 +8,7 @@
 
 #import "APIClient.h"
 #import "HTTPrequest.h"
+#import "QUCustomDefine.h"
 
 #pragma mark -
 #pragma mark NSMutableDictionary

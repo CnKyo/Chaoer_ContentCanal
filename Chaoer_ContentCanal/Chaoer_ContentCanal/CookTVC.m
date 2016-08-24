@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "CookDetailVC.h"
 #import "ImageTextTableViewCell.h"
+#import "QUCustomDefine.h"
 
 @interface CookTVC ()<UITableViewDelegate,UITableViewDataSource>
 

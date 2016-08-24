@@ -16,6 +16,7 @@
 #import "DryCleanOrderChooseCouponTVC.h"
 #import "goPayViewController.h"
 #import "WPHotspotLabel.h"
+#import "QUCustomDefine.h"
 
 
 typedef enum {

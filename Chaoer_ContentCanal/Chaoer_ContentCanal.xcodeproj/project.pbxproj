@@ -3437,7 +3437,7 @@
 		DF8344141D51D570002C4FD6 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		DF8344151D51D570002C4FD6 /* APIObjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIObjectDefine.h; sourceTree = "<group>"; };
 		DF8344161D51D570002C4FD6 /* APIObjectDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIObjectDefine.m; sourceTree = "<group>"; };
-		DF8344171D51D570002C4FD6 /* CustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDefine.h; sourceTree = "<group>"; };
+		DF8344171D51D570002C4FD6 /* QUCustomDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUCustomDefine.h; sourceTree = "<group>"; };
 		DF83441C1D51DCB2002C4FD6 /* UIView+AutoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoSize.h"; sourceTree = "<group>"; };
 		DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoSize.m"; sourceTree = "<group>"; };
 		DF8344201D51DD51002C4FD6 /* CookCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookCategoryTVC.h; sourceTree = "<group>"; };
@@ -7365,7 +7365,7 @@
 				DF8344161D51D570002C4FD6 /* APIObjectDefine.m */,
 				DF8344131D51D570002C4FD6 /* APIClient.h */,
 				DF8344141D51D570002C4FD6 /* APIClient.m */,
-				DF8344171D51D570002C4FD6 /* CustomDefine.h */,
+				DF8344171D51D570002C4FD6 /* QUCustomDefine.h */,
 				DF10D8281D640AC900220FB0 /* QUScrollVC.h */,
 				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
 			);

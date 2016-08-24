@@ -18,6 +18,9 @@ static NSString * const sAppKey_Weather     = @"104ef5c579850";
 static NSString * const sAppKey_PostCode     = @"104ef5c579850";
 
 
+static NSString * const MyOrderPaySuccessNotification   = @"MyOrderPaySuccessNotification";
+
+
 const static int kTableAllDataNumber = -1;  //
 const static int kTableFirstDataNumber = 0;  //
 const static int kTableReloadDataNumber = 1;  //

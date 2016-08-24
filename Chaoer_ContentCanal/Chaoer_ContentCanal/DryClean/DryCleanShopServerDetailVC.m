@@ -12,10 +12,11 @@
 #import "APIClient.h"
 #import "UIImage+QUAdditons.h"
 #import "UIImageView+AFNetworking.h"
+#import "QUCustomDefine.h"
 
 @interface DryCleanShopServerDetailVC ()
-@property(nonatomic,strong) UIScrollView*       scrollView;
-@property(nonatomic,strong) UIView*             scrollContentView;
+//@property(nonatomic,strong) UIScrollView*       scrollView;
+//@property(nonatomic,strong) UIView*             scrollContentView;
 
 @property(nonatomic,strong) UIImageView*        imgView;
 @property(nonatomic,strong) UILabel*            nameLable;

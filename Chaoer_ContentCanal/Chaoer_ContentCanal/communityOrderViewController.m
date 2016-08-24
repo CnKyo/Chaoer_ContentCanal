@@ -719,11 +719,22 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     if (mShop.mState == 10) {
         
-        goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
-        goPay.mMoney = mShop.mCommodityPrice;
-        goPay.mOrderCode = mShop.mOrderCode;
-        goPay.mType = 3;
-        [self pushViewController:goPay];
+        if (mShop.mType == 3) {
+            goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
+            goPay.mMoney = mShop.mCommodityPrice;
+            goPay.mOrderCode = mShop.mOrderCode;
+            goPay.mType = 4;
+            goPay.mIsPushFromOrderVC = YES;
+            [self pushViewController:goPay];
+        } else {
+            goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
+            goPay.mMoney = mShop.mCommodityPrice;
+            goPay.mOrderCode = mShop.mOrderCode;
+            goPay.mType = 3;
+            goPay.mIsPushFromOrderVC = YES;
+            [self pushViewController:goPay];
+        }
+
         
     
     }if (mShop.mState == 13) {

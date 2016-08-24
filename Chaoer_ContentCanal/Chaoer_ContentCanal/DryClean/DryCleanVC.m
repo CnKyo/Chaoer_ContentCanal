@@ -22,6 +22,7 @@
 #import "mFoodClearView.h"
 #import "mFoodShopCarCell.h"
 #import "BaseHeaderRefresh.h"
+#import "QUCustomDefine.h"
 
 @interface DryCleanVC ()<UITableViewDelegate,UITableViewDataSource, WKFoodHeaderViewDelegate, WKFoodShopCarCellDelegate>
 {
@@ -95,6 +96,23 @@
     [self loadSegSelectIndex:0];
     
     [self upDatePage];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleUserPaySuccess:)
+                                                 name:MyOrderPaySuccessNotification
+                                               object:nil];
+}
+
+
+
+
+
+-(void)handleUserPaySuccess:(NSNotification *)note
+{
+    [self.mShopCartArr removeAllObjects];
+    
+    [self upDatePage];
+    [self.tableView reloadData];
 }
 
 

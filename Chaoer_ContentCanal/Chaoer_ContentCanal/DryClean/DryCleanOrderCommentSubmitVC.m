@@ -12,6 +12,7 @@
 #import "APIClient.h"
 #import "UIImage+QUAdditons.h"
 #import "IQTextView.h"
+#import "QUCustomDefine.h"
 
 @interface DryCleanOrderCommentSubmitVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, RateViewDelegate>
 @property(nonatomic,strong) UIImage *img1;

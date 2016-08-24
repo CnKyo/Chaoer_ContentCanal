@@ -11,6 +11,7 @@
 #import "APIClient.h"
 #import "TagsTableCell.h"
 #import "CookTVC.h"
+#import "QUCustomDefine.h"
 //Cell
 static NSString *const kTagsTableCellReuseIdentifier = @"TagsTableCell";
 

@@ -32,6 +32,8 @@
 
 #import <RongIMKit/RongIMKit.h>
 
+#import "QUCustomDefine.h"
+
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 
@@ -281,8 +283,11 @@
                                                       
                                                       if (resultDic)
                                                       {
+                                                          
                                                           if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
                                                           {
+                                                              [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+                                                              
                                                               mBaseData* retobj = [[mBaseData alloc]init];
                                                               retobj.mSucess = YES;
                                                               retobj.mMessage = @"支付成功";
@@ -333,6 +338,8 @@
         }
         else
         {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
+            
             retobj.mSucess = YES;
             retobj.mMessage = @"支付成功";
         }
@@ -363,10 +370,13 @@
                                                       
                                                       mBaseData* retobj = nil;
                                                       
+                                                      
                                                       if (resultDic)
                                                       {
                                                           if ( [[resultDic objectForKey:@"resultStatus"] intValue] == 9000 )
                                                           {
+                                                              
+                                                              [[NSNotificationCenter defaultCenter] postNotificationName:MyOrderPaySuccessNotification object:nil];
                                                               mBaseData* retobj = [[mBaseData alloc]init];
                                                               retobj.mSucess = YES;
                                                               retobj.mMessage = @"支付成功";
