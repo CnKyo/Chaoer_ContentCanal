@@ -110,7 +110,8 @@
 
 //干洗店铺活动信息
 @interface DryClearnShopCampaignObject : NSObject
-@property (nonatomic, assign) int                   type;              //id
+@property (nonatomic, assign) int                   iD;              //id
+@property (nonatomic, assign) int                   type;              //
 @property (nonatomic, strong) NSString *            condition;              //
 @property (nonatomic, strong) NSString *            code;              //
 @property (nonatomic, strong) NSString *            name;              //

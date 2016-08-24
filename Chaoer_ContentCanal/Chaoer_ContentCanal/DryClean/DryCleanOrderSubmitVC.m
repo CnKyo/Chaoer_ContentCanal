@@ -74,8 +74,9 @@ typedef enum {
     if (_showInfoItem.addr != nil)
         self.chooseAddress = _showInfoItem.addr;
     
-    [self reloadUIWithData];
     [self setCampaignMoney];
+    [self reloadUIWithData];
+    
 }
 
 
@@ -143,8 +144,15 @@ typedef enum {
     item.address = _chooseAddress.address;
     item.times = [NSString stringWithFormat:@"%@ %@", _chooseDateStr, _chooseDateStr];
     item.coupon = _chooseCoupon.iD;
-    item.score = _chooseScroeToMoney;
-//    item.campaing = _showInfoItem.shop.campaignList
+    
+    if (_showInfoItem.shop.campaignList.count > 0) {
+        DryClearnShopCampaignObject *it = [_showInfoItem.shop.campaignList objectAtIndex:0];
+        item.campaing = it.iD;
+    }
+    
+    if (_chooseYouHuiType == kChooseYouHuiType_score)
+        item.score = 1;
+    
     
     NSMutableArray *arr = [NSMutableArray array];
     for (DryClearnShopServerObject *it in _goodsArr) {
@@ -196,6 +204,8 @@ typedef enum {
     if (_showInfoItem.shop.freePrice > money)
         money += _showInfoItem.shop.deliverPrice;
     
+    if (money < 0)
+        money = 0;
 
     
     NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
@@ -416,7 +426,7 @@ typedef enum {
                         cell.detailTextLabel.text = @"积分抵扣";
                         break;
                     case kChooseYouHuiType_none:
-                        cell.detailTextLabel.text = @"请选择优惠方式";
+                        cell.detailTextLabel.text = @"未选择优惠方式";
                         break;
                     default:
                         break;
