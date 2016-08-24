@@ -8,7 +8,7 @@
 
 #import "editMessageViewController.h"
 
-@interface editMessageViewController ()
+@interface editMessageViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -50,6 +50,8 @@
     self.mTx.placeholder = self.mPlaceholder;
     self.mStatus.text = self.mtext;
     
+    self.mTx.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,14 +61,25 @@
 - (void)rightBtnTouched:(id)sender{
 
     if (self.mtype == 1) {
-        self.block(self.mTx.text);
-        [self popViewController];
+        
+        if (self.mTx.text.length > 21) {
+            [self showErrorStatus:@"您输入的内容太长了（20个字符以内）"];
+        }else{
+            self.block(self.mTx.text);
+            [self popViewController];
+        }
+        
+        
         
 
     }else{
       
-        self.block(self.mTx.text);
-        [self popViewController];
+        if (self.mTx.text.length > 21) {
+            [self showErrorStatus:@"您输入的内容太长了（20个字符以内）"];
+        }else{
+            self.block(self.mTx.text);
+            [self popViewController];
+        }
         
     }
     
@@ -87,5 +100,31 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#define TEXT_MAXLENGTH 20
+
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==20) {
+        res= TEXT_MAXLENGTH-[new length];
+        
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
 
 @end
