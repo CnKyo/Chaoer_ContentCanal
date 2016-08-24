@@ -67,4 +67,9 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 -(void)dryClearnShopOrderInfoWithTag:(NSObject *)tag serverId:(int)sid cartJson:(NSString *)cartStr call:(void (^)(DryClearnShopOrderShowObject *item, APIObject* info))callback;
 
 -(void)dryClearnShopOrderSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderPostObject *)it call:(void (^)(APIObject* info))callback;
+
+-(void)dryClearnShopOrderCommentSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderCommentPostObject *)it call:(void (^)(APIObject* info))callback;
+
+-(void)shopCommentImgUpdateWithTag:(NSObject *)tag img:(UIImage *)img call:( void(^)(NSString *file, APIObject* info))callback;
+
 @end
