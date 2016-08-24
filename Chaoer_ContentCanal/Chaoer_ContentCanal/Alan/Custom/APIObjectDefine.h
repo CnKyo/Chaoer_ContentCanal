@@ -203,15 +203,15 @@
 
 //干洗店铺订单界面生成订单上传数据
 @interface DryClearnShopOrderPostObject : NSObject
-@property (nonatomic, assign) int                   shopId;              //id
-@property (nonatomic, assign) int                   userId;              //id
+@property (nonatomic, strong) NSString *            shopId;              //id
+@property (nonatomic, strong) NSString *            userId;              //id
 @property (nonatomic, strong) NSString *            name;              //收货人姓名
 @property (nonatomic, strong) NSString *            mobile;              //收货人手机号
 @property (nonatomic, strong) NSString *            address;              //收货人地址
 @property (nonatomic, strong) NSString *            times;              //收货时间，如：20160809 09:00~10:00
-@property (nonatomic, assign) int                   coupon;              //优惠券id，默认为0
-@property (nonatomic, assign) int                   campaing;              //活动id，默认为0
-@property (nonatomic, assign) BOOL                  score;              //是否使用积分抵现
+@property (nonatomic, strong) NSString *            coupon;              //优惠券id，默认为0
+@property (nonatomic, strong) NSString *            campaing;              //活动id，默认为0
+@property (nonatomic, strong) NSString *            score;              //是否使用积分抵现
 @property (nonatomic, strong) NSString *            device;              //值：ios
 @property (nonatomic, strong) NSString *            cartJson;              //购物信息，如：[{"classify":1,"quantity":2}]
 @end
@@ -219,7 +219,7 @@
 
 //干洗店铺订单评价界面上传数据
 @interface DryClearnShopOrderCommentPostObject : NSObject
-@property (nonatomic, assign) int                   shopId;              //超市ID
+@property (nonatomic, strong) NSString *            shopId;              //超市ID
 @property (nonatomic, strong) NSString *            userId;              //id
 @property (nonatomic, strong) NSString *            orderCode;              //订单编号
 @property (nonatomic, strong) NSString *            context;              //评价类容

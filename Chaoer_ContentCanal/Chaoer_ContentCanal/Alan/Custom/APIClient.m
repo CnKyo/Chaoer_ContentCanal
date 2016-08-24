@@ -46,7 +46,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //[APIClient loadDefault];
-        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://192.168.1.120/"]];
+        _sharedClient = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:kAFAppDotNetAPIBaseURLString]];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
         _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
         
@@ -437,8 +437,8 @@
 -(void)dryClearnShopOrderInfoWithTag:(NSObject *)tag serverId:(int)sid cartJson:(NSString *)cartStr call:(void (^)(DryClearnShopOrderShowObject *item, APIObject* info))callback
 {
     NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
-    [paramDic setInt:sid forKey:@"shopId"];
-    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [paramDic setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",sid]] forKey:@"shopId"];
+    [paramDic setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
     [paramDic setValidStr:cartStr forKey:@"cartJson"];
     [paramDic setObject:@"ios" forKey:@"device"];
     [self loadAPIWithTag:tag path:@"/clean/order/preorder" parameters:paramDic call:^(APIObject *info) {

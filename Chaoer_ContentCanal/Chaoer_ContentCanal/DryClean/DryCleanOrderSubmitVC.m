@@ -136,22 +136,22 @@ typedef enum {
     }
     
     DryClearnShopOrderPostObject *item = [DryClearnShopOrderPostObject new];
-    item.shopId = _shopId;
+    item.shopId = [Util RSAEncryptor:[NSString stringWithFormat:@"%d",_shopId]];
     item.device = @"ios";
-    item.userId = [mUserInfo backNowUser].mUserId;
+    item.userId = [Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]];
     item.name = _chooseAddress.userName;
     item.mobile = _chooseAddress.phone;
     item.address = _chooseAddress.address;
-    item.times = [NSString stringWithFormat:@"%@ %@", _chooseDateStr, _chooseDateStr];
-    item.coupon = _chooseCoupon.iD;
+    item.times = [NSString stringWithFormat:@"%@ %@", _chooseDateStr, _chooseTimeStr];
+    item.coupon = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", _chooseCoupon.iD]];
     
     if (_showInfoItem.shop.campaignList.count > 0) {
         DryClearnShopCampaignObject *it = [_showInfoItem.shop.campaignList objectAtIndex:0];
-        item.campaing = it.iD;
+        item.campaing = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", it.iD]];
     }
     
-    if (_chooseYouHuiType == kChooseYouHuiType_score)
-        item.score = 1;
+    BOOL useScore = _chooseYouHuiType == kChooseYouHuiType_score ? YES : NO;
+    item.score = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", useScore]];
     
     
     NSMutableArray *arr = [NSMutableArray array];

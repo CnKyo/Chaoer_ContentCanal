@@ -16,7 +16,7 @@
 #pragma mark -
 #pragma mark APIClient
 
-static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://api.avatardata.cn/Cook/";
+static NSString* const  kAFAppDotNetAPIBaseURLStringCook    = @"http://api.avatardata.cn/Cook/";
 
 
 @implementation AVAndaJson
@@ -74,7 +74,7 @@ HDSingletonM(HDNetworking) // 单例实现
 
 
 + (NSString *)returnNowURL{
-    return kAFAppDotNetAPIBaseURLString;
+    return kAFAppDotNetAPIBaseURLStringCook;
 }
 
 
