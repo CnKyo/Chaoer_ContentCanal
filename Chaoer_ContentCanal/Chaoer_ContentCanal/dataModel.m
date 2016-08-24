@@ -1757,7 +1757,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
 
 
-+ (void)geBankCode:(NSString *)mName andUserId:(int)mUserId andIdentify:(NSString *)mIdentify andBankName:(NSString *)mBankName andProvince:(NSString *)mProvince andCity:(NSString *)mCity andPoint:(NSString *)mPoint andBankCard:(NSString *)mCard andBankCode:(NSString *)mBankCode block:(void(^)(mBaseData *resb))block{
++ (void)geBankCode:(NSString *)mName andUserId:(int)mUserId andIdentify:(NSString *)mIdentify andBankName:(NSString *)mBankName andProvince:(NSString *)mProvince andCity:(NSString *)mCity andPoint:(NSString *)mPoint andBankCard:(NSString *)mCard andBankCode:(NSString *)mBankCode  andBankType:(NSString *)mBankType andAcountType:(NSString *)mAcountType block:(void(^)(mBaseData *resb))block{
 
     
     NSMutableDictionary *para = [NSMutableDictionary new];
@@ -1772,7 +1772,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     [para setObject:mBankCode forKey:@"bankCode"];
 
-    
+    [para setObject:mBankType forKey:@"cardtype"];
+    [para setObject:mAcountType forKey:@"acctype"];
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/epos/realVerify/appRealNameVerify" parameters:para call:^(mBaseData *info) {
         if (info.mSucess ) {

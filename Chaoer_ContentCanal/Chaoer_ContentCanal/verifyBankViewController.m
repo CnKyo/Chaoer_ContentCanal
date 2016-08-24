@@ -9,7 +9,7 @@
 #import "verifyBankViewController.h"
 #import "needCodeView.h"
 #import "MHActionSheet.h"
-@interface verifyBankViewController ()
+@interface verifyBankViewController ()<UIActionSheetDelegate>
 
 @end
 
@@ -34,6 +34,11 @@
     NSString *mPoint;
 
     NSString *mBankCode;
+    
+    
+    NSString *mBankType;
+    NSString *mAcountype;
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -67,7 +72,7 @@
     mType = 1;
     
     mArray = [NSMutableArray new];
-    
+    mAcountype = mBankType = nil;
     [self initview];
 }
 - (void)initview{
@@ -95,11 +100,60 @@
     
      [mView.mVerifyBtn addTarget:self action:@selector(verifyAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    [mView.mBankCardType addTarget:self action:@selector(bankCardTypeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mView.mAcountType addTarget:self action:@selector(acountTypeAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568);
+    
+}
+#pragma mark----银行卡类型
+- (void)bankCardTypeAction:(UIButton *)sender{
+    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"请选择银行卡类型！" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"信用卡",@"借记卡", nil];
+    acc.tag = 10;
+    [acc showInView:self.view];
+}
+#pragma mark----账户类型
+- (void)acountTypeAction:(UIButton *)sender{
+       UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"请选择账户类型！" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"个人",@"公司", nil];
+
+    acc.tag = 20;
+    [acc showInView:self.view];
+}
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (actionSheet.tag == 20) {
+        NSString *mTT = nil;
+
+        if (buttonIndex == 0) {
+            mAcountype = @"P";
+            mTT = @"个人";
+        }else{
+            mAcountype = @"C";
+            
+            mTT = @"公司";
+        }
+        
+        [mView.mAcountType setTitle:mTT forState:0];
+        
+    }else{
+        NSString *mTT = nil;
+
+        if (buttonIndex == 0) {
+            mBankType = @"X";
+            mTT = @"信用卡";
+
+        }else{
+            mBankType = @"J";
+            mTT = @"借记卡";
+
+        }
+        [mView.mBankCardType setTitle:mTT forState:0];
+
+    }
     
 }
 
@@ -306,11 +360,18 @@
         [self showErrorStatus:@"请输入合法的银行卡号"];
         return;
     }
-    
+    if (mAcountype.length == 0) {
+        [self showErrorStatus:@"请选择账户类型"];
+        return;
+    }
+    if (mBankType.length == 0) {
+        [self showErrorStatus:@"请选择银行卡类型"];
+        return;
+    }
     
     [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
     
-    [mUserInfo geBankCode:mView.mBankName.text andUserId:[mUserInfo backNowUser].mUserId andIdentify:mView.mBankIdentify.text andBankName:mBankName andProvince:mProvince andCity:mCity andPoint:mPoint andBankCard:mView.mBanCardTx.text andBankCode:mBankCode block:^(mBaseData *resb) {
+    [mUserInfo geBankCode:mView.mBankName.text andUserId:[mUserInfo backNowUser].mUserId andIdentify:mView.mBankIdentify.text andBankName:mBankName andProvince:mProvince andCity:mCity andPoint:mPoint andBankCard:mView.mBanCardTx.text andBankCode:mBankCode  andBankType:mBankType andAcountType:mAcountype block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];

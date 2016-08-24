@@ -157,6 +157,15 @@
  *  楼层按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mFloorBtn;
+/**
+ *  账户类型
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mAcountType;
+/**
+ *  银行卡类型
+ */
+@property (weak, nonatomic) IBOutlet UIButton *mBankCardType;
+
 
 /**
  *  初始化方法
