@@ -15,7 +15,7 @@
 #import "RSKImageCropper.h"
 #import "TFFileUploadManager.h"
 
-@interface openPPTViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate,THHHTTPDelegate>
+@interface openPPTViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RSKImageCropViewControllerDelegate,RSKImageCropViewControllerDataSource,UINavigationControllerDelegate,THHHTTPDelegate,UITextFieldDelegate>
 
 @end
 
@@ -105,6 +105,7 @@
 
     
     mView = [applyPPTView shareView];
+    mView.mConnectTx.delegate = mView.mIdentifyTx.delegate = self;
     mView.frame = CGRectMake(0, 0, DEVICE_Width, 568);
     [mView.mOkBtn addTarget:self action:@selector(okAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -423,5 +424,36 @@
     
 }
 
+///限制电话号码输入长度
+#define TEXT_MAXLENGTH 11
+///限制验证码输入长度
+#define PASS_LENGHT 18
+#pragma mark **----键盘代理方法
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *new = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSInteger res;
+    if (textField.tag==18) {
+        res= PASS_LENGHT-[new length];
+        
+        
+    }else
+    {
+        res= TEXT_MAXLENGTH-[new length];
+        
+    }
+    if(res >= 0){
+        return YES;
+    }
+    else{
+        NSRange rg = {0,[string length]+res};
+        if (rg.length>0) {
+            NSString *s = [string substringWithRange:rg];
+            [textField setText:[textField.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+        return NO;
+    }
+    
+}
 
 @end

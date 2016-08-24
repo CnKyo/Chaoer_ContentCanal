@@ -133,7 +133,11 @@
     if ([mUserInfo backNowUser].mIsSign) {
         self.mRegistContent.attributedText =[[NSString stringWithFormat:@"今日签到<color>+1</color> "] attributedStringWithStyleBook:mStyle];
 
+    }else{
+        self.mRegistContent.text =@"今日还未签到";
+
     }
+    
 
     
 }

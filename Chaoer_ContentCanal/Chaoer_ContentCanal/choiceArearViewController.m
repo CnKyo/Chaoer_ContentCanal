@@ -8,7 +8,7 @@
 
 #import "choiceArearViewController.h"
 
-@interface choiceArearViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,AMapLocationManagerDelegate>
+@interface choiceArearViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,AMapLocationManagerDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UITableView *searchResult;
 @property (nonatomic,strong) NSMutableArray *result;
@@ -305,8 +305,22 @@
         [self showErrorStatus:@"搜索内容不能包含非法字符！"];
         return;
     }else{
-
         
+        
+        [self AlertViewShow:@"提示" alertViewMsg:@"确定这就是你的小区吗？" alertViewCancelBtnTiele:@"不是我的" alertTag:90];
+        
+        
+        
+        
+        
+    }
+    
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if( buttonIndex == 1)
+    {
         self.block(self.searchBar.text,nil);
         
         
@@ -314,7 +328,13 @@
         
     }
     
-    
 }
 
+- (void)AlertViewShow:(NSString *)alerViewTitle alertViewMsg:(NSString *)msg alertViewCancelBtnTiele:(NSString *)cancelTitle alertTag:(int)tag{
+    
+    UIAlertView* al = [[UIAlertView alloc] initWithTitle:alerViewTitle message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:@"确定", nil];
+    al.delegate = self;
+    al.tag = tag;
+    [al show];
+}
 @end
