@@ -140,7 +140,7 @@
     if (self.mType == 1) {
         
         if (self.block) {
-            self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%d",mAddress.mId]);
+            self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%d",mAddress.mId],mAddress.mUserName);
         } else if (self.blockGPPTaddress) {
             self.blockGPPTaddress(mAddress);
         }

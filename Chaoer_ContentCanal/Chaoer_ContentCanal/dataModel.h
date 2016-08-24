@@ -1440,7 +1440,7 @@
  *  @param mPhone   电话
  *  @param block    返回值
  */
-- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup block:(void(^)(mBaseData *resb))block;
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup andArriveName:(NSString *)mName block:(void(^)(mBaseData *resb))block;
 
 #pragma mark----餐饮店铺信息接口
 /**
@@ -3900,6 +3900,7 @@
  */
 @property (strong,nonatomic) NSArray *mShopArr;
 
+@property (strong,nonatomic) NSString *mArriveName;
 
 
 

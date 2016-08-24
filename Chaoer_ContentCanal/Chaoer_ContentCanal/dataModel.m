@@ -4456,18 +4456,32 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
  *  @param mPhone   电话
  *  @param block    返回值
  */
-- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup block:(void(^)(mBaseData *resb))block{
+- (void)payFeeOrder:(NSArray *)mOrders andUseSore:(int)mUse andAddress:(NSString *)mAddress andPhone:(NSString *)mPhone andIsCoup:(int)mIsCoup andArriveName:(NSString *)mName block:(void(^)(mBaseData *resb))block{
 
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:[Util RSAEncryptor:[NSString stringWithFormat:@"%d",[mUserInfo backNowUser].mUserId]] forKey:@"userId"];
-    [para setObject:NumberWithInt(mUse) forKey:@"isIntegral"];
     [para setObject:mAddress forKey:@"userAddress"];
     [para setObject:mPhone forKey:@"tel"];
    
     [para setObject:[Util arrToJson:mOrders] forKey:@"json"];
     [para setObject:@"ios" forKey:@"device"];
-    [para setObject:NumberWithInt(mIsCoup) forKey:@"isCoupon"];
+    [para setObject:mName forKey:@"consignee"];
+    if (mUse == 1) {
+        [para setObject:NumberWithInt(0) forKey:@"isCoupon"];
+
+    }else{
+        [para setObject:NumberWithInt(mIsCoup) forKey:@"isCoupon"];
+
+    }
+    if (mIsCoup == 1) {
+        [para setObject:NumberWithInt(0) forKey:@"isIntegral"];
+
+    }else{
+        [para setObject:NumberWithInt(mUse) forKey:@"isIntegral"];
+
+    }
+    
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"sm/order/generateOrder" parameters:para  call:^(mBaseData * _Nonnull info) {
         

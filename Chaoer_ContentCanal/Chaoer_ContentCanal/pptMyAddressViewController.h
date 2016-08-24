@@ -15,7 +15,7 @@
  */
 @property (assign,nonatomic) int mType;
 
-@property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId);
+@property (nonatomic,strong) void(^block)(NSString *block ,NSString *mId,NSString *mName);
 
 @property (nonatomic,strong) void(^blockGPPTaddress)(GPPTaddress *item);
 

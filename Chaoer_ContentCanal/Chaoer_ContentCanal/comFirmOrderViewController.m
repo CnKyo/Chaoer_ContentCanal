@@ -118,9 +118,10 @@
 - (void)AddressAction:(UIButton *)sender{
     pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
     ppt.mType = 1;
-    ppt.block = ^(NSString *content ,NSString *mId){
+    ppt.block = ^(NSString *content ,NSString *mId,NSString *mName){
         mShopCarList.mAddress = content;
         mShopCarList.mPhone = mId;
+        mShopCarList.mArriveName = mName;
         [self upDatePage];
     };
     [self pushViewController:ppt];
@@ -197,7 +198,7 @@
     }
     
     [self showWithStatus:@"正在结算..."];
-    [[mUserInfo backNowUser] payFeeOrder:mParaData andUseSore:mShopCarList.mIsUseScore andAddress:mShopCarList.mAddress andPhone:mShopCarList.mPhone andIsCoup:isCoup block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] payFeeOrder:mParaData andUseSore:mShopCarList.mIsUseScore andAddress:mShopCarList.mAddress andPhone:mShopCarList.mPhone andIsCoup:isCoup andArriveName:mShopCarList.mArriveName block:^(mBaseData *resb) {
         [self dismiss];
         if (resb.mSucess) {
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];

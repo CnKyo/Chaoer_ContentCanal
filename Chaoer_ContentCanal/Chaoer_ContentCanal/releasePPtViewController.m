@@ -732,7 +732,7 @@
     
     pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
     ppt.mType = 1;
-    ppt.block = ^(NSString *content ,NSString *mId){
+    ppt.block = ^(NSString *content ,NSString *mId,NSString *mName){
         mBlockAddressStr = content;
         mAddressId = mId;
         [sender setTitle:content forState:0];
