@@ -191,7 +191,7 @@
 //干洗店铺订单界面显示数据
 @interface DryClearnShopOrderShowObject : NSObject
 @property (nonatomic, strong) DryClearnShopObject * shop;              //
-@property (nonatomic, assign) double                money;              //
+@property (nonatomic, assign) double                money;              //商品总价
 @property (nonatomic, strong) NSMutableArray *      coupons;              //可选的优惠券
 @property (nonatomic, strong) AddressObject *       addr;              //
 @property (nonatomic, assign) int                   userScore;              //用户积分
@@ -215,4 +215,15 @@
 @property (nonatomic, strong) NSString *            cartJson;              //购物信息，如：[{"classify":1,"quantity":2}]
 @end
 
+
+//干洗店铺订单评价界面上传数据
+@interface DryClearnShopOrderCommentPostObject : NSObject
+@property (nonatomic, assign) int                   shopId;              //超市ID
+@property (nonatomic, strong) NSString *            userId;              //id
+@property (nonatomic, strong) NSString *            orderCode;              //订单编号
+@property (nonatomic, strong) NSString *            context;              //评价类容
+@property (nonatomic, strong) NSString *            satisfaction;              //满意度（最高5）
+@property (nonatomic, strong) NSString *            images;              //评论图片
+@property (nonatomic, strong) NSString *            device;              //值：ios
+@end
 

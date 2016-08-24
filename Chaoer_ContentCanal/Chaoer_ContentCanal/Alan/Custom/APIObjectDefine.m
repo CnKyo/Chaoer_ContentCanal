@@ -325,3 +325,6 @@
 
 @implementation DryClearnShopOrderPostObject
 @end
+
+@implementation DryClearnShopOrderCommentPostObject
+@end

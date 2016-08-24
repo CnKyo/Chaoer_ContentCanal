@@ -9,5 +9,5 @@
 #import "QUScrollVC.h"
 
 @interface DryCleanOrderCommentSubmitVC : QUScrollVC
-
+@property(nonatomic,strong) GMyMarketOrderList *orderItem;
 @end

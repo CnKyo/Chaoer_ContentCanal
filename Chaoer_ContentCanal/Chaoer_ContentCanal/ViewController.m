@@ -119,9 +119,6 @@
 {
     [super viewDidAppear:animated];
     
-    [[APIClient sharedClient] userUpdateProfilePhotoWithTag:self photo:IMG(@"DefaultImg.png") call:^(APIShareSdkObject *info) {
-        
-    }];
 }
 
 

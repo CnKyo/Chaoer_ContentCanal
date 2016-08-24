@@ -20,6 +20,7 @@
 #import "WKOrderHeadView.h"
 #import "goPayViewController.h"
 #import "mMarketRateViewController.h"
+#import "DryCleanOrderCommentSubmitVC.h"
 
 #define SMGoodsModelPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"goods.archive"]
 
@@ -726,14 +727,23 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
     
     }if (mShop.mState == 13) {
-        mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
-        mmm.mName = mShop.mShopName;
-        mmm.mShopImg = mShop.mShopLogo;
-        mmm.mTotlaPrice = mShop.mCommodityPrice;
-        mmm.mShopId = mShop.mShopId;
-        mmm.mOrderCode = mShop.mOrderCode;
+
         
-        [self pushViewController:mmm];
+        if (mShop.mType == 3) {
+            DryCleanOrderCommentSubmitVC *vc= [[DryCleanOrderCommentSubmitVC alloc] init];
+            vc.orderItem = mShop;
+            [self pushViewController:vc];
+            
+        } else {
+            mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
+            mmm.mName = mShop.mShopName;
+            mmm.mShopImg = mShop.mShopLogo;
+            mmm.mTotlaPrice = mShop.mCommodityPrice;
+            mmm.mShopId = mShop.mShopId;
+            mmm.mOrderCode = mShop.mOrderCode;
+            
+            [self pushViewController:mmm];
+        }
     }
     
 }

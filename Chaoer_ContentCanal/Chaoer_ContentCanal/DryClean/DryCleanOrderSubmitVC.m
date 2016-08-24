@@ -33,8 +33,11 @@ typedef enum {
 @property(nonatomic,assign) BOOL           chooseScroeToMoney; //是否选择用积分抵扣现金
 
 @property(nonatomic,assign) kChooseYouHuiType chooseYouHuiType;
-@property(nonatomic,strong) NSString*       chooseYouHuiNoteStr;
-@property(nonatomic,assign) double          chooseYouHuiMoney;
+@property(nonatomic,strong) NSString*       chooseYouHuiNoteStr; //优惠信息
+@property(nonatomic,assign) double          chooseYouHuiMoney; //优惠金额
+
+@property(nonatomic,strong) NSString*       chooseCampaignNoteStr; //活动信息
+@property(nonatomic,assign) double          chooseCampaignMoney; //活动金额
 
 @property(nonatomic,strong) WPHotspotLabel*       payMoneyLable;
 @end
@@ -72,6 +75,7 @@ typedef enum {
         self.chooseAddress = _showInfoItem.addr;
     
     [self reloadUIWithData];
+    [self setCampaignMoney];
 }
 
 
@@ -184,12 +188,40 @@ typedef enum {
 {
     [self setYouHuiMoney];
     
-    double money = 0;
+    double money = _showInfoItem.money;
+    
+    money -= _chooseYouHuiMoney;
+    money -= _chooseCampaignMoney;
+    
+    if (_showInfoItem.shop.freePrice > money)
+        money += _showInfoItem.shop.deliverPrice;
+    
+
     
     NSDictionary *mStyle1 = @{@"color": [UIColor redColor]};
     self.payMoneyLable.attributedText = [[NSString stringWithFormat:@"实付款:<color>¥%.2f</color> ",money] attributedStringWithStyleBook:mStyle1];
     
     [self.tableView reloadData];
+}
+
+-(void)setCampaignMoney
+{
+    double money = 0;
+    NSString *str1 = @"";
+    if (_showInfoItem.shop.campaignList.count > 0) {
+        DryClearnShopCampaignObject *it = [_showInfoItem.shop.campaignList objectAtIndex:0];
+        if ([it.code isEqualToString:@"A"]) { //减去规定金额
+            money = it.price;
+            str1 = [NSString stringWithFormat:@"活动减免￥%.2f", it.price];
+        } else if ([it.code isEqualToString:@"B"]) { //折扣
+            money = _showInfoItem.money - _showInfoItem.money * (it.price / 10);
+            str1 = [NSString stringWithFormat:@"活动%.2f折", it.price];
+        } else {
+            str1 = it.content.length>0 ? it.content : @"暂无";
+        }
+    }
+    self.chooseCampaignMoney = money;
+    self.chooseCampaignNoteStr = str1.length>0 ? str1 : @"暂无优惠";
 }
 
 -(void)setYouHuiMoney
@@ -203,7 +235,7 @@ typedef enum {
             if ([_chooseCoupon.typeCode isEqualToString:@"A"]) { //减去规定金额
                 money = _chooseCoupon.facePrice;
             } else if ([_chooseCoupon.typeCode isEqualToString:@"B"]) { //折扣
-                money =  _showInfoItem.money * (_chooseCoupon.facePrice / 10);
+                money = _showInfoItem.money - _showInfoItem.money * (_chooseCoupon.facePrice / 10);
             }
             str1 = _chooseCoupon.desc.length>0 ? _chooseCoupon.desc : @"暂无";
             
@@ -211,24 +243,13 @@ typedef enum {
             break;
         case kChooseYouHuiType_campaign:
         {
-            if (_showInfoItem.shop.campaignList.count > 0) {
-                DryClearnShopCampaignObject *it = [_showInfoItem.shop.campaignList objectAtIndex:0];
-                if ([it.code isEqualToString:@"A"]) { //减去规定金额
-                    money = it.price;
-                    str1 = [NSString stringWithFormat:@"活动减免￥%.2f", it.price];
-                } else if ([it.code isEqualToString:@"B"]) { //折扣
-                    money =  _showInfoItem.money * (it.price / 10);
-                    str1 = [NSString stringWithFormat:@"活动%.2f折", it.price];
-                } else {
-                    str1 = it.content.length>0 ? it.content : @"暂无";
-                }
-            }
+
         }
             break;
         case kChooseYouHuiType_score:
         {
             str1 = [NSString stringWithFormat:@"共%i积分,可抵用￥%.2f", _showInfoItem.userScore, _showInfoItem.userScore/_showInfoItem.userRate];
-            money = _showInfoItem.userScore/_showInfoItem.userRate;
+            money = (int)(_showInfoItem.userScore/_showInfoItem.userRate);
         }
             break;
         case kChooseYouHuiType_none:
@@ -257,7 +278,11 @@ typedef enum {
         NSInteger count = self.goodsArr.count;
         return count;
     } else if (section == 4) {
-        return 2;
+        if (_chooseCampaignMoney > 0)
+            return 3;
+        else
+            return 2;
+        
     }
     return 1;
 }
@@ -384,8 +409,8 @@ typedef enum {
                     case kChooseYouHuiType_coupon:
                         cell.detailTextLabel.text = @"优惠券";
                         break;
-                    case kChooseYouHuiType_campaign:
-                        cell.detailTextLabel.text = @"活动";
+//                    case kChooseYouHuiType_campaign:
+//                        cell.detailTextLabel.text = @"活动";
                         break;
                     case kChooseYouHuiType_score:
                         cell.detailTextLabel.text = @"积分抵扣";
@@ -416,13 +441,19 @@ typedef enum {
             if (indexPath.row == 0) {
                 cell.textLabel.text = @"总金额";
                 money = _showInfoItem.money;
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"￥%.2f", money];
             } else if (indexPath.row == 1) {
                 cell.textLabel.text = @"服务费";
                 
-                if (_showInfoItem.shop.freePrice > _showInfoItem.money)
+                if (_showInfoItem.shop.freePrice > (_showInfoItem.money - _chooseYouHuiMoney - _chooseCampaignMoney))
                     money = _showInfoItem.shop.deliverPrice;
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"+￥%.2f", money];
+                
+            } else if (indexPath.row == 2) {
+                cell.textLabel.text = _chooseCampaignNoteStr;
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"-￥%.2f", _chooseCampaignMoney];
             }
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"-￥%.2f", money];
+            
         }
         
         return cell;
@@ -461,7 +492,7 @@ typedef enum {
         
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"优惠券",@"活动", @"积分抵扣", nil];
+            UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"优惠券", @"积分抵扣", nil];
             ac.tag = 1001;
             [ac showInView:[self.view window]];
         }
@@ -486,14 +517,15 @@ typedef enum {
         } else
             [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
         
-    } else if (buttonIndex == 1) {
-        if (_showInfoItem.shop.campaignList.count > 0) {
-            self.chooseYouHuiType = kChooseYouHuiType_campaign;
-            [self reloadUIWithData];
-        } else
-            [SVProgressHUD showErrorWithStatus:@"暂无活动优惠"];
     }
-    else if (buttonIndex == 2) {
+//    else if (buttonIndex == 2) {
+//        if (_showInfoItem.shop.campaignList.count > 0) {
+//            self.chooseYouHuiType = kChooseYouHuiType_campaign;
+//            [self reloadUIWithData];
+//        } else
+//            [SVProgressHUD showErrorWithStatus:@"暂无活动优惠"];
+//    }
+    else if (buttonIndex == 1) {
         if (_showInfoItem.userScore > 0) {
             self.chooseYouHuiType = kChooseYouHuiType_score;
             [self reloadUIWithData];

@@ -978,7 +978,7 @@
     BOOL actionNext = _shopFocus > 0 ? NO : YES;
     
     [SVProgressHUD showWithStatus:@"加载中..."];
-    [[APIClient sharedClient] dryClearnShopCollectWithTag:self shopId:9 actionType:actionNext call:^(APIObject *info) {
+    [[APIClient sharedClient] dryClearnShopCollectWithTag:self shopId:_shopId actionType:actionNext call:^(APIObject *info) {
         if (info.state == RESP_STATUS_YES) {
             self.shopFocus = actionNext ? 1 : 0;
             [self reloadShopFocusType];

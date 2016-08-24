@@ -252,17 +252,6 @@
 
 
 
--(void)userUpdateProfilePhotoWithTag:(NSObject *)tag photo:(UIImage *)img call:( void(^)(APIShareSdkObject* info))callback
-{
-    
-    [self postWithTag:tag path:@"http://120.27.111.122/resource/userInfo/uploadUserProfileImg" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
-        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
-        [formData appendPartWithFileData:imgData name:@"pic" fileName:@"img.png" mimeType:@"image/png"];
-    } call:^(NSError *error, id responseObject) {
-        
-    }];
-    
-}
 
 
 
@@ -477,6 +466,57 @@
     }];
 }
 
+
+/**
+ *  超市用户评价接口
+ *
+ *  @param tag      链接对象
+ *  @param it       提交信息对象
+ *  @param callback 返回信息
+ */
+-(void)dryClearnShopOrderCommentSubmmitWithTag:(NSObject *)tag postItem:(DryClearnShopOrderCommentPostObject *)it call:(void (^)(APIObject* info))callback
+{
+    NSDictionary *paramDic = [it mj_keyValues];
+    [self loadAPIWithTag:tag path:@"/clean/order/evaluate" parameters:paramDic call:^(APIObject *info) {
+        callback(info);
+    }];
+}
+
+
+
+/**
+ *  上传超市评论图片
+ *
+ *  @param tag      链接对象
+ *  @param img      图片对象
+ *  @param callback 返回信息
+ */
+-(void)shopCommentImgUpdateWithTag:(NSObject *)tag img:(UIImage *)img call:( void(^)(NSString *file, APIObject* info))callback
+{
+    
+    [self postWithTag:tag path:@"/resource/shop/comment" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+        NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
+        [formData appendPartWithFileData:imgData name:@"file" fileName:@"img.png" mimeType:@"image/png"];
+    } call:^(NSError *error, id responseObject) {
+        APIObject *info = nil;
+        NSString *fileStr = nil;
+        if (error == nil) {
+            NSLog(@"\n\n ---APIObject----result:-----------%@", responseObject);
+            info = [APIObject mj_objectWithKeyValues:responseObject];
+            if (info==nil)
+                info = [APIObject infoWithErrorMessage:@"网络错误"];
+            else if (info.data != nil  && [info.data isKindOfClass:[NSDictionary class]])
+                fileStr = [info.data objectWithKey:@"file"];
+            
+        } else {
+            NSLog(@"\n\n ---APIObject----result error:-----------%@", error);
+            info = [APIObject infoWithError:error];
+        }
+        
+        callback(fileStr, info);
+    }];
+    
+}
 
 
 @end
