@@ -278,3 +278,21 @@
 
 
 @end
+@implementation UIImage (SnapshotImage)
+
++ (UIImage *)snapshotImageWithView:(UIView *)view
+{
+    //currentView 当前的view  创建一个基于位图的图形上下文并指定大小为
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, [UIScreen mainScreen].scale);
+    //renderInContext呈现接受者及其子范围到指定的上下文
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
+    //返回一个基于当前图形上下文的图片
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    // 生成后的image
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+@end
+

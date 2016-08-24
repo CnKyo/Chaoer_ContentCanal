@@ -73,6 +73,14 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     NSMutableArray *mJsonArr;
 }
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    if (self.tableView != nil) {
+        [self headerBeganRefresh];
+    }
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     
@@ -106,7 +114,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     /*=========================至关重要============================*/
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
 
-    self.haveHeader = YES;
     self.haveFooter = YES;
     
     

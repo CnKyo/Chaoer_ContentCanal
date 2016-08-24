@@ -18,7 +18,10 @@
 #import "mPriceView.h"
 
 #import "LTPickerView.h"
-
+// contain this header
+#import "UIView+TYAlertView.h"
+// if you want blur efffect contain this
+#import "TYAlertController+BlurEffects.h"
 @interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,UITextFieldDelegate>
 
 @end
@@ -104,6 +107,8 @@
     
     
     LTPickerView*LtpickerView;
+    
+    NSMutableArray *mPriceArr;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -159,6 +164,7 @@
     mSendAddress = nil;
     
     mSelecteTimeStr = nil;
+    mPriceArr = [NSMutableArray new];
     [self initView];
     
     UIView *mBottomView = [UIView new];
@@ -625,7 +631,86 @@
 #pragma mark----选择价格
 - (void)mPriceAction:(UIButton *)sender{
 
-    [self showPopView];
+//    [self showPopView];
+    
+    
+    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"商品价格" message:@"请输入价格区间"];
+    
+    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancle handler:^(TYAlertAction *action) {
+        NSLog(@"%@",action.title);
+    }]];
+    
+    // 弱引用alertView 否则 会循环引用
+    __typeof (alertView) __weak weakAlertView = alertView;
+    [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+        [mPriceArr removeAllObjects];
+        NSLog(@"%@",action.title);
+        for (UITextField *textField in weakAlertView.textFieldArray) {
+            if (textField.text.length != 0) {
+                [mPriceArr addObject:textField.text];
+            }
+            
+        }
+        
+        if (mPriceArr.count == 0 || mPriceArr.count == 1) {
+            [self showErrorStatus:@"必须请输入最高价和最低价!"];
+            [mPopView.mMin becomeFirstResponder];
+            return;
+        }
+       
+        mMin = mPriceArr[0];
+        mMax = mPriceArr[1];
+        
+        int mIn = 0;
+        mIn = [mMin intValue];
+        int mAx = 0;
+        mAx = [mMax intValue];
+        if (mIn > mAx) {
+            [self showErrorStatus:@"最高价不能低于最低价！"];
+            return;
+        }else{
+            
+            [self.tableView reloadData];
+        }
+        
+
+    }]];
+    
+    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        textField.placeholder = @"请输入最低价";
+    }];
+    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        textField.placeholder = @"请输入最高价";
+    }];
+    
+    // first way to show
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleAlert];
+    
+    [alertController setViewWillShowHandler:^(UIView *alertView) {
+        NSLog(@"ViewWillShow");
+    }];
+    
+    [alertController setViewDidShowHandler:^(UIView *alertView) {
+        NSLog(@"ViewDidShow");
+    }];
+    
+    [alertController setViewWillHideHandler:^(UIView *alertView) {
+        NSLog(@"ViewWillHide");
+    }];
+    
+    [alertController setViewDidHideHandler:^(UIView *alertView) {
+        NSLog(@"ViewDidHide");
+    }];
+    
+    [alertController setDismissComplete:^{
+        NSLog(@"DismissComplete");
+    }];
+    
+    //alertController.alertViewOriginY = 60;
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 - (void)mTagAction:(UIButton *)sender{
     bolterViewController *bbb =[[bolterViewController alloc] initWithNibName:@"bolterViewController" bundle:nil];
