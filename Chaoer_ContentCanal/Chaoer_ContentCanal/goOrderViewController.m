@@ -430,15 +430,12 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
     
-    UIAlertAction *localvideo = [UIAlertAction actionWithTitle:@"本地视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self locallVideo];
-    }];
+  
     UIAlertAction *shotvideo = [UIAlertAction actionWithTitle:@"拍摄视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self shotVideo];
     }];
     
     
-    [alertController addAction:localvideo];
     [alertController addAction:shotvideo];
     [alertController addAction:cancelAction];
     

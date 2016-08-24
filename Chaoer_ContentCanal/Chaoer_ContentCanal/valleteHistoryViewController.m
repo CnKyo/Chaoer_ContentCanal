@@ -203,7 +203,19 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 50;
+    
+    NSString *reuseCellId = @"cell";
+    
+    valletTCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    if (self.mType == 1) {
+        [cell setMObj:self.tempArray[indexPath.row]];
+    }else if (self.mType == 2){
+        [cell setMObj:self.tempArray[indexPath.row]];
+    }else{
+        [cell setMTransfer:self.tempArray[indexPath.row]];
+    }
+    return cell.mCellH;
     
     
     

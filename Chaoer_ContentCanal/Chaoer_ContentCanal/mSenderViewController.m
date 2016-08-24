@@ -610,7 +610,12 @@
     
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 1;
-    ppp.mType = mType;
+    if (mType == 0) {
+        ppp.mType = mPPtOrder.mType;
+    }else{
+        ppp.mType = mType;
+    }
+    
     ppp.mOrder = GPPTOrder.new;
     ppp.mOrder = mPPtOrder;
     

@@ -38,6 +38,10 @@
     }
     self.mtitle.text = mObj.mDescribe;
     
+    
+    self.mCellH = 33 + [Util labelText:mObj.mDescribe fontSize:14 labelWidth:self.mtitle.mwidth];
+    
+    
 
 }
 - (void)setMTransfer:(GTransferHistory *)mTransfer{
@@ -45,8 +49,7 @@
     self.mtitle.text = mTransfer.mDescription;
     self.mScore.text = [NSString stringWithFormat:@"%@",mTransfer.mPhone];
     self.mStatus.text = [NSString stringWithFormat:@"%@",mTransfer.mAddTime];
+    self.mCellH = 33 + [Util labelText:mTransfer.mDescription fontSize:14 labelWidth:self.mtitle.mwidth];
 
-    
-    
 }
 @end

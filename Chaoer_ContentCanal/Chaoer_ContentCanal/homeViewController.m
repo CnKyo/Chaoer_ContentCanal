@@ -45,7 +45,7 @@
 #import "msgViewController.h"
 #import "mFoodViewController.h"
 #import "DryCleanVC.h"
-
+#import "wpgViewController.h"
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate,RCIMUserInfoDataSource,WKHomeCellDelegate>
@@ -649,11 +649,11 @@
     switch (Index) {
         case 0:
         {
-//            payViewController   *ppp = [[payViewController alloc] initWithNibName:@"payViewController" bundle:nil];
-//            [self pushViewController:ppp];
-            
-            mFoodViewController *view = [[mFoodViewController alloc] initWithNibName:@"mFoodViewController" bundle:nil];
-            [self pushViewController:view];
+
+            wpgViewController *www = [wpgViewController new];
+            [self pushViewController:www];
+//            mFoodViewController *view = [[mFoodViewController alloc] initWithNibName:@"mFoodViewController" bundle:nil];
+//            [self pushViewController:view];
         }
             break;
         case 1:

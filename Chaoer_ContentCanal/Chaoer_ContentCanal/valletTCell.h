@@ -30,6 +30,8 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *mStatus;
 
+@property (assign,nonatomic) CGFloat mCellH;
+
 @property (strong, nonatomic) GScroe *mObj;
 @property (strong, nonatomic) GTransferHistory *mTransfer;
 @end

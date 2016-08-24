@@ -162,6 +162,11 @@
         [self.mMoneyTx becomeFirstResponder];
         return;
     }
+    if ([[NSString stringWithFormat:@"%@",self.mMoneyTx.text] intValue] > 5000) {
+        [self showErrorStatus:@"转账金额不能大于5000元!"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+    }
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] transferMoney:self.mAcountTx.text andMoney:[[NSString stringWithFormat:@"%@",self.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
