@@ -122,9 +122,17 @@
     
     self.mWorkTime.text = [NSString stringWithFormat:@"营业时间:%@-%@",mGoodsDetail.mOpenTime,mGoodsDetail.mCloseTime];
     
-    
+    self.mActTitle.text = @"活动:";
+
     if (mGoodsDetail.mCampainArr.count <= 1) {
-        self.mCheckMore.hidden = YES;
+        
+        if (mGoodsDetail.mCampainArr.count == 0 || mGoodsDetail.mCampainArr.count == 1) {
+            self.mActTitle.hidden = NO;
+            self.mCheckMore.hidden = YES;
+            self.mActivTag.text = @"无";
+            self.mActivContent.text = @"暂无优惠活动";
+
+        }
         for (int i=0; i<mGoodsDetail.mCampainArr.count; i++) {
             
             GCampain *mCampain = mGoodsDetail.mCampainArr[i];
@@ -154,8 +162,7 @@
         self.mActivContent.text = @"暂无优惠活动";
     }
     
-    self.mActTitle.text = mGoodsDetail.mShopCampain;
-        
+    
     
 }
 

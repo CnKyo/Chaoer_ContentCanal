@@ -126,7 +126,7 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="活动:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-bC-aLm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="活动:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-bC-aLm">
                                 <rect key="frame" x="52" y="14" width="25" height="21"/>
                                 <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -357,7 +357,7 @@
                 <outlet property="mSendPrice" destination="cCp-ON-tJ9" id="oRR-69-xyf"/>
                 <outlet property="mWorkTime" destination="Nrg-W5-nE1" id="h4W-oS-7ig"/>
             </connections>
-            <point key="canvasLocation" x="198" y="443"/>
+            <point key="canvasLocation" x="82" y="438"/>
         </tableViewCell>
     </objects>
 </document>

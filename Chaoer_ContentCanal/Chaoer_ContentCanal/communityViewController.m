@@ -403,12 +403,14 @@
 #pragma mark----cellbaner的代理方法
 - (void)cellDidSelectedBanerIndex:(NSInteger)mIndex{
 
-//    MBaner *banar = self.mBanerArr[mIndex];
-//    
-//    WebVC *w = [WebVC new];
-//    w.mName = banar.mName;
-//    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
-//    [self pushViewController:w];
+    MBaner *banar = self.mBanerArr[mIndex];
+    if (banar.mContentUrl.length != 0) {
+        WebVC *w = [WebVC new];
+        w.mName = banar.mName;
+        w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
+        [self pushViewController:w];
+    }
+    
 
 }
 #pragma mark----滚动的代理方法
