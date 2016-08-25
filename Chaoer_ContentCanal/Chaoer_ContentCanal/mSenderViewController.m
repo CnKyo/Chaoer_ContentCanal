@@ -726,7 +726,7 @@
         }
         
         [self showWithStatus:@"正在操作..."];
-        [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] getPPTOrder:[mUserInfo backNowUser].mLegworkUserId andOrderCode:sender.mOrder.mOrderCode andOrderType:[NSString stringWithFormat:@"%d",sender.mOrder.mType] andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 

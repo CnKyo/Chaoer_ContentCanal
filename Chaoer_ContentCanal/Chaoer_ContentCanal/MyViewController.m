@@ -391,25 +391,32 @@
 
         
         }else if (indexPath.row == 1){
+            
             int m_leg = [mUserInfo backNowUser].mIs_leg;
             
             if ( m_leg == 0) {
                 cell.mDetail.text = @"立即申请";
+                cell.mDetail.hidden = NO;
+
             }else if (m_leg == 1){
                 cell.mDetail.text = @"未支付押金";
+                cell.mDetail.hidden = NO;
             }
             else if (m_leg == 2){
                 cell.mDetail.text = @"审核中";
+                cell.mDetail.hidden = NO;
             }else if (m_leg == 3){
                 cell.mDetail.text = @"被系统禁用";
+                cell.mDetail.hidden = NO;
                 
             }else if (m_leg == 4){
                 
                 cell.mDetail.text = @"您已注销!";
-                
+                cell.mDetail.hidden = NO;
             }
             else if(m_leg == 6){
                 cell.mDetail.text = @"申请失败，重新申请!";
+                cell.mDetail.hidden = NO;
             }
             else{
                 cell.mDetail.hidden = YES;

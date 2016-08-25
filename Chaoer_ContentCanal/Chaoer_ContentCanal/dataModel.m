@@ -3171,10 +3171,12 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:NumberWithInt(mLegUserId) forKey:@"legworkUserId"];
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
     [para setObject:mOrderCode forKey:@"orderCode"];
     [para setObject:mOrderType forKey:@"orderType"];
     [para setObject:mLat forKey:@"lat"];
-    [para setObject:mLng forKey:@"lon"];
+    [para setObject:mLng forKey:@"lng"];
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/order/grabOrder" parameters:para call:^(mBaseData *info) {
         
