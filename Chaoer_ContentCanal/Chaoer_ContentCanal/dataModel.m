@@ -4667,7 +4667,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/updUser/getCard" parameters:para  call:^(mBaseData * _Nonnull info) {
         
         
-        block(info,[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[info.mData objectForKey:@"tdCode"]]);
+        block(info,[NSString stringWithFormat:@"%@/%@",[HTTPrequest returnNowURL],[info.mData objectForKey:@"tdCode"]]);
     }];
     
     

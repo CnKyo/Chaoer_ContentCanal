@@ -10,7 +10,7 @@
 #import "mBarCodeView.h"
 #import "barCodeCell.h"
 
-@interface barCodeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface barCodeViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
 @end
 
@@ -31,9 +31,9 @@
     self.Title = self.mPageName = @"我的二维码名片";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    
-    self.hiddenRightBtn = YES;
-    self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
+    self.rightBtnTitle = @"保存";
+//    self.hiddenRightBtn = YES;
+//    self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
     mBarCodeURL = nil;
     [SVProgressHUD dismiss];
     [self initView];
@@ -118,18 +118,21 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-    UIButton *btn = sender;
-    btn.selected = !btn.selected;
-    btn.selected = !isYes;
-    if (btn.selected) {
-        [self shaowShareView];
-        isYes = YES;
-    }else{
-        [self hiddenSahreView];
-        isYes = NO;
-    }
+//    UIButton *btn = sender;
+//    btn.selected = !btn.selected;
+//    btn.selected = !isYes;
+//    if (btn.selected) {
+//        [self shaowShareView];
+//        isYes = YES;
+//    }else{
+//        [self hiddenSahreView];
+//        isYes = NO;
+//    }
+//    
+
+    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"是否将图片保存到相册？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到相册", nil];
     
-    
+    [acc showInView:self.view];
     
 }
 
@@ -204,6 +207,51 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+ 
+    
+}
+
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    if (buttonIndex == 0) {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:mBarCodeURL]];
+        
+        
+        UIImage *savedImage = [UIImage imageWithData:data];
+        
+        [self saveImageToPhotos:savedImage];
+    }
+    
+}
+//实现该方法
+- (void)saveImageToPhotos:(UIImage*)savedImage
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    //因为需要知道该操作的完成情况，即保存成功与否，所以此处需要一个回调方法image:didFinishSavingWithError:contextInfo:
+}
+//回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    
+    
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        [self showErrorStatus:msg];
+        
+    }else{
+        msg = @"保存图片成功" ;
+        [self showSuccessStatus:msg];
+        
+    }
+    
+    
+}
 
 
 @end

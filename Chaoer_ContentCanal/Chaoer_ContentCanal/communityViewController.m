@@ -388,6 +388,8 @@
             communityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             
             GMarketList *mShopList = self.mShopArr[indexPath.row];
+            cell.delegate = self;
+            cell.mIndexPath = indexPath;
             [cell setMShopList:mShopList];
             
             
@@ -447,5 +449,24 @@
 }
 
 
+- (void)UITableViewWithCellDetailBtnAction:(NSIndexPath *)mIndexPath{
+    GMarketList *mShopList = self.mShopArr[mIndexPath.row];
+    
+    if (mShopList.mType == 3) {
+        DryCleanVC *vvv= [DryCleanVC new];
+        vvv.shopId = mShopList.mId;
+        [self pushViewController:vvv];
+        
+    } else {
+        mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+        market.mShopList = GMarketList.new;
+        market.mShopList = mShopList;
+        market.mShopId = mShopList.mId;
+        
+        [self pushViewController:market];
+    }
 
+
+
+}
 @end

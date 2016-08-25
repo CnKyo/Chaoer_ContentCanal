@@ -73,7 +73,7 @@
     self.hiddenTabBar = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.Title = self.mPageName = @"家政服务";
+    self.Title = self.mPageName = @"干洗服务";
     self.hiddenBackBtn = NO;
     self.hiddenlll = YES;
     self.hiddenRightBtn = NO;

@@ -24,8 +24,12 @@
  *  @param mIndex 标签
  */
 - (void)cellWithScrollerViewSelectedIndex:(NSInteger)mIndex;
-
-
+/**
+ *  cell详情按钮事件
+ *
+ *  @param mIndex 标签
+ */
+- (void)UITableViewWithCellDetailBtnAction:(NSIndexPath *)mIndexPath;
 
 @end
 
@@ -90,4 +94,5 @@
 
 @property (strong,nonatomic)GMarketList *mShopList;
 
+@property (assign,nonatomic) NSIndexPath *mIndexPath;
 @end

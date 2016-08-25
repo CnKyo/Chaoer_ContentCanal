@@ -45,8 +45,8 @@
 
 }
 - (void)setMTransfer:(GTransferHistory *)mTransfer{
-    self.mTime.text = [NSString stringWithFormat:@"编号:%@",mTransfer.mOrderCode];
-    self.mtitle.text = mTransfer.mDescription;
+    self.mTime.text = mTransfer.mDescription;
+    self.mtitle.text = [NSString stringWithFormat:@"编号:%@",mTransfer.mOrderCode];
     self.mScore.text = [NSString stringWithFormat:@"%@",mTransfer.mPhone];
     self.mStatus.text = [NSString stringWithFormat:@"%@",mTransfer.mAddTime];
     self.mCellH = 33 + [Util labelText:mTransfer.mDescription fontSize:14 labelWidth:self.mtitle.mwidth];

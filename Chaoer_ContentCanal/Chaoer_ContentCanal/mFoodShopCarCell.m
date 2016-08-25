@@ -39,4 +39,9 @@
     
 }
 
+- (void)layoutSubviews{
+
+    self.mJianBtn.layer.masksToBounds = self.mAddBtn.layer.masksToBounds = YES;
+    self.mJianBtn.layer.cornerRadius = self.mAddBtn.layer.cornerRadius = 3;
+}
 @end

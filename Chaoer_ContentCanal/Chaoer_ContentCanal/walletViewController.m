@@ -29,7 +29,7 @@
 #import "WJAdsView.h"
 #import "AppDelegate.h"
 
-@interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate,WJAdsViewDelegate,UIApplicationDelegate>
+@interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate,WJAdsViewDelegate,UIApplicationDelegate,UIActionSheetDelegate>
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
 @property (nonatomic, strong) LXCircleAnimationView *circleProgressView3;
@@ -44,6 +44,7 @@
     mPayFeeBarCodeView *mBarCodeView;
     
     NSString *mBarCodeStr;
+    
 
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -285,7 +286,7 @@
         [self showWithStatus:@"正在操作中..."];
         [[mUserInfo backNowUser] getPayFeeBarCode:^(mBaseData *resb, NSString *mBarCodeUrl) {
             if (resb.mSucess) {
-                [self showSuccessStatus:resb.mMessage];
+                [self dismiss];
                 mBarCodeStr = mBarCodeUrl;
                 [self showAdsView];
             }else{
@@ -400,7 +401,49 @@
 
 - (void)wjAdsViewTapMainContainView:(WJAdsView *)view currentSelectIndex:(long)selectIndex{
     MLLog(@"点击主内容视图:--%ld",selectIndex);
-}
+    
+    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"是否将图片保存到相册？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到相册", nil];
+    
+    [acc showInView:self.view];
 
+}
+#pragma mark - IBActionSheet/UIActionSheet Delegate Method
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    if (buttonIndex == 0) {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:mBarCodeStr]];
+        
+
+        UIImage *savedImage = [UIImage imageWithData:data];
+
+        [self saveImageToPhotos:savedImage];
+    }
+    
+}
+//实现该方法
+- (void)saveImageToPhotos:(UIImage*)savedImage
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    //因为需要知道该操作的完成情况，即保存成功与否，所以此处需要一个回调方法image:didFinishSavingWithError:contextInfo:
+}
+//回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+
+    
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        [self showErrorStatus:msg];
+
+    }else{
+        msg = @"保存图片成功" ;
+        [self showSuccessStatus:msg];
+
+    }
+    
+
+}
 
 @end
