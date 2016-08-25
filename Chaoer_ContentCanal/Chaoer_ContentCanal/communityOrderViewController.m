@@ -719,17 +719,18 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     if (mShop.mState == 10) {
         
-        if (mShop.mType == 3) {
+        if (mShop.mType == 3) { //干洗订单
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
             goPay.mMoney = mShop.mCommodityPrice;
             goPay.mOrderCode = mShop.mOrderCode;
             goPay.mType = 4;
             goPay.mIsPushFromOrderVC = YES;
             [self pushViewController:goPay];
+            
         } else {
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
             goPay.mMoney = mShop.mCommodityPrice;
-            goPay.mOrderCode = mShop.mOrderCode;
+            goPay.mOrderCode = StringWithInt(mShop.mId);
             goPay.mType = 3;
             goPay.mIsPushFromOrderVC = YES;
             [self pushViewController:goPay];
