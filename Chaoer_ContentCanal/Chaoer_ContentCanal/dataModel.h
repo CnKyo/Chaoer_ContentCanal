@@ -3877,6 +3877,10 @@
  *  配送费
  */
 @property (assign,nonatomic) float mSendPrice;
+ /**
+ *  减掉多少钱
+ */
+@property (assign,nonatomic) float mJianPrice;
 
 
 /**
@@ -3947,7 +3951,6 @@
  *  优惠券id
  */
 @property (assign,nonatomic) int mCoupId;
-
 /**
  *  配送方式id
  */

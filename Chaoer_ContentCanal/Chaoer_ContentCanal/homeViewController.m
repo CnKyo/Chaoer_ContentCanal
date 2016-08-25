@@ -246,7 +246,7 @@
     [self appInit];
 
     [self initview];
-    [self dateUpAppVersion];
+//    [self dateUpAppVersion];
 
 }
 

@@ -55,6 +55,10 @@
     
     
     int isCoup;
+    /**
+     *  是否有配送费
+     */
+    BOOL mIsDeliver;
 }
 @synthesize mShopCarList;
 - (void)viewDidLoad {
@@ -66,6 +70,7 @@
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"确认订单";
     isCoup = 0;
+    mIsDeliver = NO;
     [self initMainView];
     
 }
@@ -369,9 +374,33 @@
     
     mSelectSenTypeViewController *mmm = [[mSelectSenTypeViewController alloc] initWithNibName:@"mSelectSenTypeViewController" bundle:nil];
     
-    mmm.block = ^(NSString *content,NSString *mid){
+    mmm.block = ^(NSString *content,NSString *mid,BOOL mHaveDevelFee){
         mShop.mSendName = content;
         mShop.mSendId = mid;
+        /**
+         *  如果不加判断会造成配送费不断累加的bug
+         */
+        if (mHaveDevelFee) {
+            
+            if (mIsDeliver != mHaveDevelFee) {
+                mShopCarList.mTotlePay += mShop.mSendPrice;
+                mIsDeliver = YES;
+            }else{
+
+            }
+    
+            
+        }else{
+            if (mIsDeliver == mHaveDevelFee) {
+                mIsDeliver = NO;
+            }else{
+                mShopCarList.mTotlePay -= mShop.mSendPrice;
+                mIsDeliver = NO;
+            }
+            
+            
+        }
+        [self upDatePage];
         [self.tableView reloadData];
     };
     [self pushViewController:mmm];

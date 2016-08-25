@@ -11,6 +11,6 @@
 @interface mSelectSenTypeViewController : BaseVC
 
 
-@property (nonatomic,strong) void(^block)(NSString *mName,NSString *mType);
+@property (nonatomic,strong) void(^block)(NSString *mName,NSString *mType,BOOL mHaveDevelFee);
 
 @end

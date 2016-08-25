@@ -7223,16 +7223,19 @@ bool pptbined = NO;
     
     float ppp = 0.0;
     float mSS = 0.0;
+    float mContent  = 0.0;
     for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
         for (NSDictionary *temp in [dic objectForKeyMy:@"goodList"]) {
             ppp += [[temp objectForKeyMy:@"goodsPrice"] floatValue] * [[temp objectForKeyMy:@"quantity"] intValue];
+            
         }
-        
-        mSS += [[dic objectForKeyMy:@"deliverFee"] floatValue];
+        mContent = [[[dic objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"content"] floatValue];
+
+        mSS = [[dic objectForKeyMy:@"deliverPrice"] floatValue];
     }
     
-    
-    self.mTotlePay = ppp;
+    self.mJianPrice = mContent;
+    self.mTotlePay = ppp-mContent;
     self.mSendPrice = mSS;
     
 
@@ -7257,7 +7260,7 @@ bool pptbined = NO;
     
 //    GGPayN
 
-    self.mSendPrice = [[obj objectForKeyMy:@"deliverFee"] floatValue];
+    self.mSendPrice = [[obj objectForKeyMy:@"deliverPrice"] floatValue];
     self.mShopName = [obj objectForKeyMy:@"shopName"];
     self.mShopImg = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
     

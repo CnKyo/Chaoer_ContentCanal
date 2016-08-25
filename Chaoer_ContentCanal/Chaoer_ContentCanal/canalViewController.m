@@ -211,7 +211,7 @@
     self.hiddenTabBar = YES;
     self.hiddenlll = YES;
     self.hiddenRightBtn = NO;
-    self.rightBtnTitle = @"纪录查询";
+    self.rightBtnTitle = @"记录查询";
     CGRect  mrr = self.navBar.rightBtn.frame;
     mrr.size.width = 100;
     mrr.origin.x = DEVICE_Width-80;

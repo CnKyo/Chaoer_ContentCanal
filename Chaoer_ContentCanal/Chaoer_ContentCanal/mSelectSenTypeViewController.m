@@ -42,19 +42,19 @@
 
 - (IBAction)mPPTAction:(UIButton *)sender {
     
-    self.block(@"跑跑腿配送",@"2");
+    self.block(@"跑跑腿配送",@"2",NO);
 
     [self leftBtnTouched:nil];
 }
 
 - (IBAction)mSelfAction:(UIButton *)sender {
-    self.block(@"上门自取",@"1");
+    self.block(@"上门自取",@"1",NO);
 
     [self leftBtnTouched:nil];
 }
 
 - (IBAction)mStoreAction:(UIButton *)sender {
-    self.block(@"店铺配送",@"3");
+    self.block(@"店铺配送",@"3",YES);
 
     
     [self leftBtnTouched:nil];

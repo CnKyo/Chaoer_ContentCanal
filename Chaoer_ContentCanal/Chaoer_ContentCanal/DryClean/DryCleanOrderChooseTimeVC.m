@@ -98,7 +98,7 @@
     DryCleanTimeChooseView *chView = [[DryCleanTimeChooseView alloc] init];
     [self.scrollContentView addSubview:chView];
     self.chooseView = chView;
-    UILabel *noteLable = [self.scrollContentView newUILableWithText:@"提示：最长可预约七天内的服务时间" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];
+    UILabel *noteLable = [self.scrollContentView newUILableWithText:@"提示：最长可预约两天内的服务时间" textColor:[UIColor grayColor] font:[UIFont systemFontOfSize:14]];
     noteLable.numberOfLines = 0;
     [chView updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollContentView.left).offset(padding);
