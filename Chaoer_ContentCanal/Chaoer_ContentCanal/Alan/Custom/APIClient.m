@@ -267,7 +267,7 @@
 //    NSMutableDictionary* paramDic = [NSMutableDictionary quDic];
 //    if ([parameters isKindOfClass:[NSDictionary class]])
 //        [paramDic addEntriesFromDictionary:parameters];
-    NSLog(@"parameters:%@", parameters);
+    NSLog(@"URLString:%@ 参数parameters:%@", URLString, parameters);
     [self urlGroupKey:NSStringFromClass([tag class]) path:URLString parameters:parameters call:^(NSError *error, id responseObject) {
         APIObject *info = nil;
         if (error == nil) {

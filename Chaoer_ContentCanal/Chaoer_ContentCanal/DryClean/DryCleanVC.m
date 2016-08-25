@@ -107,14 +107,6 @@
 
 
 
--(void)handleUserPaySuccess:(NSNotification *)note
-{
-    [self.mShopCartArr removeAllObjects];
-    
-    [self upDatePage];
-    [self.tableView reloadData];
-}
-
 
 - (void)initView{
     
@@ -545,6 +537,16 @@
 }
 
 
+
+-(void)handleUserPaySuccess:(NSNotification *)note
+{
+    [self.mShopCartArr removeAllObjects];
+    
+    [self upDatePage];
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - TableView
 
 -(void)selectClassIndex:(NSInteger)row
@@ -873,7 +875,8 @@
         [SVProgressHUD showWithStatus:@"处理中..."];
         [[APIClient sharedClient] dryClearnShopOrderInfoWithTag:self serverId:_shopId cartJson:str call:^(DryClearnShopOrderShowObject *item, APIObject *info) {
             if (info.state == RESP_STATUS_YES && item!=nil) {
-
+                [self handleUserPaySuccess:nil];
+                
                 DryCleanOrderSubmitVC *vc = [[DryCleanOrderSubmitVC alloc] init];
                 vc.shopId = _shopId;
                 vc.showInfoItem = item;

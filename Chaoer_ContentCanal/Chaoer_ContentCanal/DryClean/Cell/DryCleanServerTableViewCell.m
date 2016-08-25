@@ -61,7 +61,7 @@
         }];
         
         [self.addBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(18);
+            make.width.height.equalTo(25);
             make.right.equalTo(superView.right).offset(-padding);
             make.centerY.equalTo(superView.centerY);
         }];
