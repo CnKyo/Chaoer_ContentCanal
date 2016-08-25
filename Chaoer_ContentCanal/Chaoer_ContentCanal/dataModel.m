@@ -2796,6 +2796,9 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 #pragma mark----获取买东西 标签
 - (void)getReleaseTags:(int)mType block:(void(^)(mBaseData *resb,NSArray *mArr))block{
     
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
     NSString *mUrl = nil;
     
     if (mType == 1) {
@@ -2806,7 +2809,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         mUrl = @"app/legwork/user/appGoodsType";
     }
     
-    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:nil call:^(mBaseData *info) {
+    [[HTTPrequest sharedHDNetworking] postUrl:mUrl parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
             
@@ -3442,12 +3445,17 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legworkUserId"];
-    
+    [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
+
     if (mLat) {
         [para setObject:mLat forKey:@"lat"];
+    }else{
+        [para setObject:@"0" forKey:@"lat"];
     }
     if (mLng) {
         [para setObject:mLng forKey:@"lng"];
+    }else{
+        [para setObject:@"0" forKey:@"lng"];
     }
     
     [para setObject:@"1" forKey:@"isOnline"];

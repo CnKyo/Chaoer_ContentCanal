@@ -77,7 +77,6 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    [self initAddress];
 
     [self hiddenReleaseView];
     self.haveHeader = YES;
@@ -120,7 +119,7 @@
         if (resb.mSucess) {
             
         }else{
-        
+            [self showErrorStatus:resb.mMessage];
         }
         
     }];
@@ -204,6 +203,8 @@
     [self loadData];
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
+    [self initAddress];
+
     self.page = 1;
     
     [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
