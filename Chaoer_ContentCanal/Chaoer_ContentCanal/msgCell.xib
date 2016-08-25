@@ -37,11 +37,14 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-11-11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRL-t1-ChA">
                         <rect key="frame" x="241" y="11" width="71" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="j9M-48-hvd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.79621010640000001" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="什么消息内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-xs-idN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="什么消息内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-xs-idN">
                         <rect key="frame" x="53" y="34" width="259" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.79621010640000001" colorSpace="calibratedRGB"/>
@@ -53,6 +56,7 @@
                     <constraint firstItem="mRL-t1-ChA" firstAttribute="leading" secondItem="R8V-T7-EWG" secondAttribute="trailing" constant="8" id="8Qf-Wh-otL"/>
                     <constraint firstItem="48Y-xs-idN" firstAttribute="leading" secondItem="Bq6-6e-i5e" secondAttribute="trailing" constant="5" id="DrV-qh-1Q8"/>
                     <constraint firstItem="Bq6-6e-i5e" firstAttribute="top" secondItem="whl-Xn-4MD" secondAttribute="topMargin" constant="2" id="HtO-Th-vpI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="48Y-xs-idN" secondAttribute="bottom" id="MDv-IC-J7I"/>
                     <constraint firstItem="mRL-t1-ChA" firstAttribute="top" secondItem="whl-Xn-4MD" secondAttribute="topMargin" constant="3" id="Qta-pn-0gs"/>
                     <constraint firstItem="48Y-xs-idN" firstAttribute="top" secondItem="mRL-t1-ChA" secondAttribute="bottom" constant="6" id="Yh1-qi-Trs"/>
                     <constraint firstItem="R8V-T7-EWG" firstAttribute="top" secondItem="whl-Xn-4MD" secondAttribute="topMargin" constant="3" id="h21-2Y-QX7"/>

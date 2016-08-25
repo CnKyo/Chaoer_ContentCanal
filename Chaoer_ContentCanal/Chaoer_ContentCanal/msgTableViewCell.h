@@ -46,7 +46,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *mTitle;
 
 
+@property (assign,nonatomic) CGFloat mCellH;
 
+@property (strong,nonatomic) GMsgObj *mmsg;
 
 
 

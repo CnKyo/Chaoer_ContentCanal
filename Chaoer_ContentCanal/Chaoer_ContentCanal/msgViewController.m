@@ -42,7 +42,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.95 alpha:1.00];
 //    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.haveHeader = YES;
-    
+    self.haveFooter = YES;
     
     
     UINib   *nib = [UINib nibWithNibName:@"msgCell" bundle:nil];
@@ -76,6 +76,30 @@
         
     }];
     
+}
+- (void)footetBeganRefresh{
+
+    self.page ++;
+    
+    [[mUserInfo backNowUser] getMsgList:self.page block:^(mBaseData *resb, NSArray *mArr) {
+        [self footetEndRefresh];
+        [self removeEmptyView];
+        if (resb.mSucess) {
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
+                return ;
+            }else{
+                
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+            }
+        }else{
+            
+            [self addEmptyView:nil];
+        }
+        
+    }];
 }
 
 - (void)loadData{
@@ -146,35 +170,26 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    NSString *reuseCellId = @"cell";
     
+    
+    msgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    
+    [cell setMmsg:self.tempArray[indexPath.row]];
+    return cell.mCellH;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     NSString *reuseCellId = @"cell";
-   GMsgObj *mmsg = self.tempArray[indexPath.row];
 
     
     msgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
-    if (mmsg.mType == 3) {
-        cell.mLogo.image = [UIImage imageNamed:@"system_msg"];
-    }else if(mmsg.mType == 2){
-        cell.mLogo.image = [UIImage imageNamed:@"fix_msg"];
-    }else{
-        
-        cell.mLogo.image = [UIImage imageNamed:@"money_msg"];
-    }
+    
+    [cell setMmsg:self.tempArray[indexPath.row]];
     
     
-    cell.mPoint.hidden = mmsg.mIsRead?YES:NO;
-    
-    
-    cell.mDetail.text = mmsg.mMsg_content;
-    cell.mTitle.text = mmsg.mMsg_title;
-    
-    cell.mTime.text = mmsg.mGen_time;
     
     return cell;
     
