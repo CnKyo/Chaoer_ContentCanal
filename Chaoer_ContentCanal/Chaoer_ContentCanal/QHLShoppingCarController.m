@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
     self.tableView.showsVerticalScrollIndicator = NO;
     /*=========================至关重要============================*/
-    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+//    self.tableView.allowsMultipleSelectionDuringEditing = YES;
     self.tableView.editing = NO;
     
     
@@ -418,7 +418,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         if (resb.mSucess) {
             [self.shoppingCar removeAllObjects];
             [self.tableView reloadData];
-//            [self headerBeganRefresh];
+            [self headerBeganRefresh];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -734,6 +734,27 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
         
         if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+            
+            for (GShopCarGoods *good in shop.mGoodsArr) {
+                if (good.mSelected) {
+                    [self showWithStatus:@"正在操作..."];
+                    [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
+                        [self dismiss];
+                        if (resb.mSucess) {
+                            [self headerBeganRefresh];
+                        }else{
+                            [self showErrorStatus:resb.mMessage];
+                        }
+                    }];
+                    shop.mSelected = NO;
+                    [self setButtonSelectState:NO];
+                    [tableView reloadData];
+                    return;
+                    
+                    
+                }
+            }
+
             [self.shoppingCar removeObjectAtIndex:indexPath.section];
         }
         [tableView reloadData];
@@ -971,17 +992,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     }
     
 }
-- (void)cell:(QHLShopCarCell *)cell AddBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
 
-    MLLog(@"加。。。");
-    
-    
-    
-}
-- (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath{
-    MLLog(@"减。。。");
-    
-}
 - (void)cell:(QHLShopCarCell *)cell JianBtnDidClicked:(BOOL)isSelected andIndexPath:(NSIndexPath *)indexPath andGoods:(GShopCarGoods *)mGood{
 
     //获取模型
@@ -1000,7 +1011,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             }
         }];
 
-        if (shop.mGoodsArr.count<=1) {
+        if (shop.mGoodsArr.count<1) {
             if (mGood.mQuantity==1) {
                 [self.shoppingCar removeObjectAtIndex:indexPath.section];
                 [self headerBeganRefresh];
@@ -1168,73 +1179,73 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         [self.btnsArray removeObject:btnsObject];
     }
 }
-//是否可以编辑  默认的时YES
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-
-//选择你要对表进行处理的方式  默认是删除方式
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  UITableViewCellEditingStyleDelete ;
-}
-
-//修改删除按钮的文字
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
-}
+////是否可以编辑  默认的时YES
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
+//}
+//
+////选择你要对表进行处理的方式  默认是删除方式
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return  UITableViewCellEditingStyleDelete ;
+//}
+//
+////修改删除按钮的文字
+//-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return @"删除";
+//}
 //选择编辑的方式,按照选择的方式对表进行处理
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    GShopCarList *shop = self.shoppingCar[indexPath.section];
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //删除数据
-        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
-        
-        
-        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
-            [self.shoppingCar removeObjectAtIndex:indexPath.section];
-        }
-        [tableView reloadData];
-        
-        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
-            //根据indexPath获取到QHLShop对象
-            GShopCarList *shops = self.tempArray[indexPath.section];
-            
-            //移除该对象goods数组中的下标为indexPath.row的元素
-            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
-            
-            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
-                [self.tempArray removeObject:shops];
-            }
-        }
-        
-        for (GShopCarGoods *good in shop.mGoodsArr) {
-            if (!good.mSelected) {
-                shop.mSelected = NO;
-                [self setButtonSelectState:NO];
-                [tableView reloadData];
-                return;
-            }
-        }
-        
-        shop.mSelected = YES;
-        if (self.state == QHLViewStateEdited) {
-            //根据indexPath获取到QHLShop对象
-            GShopCarList *shops = self.tempArray[indexPath.section];
-            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
-        }
-        [tableView reloadData];
-        
-        for (GShopCarList *shop in self.shoppingCar) {
-            if (!shop.mSelected) {
-                [self setButtonSelectState:NO];
-                return;
-            }
-        }
-        [self setButtonSelectState:YES];
-        [tableView reloadData];
-        
-    }
-    
-}
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    GShopCarList *shop = self.shoppingCar[indexPath.section];
+//    
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        //删除数据
+//        [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
+//        
+//        
+//        if (!shop.mGoodsArr.count) {   //判断 shoppingCar数组中的shop对象的goods数组 是否为空  为空的话移除shop  不为空的话 移除good
+//            [self.shoppingCar removeObjectAtIndex:indexPath.section];
+//        }
+//        [tableView reloadData];
+//        
+//        if (self.state == QHLViewStateEdited) { //在编辑界面下删除cell时  同时删除沙盒中读取到的数组中对应的元素
+//            //根据indexPath获取到QHLShop对象
+//            GShopCarList *shops = self.tempArray[indexPath.section];
+//            
+//            //移除该对象goods数组中的下标为indexPath.row的元素
+//            [shops.mGoodsArr removeObject:shops.mGoodsArr[indexPath.row]];
+//            
+//            if (!shops.mGoodsArr.count) { //判断沙盒存储的数组中的shop对象的goods数组 是否为空  为空的话移除
+//                [self.tempArray removeObject:shops];
+//            }
+//        }
+//        
+//        for (GShopCarGoods *good in shop.mGoodsArr) {
+//            if (!good.mSelected) {
+//                shop.mSelected = NO;
+//                [self setButtonSelectState:NO];
+//                [tableView reloadData];
+//                return;
+//            }
+//        }
+//        
+//        shop.mSelected = YES;
+//        if (self.state == QHLViewStateEdited) {
+//            //根据indexPath获取到QHLShop对象
+//            GShopCarList *shops = self.tempArray[indexPath.section];
+//            [self handleObjectInArrays:shop documentsObject:shops selectedState:YES];
+//        }
+//        [tableView reloadData];
+//        
+//        for (GShopCarList *shop in self.shoppingCar) {
+//            if (!shop.mSelected) {
+//                [self setButtonSelectState:NO];
+//                return;
+//            }
+//        }
+//        [self setButtonSelectState:YES];
+//        [tableView reloadData];
+//        
+//    }
+//    
+//}
 @end

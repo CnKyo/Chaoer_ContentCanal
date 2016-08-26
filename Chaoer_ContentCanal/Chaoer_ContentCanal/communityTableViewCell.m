@@ -129,7 +129,6 @@
 
 - (void)setMShopList:(GMarketList *)mShopList{
     
-    NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
     
     self.mName.text = mShopList.mShopName;
     [self.mLogo sd_setImageWithURL:[NSURL URLWithString:mShopList.mShopLogo] placeholderImage:[UIImage imageNamed:@"img_default"]];
@@ -140,12 +139,12 @@
     self.mDistance.layer.borderWidth = 0.5;
     self.mDistance.text = [NSString stringWithFormat:@"%@m",mShopList.mDisTance];
     
-    self.mWorkTime.attributedText =[[NSString stringWithFormat:@"营业时间：<color>%@-%@</color> 满:<color>%.2f元</color>免配送费 ",mShopList.mOpenTime,mShopList.mCloseTime,mShopList.mFreePrice] attributedStringWithStyleBook:mStyle];
+    self.mWorkTime.attributedText = [Util WKLabelWithAttributString:@"营业时间:" andColorText:[NSString stringWithFormat:@"%@-%@  满:%.2f元 免配送费 ",mShopList.mOpenTime,mShopList.mCloseTime,mShopList.mFreePrice]];
     
+    self.mNum.attributedText = [Util WKLabelWithAttributString:@"全部商品：" andColorText:[NSString stringWithFormat:@"%d  收藏数：%d ",mShopList.mGoodsNum,mShopList.mFocus]];
     
-    self.mNum.attributedText = [[NSString stringWithFormat:@"全部商品：<color>%d</color> 收藏数：<color>%d</color> ",mShopList.mGoodsNum,mShopList.mFocus] attributedStringWithStyleBook:mStyle];
-    self.mSenderPrice.attributedText = [[NSString stringWithFormat:@"配送费:<color>%.2f元</color>",mShopList.mDeliverPrice] attributedStringWithStyleBook:mStyle];
-    
+    self.mSenderPrice.attributedText = [Util WKLabelWithAttributString:@"配送费:" andColorText:[NSString stringWithFormat:@"%.2f元",mShopList.mDeliverPrice]];
+   
     
     if (mShopList.mActivityArr.count <= 0) {
         self.mCellH =100;
@@ -192,6 +191,14 @@
 
 }
 
+//- (IBAction)mCellDetailAction:(UIButton *)sender {
+//
+//    if ([self.delegate respondsToSelector:@selector(UITableViewWithCellDetailBtnAction:)]) {
+//        [self.delegate UITableViewWithCellDetailBtnAction:self.mIndexPath];
+//
+//    }
+//    
+//}
 
 
 

@@ -340,8 +340,15 @@ typedef enum _RelDic
  *  @return 返回加密内容
  */
 + (NSString *)RSAEncryptor:(NSString *)mText;
-
-
+#pragma mark----富文本处理
+/**
+ *  富文本处理
+ *
+ *  @param mContent 要处理的文本内容
+ *
+ *  @return 返回富文本内容
+ */
++ (NSMutableAttributedString *)WKLabelWithAttributString:(NSString *)mContent andColorText:(NSString *)mColorTex;
 
 
 @end

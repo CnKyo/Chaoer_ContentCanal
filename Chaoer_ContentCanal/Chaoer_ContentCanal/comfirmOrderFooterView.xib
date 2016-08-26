@@ -39,8 +39,9 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="商品总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imH-9x-sd4">
-                    <rect key="frame" x="8" y="46" width="108" height="21"/>
+                    <rect key="frame" x="8" y="46" width="60" height="21"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="60" id="R4b-gb-8bL"/>
                         <constraint firstAttribute="height" constant="21" id="qB9-Dg-g7v"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -48,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥800" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqx-cw-r0o">
-                    <rect key="frame" x="276" y="46" width="36" height="21"/>
+                    <rect key="frame" x="68" y="46" width="244" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="rB7-lA-8Hm"/>
                     </constraints>
@@ -90,7 +91,7 @@
                 <constraint firstItem="6Ys-hr-6yU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="APR-5V-tce"/>
                 <constraint firstItem="imH-9x-sd4" firstAttribute="top" secondItem="6tv-Do-bVw" secondAttribute="bottom" constant="8" id="Iyf-Qw-62l"/>
                 <constraint firstAttribute="trailing" secondItem="6Ys-hr-6yU" secondAttribute="trailing" constant="8" id="J8r-fK-MtF"/>
-                <constraint firstItem="mqx-cw-r0o" firstAttribute="leading" secondItem="imH-9x-sd4" secondAttribute="trailing" constant="160" id="QIo-jq-f8C"/>
+                <constraint firstItem="mqx-cw-r0o" firstAttribute="leading" secondItem="imH-9x-sd4" secondAttribute="trailing" id="QIo-jq-f8C"/>
                 <constraint firstItem="6Ys-hr-6yU" firstAttribute="leading" secondItem="RID-XU-nn5" secondAttribute="trailing" constant="20" id="UkD-dJ-Qfi"/>
                 <constraint firstAttribute="trailing" secondItem="6tv-Do-bVw" secondAttribute="trailing" id="UmX-zi-upt"/>
                 <constraint firstItem="imH-9x-sd4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="WMI-0M-3uE"/>

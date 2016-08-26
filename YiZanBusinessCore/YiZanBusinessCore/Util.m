@@ -1391,7 +1391,25 @@
     
 }
 
+#pragma mark----富文本处理
+/**
+ *  富文本处理
+ *
+ *  @param mContent 要处理的文本内容
+ *
+ *  @return 返回富文本内容
+ */
++ (NSMutableAttributedString *)WKLabelWithAttributString:(NSString *)mContent andColorText:(NSString *)mColorTex
+{
+    NSString *inteStr = [NSString stringWithFormat:@"%@%@",mContent,mColorTex];
 
+    NSMutableAttributedString *inteMutStr = [[NSMutableAttributedString alloc] initWithString:inteStr];
+    
+    NSRange orangeRange = NSMakeRange([[inteMutStr string] rangeOfString:mColorTex].location, [[inteMutStr string] rangeOfString:mColorTex].length);
+    [inteMutStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:orangeRange];
+    
+    return inteMutStr;
+}
 @end
 
 

@@ -102,7 +102,16 @@
     mTableFooterView.frame = CGRectMake(0, 0, DEVICE_Width, 120);
     mTableFooterView.delegate = self;
     mTableFooterView.mTotalMoney.text = [NSString stringWithFormat:@"商品总金额：¥%.2f",mShopCarList.mTotlePay];
-    mTableFooterView.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f",mShopCarList.mSendPrice];
+
+    float mS = 0;
+    
+    if (mIsDeliver) {
+        mS = mShopCarList.mSendPrice;
+    }else{
+        mS = 0;
+    }
+    
+    mTableFooterView.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f",mS];
     [self.tableView setTableFooterView:mTableFooterView];
     
     
@@ -226,10 +235,20 @@
 
 - (void)upDatePage{
  
-    mFooterView.mPayMoney.text = [NSString stringWithFormat:@"还需支付：¥%.2f",mShopCarList.mTotlePay];
+    mFooterView.mPayMoney.text = [NSString stringWithFormat:@"还需支付(含配送费)：¥%.2f",mShopCarList.mTotlePay];
     mTableHeaderView.mAddress.text = [NSString stringWithFormat:@"%@-%@\n%@",mShopCarList.mName,mShopCarList.mPhone,mShopCarList.mAddress];
-    mTableFooterView.mTotalMoney.text = [NSString stringWithFormat:@"商品总金额：¥%.2f",mShopCarList.mTotlePay];
-    mTableFooterView.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f",mShopCarList.mSendPrice];
+    mTableFooterView.mTotalMoney.text = [NSString stringWithFormat:@"商品总金额(含配送费)：¥%.2f",mShopCarList.mTotlePay];
+    
+    
+    float mS = 0;
+    
+    if (mIsDeliver) {
+        mS = mShopCarList.mSendPrice;
+    }else{
+        mS = 0;
+    }
+    
+    mTableFooterView.mSendPrice.text = [NSString stringWithFormat:@"¥%.2f",mS];
 
 }
 /*
@@ -266,7 +285,7 @@
         mShop.mDescript = @"暂无优惠";
     }
     
-    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color> ",mShop.mDescript,mPP] attributedStringWithStyleBook:mStyle1];
+    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color> ",mShop.mDescript,mPP-mShopCarList.mJianPrice] attributedStringWithStyleBook:mStyle1];
 
     [mFooterSection.mSenderType setTitle:mShop.mSendName forState:0];
     
