@@ -273,7 +273,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 - (void)mGoPayClick{
     [mJsonArr removeAllObjects];
     MLLog(@"去结算:%@",self.deleteArr);
-    if (self.mShopCarIdsArr.count <= 0) {
+    if (self.mShopCarIdsArr.count <= 0 || self.count == 0) {
         [self showErrorStatus:@"您还未选择商品！"];
         return;
     }
