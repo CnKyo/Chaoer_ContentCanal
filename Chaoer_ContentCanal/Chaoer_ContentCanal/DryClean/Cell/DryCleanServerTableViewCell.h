@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
+#import "QUItemBtnView.h"
 
 @interface DryCleanServerTableViewCell : UITableViewCell
 @property(strong, nonatomic) UIImageView*       thumbImgView;
 @property(strong, nonatomic) UILabel*           nameLable;
 @property(strong, nonatomic) UILabel*           priceLable;
 
-@property(strong, nonatomic) UIButton*          jianBtn;
 @property(strong, nonatomic) UILabel*           countLable;
-@property(strong, nonatomic) UIButton*          addBtn;
+//@property(strong, nonatomic) UIButton*          jianBtn;
+//@property(strong, nonatomic) UIButton*          addBtn;
 
 @property(assign, nonatomic) int                count;
 

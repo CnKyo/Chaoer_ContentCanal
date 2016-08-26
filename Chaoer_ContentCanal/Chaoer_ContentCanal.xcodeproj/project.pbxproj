@@ -1244,6 +1244,7 @@
 		DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344311D51DE67002C4FD6 /* SKTagButton.m */; };
 		DF8344361D51DE67002C4FD6 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344331D51DE67002C4FD6 /* SKTagView.m */; };
 		DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */; };
+		DFACAA691D6FF6E2009F4CC0 /* QUItemBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3456,6 +3457,8 @@
 		DF8344331D51DE67002C4FD6 /* SKTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagView.m; sourceTree = "<group>"; };
 		DF83443E1D51F397002C4FD6 /* ImageTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextTableViewCell.h; sourceTree = "<group>"; };
 		DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextTableViewCell.m; sourceTree = "<group>"; };
+		DFACAA671D6FF6E2009F4CC0 /* QUItemBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUItemBtnView.h; sourceTree = "<group>"; };
+		DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUItemBtnView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -7368,6 +7371,8 @@
 				DF8344171D51D570002C4FD6 /* QUCustomDefine.h */,
 				DF10D8281D640AC900220FB0 /* QUScrollVC.h */,
 				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
+				DFACAA671D6FF6E2009F4CC0 /* QUItemBtnView.h */,
+				DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -8087,6 +8092,7 @@
 				7470E14E1B9C07B800ECEC69 /* leaveDetailViewController.m in Sources */,
 				DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */,
 				040BEF3D1D6D4FDF00BDD60F /* TYAlertScaleFadeAnimation.m in Sources */,
+				DFACAA691D6FF6E2009F4CC0 /* QUItemBtnView.m in Sources */,
 				04E02E4F1CE6B4C900220D54 /* pptMyRateCell.m in Sources */,
 				04FACEA61D6A982C0038CF7B /* ZXMultiDetector.m in Sources */,
 				318D56641C9C012B0045B5FB /* MHSheetCell.m in Sources */,
