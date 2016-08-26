@@ -392,7 +392,7 @@
         self.assets = [assets copy];
         
         
-        NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/warranty/uploadWarrantyImg",[HTTPrequest returnNowURL]];
+        NSString    *mUrlStr = [NSString stringWithFormat:@"%@warranty/uploadWarrantyImg",[HTTPrequest currentResourceUrl]];
         [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
             [SVProgressHUD dismiss];
             
@@ -446,7 +446,7 @@
 #pragma mark----上传视频
 - (void)upLoadVideo{
    
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@/app/upload/uploadVideo",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@warranty/uploadWarrantyVidoes",[HTTPrequest currentResourceUrl]];
     
     
     [[HTTPrequest sharedHDNetworking] postVedio:mUrlStr andVedioUrl:mVURL call:^(mBaseData * _Nonnull info) {

@@ -495,7 +495,9 @@
 -(void)shopCommentImgUpdateWithTag:(NSObject *)tag img:(UIImage *)img call:( void(^)(NSString *file, APIObject* info))callback
 {
     
-    [self postWithTag:tag path:@"/resource/shop/comment" parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
+    NSString *mUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],@"shop/comment"];
+    
+    [self postWithTag:tag path:mUrl parameters:nil constructingBodyWithBlockBack:^(id<AFMultipartFormData> formData) {
         NSData *imgData = UIImageJPEGRepresentation(img, 1.0);
         [formData appendPartWithFileData:imgData name:@"file" fileName:@"img.png" mimeType:@"image/png"];
     } call:^(NSError *error, id responseObject) {

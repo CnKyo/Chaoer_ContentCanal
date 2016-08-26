@@ -308,7 +308,7 @@
     
     [SVProgressHUD showWithStatus:@"正在保存中..." maskType:SVProgressHUDMaskTypeClear];
  
-    NSString    *mUrlStr = [NSString stringWithFormat:@"%@/resource/userInfo/uploadUserProfileImg",[HTTPrequest returnNowURL]];
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@userInfo/uploadUserProfileImg",[HTTPrequest currentResourceUrl]];
 
     [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
         [SVProgressHUD dismiss];
