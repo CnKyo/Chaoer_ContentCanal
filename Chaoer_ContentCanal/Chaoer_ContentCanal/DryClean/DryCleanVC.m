@@ -91,7 +91,8 @@
     self.classArr = [NSMutableArray array];
     self.mShopCartArr = [NSMutableArray array];
     
-
+    [self reloadShopInfoUI];
+    
     self.segControl.selectedSegmentIndex = 0;
     [self loadSegSelectIndex:0];
     
@@ -875,14 +876,15 @@
         [SVProgressHUD showWithStatus:@"处理中..."];
         [[APIClient sharedClient] dryClearnShopOrderInfoWithTag:self serverId:_shopId cartJson:str call:^(DryClearnShopOrderShowObject *item, APIObject *info) {
             if (info.state == RESP_STATUS_YES && item!=nil) {
-                [self handleUserPaySuccess:nil];
-                
+
                 DryCleanOrderSubmitVC *vc = [[DryCleanOrderSubmitVC alloc] init];
                 vc.shopId = _shopId;
                 vc.showInfoItem = item;
-                vc.goodsArr = _mShopCartArr;
+                vc.goodsArr = [_mShopCartArr mutableCopy];
                 vc.hiddenTabBar = YES;
                 [self.navigationController pushViewController:vc animated:YES];
+                
+                [self handleUserPaySuccess:nil];
                 
                 [SVProgressHUD dismiss];
             } else {
