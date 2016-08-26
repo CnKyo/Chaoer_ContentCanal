@@ -632,11 +632,13 @@
     MLLog(@"第%zd张图片\n",Index);
 
     MBaner *banar = self.mBanerArr[Index];
+    if (banar.mContentUrl.length != 0) {
+        WebVC *w = [WebVC new];
+        w.mName = banar.mName;
+        w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
+        [self pushViewController:w];
+    }
     
-    WebVC *w = [WebVC new];
-    w.mName = banar.mName;
-    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
-    [self pushViewController:w];
 
 }
 /**

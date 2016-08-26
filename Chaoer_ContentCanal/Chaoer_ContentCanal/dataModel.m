@@ -224,8 +224,10 @@ bool g_bined = NO;
     int    sss = [[obj objectForKeyMy:@"sex"] intValue];
     if (sss == 1) {
         self.mSex = @"男";
-    }else{
+    }else if(sss == 0){
         self.mSex = @"女";
+    }else{
+        self.mSex = @"未知";
     }
     
     
@@ -4922,7 +4924,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     
     
-    self.mContentUrl = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"url"]];
+    self.mContentUrl = [obj objectForKeyMy:@"url"];
     self.mName = [obj objectForKeyMy:@"name"];
     self.mB_index = [[obj objectForKeyMy:@"b_index"] intValue];
 }

@@ -101,7 +101,7 @@
 }
 */
 
-#define TEXT_MAXLENGTH 20
+#define TEXT_MAXLENGTH 100
 
 #pragma mark **----键盘代理方法
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

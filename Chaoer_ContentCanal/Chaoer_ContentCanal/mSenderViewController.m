@@ -82,7 +82,7 @@
     [super viewWillAppear:animated];
 
     [self hiddenReleaseView];
-
+    [self headerBeganRefresh];
     
 }
 - (void)viewDidLoad {
@@ -580,12 +580,12 @@
     MLLog(@"第%zd张图片\n",mIndex);
     
     MBaner *banar = self.mBanerArr[mIndex];
-    
-    WebVC *w = [WebVC new];
-    w.mName = banar.mName;
-    w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
-    [self pushViewController:w];
-
+    if (banar.mContentUrl.length != 0) {
+        WebVC *w = [WebVC new];
+        w.mName = banar.mName;
+        w.mUrl = [NSString stringWithFormat:@"%@",banar.mContentUrl];
+        [self pushViewController:w];
+    }
     
 }
 

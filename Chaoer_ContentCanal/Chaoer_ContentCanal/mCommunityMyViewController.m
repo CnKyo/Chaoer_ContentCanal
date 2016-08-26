@@ -436,11 +436,13 @@
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mLeftType;
                     
+                 
+       
+
                 }
             }
             
-            [self.tableView reloadData];
-            
+            [self headerBeganRefresh];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -459,12 +461,11 @@
             for (GCollectGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mRightType;
-                    
+                  
                 }
             }
             
-            [self.tableView reloadData];
-            
+            [self headerBeganRefresh];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
