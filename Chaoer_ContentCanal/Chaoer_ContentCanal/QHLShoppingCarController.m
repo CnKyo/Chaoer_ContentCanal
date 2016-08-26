@@ -292,6 +292,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     [[mUserInfo backNowUser] shopcarGoPay:mJsonArr block:^(mBaseData *resb,GPayShopCar *mShopCarList) {
         [self dismiss];
         if (resb.mSucess) {
+            [self upDateBottom];
             comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
             comfir.mShopCarList = nil;
             comfir.mShopCarList = [GPayShopCar new];
@@ -306,6 +307,16 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
 
 
+}
+- (void)upDateBottom{
+    self.settleMentView.btnSelected = NO;
+    self.hiddenRightBtn = YES;
+    self.count = 0;
+    self.money = 0;
+    self.settleMentView.count = self.count;
+    
+    //计算金额
+    self.settleMentView.money = self.money;
 }
 - (void)bottomViewGoPayDidClick:(QHLSettleMentView *)setView didClick:(BOOL)Click{
 
@@ -356,8 +367,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 if (shop.mIsCanOrder) {
                     for (GShopCarGoods *good in shop.mGoodsArr) {
                         self.count --;
-                        
                         self.money -= good.mGoodsPrice * good.mQuantity;
+
+                        if (self.money<=0) {
+                            self.money = 0;
+                        }
                     }
                 }
                 

@@ -479,5 +479,9 @@
     
 }
 
+- (void)leftBtnTouched:(id)sender{
 
+//    [self popViewController_2];
+    [self popViewController];
+}
 @end
