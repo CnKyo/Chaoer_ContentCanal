@@ -570,7 +570,7 @@
     self.page = 1;
     [self.tempArray removeAllObjects];
     [self.tableView reloadData];
-    [self headerBeganRefresh];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 
