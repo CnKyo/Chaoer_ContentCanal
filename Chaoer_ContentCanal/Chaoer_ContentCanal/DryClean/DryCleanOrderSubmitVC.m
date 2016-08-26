@@ -149,6 +149,8 @@ typedef enum {
     if (_showInfoItem.shop.campaignList.count > 0) {
         DryClearnShopCampaignObject *it = [_showInfoItem.shop.campaignList objectAtIndex:0];
         item.campaing = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", it.iD]];
+    } else {
+        item.campaing = [Util RSAEncryptor:[NSString stringWithFormat:@"%d", 0]];
     }
     
     BOOL useScore = _chooseYouHuiType == kChooseYouHuiType_score ? YES : NO;
@@ -227,10 +229,12 @@ typedef enum {
         } else if ([it.code isEqualToString:@"B"]) { //折扣
             money = _showInfoItem.money - _showInfoItem.money * (it.price / 10);
             str1 = [NSString stringWithFormat:@"活动%.2f折", it.price];
-        } else {
-            str1 = it.content.length>0 ? it.content : @"暂无";
         }
+        
+        if (it.content.length > 0)
+            str1 = it.content;
     }
+
     self.chooseCampaignMoney = money;
     self.chooseCampaignNoteStr = str1.length>0 ? str1 : @"暂无优惠";
 }

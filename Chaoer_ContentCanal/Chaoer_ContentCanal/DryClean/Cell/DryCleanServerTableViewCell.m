@@ -34,6 +34,8 @@
         self.countLable = [superView newUILableWithText:@"" textColor:[UIColor blackColor] font:font textAlignment:QU_TextAlignmentCenter];
         self.addBtn = [superView newUIButtonWithTarget:self mehotd:@selector(addCountMethod:) title:@"+" titleColor:[UIColor whiteColor] titleFont:[UIFont systemFontOfSize:20]];
         
+        
+        
         UIColor *color = [UIColor colorWithRed:0.518 green:0.753 blue:0.125 alpha:1.000];
         UIImage *img = [UIImage imageFromColor:color targetSize:CGSizeMake(40, 40)];
         [self.jianBtn setBackgroundImage:img forState:UIControlStateNormal];
@@ -61,9 +63,12 @@
         }];
         
         [self.addBtn makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(25);
-            make.right.equalTo(superView.right).offset(-padding);
+            //make.top.equalTo(superView.top).offset(padding/2);
+            //make.bottom.equalTo(superView.bottom).offset(-padding/2);
+            //make.width.equalTo(_addBtn.mas_height);
+            make.width.height.equalTo(45);
             make.centerY.equalTo(superView.centerY);
+            make.right.equalTo(superView.right).offset(-padding);
         }];
         [self.countLable makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(30);
