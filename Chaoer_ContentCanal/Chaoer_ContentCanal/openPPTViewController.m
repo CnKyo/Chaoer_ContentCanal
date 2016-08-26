@@ -55,6 +55,9 @@
     int mNowSelected;
     
     NSString *mSex;
+    
+    float mPayFee;
+    NSString *mServiceUrl;
 
     
     
@@ -92,6 +95,8 @@
     mFrontImg = nil;
     mForwordImg = nil;
     mSex = nil;
+    mPayFee = 100;
+    mServiceUrl = nil;
     [self initView];
     [self initData];
 
@@ -116,7 +121,8 @@
     [mView.mForwordBtn addTarget:self action:@selector(forwordAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [mView.mSexBtn addTarget:self action:@selector(sexAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [mView.mRuleBtn addTarget:self action:@selector(ruleAction:) forControlEvents:UIControlEventTouchUpInside];
+
     [mScrollerView addSubview:mView];
     
     mScrollerView.contentSize = CGSizeMake(DEVICE_Width, 568+30);
@@ -147,6 +153,17 @@
         
     }];
 
+    [mUserInfo getLegUserInfo:^(mBaseData *resb, NSString *mUrl, float mMoney) {
+        if (resb.mSucess) {
+            [SVProgressHUD dismiss];
+            mPayFee = mMoney;
+            mServiceUrl = mUrl;
+            [self updatePage];
+        }else{
+            [SVProgressHUD showErrorWithStatus:resb.mMessage];
+            
+        };
+    }];
     
     
 }
@@ -157,8 +174,19 @@
     mView.mSexTx.text = [mUserInfo backNowUser].mSex;
     mView.mIdentifyTx.text = mVerify.mCard;
     mView.mConnectTx.text = [mUserInfo backNowUser].mPhone;
+    mView.mMoney.text = [NSString stringWithFormat:@"%.f元",mPayFee];
 }
+- (void)ruleAction:(UIButton *)sender{
+    
+    if (mServiceUrl.length != 0) {
+        WebVC* vc = [[WebVC alloc]init];
+        vc.mName = @"跑跑腿服务协议";
+        vc.mUrl = mServiceUrl;
+        [self pushViewController:vc];
 
+    }
+    
+}
 - (void)okAction:(UIButton *)sender{
 
     if (mView.mNameTx.text.length == 0) {

@@ -9,6 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "mOrderButton.h"
 
+@protocol WKCellWithBanerAndBtnClickDelegate <NSObject>
+
+@optional
+
+- (void)WKCellWithBanerClicked:(NSInteger)mIndex;
+
+- (void)WKCellWithMainBtnClicked:(NSInteger)mIndex;
+
+- (void)WKCellWithDoneBtnAction:(NSIndexPath *)mIndexPath;
+
+@end
+
 @interface pptTableViewCell : UITableViewCell
 /**
  *  头像
@@ -31,7 +43,21 @@
  */
 @property (weak, nonatomic) IBOutlet mOrderButton *mDoneBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *mBanerView;
 
+@property (weak, nonatomic) IBOutlet UIView *mMainBtnView;
+/**
+ *  滚动数组
+ */
+@property (strong,nonatomic) NSArray *mBanerArr;
+/**
+ *  主按钮数组
+ */
+@property (strong,nonatomic) NSArray *mMainBtnArr;
 
+@property (assign,nonatomic) NSIndexPath *mIndexPath;
 
+@property (strong,nonatomic) id<WKCellWithBanerAndBtnClickDelegate>delegate;
+
+@property (strong,nonatomic) GPPTOrder *mOrder;
 @end

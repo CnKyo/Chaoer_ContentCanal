@@ -131,7 +131,8 @@
     
     mFooterView = [mFixOrderFooter shareView];
     mFooterView.frame = CGRectMake(0, 0, DEVICE_Width, 60);
-    //    mContent.text = self.mFixOrder.mDescription;
+    mFooterView.mNote.text = self.mFixOrder.mDescription;
+    
     
     CGFloat mH = [Util labelText:self.mFixOrder.mDescription fontSize:14 labelWidth:mFooterView.mNote.mwidth];
     
@@ -143,6 +144,7 @@
     
     
 }
+
 - (void)mFinishAction:(UIButton *)sender{
 
     

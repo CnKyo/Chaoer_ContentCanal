@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="FEy-Nh-EtW" customClass="pptTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FEy-Nh-EtW" id="ax8-E2-1Y7">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-Sg-Bv6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="nuE-XH-d3m"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-1H-M3Z">
+                        <rect key="frame" x="0.0" y="120" width="320" height="75"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="75" id="7aQ-Ig-zMw"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+                        <rect key="frame" x="10" y="210" width="5" height="20"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Wug-KT-1BU"/>
+                            <constraint firstAttribute="width" constant="5" id="ZbW-kT-Y7t"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务大厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oj2-UK-dAj">
+                        <rect key="frame" x="23" y="210" width="289" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Wc3-ai-RZ6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="ax8-E2-1Y7" secondAttribute="leadingMargin" constant="2" id="0Q0-pK-CXI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dKC-Sg-Bv6" secondAttribute="trailing" constant="-8" id="9mM-py-4fq"/>
+                    <constraint firstItem="dKC-Sg-Bv6" firstAttribute="top" secondItem="ax8-E2-1Y7" secondAttribute="topMargin" constant="-8" id="BH0-yG-4j1"/>
+                    <constraint firstItem="dKC-Sg-Bv6" firstAttribute="leading" secondItem="ax8-E2-1Y7" secondAttribute="leadingMargin" constant="-8" id="GzB-j0-Uwt"/>
+                    <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="e9R-1H-M3Z" secondAttribute="bottom" constant="15" id="KNe-AC-THB"/>
+                    <constraint firstItem="Oj2-UK-dAj" firstAttribute="top" secondItem="e9R-1H-M3Z" secondAttribute="bottom" constant="15" id="Ldc-dB-Sfk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Oj2-UK-dAj" secondAttribute="trailing" id="OeE-Gn-K4y"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="e9R-1H-M3Z" secondAttribute="trailing" constant="-8" id="QxI-r3-zX8"/>
+                    <constraint firstItem="e9R-1H-M3Z" firstAttribute="top" secondItem="dKC-Sg-Bv6" secondAttribute="bottom" id="Yf7-B0-Upc"/>
+                    <constraint firstItem="Oj2-UK-dAj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="8" id="eBT-E6-UW0"/>
+                    <constraint firstItem="e9R-1H-M3Z" firstAttribute="leading" secondItem="ax8-E2-1Y7" secondAttribute="leadingMargin" constant="-8" id="lg3-ea-GD6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mBanerView" destination="dKC-Sg-Bv6" id="ByJ-5Z-VOi"/>
+                <outlet property="mMainBtnView" destination="e9R-1H-M3Z" id="ZJw-dQ-ICG"/>
+            </connections>
+            <point key="canvasLocation" x="221" y="477"/>
+        </tableViewCell>
+    </objects>
+</document>

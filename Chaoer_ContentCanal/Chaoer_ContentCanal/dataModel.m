@@ -1523,6 +1523,28 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
         }
     }];
 }
+
+#pragma mark - ---- 获取跑腿者注册资料接口
+/**
+ *  获取跑腿者注册资料接口
+ *
+ *  @param block 返回值
+ */
++ (void)getLegUserInfo:(void(^)(mBaseData *resb,NSString *mUrl,float mMoney))block{
+
+    NSMutableDictionary *para = [NSMutableDictionary new];
+
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/auth/legworkLoadInfo" parameters:para call:^(mBaseData *info) {
+        if (info.mSucess) {
+            
+            block( info,[info.mData objectForKey:@"url"],[[info.mData objectForKey:@"money"] floatValue]);
+        }else{
+            block( info,nil,0.0);
+            
+        }
+    }];
+
+}
 #pragma mark----获取楼栋门牌号
 /**
  *  获取楼栋门牌号

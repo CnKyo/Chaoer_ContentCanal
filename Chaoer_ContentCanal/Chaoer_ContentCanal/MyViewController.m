@@ -256,6 +256,13 @@
             [self pushViewController:vvv];
 
         }
+    }else if (alertView.tag == 110){
+        if (buttonIndex == 1) {
+            openPPTViewController *ppp = [[openPPTViewController alloc] initWithNibName:@"openPPTViewController" bundle:nil];
+            [self pushViewController:ppp];
+            
+        }
+     
     }
     
     else{
@@ -523,8 +530,8 @@
                     [self showErrorStatus:@"您已被系统禁用!"];
                     
                 }else if (m_leg == 4){
-                    [self showErrorStatus:@"您已注销!"];
-                    
+                    [self AlertViewShow:@"您已注销！" alertViewMsg:@"是否重新申请跑跑腿？" alertViewCancelBtnTiele:@"取消" alertTag:110];
+
                 
                 }
                 else if (m_leg == 6){

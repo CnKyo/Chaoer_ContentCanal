@@ -579,6 +579,13 @@
  *  @param block   返回值
  */
 + (void)getBundleMsg:(int)mUserId block:(void(^)(mBaseData *resb,SVerifyMsg *info))block;
+#pragma mark - ---- 获取跑腿者注册资料接口
+/**
+ *  获取跑腿者注册资料接口
+ *
+ *  @param block 返回值
+ */
++ (void)getLegUserInfo:(void(^)(mBaseData *resb,NSString *mUrl,float mMoney))block;
 
 #pragma mark----获取楼栋门牌号
 /**

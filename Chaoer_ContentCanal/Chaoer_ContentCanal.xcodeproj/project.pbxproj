@@ -272,6 +272,7 @@
 		04C75DA81D058C27002D21FB /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA61D058C27002D21FB /* AlipaySDK.framework */; };
 		04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DA91D058C37002D21FB /* libcrypto.a */; };
 		04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DAA1D058C37002D21FB /* libssl.a */; };
+		04C7FE9C1D7040F30080881E /* pptTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C7FE9B1D7040F30080881E /* pptTableViewCell1.xib */; };
 		04CE8FD11D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
 		04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D476E01CC72B8400746491 /* orderTongjiViewController.xib */; };
@@ -1745,6 +1746,7 @@
 		04C75DA61D058C27002D21FB /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		04C75DA91D058C37002D21FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		04C75DAA1D058C37002D21FB /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		04C7FE9B1D7040F30080881E /* pptTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptTableViewCell1.xib; sourceTree = "<group>"; };
 		04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGoodsDetailBottomBuyView.xib; sourceTree = "<group>"; };
 		04D476DE1CC72B8400746491 /* orderTongjiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTongjiViewController.h; sourceTree = "<group>"; };
 		04D476DF1CC72B8400746491 /* orderTongjiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTongjiViewController.m; sourceTree = "<group>"; };
@@ -3814,9 +3816,6 @@
 				04AD8A9C1CE326C300A3F87F /* pptHeaderView.h */,
 				04AD8A9D1CE326C300A3F87F /* pptHeaderView.m */,
 				04AD8A9F1CE326CC00A3F87F /* pptHeaderView.xib */,
-				04AD8AA31CE3319200A3F87F /* pptTableViewCell.h */,
-				04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */,
-				04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */,
 				04648C631CB4F64E006823C9 /* senderTableViewCell.h */,
 				04648C641CB4F64E006823C9 /* senderTableViewCell.m */,
 				04648C651CB4F64E006823C9 /* senderTableViewCell.xib */,
@@ -3828,6 +3827,7 @@
 				04648C6F1CB50389006823C9 /* senderSubView.h */,
 				04648C701CB50389006823C9 /* senderSubView.m */,
 				04648C721CB50394006823C9 /* senderSubView.xib */,
+				04C7FE9A1D703FE30080881E /* View */,
 				04D49C771CE720CB00BAD649 /* 评价 */,
 			);
 			name = "跑跑腿";
@@ -4095,6 +4095,17 @@
 				04C15D7B1D37BCDA0097DA6C /* mSelectSenTypeViewController.xib */,
 			);
 			name = "选择配送方式";
+			sourceTree = "<group>";
+		};
+		04C7FE9A1D703FE30080881E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04AD8AA31CE3319200A3F87F /* pptTableViewCell.h */,
+				04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */,
+				04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */,
+				04C7FE9B1D7040F30080881E /* pptTableViewCell1.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		04D49C541CE6D2C200BAD649 /* 我的消息 */ = {
@@ -7702,6 +7713,7 @@
 				04FA3E8F1D22772200EA9E34 /* goPayViewController.xib in Resources */,
 				04C5B3341D42213900AA212D /* mComFirmCell.xib in Resources */,
 				044A24851CB4B2EA00A6379C /* msgTableViewCell.xib in Resources */,
+				04C7FE9C1D7040F30080881E /* pptTableViewCell1.xib in Resources */,
 				04F1E3A91CD1FBFE00222946 /* mBundlePhoneViewController.xib in Resources */,
 				3123CC491C92CFCD00C3B928 /* mFixViewController.xib in Resources */,
 				04F1E3B41CD2185700222946 /* mConversationCell.xib in Resources */,
