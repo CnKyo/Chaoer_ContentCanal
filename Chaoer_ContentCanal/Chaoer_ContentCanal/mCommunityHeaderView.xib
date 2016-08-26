@@ -14,7 +14,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OK9-Pz-sjD">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3SH-c7-5ic">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mHeader_bgk" translatesAutoresizingMaskIntoConstraints="NO" id="3SH-c7-5ic">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hs7-wF-0f7">
@@ -139,5 +139,6 @@
         <image name="community_coup" width="34" height="34"/>
         <image name="community_order" width="34" height="34"/>
         <image name="community_shopcar" width="34" height="34"/>
+        <image name="mHeader_bgk" width="640" height="300"/>
     </resources>
 </document>

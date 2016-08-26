@@ -31,11 +31,21 @@
 
 }
 - (IBAction)btnAction:(UIButton *)sender {
+    if (self.mType == 1) {
+        [self popViewController_3];
+    }else{
+        [self popViewController_2];
+    }
     
-    [self popViewController_2];
     
 }
-
+- (void)leftBtnTouched:(id)sender{
+    if (self.mType == 1) {
+        [self popViewController_3];
+    }else{
+        [self popViewController_2];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

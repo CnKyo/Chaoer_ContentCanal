@@ -17,6 +17,7 @@
                 <outlet property="mPhone" destination="yGr-2P-spK" id="ayb-oD-Xl4"/>
                 <outlet property="mPwd" destination="pN9-ig-6su" id="fm7-5a-gBh"/>
                 <outlet property="mRegistBtn" destination="4Qt-Ve-Vs2" id="Huk-jE-CuU"/>
+                <outlet property="mServiceUrl" destination="stT-0y-8Pj" id="7zJ-87-6ZJ"/>
                 <outlet property="mVisiterBtn" destination="z39-yW-3sT" id="7hE-hZ-wPb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,7 +29,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-GX-aW8">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.29792564655172415" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.19668642241379311" colorSpace="calibratedRGB"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-Br-zGK">
                     <rect key="frame" x="0.0" y="79" width="320" height="186"/>
@@ -208,6 +209,15 @@
                         <constraint firstItem="eBg-DD-800" firstAttribute="top" secondItem="epg-5v-plB" secondAttribute="bottom" constant="11" id="zUE-lZ-GWf"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击注册表示您同意零生活用户服务协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="stT-0y-8Pj" customClass="WPHotspotLabel">
+                    <rect key="frame" x="8" y="273" width="304" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="o5J-Kw-CyG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qt-Ve-Vs2">
                     <rect key="frame" x="15" y="306" width="290" height="40"/>
                     <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,17 +236,26 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cJ2-Br-zGK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0zL-ve-qAF"/>
+                <constraint firstAttribute="trailing" secondItem="stT-0y-8Pj" secondAttribute="trailing" constant="8" id="Ij2-R8-SGf"/>
                 <constraint firstItem="dTi-GX-aW8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="IuM-Vl-gYO"/>
                 <constraint firstItem="cJ2-Br-zGK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Nnn-Ql-WHw"/>
                 <constraint firstItem="dTi-GX-aW8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QUe-6o-Udb"/>
+                <constraint firstItem="stT-0y-8Pj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Yjo-13-NjU"/>
                 <constraint firstAttribute="trailing" secondItem="cJ2-Br-zGK" secondAttribute="trailing" id="aEo-Fp-SSJ"/>
                 <constraint firstAttribute="bottom" secondItem="dTi-GX-aW8" secondAttribute="bottom" id="bUz-nw-2lP"/>
                 <constraint firstAttribute="trailing" secondItem="dTi-GX-aW8" secondAttribute="trailing" id="eF9-AW-7Ho"/>
                 <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="top" secondItem="cJ2-Br-zGK" secondAttribute="bottom" constant="41" id="pAX-a9-gjN"/>
                 <constraint firstAttribute="trailing" secondItem="4Qt-Ve-Vs2" secondAttribute="trailing" constant="15" id="ple-Ea-ufO"/>
+                <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="top" secondItem="stT-0y-8Pj" secondAttribute="bottom" constant="12" id="q9E-Nc-mxN"/>
+                <constraint firstItem="stT-0y-8Pj" firstAttribute="top" secondItem="cJ2-Br-zGK" secondAttribute="bottom" constant="8" id="rxS-k5-n2p"/>
                 <constraint firstItem="4Qt-Ve-Vs2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="xeO-BI-bUm"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="pAX-a9-gjN"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="215" y="201"/>
         </view>
     </objects>

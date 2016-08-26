@@ -74,6 +74,7 @@
                         [self dismiss];
                         
                         pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
+                        ppp.mType = self.mType;
                         [self pushViewController:ppp];
                         
                     }else{

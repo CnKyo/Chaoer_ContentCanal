@@ -191,6 +191,7 @@
         if (resb.mSucess) {
             [self dismiss];
             depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+            ddd.mType = 1;
             [self pushViewController:ddd];
         }else{
             [self showErrorStatus:resb.mMessage];

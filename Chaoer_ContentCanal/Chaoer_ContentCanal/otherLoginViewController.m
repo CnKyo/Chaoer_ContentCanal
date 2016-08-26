@@ -161,6 +161,6 @@
 
 - (void)leftBtnTouched:(id)sender{
 
-    [self popViewController];
+    [self dismissViewController];
 }
 @end

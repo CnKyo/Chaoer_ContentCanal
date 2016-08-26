@@ -23,11 +23,11 @@
     NSString *str = nil;
     
     if (self.mType == 2) {
-        str = @"积分纪录";
+        str = @"积分记录";
     }else if(self.mType == 1){
-        str = @"交易纪录";
+        str = @"交易记录";
     }else{
-        str = @"收款纪录";
+        str = @"收款记录";
     }
     
     self.page = 1;

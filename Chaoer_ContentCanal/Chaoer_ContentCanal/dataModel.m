@@ -2749,8 +2749,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     if (mLat) {
         [para setObject:mLat forKey:@"lat"];
 
-    }if (mLng) {
+    }else{
+        [para setObject:@"0" forKey:@"lat"];
+
+    }
+    
+    if (mLng) {
         [para setObject:mLng forKey:@"lng"];
+
+    }else{
+        [para setObject:@"0" forKey:@"lng"];
 
     }
     

@@ -41,14 +41,7 @@
      */
     NSString *mAddressStr;
     NSString *mAddressId;
-    /**
-     *  纬度
-     */
-    NSString *mLat;
-    /**
-     *  经度
-     */
-    NSString *mLng;
+ 
     AMapLocationManager *mLocation;
     
     
@@ -140,8 +133,7 @@
     mTagIds = nil;
     mMin = nil;
     mMax = nil;
-    mLat = nil;
-    mLng = nil;
+ 
     mAddressId = nil;
     mTagStr = nil;
     mTTStr = nil;
@@ -270,7 +262,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 
-    self.haveHeader = YES;
+//    self.haveHeader = YES;
     
     UINib   *nib = [UINib nibWithNibName:@"releaseCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -287,37 +279,38 @@
     
 }
 
-- (void)headerBeganRefresh{
+- (void)loadAddress{
 
     mLocation = [[AMapLocationManager alloc] init];
     mLocation.delegate = self;
     [mLocation setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     mLocation.locationTimeout = 3;
     mLocation.reGeocodeTimeout = 3;
-    [WJStatusBarHUD showLoading:@"正在定位中..."];
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        [self headerEndRefresh];
         if (error)
         {
             
             NSString *eee =@"定位失败！请检查网络和定位设置！";
-            [WJStatusBarHUD showErrorImageName:nil text:eee];
+
+            
             mAddressStr = eee;
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            [self showErrorStatus:eee];
             
         }
         if (location) {
             NSLog(@"location:%@", location);
-            mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-            mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+            self.mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+            self.mLng = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
         }
     
         if (regeocode)
         {
-            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             MLLog(@"reGeocode:%@", regeocode);
             mAddressStr = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            [self showSuccessStatus:@"定位成功"];
+
             
         }
         [self.tableView reloadData];
@@ -356,7 +349,7 @@
     
     if (indexPath.row == 0) {
         
-        return 210;
+        return 183;
     }else if (indexPath.row == 1){
         if (self.mType == 1) {
             return 110;
@@ -802,15 +795,15 @@
         [self showErrorStatus:@"余额不足，发布失败！"];
         return;
     }
-    if (mLat == nil || mLat.length == 0 || [mLat isEqualToString:@""]) {
+    if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
         [self showErrorStatus:@"必须开启定位才能发布订单！"];
-        [self headerBeganRefresh];
+        [self loadAddress];
         
         return ;
     }
-    if (mLng == nil || mLng.length == 0 || [mLng isEqualToString:@""]) {
+    if (self.mLng == nil || self.mLng.length == 0 || [self.mLng isEqualToString:@""]) {
         [self showErrorStatus:@"必须开启定位才能发布订单！"];
-        [self headerBeganRefresh];
+        [self loadAddress];
         
         return ;
     }
@@ -896,7 +889,7 @@
     [self showWithStatus:@"正在发布..."];
     
     if (self.mType == 1) {
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
@@ -909,7 +902,7 @@
         
         
     }else if(self.mType == 2){
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];
@@ -921,7 +914,7 @@
         }];
     }else{
     
-        [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:mTagIds andMin:nil andMAx:nil andLat:mLat andLng:mLng andContent:nil andMoney:mMoney andAddress:nil andPhone:mPhoneStr andNote:mNoteStr andArriveTime:nil andGoodsName:mGoodsName andGoodsPrice:mGoodsPrice andSendAddress:mSendAddress andArriveAddress:mArriveAddress andTool:mToolId block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:mTagIds andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:nil andMoney:mMoney andAddress:nil andPhone:mPhoneStr andNote:mNoteStr andArriveTime:nil andGoodsName:mGoodsName andGoodsPrice:mGoodsPrice andSendAddress:mSendAddress andArriveAddress:mArriveAddress andTool:mToolId block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self showSuccessStatus:resb.mMessage];

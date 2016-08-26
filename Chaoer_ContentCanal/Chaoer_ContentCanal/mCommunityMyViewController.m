@@ -79,18 +79,9 @@
     
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
-    UIImage *mHead = nil;
-    
-    if ([mUserInfo backNowUser].mUserImgUrl == nil || [[mUserInfo backNowUser].mUserImgUrl isEqualToString:@""] || [mUserInfo backNowUser].mUserImgUrl.length == 0) {
-        mHead = [UIImage imageNamed:@"rbgk"];
-    }else{
-        mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-    }
-    
-    UIImage *mLastImg = [mHead applyLightEffect];
     
     MLLog(@"头像地址是：%@",url);
-    mHeaderView.mBigHeader.image = mLastImg;
+    mHeaderView.mBigHeader.image = [UIImage imageNamed:@"mHeader_bgk.jpg"];
     [mHeaderView.mSmallHeader sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
 
     

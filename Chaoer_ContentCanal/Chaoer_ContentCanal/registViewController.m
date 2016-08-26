@@ -77,6 +77,16 @@
     self.mCodeBtn.layer.cornerRadius = self.mRegistBtn.layer.cornerRadius = 3;
     
     
+    NSDictionary *mStyle1 = @{@"Action":[WPAttributedStyleAction styledActionWithAction:^{
+   
+        WebVC* vc = [[WebVC alloc]init];
+        vc.mName = @"服务协议";
+        vc.mUrl = @"http://app.china-cr.com/app/auth/protocol";
+        vc.mType = 1;
+        [self presentModalViewController:vc];
+        
+    }],@"color": M_CO,@"xiahuaxian":@[M_CO,@{NSUnderlineStyleAttributeName : @(kCTUnderlineStyleSingle|kCTUnderlinePatternSolid)}]};
+    self.mServiceUrl.attributedText = [[NSString stringWithFormat:@"<Action><xiahuaxian>点击注册表示您同意零生活用户服务协议</xiahuaxian></Action>" ]attributedStringWithStyleBook:mStyle1];
 
     
 }

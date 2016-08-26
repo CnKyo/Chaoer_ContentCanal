@@ -153,10 +153,10 @@
     [mLocation requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
-            NSString *eee =@"定位失败！请检查网络和定位设置！";
-            [WJStatusBarHUD showErrorImageName:nil text:eee];
+//            NSString *eee =@"定位失败！请检查网络和定位设置！";
+//            [WJStatusBarHUD showErrorImageName:nil text:eee];
 //            mHeaderView.mAddress.text = eee;
-            [self showErrorStatus:@"需要打开定位才能查询附近的订单！"];
+//            [self showErrorStatus:@"需要打开定位才能查询附近的订单！"];
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
         }
@@ -171,7 +171,7 @@
         
         if (regeocode)
         {
-            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
+//            [WJStatusBarHUD showSuccessImageName:nil text:@"定位成功"];
             
             MLLog(@"reGeocode:%@", regeocode);
 //            mHeaderView.mAddress.text = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
@@ -203,7 +203,7 @@
     [self loadData];
     [CurentLocation sharedManager].delegate = self;
     [[CurentLocation sharedManager] getUSerLocation];
-    [self initAddress];
+//    [self initAddress];
 
     self.page = 1;
     
@@ -648,6 +648,9 @@
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 1;
         rrr.mSubType = 1;
+        rrr.mLat = self.mLat;
+        rrr.mLng = self.mLng;
+        
         [self pushViewController:rrr];
     
     }];
@@ -657,6 +660,8 @@
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 2;
         rrr.mSubType = 2;
+        rrr.mLat = self.mLat;
+        rrr.mLng = self.mLng;
         [self pushViewController:rrr];
     }];
     
@@ -666,6 +671,8 @@
         releasePPtViewController *rrr = [[releasePPtViewController alloc] initWithNibName:@"releasePPtViewController" bundle:nil];
         rrr.mType = 3;
         rrr.mSubType = 3;
+        rrr.mLat = self.mLat;
+        rrr.mLng = self.mLng;
         [self pushViewController:rrr];
     }];
     
@@ -799,6 +806,7 @@
             
     
             depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
+            ddd.mType = 2;
             [self pushViewController:ddd];
             
             

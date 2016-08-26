@@ -46,7 +46,18 @@
                                     <constraint firstAttribute="height" constant="10" id="lHH-Ts-43m"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-uc-uzj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKp-pU-2i2">
+                                <rect key="frame" x="252" y="8" width="60" height="25"/>
+                                <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="7yd-dR-eEO"/>
+                                    <constraint firstAttribute="height" constant="25" id="L1B-Qr-wb0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-uc-uzj">
                                 <rect key="frame" x="252" y="8" width="60" height="25"/>
                                 <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -77,8 +88,11 @@
                             <constraint firstItem="DZ1-uc-uzj" firstAttribute="leading" secondItem="2UJ-fs-fE7" secondAttribute="trailing" constant="8" id="8U5-JU-4Q3"/>
                             <constraint firstAttribute="height" constant="66" id="9DO-sb-ugK"/>
                             <constraint firstItem="DZ1-uc-uzj" firstAttribute="leading" secondItem="AHV-so-kse" secondAttribute="trailing" constant="8" id="DvB-6D-hYn"/>
+                            <constraint firstItem="ZKp-pU-2i2" firstAttribute="top" secondItem="aez-8l-b21" secondAttribute="top" constant="8" id="Hus-16-j9T"/>
                             <constraint firstItem="2UJ-fs-fE7" firstAttribute="top" secondItem="aez-8l-b21" secondAttribute="top" constant="8" id="IwN-tS-GHC"/>
+                            <constraint firstAttribute="trailing" secondItem="ZKp-pU-2i2" secondAttribute="trailing" constant="8" id="Mbc-Mg-Rla"/>
                             <constraint firstItem="kHw-tU-cDt" firstAttribute="top" secondItem="aez-8l-b21" secondAttribute="top" constant="8" id="NNu-gg-S5y"/>
+                            <constraint firstItem="ZKp-pU-2i2" firstAttribute="leading" secondItem="2UJ-fs-fE7" secondAttribute="trailing" constant="8" id="XMv-Sw-NkU"/>
                             <constraint firstAttribute="trailing" secondItem="DZ1-uc-uzj" secondAttribute="trailing" constant="8" id="YAg-EE-MnV"/>
                             <constraint firstItem="AHV-so-kse" firstAttribute="top" secondItem="2UJ-fs-fE7" secondAttribute="bottom" constant="2" id="fgK-sg-7Xv"/>
                             <constraint firstAttribute="trailing" secondItem="1vR-z8-oRK" secondAttribute="trailing" constant="8" id="gio-sR-OWE"/>

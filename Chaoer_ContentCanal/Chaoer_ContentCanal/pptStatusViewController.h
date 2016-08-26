@@ -25,5 +25,8 @@
  *  按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mBtn;
-
+/**
+ *  跳转类型1跳转3级2跳转2级
+ */
+@property (assign,nonatomic) int mType;
 @end

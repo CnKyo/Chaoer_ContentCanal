@@ -90,18 +90,33 @@
 }
 -(void)leftBtnTouched:(id)sender
 {
+    
+    
+    
     if( _mBWebStack )
     {
         if ([itwebview canGoBack]) {
             [itwebview goBack];
         } else {
-            //退出
-            [super leftBtnTouched:sender];
+            
+            if (self.mType == 1) {
+                [super dismissViewController];
+            }else{
+                //退出
+                [super leftBtnTouched:sender];
+            }
+            
+            
         }
     }
     else
     {
-        [super leftBtnTouched:sender];
+        if (self.mType == 1) {
+            [super dismissViewController];
+        }else{
+            //退出
+            [super leftBtnTouched:sender];
+        }
     }
     
 }

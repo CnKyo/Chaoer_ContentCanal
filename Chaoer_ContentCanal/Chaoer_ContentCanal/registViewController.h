@@ -52,7 +52,10 @@
  *  注册按钮
  */
 @property (strong, nonatomic) IBOutlet UIButton *mRegistBtn;
-
+/**
+ *  服务协议
+ */
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mServiceUrl;
 
 @property (strong, nonatomic) IBOutlet UIView *mLastLine;
 

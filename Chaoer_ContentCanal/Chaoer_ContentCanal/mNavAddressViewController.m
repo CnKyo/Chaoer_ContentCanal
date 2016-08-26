@@ -263,7 +263,7 @@
     GMarketAddress *mAddress = self.tempArray[indexPath.row];
 
     if (indexPath.section == 0) {
-        if (mLat.length == 0) {
+        if (mLat.length == 0 || mLng.length == 0 || mDetailAddress.length == 0 ) {
             [self headerBeganRefresh];
         }else{
         

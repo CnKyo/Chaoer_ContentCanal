@@ -19,4 +19,9 @@
  */
 @property (assign,nonatomic) int mSubType;
 
+@property (strong,nonatomic)NSString *mLng;
+
+@property (strong,nonatomic)NSString *mLat;
+
+
 @end
