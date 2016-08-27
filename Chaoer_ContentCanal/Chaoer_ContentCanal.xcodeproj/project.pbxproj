@@ -274,6 +274,7 @@
 		04C75DAC1D058C37002D21FB /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C75DAA1D058C37002D21FB /* libssl.a */; };
 		04C7FE9C1D7040F30080881E /* pptTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C7FE9B1D7040F30080881E /* pptTableViewCell1.xib */; };
 		04CE8FD11D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */; };
+		04D232871D719F1600E8D6EC /* paotuiorder.caf in Resources */ = {isa = PBXBuildFile; fileRef = 04D232861D719F1600E8D6EC /* paotuiorder.caf */; };
 		04D476E11CC72B8400746491 /* orderTongjiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D476DF1CC72B8400746491 /* orderTongjiViewController.m */; };
 		04D476E21CC72B8400746491 /* orderTongjiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D476E01CC72B8400746491 /* orderTongjiViewController.xib */; };
 		04D49C581CE6D2DE00BAD649 /* pptMyMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C561CE6D2DE00BAD649 /* pptMyMsgCell.m */; };
@@ -1748,6 +1749,7 @@
 		04C75DAA1D058C37002D21FB /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		04C7FE9B1D7040F30080881E /* pptTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptTableViewCell1.xib; sourceTree = "<group>"; };
 		04CE8FD01D49ECA70090C228 /* mGoodsDetailBottomBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mGoodsDetailBottomBuyView.xib; sourceTree = "<group>"; };
+		04D232861D719F1600E8D6EC /* paotuiorder.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paotuiorder.caf; sourceTree = "<group>"; };
 		04D476DE1CC72B8400746491 /* orderTongjiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTongjiViewController.h; sourceTree = "<group>"; };
 		04D476DF1CC72B8400746491 /* orderTongjiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTongjiViewController.m; sourceTree = "<group>"; };
 		04D476E01CC72B8400746491 /* orderTongjiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = orderTongjiViewController.xib; sourceTree = "<group>"; };
@@ -6675,6 +6677,7 @@
 			isa = PBXGroup;
 			children = (
 				749529AB1BF72DBE00E934D0 /* music1.caf */,
+				04D232861D719F1600E8D6EC /* paotuiorder.caf */,
 			);
 			name = music;
 			sourceTree = "<group>";
@@ -7701,6 +7704,7 @@
 				04E6CE581D62FB0C000EB6B8 /* mFoodRateHeaderView.xib in Resources */,
 				040B80281CC50D50006A9489 /* WJStatusBarHUD_warning@2x.png in Resources */,
 				04E5A8121CE5B47A00A2D111 /* pptMyInfoCell.xib in Resources */,
+				04D232871D719F1600E8D6EC /* paotuiorder.caf in Resources */,
 				04648C4D1CB4D6AD006823C9 /* messageTableViewController.xib in Resources */,
 				040FE0E41CDB20E000270D4F /* mBarCodeView.xib in Resources */,
 				165291D31B43BEBB005A94F8 /* PushConfig.plist in Resources */,
@@ -8914,7 +8918,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "04e0d79a-35ed-42e1-b2a5-bba1cdf51381";
 			};
 			name = Debug;
 		};
@@ -8971,7 +8975,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaoer.zerolif.buyer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "04e0d79a-35ed-42e1-b2a5-bba1cdf51381";
 			};
 			name = Release;
 		};
