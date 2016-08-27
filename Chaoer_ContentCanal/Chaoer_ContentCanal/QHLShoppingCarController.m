@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 /**
  *  选中商品金额
  */
-@property (nonatomic, assign) NSInteger money;
+@property (nonatomic, assign) float money;
 
 
 @property(nonatomic, strong) NSMutableArray *deleteArr;//删除数据的数组

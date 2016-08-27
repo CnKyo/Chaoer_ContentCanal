@@ -37,7 +37,7 @@
 /**
  *  选中商品数量
  */
-@property (nonatomic, assign) NSInteger money;
+@property (nonatomic, assign) float money;
 
 @property (nonatomic, assign, getter=isSelected) BOOL btnSelected;
 @end

@@ -84,7 +84,7 @@
 
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
 
-    [self.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    [self.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
     
     self.mName.text = [mUserInfo backNowUser].mNickName;
     self.mUserInfo.text = [mUserInfo backNowUser].mIdentity;

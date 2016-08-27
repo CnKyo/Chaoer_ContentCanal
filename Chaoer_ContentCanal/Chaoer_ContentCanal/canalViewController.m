@@ -1,3 +1,4 @@
+
 //
 //  canalViewController.m
 //  Chaoer_ContentCanal
@@ -100,20 +101,28 @@
     
     mEmptyView = [utilityView shareEmpty];
     mEmptyView.frame = CGRectMake(0, 0, DEVICE_Width, DEVICE_Height);
-    
+    mEmptyView.hidden = 0;
     [mScrollerView addSubview:mEmptyView];
     
     
 }
+- (void)showEmptyView{
+    [UIView animateWithDuration:0.25 animations:^{
+        mEmptyView.alpha = 1;
+    }];
+}
+- (void)hiddenEmptyViewS{
+    [UIView animateWithDuration:0.25 animations:^{
+        mEmptyView.alpha = 0;
+    }];
+}
 - (void)updatePage{
-
     if (self.tempArray.count<=0) {
-        [self initEmptyView];
-        
-//        [self AlertViewShow:@"您还没有绑定小区或实名认证！" alertViewMsg:@"通过认证之后才能缴费哦！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+        [self showEmptyView];
         return;
+    }else{
+        [self hiddenEmptyViewS];
     }
-    [self initView];
 
     if (self.tempArray.count >= 1) {
         
@@ -191,7 +200,6 @@
         isSelected = YES;
         
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-        [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
         [mParas setObject:mC.mId forKey:@"id"];
         
     }];
@@ -229,6 +237,8 @@
     
     isSelected = NO;
     
+    [self initView];
+
     
 }
 - (void)initView{
@@ -251,7 +261,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.view addGestureRecognizer:tap];
-    
+    [self initEmptyView];
     
 }
 /**
@@ -309,7 +319,6 @@
     }else{
     
         [mParas setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-        [mParas setObject:mC.mPaymentAccount forKey:@"paymentAccount"];
         [mParas setObject:mC.mId forKey:@"id"];
         [mParas setObject:NumberWithFloat(mC.mPayableMoney) forKey:@"paymentAmount"];
 

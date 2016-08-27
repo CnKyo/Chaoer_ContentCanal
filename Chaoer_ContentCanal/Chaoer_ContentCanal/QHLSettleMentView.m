@@ -128,11 +128,11 @@
     }
 }
 
-- (void)setMoney:(NSInteger)money {
+- (void)setMoney:(float)money {
     _money = money;
     
     //给金额label赋值
-    self.totalLbl.text = [NSString stringWithFormat:@"结算:￥%ld",money];
+    self.totalLbl.text = [NSString stringWithFormat:@"结算:￥%.2f",money];
 }
 
 - (void)setCount:(NSInteger)count {

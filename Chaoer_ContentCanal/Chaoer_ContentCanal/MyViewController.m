@@ -426,7 +426,9 @@
                 cell.mDetail.hidden = NO;
             }
             else{
-                cell.mDetail.hidden = YES;
+                cell.mDetail.hidden = NO;
+                cell.mDetail.text = @"已是跑腿者";
+
                 
             }
             
@@ -540,6 +542,7 @@
                 }
                 else{
                     [self showSuccessStatus:@"您已成为跑腿者，无需再次申请！"];
+                    
                     
                 }
 

@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlc-i0-Vh8">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="without_order" translatesAutoresizingMaskIntoConstraints="NO" id="Tk5-lO-XNL">
                             <rect key="frame" x="120" y="40" width="80" height="80"/>
@@ -54,12 +54,18 @@
                         <constraint firstItem="TGv-Be-ifO" firstAttribute="top" secondItem="Tk5-lO-XNL" secondAttribute="bottom" constant="8" id="hYI-Wk-Rsd"/>
                         <constraint firstItem="Tk5-lO-XNL" firstAttribute="top" secondItem="dlc-i0-Vh8" secondAttribute="top" constant="40" id="lRg-vl-6uu"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="QD0-jP-FDG"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dlc-i0-Vh8" firstAttribute="leading" secondItem="r38-U8-x62" secondAttribute="leading" id="9NJ-as-SVU"/>
                 <constraint firstItem="dlc-i0-Vh8" firstAttribute="top" secondItem="r38-U8-x62" secondAttribute="top" id="dcY-Pm-tNr"/>
+                <constraint firstAttribute="bottom" secondItem="dlc-i0-Vh8" secondAttribute="bottom" id="svj-dk-0kE"/>
                 <constraint firstAttribute="trailing" secondItem="dlc-i0-Vh8" secondAttribute="trailing" id="vbo-6z-EY8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
