@@ -823,6 +823,7 @@
             return;
         }
     }
+
     
     if (self.mType == 1 || self.mType == 3) {
         if (mTagStr == nil || mTagStr.length == 0) {

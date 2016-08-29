@@ -20,6 +20,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import <objc/message.h>
 
+#import "APIObjectDefine.h"
+
 @implementation dataModel{
     NSMutableURLRequest *request;
     NSOperationQueue *queue;
@@ -2941,19 +2943,19 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     NSMutableDictionary *para = [NSMutableDictionary new];
     
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
-    [para setObject:mGoodsName forKey:@"goodsName"];
-    [para setObject:mMoney forKey:@"legworkMoney"];
-    [para setObject:mTagId forKey:@"goodsTypeId"];
-    [para setObject:mGoodsPrice forKey:@"goodsPrice"];
+    [para setNeedStr:mGoodsName forKey:@"goodsName"];
+    [para setNeedStr:mMoney forKey:@"legworkMoney"];
+    [para setNeedStr:mTagId forKey:@"goodsTypeId"];
+    [para setNeedStr:mGoodsPrice forKey:@"goodsPrice"];
 
-    [para setObject:mSendAddress forKey:@"sendAddress"];
-    [para setObject:mArriveAddress forKey:@"arrivedAddress"];
-    [para setObject:mPhone forKey:@"phone"];
-    [para setObject:mTool forKey:@"trafficId"];
+    [para setNeedStr:mSendAddress forKey:@"sendAddress"];
+    [para setNeedStr:mArriveAddress forKey:@"arrivedAddress"];
+    [para setNeedStr:mPhone forKey:@"phone"];
+    [para setNeedStr:mTool forKey:@"trafficId"];
 
-    [para setObject:mNote forKey:@"comments"];
-    [para setObject:mLng forKey:@"lng"];
-    [para setObject:mLat forKey:@"lat"];
+    [para setNeedStr:mNote forKey:@"comments"];
+    [para setNeedStr:mLng forKey:@"lng"];
+    [para setNeedStr:mLat forKey:@"lat"];
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appOrderCarry" parameters:para call:^(mBaseData *info) {
         
