@@ -47,7 +47,7 @@
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
-    NSArray *mArrar = @[@"基本信息",@"酬金记录",@"我的地址",@"常见问题"];
+    NSArray *mArrar = @[@"基本信息",@"酬金记录",@"我的地址",@"用户协议"];
     NSArray *mImgar = @[[UIImage imageNamed:@"ppt_my_info"],[UIImage imageNamed:@"ppt_my_choujin"],[UIImage imageNamed:@"ppt_my_address"],[UIImage imageNamed:@"ppt_my_faq"]];
     
     [self.tempArray addObject:mArrar];
@@ -227,7 +227,7 @@
     
         
         WebVC* vc = [[WebVC alloc]init];
-        vc.mName = @"常见问题";
+        vc.mName = @"用户协议";
         vc.mUrl = [GPPTer backPPTUser].mFAQUrl;
         [self pushViewController:vc];
 
