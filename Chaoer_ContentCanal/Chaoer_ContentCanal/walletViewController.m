@@ -8,10 +8,6 @@
 
 #import "walletViewController.h"
 #import "walletView.h"
-
-#import "LXCircleAnimationView.h"
-
-#import "UILabel+FlickerNumber.h"
 #import "myRedBagViewController.h"
 
 #import "valleteHistoryViewController.h"
@@ -30,9 +26,7 @@
 #import "AppDelegate.h"
 
 @interface walletViewController ()<valletHeaderScanDelegate,UITableViewDelegate,UITableViewDataSource,cellWithBtnActionDelegate,WJAdsViewDelegate,UIApplicationDelegate,UIActionSheetDelegate>
-@property (nonatomic, strong) LXCircleAnimationView *circleProgressView;
-@property (nonatomic, strong) LXCircleAnimationView *circleProgressView2;
-@property (nonatomic, strong) LXCircleAnimationView *circleProgressView3;
+
 @end
 
 @implementation walletViewController

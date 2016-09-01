@@ -45,14 +45,14 @@
     
     NSString *mTT = nil;
     if (self.mType == 1) {
-        mTT = @"跑腿纪录";
+        mTT = @"跑腿记录";
         self.hiddenRightBtn = YES;
-        self.rightBtnTitle = @"历史纪录";
+        self.rightBtnTitle = @"历史记录";
         [self setRightBtnWidth:100];
         
     }else{
         
-        mTT = @"历史纪录";
+        mTT = @"历史记录";
         self.hiddenRightBtn = YES;
         
         

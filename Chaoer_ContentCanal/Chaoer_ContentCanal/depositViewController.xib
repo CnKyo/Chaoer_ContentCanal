@@ -54,7 +54,7 @@
                                 <constraint firstItem="6QG-qd-xb1" firstAttribute="centerX" secondItem="a6l-JQ-M81" secondAttribute="centerX" id="zJY-Pf-hqe"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该押金只是为了保障双方利益，如若你要撤销跑跑腿身份，且没有不良纪录，该押金全数退还。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-Ej-bvq">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该押金只是为了保障双方利益，如若你要撤销跑跑腿身份，且没有不良记录，该押金全数退还。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-Ej-bvq">
                             <rect key="frame" x="8" y="175" width="304" height="53"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="53" id="csX-mo-9YV"/>
