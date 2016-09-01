@@ -246,7 +246,7 @@
         {
             [mUserInfo logOut];
             [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-            [self gotoLoginVC];
+            [self gotoLoginVC]; 
         }
         
     }else if (alertView.tag == 12){

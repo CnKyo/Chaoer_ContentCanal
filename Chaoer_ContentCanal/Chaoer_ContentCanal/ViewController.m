@@ -178,7 +178,7 @@ static ViewController *handle = nil;
 
     mScrollerView = [UIScrollView new];
     mScrollerView.frame = self.view.bounds;
-    mScrollerView.backgroundColor = [UIColor clearColor];
+    mScrollerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:mScrollerView];
     
     mLoginV = [mLoginView shareView];

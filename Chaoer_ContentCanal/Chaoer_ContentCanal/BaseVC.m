@@ -712,8 +712,12 @@
 }
 -(void)gotoLoginVC
 {
-    BOOL haveOne = [ViewController haveViewController];
+    BOOL haveOne = [ViewController haveViewController]; 
     if (haveOne == NO) {
+        ViewController *vc = [ViewController shareInstance];
+        [self presentViewController:vc animated:YES completion:nil];
+    }else{
+        [mUserInfo logOut];
         ViewController *vc = [ViewController shareInstance];
         [self presentViewController:vc animated:YES completion:nil];
     }
