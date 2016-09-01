@@ -18,6 +18,8 @@
 #import "QHLShoppingCarController.h"
 
 #import "mGoodsDetailViewController.h"
+#import "DryCleanVC.h"
+
 @interface mCommunityMyViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,WKGoodsCellDelegate>
 
 @end
@@ -404,12 +406,19 @@
     
         GMarketList *mShopN = self.tempArray[indexPath.row];
         
-        mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
-        market.mShopList = GMarketList.new;
-        market.mShopList = mShopN;
-        market.mShopId = mShopN.mShopId;
-        
-        [self pushViewController:market];
+        if (mShopN.mType == 3) {
+            DryCleanVC *vvv= [DryCleanVC new];
+            vvv.shopId = mShopN.mId;
+            [self pushViewController:vvv];
+            
+        } else {
+            mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
+            market.mShopList = GMarketList.new;
+            market.mShopList = mShopN;
+            market.mShopId = mShopN.mId;
+            
+            [self pushViewController:market];
+        }
     }
     
 }

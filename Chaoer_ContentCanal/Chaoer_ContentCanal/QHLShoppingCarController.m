@@ -425,19 +425,22 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         }
        
     }
-    
-    [self showWithStatus:@"正在操作..."];
-    [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
-        [self dismiss];
-        if (resb.mSucess) {
-            [self.shoppingCar removeAllObjects];
-            [self.tableView reloadData];
-            [self headerBeganRefresh];
-        }else{
-            [self showErrorStatus:resb.mMessage];
-        }
-    }];
+    if (mTagIds.length != 0) {
+        [self showWithStatus:@"正在操作..."];
+        [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
+            [self dismiss];
+            if (resb.mSucess) {
+                self.hiddenRightBtn = YES;
+                [self.shoppingCar removeAllObjects];
+                [self.tableView reloadData];
+                [self headerBeganRefresh];
+            }else{
+                [self showErrorStatus:resb.mMessage];
+            }
+        }];
 
+    }
+   
    
 
 }
