@@ -9,7 +9,6 @@
 #import "mFeedBackViewController.h"
 #import "mFeedBackCell.h"
 #import "mFeedManageViewController.h"
-#import "mFeedCompanyViewController.h"
 
 #import "mFeedPersonViewController.h"
 
@@ -39,10 +38,8 @@
     
     [self.tempArray addObjectsFromArray:mTT];
     
-    
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
-//    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     UINib   *nib = [UINib nibWithNibName:@"mFeedBackCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     

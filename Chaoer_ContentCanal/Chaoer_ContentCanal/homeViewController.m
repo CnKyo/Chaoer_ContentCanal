@@ -16,7 +16,6 @@
 
 #import "mCustomHomeView.h"
 #import "mFixViewController.h"
-#import "payViewController.h"
 #import "communityViewController.h"
 #import "serviceViewController.h"
 #import "mFeedBackViewController.h"

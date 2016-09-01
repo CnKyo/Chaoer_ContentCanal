@@ -61,10 +61,6 @@
     
     mLoginView  *mLoginV;
     mLoginView  *mBottomView;
-
-    
-    mCustomAlertView *mAlertView;
-    
     
     NSString    *mCodeStr;
     
@@ -170,7 +166,6 @@ static ViewController *handle = nil;
     [self getRSAKey];
     [self initView];
     
-    [self initAlertView];
 
 }
 - (void)initView{
@@ -625,46 +620,6 @@ static ViewController *handle = nil;
     }
     
 }
-
-
-
-- (void)initAlertView{
-    mAlertView = [mCustomAlertView shareView];
-    mAlertView.alpha = 0;
-
-    mAlertView.frame = self.view.bounds;
-    mAlertView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.75];
-    [self.view addSubview:mAlertView];
-    
-}
-
-- (void)showSucsess:(NSString *)message{
-    
-    [UIView animateWithDuration:1 animations:^{
-        mAlertView.alpha = 1;
-        mAlertView.mStatusImg.image = [UIImage imageNamed:@"finish"];
-        mAlertView.mContent.text = message;
-    } completion:^(BOOL finished) {
-        mAlertView.alpha = 1;
-    }];
-}
-
-- (void)showError:(NSString *)message{
-
-    [UIView animateWithDuration:1 animations:^{
-        mAlertView.alpha = 1;
-        mAlertView.mStatusImg.image = [UIImage imageNamed:@"error"];
-        mAlertView.mContent.text = message;
-    } completion:^(BOOL finished) {
-        mAlertView.alpha = 1;
-    }];
-}
-- (void)dismissAlertView{
-    [UIView animateWithDuration:0.2 animations:^{
-        mAlertView.alpha = 0;
-    }];
-}
-
 
 #pragma mark----加载弹框
 - (void)showAdsView{

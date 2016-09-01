@@ -171,7 +171,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_default" width="1024" height="1024"/>
+        <image name="img_default" width="100" height="100"/>
         <image name="jiantou1" width="15" height="26"/>
     </resources>
 </document>

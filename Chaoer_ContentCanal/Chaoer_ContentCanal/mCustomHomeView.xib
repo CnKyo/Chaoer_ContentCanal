@@ -54,6 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="79" width="62" height="62"/>
+        <image name="79" width="640" height="1136"/>
     </resources>
 </document>

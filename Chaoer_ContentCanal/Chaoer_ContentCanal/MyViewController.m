@@ -14,13 +14,10 @@
 
 #import "mCodeNameViewController.h"
 
-#import "activityCenterViewController.h"
 #import "myRedBagViewController.h"
 #import "myOrderViewController.h"
-#import "mSetupViewController.h"
 #import "RSKImageCropper.h"
 #import "HTTPrequest.h"
-#import "popMessageView.h"
 
 #import "myViewTableViewCell.h"
 
@@ -305,11 +302,6 @@
     
 }
 
-#pragma mark----设置事件
-- (void)mSetupAction:(UIButton *)sender{
-    mSetupViewController *mmm = [[mSetupViewController alloc] initWithNibName:@"mSetupViewController" bundle:nil];
-    [self pushViewController:mmm];
-}
 #pragma mark----信息事件
 - (void)mMsgAction:(UIButton *)sender{
     //                [LCProgressHUD showInfoMsg:@"即将到来，敬请期待！"];

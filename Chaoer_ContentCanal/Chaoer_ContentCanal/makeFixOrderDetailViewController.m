@@ -7,7 +7,6 @@
 //
 
 #import "makeFixOrderDetailViewController.h"
-#import "makeServiceDetailView.h"
 
 #import "mFixOrderFooter.h"
 #import "mFixOrderDetailTableViewCell.h"

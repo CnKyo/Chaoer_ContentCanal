@@ -15,9 +15,6 @@
 #import "communityOrderViewController.h"
 #import "mCoupViewController.h"
 #import "mMarketDetailViewController.h"
-
-
-#import "shopCarViewController.h"
 #import "QHLShoppingCarController.h"
 
 #import "mGoodsDetailViewController.h"

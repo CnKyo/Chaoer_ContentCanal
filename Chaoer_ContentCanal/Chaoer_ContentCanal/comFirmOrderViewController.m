@@ -13,8 +13,6 @@
 
 #import "noteOrmessageViewController.h"
 
-#import "billViewController.h"
-
 #import "mComfirmHeaderAndFooter.h"
 #import "mComfirmOrderCell.h"
 #import "mSelectSenTypeViewController.h"
@@ -159,11 +157,7 @@
     
     
 }
-- (void)mRecipAction:(UIButton *)sender{
-    billViewController *bbb = [[billViewController alloc] initWithNibName:@"billViewController" bundle:nil];
-    [self pushViewController:bbb];
 
-}
 - (void)mLabelAction:(UIButton *)sender{
     
     noteOrmessageViewController *nnn = [[noteOrmessageViewController alloc] initWithNibName:@"noteOrmessageViewController" bundle:nil];

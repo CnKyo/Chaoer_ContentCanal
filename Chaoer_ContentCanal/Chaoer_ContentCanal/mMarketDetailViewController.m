@@ -11,8 +11,6 @@
 
 #import "mMarketHeaderView.h"
 
-#import "shopCarViewController.h"
-
 #import "mGoodsDetailViewController.h"
 
 #import "goodsSearchViewController.h"

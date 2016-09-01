@@ -89,7 +89,6 @@
 #import "RSKImageCropViewController.h"
 #import "TTTAttributedLabel.h"
 #import "Masonry.h"
-#import "mCustomAlertView.h"
 #import <CoreText/CoreText.h>
 
 #import "NSString+WPAttributedMarkup.h"

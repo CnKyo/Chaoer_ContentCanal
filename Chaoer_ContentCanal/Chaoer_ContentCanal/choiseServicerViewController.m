@@ -13,7 +13,6 @@
 
 #import "choiceServicerViewController.h"
 
-#import "makeServiceViewController.h"
 @interface choiseServicerViewController ()<UITableViewDelegate,UITableViewDataSource,StarRatingViewDelegate>
 
 @end
@@ -251,11 +250,6 @@
     
     cell.mDoneBtn.tag = ss.mId;
     
-//    [cell.mDoneBtn addTarget:self action:@selector(makeAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    
     return cell;
     
 }
@@ -268,45 +262,11 @@
 
     SServicer *ss = self.tempArray[indexPath.row];
 
-//    choiceServicerViewController *sss = [choiceServicerViewController new];
-//    sss.mS = SServicer.new;
-//    sss.mS = ss;
-//    [self pushViewController:sss];
-
-
     self.block([NSString stringWithFormat:@"%@",ss.mMerchantName],[NSString stringWithFormat:@"%d",ss.mId]);
     
     [self dismissViewController];
 
 }
-#pragma mark----预约按钮
-- (void)makeAction:(UIButton *)sender{
-    [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-
-    [mUserInfo getFixOrderComfirm:[[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue] andmId:[[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue] block:^(mBaseData *resb, GFixOrder *mOrder) {
-
-        if (resb.mSucess) {
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            makeServiceViewController *mmm = [[makeServiceViewController alloc] initWithNibName:@"makeServiceViewController" bundle:nil];
-            mmm.mOrder = GFixOrder.new;
-            mmm.mOrder = mOrder;
-            mmm.mOrderId = [[NSString stringWithFormat:@"%@",[self.mData.mData objectForKey:@"orderId"]] intValue];
-            mmm.mId = [[NSString stringWithFormat:@"%ld",(long)sender.tag] intValue];
-            [self presentViewController:mmm animated:YES completion:nil];
-
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-        }
-        
-    }];
-    
-    
-    
-    
-
-    
-}
-
 - (void)leftBtnTouched:(id)sender{
 
     if (_Type == 1) {

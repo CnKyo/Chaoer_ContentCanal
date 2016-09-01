@@ -91,7 +91,7 @@
         </view>
     </objects>
     <resources>
-        <image name="DefaultImg" width="331" height="341"/>
+        <image name="DefaultImg" width="100" height="100"/>
         <image name="ppt_add_address_normal" width="32" height="32"/>
     </resources>
 </document>
