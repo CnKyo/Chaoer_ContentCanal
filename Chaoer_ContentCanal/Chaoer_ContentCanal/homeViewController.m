@@ -46,6 +46,8 @@
 #import "mFoodViewController.h"
 #import "DryCleanVC.h"
 #import "wpgViewController.h"
+#import "ViewController.h"
+
 #define Height (DEVICE_Width*0.67)
 
 @interface homeViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,MMApBlockCoordinate,RCIMUserInfoDataSource,WKHomeCellDelegate>
@@ -180,14 +182,14 @@
     mMainBtnArr = @[@"社区生活",@"便民服务",@"跑跑腿",@"社区动态",@"邻里圈",@"投诉建议",];
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
     
-    if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
-        [self gotoLoginVC];
-        return;
-        
+    if (_withOutLogin == YES) {
+        [self callBack];
+    } else {
+        if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
+            [self gotoLoginVC];
+            return;
+        }
     }
-    
-
-    
 }
 
 - (void)appInit{
@@ -779,6 +781,20 @@
         default:
             break;
     }
+}
+
+-(void)jPushToSenderVCWithType:(NSString *)orderType
+{
+    if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+        
+        [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+        return;
+    }
+    mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
+    mmm.mType = [orderType intValue];
+    mmm.mLng = mLng;
+    mmm.mLat = mLat;
+    [self pushViewController:mmm];
 }
 
 @end

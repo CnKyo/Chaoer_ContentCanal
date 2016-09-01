@@ -10,4 +10,8 @@
 
 @interface homeViewController : BaseVC
 
+@property(nonatomic,assign) BOOL  withOutLogin; //去掉登陆
+
+-(void)jPushToSenderVCWithType:(NSString *)orderType;
+
 @end

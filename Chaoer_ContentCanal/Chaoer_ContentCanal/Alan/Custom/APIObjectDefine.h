@@ -228,3 +228,37 @@
 @property (nonatomic, strong) NSString *            device;              //值：ios
 @end
 
+
+
+
+
+
+@interface JPushReceiveAPSObject : NSObject
+@property (nonatomic, strong) NSString *            alert;              //
+@property (nonatomic, assign) int                   badge;              //
+@property (nonatomic, strong) NSString *            sound;              //
+@end
+
+//jpush推送接收数据
+@interface JPushReceiveObject : NSObject
+@property (nonatomic, strong) NSString *            _j_msgid;              //
+@property (nonatomic, strong) JPushReceiveAPSObject *aps;              //
+@property (nonatomic, strong) NSString *            model;              //
+@property (nonatomic, assign) int                   type;              //
+@property (nonatomic, strong) NSString *            order_type;              //
+@property (nonatomic, strong) NSString *            order_code;              //
+@property (nonatomic, strong) NSString *            url;              //
+@end
+
+//用户端跑跑腿服务者接受消息extras JSON数据解释：
+//model:
+//service--代表跑跑腿消息
+//
+//type:
+//2--订单消息(固定)
+//
+//order_type--订单类型：1（购物订单）、2（办事订单）、3（快递订单）
+//order_code--订单编号
+//voice--语音播报内容（固定为3）
+
+

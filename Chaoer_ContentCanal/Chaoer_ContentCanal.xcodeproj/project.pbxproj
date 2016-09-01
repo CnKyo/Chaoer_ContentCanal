@@ -1181,7 +1181,6 @@
 		74F5FC401B53AB0800307EED /* mMyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F5FC3F1B53AB0800307EED /* mMyDetailViewController.m */; };
 		74F5FC441B53AE4800307EED /* mCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F5FC431B53AE4800307EED /* mCustomAlertView.m */; };
 		74F5FC461B53AE5300307EED /* mCustomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F5FC451B53AE5300307EED /* mCustomAlertView.xib */; };
-		74FD53B81BBAA1FA00161398 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD53B71BBAA1FA00161398 /* libPushSDK-1.8.5.a */; };
 		B2CEE1191C03782500FC159C /* city.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2CEE1181C03782500FC159C /* city.txt */; };
 		B2CEE1211C03794600FC159C /* TableViewWithBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CEE11C1C03794600FC159C /* TableViewWithBlock.m */; };
 		B2CEE1221C03794600FC159C /* UITableView+DataSourceBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CEE11E1C03794600FC159C /* UITableView+DataSourceBlocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1235,6 +1234,10 @@
 		DF535F1C1D62F134006E1598 /* UIImage+QUAdditons.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F1B1D62F134006E1598 /* UIImage+QUAdditons.m */; };
 		DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */; };
 		DF5739D11D669E80004AF029 /* DryCleanOrderCommentTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */; };
+		DF59A3001D76D3A8004A4075 /* fix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF59A2FD1D76D3A8004A4075 /* fix.mp3 */; };
+		DF59A3011D76D3A8004A4075 /* gouwu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF59A2FE1D76D3A8004A4075 /* gouwu.mp3 */; };
+		DF59A3021D76D3A8004A4075 /* paotui.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DF59A2FF1D76D3A8004A4075 /* paotui.mp3 */; };
+		DF59A3051D76D6D5004A4075 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF59A3031D76D6D5004A4075 /* jpush-ios-2.1.8.a */; };
 		DF8344181D51D570002C4FD6 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344141D51D570002C4FD6 /* APIClient.m */; };
 		DF8344191D51D570002C4FD6 /* APIObjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344161D51D570002C4FD6 /* APIObjectDefine.m */; };
 		DF83441E1D51DCB2002C4FD6 /* UIView+AutoSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83441D1D51DCB2002C4FD6 /* UIView+AutoSize.m */; };
@@ -3345,8 +3348,6 @@
 		74F5FC421B53AE4800307EED /* mCustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCustomAlertView.h; sourceTree = "<group>"; };
 		74F5FC431B53AE4800307EED /* mCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCustomAlertView.m; sourceTree = "<group>"; };
 		74F5FC451B53AE5300307EED /* mCustomAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCustomAlertView.xib; sourceTree = "<group>"; };
-		74FD53B61BBAA1FA00161398 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		74FD53B71BBAA1FA00161398 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
 		B2CEE1181C03782500FC159C /* city.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = city.txt; sourceTree = "<group>"; };
 		B2CEE11B1C03794600FC159C /* TableViewWithBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewWithBlock.h; sourceTree = "<group>"; };
 		B2CEE11C1C03794600FC159C /* TableViewWithBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewWithBlock.m; sourceTree = "<group>"; };
@@ -3437,6 +3438,11 @@
 		DF535F211D6308BC006E1598 /* ShopCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCommentTableViewCell.h; sourceTree = "<group>"; };
 		DF535F221D6308BC006E1598 /* ShopCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCommentTableViewCell.m; sourceTree = "<group>"; };
 		DF5739D01D669E80004AF029 /* DryCleanOrderCommentTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommentTVC.m; sourceTree = "<group>"; };
+		DF59A2FD1D76D3A8004A4075 /* fix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fix.mp3; sourceTree = "<group>"; };
+		DF59A2FE1D76D3A8004A4075 /* gouwu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gouwu.mp3; sourceTree = "<group>"; };
+		DF59A2FF1D76D3A8004A4075 /* paotui.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = paotui.mp3; sourceTree = "<group>"; };
+		DF59A3031D76D6D5004A4075 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
+		DF59A3041D76D6D5004A4075 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		DF66B77F1D669EE3006189AF /* DryCleanOrderCommentSubmitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderCommentSubmitVC.h; sourceTree = "<group>"; };
 		DF8344131D51D570002C4FD6 /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		DF8344141D51D570002C4FD6 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
@@ -3488,6 +3494,7 @@
 				319036621CA903DD00EA6191 /* OpenGLES.framework in Frameworks */,
 				319036601CA903D300EA6191 /* MobileCoreServices.framework in Frameworks */,
 				3190365E1CA9037300EA6191 /* AudioToolbox.framework in Frameworks */,
+				DF59A3051D76D6D5004A4075 /* jpush-ios-2.1.8.a in Frameworks */,
 				312D08B21CAA1C560006F0FA /* TencentOpenAPI.framework in Frameworks */,
 				3190365C1CA9036700EA6191 /* Accelerate.framework in Frameworks */,
 				16A987C71C03989200D55C4A /* libsqlite3.0.tbd in Frameworks */,
@@ -3523,7 +3530,6 @@
 				3182DA431CAB775E00C217AE /* AMapLocationKit.framework in Frameworks */,
 				749BE9BE1B32767C00BABCA6 /* CoreGraphics.framework in Frameworks */,
 				749BE9F31B32778D00BABCA6 /* libOSS_IOS_SDK.a in Frameworks */,
-				74FD53B81BBAA1FA00161398 /* libPushSDK-1.8.5.a in Frameworks */,
 				749BE9BC1B32767400BABCA6 /* Foundation.framework in Frameworks */,
 				312D08B41CAA1C560006F0FA /* libWeiboSDK.a in Frameworks */,
 				312D08B81CAA1C560006F0FA /* MOBFoundation.framework in Frameworks */,
@@ -6905,8 +6911,8 @@
 		749BE9CC1B32771200BABCA6 /* Jpush */ = {
 			isa = PBXGroup;
 			children = (
-				74FD53B61BBAA1FA00161398 /* APService.h */,
-				74FD53B71BBAA1FA00161398 /* libPushSDK-1.8.5.a */,
+				DF59A3031D76D6D5004A4075 /* jpush-ios-2.1.8.a */,
+				DF59A3041D76D6D5004A4075 /* JPUSHService.h */,
 			);
 			path = Jpush;
 			sourceTree = "<group>";
@@ -7210,6 +7216,9 @@
 		DF0591AA1D65519C00445128 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF59A2FD1D76D3A8004A4075 /* fix.mp3 */,
+				DF59A2FE1D76D3A8004A4075 /* gouwu.mp3 */,
+				DF59A2FF1D76D3A8004A4075 /* paotui.mp3 */,
 				DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */,
 				DF0591BF1D65638800445128 /* dryClean_addPic.png */,
 				DF0591BB1D65610400445128 /* dryClean_address_choose@2x.png */,
@@ -7875,9 +7884,11 @@
 				04D7339A1D6402F600F1C5DD /* mFoodComfirmFooterView.xib in Resources */,
 				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
 				DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */,
+				DF59A3021D76D3A8004A4075 /* paotui.mp3 in Resources */,
 				04D733981D64020C00F1C5DD /* mFoodComfirmBottomView.xib in Resources */,
 				04F5FFE81D23579100EFBB3C /* communityOrderDetailCell.xib in Resources */,
 				74DDE8F41BAC03E4004878D1 /* myMoneyCell.xib in Resources */,
+				DF59A3001D76D3A8004A4075 /* fix.mp3 in Resources */,
 				312D08B31CAA1C560006F0FA /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3135F8451C9803B100EF9569 /* redBagTableViewCell.xib in Resources */,
 				31B9903F1C96B369002E34A5 /* phoneUpTopViewController.xib in Resources */,
@@ -7908,6 +7919,7 @@
 				3182A1701CA636510084E890 /* mTopUpBalanceView.xib in Resources */,
 				04648C6E1CB5035A006823C9 /* senderDetailViewController.xib in Resources */,
 				04D9F4F41D274B2600518F6F /* mNavAddressViewController.xib in Resources */,
+				DF59A3011D76D3A8004A4075 /* gouwu.mp3 in Resources */,
 				318D56531C9BE2980045B5FB /* aboutusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

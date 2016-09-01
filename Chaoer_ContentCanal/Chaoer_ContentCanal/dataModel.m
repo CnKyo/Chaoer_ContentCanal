@@ -9,7 +9,7 @@
 #import "dataModel.h"
 #import "HTTPrequest.h"
 #import "NSObject+myobj.h"
-#import "APService.h"
+#import "JPUSHService.h"
 #import <MobileCoreServices/UTType.h>
 #import <RongIMLib/RongIMLib.h>
 #import <RongIMKit/RongIMKit.h>
@@ -2592,6 +2592,10 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     t = [@"buyer_" stringByAppendingString:t];
     
+//    int m_leg = [mUserInfo backNowUser].mIs_leg;
+//    if (m_leg == 5) { //如果是跑跑者
+//        
+//    }
     //别名
     //1."seller_1"
     //2."buyer_1"
@@ -2604,11 +2608,11 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     NSSet* labelset = [[NSSet alloc]initWithObjects:@"buyer", @"ios",nil];
     
-    [APService setTags:labelset alias:t callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
+    [JPUSHService setTags:labelset alias:t callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
 
 }
 + (void)closePush{
-    [APService setTags:[NSSet set] alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
+    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:[UIApplication sharedApplication].delegate];
 
 }
 

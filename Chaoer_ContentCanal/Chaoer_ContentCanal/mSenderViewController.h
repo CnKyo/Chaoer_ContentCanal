@@ -15,4 +15,6 @@
 
 @property (strong,nonatomic)NSString *mLat;
 
+@property (assign,nonatomic)int mType;
+
 @end

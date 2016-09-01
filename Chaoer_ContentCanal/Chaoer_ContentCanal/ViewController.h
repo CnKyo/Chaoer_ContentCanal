@@ -16,5 +16,9 @@
 @property (nonatomic,strong)    UIViewController* quikTagVC;
 
 
++ (instancetype)shareInstance;
++(void)dismissVC;
++(BOOL)haveViewController;
+
 @end
 

@@ -40,6 +40,7 @@
 #import "depositViewController.h"
 
 #import "communityTableViewCell.h"
+#import "ViewController.h"
 
 @interface mSenderViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKSegmentControlDelagate,MMApBlockCoordinate,WKBanerSelectedDelegate,WKCellWithBanerAndBtnClickDelegate>
 
@@ -52,7 +53,7 @@
 {
     AMapLocationManager *mLocation;
     
-    int     mType;
+    //int     mType;
     /**
      *  tableViewHeader
      */
@@ -77,6 +78,18 @@
 
 }
 
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.mType =0;
+    }
+    return self;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
@@ -95,12 +108,21 @@
     self.rightBtnTitle = @"筛选";
     self.hiddenRightBtn = YES;
 
-    mType =0;
+    
     self.mBanerArr = [NSMutableArray new];
     
 
     [self initView];
     [self initReleaseView];
+    
+    [self upDateUserStatus];
+    
+    
+//    BOOL haveLoginVC = [ViewController haveViewController];
+//    if (haveLoginVC == YES) {
+//        ViewController *vc = [ViewController shareInstance];
+//        [vc dismissViewControllerAnimated:YES completion:nil];
+//    }
 }
 
 
@@ -153,7 +175,7 @@
 
     self.page = 1;
     
-    [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getPPTNeaerbyOrder:_mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self headerEndRefresh];
         [self.tempArray removeAllObjects];
@@ -194,7 +216,7 @@
     
     self.page ++;
     
-    [[mUserInfo backNowUser] getPPTNeaerbyOrder:mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getPPTNeaerbyOrder:_mType andMlat:self.mLat andLng:self.mLng andPage:self.page andNum:20 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self footetEndRefresh];
         [self removeEmptyView];
@@ -352,7 +374,7 @@
 - (void)WKDidSelectedIndex:(NSInteger)mIndex{
     MLLog(@"点击了%lu",(unsigned long)mIndex);
     
-    mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
+    self.mType = [[NSString stringWithFormat:@"%ld",(long)mIndex] intValue];
   
     [self headerBeganRefresh];
     
@@ -414,10 +436,10 @@
     
     pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
     ppp.mOrderType = 1;
-    if (mType == 0) {
+    if (_mType == 0) {
         ppp.mType = mPPtOrder.mType;
     }else{
-        ppp.mType = mType;
+        ppp.mType = _mType;
     }
     
     ppp.mOrder = GPPTOrder.new;
@@ -685,7 +707,7 @@
         
         [self showWithStatus:@"正在操作..."];
         
-        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 
@@ -712,7 +734,7 @@
             
             [self showWithStatus:@"正在操作..."];
             
-            [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
                 
                 if (resb.mSucess) {
                     

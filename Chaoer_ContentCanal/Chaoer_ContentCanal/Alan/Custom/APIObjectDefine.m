@@ -328,3 +328,17 @@
 
 @implementation DryClearnShopOrderCommentPostObject
 @end
+
+
+
+
+
+@implementation JPushReceiveAPSObject
+@end
+
+@implementation JPushReceiveObject
+@end
+
+
+
+

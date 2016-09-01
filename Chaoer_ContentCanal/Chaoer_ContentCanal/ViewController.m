@@ -93,6 +93,36 @@
 
 }
 
+static ViewController *handle = nil;
++ (instancetype)shareInstance {
+    @synchronized (self){
+        if (!handle) {
+            handle = [[ViewController alloc] init];
+        }
+    }
+    return handle;
+//    static ViewController *_sharedClient = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        _sharedClient = [[ViewController alloc] init];
+//    });
+//    return _sharedClient;
+}
+
++(BOOL)haveViewController
+{
+    return handle ? YES : NO;
+}
+
++(void)dismissVC
+{
+    BOOL haveLoginVC = [ViewController haveViewController];
+    if (haveLoginVC == YES) {
+        ViewController *vc = [ViewController shareInstance];
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

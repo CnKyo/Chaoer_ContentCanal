@@ -11,7 +11,7 @@
 #import "MTAConfig.h"
 
 #import "MyViewController.h"
-#import "APService.h"
+#import "JPUSHService.h"
 
 #import "WebVC.h"
 #import "ViewController.h"
@@ -33,7 +33,9 @@
 #import <RongIMKit/RongIMKit.h>
 
 #import "QUCustomDefine.h"
-
+#import "APIObjectDefine.h"
+#import "mSenderViewController.h"
+#import "homeViewController.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 
@@ -161,48 +163,69 @@
     [self initExtComp];
     [self loadRongCloud];
     
-    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                   UIRemoteNotificationTypeSound |
-                                                   UIRemoteNotificationTypeAlert)
-                                       categories:nil];
     
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
     
-    [APService setupWithOption:launchOptions];
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
+    [JPUSHService setupWithOption:launchOptions appKey:@"5e3e27da01ec6cb61b8e2b4d"
+                          channel:@"25b4503e82ad1f91cfc56061"
+                 apsForProduction:YES
+            advertisingIdentifier:nil];
+    
+//    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                   UIRemoteNotificationTypeSound |
+//                                                   UIRemoteNotificationTypeAlert)
+//                                       categories:nil];
+//    
+//    
+//    [APService setupWithOption:launchOptions];
     
 
     [mUserInfo openPush];
     
     
     [self dealFuncTab];
-    if ([application
-         
-         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        
-        //注册推送, iOS 8
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings
-                                                
-                                                settingsForTypes:(UIUserNotificationTypeBadge |
-                                                                  
-                                                                  UIUserNotificationTypeSound |
-                                                                  
-                                                                  UIUserNotificationTypeAlert)
-                                                
-                                                categories:nil];
-        
-        [application registerUserNotificationSettings:settings];
-        
-    } else {
-        
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
-        
-        UIRemoteNotificationTypeAlert |
-        
-        UIRemoteNotificationTypeSound;
-        
-        [application registerForRemoteNotificationTypes:myTypes];
-        
-    }
+//    if ([application
+//         
+//         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+//        
+//        //注册推送, iOS 8
+//        
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+//                                                
+//                                                settingsForTypes:(UIUserNotificationTypeBadge |
+//                                                                  
+//                                                                  UIUserNotificationTypeSound |
+//                                                                  
+//                                                                  UIUserNotificationTypeAlert)
+//                                                
+//                                                categories:nil];
+//        
+//        [application registerUserNotificationSettings:settings];
+//        
+//    } else {
+//        
+//        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+//        
+//        UIRemoteNotificationTypeAlert |
+//        
+//        UIRemoteNotificationTypeSound;
+//        
+//        [application registerForRemoteNotificationTypes:myTypes];
+//        
+//    }
     
     //融云即时通讯
     
@@ -457,7 +480,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [application setApplicationIconBadgeNumber:0];
-    [APService resetBadge];
+    [JPUSHService resetBadge];
     [self performSelector:@selector(ddddoti:) withObject:nil afterDelay:1];
 }
 
@@ -501,7 +524,7 @@
 #pragma mark*-*----加载推送通知
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    [APService registerDeviceToken:deviceToken];
+    [JPUSHService registerDeviceToken:deviceToken];
     //融云的
     NSString *token =[[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]stringByReplacingOccurrencesOfString:@">"
                                                                                                                                     withString:@""]
@@ -514,6 +537,7 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    [JPUSHService handleRemoteNotification:userInfo];
     if (application.applicationState == UIApplicationStateActive) {
         
         [self dealPush:userInfo bopenwith:NO];
@@ -523,8 +547,37 @@
         [self dealPush:userInfo bopenwith:YES];
     }
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [self application:application didReceiveRemoteNotification:userInfo];
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+}
+
+
+
 -(void)dealPush:(NSDictionary*)userinof bopenwith:(BOOL)bopenwith
 {
+    NSLog(@"userinof: %@", userinof);
+    JPushReceiveObject *it = [JPushReceiveObject mj_objectWithKeyValues:userinof];
+    if ([it.model isEqualToString:@"service"]) {
+        if( !bopenwith ) {
+            if (it.aps.alert.length>0) {
+                myalert *alertVC = [[myalert alloc]initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
+                alertVC.obj = it;
+                [alertVC show];
+            }
+            
+        } else {
+            [self goToVCWithPush:it];
+        }
+    }
+
+    
 //    SMessageInfo* pushobj = [[SMessageInfo alloc]initWithAPN:userinof];
     
     if( !bopenwith )
@@ -557,6 +610,36 @@
     }
 }
 
+-(void)goToVCWithPush:(JPushReceiveObject *)item
+{
+    UITabBarController *tabVC = ((UITabBarController*)self.window.rootViewController);
+    tabVC.selectedIndex = 0;
+    
+    if (tabVC != nil) {
+        UINavigationController *navVC = (UINavigationController*)tabVC.selectedViewController;
+        NSArray *arr = navVC.viewControllers;
+        
+        if (arr.count > 0) {
+            NSMutableArray *arrNew = [NSMutableArray array];
+            homeViewController *vc = (homeViewController *)[arr objectAtIndex:0];
+            vc.withOutLogin = YES;
+            [arrNew addObject:vc];
+            [navVC setViewControllers:arrNew animated:NO];
+            
+            BOOL haveLoginVC = [ViewController haveViewController];
+            if (haveLoginVC == YES) {
+                ViewController *vc = [ViewController shareInstance];
+                [vc dismissViewControllerAnimated:YES completion:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"back"object:nil];
+            }
+            
+            [vc performSelector:@selector(jPushToSenderVCWithType:) withObject:item.order_type afterDelay:0.1];
+        }
+
+    }
+
+}
+
 - (void)tagsAliasCallback:(int)iResCode
                      tags:(NSSet *)tags
                     alias:(NSString *)alias {
@@ -579,7 +662,9 @@
         }
     }else{
         if (buttonIndex == 1) {
+            JPushReceiveObject* pushobj = ((myalert *)alertView).obj;
             
+            [self goToVCWithPush:pushobj];
             //        SMessageInfo* pushobj = ((myalert *)alertView).obj;
             
             //        if( pushobj.mType == 1 )
