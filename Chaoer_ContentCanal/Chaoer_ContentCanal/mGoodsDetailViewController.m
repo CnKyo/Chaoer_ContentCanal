@@ -432,7 +432,7 @@
         mBootomView.mGoodsNum.hidden = NO;
         mBootomView.mGoodsNum.text = [NSString stringWithFormat:@"%d",mGoodsDetail.mBadge];
     }
-    
+
     if (mGoodsDetail.mIsFocus) {
         [mBootomView.mAttentionBtn setBackgroundImage:[UIImage imageNamed:@"mGoodsDetail_collect"] forState:0];
     }else{
@@ -490,11 +490,12 @@
     }
     
     [self showWithStatus:@"正在操作中..."];
-    [[mUserInfo backNowUser] collectGoods:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andType:mSelected block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] collectGoods:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mId andType:mSelected block:^(mBaseData *resb, NSArray *mArr) {
         [self dismiss];
         if (resb.mSucess) {
-            mGoodsDetail.mIsFocus = mSelected;
 
+            mGoodsDetail.mIsFocus = mSelected;
+            
             [self upDatePage];
             
         }else{

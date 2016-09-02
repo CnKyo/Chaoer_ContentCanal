@@ -7170,11 +7170,7 @@ bool pptbined = NO;
 
     self.mShopId = [[obj objectForKeyMy:@"shop_id"] intValue];
     
-//    if (self.mFocus != 0) {
-//        self.mIsFocus = YES;
-//    }else{
-//        self.mIsFocus = NO;
-//    }
+    self.mIsFocus = self.mFocus>0?YES:NO;
 
 }
 

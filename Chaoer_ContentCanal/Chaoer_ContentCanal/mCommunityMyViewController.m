@@ -35,7 +35,11 @@
     int mRightType;
 
 }
+- (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:YES];
+    [self headerBeganRefresh];
+}
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
     
@@ -103,11 +107,9 @@
             [self.tempArray removeAllObjects];
             [self removeEmptyView];
             if (resb.mSucess) {
-                if (mArr.count <= 0) {
-                    [self addEmptyView:nil];
-                }else{
-                    [self.tempArray addObjectsFromArray:mArr];
-                }
+             
+                [self.tempArray addObjectsFromArray:mArr];
+                
                 [self.tableView reloadData];
 
             }else{
@@ -125,13 +127,10 @@
             [self.tempArray removeAllObjects];
             [self removeEmptyView];
             if (resb.mSucess) {
-                if (mArr.count <= 0) {
-                    [self addEmptyView:nil];
-                    return ;
-                }else{
-                    [self.tempArray addObjectsFromArray:mArr];
-                    [self.tableView reloadData];
-                }
+                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
+                
             }else{
                 
                 [self  showErrorStatus:resb.mMessage];
