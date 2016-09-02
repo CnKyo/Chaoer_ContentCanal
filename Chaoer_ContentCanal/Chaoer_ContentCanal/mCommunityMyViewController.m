@@ -408,14 +408,14 @@
         
         if (mShopN.mType == 3) {
             DryCleanVC *vvv= [DryCleanVC new];
-            vvv.shopId = mShopN.mId;
+            vvv.shopId = mShopN.mShopId;
             [self pushViewController:vvv];
             
         } else {
             mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
             market.mShopList = GMarketList.new;
             market.mShopList = mShopN;
-            market.mShopId = mShopN.mId;
+            market.mShopId = mShopN.mShopId;
             
             [self pushViewController:market];
         }

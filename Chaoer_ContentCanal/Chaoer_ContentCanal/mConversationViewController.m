@@ -124,7 +124,7 @@
 }
 -(void)showMsg
 {
-    UITabBarItem* it = self.tabBarController.viewControllers[3].tabBarItem;
+    UITabBarItem* it = self.tabBarController.viewControllers[0].tabBarItem;
     //收到消息,,,
     int allunread = [[RCIMClient sharedRCIMClient] getTotalUnreadCount];
     if( allunread > 0 )

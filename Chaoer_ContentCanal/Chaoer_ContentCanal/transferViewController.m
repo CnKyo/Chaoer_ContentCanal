@@ -50,7 +50,6 @@
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];///视图消失键盘位置取消调整
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];///关闭自定义工具栏
-    
 }
 
 - (void)viewDidLoad {
@@ -111,7 +110,6 @@
     
         if (![Util isMobileNumber:textField.text]) {
             [LCProgressHUD showInfoMsg:@"请输入合法的手机账户"];
-            [self.mAcountTx becomeFirstResponder];
             
             return;
         }
