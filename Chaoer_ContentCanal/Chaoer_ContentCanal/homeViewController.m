@@ -46,6 +46,7 @@
 #import "DryCleanVC.h"
 #import "wpgViewController.h"
 #import "ViewController.h"
+#import "NSUserDefaults+Settings.h"
 
 #define Height (DEVICE_Width*0.67)
 
@@ -791,8 +792,8 @@
     }
     mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
     mmm.mType = [orderType intValue];
-    mmm.mLng = mLng;
-    mmm.mLat = mLat;
+    mmm.mLng = mLng.length>0 ? mLng : UserDefaults().longitude;
+    mmm.mLat = mLat.length>0 ? mLat : UserDefaults().latitude;
     [self pushViewController:mmm];
 }
 

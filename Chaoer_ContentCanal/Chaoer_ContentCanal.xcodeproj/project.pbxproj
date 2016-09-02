@@ -1125,6 +1125,7 @@
 		DF10D8471D6418BC00220FB0 /* DryCleanTimeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8461D6418BC00220FB0 /* DryCleanTimeChooseView.m */; };
 		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */; };
 		DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */; };
+		DF153EFE1D79305300A9AB69 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DF153EFD1D79305300A9AB69 /* NSUserDefaults+Settings.m */; };
 		DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */ = {isa = PBXBuildFile; fileRef = DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */; };
 		DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */; };
 		DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */; };
@@ -3180,6 +3181,8 @@
 		DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderCommentSubmitVC.m; sourceTree = "<group>"; };
 		DF10D84B1D64715F00220FB0 /* DryCleanServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanServerTableViewCell.h; sourceTree = "<group>"; };
 		DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanServerTableViewCell.m; sourceTree = "<group>"; };
+		DF153EFC1D79305300A9AB69 /* NSUserDefaults+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Settings.h"; sourceTree = "<group>"; };
+		DF153EFD1D79305300A9AB69 /* NSUserDefaults+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Settings.m"; sourceTree = "<group>"; };
 		DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_serverliucheng.png; sourceTree = "<group>"; };
 		DF385F061D68522700F5B93E /* DryCleanOrderChooseCouponTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderChooseCouponTVC.h; sourceTree = "<group>"; };
 		DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderChooseCouponTVC.m; sourceTree = "<group>"; };
@@ -6945,6 +6948,8 @@
 				DF8344161D51D570002C4FD6 /* APIObjectDefine.m */,
 				DF8344131D51D570002C4FD6 /* APIClient.h */,
 				DF8344141D51D570002C4FD6 /* APIClient.m */,
+				DF153EFC1D79305300A9AB69 /* NSUserDefaults+Settings.h */,
+				DF153EFD1D79305300A9AB69 /* NSUserDefaults+Settings.m */,
 				DF8344171D51D570002C4FD6 /* QUCustomDefine.h */,
 				DF10D8281D640AC900220FB0 /* QUScrollVC.h */,
 				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
@@ -7608,6 +7613,7 @@
 				04F228401CEEE4EB004E8702 /* SWActionSheet.m in Sources */,
 				740089551B38F22A00618BA0 /* TabBar.m in Sources */,
 				3123CC0D1C92740900C3B928 /* mAddressView.m in Sources */,
+				DF153EFE1D79305300A9AB69 /* NSUserDefaults+Settings.m in Sources */,
 				318D56681C9C012B0045B5FB /* MHSheetHead.m in Sources */,
 				DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */,
 				040BEF3D1D6D4FDF00BDD60F /* TYAlertScaleFadeAnimation.m in Sources */,
