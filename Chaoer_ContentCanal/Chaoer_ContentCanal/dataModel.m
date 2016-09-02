@@ -3490,23 +3490,23 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     if (mLat == nil)
         mLat = @"0";
+    else
+        UserDefaults().latitude = mLat;
+    
     if (mLng == nil)
         mLng = @"0";
+    else
+        UserDefaults().longitude = mLng;
     
     [para setObject:mLat forKey:@"lat"];
     [para setObject:mLng forKey:@"lng"];
     
-    UserDefaults().latitude = mLat;
-    UserDefaults().longitude = mLng;
-    
     [para setObject:@"1" forKey:@"isOnline"];
     [para setObject:@"1" forKey:@"device"];
-
     
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/user/updateUserState" parameters:para call:^(mBaseData *info) {
         
         if (info.mSucess) {
-            
             
             block (info );
         }else{
