@@ -447,17 +447,18 @@
 - (void)upLoadVideo{
    
     NSString    *mUrlStr = [NSString stringWithFormat:@"%@warranty/uploadWarrantyVidoes",[HTTPrequest currentResourceUrl]];
-    
+    [self showWithStatus:@"正在上传视频..."];
+
     
     [[HTTPrequest sharedHDNetworking] postVedio:mUrlStr andVedioUrl:mVURL call:^(mBaseData * _Nonnull info) {
         if (info.mSucess) {
             
-            [LCProgressHUD showSuccess:@"视频上传成功！"];
+            [self showSuccessStatus:@"视频上传成功！"];
             
             mVideoUrlString = [info.mData objectForKey:@"video"];
             
         }else{
-            [LCProgressHUD showFailure:info.mMessage];
+            [self showErrorStatus:info.mMessage];
         }
         
     }];

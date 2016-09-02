@@ -67,7 +67,7 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     
-    [mView.mLogo sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    [mView.mLogo sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"my_defaulimg"]];
 
     mView.mName.text = [mUserInfo backNowUser].mPhone;
     mView.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];

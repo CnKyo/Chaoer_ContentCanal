@@ -92,7 +92,8 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-//    [self headerBeganRefresh];
+    
+    [self headerBeganRefresh];
 }
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;

@@ -81,7 +81,7 @@
     [self setRightBtnWidth:70];
     
     self.page = 1;
-    self.shopId = 2;
+//    self.shopId = 2;
     self.classIndex = -1;
     
     [self initView];

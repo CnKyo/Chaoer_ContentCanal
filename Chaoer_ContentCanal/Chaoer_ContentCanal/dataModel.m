@@ -2960,6 +2960,7 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setNeedStr:mNote forKey:@"comments"];
     [para setNeedStr:mLng forKey:@"lng"];
     [para setNeedStr:mLat forKey:@"lat"];
+    [para setNeedStr:mTime forKey:@"arrivedTime"];
 
     [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/user/appOrderCarry" parameters:para call:^(mBaseData *info) {
         
