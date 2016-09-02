@@ -716,10 +716,17 @@
     if (haveOne == NO) {
         ViewController *vc = [ViewController shareInstance];
         [self presentViewController:vc animated:YES completion:nil];
-    }else{
+    }
+    else{
         [mUserInfo logOut];
-        ViewController *vc = [ViewController shareInstance];
-        [self presentViewController:vc animated:YES completion:nil];
+        
+        
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        id viewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+        
     }
     
     //    LoginVC *vclog = [[LoginVC alloc]init];
