@@ -21,6 +21,7 @@
 #import <objc/message.h>
 
 #import "APIObjectDefine.h"
+#import "NSUserDefaults+Settings.h"
 
 @implementation dataModel{
     NSMutableURLRequest *request;
@@ -271,6 +272,7 @@ bool g_bined = NO;
 //退出登陆
 +(void)logOut
 {
+    [UserDefaults() loadUserZro];
     [mUserInfo closePush];
     g_user = nil;
 
@@ -3486,16 +3488,16 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt([mUserInfo backNowUser].mLegworkUserId) forKey:@"legworkUserId"];
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
 
-    if (mLat) {
-        [para setObject:mLat forKey:@"lat"];
-    }else{
-        [para setObject:@"0" forKey:@"lat"];
-    }
-    if (mLng) {
-        [para setObject:mLng forKey:@"lng"];
-    }else{
-        [para setObject:@"0" forKey:@"lng"];
-    }
+    if (mLat == nil)
+        mLat = @"0";
+    if (mLng == nil)
+        mLng = @"0";
+    
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLng forKey:@"lng"];
+    
+    UserDefaults().latitude = mLat;
+    UserDefaults().longitude = mLng;
     
     [para setObject:@"1" forKey:@"isOnline"];
     [para setObject:@"1" forKey:@"device"];

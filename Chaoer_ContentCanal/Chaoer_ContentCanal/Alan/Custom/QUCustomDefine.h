@@ -13,6 +13,9 @@
 
 #define TABLE_PAGE_ROW              20  //每次页面调用20条数据
 
+#define UserDefaults()                              [NSUserDefaults standardUserDefaults]
+
+
 static NSString * const sAppKey_Cook     = @"104ef5c579850";
 static NSString * const sAppKey_Weather     = @"104ef5c579850";
 static NSString * const sAppKey_PostCode     = @"104ef5c579850";
