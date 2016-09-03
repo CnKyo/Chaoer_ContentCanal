@@ -359,14 +359,14 @@
         
         if (assets) {
             for (XMNAssetModel *model in assets) {
-                tempImage = [Util scaleImg:model.previewImage maxsize:150];
+                tempImage = [Util scaleImg:model.previewImage maxsize:450];
                 [mView.mUploadImgBtn setBackgroundImage:model.thumbnail forState:0];
                 
             }
         }else{
             
             for (UIImage *img in images) {
-                tempImage = [Util scaleImg:img maxsize:150];
+                tempImage = [Util scaleImg:img maxsize:450];
                 [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
             }
         }
