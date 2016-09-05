@@ -347,8 +347,6 @@
 - (void)mUploadImgAction:(UIButton *)sender{
     mSelecte = 1;
 
-    
-    
     QBImagePickerController *imagePickerController = [QBImagePickerController new];
     imagePickerController.delegate = self;
     imagePickerController.mediaType = QBImagePickerMediaTypeImage;
@@ -369,11 +367,23 @@
     
     if (assets.count != 0) {
         
-        for (ALAsset *mAset in assets) {
-            tempImage = [Util fullResolutionImageFromALAsset:mAset];
-            [self loadImage];
-            [self dismissViewControllerAnimated:YES completion:NULL];
+        for (PHAsset *mAset in assets) {
+            
+            
+            if (mAset.mediaType == PHAssetMediaTypeImage)
+            {
+                [[PHImageManager defaultManager] requestImageDataForAsset:mAset options:nil resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+                    NSURL *url = [info objectForKey:@"PHImageFileURLKey"];
 
+                    tempImage = [Util scaleImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:url]] maxsize:550];
+                    [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
+
+                    [self loadImage];
+                    [self dismissViewControllerAnimated:YES completion:NULL];
+
+                }];
+            }
+          
         }
         
       
@@ -562,25 +572,7 @@
         
         [self saveVideoWith:videoURL];
         
-        
-        //
-        //        /****************************************/
-        //
-        //        NSString *videoFile = [documentsDirectory stringByAppendingPathComponent:@"temp.mov"];
-        //        ;
-        //
-        //        success = [fileManager fileExistsAtPath:videoFile];
-        //        if(success) {
-        //            success = [fileManager removeItemAtPath:videoFile error:&error];
-        //        }
-        //        [mVedioData writeToFile:videoFile atomically:YES];
-        //        //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);
-        //        ;    //NSLog(videoURL);
-        //
-        
-        
-        
-        
+      
     }
     [self dismissViewControllerAnimated:YES completion:nil];
     
