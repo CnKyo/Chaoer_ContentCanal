@@ -11,11 +11,6 @@
 
 #import "RSKImageCropper.h"
 
-#import "XMNPhotoPickerFramework.h"
-#import "XMNPhotoCollectionController.h"
-
-#import "XMNAssetCell.h"
-
 #import "addAddressViewController.h"
 #import "TFFileUploadManager.h"
 #import "needCodeViewController.h"
@@ -32,7 +27,6 @@
     HZQDatePickerView *_pikerView;
 
 }
-@property (nonatomic, copy)   NSArray<XMNAssetModel *> *assets;
 
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @end

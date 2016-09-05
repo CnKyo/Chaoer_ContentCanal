@@ -14,11 +14,6 @@
 
 #import "RSKImageCropper.h"
 
-#import "XMNPhotoPickerFramework.h"
-#import "XMNPhotoCollectionController.h"
-
-#import "XMNAssetCell.h"
-
 #import "addAddressViewController.h"
 #import "TFFileUploadManager.h"
 #import "needCodeViewController.h"
@@ -30,7 +25,7 @@
 #import "FixNewCell.h"
 
 #define YYEncode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
-@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface mFixViewController ()<ZJAlertListViewDelegate,ZJAlertListViewDatasource,HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,UITableViewDelegate,UITableViewDataSource>{
     HZQDatePickerView *_pikerView;
 
 }

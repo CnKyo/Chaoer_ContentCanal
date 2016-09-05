@@ -854,24 +854,6 @@
 		312D08C01CAA1CB90006F0FA /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312D08BF1CAA1CB90006F0FA /* JavaScriptCore.framework */; };
 		312D08C21CAA1CD00006F0FA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312D08C11CAA1CD00006F0FA /* ImageIO.framework */; };
 		312D08C41CAA1CDC0006F0FA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 312D08C31CAA1CDC0006F0FA /* libsqlite3.tbd */; };
-		313413531CA28DC3003972E2 /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413321CA28DC3003972E2 /* UIView+Animations.m */; };
-		313413541CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413341CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m */; };
-		313413551CA28DC3003972E2 /* XMNAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413361CA28DC3003972E2 /* XMNAlbumCell.m */; };
-		313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313413371CA28DC3003972E2 /* XMNAlbumCell.xib */; };
-		313413571CA28DC3003972E2 /* XMNAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413391CA28DC3003972E2 /* XMNAlbumModel.m */; };
-		313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3134133B1CA28DC3003972E2 /* XMNAssetCell.m */; };
-		313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3134133C1CA28DC3003972E2 /* XMNAssetCell.xib */; };
-		3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3134133E1CA28DC3003972E2 /* XMNAssetModel.m */; };
-		3134135B1CA28DC3003972E2 /* XMNBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413401CA28DC3003972E2 /* XMNBottomBar.m */; };
-		3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313413411CA28DC3003972E2 /* XMNBottomBar.xib */; };
-		3134135D1CA28DC3003972E2 /* XMNPhotoCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413431CA28DC3003972E2 /* XMNPhotoCollectionController.m */; };
-		3134135E1CA28DC3003972E2 /* XMNPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413451CA28DC3003972E2 /* XMNPhotoManager.m */; };
-		3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413471CA28DC3003972E2 /* XMNPhotoPicker.m */; };
-		313413601CA28DC3003972E2 /* XMNPhotoPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313413481CA28DC3003972E2 /* XMNPhotoPicker.xib */; };
-		313413611CA28DC3003972E2 /* XMNPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3134134A1CA28DC3003972E2 /* XMNPhotoPickerController.m */; };
-		313413621CA28DC3003972E2 /* XMNPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3134134E1CA28DC3003972E2 /* XMNPhotoPreviewCell.m */; };
-		313413631CA28DC3003972E2 /* XMNPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413501CA28DC3003972E2 /* XMNPhotoPreviewController.m */; };
-		313413641CA28DC3003972E2 /* XMNVideoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313413521CA28DC3003972E2 /* XMNVideoPreviewController.m */; };
 		3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */; };
 		3135F80D1C97BB4500EF9569 /* mUserTopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */; };
 		3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135F8101C97BD2600EF9569 /* mFeedBackViewController.m */; };
@@ -2725,40 +2707,6 @@
 		312D08BF1CAA1CB90006F0FA /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		312D08C11CAA1CD00006F0FA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		312D08C31CAA1CDC0006F0FA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		313413311CA28DC3003972E2 /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
-		313413321CA28DC3003972E2 /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
-		313413331CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XMNPhotoHUD.h"; sourceTree = "<group>"; };
-		313413341CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XMNPhotoHUD.m"; sourceTree = "<group>"; };
-		313413351CA28DC3003972E2 /* XMNAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNAlbumCell.h; sourceTree = "<group>"; };
-		313413361CA28DC3003972E2 /* XMNAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNAlbumCell.m; sourceTree = "<group>"; };
-		313413371CA28DC3003972E2 /* XMNAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMNAlbumCell.xib; sourceTree = "<group>"; };
-		313413381CA28DC3003972E2 /* XMNAlbumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNAlbumModel.h; sourceTree = "<group>"; };
-		313413391CA28DC3003972E2 /* XMNAlbumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNAlbumModel.m; sourceTree = "<group>"; };
-		3134133A1CA28DC3003972E2 /* XMNAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNAssetCell.h; sourceTree = "<group>"; };
-		3134133B1CA28DC3003972E2 /* XMNAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNAssetCell.m; sourceTree = "<group>"; };
-		3134133C1CA28DC3003972E2 /* XMNAssetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMNAssetCell.xib; sourceTree = "<group>"; };
-		3134133D1CA28DC3003972E2 /* XMNAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNAssetModel.h; sourceTree = "<group>"; };
-		3134133E1CA28DC3003972E2 /* XMNAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNAssetModel.m; sourceTree = "<group>"; };
-		3134133F1CA28DC3003972E2 /* XMNBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNBottomBar.h; sourceTree = "<group>"; };
-		313413401CA28DC3003972E2 /* XMNBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNBottomBar.m; sourceTree = "<group>"; };
-		313413411CA28DC3003972E2 /* XMNBottomBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMNBottomBar.xib; sourceTree = "<group>"; };
-		313413421CA28DC3003972E2 /* XMNPhotoCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoCollectionController.h; sourceTree = "<group>"; };
-		313413431CA28DC3003972E2 /* XMNPhotoCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoCollectionController.m; sourceTree = "<group>"; };
-		313413441CA28DC3003972E2 /* XMNPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoManager.h; sourceTree = "<group>"; };
-		313413451CA28DC3003972E2 /* XMNPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoManager.m; sourceTree = "<group>"; };
-		313413461CA28DC3003972E2 /* XMNPhotoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPicker.h; sourceTree = "<group>"; };
-		313413471CA28DC3003972E2 /* XMNPhotoPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoPicker.m; sourceTree = "<group>"; };
-		313413481CA28DC3003972E2 /* XMNPhotoPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMNPhotoPicker.xib; sourceTree = "<group>"; };
-		313413491CA28DC3003972E2 /* XMNPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPickerController.h; sourceTree = "<group>"; };
-		3134134A1CA28DC3003972E2 /* XMNPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoPickerController.m; sourceTree = "<group>"; };
-		3134134B1CA28DC3003972E2 /* XMNPhotoPickerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPickerDefines.h; sourceTree = "<group>"; };
-		3134134C1CA28DC3003972E2 /* XMNPhotoPickerFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPickerFramework.h; sourceTree = "<group>"; };
-		3134134D1CA28DC3003972E2 /* XMNPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPreviewCell.h; sourceTree = "<group>"; };
-		3134134E1CA28DC3003972E2 /* XMNPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoPreviewCell.m; sourceTree = "<group>"; };
-		3134134F1CA28DC3003972E2 /* XMNPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNPhotoPreviewController.h; sourceTree = "<group>"; };
-		313413501CA28DC3003972E2 /* XMNPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNPhotoPreviewController.m; sourceTree = "<group>"; };
-		313413511CA28DC3003972E2 /* XMNVideoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNVideoPreviewController.h; sourceTree = "<group>"; };
-		313413521CA28DC3003972E2 /* XMNVideoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNVideoPreviewController.m; sourceTree = "<group>"; };
 		3135F8091C97BB4500EF9569 /* mUserTopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mUserTopupViewController.h; sourceTree = "<group>"; };
 		3135F80A1C97BB4500EF9569 /* mUserTopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mUserTopupViewController.m; sourceTree = "<group>"; };
 		3135F80B1C97BB4500EF9569 /* mUserTopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mUserTopupViewController.xib; sourceTree = "<group>"; };
@@ -5568,47 +5516,6 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
-		313413301CA28DC3003972E2 /* PickImage */ = {
-			isa = PBXGroup;
-			children = (
-				313413311CA28DC3003972E2 /* UIView+Animations.h */,
-				313413321CA28DC3003972E2 /* UIView+Animations.m */,
-				313413331CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.h */,
-				313413341CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m */,
-				313413351CA28DC3003972E2 /* XMNAlbumCell.h */,
-				313413361CA28DC3003972E2 /* XMNAlbumCell.m */,
-				313413371CA28DC3003972E2 /* XMNAlbumCell.xib */,
-				313413381CA28DC3003972E2 /* XMNAlbumModel.h */,
-				313413391CA28DC3003972E2 /* XMNAlbumModel.m */,
-				3134133A1CA28DC3003972E2 /* XMNAssetCell.h */,
-				3134133B1CA28DC3003972E2 /* XMNAssetCell.m */,
-				3134133C1CA28DC3003972E2 /* XMNAssetCell.xib */,
-				3134133D1CA28DC3003972E2 /* XMNAssetModel.h */,
-				3134133E1CA28DC3003972E2 /* XMNAssetModel.m */,
-				3134133F1CA28DC3003972E2 /* XMNBottomBar.h */,
-				313413401CA28DC3003972E2 /* XMNBottomBar.m */,
-				313413411CA28DC3003972E2 /* XMNBottomBar.xib */,
-				313413421CA28DC3003972E2 /* XMNPhotoCollectionController.h */,
-				313413431CA28DC3003972E2 /* XMNPhotoCollectionController.m */,
-				313413441CA28DC3003972E2 /* XMNPhotoManager.h */,
-				313413451CA28DC3003972E2 /* XMNPhotoManager.m */,
-				313413461CA28DC3003972E2 /* XMNPhotoPicker.h */,
-				313413471CA28DC3003972E2 /* XMNPhotoPicker.m */,
-				313413481CA28DC3003972E2 /* XMNPhotoPicker.xib */,
-				313413491CA28DC3003972E2 /* XMNPhotoPickerController.h */,
-				3134134A1CA28DC3003972E2 /* XMNPhotoPickerController.m */,
-				3134134B1CA28DC3003972E2 /* XMNPhotoPickerDefines.h */,
-				3134134C1CA28DC3003972E2 /* XMNPhotoPickerFramework.h */,
-				3134134D1CA28DC3003972E2 /* XMNPhotoPreviewCell.h */,
-				3134134E1CA28DC3003972E2 /* XMNPhotoPreviewCell.m */,
-				3134134F1CA28DC3003972E2 /* XMNPhotoPreviewController.h */,
-				313413501CA28DC3003972E2 /* XMNPhotoPreviewController.m */,
-				313413511CA28DC3003972E2 /* XMNVideoPreviewController.h */,
-				313413521CA28DC3003972E2 /* XMNVideoPreviewController.m */,
-			);
-			path = PickImage;
-			sourceTree = "<group>";
-		};
 		3135F8081C97BB2A00EF9569 /* 余额充值 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6533,7 +6440,6 @@
 				312D088B1CAA1C560006F0FA /* ShareSDK */,
 				319036631CA9041E00EA6191 /* CardIO */,
 				3182A1661CA620BF0084E890 /* GIFHud */,
-				313413301CA28DC3003972E2 /* PickImage */,
 				310EB5E31CA24435005C61F4 /* HCSRaiting */,
 				31B365A11CA0E8ED00CD7945 /* HZQDatePickerView */,
 				318D566F1C9FD40B0045B5FB /* ZJAlertView */,
@@ -7360,7 +7266,6 @@
 				04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */,
 				040FB5601D191E8700D453E3 /* private_key.p12 in Resources */,
 				31E1A72F1CA3C04A00D3496F /* cashViewController.xib in Resources */,
-				313413601CA28DC3003972E2 /* XMNPhotoPicker.xib in Resources */,
 				04D49C691CE706CD00BAD649 /* pptDetailCell.xib in Resources */,
 				31BBE28D1C9121B9006C553D /* mLoginView.xib in Resources */,
 				3135F80D1C97BB4500EF9569 /* mUserTopupViewController.xib in Resources */,
@@ -7440,7 +7345,6 @@
 				044A247A1CB4A85700A6379C /* kitchenTableViewCell.xib in Resources */,
 				040B80081CC4DBA3006A9489 /* inquireView.xib in Resources */,
 				3135F81E1C97D96800EF9569 /* mUserInfoViewController.xib in Resources */,
-				313413561CA28DC3003972E2 /* XMNAlbumCell.xib in Resources */,
 				318D566B1C9C012B0045B5FB /* MHSheetView.xib in Resources */,
 				04C15D681D3791630097DA6C /* mOrderDetailBottomView.xib in Resources */,
 				04E6CE7A1D632020000EB6B8 /* mDetailShopImgCell.xib in Resources */,
@@ -7468,10 +7372,8 @@
 				04E6CE731D631CF2000EB6B8 /* mDetailSectionView.xib in Resources */,
 				047290421D17E49300AA999B /* Emoji.plist in Resources */,
 				0461EC611D33A1800080A3ED /* mMarketRateViewController.xib in Resources */,
-				313413591CA28DC3003972E2 /* XMNAssetCell.xib in Resources */,
 				0405834D1D194CC50060C2DE /* mBaseConverSationViewController.xib in Resources */,
 				04D7339A1D6402F600F1C5DD /* mFoodComfirmFooterView.xib in Resources */,
-				3134135C1CA28DC3003972E2 /* XMNBottomBar.xib in Resources */,
 				DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */,
 				DF59A3021D76D3A8004A4075 /* paotui.mp3 in Resources */,
 				04D733981D64020C00F1C5DD /* mFoodComfirmBottomView.xib in Resources */,
@@ -7543,7 +7445,6 @@
 				749BEA471B3277AA00BABCA6 /* UIImage+GIF.m in Sources */,
 				DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */,
 				313D76CE1C9933BE004D5679 /* JVFloatLabeledTextView.m in Sources */,
-				313413611CA28DC3003972E2 /* XMNPhotoPickerController.m in Sources */,
 				04E093071CEA3EB700D3090E /* myTagViewController.m in Sources */,
 				043BFE2C1D7D0F590036888D /* QBAlbumsViewController.m in Sources */,
 				04F89C1A1D1D2781006A3976 /* mCoupViewController.m in Sources */,
@@ -7583,7 +7484,6 @@
 				04FACE861D6A981A0038CF7B /* ZXPDF417BarcodeMetadata.m in Sources */,
 				741B8DC01B3272C0002104A0 /* ContentScrollView.m in Sources */,
 				040BEF3E1D6D4FDF00BDD60F /* TYBaseAnimation.m in Sources */,
-				3134135B1CA28DC3003972E2 /* XMNBottomBar.m in Sources */,
 				746F8ACF1BEC330900C87992 /* UIColor+HexString.m in Sources */,
 				749BEA441B3277AA00BABCA6 /* SDWebImageManager.m in Sources */,
 				0405834C1D194CC50060C2DE /* mBaseConverSationViewController.m in Sources */,
@@ -7668,8 +7568,6 @@
 				04FACFBE1D6A98BD0038CF7B /* ZXDetectorResult.m in Sources */,
 				04FACFC11D6A98BD0038CF7B /* ZXHybridBinarizer.m in Sources */,
 				04E6CE5C1D630A6A000EB6B8 /* MYSegmentView.m in Sources */,
-				313413531CA28DC3003972E2 /* UIView+Animations.m in Sources */,
-				313413541CA28DC3003972E2 /* UIViewController+XMNPhotoHUD.m in Sources */,
 				04FAD0531D6A98F20038CF7B /* ZXAI013x0x1xDecoder.m in Sources */,
 				04FACF821D6A98A60038CF7B /* ZXCapture.m in Sources */,
 				3154428C1C9A8B7A0047E52A /* dataModel.m in Sources */,
@@ -7802,11 +7700,9 @@
 				DF10D8421D640FBA00220FB0 /* DTTimePeriodCollection.m in Sources */,
 				044A24841CB4B2EA00A6379C /* msgTableViewCell.m in Sources */,
 				04102CE51D2A5BC4003A0C56 /* BaseHeaderRefresh.m in Sources */,
-				313413551CA28DC3003972E2 /* XMNAlbumCell.m in Sources */,
 				3135F8171C97D5EE00EF9569 /* mCodeNameViewController.m in Sources */,
 				04C15D5D1D373F3C0097DA6C /* WKOrderCell.m in Sources */,
 				04EEADCD1D0FAED900FA97C6 /* UITextField+HDExtension.m in Sources */,
-				313413571CA28DC3003972E2 /* XMNAlbumModel.m in Sources */,
 				040B800C1CC4DFCC006A9489 /* mGoPayViewController.m in Sources */,
 				04C5B3371D4222A900AA212D /* mComfirmHederAndFooterSection.m in Sources */,
 				16B3CE0E1C22BFF50085E47B /* ZWSideIconBt.m in Sources */,
@@ -7844,7 +7740,6 @@
 				040BEF301D6D4FCF00BDD60F /* TYAlertView.m in Sources */,
 				742FB8FD1B5CDEA3005A1AFA /* WPTappableLabel.m in Sources */,
 				04FACF631D6A989D0038CF7B /* ZXCode39Reader.m in Sources */,
-				313413631CA28DC3003972E2 /* XMNPhotoPreviewController.m in Sources */,
 				04D733E21D64604200F1C5DD /* mFoodShopCarCell.m in Sources */,
 				04E6CE3E1D62B427000EB6B8 /* mFoodViewController.m in Sources */,
 				04FACF201D6A98910038CF7B /* ZXDataMatrixASCIIEncoder.m in Sources */,
@@ -7878,7 +7773,6 @@
 				04F89C131D1D15B2006A3976 /* mCommunityMyViewCell.m in Sources */,
 				749BEA101B32779800BABCA6 /* MJPhotoProgressView.m in Sources */,
 				04102CE11D2A509F003A0C56 /* MJRefreshNormalHeader.m in Sources */,
-				3134135E1CA28DC3003972E2 /* XMNPhotoManager.m in Sources */,
 				04FACF771D6A989D0038CF7B /* ZXUPCEANExtensionSupport.m in Sources */,
 				DF8344281D51DD51002C4FD6 /* CookDetailVC.m in Sources */,
 				04FACE221D6A97670038CF7B /* LBXScanVideoZoomView.m in Sources */,
@@ -7941,7 +7835,6 @@
 				04FACFC31D6A98BD0038CF7B /* ZXPerspectiveTransform.m in Sources */,
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
 				040B80051CC47875006A9489 /* payFeeViewController.m in Sources */,
-				3134135A1CA28DC3003972E2 /* XMNAssetModel.m in Sources */,
 				04FAE7E51D2CAA9E00341585 /* mFixOrderFooter.m in Sources */,
 				04FAD0C91D6A98FC0038CF7B /* ZXVCardResultParser.m in Sources */,
 				04FACE411D6A97F20038CF7B /* ZXQRCodeBitMatrixParser.m in Sources */,
@@ -7951,7 +7844,6 @@
 				043BFE341D7D0F590036888D /* QBVideoIndicatorView.m in Sources */,
 				04FAD0C31D6A98FC0038CF7B /* ZXTelParsedResult.m in Sources */,
 				04FACEC81D6A984D0038CF7B /* ZXQRCodeReader.m in Sources */,
-				3134135F1CA28DC3003972E2 /* XMNPhotoPicker.m in Sources */,
 				04FACEB81D6A983A0038CF7B /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
 				04DF9F781D4AED3C00BF2EAE /* RSKTouchView.m in Sources */,
 				318D56631C9C012B0045B5FB /* MHActionSheet.m in Sources */,
@@ -8019,7 +7911,6 @@
 				749BEA4B1B3277AA00BABCA6 /* UIImageView+MJWebCache.m in Sources */,
 				046B12E31CE184BC00A8FB76 /* MHSelectPickerView.m in Sources */,
 				04C15D7C1D37BCDA0097DA6C /* mSelectSenTypeViewController.m in Sources */,
-				313413621CA28DC3003972E2 /* XMNPhotoPreviewCell.m in Sources */,
 				04FACFBA1D6A98BD0038CF7B /* ZXByteArray.m in Sources */,
 				749BEA0F1B32779800BABCA6 /* MJPhotoLoadingView.m in Sources */,
 				04FACFF01D6A98C60038CF7B /* ZXResultPoint.m in Sources */,
@@ -8084,12 +7975,10 @@
 				040BEF311D6D4FCF00BDD60F /* UIView+TYAlertView.m in Sources */,
 				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
 				04FACFF11D6A98C60038CF7B /* ZXRGBLuminanceSource.m in Sources */,
-				313413641CA28DC3003972E2 /* XMNVideoPreviewController.m in Sources */,
 				04FACF611D6A989D0038CF7B /* ZXCodaBarReader.m in Sources */,
 				04FAD0CB1D6A98FC0038CF7B /* ZXVINParsedResult.m in Sources */,
 				04FAD0581D6A98F20038CF7B /* ZXAI013103decoder.m in Sources */,
 				318D566A1C9C012B0045B5FB /* MHSheetView.m in Sources */,
-				3134135D1CA28DC3003972E2 /* XMNPhotoCollectionController.m in Sources */,
 				04FAD0121D6A98E00038CF7B /* ZXAztecEncoder.m in Sources */,
 				04FACEA11D6A98240038CF7B /* ZXPDF417HighLevelEncoder.m in Sources */,
 				DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */,
@@ -8274,7 +8163,6 @@
 				DF535F191D62BAB1006E1598 /* RatingBarView.m in Sources */,
 				04FAD0151D6A98E00038CF7B /* ZXAztecState.m in Sources */,
 				31E1A72E1CA3C04A00D3496F /* cashViewController.m in Sources */,
-				313413581CA28DC3003972E2 /* XMNAssetCell.m in Sources */,
 				04E5A8171CE5C39700A2D111 /* pptMyAddressCell.m in Sources */,
 				04E6CE6B1D630B77000EB6B8 /* SecondViewTableViewController.m in Sources */,
 				749BE9E11B32776B00BABCA6 /* CunsomLabel.m in Sources */,
