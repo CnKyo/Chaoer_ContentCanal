@@ -59,7 +59,15 @@
     [self initView];
     [self initBarCodeView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self.tableView reloadData];
+}
+
+
 - (void)initView{
     
     mHeaderView = [walletView shareHeaderView];

@@ -21,6 +21,9 @@ static NSString * const sAppKey_Weather     = @"104ef5c579850";
 static NSString * const sAppKey_PostCode     = @"104ef5c579850";
 
 
+static NSString * const MyUserNeedLoginNotification     = @"MyUserNeedLoginNotification";
+static NSString * const MyUserNeedUpdateNotification     = @"MyUserNeedUpdateNotification";
+static NSString * const MyUserInfoChangedNotification   = @"MyUserInfoChangedNotification";
 static NSString * const MyOrderPaySuccessNotification   = @"MyOrderPaySuccessNotification";
 
 

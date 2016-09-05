@@ -176,6 +176,8 @@
             
             if( resb.mSucess )
             {
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
 
                 [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];

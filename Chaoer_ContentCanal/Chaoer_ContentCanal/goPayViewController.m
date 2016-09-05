@@ -258,6 +258,8 @@
 
 -(void)popVCWithPaySuccess
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil]; //需要刷新用户数据
+    
     if (_mIsPushFromOrderVC == YES) {
         [self popViewController];
     } else {

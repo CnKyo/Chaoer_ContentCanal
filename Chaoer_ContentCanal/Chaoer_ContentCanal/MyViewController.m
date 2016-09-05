@@ -76,21 +76,20 @@
     self.hiddenRightBtn = YES;
     self.navBar.hidden = YES;
     self.navigationController.navigationBar.barTintColor=M_CO;
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
     [self initView];
 }
 
-- (void)initData{
-    
+-(void)handleUserInfoChange:(NSNotification *)note
+{
     NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
     NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
     
     mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
     mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
-    
-    
-    
+ 
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     UIImage *mHead = nil;
     
@@ -108,7 +107,36 @@
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
     mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+}
 
+- (void)initData{
+    
+//    NSDictionary *mStyle = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.96 green:0.30 blue:0.29 alpha:1.00]};
+//    NSDictionary *mStyle2 = @{@"font":[UIFont systemFontOfSize:13],@"color": [UIColor colorWithRed:0.25 green:0.75 blue:0.42 alpha:1.00]};
+//    
+//    mHeaderView.mBalance.attributedText = [[NSString stringWithFormat:@"<font>余额</font> <color>%.2f元</color>",[mUserInfo backNowUser].mMoney] attributedStringWithStyleBook:mStyle];
+//    mHeaderView.mScore.attributedText = [[NSString stringWithFormat:@"<font>积分</font> <color>%d分</color>",[mUserInfo backNowUser].mCredit] attributedStringWithStyleBook:mStyle2];
+//    
+//    
+//    
+//    NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
+//    UIImage *mHead = nil;
+//    
+//    if ([mUserInfo backNowUser].mUserImgUrl == nil || [[mUserInfo backNowUser].mUserImgUrl isEqualToString:@""] || [mUserInfo backNowUser].mUserImgUrl.length == 0) {
+//        mHead = [UIImage imageNamed:@"rbgk"];
+//    }else{
+//        mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+//    }
+//    
+//    UIImage *mLastImg = [mHead applyLightEffect];
+//    
+//    MLLog(@"头像地址是：%@",url);
+//    mHeaderView.mBgkImg.image = mLastImg;
+//    [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"]];
+//    mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
+//    mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
+//    mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+    [self handleUserInfoChange:nil];
     
     [self.tempArray removeAllObjects];
     
