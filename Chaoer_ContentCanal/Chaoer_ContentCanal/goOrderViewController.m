@@ -23,7 +23,10 @@
 
 #import "choiseServicerViewController.h"
 #import "goOrderView.h"
-@interface goOrderViewController ()<HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource>
+
+#import "QBImagePicker.h"
+
+@interface goOrderViewController ()<HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource,QBImagePickerControllerDelegate>
 {
 
     HZQDatePickerView *_pikerView;
@@ -343,85 +346,82 @@
 #pragma mark---－上传图片
 - (void)mUploadImgAction:(UIButton *)sender{
     mSelecte = 1;
-    //1. 推荐使用XMNPhotoPicker 的单例
-    //2. 设置选择完照片的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingPhotosBlock:^(NSArray<UIImage *> *images, NSArray<XMNAssetModel *> *assets) {
-        
-        if (images.count > 1 || assets.count > 1) {
-            [LCProgressHUD showFailure:@"只能选择1张图片!"];
-            
-            MLLog(@"选择的图片超过3张!");
-            return ;
-        }
-        
-        MLLog(@"picker images :%@ \n\n assets:%@",images,assets);
-        
-        
-        if (assets) {
-            for (XMNAssetModel *model in assets) {
-                tempImage = [Util scaleImg:model.previewImage maxsize:450];
-                [mView.mUploadImgBtn setBackgroundImage:model.thumbnail forState:0];
-                
-            }
-        }else{
-            
-            for (UIImage *img in images) {
-                tempImage = [Util scaleImg:img maxsize:450];
-                [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
-            }
-        }
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyyMMddHHmmss";
-        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        NSData *imageData = UIImagePNGRepresentation(tempImage);
-        NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        [imageData writeToFile:aPath atomically:YES];
-        
-        
-        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
-        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
-        UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
-        
-        mImagePath = aPath;
-        
-        mImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
-        
-        
-        self.assets = [assets copy];
-        
-        
-        NSString    *mUrlStr = [NSString stringWithFormat:@"%@warranty/uploadWarrantyImg",[HTTPrequest currentResourceUrl]];
-        [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
-            [SVProgressHUD dismiss];
-            
-            
-            if (info.mSucess) {
-                [LCProgressHUD showSuccess:@"图片上传成功！"];
-                mImgUrlString = [info.mData objectForKey:@"pic"];
-                
-            }else{
-                [LCProgressHUD showFailure:info.mMessage];
-            }
-       
-        }];
-
-       
-    }];
-    //3. 设置选择完视频的block回调
-    [[XMNPhotoPicker sharePhotoPicker] setDidFinishPickingVideoBlock:^(UIImage * image, XMNAssetModel *asset) {
-        MLLog(@"picker video :%@ \n\n asset :%@",image,asset);
-        self.assets = @[asset];
-        
-    }];
-    //4. 显示XMNPhotoPicker
-    [[XMNPhotoPicker sharePhotoPicker] showPhotoPickerwithController:self animated:YES];
 
     
+    
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
+    imagePickerController.mediaType = QBImagePickerMediaTypeImage;
+    imagePickerController.allowsMultipleSelection = NO;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+    imagePickerController.minimumNumberOfSelection = 1;
+
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
+
+
+    
+}
+#pragma mark - QBImagePickerControllerDelegate
+
+- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets
+{
+    MLLog(@"--------%@", assets);
+    
+    if (assets.count != 0) {
+        
+        for (ALAsset *mAset in assets) {
+            tempImage = [Util fullResolutionImageFromALAsset:mAset];
+            [self loadImage];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+
+        }
+        
+      
+    }
     
 }
 
+- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
+{
+    MLLog(@"Canceled.");
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)loadImage{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    NSData *imageData = UIImagePNGRepresentation(tempImage);
+    NSString *aPath=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    [imageData writeToFile:aPath atomically:YES];
+    
+    
+    NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@.png",NSHomeDirectory(),nowTimeStr];
+    UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+    UIImageView* imageView3=[[UIImageView alloc]initWithImage:imgFromUrl3];
+    
+    mImagePath = aPath;
+    
+    mImgData = UIImagePNGRepresentation([Util scaleImg:imageView3.image maxsize:150]);
+ 
+    NSString    *mUrlStr = [NSString stringWithFormat:@"%@warranty/uploadWarrantyImg",[HTTPrequest currentResourceUrl]];
+    [[HTTPrequest sharedHDNetworking] postImg:mUrlStr andImg:tempImage call:^(mBaseData * _Nonnull info) {
+        [SVProgressHUD dismiss];
+        
+        
+        if (info.mSucess) {
+            [LCProgressHUD showSuccess:@"图片上传成功！"];
+            mImgUrlString = [info.mData objectForKey:@"pic"];
+            
+        }else{
+            [LCProgressHUD showFailure:info.mMessage];
+        }
+        
+    }];
+}
 #pragma mark---－上传视频
 - (void)mUploadVideoAction:(UIButton *)sender{
     

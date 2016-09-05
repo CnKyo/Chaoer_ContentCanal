@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 typedef enum _RelDic
 {
     E_dic_l = 1,    //左边
@@ -350,5 +352,7 @@ typedef enum _RelDic
  */
 + (NSMutableAttributedString *)WKLabelWithAttributString:(NSString *)mContent andColorText:(NSString *)mColorTex;
 
+
++ (UIImage *)fullResolutionImageFromALAsset:(ALAsset *)asset;
 
 @end
