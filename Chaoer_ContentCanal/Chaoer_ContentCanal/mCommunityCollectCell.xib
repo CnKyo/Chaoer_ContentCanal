@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxh-aY-iBZ">
-                                <rect key="frame" x="8" y="93" width="101" height="21"/>
+                                <rect key="frame" x="8" y="93" width="92" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="bND-YK-SKM"/>
                                 </constraints>
@@ -34,9 +34,10 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xif-7q-Lnb">
-                                <rect key="frame" x="111" y="93" width="31" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="xif-7q-Lnb">
+                                <rect key="frame" x="102" y="93" width="40" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="4NQ-AM-fLC"/>
                                     <constraint firstAttribute="height" constant="21" id="e6a-s5-JYL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -135,7 +136,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugh-1x-PQJ">
-                                <rect key="frame" x="8" y="93" width="38" height="21"/>
+                                <rect key="frame" x="8" y="93" width="92" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ahL-Xr-P3K"/>
                                 </constraints>
@@ -143,9 +144,10 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-L9-986">
-                                <rect key="frame" x="48" y="93" width="94" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-L9-986">
+                                <rect key="frame" x="102" y="93" width="40" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="aCg-y3-kNs"/>
                                     <constraint firstAttribute="height" constant="21" id="clL-8d-dWZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
