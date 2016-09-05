@@ -135,7 +135,7 @@
       
         
         if (resb.mSucess) {
-
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
         }else{
         
         }
@@ -172,6 +172,7 @@
     [self.mBanerArr removeAllObjects];
     mDownAppUrl = nil;
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoNeedChange:) name:MyUserNeedUpdateNotification object:nil];
   
     mIndex = 0;
     
@@ -190,6 +191,8 @@
             return;
         }
     }
+    
+    
 }
 
 - (void)appInit{
@@ -206,6 +209,14 @@
     
     
 }
+
+//用户需要更新数据
+-(void)handleUserInfoNeedChange:(NSNotification *)note
+{
+    [self upDateUserInfo];
+}
+
+
 - (void)getRCC{
     NSString *mtt = nil;
     if ([mUserInfo backNowUser].mUserId) {

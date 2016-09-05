@@ -145,6 +145,8 @@
     [mUserInfo  getCash:[mUserInfo backNowUser].mUserId andMoney:self.mMoneyTx.text andPresentManner:mPayType block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
 

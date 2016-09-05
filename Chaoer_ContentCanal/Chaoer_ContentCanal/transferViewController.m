@@ -170,6 +170,8 @@
     [[mUserInfo backNowUser] transferMoney:self.mAcountTx.text andMoney:[[NSString stringWithFormat:@"%@",self.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [self showSuccessStatus:resb.mMessage];
             [self popViewController];
         }
