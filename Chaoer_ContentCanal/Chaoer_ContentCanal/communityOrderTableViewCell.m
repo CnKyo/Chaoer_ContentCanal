@@ -74,7 +74,7 @@
         self.mdobtn.layer.borderColor = M_CO.CGColor;
         self.mdobtn.layer.borderWidth = 0.5;
     }else if (mShop.mState == 11){
-        mTT = @"进行中";
+        mTT = @"等待配送";
         self.mdobtn.enabled = NO;
         [self.mdobtn setTitle:mTT forState:0];
         [self.mdobtn setTitleColor:[UIColor lightGrayColor] forState:0];
@@ -85,7 +85,7 @@
     }else if (mShop.mState == 12){
         
         
-        mTT = @"已完成";
+        mTT = @"正在配送";
         
         
         self.mdobtn.enabled = NO;

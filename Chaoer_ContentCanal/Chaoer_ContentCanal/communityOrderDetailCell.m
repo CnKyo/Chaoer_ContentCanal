@@ -55,10 +55,10 @@
         mS = @"待支付";
         self.mCheckBtn.hidden = YES;
     }else if(mOrderInfo.mState == 11){
-        mS = @"进行中";
+        mS = @"等待配送";
         self.mCheckBtn.hidden = YES;
     }else if (mOrderInfo.mState == 12){
-        mS = @"已完成";
+        mS = @"正在配送";
         self.mCheckBtn.hidden = YES;
     }else{
         
