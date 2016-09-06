@@ -130,9 +130,9 @@
 - (void)AddressAction:(UIButton *)sender{
     pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
     ppt.mType = 1;
-    ppt.block = ^(NSString *content ,NSString *mId,NSString *mName){
-        mShopCarList.mAddress = content;
-        mShopCarList.mPhone = mId;
+    ppt.blockPhone = ^(NSString *mAddress ,NSString *mPhone,NSString *mName){
+        mShopCarList.mAddress = mAddress;
+        mShopCarList.mPhone = mPhone;
         mShopCarList.mArriveName = mName;
         [self upDatePage];
     };

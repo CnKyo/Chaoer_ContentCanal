@@ -141,7 +141,11 @@
         
         if (self.block) {
             self.block([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr],[NSString stringWithFormat:@"%d",mAddress.mId],mAddress.mUserName);
-        } else if (self.blockGPPTaddress) {
+        }
+        else if (self.blockPhone) {
+            self.blockPhone([NSString stringWithFormat:@"%@%@",mAddress.mAddress,mAddress.mDetailsAddr], mAddress.mPhone, mAddress.mUserName);
+        }
+        else if (self.blockGPPTaddress) {
             self.blockGPPTaddress(mAddress);
         }
         
