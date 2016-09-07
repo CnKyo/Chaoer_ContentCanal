@@ -228,7 +228,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 
     [self showWithStatus:@"加载中..."];
     [[mUserInfo backNowUser] getMyShopCarList:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
         [self removeEmptyView];
         [self.mShopCarIdsArr removeAllObjects];
         [self.mShopCarNumArr removeAllObjects];
@@ -287,7 +286,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
      
     [self showWithStatus:@"正在结算..."];
     [[mUserInfo backNowUser] shopcarGoPay:mJsonArr block:^(mBaseData *resb,GPayShopCar *mShopCarList) {
-        [self dismiss];
         if (resb.mSucess) {
             [self upDateBottom];
             comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
@@ -426,7 +424,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     if (mTagIds.length != 0) {
         [self showWithStatus:@"正在操作..."];
         [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
-            [self dismiss];
             if (resb.mSucess) {
                 self.hiddenRightBtn = YES;
                 [self.shoppingCar removeAllObjects];
@@ -856,7 +853,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 if (good.mSelected) {
                     [self showWithStatus:@"正在操作..."];
                     [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
-                        [self dismiss];
                         if (resb.mSucess) {
                             [self headerBeganRefresh];
                         }else{
@@ -892,7 +888,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             if (!good.mSelected) {
                 [self showWithStatus:@"正在操作..."];
                 [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
-                    [self dismiss];
                     if (resb.mSucess) {
                         [self headerBeganRefresh];
                     }else{
@@ -1124,7 +1119,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             if (mGood.mQuantity==1) {
                 [self showWithStatus:@"正在操作..."];
                 [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",mGood.mId] block:^(mBaseData *resb) {
-                    [self dismiss];
                     if (resb.mSucess) {
                         [self.shoppingCar removeObjectAtIndex:indexPath.section];
                         [self headerBeganRefresh];
@@ -1145,7 +1139,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 
                 [self showWithStatus:@"正在操作..."];
                 [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",mGood.mId] block:^(mBaseData *resb) {
-                    [self dismiss];
                     if (resb.mSucess) {
                         [shop.mGoodsArr removeObjectAtIndex:indexPath.row];
                         [self headerBeganRefresh];
