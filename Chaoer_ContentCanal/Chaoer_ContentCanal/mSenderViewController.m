@@ -426,6 +426,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 0)
+        return;
+    
     GPPTOrder *mPPtOrder = self.tempArray[indexPath.row];
 
     if (mPPtOrder.mProcessStatus == 0) {
