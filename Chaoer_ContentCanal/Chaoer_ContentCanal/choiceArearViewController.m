@@ -197,11 +197,12 @@
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
         if ([view isKindOfClass:[UIButton class]]) {
             UIButton *cancel =(UIButton *)view;
-            [cancel setTitle:@"取消" forState:UIControlStateNormal];
+            [cancel setTitle:@"确定" forState:UIControlStateNormal];
             [cancel setTitleColor:M_CO forState:UIControlStateNormal];
         }
     }
 }
+
 
 
 
@@ -247,6 +248,10 @@
     MLLog(@"取消吗");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
+    
+    if (searchBar.text.length > 0) {
+        [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:0.1];
+    }
 }
 
 /**

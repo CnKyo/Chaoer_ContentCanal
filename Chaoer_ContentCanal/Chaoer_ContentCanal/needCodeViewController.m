@@ -348,7 +348,6 @@
 #pragma mark----选择小区
 - (void)mSelectArearAction:(UIButton *)sender{
     
-    
     if (mProvinceId == nil || mProvinceId.length == 0 || [mProvinceId isEqualToString:@""]) {
         [self showErrorStatus:@"请选择地区！"];
         return;

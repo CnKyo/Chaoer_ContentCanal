@@ -105,7 +105,6 @@
     
     [self showWithStatus:@"正在提交..."];
     [[mUserInfo backNowUser] mRateMyMarketOrder:_mShopId andOrderCode:_mOrderCode andContent:mContent andSatisfaction:[[NSString stringWithFormat:@"%ld",(long)mOne] intValue] andSenderRate:[[NSString stringWithFormat:@"%ld",(long)mTwo] intValue] andGoods:[[NSString stringWithFormat:@"%ld",(long)mThree] intValue] block:^(mBaseData *resb) {
-        [self dismiss];
         if (resb.mSucess) {
             
             [self showSuccessStatus:resb.mMessage];

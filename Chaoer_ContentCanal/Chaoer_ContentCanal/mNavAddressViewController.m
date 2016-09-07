@@ -62,13 +62,13 @@
     self.page = 1;
     [self showWithStatus:@"正在加载中..."];
     [[mUserInfo backNowUser] getMarketAddress:self.page block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         [self headerEndRefresh];
         [self.tempArray removeAllObjects];
         [self removeEmptyView];
 
         if (resb.mSucess) {
-            
+            [self dismiss];
             if (mArr.count<=0) {
                 [self addEmptyView:nil];
 
@@ -90,13 +90,13 @@
     self.page ++;
     [self showWithStatus:@"正在加载中..."];
     [[mUserInfo backNowUser] getMarketAddress:self.page block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
 
         [self footetEndRefresh];
         [self removeEmptyView];
 
         if (resb.mSucess) {
-            
+            [self dismiss];
             if (mArr.count<=0) {
                 [self addEmptyView:nil];
 

@@ -207,8 +207,8 @@
     
     [self showWithStatus:@"正在结算..."];
     [[mUserInfo backNowUser] payFeeOrder:mParaData andUseSore:mShopCarList.mIsUseScore andAddress:mShopCarList.mAddress andPhone:mShopCarList.mPhone andIsCoup:isCoup andArriveName:mShopCarList.mArriveName block:^(mBaseData *resb) {
-        [self dismiss];
         if (resb.mSucess) {
+            [self dismiss];
             goPayViewController *goPay = [[goPayViewController alloc] initWithNibName:@"goPayViewController" bundle:nil];
             goPay.mMoney = [[resb.mData objectForKey:@"payableAmount"] floatValue];
             goPay.mOrderCode = [resb.mData objectForKey:@"orderIds"];
