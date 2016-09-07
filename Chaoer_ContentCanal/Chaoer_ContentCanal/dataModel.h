@@ -3885,6 +3885,9 @@
  *  配送费
  */
 @property (assign,nonatomic) float mSendPrice;
+
+@property (assign,nonatomic) BOOL mHaveSendPrice;
+
  /**
  *  减掉多少钱
  */
@@ -3935,6 +3938,7 @@
  *  配送
  */
 @property (assign,nonatomic) float mSendPrice;
+@property (assign,nonatomic) BOOL mHaveSendPrice;
 /**
  *  店铺名称
  */

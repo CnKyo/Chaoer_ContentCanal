@@ -395,21 +395,15 @@
          */
         if (mHaveDevelFee) {
             
-            if (mIsDeliver != mHaveDevelFee) {
+            if (mShop.mHaveSendPrice == NO) {
                 mShopCarList.mTotlePay += mShop.mSendPrice;
-                mIsDeliver = YES;
-            }else{
-
+                mShop.mHaveSendPrice = YES;
             }
-    
             
         }else{
-            if (mIsDeliver == mHaveDevelFee) {
-                mIsDeliver = NO;
-            }else{
-                mShopCarList.mTotlePay -= mShop.mSendPrice;
-                mIsDeliver = NO;
-            }
+      
+            mShopCarList.mTotlePay -= mShop.mSendPrice;
+            mShop.mHaveSendPrice = NO;
             
             
         }

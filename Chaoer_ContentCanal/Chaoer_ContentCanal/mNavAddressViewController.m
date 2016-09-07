@@ -260,7 +260,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    GMarketAddress *mAddress = self.tempArray[indexPath.row];
 
     if (indexPath.section == 0) {
         if (mLat.length == 0 || mLng.length == 0 || mDetailAddress.length == 0 ) {
@@ -272,6 +271,8 @@
             
         }
     }else{
+        GMarketAddress *mAddress = self.tempArray[indexPath.row];
+
         self.block(mAddress.mLat,mAddress.mLng,mAddress.mAddressName);
         [self popViewController];
 

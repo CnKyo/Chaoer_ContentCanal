@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QHLButton.h"
+@class QHLButton;
+@class mShopCarHeaderSection;
+
+
+@protocol WKHeaderViewDelegate <NSObject>
+
+@optional
+- (void)headerView:(mShopCarHeaderSection *)headerView selBtnDidClickToChangeAllSelBtn:(BOOL)selBtnSelectState andSection:(NSInteger)section;
+
+@end
 
 @interface mShopCarHeaderSection : UIView
-/**
- *  是否选择
- */
-@property (weak, nonatomic) IBOutlet UIImageView *mSelectImg;
+@property (weak, nonatomic) IBOutlet QHLButton *mSelBtn;
+
 /**
  *  图片
  */
@@ -21,18 +30,12 @@
  *  名称
  */
 @property (weak, nonatomic) IBOutlet UILabel *mName;
-/**
- *  活动
- */
-@property (weak, nonatomic) IBOutlet UILabel *mActivity;
+
 /**
  *  内容
  */
-@property (weak, nonatomic) IBOutlet UILabel *mContent;
-/**
- *  约束
- */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mContentLeft;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mContent;
+
 /**
  *  初始化方法
  *
@@ -49,5 +52,8 @@
  *  @return 返回view
  */
 + (mShopCarHeaderSection *)shareFooterView;
+@property (nonatomic, assign) NSInteger section;
+@property (nonatomic, strong) GShopCarList *shop;
+@property (nonatomic, weak) id<WKHeaderViewDelegate> headerViewDelegate;
 
 @end

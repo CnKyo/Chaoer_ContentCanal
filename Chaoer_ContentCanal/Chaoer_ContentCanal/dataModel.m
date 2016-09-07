@@ -7276,6 +7276,15 @@ bool pptbined = NO;
     self.mTotlePay = ppp-mContent;
     self.mSendPrice = mSS;
     
+    if (self.mSendPrice>0) {
+        self.mHaveSendPrice = YES;
+    }else{
+        self.mHaveSendPrice = NO;
+
+    }
+    
+    
+    
 
 
 }
@@ -7335,8 +7344,7 @@ bool pptbined = NO;
 
     }
     
-    
-  
+   
 }
 @end
 
