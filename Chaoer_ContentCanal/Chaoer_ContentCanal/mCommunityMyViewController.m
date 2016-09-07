@@ -525,7 +525,7 @@
     [self showWithStatus:@""];
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
-        [self dismiss];
+        //[self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
         }else{
@@ -538,7 +538,7 @@
     [self showWithStatus:@""];
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
-        [self dismiss];
+        //[self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
         }else{

@@ -695,7 +695,7 @@
     }
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mRightType block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
             
             for (MGoods *goods in self.tempArray) {
@@ -709,7 +709,7 @@
             }
             
             [self.tableView reloadData];
-            
+            [self dismiss];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -724,11 +724,11 @@
 
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId andNum:1 block:^(mBaseData *resb) {
-        [self dismiss];
         if (resb.mSucess) {
             [self.mShopCarArr addObject:mGoods];
             mShopCarNum+=1;
             [self upDateShopCar];
+            [self dismiss];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -741,11 +741,11 @@
     [self showWithStatus:@""];
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:mGoods.mGoodsId andNum:1 block:^(mBaseData *resb) {
-        [self dismiss];
         if (resb.mSucess) {
             [self.mShopCarArr addObject:mGoods];
             mShopCarNum+=1;
             [self upDateShopCar];
+            [self dismiss];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
