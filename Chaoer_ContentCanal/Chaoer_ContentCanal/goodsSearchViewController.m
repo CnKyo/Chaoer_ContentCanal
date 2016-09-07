@@ -124,7 +124,6 @@
     [self showWithStatus:@"正在操作中..."];
     [self.tempArray removeAllObjects];
     [[mUserInfo backNowUser] getNowUserInfo:self.tempArray block:^(mBaseData *resb, mUserInfo *user) {
-        [self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:@"清除成功"];
             [self.tempArray addObjectsFromArray:[mUserInfo backNowUser].mHistorySearchArr];
@@ -169,11 +168,12 @@
     [self showWithStatus:@"加载中..."];
     [[mUserInfo backNowUser] getHotSearch:^(mBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
-        [self dismiss];
+        
         [self.tempArray removeAllObjects];
 
         [mHotArr removeAllObjects];
         if (resb.mSucess) {
+            [self dismiss];
             [mHotArr addObjectsFromArray:mArr];
             MLLog(@"%@",[mUserInfo backNowUser].mHistorySearchArr);
             [self.tempArray addObjectsFromArray:mARRR];

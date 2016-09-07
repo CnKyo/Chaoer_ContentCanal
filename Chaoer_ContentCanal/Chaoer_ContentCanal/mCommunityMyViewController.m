@@ -434,9 +434,9 @@
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mLeftType block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
-            
+            [self dismiss];
             for (GCollectGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mLeftType;
@@ -460,9 +460,9 @@
 
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mRightType block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
-            
+            [self dismiss];
             for (GCollectGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
                     goods.mIsCollect = mRightType;
@@ -488,8 +488,9 @@
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectShop:mShop.mShopId andType:0 block:^(mBaseData *resb) {
-        [self dismiss];
+        
         if (resb.mSucess) {
+            [self dismiss];
             [self.tempArray removeAllObjects];
 //            for (GCollectionSHop *ms in self.tempArray) {
 //                if (mShop.mShopId == ms.mShopId) {
@@ -525,7 +526,6 @@
     [self showWithStatus:@""];
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
-        //[self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
         }else{
@@ -538,7 +538,6 @@
     [self showWithStatus:@""];
     
     [[mUserInfo backNowUser] addGoodsToShopCar:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mgoodsId] intValue] andNum:1 block:^(mBaseData *resb) {
-        //[self dismiss];
         if (resb.mSucess) {
             [self showSuccessStatus:resb.mMessage];
         }else{

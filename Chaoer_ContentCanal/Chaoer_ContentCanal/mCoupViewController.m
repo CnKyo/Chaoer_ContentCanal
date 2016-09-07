@@ -85,11 +85,11 @@
     
     [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
-        [self dismiss];
+        
         [self.tempArray removeAllObjects];
         [self removeEmptyView];
         if (resb.mSucess) {
-            
+            [self dismiss];
             
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];

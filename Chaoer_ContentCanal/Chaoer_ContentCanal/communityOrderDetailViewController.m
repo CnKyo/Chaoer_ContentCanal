@@ -139,10 +139,11 @@
     
     [[mUserInfo backNowUser] getMyMarketOrderDetail:self.mShop.mOrderCode andOrderType:self.mShop.mType block:^(mBaseData *resb, GMyMarketOrderInfo *mOrder) {
         
-        [self dismiss];
+        
         [self headerEndRefresh];
         [self removeEmptyView];
         if (resb.mSucess) {
+            [self dismiss];
             mOrderInfo = [GMyMarketOrderInfo new];
             mOrderInfo = mOrder;
             [self upDatePage];

@@ -586,9 +586,9 @@
 
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getTool:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
-            
+            [self dismiss];
             [self loadActionSheet:mArr];
             
         }else{

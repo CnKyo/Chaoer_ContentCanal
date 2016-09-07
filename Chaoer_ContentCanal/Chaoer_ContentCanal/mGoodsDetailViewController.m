@@ -274,8 +274,9 @@
         
         [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andNum:mNum block:^(mBaseData *resb) {
             
-            [self dismiss];
+            
             if (resb.mSucess) {
+                [self dismiss];
                 mGoodsDetail.mBadge+=mNum;
                 [self upDatePage];
                 [self hiddenBuyView];
@@ -491,9 +492,9 @@
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mId andType:mSelected block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
-
+            [self dismiss];
             mGoodsDetail.mIsFocus = mSelected;
             
             [self upDatePage];
@@ -541,8 +542,9 @@
     [[mUserInfo backNowUser] getGoodsDetail:_mSGoods.mGoodsId andShopId:_mShopId block:^(mBaseData *resb, SGoodsDetail *SGoods) {
         [self headerEndRefresh];
         [self removeEmptyView];
-        [self dismiss];
+        
         if (resb.mSucess) {
+            [self dismiss];
             mGoodsDetail = SGoods;
             // 添加子控件
             [self upDatePage];

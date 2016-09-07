@@ -297,8 +297,9 @@
     }
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectShop:mShopId andType:mShopCollect block:^(mBaseData *resb) {
-        [self dismiss];
+        
         if (resb.mSucess) {
+            [self dismiss];
             mIsFoucs = mShopCollect;
             [self upDatePage];
             
@@ -310,9 +311,17 @@
     
 }
 - (void)loadSectionView{
+    GClassN *all = [GClassN new];
+    all.mId = 0;
+    all.mName = @"全部";
+    
+    NSMutableArray *classNewArr = [NSMutableArray new];
+    [classNewArr addObject:all];
+    [classNewArr addObjectsFromArray:mClass];
+    [mClass setArray:classNewArr];
+    
     
     NSMutableArray *mclassArr = [NSMutableArray new];
-    [mclassArr removeAllObjects];
     for (GClassN *Class in mClass) {
         [mclassArr addObject:Class.mName];
     }
@@ -325,13 +334,13 @@
     
     [[mUserInfo backNowUser] getMaeketDetail:self.page andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
         
-        [self dismiss];
+        
         [self headerEndRefresh];
         [self removeEmptyView];
         [self.tempArray removeAllObjects];
         [mClass removeAllObjects];
         if (resb.mSucess) {
-            
+            [self dismiss];
             mShopCarNum = [[[resb.mData objectForKey:@"shop"] objectForKey:@"cart"] intValue];
             
             [mClass addObjectsFromArray:mClassArr];
@@ -356,14 +365,12 @@
     self.page ++;
     
     [[mUserInfo backNowUser] getMaeketDetail:self.page andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
-        
-        [self dismiss];
         [self footetEndRefresh];
         [self removeEmptyView];
         [mClass removeAllObjects];
 
         if (resb.mSucess) {
-           
+           [self dismiss];
             [mClass addObjectsFromArray:mClassArr];
             [self loadSectionView];
             [self upDatePage];
@@ -427,9 +434,10 @@
 - (void)initSearch{
     [self showWithStatus:@"正在搜索中..."];
     [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:mWIndex andPage:1 andKeyWord:mKeyWords block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         [self.tempArray removeAllObjects];
         if (resb.mSucess) {
+            [self dismiss];
             [self verifyBadge];
             if (mArr.count<= 0) {
                 [self addEmptyView:nil];
@@ -656,9 +664,9 @@
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mLeftType block:^(mBaseData *resb, NSArray *mArr) {
-        [self dismiss];
+        
         if (resb.mSucess) {
-            
+            [self dismiss];
             for (MGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
 

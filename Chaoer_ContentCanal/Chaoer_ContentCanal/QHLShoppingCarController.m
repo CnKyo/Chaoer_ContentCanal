@@ -290,8 +290,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
      
     [self showWithStatus:@"正在结算..."];
     [[mUserInfo backNowUser] shopcarGoPay:mJsonArr block:^(mBaseData *resb,GPayShopCar *mShopCarList) {
-        [self dismiss];
+        
         if (resb.mSucess) {
+            [self dismiss];
             [self upDateBottom];
             comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
             comfir.mShopCarList = nil;
@@ -428,8 +429,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     if (mTagIds.length != 0) {
         [self showWithStatus:@"正在操作..."];
         [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
-            [self dismiss];
+            
             if (resb.mSucess) {
+                [self dismiss];
                 self.hiddenRightBtn = YES;
                 [self.shoppingCar removeAllObjects];
                 [self.tableView reloadData];
@@ -756,8 +758,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 if (good.mSelected) {
                     [self showWithStatus:@"正在操作..."];
                     [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
-                        [self dismiss];
+                        
                         if (resb.mSucess) {
+                            [self dismiss];
                             [self headerBeganRefresh];
                         }else{
                             [self showErrorStatus:resb.mMessage];
@@ -792,8 +795,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             if (!good.mSelected) {
                 [self showWithStatus:@"正在操作..."];
                 [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",good.mId] block:^(mBaseData *resb) {
-                    [self dismiss];
+                    
                     if (resb.mSucess) {
+                        [self dismiss];
                         [self headerBeganRefresh];
                     }else{
                         [self showErrorStatus:resb.mMessage];
@@ -1020,9 +1024,9 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         
         [self showWithStatus:@"正在操作..."];
         [[mUserInfo backNowUser] deleteShopCarGoods:[NSString stringWithFormat:@"%d",mGood.mId] block:^(mBaseData *resb) {
-            [self dismiss];
+            
             if (resb.mSucess) {
-
+                [self dismiss];
             }else{
                 [self showErrorStatus:resb.mMessage];
             }

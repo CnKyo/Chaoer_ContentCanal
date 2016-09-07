@@ -130,12 +130,12 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getMyMarketOrderList:mType andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
         [self headerEndRefresh];
-        [self dismiss];
+        
         [self removeEmptyView];
         [self.mTempArr removeAllObjects];
         
         if (resb.mSucess) {
-            
+            [self dismiss];
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
             }else{
@@ -159,11 +159,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getMyMarketOrderList:mType andPage:self.page block:^(mBaseData *resb, NSArray *mArr) {
         [self footetEndRefresh];
-        [self dismiss];
+        
         [self removeEmptyView];
         
         if (resb.mSucess) {
-            
+            [self dismiss];
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
             }else{
