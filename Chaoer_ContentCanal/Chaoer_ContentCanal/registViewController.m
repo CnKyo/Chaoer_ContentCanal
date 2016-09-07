@@ -105,7 +105,7 @@
     [SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
 
     [mUserInfo getRegistVerifyCode:self.mPhone.text block:^(mBaseData *resb) {
-        if (resb.mData) {
+        if (resb.mSucess) {
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 
             mCode = [NSString stringWithFormat:@"%@",resb.mData];
