@@ -93,11 +93,12 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
     UIImage *mHead = nil;
     
-    if ([mUserInfo backNowUser].mUserImgUrl == nil || [[mUserInfo backNowUser].mUserImgUrl isEqualToString:@""] || [mUserInfo backNowUser].mUserImgUrl.length == 0) {
-        mHead = [UIImage imageNamed:@"rbgk"];
-    }else{
-        mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-    }
+//    if ([mUserInfo backNowUser].mUserImgUrl == nil || [[mUserInfo backNowUser].mUserImgUrl isEqualToString:@""] || [mUserInfo backNowUser].mUserImgUrl.length == 0) {
+//        mHead = [UIImage imageNamed:@"rbgk"];
+//    }else{
+//        mHead = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+//    }
+    mHead = [UIImage imageNamed:@"rbgk"];
     
     UIImage *mLastImg = [mHead applyLightEffect];
     
@@ -107,6 +108,13 @@
     mHeaderView.mName.text = [mUserInfo backNowUser].mNickName;
     mHeaderView.mJob.text = [mUserInfo backNowUser].mIdentity;
     mHeaderView.mPhone.text = [mUserInfo backNowUser].mPhone;
+    
+     [mHeaderView.mHeaderImg sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon_headerdefault"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+         if (image != nil) {
+             UIImage *mLastImg11 = [image applyLightEffect];
+             mHeaderView.mBgkImg.image = mLastImg11;
+         }
+     }];
 }
 
 - (void)initData{
