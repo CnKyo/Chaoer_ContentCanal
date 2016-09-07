@@ -4252,7 +4252,8 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     
     if (mContent) {
         [para setObject:mContent forKey:@"context"];
-    }
+    } else
+        [para setObject:@"空" forKey:@"context"];
     
     [para setObject:NumberWithInt(mSatisfaction) forKey:@"satisfaction"];
 

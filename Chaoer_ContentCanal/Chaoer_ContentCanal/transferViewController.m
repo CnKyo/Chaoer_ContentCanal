@@ -165,6 +165,11 @@
         [self.mMoneyTx becomeFirstResponder];
         return;
     }
+    if ([[NSString stringWithFormat:@"%@",self.mMoneyTx.text] intValue] <= 0 ) {
+        [self showErrorStatus:@"转账金额大于0元!"];
+        [self.mMoneyTx becomeFirstResponder];
+        return;
+    }
     
     [self showWithStatus:@"正在操作中..."];
     [[mUserInfo backNowUser] transferMoney:self.mAcountTx.text andMoney:[[NSString stringWithFormat:@"%@",self.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
