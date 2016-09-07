@@ -402,6 +402,8 @@
     if (indexPath.section == 0) {
         reuseCellId =  @"cell2";
         pptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         cell.delegate = self;
         [cell setMBanerArr:self.mBanerArr];
         [cell setMMainBtnArr:@[@"跑腿榜",@"发布",@"我的跑单",@"我的"]];
@@ -426,29 +428,36 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    GPPTOrder *mPPtOrder = self.tempArray[indexPath.row];
 
-    if (mPPtOrder.mProcessStatus == 0) {
-        [self showErrorStatus:@"订单已被取消，无法查看！"];
-    
-        return;
-    }
-    
-    pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
-    ppp.mOrderType = 1;
-    if (_mType == 0) {
-        ppp.mType = mPPtOrder.mType;
+    if (indexPath.section == 0) {
+        
     }else{
-        ppp.mType = _mType;
+        GPPTOrder *mPPtOrder = self.tempArray[indexPath.row];
+
+        if (mPPtOrder.mProcessStatus == 0) {
+            [self showErrorStatus:@"订单已被取消，无法查看！"];
+            
+            return;
+        }
+        
+        pptOrderDetailViewController *ppp = [[pptOrderDetailViewController alloc] initWithNibName:@"pptOrderDetailViewController" bundle:nil];
+        ppp.mOrderType = 1;
+        if (_mType == 0) {
+            ppp.mType = mPPtOrder.mType;
+        }else{
+            ppp.mType = _mType;
+        }
+        
+        ppp.mOrder = GPPTOrder.new;
+        ppp.mOrder = mPPtOrder;
+        
+        ppp.mLng = self.mLng;
+        ppp.mLat = self.mLat;
+        
+        [self pushViewController:ppp];
+
     }
-    
-    ppp.mOrder = GPPTOrder.new;
-    ppp.mOrder = mPPtOrder;
-    
-    ppp.mLng = self.mLng;
-    ppp.mLat = self.mLat;
-    
-    [self pushViewController:ppp];
+
 }
 
 - (void)rightBtnTouched:(id)sender{
