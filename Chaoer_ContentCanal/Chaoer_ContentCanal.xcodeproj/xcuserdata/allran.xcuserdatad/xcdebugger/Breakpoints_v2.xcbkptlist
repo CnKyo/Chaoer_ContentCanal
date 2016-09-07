@@ -35,53 +35,5 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chaoer_ContentCanal/mMarketDetailViewController.m"
-            timestampString = "494910433.278857"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "-footetBeganRefresh"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[mMarketDetailViewController footetBeganRefresh]"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/allran/Desktop/apple/APP/Chaoer/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/mMarketDetailViewController.m"
-                  timestampString = "494910433.455924"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "367"
-                  endingLineNumber = "367"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__49-[mMarketDetailViewController footetBeganRefresh]_block_invoke"
-                  moduleName = "Chaoer_ContentCanal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/allran/Desktop/apple/APP/Chaoer/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/mMarketDetailViewController.m"
-                  timestampString = "494910433.45603"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "367"
-                  endingLineNumber = "367"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
