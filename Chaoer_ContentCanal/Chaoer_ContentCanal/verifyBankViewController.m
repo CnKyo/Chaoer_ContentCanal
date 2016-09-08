@@ -344,10 +344,18 @@
         [self showErrorStatus:@"身份证不能为空"];
         return;
     }
+    if ([Util isHaveIllegalChar:mView.mBankIdentify.text]) {
+        [self showErrorStatus:@"身份证不能包含非法字符！"];
+        return;
+    }
     if (mView.mBanCardTx.text.length == 0) {
         [self showErrorStatus:@"银行卡不能为空"];
         [mView.mBanCardTx becomeFirstResponder];
 
+        return;
+    }
+    if ([Util isHaveIllegalChar:mView.mBanCardTx.text]) {
+        [self showErrorStatus:@"银行卡不能包含非法字符！"];
         return;
     }
     if (![Util checkIdentityCardNo:mView.mBankIdentify.text]) {

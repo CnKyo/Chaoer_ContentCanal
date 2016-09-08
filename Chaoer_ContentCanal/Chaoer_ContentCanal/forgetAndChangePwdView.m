@@ -173,17 +173,7 @@
             [self.wkCodeTx becomeFirstResponder];
             return;
         }
-//        [SUser reSetPswWithPhone:[SUser currentUser].mPhone newpsw:_wkNewPWD.text smcode:_wkCodeTx.text block:^(SResBase *resb, SUser *user) {
-//            if( resb.msuccess )
-//            {
-//                [SVProgressHUD showSuccessWithStatus:resb.mmsg];
-//                [self popToRootViewController];
-//            }
-//            else
-//            {
-//                [SVProgressHUD showErrorWithStatus:resb.mmsg];
-//            }
-//        }];
+
 
     }else{
         if (![Util isMobileNumber:self.wkPhoneTX.text]) {

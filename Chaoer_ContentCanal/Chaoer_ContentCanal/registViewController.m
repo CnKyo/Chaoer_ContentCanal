@@ -130,6 +130,10 @@
         [self.mCode becomeFirstResponder];
         return;
     }
+    else if ([Util isHaveIllegalChar:self.mComfirPwd.text]) {
+        [self showErrorStatus:@"密码内容不能包含非法字符！"];
+        return;
+    }
    else if (self.mComfirPwd.text.length != self.mPwd.text.length) {
         [self showErrorStatus:@"2次输入密码不一致"];
         [self.mPwd becomeFirstResponder];

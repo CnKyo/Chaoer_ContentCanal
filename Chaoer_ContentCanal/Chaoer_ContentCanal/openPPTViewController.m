@@ -208,6 +208,15 @@
         [mView.mIdentifyTx becomeFirstResponder];
         return;
     }
+    if (![Util checkIdentityCardNo:mView.mIdentifyTx.text]) {
+        [mView.mIdentifyTx becomeFirstResponder];
+        [self showErrorStatus:@"请输入合法的身份证号码"];
+        return;
+    }
+    if ([Util isHaveIllegalChar:mView.mIdentifyTx.text]) {
+        [self showErrorStatus:@"身份证不能包含非法字符！"];
+        return;
+    }
     if (mHandImgPath == nil && mFrontImgPath == nil && mForwordImgPath == nil) {
         [SVProgressHUD showErrorWithStatus:@"必须完善身份证照片！"];
         return;
