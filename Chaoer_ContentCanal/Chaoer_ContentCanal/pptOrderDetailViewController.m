@@ -54,6 +54,14 @@
     self.hiddenTabBar = YES;
     
     self.rightBtnImage = [UIImage imageNamed:@"right_phone"];
+    if (self.mPushType == 1 ) {
+        self.hiddenRightBtn = NO;
+    }else if(self.mPushType == 2){
+        self.hiddenRightBtn = NO;
+    }else{
+        self.hiddenRightBtn = YES;
+    }
+    
     
     [self initView];
     [self initPopView];
@@ -101,6 +109,7 @@
             
         }];
     }else{
+        
         [[mUserInfo backNowUser] getOrderDetail:self.mType andMorderID:[NSString stringWithFormat:@"%d",self.mOrder.mId] andOrderCode:self.mOrder.mOrderCode block:^(mBaseData *resb, GPPTOrder *mOrder) {
             
             [self headerEndRefresh];
@@ -571,26 +580,7 @@
             [self showErrorStatus:@"订单编号有误!请确认订单后重试。"];
             return;
         }
-        if (self.mLat == nil || self.mLat.length == 0 || [self.mLat isEqualToString:@""]) {
-            [self showErrorStatus:@"必须打开定位才能确认完成！"];
-            return;
-        }
-        
-        [self showWithStatus:@"正在操作..."];
-        
-//        [[GPPTer backPPTUser] finishPPTOrder:[[NSString stringWithFormat:@"%@",self.mOrder.mUserId] intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
-//            
-//            if (resb.mSucess) {
-//                [self showSuccessStatus:resb.mMessage];
-//                [self headerBeganRefresh];
-//            }else{
-//                
-//                [self showErrorStatus:resb.mMessage];
-//                [self headerBeganRefresh];
-//            }
-//            
-//            
-//        }];
+
         evolutionViewController *eee = [[evolutionViewController alloc] initWithNibName:@"evolutionViewController" bundle:nil];
         eee.mOrder = GPPTOrder.new;
         eee.mOrder = sender.mOrder;
@@ -659,7 +649,20 @@
 #pragma mark----打电话
 - (void)rightBtnTouched:(id)sender{
 
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.mOrder.mPhone];
+    NSString *mPhone = nil;
+    
+    if (self.mPushType == 1 ) {
+        mPhone = self.mOrder.mServiceTel;
+    }else if(self.mPushType == 2){
+        mPhone = self.mOrder.mPhone;
+    }else{
+        mPhone = nil;
+    }
+    if (mPhone.length == 0) {
+        [self showErrorStatus:@"暂无联系电话！"];
+        return;
+    }
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.mOrder.mServiceTel];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 

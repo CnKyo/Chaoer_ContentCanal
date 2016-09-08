@@ -159,10 +159,7 @@
         [SVProgressHUD showErrorWithStatus:@"请选择标签！"];
         return;
     }
-    if(self.mContent.text.length == 0){
-        [SVProgressHUD showErrorWithStatus:@"请输入评价内容！"];
-        return;
-    }
+   
     
     [SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [[mUserInfo backNowUser] rateOrder:[mUserInfo backNowUser].mUserId andLegUserId:[mUserInfo backNowUser].mLegworkUserId andSpeed:mSpeed andMass:mMass andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andContent:self.mContent.text andTags:mTagIds block:^(mBaseData *resb) {

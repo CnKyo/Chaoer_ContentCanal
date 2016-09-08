@@ -18,6 +18,10 @@
  *  跑腿类型 1是商品买送 2是事情办理 3是送东西
  */
 @property (nonatomic,assign) int mType;
+/**
+ *  1为发布2为接手
+ */
+@property (nonatomic,assign) int mPushType;
 
 /**
  *  订单对象

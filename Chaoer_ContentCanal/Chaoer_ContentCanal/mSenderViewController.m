@@ -447,7 +447,7 @@
         }else{
             ppp.mType = _mType;
         }
-        
+        ppp.mPushType = 3;
         ppp.mOrder = GPPTOrder.new;
         ppp.mOrder = mPPtOrder;
         

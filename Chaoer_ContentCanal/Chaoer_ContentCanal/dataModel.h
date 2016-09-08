@@ -2627,7 +2627,9 @@
 @property (nonatomic,strong) NSString*  mPortrait;
 
 @property (nonatomic,assign) int        mIsTake;
-
+/**
+ *  发布者电话
+ */
 @property (nonatomic,strong) NSString*  mPhone;
 
 @property (nonatomic,strong) NSString*  mTypeName;
@@ -2642,6 +2644,12 @@
 @property (nonatomic,strong) NSString*  mGoodsTypeName;
 
 @property (nonatomic,assign) int        mPayType;
+
+@property (nonatomic,strong) NSString*  mServiceName;
+/**
+ *  跑腿者电话
+ */
+@property (nonatomic,strong) NSString*  mServiceTel;
 
 -(id)initWithObj:(NSDictionary*)obj;
 

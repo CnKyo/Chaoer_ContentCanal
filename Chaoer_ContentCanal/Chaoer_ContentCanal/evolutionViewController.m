@@ -103,7 +103,7 @@
         [self popViewController_2];
     }else{
         [self showErrorStatus:@"评价失败，请重试！"];
-        [self popViewController];
+//        [self popViewController];
     }
     
 }

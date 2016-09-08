@@ -5843,6 +5843,10 @@ bool g_rccbined = NO;
     self.mGoodsTypeName = [obj objectForKeyMy:@"goodsTypeName"];
     self.mPayType = [[obj objectForKeyMy:@"payMethod"] intValue];
 
+    
+    self.mServiceTel = [obj objectForKeyMy:@"serviceTel"];
+    self.mServiceName = [obj objectForKeyMy:@"serviceName"];
+
 
 }
 
