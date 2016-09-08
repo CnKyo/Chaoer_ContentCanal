@@ -108,6 +108,9 @@
             int isSign = [[resb.mData objectForKey:@"is_SignIn"] boolValue];
             
             [mUserInfo backNowUser].mIsSign = isSign?1:0;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+            
             [self.tableView reloadData];
         }else{
             [self showErrorStatus:resb.mMessage];

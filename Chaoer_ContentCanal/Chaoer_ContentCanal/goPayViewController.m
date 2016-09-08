@@ -90,6 +90,14 @@
     
     self.mBalance.text = [NSString stringWithFormat:@"余额:%.2f元",[mUserInfo backNowUser].mMoney];
     self.mPayMoney.text = [NSString stringWithFormat:@"¥%.2f元",mMoney];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+    
+}
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    self.mBalance.text = [NSString stringWithFormat:@"余额:%.2f元",[mUserInfo backNowUser].mMoney];
 }
 
 

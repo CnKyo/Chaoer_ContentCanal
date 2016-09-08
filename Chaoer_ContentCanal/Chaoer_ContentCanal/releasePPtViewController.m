@@ -893,6 +893,8 @@
         [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                
                 [self showSuccessStatus:resb.mMessage];
                 [self popViewController];
             }else{
@@ -906,6 +908,8 @@
         [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                
                 [self showSuccessStatus:resb.mMessage];
                 [self popViewController];
             }else{
@@ -918,6 +922,8 @@
         [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:mTagIds andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:nil andMoney:mMoney andAddress:nil andPhone:mPhoneStr andNote:mNoteStr andArriveTime:nil andGoodsName:mGoodsName andGoodsPrice:mGoodsPrice andSendAddress:mSendAddress andArriveAddress:mArriveAddress andTool:mToolId block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                
                 [self showSuccessStatus:resb.mMessage];
                 [self popViewController];
             }else{

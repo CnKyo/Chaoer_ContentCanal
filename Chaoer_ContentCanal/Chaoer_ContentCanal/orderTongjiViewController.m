@@ -36,6 +36,7 @@
   
     [self initViuew];
 }
+
 - (void)initViuew{
     
     UIImageView *iii = [UIImageView new];

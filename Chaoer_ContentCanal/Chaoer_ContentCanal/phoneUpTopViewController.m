@@ -39,6 +39,8 @@
     [SVProgressHUD showWithStatus:@"正在充值..." maskType:SVProgressHUDMaskTypeClear];
     [mUserInfo topUpPhone:self.mPhoneT.text andNum:[[mTT lastObject] floatValue] andUserId:[mUserInfo backNowUser].mUserId block:^(mBaseData *resb) {
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
 
         }else{
@@ -57,7 +59,16 @@
     
     mTT = [NSMutableArray new];
     [self initView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+    
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    self.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
+}
+
 - (void)initView{
 
     self.mGopayBtn.layer.masksToBounds = YES;

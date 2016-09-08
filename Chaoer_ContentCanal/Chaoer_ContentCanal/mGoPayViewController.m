@@ -152,6 +152,8 @@
     
     [[mUserInfo backNowUser] goPay:para block:^(mJHBaseData *resb) {
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
             [self popViewController_2];
         }else{

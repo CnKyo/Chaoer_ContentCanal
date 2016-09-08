@@ -239,8 +239,15 @@
     
     [self initView];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    mCanView.mBalance.text = [NSString stringWithFormat:@"账户余额:%.2f元",[mUserInfo backNowUser].mMoney];
+}
+
 - (void)initView{
     
    
@@ -330,6 +337,8 @@
     [[mUserInfo backNowUser] payCanal:mParas block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self popViewController];
         }else{

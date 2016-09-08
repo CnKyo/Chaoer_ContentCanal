@@ -132,10 +132,8 @@
 - (void)upDateUserInfo{
 
     [[mUserInfo backNowUser] getNowUserInfo:[mUserInfo backNowUser].mHistorySearchArr block:^(mBaseData *resb, mUserInfo *user) {
-      
-        
         if (resb.mSucess) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
+            
         }else{
         
         }

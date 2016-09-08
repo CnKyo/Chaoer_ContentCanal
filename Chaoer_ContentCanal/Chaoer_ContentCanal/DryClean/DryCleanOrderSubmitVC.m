@@ -488,7 +488,7 @@ typedef enum {
             self.chooseAddress = [AddressObject new];
             self.chooseAddress.iD = item.mId;
             self.chooseAddress.userName = item.mUserName;
-            self.chooseAddress.address = item.mAddress;
+            self.chooseAddress.address = [NSString stringWithFormat:@"%@%@", item.mAddress, item.mDetailsAddr];
             self.chooseAddress.phone = item.mPhone;
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         };

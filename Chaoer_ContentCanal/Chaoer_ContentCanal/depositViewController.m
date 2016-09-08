@@ -71,6 +71,8 @@
                 [self showErrorStatus:@"正在提交...."];
                 [[mUserInfo backNowUser] payPPTAplly:^(mBaseData *resb) {
                     if (resb.mSucess) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+                        
                         [self dismiss];
                         
                         pptStatusViewController *ppp = [[pptStatusViewController alloc] initWithNibName:@"pptStatusViewController" bundle:nil];
