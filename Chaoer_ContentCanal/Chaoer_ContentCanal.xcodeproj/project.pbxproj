@@ -141,6 +141,7 @@
 		0453DC021CF88F9C006C9B6B /* LTPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0453DC001CF88F9C006C9B6B /* LTPickerView.xib */; };
 		04540F661D1BD9C100A73F30 /* mCommunityNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04540F651D1BD9C100A73F30 /* mCommunityNavView.m */; };
 		04540F681D1BD9CC00A73F30 /* mCommunityNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04540F671D1BD9CC00A73F30 /* mCommunityNavView.xib */; };
+		045B3B8F1D819E7000146485 /* FZHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3B8E1D819E7000146485 /* FZHPickerView.m */; };
 		0461B77B1CD4D64600B950BD /* mServiceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B7791CD4D64600B950BD /* mServiceClassViewController.m */; };
 		0461B77C1CD4D64600B950BD /* mServiceClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */; };
 		0461B77F1CD4D78000B950BD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0461B77E1CD4D78000B950BD /* ChatListViewController.m */; };
@@ -228,6 +229,8 @@
 		04AD8AA01CE326CC00A3F87F /* pptHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD8A9F1CE326CC00A3F87F /* pptHeaderView.xib */; };
 		04AD8AA61CE3319200A3F87F /* pptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */; };
 		04AD8AA71CE3319200A3F87F /* pptTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */; };
+		04AFEA4E1D819C3B00CDBD6A /* WKChoiceArearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AFEA4D1D819C3B00CDBD6A /* WKChoiceArearView.m */; };
+		04AFEA501D819C4500CDBD6A /* WKChoiceArearView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AFEA4F1D819C4500CDBD6A /* WKChoiceArearView.xib */; };
 		04B3BAFB1D13E965000C7B2E /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B3BAAD1D13E965000C7B2E /* libcrypto.a */; };
 		04B3BAFC1D13E965000C7B2E /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B3BAAE1D13E965000C7B2E /* libssl.a */; };
 		04B3BB011D13E979000C7B2E /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B3BAFE1D13E979000C7B2E /* Base64.m */; };
@@ -1389,6 +1392,8 @@
 		04540F641D1BD9C100A73F30 /* mCommunityNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mCommunityNavView.h; sourceTree = "<group>"; };
 		04540F651D1BD9C100A73F30 /* mCommunityNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mCommunityNavView.m; sourceTree = "<group>"; };
 		04540F671D1BD9CC00A73F30 /* mCommunityNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCommunityNavView.xib; sourceTree = "<group>"; };
+		045B3B8D1D819E7000146485 /* FZHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZHPickerView.h; sourceTree = "<group>"; };
+		045B3B8E1D819E7000146485 /* FZHPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZHPickerView.m; sourceTree = "<group>"; };
 		0461B7781CD4D64600B950BD /* mServiceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mServiceClassViewController.h; sourceTree = "<group>"; };
 		0461B7791CD4D64600B950BD /* mServiceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mServiceClassViewController.m; sourceTree = "<group>"; };
 		0461B77A1CD4D64600B950BD /* mServiceClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mServiceClassViewController.xib; sourceTree = "<group>"; };
@@ -1523,6 +1528,9 @@
 		04AD8AA31CE3319200A3F87F /* pptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pptTableViewCell.h; sourceTree = "<group>"; };
 		04AD8AA41CE3319200A3F87F /* pptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pptTableViewCell.m; sourceTree = "<group>"; };
 		04AD8AA51CE3319200A3F87F /* pptTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pptTableViewCell.xib; sourceTree = "<group>"; };
+		04AFEA4C1D819C3B00CDBD6A /* WKChoiceArearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKChoiceArearView.h; sourceTree = "<group>"; };
+		04AFEA4D1D819C3B00CDBD6A /* WKChoiceArearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKChoiceArearView.m; sourceTree = "<group>"; };
+		04AFEA4F1D819C4500CDBD6A /* WKChoiceArearView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WKChoiceArearView.xib; sourceTree = "<group>"; };
 		04B3BAAD1D13E965000C7B2E /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		04B3BAAE1D13E965000C7B2E /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		04B3BAB01D13E965000C7B2E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -3745,6 +3753,18 @@
 			name = "申请跑跑腿";
 			sourceTree = "<group>";
 		};
+		04AFEA4B1D819C0900CDBD6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04AFEA4C1D819C3B00CDBD6A /* WKChoiceArearView.h */,
+				04AFEA4D1D819C3B00CDBD6A /* WKChoiceArearView.m */,
+				04AFEA4F1D819C4500CDBD6A /* WKChoiceArearView.xib */,
+				045B3B8D1D819E7000146485 /* FZHPickerView.h */,
+				045B3B8E1D819E7000146485 /* FZHPickerView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		04B3BAAC1D13E965000C7B2E /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -5547,6 +5567,7 @@
 				315442851C9A54800047E52A /* mFeedPersonViewController.h */,
 				315442861C9A54800047E52A /* mFeedPersonViewController.m */,
 				315442871C9A54800047E52A /* mFeedPersonViewController.xib */,
+				04AFEA4B1D819C0900CDBD6A /* View */,
 			);
 			name = "投诉建议";
 			sourceTree = "<group>";
@@ -7183,6 +7204,7 @@
 				746F8ACE1BEC330900C87992 /* HZQDatePickerView.xib in Resources */,
 				04B4630E1D24F17100001ECB /* mSearchHeaderSectionView.xib in Resources */,
 				04FA3E741D2207A000EA9E34 /* shopCarFooterView.xib in Resources */,
+				04AFEA501D819C4500CDBD6A /* WKChoiceArearView.xib in Resources */,
 				04E5A7CF1CE56A5100A2D111 /* pptHistoryTableViewCell.xib in Resources */,
 				04102E2D1CE46215006F82E2 /* releaseCell.xib in Resources */,
 				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,
@@ -8053,6 +8075,7 @@
 				04FAD0561D6A98F20038CF7B /* ZXAI01392xDecoder.m in Sources */,
 				04FE0DD61CFC01CF003CAF88 /* UIImage+ImageEffects.m in Sources */,
 				04F5FFFE1D23A87C00EFBB3C /* GoodsDetailNavView.m in Sources */,
+				045B3B8F1D819E7000146485 /* FZHPickerView.m in Sources */,
 				04C1FD581CF846500057DEBD /* CurentLocation.m in Sources */,
 				04FACF051D6A98830038CF7B /* ZXDataMatrixDecoder.m in Sources */,
 				04FACE8A1D6A981A0038CF7B /* ZXPDF417CodewordDecoder.m in Sources */,
@@ -8081,6 +8104,7 @@
 				04FACEAE1D6A98340038CF7B /* ZXModulusGF.m in Sources */,
 				04AD8A9A1CE323B300A3F87F /* pptStatusViewController.m in Sources */,
 				04E6CE7E1D633743000EB6B8 /* mFoodDetailViewController.m in Sources */,
+				04AFEA4E1D819C3B00CDBD6A /* WKChoiceArearView.m in Sources */,
 				04FACFFB1D6A98CB0038CF7B /* ZXAztecWriter.m in Sources */,
 				04102CE21D2A509F003A0C56 /* MJRefreshStateHeader.m in Sources */,
 				04EEADFD1D0FAFCA00FA97C6 /* AFAutoPurgingImageCache.m in Sources */,

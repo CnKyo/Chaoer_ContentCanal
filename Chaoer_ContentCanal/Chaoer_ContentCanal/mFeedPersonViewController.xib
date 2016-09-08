@@ -8,9 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="mFeedPersonViewController">
             <connections>
                 <outlet property="mBgkView" destination="GFx-c7-KBv" id="9kD-N2-9tC"/>
-                <outlet property="mBuildBtn" destination="uqg-Ga-w49" id="wF5-yZ-ktB"/>
-                <outlet property="mDoorNumBtn" destination="Wg2-mB-HmE" id="plD-Wx-X2g"/>
-                <outlet property="mFloorBtn" destination="Nni-Ym-egw" id="1R7-7j-ovm"/>
                 <outlet property="mProvinceBtn" destination="JGd-IQ-HtS" id="MVt-mg-gvr"/>
                 <outlet property="mReason" destination="gdu-tp-dzf" id="hmc-2U-Wb7"/>
                 <outlet property="mSubmit" destination="2Vo-s9-UD8" id="TOc-iN-w86"/>
@@ -84,32 +81,8 @@
                                 <action selector="mValiigeAction:" destination="-1" eventType="touchUpInside" id="cnc-xj-T3X"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="楼栋号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-sk-zYz">
-                            <rect key="frame" x="10" y="98" width="60" height="21"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="soR-nK-aJm"/>
-                                <constraint firstAttribute="height" constant="21" id="wuV-uW-ZdX"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqg-Ga-w49">
-                            <rect key="frame" x="65" y="98" width="247" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="2jW-sd-S4b"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="选择楼栋">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="mBuildAction:" destination="-1" eventType="touchUpInside" id="X0J-v7-Mty"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门牌单元：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoO-Dc-lKX">
-                            <rect key="frame" x="10" y="127" width="65" height="21"/>
+                            <rect key="frame" x="10" y="95" width="65" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="0gi-dw-wLP"/>
@@ -118,58 +91,40 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="SD0-x7-GfB"/>
+                                </mask>
+                            </variation>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-1a-vNc">
-                            <rect key="frame" x="70" y="127" width="80" height="21"/>
+                            <rect key="frame" x="76" y="95" width="224" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="3he-VI-xXB"/>
                                 <constraint firstAttribute="width" constant="80" id="nZQ-lL-CY7"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="选择单元">
+                            <state key="normal" title="选择门牌号">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="nZQ-lL-CY7"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="mUnitAction:" destination="-1" eventType="touchUpInside" id="IqN-mk-bfG"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nni-Ym-egw">
-                            <rect key="frame" x="148" y="127" width="80" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="6y2-4b-95H"/>
-                                <constraint firstAttribute="height" constant="21" id="HAA-SV-W5Q"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="选择楼层">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="mFloorAction:" destination="-1" eventType="touchUpInside" id="dDR-eS-H2X"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg2-mB-HmE">
-                            <rect key="frame" x="226" y="127" width="80" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="MJb-ge-eUZ"/>
-                                <constraint firstAttribute="height" constant="21" id="g67-xA-ZO0"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="选择门牌号">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="mDoorAction:" destination="-1" eventType="touchUpInside" id="9nd-O1-ypq"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uO-XZ-SxA">
-                            <rect key="frame" x="20" y="156" width="280" height="1"/>
+                            <rect key="frame" x="20" y="124" width="280" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.29684806034482758" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="o99-lp-OKv"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉的原因是:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRI-FS-Jvx">
-                            <rect key="frame" x="10" y="171" width="290" height="21"/>
+                            <rect key="frame" x="10" y="139" width="290" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="181-AS-CxQ"/>
                             </constraints>
@@ -178,7 +133,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-tp-dzf" customClass="IQTextView">
-                            <rect key="frame" x="10" y="200" width="290" height="60"/>
+                            <rect key="frame" x="10" y="168" width="290" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="ww2-97-4Zh"/>
@@ -187,7 +142,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-hp-JhE">
-                            <rect key="frame" x="0.0" y="279" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="247" width="320" height="1"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.30029633620689655" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="F7f-FN-hCq"/>
@@ -196,24 +151,22 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="UoO-Dc-lKX" firstAttribute="top" secondItem="3PX-Nn-CU3" secondAttribute="bottom" constant="5" id="0uE-ob-REB"/>
                         <constraint firstItem="8uO-XZ-SxA" firstAttribute="top" secondItem="g5U-1a-vNc" secondAttribute="bottom" constant="8" id="2Tw-Z3-IQD"/>
                         <constraint firstAttribute="trailing" secondItem="g5U-1a-vNc" secondAttribute="trailing" constant="8" id="3G8-NO-eXO"/>
+                        <constraint firstAttribute="trailing" secondItem="g5U-1a-vNc" secondAttribute="trailing" constant="20" id="3WZ-Ck-r9J"/>
                         <constraint firstItem="gdu-tp-dzf" firstAttribute="top" secondItem="iRI-FS-Jvx" secondAttribute="bottom" constant="8" id="8lL-Bd-s4v"/>
                         <constraint firstItem="8Tf-Fl-WcK" firstAttribute="top" secondItem="l5j-60-psP" secondAttribute="bottom" constant="108" id="8u4-d0-buW"/>
                         <constraint firstItem="3PX-Nn-CU3" firstAttribute="leading" secondItem="8Tf-Fl-WcK" secondAttribute="trailing" constant="-5" id="9NE-b1-yb9"/>
-                        <constraint firstItem="Wg2-mB-HmE" firstAttribute="leading" secondItem="Nni-Ym-egw" secondAttribute="trailing" constant="-2" id="CNA-Fc-Pwn"/>
-                        <constraint firstItem="uqg-Ga-w49" firstAttribute="leading" secondItem="6cF-sk-zYz" secondAttribute="trailing" constant="-5" id="E3n-Oe-U9H"/>
+                        <constraint firstItem="g5U-1a-vNc" firstAttribute="leading" secondItem="UoO-Dc-lKX" secondAttribute="trailing" constant="1" id="9in-ZK-Qtl"/>
                         <constraint firstAttribute="trailing" secondItem="gdu-tp-dzf" secondAttribute="trailing" constant="20" id="E5Q-aw-E22"/>
                         <constraint firstItem="UoO-Dc-lKX" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="G1P-xE-4Fk"/>
-                        <constraint firstItem="uqg-Ga-w49" firstAttribute="top" secondItem="3PX-Nn-CU3" secondAttribute="bottom" constant="8" id="HRm-bp-PnU"/>
                         <constraint firstItem="iRI-FS-Jvx" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="L0n-C9-QU6"/>
                         <constraint firstItem="gdu-tp-dzf" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="LCO-94-ePo"/>
                         <constraint firstItem="8Tf-Fl-WcK" firstAttribute="top" secondItem="JGd-IQ-HtS" secondAttribute="bottom" constant="10" id="NnH-4o-e9C"/>
-                        <constraint firstItem="Nni-Ym-egw" firstAttribute="baseline" secondItem="g5U-1a-vNc" secondAttribute="baseline" id="Or4-YG-2nY"/>
-                        <constraint firstItem="6cF-sk-zYz" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="Oz5-1p-g1s"/>
-                        <constraint firstItem="6cF-sk-zYz" firstAttribute="top" secondItem="8Tf-Fl-WcK" secondAttribute="bottom" constant="8" id="UFM-Yz-VcW"/>
-                        <constraint firstAttribute="trailing" secondItem="uqg-Ga-w49" secondAttribute="trailing" constant="8" id="UOF-6Q-qcP"/>
-                        <constraint firstItem="Nni-Ym-egw" firstAttribute="leading" secondItem="g5U-1a-vNc" secondAttribute="trailing" constant="-2" id="VJW-OL-fXb"/>
+                        <constraint firstItem="iRI-FS-Jvx" firstAttribute="leading" secondItem="UoO-Dc-lKX" secondAttribute="leading" id="Ro3-so-1Vg"/>
+                        <constraint firstItem="g5U-1a-vNc" firstAttribute="top" secondItem="3PX-Nn-CU3" secondAttribute="bottom" constant="5" id="Sfi-eG-Cx8"/>
+                        <constraint firstItem="8uO-XZ-SxA" firstAttribute="trailing" secondItem="g5U-1a-vNc" secondAttribute="trailing" id="Ugu-QQ-Kng"/>
                         <constraint firstAttribute="trailing" secondItem="3PX-Nn-CU3" secondAttribute="trailing" constant="8" id="XVs-WB-R3C"/>
                         <constraint firstItem="O0g-oE-sCw" firstAttribute="top" secondItem="l5j-60-psP" secondAttribute="bottom" constant="9" id="XZe-EX-PXn"/>
                         <constraint firstItem="iRI-FS-Jvx" firstAttribute="top" secondItem="8uO-XZ-SxA" secondAttribute="bottom" constant="14" id="XfT-8P-XkK"/>
@@ -227,7 +180,6 @@
                         <constraint firstItem="JGd-IQ-HtS" firstAttribute="leading" secondItem="O0g-oE-sCw" secondAttribute="trailing" constant="-5" id="jZ6-kr-xw1"/>
                         <constraint firstAttribute="bottom" secondItem="hNa-hp-JhE" secondAttribute="bottom" id="mf5-pU-8h6"/>
                         <constraint firstAttribute="trailing" secondItem="hNa-hp-JhE" secondAttribute="trailing" id="mnk-Dn-TBz"/>
-                        <constraint firstItem="Nni-Ym-egw" firstAttribute="top" secondItem="UoO-Dc-lKX" secondAttribute="top" id="ojJ-Wz-6JN"/>
                         <constraint firstItem="O0g-oE-sCw" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="q0a-tP-1ih"/>
                         <constraint firstItem="8uO-XZ-SxA" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="20" id="qLf-2r-nGr"/>
                         <constraint firstItem="l5j-60-psP" firstAttribute="top" secondItem="GFx-c7-KBv" secondAttribute="top" constant="8" id="r4b-x0-GEa"/>
@@ -236,15 +188,16 @@
                         <constraint firstAttribute="trailing" secondItem="8uO-XZ-SxA" secondAttribute="trailing" constant="20" id="uYF-cg-bRy"/>
                         <constraint firstItem="8Tf-Fl-WcK" firstAttribute="leading" secondItem="GFx-c7-KBv" secondAttribute="leading" constant="10" id="vgz-Ju-KLn"/>
                         <constraint firstItem="3PX-Nn-CU3" firstAttribute="top" secondItem="JGd-IQ-HtS" secondAttribute="bottom" constant="10" id="vku-5j-T03"/>
-                        <constraint firstItem="UoO-Dc-lKX" firstAttribute="top" secondItem="6cF-sk-zYz" secondAttribute="bottom" constant="8" id="vv4-Yy-ecZ"/>
                         <constraint firstItem="JGd-IQ-HtS" firstAttribute="top" secondItem="l5j-60-psP" secondAttribute="bottom" constant="9" id="wZh-mU-1eY"/>
-                        <constraint firstItem="8uO-XZ-SxA" firstAttribute="top" secondItem="Wg2-mB-HmE" secondAttribute="bottom" constant="8" id="zHS-CQ-gki"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="8u4-d0-buW"/>
                             <exclude reference="iSN-fG-XRg"/>
+                            <exclude reference="G1P-xE-4Fk"/>
                             <exclude reference="3G8-NO-eXO"/>
+                            <exclude reference="3WZ-Ck-r9J"/>
+                            <exclude reference="rGK-vY-Hai"/>
                             <exclude reference="mf5-pU-8h6"/>
                         </mask>
                     </variation>
@@ -266,6 +219,8 @@
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.24771012931034483" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="GFx-c7-KBv" firstAttribute="centerX" secondItem="2Vo-s9-UD8" secondAttribute="centerX" id="MdP-DM-LQJ"/>
+                <constraint firstItem="GFx-c7-KBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QmV-15-bDs"/>
                 <constraint firstItem="2Vo-s9-UD8" firstAttribute="top" secondItem="GFx-c7-KBv" secondAttribute="bottom" constant="18" id="WHy-oA-8Lg"/>
                 <constraint firstItem="2Vo-s9-UD8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="WjC-4U-dp3"/>
                 <constraint firstItem="GFx-c7-KBv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Zyw-qG-FgM"/>
@@ -274,6 +229,12 @@
                 <constraint firstItem="GFx-c7-KBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vu2-uy-MQH"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tpU-KH-hLh"/>
+                    <exclude reference="vu2-uy-MQH"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="275" y="256"/>
         </view>
     </objects>

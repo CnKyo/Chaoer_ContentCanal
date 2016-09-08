@@ -175,13 +175,9 @@
     
     for (int i=0; i<=50; i++) {
         
-        if (i == 0) {
-            datastr = [NSString stringWithFormat:@"楼栋"];
+                   datastr = [NSString stringWithFormat:@"%ld栋",(long)i];
             [mTT1 addObject:datastr];
-        }else{
-            datastr = [NSString stringWithFormat:@"%ld栋",(long)i];
-            [mTT1 addObject:datastr];
-        }
+        
         
         
         
