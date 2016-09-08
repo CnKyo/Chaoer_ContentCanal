@@ -52,7 +52,17 @@
     mTT = [NSMutableArray new];
 
     [self initView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+    
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    mView.mBalance.text = [NSString stringWithFormat:@"%.2f元",[mUserInfo backNowUser].mMoney];
+}
+
+
 - (void)initView{
     
     
@@ -84,6 +94,7 @@
     [mView.mPayBtn addTarget:self action:@selector(payAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
+
 #pragma mark----银行卡
 - (void)bankAction:(UIButton *)sender{
     switch (sender.tag) {

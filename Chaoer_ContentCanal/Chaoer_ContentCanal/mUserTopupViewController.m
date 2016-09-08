@@ -62,7 +62,16 @@
     self.Title = self.mPageName = @"银行卡充值";
     [self initView];
     [self loadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+    
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    [self loadData];
+}
+
 - (void)loadData{
     
     NSString *url = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[mUserInfo backNowUser].mUserImgUrl];
@@ -285,6 +294,8 @@
 
     [mUserInfo getCodeAndPay:orderCode andYBOrderCode:ybOrderCode andPhoneCode:mView.mCode.text block:^(mBaseData *resb) {
         if (resb.mSucess) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
+            
             [SVProgressHUD showSuccessWithStatus:resb.mMessage];
             [self popViewController_2];
         }else{

@@ -368,12 +368,15 @@
             {
                 [[PHImageManager defaultManager] requestImageDataForAsset:mAset options:nil resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
                     NSURL *url = [info objectForKey:@"PHImageFileURLKey"];
-
-                    tempImage = [Util scaleImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:url]] maxsize:550];
-                    [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
-
-                    [self loadImage];
-                    [self dismissViewControllerAnimated:YES completion:NULL];
+                    if (url != nil) {
+                        tempImage = [Util scaleImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:url]] maxsize:550];
+                        [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
+                        
+                        [self loadImage];
+                        
+                        [self dismissViewControllerAnimated:YES completion:NULL];
+                    } else
+                        [LCProgressHUD showFailure:@"该图片在iCloud上面，请选择本地图片"];
 
                 }];
             }

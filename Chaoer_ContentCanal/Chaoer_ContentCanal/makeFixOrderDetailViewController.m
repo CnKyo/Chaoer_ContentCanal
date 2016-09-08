@@ -60,7 +60,7 @@
 
 
 - (void)headerBeganRefresh{
-    [self upDateUserInfo];
+    //[self upDateUserInfo];
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
     MLLog(@"id是：%@",self.mFixOrder.mOrderID);
     [[mUserInfo backNowUser] getOrderDetail:self.mFixOrder.mOrderID block:^(mBaseData *resb, GFixOrder *mFixOrder) {

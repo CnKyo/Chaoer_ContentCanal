@@ -217,6 +217,7 @@
     [[mUserInfo backNowUser] applePPT:mView.mNameTx.text andSex:mSex andPhone:mView.mConnectTx.text andIdentify:mView.mIdentifyTx.text andHandImg:mHandImgPath andForntImg:mFrontImgPath andForwordImg:mForwordImgPath block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
+            
             [self dismiss];
             depositViewController *ddd = [[depositViewController alloc] initWithNibName:@"depositViewController" bundle:nil];
             ddd.mType = 1;

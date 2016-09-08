@@ -938,6 +938,7 @@ bool g_bined = NO;
                 [mUserInfo dealUserSession:info andPhone:nil andOpenId:[mUserInfo backNowUser].mOpenId andArr:mArr block:block];
             }
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:MyUserInfoChangedNotification object:nil];
 
         }else{
             block (info,[mUserInfo backNowUser]);

@@ -203,14 +203,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GMsgObj *mmsg = self.tempArray[indexPath.row];
     
-    [self readMsg:mmsg.mId];
-    mmsg.mIsRead = YES;
-    
-    [tableView beginUpdates];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
-    [tableView reloadData];
-    
     switch (mmsg.mType) {
         case 3:
         {
@@ -228,23 +220,37 @@
             break;
       
         default:
-            
-            [self readMsg:mmsg.mId];
+        {
+
+        }
             
             break;
     }
 
-    
+    [[mUserInfo backNowUser] readMsg:mmsg.mId block:^(mBaseData *resb) {
+        if (resb.mSucess) {
+            mmsg.mIsRead = YES;
+            [self.tempArray replaceObjectAtIndex:indexPath.row withObject:mmsg];
+            
+            [tableView beginUpdates];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView endUpdates];
+            
+            [self showSuccessStatus:resb.mMessage];
+            //[self headerBeganRefresh];
+        }else{
+            [self showErrorStatus:resb.mMessage];
+        }
+    }];
 }
 
 #pragma mark----读消息
 - (void)readMsg:(int)mId{
-
-
     
     [[mUserInfo backNowUser] readMsg:mId block:^(mBaseData *resb) {
         if (resb.mSucess) {
-            [self headerBeganRefresh];
+            [self showSuccessStatus:resb.mMessage];
+            //[self headerBeganRefresh];
         }else{
             [self showErrorStatus:resb.mMessage];
         }

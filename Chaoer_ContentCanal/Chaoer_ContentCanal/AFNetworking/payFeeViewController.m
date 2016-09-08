@@ -79,7 +79,15 @@
     
     [self initView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+    
 }
+
+-(void)handleUserInfoChange:(NSNotification *)note
+{
+    mHeaderView.mYue.text = [NSString stringWithFormat:@"账户余额：%.2f元",[mUserInfo backNowUser].mMoney];
+}
+
 - (void)initView{
     
     
