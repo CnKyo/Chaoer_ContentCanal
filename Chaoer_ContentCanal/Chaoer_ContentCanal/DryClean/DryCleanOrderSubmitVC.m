@@ -403,7 +403,7 @@ typedef enum {
             cell.imageView.image = IMG(@"dryClean_address_choose.png");
             
             NSString *str = nil;
-            if (_chooseAddress != nil) {
+            if (_chooseAddress.address.length > 0) {
                 str = [NSString stringWithFormat:@"%@", _chooseAddress.address];
             } else
                 str = @"请选择服务地址";

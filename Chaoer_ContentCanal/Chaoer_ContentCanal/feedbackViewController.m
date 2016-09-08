@@ -96,7 +96,6 @@
             [self showWithStatus:@"正在提交..."];
             
             [mUserInfo feedCompany:[mUserInfo backNowUser].mUserId andContent:self.txView.text block:^(mBaseData *resb) {
-                [SVProgressHUD dismiss];
                 if (resb.mSucess) {
                     [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                     [self popViewController];

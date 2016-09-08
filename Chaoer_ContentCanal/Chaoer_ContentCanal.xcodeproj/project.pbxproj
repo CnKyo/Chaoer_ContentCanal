@@ -1120,6 +1120,7 @@
 		DF10D84A1D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D8491D645B3F00220FB0 /* DryCleanOrderCommentSubmitVC.m */; };
 		DF10D84D1D64715F00220FB0 /* DryCleanServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */; };
 		DF153EFE1D79305300A9AB69 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DF153EFD1D79305300A9AB69 /* NSUserDefaults+Settings.m */; };
+		DF282AF71D81581A0022C72A /* PushAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF282AF61D81581A0022C72A /* PushAudioPlayer.m */; };
 		DF385F021D6835BE00F5B93E /* dryClean_serverliucheng.png in Resources */ = {isa = PBXBuildFile; fileRef = DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */; };
 		DF385F081D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */; };
 		DF535EF51D62AA4C006E1598 /* HouseKeepShopTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF535EF41D62AA4C006E1598 /* HouseKeepShopTVC.m */; };
@@ -3170,6 +3171,8 @@
 		DF10D84C1D64715F00220FB0 /* DryCleanServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanServerTableViewCell.m; sourceTree = "<group>"; };
 		DF153EFC1D79305300A9AB69 /* NSUserDefaults+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Settings.h"; sourceTree = "<group>"; };
 		DF153EFD1D79305300A9AB69 /* NSUserDefaults+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Settings.m"; sourceTree = "<group>"; };
+		DF282AF51D81581A0022C72A /* PushAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAudioPlayer.h; sourceTree = "<group>"; };
+		DF282AF61D81581A0022C72A /* PushAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAudioPlayer.m; sourceTree = "<group>"; };
 		DF385F011D6835BE00F5B93E /* dryClean_serverliucheng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dryClean_serverliucheng.png; sourceTree = "<group>"; };
 		DF385F061D68522700F5B93E /* DryCleanOrderChooseCouponTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCleanOrderChooseCouponTVC.h; sourceTree = "<group>"; };
 		DF385F071D68522700F5B93E /* DryCleanOrderChooseCouponTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCleanOrderChooseCouponTVC.m; sourceTree = "<group>"; };
@@ -6930,6 +6933,8 @@
 				DF10D8291D640AC900220FB0 /* QUScrollVC.m */,
 				DFACAA671D6FF6E2009F4CC0 /* QUItemBtnView.h */,
 				DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */,
+				DF282AF51D81581A0022C72A /* PushAudioPlayer.h */,
+				DF282AF61D81581A0022C72A /* PushAudioPlayer.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -7494,6 +7499,7 @@
 				04FACEB91D6A983A0038CF7B /* ZXMaxiCodeDecoder.m in Sources */,
 				31BBE28B1C9121AE006C553D /* mLoginView.m in Sources */,
 				04E6CE4B1D62C073000EB6B8 /* mFoodTableViewCell.m in Sources */,
+				DF282AF71D81581A0022C72A /* PushAudioPlayer.m in Sources */,
 				3123CC1F1C92990000C3B928 /* canalViewController.m in Sources */,
 				04E6CE561D62FAFF000EB6B8 /* mFoodRateHeaderView.m in Sources */,
 				04FAD0AB1D6A98FC0038CF7B /* ZXAbstractDoCoMoResultParser.m in Sources */,

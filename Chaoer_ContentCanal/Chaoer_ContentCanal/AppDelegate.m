@@ -36,6 +36,7 @@
 #import "APIObjectDefine.h"
 #import "mSenderViewController.h"
 #import "homeViewController.h"
+#import "PushAudioPlayer.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 
@@ -567,7 +568,8 @@
     if ([it.model isEqualToString:@"service"]) {
         if( !bopenwith ) {
             if (it.aps.alert.length>0) {
-                myalert *alertVC = [[myalert alloc]initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
+                [[PushAudioPlayer sharedClient] play:it.aps.sound];
+                myalert *alertVC = [[myalert alloc] initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
                 alertVC.obj = it;
                 [alertVC show];
             }
