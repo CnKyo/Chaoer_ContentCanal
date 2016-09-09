@@ -163,7 +163,6 @@
     }
     
     [str appendFormat:@"投诉意见:%@\n", mmsg.complain_reason];
-    [str appendFormat:@"处理状态:%@\n", mmsg.state ? @"已处理" : @"未处理"];
 
     if (mmsg.state == YES) {
         [str appendString:@"处理状态:已处理\n"];
