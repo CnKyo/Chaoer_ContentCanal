@@ -717,7 +717,7 @@
         
         [self showWithStatus:@"正在操作..."];
         
-        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:mOrder.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 
@@ -744,7 +744,7 @@
             
             [self showWithStatus:@"正在操作..."];
             
-            [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:_mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+            [[mUserInfo backNowUser] cancelOrder:[mUserInfo backNowUser].mUserId andOrderCode:mOrder.mOrderCode andOrderType:mOrder.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
                 
                 if (resb.mSucess) {
                     

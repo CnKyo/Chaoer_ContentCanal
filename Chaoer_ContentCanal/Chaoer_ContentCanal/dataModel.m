@@ -2902,7 +2902,14 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
     [para setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [para setObject:mContent forKey:@"context"];
     [para setObject:mMoney forKey:@"legworkMoney"];
-    [para setObject:mNote forKey:@"comments"];
+    
+    if (mNote) {
+        [para setObject:mNote forKey:@"comments"];
+
+    }else{
+        [para setObject:@"" forKey:@"comments"];
+    }
+    
     [para setObject:mPhone forKey:@"phone"];
     [para setObject:mLng forKey:@"lng"];
     [para setObject:mLat forKey:@"lat"];
