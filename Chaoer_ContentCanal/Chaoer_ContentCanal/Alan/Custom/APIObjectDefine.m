@@ -330,6 +330,12 @@
 @end
 
 
+@implementation ComplainObject
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"iD" : @"id"};
+}
+@end
 
 
 

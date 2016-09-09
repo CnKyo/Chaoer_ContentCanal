@@ -1151,6 +1151,7 @@
 		DF8344361D51DE67002C4FD6 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344331D51DE67002C4FD6 /* SKTagView.m */; };
 		DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */; };
 		DFACAA691D6FF6E2009F4CC0 /* QUItemBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */; };
+		DFFC4FB71D829B3D003B962E /* FeedHistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFC4FB61D829B3D003B962E /* FeedHistoryTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3221,6 +3222,8 @@
 		DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextTableViewCell.m; sourceTree = "<group>"; };
 		DFACAA671D6FF6E2009F4CC0 /* QUItemBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUItemBtnView.h; sourceTree = "<group>"; };
 		DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUItemBtnView.m; sourceTree = "<group>"; };
+		DFFC4FB51D829B3D003B962E /* FeedHistoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHistoryTVC.h; sourceTree = "<group>"; };
+		DFFC4FB61D829B3D003B962E /* FeedHistoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedHistoryTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5515,6 +5518,8 @@
 				315442851C9A54800047E52A /* mFeedPersonViewController.h */,
 				315442861C9A54800047E52A /* mFeedPersonViewController.m */,
 				315442871C9A54800047E52A /* mFeedPersonViewController.xib */,
+				DFFC4FB51D829B3D003B962E /* FeedHistoryTVC.h */,
+				DFFC4FB61D829B3D003B962E /* FeedHistoryTVC.m */,
 				04AFEA4B1D819C0900CDBD6A /* View */,
 			);
 			name = "投诉建议";
@@ -8146,6 +8151,7 @@
 				3135F83B1C97FCE500EF9569 /* DVSwitch.m in Sources */,
 				04FACE8C1D6A981A0038CF7B /* ZXPDF417DetectionResult.m in Sources */,
 				04E02E4A1CE6B46E00220D54 /* pptMyRateViewController.m in Sources */,
+				DFFC4FB71D829B3D003B962E /* FeedHistoryTVC.m in Sources */,
 				04EEADC71D0FAED900FA97C6 /* NSDate+HDExtension.m in Sources */,
 				741B8D911B326EFA002104A0 /* main.m in Sources */,
 				04E5A8071CE5B27800A2D111 /* CustomProgress.m in Sources */,

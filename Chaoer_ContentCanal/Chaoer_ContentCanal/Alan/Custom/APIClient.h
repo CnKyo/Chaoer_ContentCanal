@@ -69,4 +69,6 @@ typedef void (^TableShareSdkBlock)(int totalpage, NSArray *tableArr, APIShareSdk
 
 -(void)shopCommentImgUpdateWithTag:(NSObject *)tag img:(UIImage *)img call:( void(^)(NSString *file, APIObject* info))callback;
 
+-(void)complainListWithTag:(NSObject *)tag call:(TableArrBlock)callback;
+
 @end

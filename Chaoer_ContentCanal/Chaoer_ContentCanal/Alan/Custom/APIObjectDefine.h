@@ -230,6 +230,21 @@
 
 
 
+//投诉建议数据
+@interface ComplainObject : NSObject
+@property (nonatomic, strong) NSString *            iD;              //
+@property (nonatomic, strong) NSString *            staff_name;              //投诉对象
+@property (nonatomic, strong) NSString *            complain_reason;              //投诉原因
+@property (nonatomic, strong) NSString *            typeName;              //类型名称
+@property (nonatomic, strong) NSString *            deal_result;              //处理状态
+@property (nonatomic, strong) NSString *            deal_time;              //处理时间
+@property (nonatomic, assign) BOOL                  state;              //投诉受理状态
+@property (nonatomic, assign) int                   type;              //类型
+@property (nonatomic, strong) NSString *            community;              //小区
+@property (nonatomic, strong) NSString *            add_time;              //添加时间
+@property (nonatomic, strong) NSString *            room;              //楼冻
+@end
+
 
 
 
