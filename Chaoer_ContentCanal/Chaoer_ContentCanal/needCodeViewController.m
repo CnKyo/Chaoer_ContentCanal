@@ -14,8 +14,6 @@
 #import "AddressPickView.h"
 
 
-
-
 #import "NFPickerView.h"
 #import "WKPickerView.h"
 
@@ -24,14 +22,12 @@
 
 #import "AbstractActionSheetPicker+Interface.h"//这个是定义取消和确定按钮
 #import "ActionSheetPicker.h"
-#import "XKPEActionPickersDelegate.h"
-#import "XKPEWeightAndHightActionPickerDelegate.h"
+
+#import "WKChoiceArearView.h"
+#import "FZHPickerView.h"
+
 #define kScreenSize [UIScreen mainScreen].bounds.size
-@interface needCodeViewController ()<XKPEDocPopoDelegate,XKPEWeigthAndHightDelegate,NFPickerViewDelegete,UITextFieldDelegate,WKPickerViewDelegate>
-
-@property (nonatomic ,strong) XKPEActionPickersDelegate *detailAddressPicker; //4列
-
-@property (nonatomic , strong) XKPEWeightAndHightActionPickerDelegate *widthAnHigh;//列组
+@interface needCodeViewController ()<NFPickerViewDelegete,UITextFieldDelegate,WKPickerViewDelegate,WKChoiceArearDelegate,FZHPickerViewDelegate>
 
 @end
 
@@ -98,6 +94,10 @@
      *  详细地址
      */
     NSString *mDetailAddressStr;
+    
+    
+    WKChoiceArearView *mPView;
+    FZHPickerView *fzpickerView;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -155,10 +155,8 @@
     mTT3 = [NSMutableArray new];
     mTT4 = [NSMutableArray new];
     
-    mBan = nil;
-    mUnit = nil;
-    mFloor= nil;
-    mDoornum= nil;
+    mBan = mUnit = mFloor = mDoornum = @"1";
+
     
     
     mAddressStr = nil;
@@ -166,6 +164,8 @@
     
     mDetailAddressStr = nil;
     [self updatePage];
+    [self initPView];
+
     
 }
 #pragma mark----装载循环小区楼栋数据
@@ -460,117 +460,39 @@
  *  @param sender
  */
 - (void)mSelectDetailAction:(UIButton *)sender{
-    
-//    if (mBlockArearId == nil || mBlockArearId.length == 0 || [mBlockArearId isEqualToString:@""]) {
-//        [self showErrorStatus:@"小区名不能为空！请重新选择！"];
-//        return;
-//    }
-    
-    
+
     if (mDetailAddressStr == 0 || [mDetailAddressStr isEqualToString:@""] || mDetailAddressStr == nil || [mView.mChoiceArearBtn.titleLabel.text isEqualToString:@"请选择小区"]) {
         
         [self showErrorStatus:@"小区名不能为空！请重新选择！"];
         return;
         
     }
-    
-    _detailAddressPicker = [[XKPEActionPickersDelegate alloc]initWithArr1:mTT1 Arr2:mTT2 arr3:mTT3 arr4:mTT4 title:@"详细住址"];
-    _detailAddressPicker.delegates = self;
-    
-    ActionSheetCustomPicker *action = [[ActionSheetCustomPicker alloc]initWithTitle:@"录入住址" delegate:_detailAddressPicker showCancelButton:YES origin:self.view];
-    [action customizeInterface];
-    [action showActionSheetPicker];
+    [self loadDoorNum];
+}
+#pragma mark----加载数据地址
+- (void)loadDoorNum{
+    [self showWithStatus:@"正在加载..."];
+    [mUserInfo getBuilNum:mCommunityId block:^(mBaseData *resb, NSArray *mArr) {
+        [self dismiss];
 
+        if (resb.mSucess) {
+            
+            if (mArr.count == 0) {
+                [self showPView];
+
+            }
+            else{
+                [self showPView];
+
+            }
+        }else{
+            
+            [self showPView];
+
+        }
+    }];
     
 }
-//三组数据的点击事件
--(void)xkactionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin{
-
-    
-    if ([_detailAddressPicker.title isEqualToString:@"详细住址"]) { //体重处理 当出现弹框但是没有滑动选择就点确认时，获取的数据时空，所以分情况处理
-        
-        MLLog(@"选择的地址是：%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3);
-        
-        if ([_detailAddressPicker.selectedKey1 isEqualToString:@"楼栋"]) {
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mTT1[0],_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
-        }
-        if ([_detailAddressPicker.selectedkey2 isEqualToString:@"单元"]) {
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,mTT2[0],_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
-        }
-        if ([_detailAddressPicker.selectedkey3 isEqualToString:@"楼层"]) {
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,mTT3[0],_detailAddressPicker.selectedkey4] forState:0];
-        }
-        if ([_detailAddressPicker.selectedkey4 isEqualToString:@"门牌号"]) {
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,mTT4[0]] forState:0];
-        }
-        if (_detailAddressPicker.selectedKey1 == nil || _detailAddressPicker.selectedkey2 == nil || _detailAddressPicker.selectedkey3 == nil || _detailAddressPicker.selectedkey4 == nil) {
-            
-            
-            
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mTT1[0],mTT2[0],mTT3[0],mTT4[0]] forState:0];
-            
-            
-        }else{
-            [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",_detailAddressPicker.selectedKey1,_detailAddressPicker.selectedkey2,_detailAddressPicker.selectedkey3,_detailAddressPicker.selectedkey4] forState:0];
-        }
-        
-        if (mTT1.count == 1) {
-            mBan = mTT1[0];
-        }else{
-            mBan = _detailAddressPicker.selectedKey1;
-        }
-        
-        if (mTT2.count == 1) {
-            mUnit = mTT2[0];
-        }else{
-            mUnit = _detailAddressPicker.selectedkey2;
-        }
-        if (mTT3.count == 0) {
-            mFloor = mTT3[0];
-        }else{
-            mFloor = _detailAddressPicker.selectedkey3;
-        }
-        
-        if (mTT4.count == 0 ) {
-            mDoornum = mTT4[0];
-        }else{
-            mDoornum = _detailAddressPicker.selectedkey4;
-        }
-        
-        if (_detailAddressPicker.selectedKey1 == nil) {
-            mBan = mTT1[0];
-        }else{
-            mBan = _detailAddressPicker.selectedKey1;
-        }
-        
-        if ( _detailAddressPicker.selectedkey2 == nil) {
-            mUnit = mTT2[0];
-        }else{
-            mUnit = _detailAddressPicker.selectedkey2;
-        }
-        if ( _detailAddressPicker.selectedkey3 == nil) {
-            mFloor = mTT3[0];
-        }else{
-            mFloor = _detailAddressPicker.selectedkey3;
-        }
-        
-        if ( _detailAddressPicker.selectedkey4 == nil) {
-            mDoornum = mTT4[0];
-        }else{
-            mDoornum = _detailAddressPicker.selectedkey4;
-        }
-        
-        [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@%@%@%@",mBan,mUnit,mFloor,mDoornum] forState:0];
-
-        
-        
-    }
-
-    
-    
-}
-
-
 - (void)mOneAction:(UIButton *)sender{
     [mIdentify removeAllObjects];
     
@@ -627,8 +549,24 @@
 - (void)commitAction:(UIButton *)sender{
     
     
-    if ([mView.mDoorNumLb.text isEqualToString:@"选择门牌号"]) {
-        [SVProgressHUD showErrorWithStatus:@"请完善你的信息!"];
+    if (mView.mNameTx.text.length == 0) {
+        [self showErrorStatus:@"请输入户主姓名！"];
+        return;
+    }
+    if (mView.mPhoneTx.text.length == 0) {
+        [self showErrorStatus:@"请输入手机号码！"];
+        return;
+    }
+    if (mCityId.length == 0) {
+        [self showErrorStatus:@"请选择地区！"];
+        return;
+    }
+    if ([mView.mChoiceArearBtn.titleLabel.text isEqualToString:@"请选择小区"]) {
+        [self showErrorStatus:@"请选择小区！"];
+        return;
+    }
+    if ([mView.mChoiceDetailBtn.titleLabel.text isEqualToString:@"如1单元1楼1号"]) {
+        [self showErrorStatus:@"请选择详细地址！"];
         return;
     }
     if (!mIdentify.count) {
@@ -636,37 +574,7 @@
         return;
     }
     
-    if (mBan == nil || mBan.length <= 0 ||[mBan isEqualToString:@""] || [mBan isEqualToString:@"楼栋"]) {
-        [self showErrorStatus:@"请完善详细地址！"];
-        return;
-    }
-    if (mUnit == nil || mUnit.length <= 0 ||[mUnit isEqualToString:@""] || [mUnit isEqualToString:@"单元"]) {
-        [self showErrorStatus:@"请完善详细地址！"];
-        return;
-    }
-    if (mFloor == nil || mFloor.length <= 0 ||[mFloor isEqualToString:@""] || [mFloor isEqualToString:@"楼层"]) {
-        [self showErrorStatus:@"请完善详细地址！"];
-        return;
-    }
-    if (mDoornum == nil || mDoornum.length <= 0 ||[mDoornum isEqualToString:@""] || [mDoornum isEqualToString:@"门牌号"]) {
-        [self showErrorStatus:@"请完善详细地址！"];
-        return;
-    }
-    
-    NSArray *mBanArr = [mBan componentsSeparatedByString:@"栋"];
-    NSString *mBanStr1 = [mBanArr objectAtIndex:0];
-    
-    NSArray *mUnitArrr = [mUnit componentsSeparatedByString:@"单元"];
-    NSString *mUnitStr = [mUnitArrr objectAtIndex:0];
-    
-    
-    NSArray *mFloorArrr = [mFloor componentsSeparatedByString:@"楼"];
-    NSString *mFloorStr = [mFloorArrr objectAtIndex:0];
-    
-    
-    
-    NSArray *mDoomNumArr = [mDoornum componentsSeparatedByString:@"号"];
-    NSString *mDoorNmStr = [mDoomNumArr objectAtIndex:0];
+
     
     BOOL isUp;
     
@@ -687,7 +595,7 @@
         [SVProgressHUD showWithStatus:@"正在认证中..." maskType:SVProgressHUDMaskTypeClear];
         
      
-        [[mUserInfo backNowUser] realyCodeAndCommunityId:1 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] realyCodeAndCommunityId:1 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBan andUnitNum:mUnit andFloorNum:mFloor andRoomNum:mDoornum andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
      
@@ -708,7 +616,7 @@
       
         
         [SVProgressHUD showWithStatus:@"正在操作中..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] realyCodeAndCommunityId:2 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBanStr1 andUnitNum:mUnitStr andFloorNum:mFloorStr andRoomNum:mDoorNmStr andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text  block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] realyCodeAndCommunityId:2 andName:mView.mNameTx.text andCommunityId:mBlockArearId andBanNum:mBan andUnitNum:mUnit andFloorNum:mFloor andRoomNum:mDoornum andIdentify:mIdentify[0] andAddcommunity:isUp andcommunityName:mView.mChoiceArearBtn.titleLabel.text andAddress:[NSString stringWithFormat:@"%@%@",mView.mChoiceCityBtn.titleLabel.text,mView.mChoiceArearBtn.titleLabel.text] andProvinceID:mProvinceId andArearId:mArearId andCityId:mCityId andPhone:mView.mPhoneTx.text  block:^(mBaseData *resb) {
             if (resb.mSucess ) {
                 [SVProgressHUD showSuccessWithStatus:resb.mMessage];
                
@@ -807,6 +715,130 @@
         return NO;
     }
     
+}
+- (void)initPView{
+    
+    
+    [mTT1 removeAllObjects];
+    [mTT2 removeAllObjects];
+    [mTT3 removeAllObjects];
+    [mTT4 removeAllObjects];
+    
+    
+    for (int k = 1; k<50; k++) {
+        
+        [mTT1 addObject:[NSString stringWithFormat:@"%ld栋",(long)k]];
+    }
+    for (int j = 1; j<40; j++) {
+        [mTT2 addObject:[NSString stringWithFormat:@"%ld单元",(long)j]];
+    }
+    
+    for (int k = 1; k<50; k++) {
+        [mTT3 addObject:[NSString stringWithFormat:@"%d楼",k]];
+        
+        
+    }
+    
+    for (int l = 1; l<50; l++) {
+        [mTT4 addObject:[NSString stringWithFormat:@"%d号",l]];
+    }
+    
+    
+    
+    
+    
+    [mPView removeFromSuperview];
+    mPView = [WKChoiceArearView shareView];
+    mPView.delegate = self;
+    mPView.alpha = 0;
+    [self.view addSubview:mPView];
+    
+    [mPView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).offset(@0);
+        make.bottom.equalTo(self.view).offset(@0);
+        make.height.offset(@200);
+    }];
+    
+    // 选择框
+    fzpickerView = [[FZHPickerView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 150)];
+    // 显示选中框
+    fzpickerView.fzdelegate = self;
+    fzpickerView.proTitleList = @[mTT1,mTT2,mTT3,mTT4];
+    [fzpickerView show:mPView.mPickView];
+    
+    
+    
+}
+#pragma mark --- 代理方法
+-(void)didSelectedPickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component RowText:(NSString *)text
+{
+    
+    
+    MLLog(@"%@---row:%ld",[NSString stringWithFormat:@"您选择了第%ld列的第%ld行，内容是%@",(long)component,(long)row,text],(long)row);
+    
+    
+    switch (component) {
+        case 0:
+        {
+            mBan = [NSString stringWithFormat:@"%ld",row];
+        }
+            break;
+        case 1:
+        {
+            mUnit = [NSString stringWithFormat:@"%ld",row];
+        }
+            break;
+        case 2:
+        {
+            mFloor = [NSString stringWithFormat:@"%ld",row];
+            
+        }
+            break;
+        case 3:
+        {
+            mDoornum = [NSString stringWithFormat:@"%ld",row];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+}
+- (void)WKCancelAction{
+    [self dismissPView];
+    
+    mBan = mUnit = mFloor = mDoornum = @"1";
+    
+    [mView.mChoiceDetailBtn setTitle:@"如1单元1楼1号" forState:0];
+    
+    
+}
+- (void)WKOKAction{
+    [self dismissPView];
+    [mView.mChoiceDetailBtn setTitle:[NSString stringWithFormat:@"%@栋%@单元%@楼%@号",mBan,mUnit,mFloor,mDoornum] forState:0];
+    
+}
+
+- (void)showPView{
+    
+    [UIView animateWithDuration:0.25 animations:^{
+
+        mPView.alpha = 1;
+        
+    }];
+}
+
+- (void)dismissPView{
+    [UIView animateWithDuration:0.25 animations:^{
+
+        
+        mPView.alpha = 0;
+        
+    }];
 }
 
 @end

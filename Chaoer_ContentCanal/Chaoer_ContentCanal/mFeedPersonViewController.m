@@ -90,11 +90,12 @@
 
     Arrtemp = [NSMutableArray new];
 
-    
+    mBan = mUnit = mFloor = mDoornum = 1;
+
     self.mSubmit.layer.masksToBounds = YES;
     self.mSubmit.layer.cornerRadius = 3;
     
-    
+    mCommunityId = 0;
     mmProvinceId = nil;
     mmCityId = nil;
     mmArearId = nil;
@@ -168,12 +169,20 @@
 
 #pragma mark----提交按钮
 - (IBAction)mSubmitAction:(id)sender {
-
+    if (mmProvinceId == nil || mmCityId == nil || mmArearId == nil) {
+        [self showErrorStatus:@"请选择省份!"];
+        return;
+    }
+    if (mCommunityId == 0) {
+        [self showErrorStatus:@"请选择小区!"];
+        return;
+    }
+    if ([self.mUnitBtn.titleLabel.text isEqualToString:@"选择门牌号"]) {
+        [self showErrorStatus:@"请选择门牌号!"];
+        return;
+    }
     if (self.mReason.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入您投诉的内容！"];
-        return;
-    }if (mType != 7) {
-        [SVProgressHUD showErrorWithStatus:@"请选择您要投诉的信息！"];
         return;
     }
     
@@ -251,7 +260,10 @@
 
 #pragma mark----门牌号
 - (IBAction)mUnitAction:(UIButton *)sender {
-
+    if (mCommunityId == 0) {
+        [self showErrorStatus:@"请选择小区！"];
+        return;
+    }
     [self showPView];
 }
 /*
@@ -274,8 +286,41 @@
 
 - (void)initPView{
     
+    NSMutableArray *mTT1 = [NSMutableArray new];
+    NSMutableArray *mTT2 = [NSMutableArray new];
+    NSMutableArray *mTT3 = [NSMutableArray new];
+    NSMutableArray *mTT4 = [NSMutableArray new];
+    
+    
+    [mTT1 removeAllObjects];
+    [mTT2 removeAllObjects];
+    [mTT3 removeAllObjects];
+    [mTT4 removeAllObjects];
+    
+    
+    for (int k = 1; k<50; k++) {
+        
+        [mTT1 addObject:[NSString stringWithFormat:@"%ld栋",(long)k]];
+    }
+    for (int j = 1; j<40; j++) {
+        [mTT2 addObject:[NSString stringWithFormat:@"%ld单元",(long)j]];
+    }
+    
+    for (int k = 1; k<50; k++) {
+        [mTT3 addObject:[NSString stringWithFormat:@"%d楼",k]];
+        
+        
+    }
+    
+    for (int l = 1; l<50; l++) {
+        [mTT4 addObject:[NSString stringWithFormat:@"%d号",l]];
+    }
+    
+  
+    
+    
+    
     [mPView removeFromSuperview];
-    [fzpickerView remove];
     mPView = [WKChoiceArearView shareView];
     mPView.delegate = self;
     mPView.alpha = 0;
@@ -291,7 +336,7 @@
     fzpickerView = [[FZHPickerView alloc] initWithFrame:CGRectMake(0, 0, DEVICE_Width, 150)];
     // 显示选中框
     fzpickerView.fzdelegate = self;
-    fzpickerView.proTitleList = @[@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"],@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8"],@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"],@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"]];
+    fzpickerView.proTitleList = @[mTT1,mTT2,mTT3,mTT4];
     [fzpickerView show:mPView.mPickView];
 
     
@@ -301,22 +346,60 @@
 -(void)didSelectedPickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component RowText:(NSString *)text
 {
     
-    MLLog(@"%@",[NSString stringWithFormat:@"您选择了第%ld列的第%ld行，内容是%@",(long)component,(long)row,text]);
+
+    MLLog(@"%@---row:%ld",[NSString stringWithFormat:@"您选择了第%ld列的第%ld行，内容是%@",(long)component,(long)row,text],(long)row);
+    
+    
+    switch (component) {
+        case 0:
+        {
+            mBan = (int)row;
+        }
+            break;
+        case 1:
+        {
+            mUnit = (int)row;
+        }
+            break;
+        case 2:
+        {
+            mFloor = (int)row;
+
+        }
+            break;
+        case 3:
+        {
+            mDoornum = (int)row;
+
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
 }
 - (void)WKCancelAction{
     [self dismissPView];
     
+    mBan = mUnit = mFloor = mDoornum = 1;
+    
+    [self.mUnitBtn setTitle:@"选择门牌号" forState:0];
+
+    
 }
 - (void)WKOKAction{
+    [self dismissPView];
+    [self.mUnitBtn setTitle:[NSString stringWithFormat:@"%d栋%d单元%d楼%d号",mBan,mUnit,mFloor,mDoornum] forState:0];
 
 }
 
 - (void)showPView{
 
     [UIView animateWithDuration:0.25 animations:^{
-//        CGRect mRRR = mPView.frame;
-//        mRRR.origin.y = DEVICE_Height-200;
-//        mPView.frame = mRRR;
+
         mPView.alpha = 1;
 
     }];
@@ -324,12 +407,8 @@
 
 - (void)dismissPView{
     [UIView animateWithDuration:0.25 animations:^{
-//        CGRect mRRR = mPView.frame;
-//        mRRR.origin.y = DEVICE_Height;
-//        mPView.frame = mRRR;
 
         mPView.alpha = 0;
-        [fzpickerView remove];
 
     }];
 }

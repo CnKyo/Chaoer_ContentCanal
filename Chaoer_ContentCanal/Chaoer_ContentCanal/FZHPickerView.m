@@ -51,7 +51,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if ([self.fzdelegate respondsToSelector:@selector(didSelectedPickerView:didSelectRow:inComponent:RowText:)]) {
-        [self.fzdelegate didSelectedPickerView:self didSelectRow:row inComponent:component RowText:_proTitleList[component][row]];
+        [self.fzdelegate didSelectedPickerView:self didSelectRow:row+1 inComponent:component RowText:_proTitleList[component][row]];
     }
 }
 
