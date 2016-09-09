@@ -522,4 +522,21 @@
 }
 
 
+
+/**
+ *  投诉建议列表
+ *
+ *  @param tag      链接对象
+ *  @param callback 返回列表
+ */
+-(void)complainListWithTag:(NSObject *)tag call:(TableArrBlock)callback
+{
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionary];
+    [paramDic setInt:[mUserInfo backNowUser].mUserId forKey:@"userId"];
+    [self loadAPITableListWithTag:tag path:@"/app/complain/complaints" parameters:paramDic pageIndex:0 subClass:[ComplainObject class] call:^(NSArray *tableArr, APIObject *info) {
+        callback(tableArr, info);
+    }];
+}
+
+
 @end

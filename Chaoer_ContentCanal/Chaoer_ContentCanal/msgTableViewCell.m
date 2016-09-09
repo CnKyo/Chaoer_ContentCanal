@@ -46,4 +46,28 @@
     self.mCellH = 47 + [Util labelText:mmsg.mMsg_content fontSize:14 labelWidth:self.mDetail.mwidth];
 }
 
+-(void)setComplain:(ComplainObject *)mmsg
+{
+    if (mmsg.type == 3) {
+        self.mLogo.image = [UIImage imageNamed:@"system_msg"];
+    }else if(mmsg.type == 2){
+        self.mLogo.image = [UIImage imageNamed:@"fix_msg"];
+    }else{
+        
+        self.mLogo.image = [UIImage imageNamed:@"money_msg"];
+    }
+    
+    
+    self.mPoint.hidden = mmsg.state?YES:NO;
+    
+    
+    self.mDetail.text = mmsg.complain_reason;
+    self.mTitle.text = mmsg.typeName;
+    
+    self.mTime.text = mmsg.add_time;
+    
+    
+    self.mCellH = 47 + [Util labelText:mmsg.complain_reason fontSize:14 labelWidth:self.mDetail.mwidth];
+}
+
 @end

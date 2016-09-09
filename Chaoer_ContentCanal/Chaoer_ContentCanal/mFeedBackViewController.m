@@ -15,6 +15,8 @@
 #import "feedbackViewController.h"
 #import "needCodeViewController.h"
 #import "verifyBankViewController.h"
+#import "FeedHistoryTVC.h"
+
 @interface mFeedBackViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -90,13 +92,14 @@
 #pragma mark -- tableviewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView              // Default is 1 if not implemented
 {
-    return 1;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return self.tempArray.count;
-    
+    if (section == 0) {
+        return self.tempArray.count;
+    } else
+        return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,7 +114,11 @@
     
     mFeedBackCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-    cell.mTTT.text = self.tempArray[indexPath.row];
+    if (indexPath.section == 0) {
+        cell.mTTT.text = self.tempArray[indexPath.row];
+    } else
+        cell.mTTT.text = @"投诉反馈";
+    
     
     
     return cell;
@@ -122,34 +129,36 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if (indexPath.row == 0) {
-        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
-            return;
+    if (indexPath.section == 1) {
+        FeedHistoryTVC *vc = [[FeedHistoryTVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else {
+        if (indexPath.row == 0) {
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
+            
+            
+            mFeedPersonViewController *mmm = [[mFeedPersonViewController alloc] initWithNibName:@"mFeedPersonViewController" bundle:nil];
+            [self pushViewController:mmm];
+        }else if (indexPath.row == 1){
+            if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
+                return;
+            }
+            mFeedManageViewController *mmm = [[mFeedManageViewController alloc] initWithNibName:@"mFeedManageViewController" bundle:nil];
+            [self pushViewController:mmm];
+            
+        }else if (indexPath.row == 2){
+            UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            feedbackViewController *f =[secondStroyBoard instantiateViewControllerWithIdentifier:@"xxx"];
+            
+            [self.navigationController pushViewController:f animated:YES];
+            
         }
-        
-        
-        mFeedPersonViewController *mmm = [[mFeedPersonViewController alloc] initWithNibName:@"mFeedPersonViewController" bundle:nil];
-        [self pushViewController:mmm];
-    }else if (indexPath.row == 1){
-        if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-            [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
-            return;
-        }
-        mFeedManageViewController *mmm = [[mFeedManageViewController alloc] initWithNibName:@"mFeedManageViewController" bundle:nil];
-        [self pushViewController:mmm];
-        
-    }else if (indexPath.row == 2){
-        UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        feedbackViewController *f =[secondStroyBoard instantiateViewControllerWithIdentifier:@"xxx"];
-        
-        [self.navigationController pushViewController:f animated:YES];
-        
     }
-    
-    
-    
-    
 }
 
 

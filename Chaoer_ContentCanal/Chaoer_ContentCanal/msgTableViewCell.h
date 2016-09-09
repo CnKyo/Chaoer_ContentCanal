@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIObjectDefine.h"
 
 @interface msgTableViewCell : UITableViewCell
 /**
@@ -51,6 +52,7 @@
 @property (strong,nonatomic) GMsgObj *mmsg;
 
 
+-(void)setComplain:(ComplainObject *)mmsg;
 
 
 @end
