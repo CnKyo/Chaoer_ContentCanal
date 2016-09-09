@@ -9,6 +9,7 @@
 #import "barCodeViewController.h"
 #import "mBarCodeView.h"
 #import "barCodeCell.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface barCodeViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
@@ -31,7 +32,7 @@
     self.Title = self.mPageName = @"我的二维码名片";
     self.hiddenlll = YES;
     self.hiddenTabBar = YES;
-    self.rightBtnTitle = @"保存";
+    self.rightBtnTitle = @"分享";
 //    self.hiddenRightBtn = YES;
 //    self.rightBtnImage = [UIImage imageNamed:@"share_bgk"];
     mBarCodeURL = nil;
@@ -118,21 +119,21 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-//    UIButton *btn = sender;
-//    btn.selected = !btn.selected;
-//    btn.selected = !isYes;
-//    if (btn.selected) {
-//        [self shaowShareView];
-//        isYes = YES;
-//    }else{
-//        [self hiddenSahreView];
-//        isYes = NO;
-//    }
-//    
-
-    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"是否将图片保存到相册？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到相册", nil];
+    UIButton *btn = sender;
+    btn.selected = !btn.selected;
+    btn.selected = !isYes;
+    if (btn.selected) {
+        [self shaowShareView];
+        isYes = YES;
+    }else{
+        [self hiddenSahreView];
+        isYes = NO;
+    }
     
-    [acc showInView:self.view];
+
+//    UIActionSheet *acc = [[UIActionSheet alloc]initWithTitle:@"是否将图片保存到相册？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到相册", nil];
+//    
+//    [acc showInView:self.view];
     
 }
 
