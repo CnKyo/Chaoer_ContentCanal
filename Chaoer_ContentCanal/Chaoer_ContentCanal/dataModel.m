@@ -376,10 +376,10 @@ bool g_bined = NO;
 
 #pragma mark----微信支付
 //=======================微信支付===================================
--(void)wxPay:(int)Price block:(void(^)(mBaseData* retobj))block
+-(void)wxPay:(double)Price block:(void(^)(mBaseData* retobj))block
 {
     NSMutableDictionary* param =    NSMutableDictionary.new;
-    [param setObject:NumberWithInt(Price) forKey:@"price"];
+    [param setObject:[NSNumber numberWithDouble:Price] forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"wx" forKey:@"channel"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
@@ -439,12 +439,12 @@ bool g_bined = NO;
 }
 #pragma mark----支付宝支付
 //=======================支付宝支付===================================
--(void)aliPay:(int)Price block:(void(^)(mBaseData* retobj))block
+-(void)aliPay:(double)Price block:(void(^)(mBaseData* retobj))block
 {
 
     
     NSMutableDictionary* param =    NSMutableDictionary.new;
-    [param setObject:NumberWithInt(Price) forKey:@"price"];
+    [param setObject:[NSNumber numberWithDouble:Price] forKey:@"price"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mUserId) forKey:@"userId"];
     [param setObject:@"alipay" forKey:@"channel"];
     [param setObject:NumberWithInt([mUserInfo backNowUser].mCommunityId) forKey:@"community_id"];
@@ -572,7 +572,7 @@ bool g_bined = NO;
     
 }
 #pragma mark----支付方式（微信，支付宝）
--(void)payIt:(NSString*)paytype andPrice:(int)mPrice block:(void(^)(mBaseData* resb))block{
+-(void)payIt:(NSString*)paytype andPrice:(double)mPrice block:(void(^)(mBaseData* resb))block{
 
     if( [paytype isEqualToString:@"wx"] )
     {

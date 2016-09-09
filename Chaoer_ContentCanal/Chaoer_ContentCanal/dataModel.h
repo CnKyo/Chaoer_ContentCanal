@@ -403,7 +403,7 @@
  *  @param paytype 支付方式
  *  @param block   返回值
  */
--(void)payIt:(NSString*)paytype andPrice:(int)mPrice block:(void(^)(mBaseData* resb))block;
+-(void)payIt:(NSString*)paytype andPrice:(double)mPrice block:(void(^)(mBaseData* resb))block;
 
 /**
  *  报修支付

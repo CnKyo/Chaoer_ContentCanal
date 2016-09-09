@@ -317,6 +317,15 @@
                                                               retobj.mMessage = @"支付成功";
                                                               retobj.mState = 200000;
                                                               [SVProgressHUD showSuccessWithStatus:retobj.mMessage];
+                                                              
+                                                              if( [mUserInfo backNowUser].mPayBlock )
+                                                              {
+                                                                  [mUserInfo backNowUser].mPayBlock(retobj);
+                                                              }
+                                                              else
+                                                              {
+                                                                  MLLog(@"may be err no block to back");
+                                                              }
                                                           }
                                                           else
                                                           {
@@ -406,6 +415,15 @@
                                                               retobj.mMessage = @"支付成功";
                                                               retobj.mState = 200000;
                                                               [SVProgressHUD showSuccessWithStatus:retobj.mMessage];
+                                                              
+                                                              if( [mUserInfo backNowUser].mPayBlock )
+                                                              {
+                                                                  [mUserInfo backNowUser].mPayBlock(retobj);
+                                                              }
+                                                              else
+                                                              {
+                                                                  MLLog(@"may be err no block to back");
+                                                              }
                                                           }
                                                           else
                                                           {
