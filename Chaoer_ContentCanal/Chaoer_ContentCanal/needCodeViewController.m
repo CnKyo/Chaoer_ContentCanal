@@ -103,7 +103,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self dismissPView];
+
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -268,7 +269,7 @@
 
 #pragma mark----加载地址
 - (void)loadAddress{
-    
+    [self dismissPView];
    
     [self showWithStatus:@"正在加载..."];
     [[mUserInfo backNowUser] getCodeAddress:^(mBaseData *resb, NSArray *mArr) {
@@ -287,6 +288,7 @@
 
 #pragma mark----重新设计后的界面⬇️
 - (void)mSelectCityAction:(UIButton *)sender{
+    [self dismissPView];
     [self loadAddressPick];
     
 }
@@ -343,7 +345,7 @@
 
 #pragma mark----选择小区
 - (void)mSelectArearAction:(UIButton *)sender{
-    
+    [self dismissPView];
     if (mProvinceId == nil || mProvinceId.length == 0 || [mProvinceId isEqualToString:@""]) {
         [self showErrorStatus:@"请选择地区！"];
         return;
@@ -494,6 +496,7 @@
     
 }
 - (void)mOneAction:(UIButton *)sender{
+    [self dismissPView];
     [mIdentify removeAllObjects];
     
     switch (sender.tag) {
@@ -548,7 +551,7 @@
 #pragma mark----实名认证
 - (void)commitAction:(UIButton *)sender{
     
-    
+    [self dismissPView];
     if (mView.mNameTx.text.length == 0) {
         [self showErrorStatus:@"请输入户主姓名！"];
         return;
@@ -565,7 +568,7 @@
         [self showErrorStatus:@"请选择小区！"];
         return;
     }
-    if ([mView.mChoiceDetailBtn.titleLabel.text isEqualToString:@"如1单元1楼1号"]) {
+    if ([mView.mChoiceDetailBtn.titleLabel.text isEqualToString:@"请选择楼栋号"]) {
         [self showErrorStatus:@"请选择详细地址！"];
         return;
     }
@@ -634,6 +637,7 @@
 }
 
 - (void)choiseAction:(UIButton *)sender{
+    [self dismissPView];
     [mIdentify removeAllObjects];
 
     switch (sender.tag) {
@@ -813,7 +817,7 @@
     
     mBan = mUnit = mFloor = mDoornum = @"1";
     
-    [mView.mChoiceDetailBtn setTitle:@"如1单元1楼1号" forState:0];
+    [mView.mChoiceDetailBtn setTitle:@"请选择楼栋号" forState:0];
     
     
 }

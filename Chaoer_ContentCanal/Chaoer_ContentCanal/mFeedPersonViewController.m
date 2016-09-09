@@ -63,7 +63,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self dismissPView];
+
     /**
      IQKeyboardManager为自定义收起键盘
      **/
@@ -137,6 +138,8 @@
 
 
 - (void)loadMHActionSheetView{
+    [self dismissPView];
+
     [Arrtemp removeAllObjects];
 
     if (self.tempArray.count !=0 ) {
@@ -169,6 +172,9 @@
 
 #pragma mark----提交按钮
 - (IBAction)mSubmitAction:(id)sender {
+    
+    [self dismissPView];
+
     if (mmProvinceId == nil || mmCityId == nil || mmArearId == nil) {
         [self showErrorStatus:@"请选择省份!"];
         return;
@@ -202,6 +208,8 @@
 
 #pragma mark----省份
 - (IBAction)provinceAction:(UIButton *)sender {
+    [self dismissPView];
+
     mType = 1;
 
     [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
