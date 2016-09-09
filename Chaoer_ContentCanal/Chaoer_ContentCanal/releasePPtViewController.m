@@ -679,42 +679,42 @@
     
      if(textField.tag == 2){
         self.mRealease.mMoney = textField.text;
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }else if(textField.tag == 11){
         self.mRealease.mPhone = textField.text;
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
 
     }
     else if(textField.tag == 12){
         self.mRealease.mAddress = textField.text;
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     }
     else if(textField.tag == 300){
         self.mRealease.mNote = textField.text;
 
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     } else if(textField.tag == 201){
         self.mRealease.mBAddress = textField.text;
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     } else if(textField.tag == 202){
         self.mRealease.mEAddress = textField.text;
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     }
     else if(textField.tag == 301){
         self.mRealease.mGoodsName = textField.text;
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     } else if(textField.tag == 302){
         self.mRealease.mGoodsPrice = textField.text;
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     }
 
@@ -723,7 +723,7 @@
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
         self.mRealease.mContent = textView.text;
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
 
     
 }
