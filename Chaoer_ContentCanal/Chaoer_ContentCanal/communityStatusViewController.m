@@ -78,11 +78,7 @@
                 mType = GC.mId;
                 [self loadCommunity];
             }
-            
-            
 
-            
-            
         }else{
             [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
             
@@ -111,9 +107,6 @@
                 [self initHeaderView];
                 
             }
-            
-            
-            
 
         }else{
             [SVProgressHUD showErrorWithStatus:resb.mMessage];
