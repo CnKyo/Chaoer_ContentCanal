@@ -86,6 +86,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *mtimeBtn;
 
 
+@property (strong,nonatomic)GPPTRelease *mRealease;
 
 
 

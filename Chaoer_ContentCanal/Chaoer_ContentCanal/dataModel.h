@@ -4267,3 +4267,82 @@
 -(id)initWithObj:(NSDictionary *)obj;
 
 @end
+
+/**
+ *  发布跑跑腿模型
+ */
+@interface GPPTRelease : NSObject
+/**
+ *  需求内容
+ */
+@property (strong,nonatomic) NSString *mContent;
+/**
+ *  标签
+ */
+@property (strong,nonatomic) NSString *mTag;
+/**
+ *  标签id
+ */
+@property (strong,nonatomic) NSString *mTagId;
+/**
+ *  最低价
+ */
+@property (strong,nonatomic) NSString *mMinPrice;
+/**
+ *  最高价
+ */
+@property (strong,nonatomic) NSString *mMaxPrice;
+/**
+ *  酬劳金额
+ */
+@property (strong,nonatomic) NSString *mMoney;
+
+/**
+ *  时间
+ */
+@property (strong,nonatomic) NSString *mTime;
+/**
+ *  电话
+ */
+@property (strong,nonatomic) NSString *mPhone;
+
+/**
+ *  地址
+ */
+@property (strong,nonatomic) NSString *mAddress;
+/**
+ *  地址id
+ */
+@property (strong,nonatomic) NSString *mAddressId;
+/**
+ *  备注
+ */
+@property (strong,nonatomic) NSString *mNote;
+/**
+ *  发货地址
+ */
+@property (strong,nonatomic) NSString *mBAddress;
+/**
+ *  送达地址
+ */
+@property (strong,nonatomic) NSString *mEAddress;
+/**
+ *  商品名称
+ */
+@property (strong,nonatomic) NSString *mGoodsName;
+/**
+ *  商品价格
+ */
+@property (strong,nonatomic) NSString *mGoodsPrice;
+/**
+ *  工具
+ */
+@property (strong,nonatomic) NSString *mToolStr;
+/**
+ *  工具id
+ */
+@property (strong,nonatomic) NSString *mToolId;
+
+@end
+
+

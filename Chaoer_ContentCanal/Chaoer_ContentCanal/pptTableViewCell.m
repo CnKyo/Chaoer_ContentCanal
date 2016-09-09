@@ -176,23 +176,12 @@
     
     if (mOrder.mType == 0) {
         
-        NSString *mAlias = nil;
-        
         self.mTitle.text = mOrder.mContext;
         
-        if (mOrder.mType == 3) {
-            mAlias = [NSString stringWithFormat:@"%@分钟",mOrder.mAlias];
-        }else if (mOrder.mType == 2){
-            mAlias = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mAlias,mOrder.mDistance];
-            
-        }else{
-            mAlias = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mAlias,mOrder.mDistance];
-        }
-        
-        self.mMoney.text = mAlias;
+        self.mMoney.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mAlias,mOrder.mDistance];
     }else if (mOrder.mType == 3) {
         self.mTitle.text = mOrder.mContext;
-        self.mMoney.text = [NSString stringWithFormat:@"%@分钟/%@m",mOrder.mAlias,mOrder.mDistance];
+        self.mMoney.text = [NSString stringWithFormat:@"%@元/%@m",mOrder.mAlias,mOrder.mDistance];
         
     }else if(mOrder.mType ==2){
         self.mTitle.text = mOrder.mContext;

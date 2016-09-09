@@ -7564,3 +7564,9 @@ bool pptbined = NO;
 }
 
 @end
+
+@implementation GPPTRelease
+
+
+
+@end

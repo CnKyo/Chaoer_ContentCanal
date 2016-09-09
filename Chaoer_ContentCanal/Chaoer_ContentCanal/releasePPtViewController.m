@@ -22,7 +22,11 @@
 #import "UIView+TYAlertView.h"
 // if you want blur efffect contain this
 #import "TYAlertController+BlurEffects.h"
-@interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,UITextFieldDelegate>
+@interface releasePPtViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,UITextFieldDelegate,UITextViewDelegate>
+/**
+ *  发布模型
+ */
+@property (strong,nonatomic)GPPTRelease *mRealease;
 
 @end
 
@@ -30,78 +34,14 @@
 {
     
     mPriceView *mPopView;
-    
-    
-    NSString *mMin;
-    NSString *mMax;
-    
-    
-    /**
-     *  地址
-     */
-    NSString *mAddressStr;
-    NSString *mAddressId;
- 
+
     AMapLocationManager *mLocation;
-    
-    
-    /**
-     *  需求内容
-     */
-    NSString *mContentStr;
-    /**
-     *  价格
-     */
-    NSString *mPrice;
-    NSString *mPriceTT;
-    /**
-     *  酬金
-     */
-    NSString *mMoney;
-    NSString *mMoneyTT;
-    /**
-     *  时间
-     */
-    NSString *mTimeStr;
-    NSString *mTTStr;
-
-    /**
-     *  电话
-     */
-    NSString *mPhoneStr;
-    /**
-     *  回调地址
-     */
-    NSString *mBlockAddressStr;
-    /**
-     *  备注
-     */
-    NSString *mNoteStr;
-    /**
-     *  标签
-     */
-    NSString *mTagStr;
-    
-    NSString *mTagIds;
-
-    NSString *mToolStr;
-    NSString *mToolId;
-    
-    NSString *mGoodsName;
-    NSString *mGoodsPrice;
-    NSString *mSendAddress;
-    NSString *mArriveAddress;
-
-
-    /**
-     *  时间段
-     */
-    NSString *mSelecteTimeStr;
-    
     
     LTPickerView*LtpickerView;
     
     NSMutableArray *mPriceArr;
+    
+    NSString *mTime;
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -130,32 +70,8 @@
     self.hiddenTabBar = YES;
     self.hiddenRightBtn = YES;
     
-    mTagIds = nil;
-    mMin = nil;
-    mMax = nil;
- 
-    mAddressId = nil;
-    mTagStr = nil;
-    mTTStr = nil;
-    mAddressStr = nil;
-    mContentStr = nil;
-    mPriceTT = nil;
-    mPrice = nil;
-    mMoneyTT = nil;
-    mMoney = nil;
-    mTimeStr = nil;
-    mPhoneStr = nil;
-    mBlockAddressStr = nil;
-    mNoteStr = nil;
-    
-    mToolStr = nil;
-    mToolId = nil;
-    mGoodsName = nil;
-    mGoodsPrice = nil;
-    mArriveAddress = nil;
-    mSendAddress = nil;
-    
-    mSelecteTimeStr = nil;
+    _mRealease = [GPPTRelease new];
+    mTime = nil;
     mPriceArr = [NSMutableArray new];
     [self initView];
     
@@ -219,13 +135,13 @@
         [mPopView.mMax becomeFirstResponder];
         return;
     }
-    mMin = mPopView.mMin.text;
-    mMax = mPopView.mMax.text;
+    self.mRealease.mMinPrice = mPopView.mMin.text;
+    self.mRealease.mMaxPrice = mPopView.mMax.text;
     
     int mIn = 0;
-    mIn = [mMin intValue];
+    mIn = [self.mRealease.mMinPrice intValue];
     int mAx = 0;
-    mAx = [mMax intValue];
+    mAx = [self.mRealease.mMaxPrice intValue];
     if (mIn > mAx) {
         [self showErrorStatus:@"最高价不能低于最低价！"];
         [mPopView.mMax becomeFirstResponder];
@@ -258,6 +174,7 @@
 }
 
 - (void)initView{
+    self.mRealease.mMoney = @"";
     [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -292,8 +209,6 @@
             
             NSString *eee =@"定位失败！请检查网络和定位设置！";
 
-            
-            mAddressStr = eee;
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             [self showErrorStatus:eee];
             
@@ -308,7 +223,6 @@
         {
             
             MLLog(@"reGeocode:%@", regeocode);
-            mAddressStr = [NSString stringWithFormat:@"%@%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
             [self showSuccessStatus:@"定位成功"];
 
             
@@ -390,10 +304,10 @@
         
         releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.mAddress.text = mAddressStr;
-        
-        mContentStr = cell.mContentTx.text;
-        
+        cell.mContentTx.delegate = self;
+        cell.mContentTx.text = self.mRealease.mContent;
+        cell.mAddress.text = self.mRealease.mAddress;
+
         if (self.mType == 2) {
             cell.mAddTagBtn.hidden = YES;
         }else{
@@ -404,7 +318,7 @@
         [cell.mAddTagBtn addTarget:self action:@selector(mTagAction:) forControlEvents:UIControlEventTouchUpInside];
         
         
-        if (mTagStr == nil || mTagStr.length == 0 || [mTagStr isEqualToString:@""]) {
+        if (self.mRealease.mTag.length == 0) {
             
         }else{
         
@@ -414,11 +328,11 @@
             }
             
             
-            CGFloat W = [Util labelTextWithWidth:mTagStr]+20;
+            CGFloat W = [Util labelTextWithWidth:self.mRealease.mTag]+20;
             
             UILabel *lll = [UILabel new];
             lll.frame = CGRectMake(15, 5, W, 30);
-            lll.text = mTagStr;
+            lll.text = self.mRealease.mTag;
             lll.textAlignment = NSTextAlignmentCenter;
             lll.font = [UIFont systemFontOfSize:13];
             lll.textColor = [UIColor whiteColor];
@@ -438,13 +352,12 @@
             
             releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            mMoney = cell.mMoneyTx.text;
-            
+            cell.mMoneyTx.text = self.mRealease.mMoney;
             cell.mMoneyTx.delegate = self;
             
-            if (mMin != nil || mMax != nil) {
+            if (self.mRealease.mMaxPrice.length != 0 || self.mRealease.mMinPrice.length != 0) {
                 
-                [cell.mPriceBtn setTitle:[NSString stringWithFormat:@"%@元至%@元",mMin,mMax] forState:0];
+                [cell.mPriceBtn setTitle:[NSString stringWithFormat:@"%@元至%@元",self.mRealease.mMinPrice,self.mRealease.mMaxPrice] forState:0];
                 
                 
             }
@@ -463,7 +376,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             cell.mMoneyTx.delegate = self;
-            mMoney = cell.mMoneyTx.text;
+            cell.mMoneyTx.text = self.mRealease.mMoney;
          
             
             return cell;
@@ -474,11 +387,15 @@
             
             releaseCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            mMoney = cell.mMoneyTx.text;
-            mGoodsName = cell.mGoodsName.text;
+            cell.mMoneyTx.text = self.mRealease.mMoney;
 
             cell.mMoneyTx.delegate = self;
-            mGoodsPrice = cell.mGoodsPriceTx.text;
+            cell.mGoodsName.delegate = self;
+
+            cell.mGoodsPriceTx.delegate = self;
+            self.mRealease.mGoodsName = cell.mGoodsName.text;
+
+            self.mRealease.mGoodsPrice = cell.mGoodsPriceTx.text;
             
             return cell;
         }
@@ -493,20 +410,21 @@
             [cell.mChoiceTool addTarget:self action:@selector(choiceToolAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.mtimeBtn addTarget:self action:@selector(mSelectTimeAction:) forControlEvents:UIControlEventTouchUpInside];
             
-            if (mToolStr != nil) {
-                [cell.mChoiceTool setTitle:mToolStr forState:0];
+            if (self.mRealease.mToolStr.length != 0) {
+                [cell.mChoiceTool setTitle:self.mRealease.mToolStr forState:0];
 
             }
-            mTimeStr = cell.mTime.text;
+            self.mRealease.mTime = cell.mTime.text;
             
-            mPhoneStr = cell.mPhone.text;
-            mNoteStr = cell.mNoteTX.text;
-            mSendAddress = cell.mSndAddressTx.text;
-            mArriveAddress = cell.mArriveAddressTx.text;
+            cell.mPhone.text = self.mRealease.mPhone;
+            cell.mNoteTX.text = self.mRealease.mNote;
+            self.mRealease.mBAddress = cell.mSndAddressTx.text;
+            self.mRealease.mEAddress = cell.mArriveAddressTx.text;
             cell.mPhone.delegate = self;
             cell.mTime.delegate = self;
             cell.mNoteTX.delegate = self;
-            
+            cell.mSndAddressTx.delegate = self;
+            cell.mArriveAddressTx.delegate = self;
             
             return cell;
         }else{
@@ -518,10 +436,10 @@
             [cell.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.mtimeBtn addTarget:self action:@selector(mSelectTimeAction:) forControlEvents:UIControlEventTouchUpInside];
 
-            mTimeStr = cell.mTime.text;
+            self.mRealease.mTime = cell.mTime.text;
             
-            mPhoneStr = cell.mPhone.text;
-            mNoteStr = cell.mNoteTX.text;
+            cell.mPhone.text = self.mRealease.mPhone;
+            cell.mNoteTX.text = self.mRealease.mNote;
             
             cell.mPhone.delegate = self;
             cell.mTime.delegate = self;
@@ -539,19 +457,6 @@
 
     NSArray *mTT = @[@"30分钟",@"60分钟",@"90分钟",@"2小时",@"3小时",@"4小时",@"5小时",@"8小时",@"12小时"];
     
-//    MHActionSheet *actionSheet = [[MHActionSheet alloc] initSheetWithTitle:@"选择地址:" style:MHSheetStyleWeiChat itemTitles:mTT];
-//    actionSheet.cancleTitle = @"取消选择";
-//    
-//    [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
-//        
-//         NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
-//        
-//        [sender setTitle:title forState:0];
-//        mSelecteTimeStr = mTT2[index-1];
-//        [self.tableView reloadData];
-//        
-//    }];
-
    LtpickerView = [LTPickerView new];
     LtpickerView.dataSource = mTT;//设置要显示的数据
     LtpickerView.defaultStr = mTT[0];//默认选择的数据
@@ -567,7 +472,7 @@
         NSArray *mTT2 = @[@"30",@"60",@"90",@"120",@"180",@"240",@"300",@"480",@"720"];
         
         [sender setTitle:[NSString stringWithFormat:@"%@内送达",str] forState:0];
-        mSelecteTimeStr = mTT2[num];
+        mTime = mTT2[num];
         [weakSelf.tableView reloadData];
     
     
@@ -614,8 +519,8 @@
     [actionSheet didFinishSelectIndex:^(NSInteger index, NSString *title) {
         GPPTools *mTool = mARR[index];
     
-        mToolStr = mTool.mToolName;
-        mToolId = [NSString stringWithFormat:@"%d",mTool.mId];
+        self.mRealease.mToolStr = mTool.mToolName;
+        self.mRealease.mToolId = [NSString stringWithFormat:@"%d",mTool.mId];
         
         [self.tableView reloadData];
     }];
@@ -651,13 +556,13 @@
             return;
         }
        
-        mMin = mPriceArr[0];
-        mMax = mPriceArr[1];
+        self.mRealease.mMinPrice = mPriceArr[0];
+        self.mRealease.mMaxPrice = mPriceArr[1];
         
         int mIn = 0;
-        mIn = [mMin intValue];
+        mIn = [self.mRealease.mMinPrice intValue];
         int mAx = 0;
-        mAx = [mMax intValue];
+        mAx = [self.mRealease.mMaxPrice intValue];
         if (mIn > mAx) {
             [self showErrorStatus:@"最高价不能低于最低价！"];
             return;
@@ -711,8 +616,8 @@
     bbb.mSubType = self.mSubType;
     
     bbb.block = ^(NSString *content,NSString *mTagId){
-        mTagStr = content;
-        mTagIds = mTagId;
+        self.mRealease.mTag = content;
+        self.mRealease.mTagId = mTagId;
         [self.tableView reloadData];
     };
 
@@ -726,8 +631,8 @@
     pptMyAddressViewController *ppt = [[pptMyAddressViewController alloc] initWithNibName:@"pptMyAddressViewController" bundle:nil];
     ppt.mType = 1;
     ppt.block = ^(NSString *content ,NSString *mId,NSString *mName){
-        mBlockAddressStr = content;
-        mAddressId = mId;
+        self.mRealease.mAddress = content;
+        self.mRealease.mAddressId = mId;
         [sender setTitle:content forState:0];
     };
     [self pushViewController:ppt];
@@ -767,22 +672,62 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField.tag == 200) {
-        mTTStr = [NSString stringWithFormat:@"%@分钟",textField.text];
+    
+    /**
+     *  2酬劳 11是电话 12是地址 300是备注 201发货地址 202收货地址 301商品名称 302商品价格
+     */
+    
+     if(textField.tag == 2){
+        self.mRealease.mMoney = textField.text;
         [self.tableView reloadData];
-    }else if (textField.tag == 1){
-        mPriceTT = [NSString stringWithFormat:@"%@元",textField.text];
-        [self.tableView reloadData];
-    }else if(textField.tag == 2){
-        mMoneyTT = [NSString stringWithFormat:@"%@元",textField.text];
-        [self.tableView reloadData];
-    }else{
+    }else if(textField.tag == 11){
+        self.mRealease.mPhone = textField.text;
         [self.tableView reloadData];
 
     }
+    else if(textField.tag == 12){
+        self.mRealease.mAddress = textField.text;
+        [self.tableView reloadData];
+        
+    }
+    else if(textField.tag == 300){
+        self.mRealease.mNote = textField.text;
+
+        [self.tableView reloadData];
+        
+    } else if(textField.tag == 201){
+        self.mRealease.mBAddress = textField.text;
+        
+        [self.tableView reloadData];
+        
+    } else if(textField.tag == 202){
+        self.mRealease.mEAddress = textField.text;
+        
+        [self.tableView reloadData];
+        
+    }
+    else if(textField.tag == 301){
+        self.mRealease.mGoodsName = textField.text;
+        
+        [self.tableView reloadData];
+        
+    } else if(textField.tag == 302){
+        self.mRealease.mGoodsPrice = textField.text;
+        
+        [self.tableView reloadData];
+        
+    }
+
     
     
 }
+- (void)textViewDidEndEditing:(UITextView *)textView{
+        self.mRealease.mContent = textView.text;
+        [self.tableView reloadData];
+
+    
+}
+
 #pragma mark----发布
 /**
  *  发布
@@ -791,7 +736,9 @@
  */
 - (void)mReleaseAction:(UIButton *)sender{
 
-    if ([mUserInfo backNowUser].mMoney < [mMoney floatValue]) {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
+    
+    if ([mUserInfo backNowUser].mMoney < [self.mRealease.mMoney floatValue]) {
         [self showErrorStatus:@"余额不足，发布失败！"];
         return;
     }
@@ -807,18 +754,18 @@
         
         return ;
     }
-    if (mContentStr == nil || mContentStr.length == 0) {
+    if (self.mRealease.mContent.length == 0) {
         [self showErrorStatus:@"需求不能为空！"];
         return;
     }
     if (self.mType == 3) {
-        if (mGoodsName == nil || mGoodsName.length == 0 || [mGoodsName isEqualToString:@""]) {
+        if (self.mRealease.mGoodsName.length == 0) {
             [self showErrorStatus:@"请输入商品名称！"];
             return;
         }
     }
     if (self.mType == 2 || self.mType == 1) {
-        if (mBlockAddressStr == nil || mBlockAddressStr.length == 0) {
+        if (self.mRealease.mAddress.length == 0) {
             [self showErrorStatus:@"地址不能为空！"];
             return;
         }
@@ -826,7 +773,7 @@
 
     
     if (self.mType == 1 || self.mType == 3) {
-        if (mTagStr == nil || mTagStr.length == 0) {
+        if (self.mRealease.mTag.length == 0) {
             [self showErrorStatus:@"标签不能为空！"];
             return;
         }
@@ -837,18 +784,18 @@
     
     }else{
         
-        if (mMin == nil) {
+        if (self.mRealease.mMinPrice.length == 0) {
             [self showErrorStatus:@"请输入最低价!"];
             return;
         }
-        if (mMax == nil) {
+        if (self.mRealease.mMaxPrice.length == 0) {
             [self showErrorStatus:@"请输入最高价!"];
             return;
         }
 
         
     }
-    if (mMoney == nil || mMoney.length == 0) {
+    if (self.mRealease.mMoney.length == 0) {
         [self showErrorStatus:@"酬劳金额不能为空！"];
         return;
     }
@@ -856,26 +803,22 @@
     if (self.mType == 3) {
         
     }else{
-        if (mSelecteTimeStr == nil || mSelecteTimeStr.length == 0) {
+        if (mTime.length == 0) {
             [self showErrorStatus:@"时间不能为空！"];
             return;
         }
     }
     
   
-    if(![Util isMobileNumber:mPhoneStr]){
+    if(![Util isMobileNumber:self.mRealease.mPhone]){
         [self showErrorStatus:@"请输入合法的手机号码"];
         return;
     }
 
-//    if (mNoteStr == nil || mNoteStr.length == 0) {
-//        [self showErrorStatus:@"备注不能为空！"];
-//        return;
-//    }
     int mIn = 0;
-    mIn = [mMin intValue];
+    mIn = [self.mRealease.mMinPrice intValue];
     int mAx = 0;
-    mAx = [mMax intValue];
+    mAx = [self.mRealease.mMaxPrice intValue];
     if (mIn > mAx) {
         [self showErrorStatus:@"最高价不能低于最低价！"];
         [mPopView.mMax becomeFirstResponder];
@@ -890,7 +833,7 @@
     [self showWithStatus:@"正在发布..."];
     
     if (self.mType == 1) {
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:mTagIds andMin:mMin andMAx:mMax andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:self.mRealease.mTagId andMin:self.mRealease.mMinPrice andMAx:self.mRealease.mMaxPrice andLat:self.mLat andLng:self.mLng andContent:self.mRealease.mContent andMoney:self.mRealease.mMoney andAddress:self.mRealease.mAddressId andPhone:self.mRealease.mPhone andNote:self.mRealease.mNote andArriveTime:mTime block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
@@ -905,7 +848,7 @@
         
         
     }else if(self.mType == 2){
-        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:mContentStr andMoney:mMoney andAddress:mAddressId andPhone:mPhoneStr andNote:mNoteStr andArriveTime:mSelecteTimeStr block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTorder:self.mType andTagId:nil andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:self.mRealease.mContent andMoney:self.mRealease.mMoney andAddress:self.mRealease.mAddressId andPhone:self.mRealease.mPhone andNote:self.mRealease.mNote andArriveTime:mTime block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
@@ -919,7 +862,7 @@
         }];
     }else{
     
-        [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:mTagIds andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:nil andMoney:mMoney andAddress:nil andPhone:mPhoneStr andNote:mNoteStr andArriveTime:nil andGoodsName:mGoodsName andGoodsPrice:mGoodsPrice andSendAddress:mSendAddress andArriveAddress:mArriveAddress andTool:mToolId block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] releasePPTSendorder:3 andTagId:self.mRealease.mTagId andMin:nil andMAx:nil andLat:self.mLat andLng:self.mLng andContent:nil andMoney:self.mRealease.mMoney andAddress:nil andPhone:self.mRealease.mPhone andNote:self.mRealease.mNote andArriveTime:mTime andGoodsName:self.mRealease.mGoodsName andGoodsPrice:self.mRealease.mGoodsPrice andSendAddress:self.mRealease.mBAddress andArriveAddress:self.mRealease.mEAddress andTool:self.mRealease.mToolId block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:MyUserNeedUpdateNotification object:nil];
