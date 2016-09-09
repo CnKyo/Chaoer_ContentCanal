@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="770"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E1b-ZZ-ntF" id="ZTh-Dv-fVA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="769"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="769.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-pN-1fn">
@@ -109,7 +109,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号：23424323231231132" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3t-MU-QE0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号：23424323231231132" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="s3t-MU-QE0">
                                 <rect key="frame" x="76" y="8" width="236" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="1zD-Vg-FH8"/>
@@ -125,10 +125,10 @@
                                     <constraint firstAttribute="width" constant="45" id="wm0-l4-DPg"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打扫卫生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0i0-4a-Gj7">
-                                <rect key="frame" x="63" y="52" width="249" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打扫卫生" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0i0-4a-Gj7">
+                                <rect key="frame" x="63" y="37" width="249" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Lbo-ng-15a"/>
+                                    <constraint firstAttribute="height" constant="45" id="Lbo-ng-15a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,7 +325,7 @@
                             <constraint firstItem="1Ug-YG-HFt" firstAttribute="leading" secondItem="tkx-BG-irW" secondAttribute="leading" constant="10" id="Pzv-yy-8fC"/>
                             <constraint firstItem="XID-xu-wyF" firstAttribute="top" secondItem="6sr-4r-rbi" secondAttribute="bottom" constant="8" id="Qg2-5s-NVQ"/>
                             <constraint firstItem="b7i-fz-I7j" firstAttribute="top" secondItem="zCZ-Rc-Ftf" secondAttribute="bottom" constant="8" id="R2Q-Lq-585"/>
-                            <constraint firstItem="0i0-4a-Gj7" firstAttribute="top" secondItem="YHV-Tp-xOU" secondAttribute="bottom" constant="23" id="RId-pT-7IN"/>
+                            <constraint firstItem="0i0-4a-Gj7" firstAttribute="top" secondItem="YHV-Tp-xOU" secondAttribute="bottom" constant="8" id="RId-pT-7IN"/>
                             <constraint firstItem="zCZ-Rc-Ftf" firstAttribute="top" secondItem="fns-Xt-ple" secondAttribute="bottom" constant="8" id="S0b-1f-WdC"/>
                             <constraint firstItem="FuJ-Er-PFT" firstAttribute="top" secondItem="E9r-jH-n8l" secondAttribute="bottom" constant="8" id="UCR-f1-rMw"/>
                             <constraint firstAttribute="trailing" secondItem="o9a-M3-QCD" secondAttribute="trailing" constant="8" id="VcJ-ha-Xfn"/>
@@ -426,7 +426,7 @@
                 <outlet property="mTHXMoney" destination="x3J-ya-5fm" id="9Lm-EE-n7E"/>
                 <outlet property="mTagView" destination="TgD-Ue-byZ" id="t25-hu-ZFl"/>
             </connections>
-            <point key="canvasLocation" x="272" y="372.5"/>
+            <point key="canvasLocation" x="272" y="372"/>
         </tableViewCell>
     </objects>
 </document>

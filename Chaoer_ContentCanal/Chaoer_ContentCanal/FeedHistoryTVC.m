@@ -76,29 +76,7 @@
     }];
     
 }
-- (void)footetBeganRefresh{
-    
-    self.page ++;
-    
-    [[APIClient sharedClient] complainListWithTag:self call:^(NSArray *tableArr, APIObject *info) {
-        [self footetEndRefresh];
-        [self removeEmptyView];
-        
-        if (info.state == RESP_STATUS_YES) {
-            if (tableArr == nil) {
-                [self addEmptyViewWithImg:nil];
-                return ;
-            }
-            [self.tempArray addObjectsFromArray:tableArr];
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-        } else {
-            [self addEmptyViewWithImg:nil];
-            [SVProgressHUD showErrorWithStatus:info.message];
-        }
-        
-    }];
-}
+
 
 
 - (void)didReceiveMemoryWarning {
