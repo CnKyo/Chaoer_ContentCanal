@@ -182,7 +182,7 @@
     //如不需要使用IDFA，advertisingIdentifier 可为nil
     [JPUSHService setupWithOption:launchOptions appKey:@"5e3e27da01ec6cb61b8e2b4d"
                           channel:@"25b4503e82ad1f91cfc56061"
-                 apsForProduction:YES
+                 apsForProduction:NO
             advertisingIdentifier:nil];
     
 //    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
@@ -583,18 +583,16 @@
 {
     NSLog(@"userinof: %@", userinof);
     JPushReceiveObject *it = [JPushReceiveObject mj_objectWithKeyValues:userinof];
-    if ([it.model isEqualToString:@"service"]) {
-        if( !bopenwith ) {
-            if (it.aps.alert.length>0) {
-                [[PushAudioPlayer sharedClient] play:it.aps.sound];
-                myalert *alertVC = [[myalert alloc] initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
-                alertVC.obj = it;
-                [alertVC show];
-            }
-            
-        } else {
-            [self goToVCWithPush:it];
+    if( !bopenwith ) {
+        if (it.aps.alert.length>0) {
+            [[PushAudioPlayer sharedClient] play:it.aps.sound];
+            myalert *alertVC = [[myalert alloc] initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
+            alertVC.obj = it;
+            [alertVC show];
         }
+        
+    } else {
+        [self goToVCWithPush:it];
     }
 
     
@@ -632,6 +630,10 @@
 
 -(void)goToVCWithPush:(JPushReceiveObject *)item
 {
+    if (![item.model isEqualToString:@"service"]) { //如果不是跑跑接收者消息
+        return;
+    }
+    
     UITabBarController *tabVC = ((UITabBarController*)self.window.rootViewController);
     tabVC.selectedIndex = 0;
     
