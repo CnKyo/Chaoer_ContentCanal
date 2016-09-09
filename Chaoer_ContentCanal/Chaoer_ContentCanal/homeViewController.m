@@ -799,7 +799,7 @@
         return;
     }
     mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
-    mmm.mType = [orderType intValue];
+    //mmm.mType = [orderType intValue];
     mmm.mLng = mLng.length>0 ? mLng : UserDefaults().longitude;
     mmm.mLat = mLat.length>0 ? mLat : UserDefaults().latitude;
     [self pushViewController:mmm];

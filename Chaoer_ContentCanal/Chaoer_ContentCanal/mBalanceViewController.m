@@ -160,6 +160,7 @@
 }
 
 - (void)payAction:(UIButton *)sender{
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
     
     if (mView.mMoneyTx.text.length == 0) {
         [self showErrorStatus:@"请输入充值金额！"];
@@ -182,8 +183,7 @@
 
         
         [SVProgressHUD showWithStatus:@"正在操作..." maskType:SVProgressHUDMaskTypeClear];
-        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] intValue] block:^(mBaseData *resb) {
-            [SVProgressHUD dismiss];
+        [[mUserInfo backNowUser] payIt:[NSString stringWithFormat:@"%@",mTT[0]] andPrice:[[NSString stringWithFormat:@"%@",mView.mMoneyTx.text] doubleValue] block:^(mBaseData *resb) {
             
             if( resb.mSucess )
             {
