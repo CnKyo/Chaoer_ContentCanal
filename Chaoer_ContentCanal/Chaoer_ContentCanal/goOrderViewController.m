@@ -367,9 +367,11 @@
             if (mAset.mediaType == PHAssetMediaTypeImage)
             {
                 [[PHImageManager defaultManager] requestImageDataForAsset:mAset options:nil resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                    NSURL *url = [info objectForKey:@"PHImageFileURLKey"];
-                    if (url != nil) {
-                        tempImage = [Util scaleImg:[UIImage imageWithData:[NSData dataWithContentsOfURL:url]] maxsize:550];
+                    //NSURL *url = [info objectForKey:@"PHImageFileURLKey"];
+                    UIImage *img11 = [UIImage imageWithData:imageData];
+                    if (img11 != nil) {
+                        //UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                        tempImage = [Util scaleImg:img11 maxsize:550];
                         [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
                         
                         [self loadImage];

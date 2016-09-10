@@ -37,14 +37,16 @@
 
 - (void)play:(NSString *)fileName
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    
-    if (url != nil) {
-        [self stop];
+    if (fileName.length > 0) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+        NSURL *url = [NSURL fileURLWithPath:filePath];
         
-        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-        [self.player play];
+        if (url != nil) {
+            [self stop];
+            
+            self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+            [self.player play];
+        }
     }
 }
 

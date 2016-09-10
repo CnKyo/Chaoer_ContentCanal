@@ -147,6 +147,7 @@
     }
 }
 - (IBAction)mOkAction:(UIButton *)sender {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
     
     if (![Util isMobileNumber:self.mAcountTx.text]) {
         [LCProgressHUD showInfoMsg:@"请输入合法的手机账户"];
