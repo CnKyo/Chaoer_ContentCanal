@@ -18,18 +18,6 @@
 @implementation communityStatusViewController
 {
     LiuXSegmentView *mHeaderView;
-    /**
-     *  小区id
-     */
-    int mCommunityId;
-    /**
-     *  新闻类型
-     */
-    int mType;
-    /**
-     *  分类数据
-     */
-    NSMutableArray *mClassArr;
     
 }
 
@@ -46,105 +34,14 @@
     self.hiddenTabBar = YES;
     
     
-    mClassArr = [NSMutableArray new];
     
-    [self loadClass];
     [self initView];
-
-}
-
-- (void)loadClass{
-
-    
-    [SVProgressHUD showWithStatus:@"正在加载中..." maskType:SVProgressHUDMaskTypeClear];
-    
-    [[mUserInfo backNowUser] getCommunityClass:^(mBaseData *resb, NSArray *mArr) {
-        [mClassArr removeAllObjects];
-        
-        if (resb.mSucess) {
-            
-            
-            if (mArr.count <= 0) {
-                [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
-                
-                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-                return ;
-
-            }else{
-                
-                [mClassArr addObjectsFromArray:mArr];
-                
-                GCommunityClass *GC = mArr[0];
-                mType = GC.mId;
-                [self loadCommunity];
-            }
-
-        }else{
-            [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
-            
-            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-        }
-    }];
-}
-
-- (void)loadCommunity{
-
-    [[mUserInfo backNowUser] getArear:^(mBaseData *resb, NSArray *mArr) {
-        [self.tempArray removeAllObjects];
-        if (resb.mSucess) {
-            
-            [SVProgressHUD showSuccessWithStatus:resb.mMessage];
-            
-            if (mArr.count <= 0) {
-                [SVProgressHUD showErrorWithStatus:@"暂无数据!"];
-
-                [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-                return ;
-            }else{
-            
-                GArear *GA = mArr[0];
-                mCommunityId = GA.mId;
-                [self initHeaderView];
-                
-            }
-
-        }else{
-            [SVProgressHUD showErrorWithStatus:resb.mMessage];
-            [self performSelector:@selector(leftBtnTouched:) withObject:nil afterDelay:1];
-            
-        }
-        
-    }];
-
-}
-
-
-- (void)initHeaderView{
-
-    NSMutableArray *mTTArr = [NSMutableArray new];
-    
-    for (GCommunityClass *GC in mClassArr) {
-        [mTTArr addObject:GC.mName];
-    }
-    
-    [mHeaderView removeFromSuperview];
-    
-    mHeaderView=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 60) titles:mTTArr clickBlick:^void(NSInteger index) {
-        MLLog(@"点击了-----%ld",index);
-        
-        GCommunityClass *GC = mClassArr[index-1];
-        mType = GC.mId;
-        [self headerBeganRefresh];
-        
-    }];
-    [self.view addSubview:mHeaderView];
-    [self headerBeganRefresh];
 
 }
 
 - (void)initView{
 
-    [self loadTableView:CGRectMake(0,124, DEVICE_Width, DEVICE_Height-124) delegate:self dataSource:self];
+    [self loadTableView:CGRectMake(0,64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
@@ -159,7 +56,7 @@
 
     self.page = 1;
     
-    [[mUserInfo backNowUser] getCommunityStatus:mCommunityId andPage:self.page andType:mType block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getCommunityStatus:[mUserInfo backNowUser].mCommunityId andPage:self.page andType:0 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self headerEndRefresh];
         [self removeEmptyView];
@@ -186,7 +83,7 @@
 - (void)footetBeganRefresh{
     self.page ++;
     
-    [[mUserInfo backNowUser] getCommunityStatus:mCommunityId andPage:self.page andType:mType block:^(mBaseData *resb, NSArray *mArr) {
+    [[mUserInfo backNowUser] getCommunityStatus:[mUserInfo backNowUser].mCommunityId andPage:self.page andType:0 block:^(mBaseData *resb, NSArray *mArr) {
         
         [self footetEndRefresh];
         [self removeEmptyView];
@@ -271,8 +168,6 @@
     [self pushViewController:vc];
     
 
-
-    
     
 }
 
