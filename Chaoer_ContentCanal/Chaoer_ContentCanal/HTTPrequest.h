@@ -38,7 +38,7 @@ static NSString* const  kAFAppDotNetAPIBaseURLString    = @"http://192.168.1.114
  */
 static NSString* const  kAFASourceUrl    = @"http://resource.china-cr.com/resource/";
 
-//static NSString* const  kAFASourceUrl    = @"http://192.168.1.120/";
+//static NSString* const  kAFASourceUrl    = @"http://192.168.1.120/resource/";
 
 
 @class mBaseData;

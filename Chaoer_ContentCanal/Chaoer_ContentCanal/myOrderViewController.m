@@ -202,11 +202,26 @@
     
     myOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
     
-
+    
     cell.mOrderStatus.text = mFix.mOrderStatus;
     cell.mOrderPrice.text = [NSString stringWithFormat:@"金额:%.2f元",mFix.mOrderPrice];
     cell.mOrderName.text = [NSString stringWithFormat:@"%@-%@",mFix.mClassificationName,mFix.mClassificationName2];
-    cell.mServiceTime.text = [NSString stringWithFormat:@"服务时间：%@",mFix.mOrderServiceTime];
+    
+    if ([mType isEqualToString:@"1"]) {
+        if (mFix.serviceTime.length>0) {
+            cell.mServiceTime.text = [NSString stringWithFormat:@"服务时间：%@",mFix.serviceTime];
+        } else
+            cell.mServiceTime.text = [NSString stringWithFormat:@"预约时间：%@",mFix.mOrderServiceTime];
+        
+    } else if ([mType isEqualToString:@"2"]) {
+        if (mFix.mRechargeTime.length>0) {
+            cell.mServiceTime.text = [NSString stringWithFormat:@"充值时间：%@",mFix.mRechargeTime];
+        } else
+            cell.mServiceTime.text = [NSString stringWithFormat:@"下单时间：%@",mFix.addTime];
+    } else
+        cell.mServiceTime.text = @"服务时间：暂无";
+
+    
     cell.mServiceAddress.text = [NSString stringWithFormat:@"服务地址：%@",mFix.mAddress];
     MLLog(@"图片地址是：%@",[NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],mFix.mOrderImage]);
     
