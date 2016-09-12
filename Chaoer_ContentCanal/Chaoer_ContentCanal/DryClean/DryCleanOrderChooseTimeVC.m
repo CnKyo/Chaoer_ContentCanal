@@ -12,6 +12,11 @@
 #import "DryCleanTimeChooseView.h"
 #import "UIImage+QUAdditons.h"
 
+@implementation TimeObject
+@end
+
+
+
 @interface DryCleanOrderChooseTimeVC ()
 @property(strong,nonatomic) NSMutableArray *dateArr; //seg的标题arr
 @property(strong,nonatomic) HMSegmentedControl *segControl;
@@ -166,9 +171,14 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl
 {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
-    
+
     NSDate *date = [[NSDate date] dateByAddingDays:segmentedControl.selectedSegmentIndex];
     NSString *dateStr = [date formattedDateWithFormat:@"yyyyMMdd"];
+    
+    NSInteger hour = 0;
+    if (segmentedControl.selectedSegmentIndex == 0)
+        hour = date.hour;
+    
     
     NSString *dateTimeChooseStr = [self.chooseTimeDic objectForKey:dateStr];
     
@@ -179,14 +189,36 @@
         [SVProgressHUD showWithStatus:@"加载中..."];
         [[APIClient sharedClient] dryClearnShopOpeningTimeListWithTag:self shopId:_shopId dateStr:dateStr call:^(NSArray *tableArr, APIObject *info) {
             
-            if (tableArr.count > 0) {
-                [self.timeDic setObject:tableArr forKey:dateStr];
+            NSMutableArray *newArr = [NSMutableArray array];
+            for (int i=0; i<tableArr.count; i++) {
+                NSString *time = [tableArr objectAtIndex:i];
+                TimeObject *it = [TimeObject new];
+                it.time = time;
+                it.canEdit = YES;
+                if (hour>0 && time.length > 1) {
+                    NSArray *aa = [time componentsSeparatedByString:@"~"];
+                    NSString *beginTimeStr = [aa objectAtIndex:0];
+                    if (beginTimeStr.length > 0) {
+                        NSArray *beginTimeArr = [beginTimeStr componentsSeparatedByString:@":"];
+                        NSString *beginTimeHourStr = [beginTimeArr objectAtIndex:0];
+                        NSInteger beginTimeHour = [beginTimeHourStr integerValue];
+                        if (beginTimeHour <= hour) {
+                            it.canEdit = NO;
+                        }
+                    }
+                }
+                [newArr addObject:it];
+            }
+            
+            
+            if (newArr.count > 0) {
+                [self.timeDic setObject:newArr forKey:dateStr];
                 
                 [SVProgressHUD dismiss];
             } else
                 [SVProgressHUD showErrorWithStatus:info.message];
             
-            [self.chooseView loadUIWithTitleArr:tableArr chooseTime:dateTimeChooseStr];
+            [self.chooseView loadUIWithTitleArr:newArr chooseTime:dateTimeChooseStr];
         }];
     }
 }

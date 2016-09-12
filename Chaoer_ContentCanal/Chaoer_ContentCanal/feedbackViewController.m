@@ -88,8 +88,8 @@
             [self showAlertVC:@"提示" alertMsg:@"您未输入任何信息!"];
             return;
         }
-        if (self.txView.text.length >= 2000) {
-            [self showAlertVC:@"提示" alertMsg:@"内容长度不能超过2000个字符"];
+        if (self.txView.text.length >= 100) {
+            [self showAlertVC:@"提示" alertMsg:@"内容长度不能超过100个字符"];
             return;
         }
         else{

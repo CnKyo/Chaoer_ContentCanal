@@ -9,6 +9,14 @@
 #import "QUScrollVC.h"
 #import "APIClient.h"
 
+
+@interface TimeObject : NSObject
+@property (nonatomic, assign) BOOL                  canEdit;              //
+@property (nonatomic, strong) NSString *            time;              //
+@end
+
+
+
 @interface DryCleanOrderChooseTimeVC : QUScrollVC
 @property(nonatomic,assign) int shopId; //店铺id
 

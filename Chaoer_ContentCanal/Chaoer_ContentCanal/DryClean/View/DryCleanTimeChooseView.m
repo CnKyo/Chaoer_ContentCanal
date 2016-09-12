@@ -8,6 +8,18 @@
 
 #import "DryCleanTimeChooseView.h"
 
+@implementation DryCleanTimeChooseBtn
+-(void)setItem:(TimeObject *)item
+{
+    if (item.time.length > 0) {
+        [self setTitle:item.time forState:UIControlStateNormal];
+    }
+    self.enabled = item.canEdit;
+    _item = item;
+}
+@end
+
+
 @interface DryCleanTimeChooseView ()
 //@property(strong,nonatomic) UIButton *chooseBtn;
 @property(strong,nonatomic) NSString *chooseStr;
@@ -48,9 +60,15 @@
     
     UIView *lastView = nil;
     for (int i=0; i<_arr.count; i++) {
-        NSString *title = [_arr objectAtIndex:i];
-        UIButton *btn = [self newUIButtonWithTarget:self mehotd:@selector(chooseMethod:) title:title titleColor:[UIColor grayColor]];
+        TimeObject *item = [_arr objectAtIndex:i];
+        
+        DryCleanTimeChooseBtn *btn = [DryCleanTimeChooseBtn buttonWithType:UIButtonTypeCustom];
+        [self addSubview:btn];
+        [btn addTarget:self action:@selector(chooseMethod:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //[self newUIButtonWithTarget:self mehotd:@selector(chooseMethod:) title:title titleColor:[UIColor grayColor]];
         btn.tag = 100 + i;
+        btn.item = item;
         
         UIView *lineSView = [self newDefaultLineView]; //竖线右
         UIView *lineHView = [self newDefaultLineView]; //横线下
@@ -163,23 +181,34 @@
 {
     UIColor *colorChoose = [UIColor colorWithRed:0.525 green:0.753 blue:0.129 alpha:1.000];
     UIColor *colorNormal = [UIColor blackColor];
+    UIColor *colorNoChoose = [UIColor grayColor];
     
     NSArray *arr = [self subviews];
     for (UIView *view in arr) {
-        if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *btn = (UIButton *)view;
+        if ([view isKindOfClass:[DryCleanTimeChooseBtn class]]) {
+            DryCleanTimeChooseBtn *btn = (DryCleanTimeChooseBtn *)view;
             NSString *title = [btn titleForState:UIControlStateNormal];
-            if ([title isEqualToString:_chooseStr]) {
-                btn.layer.borderWidth = 1;
-                btn.layer.borderColor = colorChoose.CGColor;
-                btn.layer.masksToBounds = YES;
-                [btn setTitleColor:colorChoose forState:UIControlStateNormal];
+            if (btn.item.canEdit == YES) {
+                btn.enabled = YES;
+                if ([title isEqualToString:_chooseStr]) {
+                    btn.layer.borderWidth = 1;
+                    btn.layer.borderColor = colorChoose.CGColor;
+                    btn.layer.masksToBounds = YES;
+                    [btn setTitleColor:colorChoose forState:UIControlStateNormal];
+                } else {
+                    btn.layer.borderWidth = 0;
+                    btn.layer.borderColor = colorNormal.CGColor;
+                    btn.layer.masksToBounds = YES;
+                    [btn setTitleColor:colorNormal forState:UIControlStateNormal];
+                }
             } else {
+                btn.enabled = NO;
                 btn.layer.borderWidth = 0;
-                btn.layer.borderColor = colorNormal.CGColor;
+                btn.layer.borderColor = colorNoChoose.CGColor;
                 btn.layer.masksToBounds = YES;
-                [btn setTitleColor:colorNormal forState:UIControlStateNormal];
+                [btn setTitleColor:colorNoChoose forState:UIControlStateNormal];
             }
+
         }
     }
 }
