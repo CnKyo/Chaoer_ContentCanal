@@ -505,6 +505,10 @@
 		04F5FFFE1D23A87C00EFBB3C /* GoodsDetailNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5FFFD1D23A87C00EFBB3C /* GoodsDetailNavView.m */; };
 		04F85D081D86AB4B008675A5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F85D071D86AB4B008675A5 /* AddressBook.framework */; };
 		04F85D0A1D86AB54008675A5 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F85D091D86AB54008675A5 /* AddressBookUI.framework */; };
+		04F85D211D86AFC2008675A5 /* PPAddressBookHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F85D1C1D86AFC2008675A5 /* PPAddressBookHandle.m */; };
+		04F85D221D86AFC2008675A5 /* PPGetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F85D1E1D86AFC2008675A5 /* PPGetAddressBook.m */; };
+		04F85D231D86AFC2008675A5 /* PPPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F85D201D86AFC2008675A5 /* PPPersonModel.m */; };
+		04F85D271D86AFD7008675A5 /* AddressBookController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F85D251D86AFD7008675A5 /* AddressBookController1.m */; };
 		04F89C001D1CD3A9006A3976 /* communityCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */; };
 		04F89C021D1CD922006A3976 /* mCommunitySubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89C011D1CD922006A3976 /* mCommunitySubView.xib */; };
 		04F89C041D1CE08B006A3976 /* communityCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89C031D1CE08B006A3976 /* communityCell1.xib */; };
@@ -2038,6 +2042,14 @@
 		04F5FFFF1D23A88700EFBB3C /* GoodsDetailNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailNavView.xib; sourceTree = "<group>"; };
 		04F85D071D86AB4B008675A5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		04F85D091D86AB54008675A5 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		04F85D1B1D86AFC2008675A5 /* PPAddressBookHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAddressBookHandle.h; sourceTree = "<group>"; };
+		04F85D1C1D86AFC2008675A5 /* PPAddressBookHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAddressBookHandle.m; sourceTree = "<group>"; };
+		04F85D1D1D86AFC2008675A5 /* PPGetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPGetAddressBook.h; sourceTree = "<group>"; };
+		04F85D1E1D86AFC2008675A5 /* PPGetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPGetAddressBook.m; sourceTree = "<group>"; };
+		04F85D1F1D86AFC2008675A5 /* PPPersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPersonModel.h; sourceTree = "<group>"; };
+		04F85D201D86AFC2008675A5 /* PPPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPersonModel.m; sourceTree = "<group>"; };
+		04F85D241D86AFD7008675A5 /* AddressBookController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookController1.h; sourceTree = "<group>"; };
+		04F85D251D86AFD7008675A5 /* AddressBookController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookController1.m; sourceTree = "<group>"; };
 		04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = communityCell2.xib; sourceTree = "<group>"; };
 		04F89C011D1CD922006A3976 /* mCommunitySubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCommunitySubView.xib; sourceTree = "<group>"; };
 		04F89C031D1CE08B006A3976 /* communityCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = communityCell1.xib; sourceTree = "<group>"; };
@@ -4581,6 +4593,21 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		04F85D1A1D86AFB7008675A5 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04F85D1B1D86AFC2008675A5 /* PPAddressBookHandle.h */,
+				04F85D1C1D86AFC2008675A5 /* PPAddressBookHandle.m */,
+				04F85D1D1D86AFC2008675A5 /* PPGetAddressBook.h */,
+				04F85D1E1D86AFC2008675A5 /* PPGetAddressBook.m */,
+				04F85D1F1D86AFC2008675A5 /* PPPersonModel.h */,
+				04F85D201D86AFC2008675A5 /* PPPersonModel.m */,
+				04F85D241D86AFD7008675A5 /* AddressBookController1.h */,
+				04F85D251D86AFD7008675A5 /* AddressBookController1.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		04F89C071D1D0FAD006A3976 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5820,6 +5847,7 @@
 		31B9903A1C96B34A002E34A5 /* 手机充值 */ = {
 			isa = PBXGroup;
 			children = (
+				04F85D1A1D86AFB7008675A5 /* view */,
 				31B9903B1C96B369002E34A5 /* phoneUpTopViewController.h */,
 				31B9903C1C96B369002E34A5 /* phoneUpTopViewController.m */,
 				31B9903D1C96B369002E34A5 /* phoneUpTopViewController.xib */,
@@ -7521,6 +7549,7 @@
 				04FAD0C01D6A98FC0038CF7B /* ZXSMSParsedResult.m in Sources */,
 				04FAD0101D6A98E00038CF7B /* ZXAztecBinaryShiftToken.m in Sources */,
 				04E5A7ED1CE5823300A2D111 /* pptMyViewController.m in Sources */,
+				04F85D211D86AFC2008675A5 /* PPAddressBookHandle.m in Sources */,
 				749BE9991B32756800BABCA6 /* IQUIWindow+Hierarchy.m in Sources */,
 				318D56721C9FD4230045B5FB /* ZJAlertListView.m in Sources */,
 				DF535F101D62B442006E1598 /* DryCleanVC.m in Sources */,
@@ -7545,6 +7574,7 @@
 				749BEA491B3277AA00BABCA6 /* UIImage+WebP.m in Sources */,
 				3182A1691CA620CC0084E890 /* GiFHUD.m in Sources */,
 				16E9CAD51BAC00BC00C48B8A /* DYDescLabel.m in Sources */,
+				04F85D231D86AFC2008675A5 /* PPPersonModel.m in Sources */,
 				044A247F1CB4B25700A6379C /* msgViewController.m in Sources */,
 				04E6CE771D631E2C000EB6B8 /* mCampTionTableViewCell.m in Sources */,
 				0400EDA51D45A76B009CD641 /* homeHotViewController.m in Sources */,
@@ -7834,6 +7864,7 @@
 				DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */,
 				04A1511C1D3637B700AFCE98 /* QHLHiddenView.m in Sources */,
 				04102CC51D2A507D003A0C56 /* MJRefreshComponent.m in Sources */,
+				04F85D271D86AFD7008675A5 /* AddressBookController1.m in Sources */,
 				04FACE8F1D6A981A0038CF7B /* ZXPDF417ScanningDecoder.m in Sources */,
 				04FACFC31D6A98BD0038CF7B /* ZXPerspectiveTransform.m in Sources */,
 				040B80151CC50B60006A9489 /* LBProgressHUD.m in Sources */,
@@ -8126,6 +8157,7 @@
 				31E1A7211CA3890C00D3496F /* makeFixOrderDetailViewController.m in Sources */,
 				31462CE01CB38D7600E67836 /* walletViewController.m in Sources */,
 				040BEF461D6D4FF600BDD60F /* TYShowAlertView.m in Sources */,
+				04F85D221D86AFC2008675A5 /* PPGetAddressBook.m in Sources */,
 				04D6528B1CF010B700E26209 /* mComfirOrderDetailView.m in Sources */,
 				04FAD0B31D6A98FC0038CF7B /* ZXEmailAddressResultParser.m in Sources */,
 				04FAD0271D6A98E80038CF7B /* ZXRSSPair.m in Sources */,

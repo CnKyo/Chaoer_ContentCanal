@@ -9,6 +9,8 @@
 #import "phoneUpTopViewController.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "AddressBookController1.h"
+
 @interface phoneUpTopViewController ()<ABPeoplePickerNavigationControllerDelegate>
 
 @end
@@ -188,7 +190,14 @@
 
 - (IBAction)mMyPerson:(UIButton *)sender {
     
-  
+
+    AddressBookController1  *VC = [AddressBookController1 new];
+    VC.block = ^(NSString *mPhone){
+        if (mPhone.length != 0) {
+            self.mPhoneT.text = mPhone;
+        }
+    };
+    [self pushViewController:VC];
 }
 
 @end
