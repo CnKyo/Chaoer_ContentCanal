@@ -1150,6 +1150,8 @@
 		DF8344351D51DE67002C4FD6 /* SKTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344311D51DE67002C4FD6 /* SKTagButton.m */; };
 		DF8344361D51DE67002C4FD6 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8344331D51DE67002C4FD6 /* SKTagView.m */; };
 		DF8344401D51F397002C4FD6 /* ImageTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */; };
+		DFA13A1A1D86B4B800889543 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA13A181D86B4B800889543 /* TencentOpenAPI.framework */; };
+		DFA13A1B1D86B4B800889543 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFA13A191D86B4B800889543 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		DFACAA691D6FF6E2009F4CC0 /* QUItemBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */; };
 		DFFC4FB71D829B3D003B962E /* FeedHistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFC4FB61D829B3D003B962E /* FeedHistoryTVC.m */; };
 /* End PBXBuildFile section */
@@ -3220,6 +3222,8 @@
 		DF8344331D51DE67002C4FD6 /* SKTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagView.m; sourceTree = "<group>"; };
 		DF83443E1D51F397002C4FD6 /* ImageTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextTableViewCell.h; sourceTree = "<group>"; };
 		DF83443F1D51F397002C4FD6 /* ImageTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextTableViewCell.m; sourceTree = "<group>"; };
+		DFA13A181D86B4B800889543 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		DFA13A191D86B4B800889543 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		DFACAA671D6FF6E2009F4CC0 /* QUItemBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUItemBtnView.h; sourceTree = "<group>"; };
 		DFACAA681D6FF6E2009F4CC0 /* QUItemBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUItemBtnView.m; sourceTree = "<group>"; };
 		DFFC4FB51D829B3D003B962E /* FeedHistoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHistoryTVC.h; sourceTree = "<group>"; };
@@ -3265,6 +3269,7 @@
 				74B3A03F1B565DA20026E91D /* CoreVideo.framework in Frameworks */,
 				3182DA3D1CAB6CDD00C217AE /* AMapLocationKit.framework in Frameworks */,
 				04C75DAB1D058C37002D21FB /* libcrypto.a in Frameworks */,
+				DFA13A1A1D86B4B800889543 /* TencentOpenAPI.framework in Frameworks */,
 				74B3A03D1B565D990026E91D /* libiconv.dylib in Frameworks */,
 				3182DA451CAB775E00C217AE /* MAMapKit.framework in Frameworks */,
 				749BE9CA1B3276AF00BABCA6 /* libz.dylib in Frameworks */,
@@ -5479,6 +5484,7 @@
 		312D08921CAA1C560006F0FA /* PlatformSDK */ = {
 			isa = PBXGroup;
 			children = (
+				DFA13A171D86B4B800889543 /* QQSDK */,
 				312D08A41CAA1C560006F0FA /* WeChatSDK */,
 			);
 			path = PlatformSDK;
@@ -6991,6 +6997,15 @@
 			path = SKTagView;
 			sourceTree = "<group>";
 		};
+		DFA13A171D86B4B800889543 /* QQSDK */ = {
+			isa = PBXGroup;
+			children = (
+				DFA13A181D86B4B800889543 /* TencentOpenAPI.framework */,
+				DFA13A191D86B4B800889543 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = QQSDK;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7173,6 +7188,7 @@
 				04B4630E1D24F17100001ECB /* mSearchHeaderSectionView.xib in Resources */,
 				04FA3E741D2207A000EA9E34 /* shopCarFooterView.xib in Resources */,
 				04AFEA501D819C4500CDBD6A /* WKChoiceArearView.xib in Resources */,
+				DFA13A1B1D86B4B800889543 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				04E5A7CF1CE56A5100A2D111 /* pptHistoryTableViewCell.xib in Resources */,
 				04102E2D1CE46215006F82E2 /* releaseCell.xib in Resources */,
 				315442891C9A54800047E52A /* mFeedPersonViewController.xib in Resources */,

@@ -18,6 +18,10 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -73,11 +77,15 @@
      */
     [ShareSDK registerApp:@"11070552590dc"
      
-          activePlatforms:@[ @(SSDKPlatformTypeWechat)]
+          activePlatforms:@[@(SSDKPlatformTypeQQ),
+                            @(SSDKPlatformTypeWechat)]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
          {
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
              case SSDKPlatformTypeWechat:
                  [ShareSDKConnector connectWeChat:[WXApi class]];
                  break;
@@ -90,6 +98,11 @@
          
          switch (platformType)
          {
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:@"1105204239"
+                                      appKey:@"5SShQsbv5YgKswaF"
+                                    authType:SSDKAuthTypeBoth];
+                 break;
              case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:@"wxf8feb845b3a4d04e"
                                        appSecret:@"5060f2cb199015e81b74c6d5fc26e4a6"];

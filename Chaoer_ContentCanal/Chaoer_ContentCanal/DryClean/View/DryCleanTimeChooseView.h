@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+AutoSize.h"
+#import "DryCleanOrderChooseTimeVC.h"
+
+@interface DryCleanTimeChooseBtn : UIButton
+@property(nonatomic, strong) TimeObject *item;
+@end
+
+
 
 @interface DryCleanTimeChooseView : UIView
 @property(nonatomic, strong) NSArray *arr;
