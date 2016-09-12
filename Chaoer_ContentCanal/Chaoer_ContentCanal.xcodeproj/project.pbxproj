@@ -3320,6 +3320,8 @@
 		04040DE71D20BE9E008C3C31 /* 超市详情 */ = {
 			isa = PBXGroup;
 			children = (
+				04F85D011D865310008675A5 /* view */,
+				04F85CF21D865004008675A5 /* Controller */,
 				04040DE81D20BEBD008C3C31 /* mMarketDetailViewController.h */,
 				04040DE91D20BEBD008C3C31 /* mMarketDetailViewController.m */,
 				04040DEA1D20BEBD008C3C31 /* mMarketDetailViewController.xib */,
@@ -4557,6 +4559,20 @@
 				049D1AF51D50A56B00ED1596 /* mCheckMoreActivityView.xib */,
 			);
 			name = "商品详情";
+			sourceTree = "<group>";
+		};
+		04F85CF21D865004008675A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		04F85D011D865310008675A5 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		04F89C071D1D0FAD006A3976 /* 我的 */ = {

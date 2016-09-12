@@ -13,5 +13,5 @@
  *  1是超市详情进入  2是我的界面进入
  */
 @property (assign,nonatomic) int mType;
-
+@property (nonatomic,strong) void(^block)(BOOL mIsBack);
 @end

@@ -1271,4 +1271,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 //    }
 //    
 //}
+
+- (void)leftBtnTouched:(id)sender{
+    [self popViewController];
+    if (self.block) {
+        self.block(YES);
+    }
+}
 @end

@@ -92,9 +92,13 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
-    [self headerBeganRefresh];
+
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+}
+
 - (void)viewDidLoad {
     self.hiddenTabBar = YES;
 
@@ -102,7 +106,7 @@
     // Do any additional setup after loading the view from its nib.
     
     mIsCP = mIsFoucs = 0;
-    
+    mWIndex = 0;
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"超市详情";
     self.rightBtnImage = [UIImage imageNamed:@"search-1"];
@@ -117,131 +121,56 @@
     mKeyWords = nil;
     
     [self currentArrar];
-    [self initView];
 }
 
 - (void)currentArrar{
-    mBanerArr = [NSMutableArray new];
+    self.page = 1;
     
-    for (int i = 0; i<6; i++) {
-        [mBanerArr addObject:[NSString stringWithFormat:@"第%d个",i]];
-    }
+    [[mUserInfo backNowUser] getMaeketDetail:self.page andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
+        
+        [mClass removeAllObjects];
+        if (resb.mSucess) {
+            
+            [mClass addObjectsFromArray:mClassArr];
+            [self loadSectionView];
+
+        }else{
+            
+        }
+        
+    }];
+
     
     
 }
+- (void)loadData{
+    
+    [[mUserInfo backNowUser] getMaeketDetail:1 andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
 
-- (void)initView{
-    
-    
+        [self removeEmptyView];
+        [self.tempArray removeAllObjects];
 
-    [self loadTableView:CGRectMake(0, 64, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
-    
-    self.haveHeader = YES;
-    
-    
-    UINib   *nib = [UINib nibWithNibName:@"mCommunityCollectCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+        if (resb.mSucess) {
+            mShopCarNum = [[[resb.mData objectForKey:@"shop"] objectForKey:@"cart"] intValue];
 
-    self.haveHeader = YES;
-    self.haveFooter = YES;
-    
-    mHeaderView = [mMarketHeaderView shareView];
-    mHeaderView.frame = CGRectMake(0, 0, DEVICE_Width, 150);
-    CGRect mRR = mHeaderView.frame;
-    
-    if (_mShopList.mActivityArr.count <= 0) {
-        mRR.size.height = 82;
-        
-    }else {
-               
-        
-        CGFloat mYY = 0;
-
-        for (UIView *vvv in mHeaderView.mActView.subviews) {
-            [vvv removeFromSuperview];
-        }
-        
-        for (GCampain *mAct in _mShopList.mActivityArr) {
-            mActView = [mActivitySubView shareView];
-            
-            mActView.frame = CGRectMake(0, mYY, mHeaderView.size.width, 30);
-            
-            mActView.mName.text = mAct.mName;
-            mActView.mContent.text = mAct.mContent;
-            if ([mAct.mCode isEqualToString:@"A"]) {
-                mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
-            }else if ([mAct.mCode isEqualToString:@"B"]){
-                mActView.mName.backgroundColor = [UIColor colorWithRed:0.82 green:0.47 blue:0.62 alpha:0.75];
-                
-            }else if ([mAct.mCode isEqualToString:@"C"]){
-                mActView.mName.backgroundColor = [UIColor colorWithRed:0.52 green:0.76 blue:0.22 alpha:0.75];
-                
-            }else if ([mAct.mCode isEqualToString:@"D"]){
-                mActView.mName.backgroundColor = [UIColor colorWithRed:0.16 green:0.53 blue:1.00 alpha:0.75];
+            mIsCP = mIsCoup;
+            mIsFoucs = mIsCollect;
+            [self upDatePage];
+            if (mArr.count <= 0) {
+                [self addEmptyView:nil];
                 
             }else{
-                mActView.mName.backgroundColor = M_CO;
-                
+                [self.tempArray addObjectsFromArray:mArr];
+                [self.tableView reloadData];
             }
-            [mHeaderView.mActView addSubview:mActView];
-            
-       
-            mYY += 32;
-
+        }else{
+            [self addEmptyView:nil];
+            [self showErrorStatus:resb.mMessage];
         }
-        mRR.size.height = 90 + mYY;
-
         
-    }
-    mHeaderView.frame = mRR;
-
-    
-    [mHeaderView.mCollectBtn addTarget:self action:@selector(mShopCollectAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.tableView setTableHeaderView:mHeaderView];
-  
-    
-    mCoupBtn = [UIButton new];
-    mCoupBtn.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-180, 60, 60);
-    
-    [mCoupBtn setBackgroundImage:[UIImage imageNamed:@"market_coup"] forState:0];
-    [mCoupBtn addTarget:self action:@selector(mCoupAction:) forControlEvents:UIControlEventTouchUpInside];
-    mCoupBtn.backgroundColor = [UIColor clearColor];
-    mCoupBtn.hidden = YES;
-    [self.view addSubview:mCoupBtn];
-    
-    
-    mShopCarView = [UIView new];
-    mShopCarView.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-100, 60, 60);
-    mShopCarView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:mShopCarView];
-    
-    mShopCarBtn = [UIButton new];
-    mShopCarBtn.frame = CGRectMake(0, 0, 60, 60);
-    
-    [mShopCarBtn setBackgroundImage:[UIImage imageNamed:@"market_shopcar"] forState:0];
-    [mShopCarBtn addTarget:self action:@selector(mshopCarAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mShopCarView addSubview:mShopCarBtn];
-    
-    mShopCarBadge = [UILabel new];
-    mShopCarBadge.hidden = YES;
-
-    mShopCarBadge.frame = CGRectMake(mShopCarView.mwidth-15, 0, 18, 18);
-    mShopCarBadge.layer.masksToBounds = YES;
-    mShopCarBadge.layer.cornerRadius = mShopCarBadge.mwidth/2;
-    mShopCarBadge.textColor = [UIColor whiteColor];
-    mShopCarBadge.backgroundColor = [UIColor redColor];
-    mShopCarBadge.textAlignment = NSTextAlignmentCenter;
-    mShopCarBadge.font = [UIFont systemFontOfSize:12];
-    [mShopCarView addSubview:mShopCarBadge];
-    
-
-
+    }];
 
 }
-
 - (void)upDatePage{
     NSDictionary *mStyle = @{@"color":[UIColor colorWithRed:0.91 green:0.13 blue:0.13 alpha:0.75]};
 
@@ -267,7 +196,6 @@
     
    
     [self verifyBadge];
-    [self loadSectionView];
 
 }
 #pragma mark ----领取优惠券按钮
@@ -311,6 +239,67 @@
     
 }
 - (void)loadSectionView{
+    
+    mHeaderView = [mMarketHeaderView shareView];
+    CGRect mRR = mHeaderView.frame;
+    
+    if (_mShopList.mActivityArr.count <= 0) {
+        mRR.size.height = 80;
+        
+    }else {
+        
+        
+        CGFloat mYY = 0;
+        
+        for (UIView *vvv in mHeaderView.mActView.subviews) {
+            [vvv removeFromSuperview];
+        }
+        
+        for (GCampain *mAct in _mShopList.mActivityArr) {
+            mActView = [mActivitySubView shareView];
+            
+            mActView.frame = CGRectMake(0, mYY, mHeaderView.size.width, 30);
+            
+            mActView.mName.text = mAct.mName;
+            mActView.mContent.text = mAct.mContent;
+            if ([mAct.mCode isEqualToString:@"A"]) {
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
+            }else if ([mAct.mCode isEqualToString:@"B"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.82 green:0.47 blue:0.62 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"C"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.52 green:0.76 blue:0.22 alpha:0.75];
+                
+            }else if ([mAct.mCode isEqualToString:@"D"]){
+                mActView.mName.backgroundColor = [UIColor colorWithRed:0.16 green:0.53 blue:1.00 alpha:0.75];
+                
+            }else{
+                mActView.mName.backgroundColor = M_CO;
+                
+            }
+            [mHeaderView.mActView addSubview:mActView];
+            
+            
+            mYY += 32;
+            
+        }
+        mRR.size.height = 90 + mYY;
+        
+        
+    }
+    
+    [mHeaderView.mCollectBtn addTarget:self action:@selector(mShopCollectAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:mHeaderView];
+    
+    [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(@64);
+        make.left.right.equalTo(self.view).offset(@0);
+        make.height.offset(mRR.size.height);
+    }];
+    
+
+    
     GClassN *all = [GClassN new];
     all.mId = 0;
     all.mName = @"全部";
@@ -326,67 +315,113 @@
         [mclassArr addObject:Class.mName];
     }
 
-    typeView =[[YT_ShopTypeView alloc] initZhongXiaoTypeViewWithPoint:CGPointMake(0, 64) AndArray:mclassArr];
+    typeView =[[YT_ShopTypeView alloc] initZhongXiaoTypeViewWithPoint:CGPointMake(0, mHeaderView.mbottom) AndArray:mclassArr];
     typeView.delegate=self;
+    [self.view addSubview:typeView];
+    
+    [self loadTableView:CGRectMake(0, typeView.mbottom, DEVICE_Width, DEVICE_Height-mHeaderView.mheight-typeView.mheight) delegate:self dataSource:self];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.00];
+    
+    
+    
+    UINib   *nib = [UINib nibWithNibName:@"mCommunityCollectCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+
+    self.haveFooter = YES;
+    
+    mCoupBtn = [UIButton new];
+    mCoupBtn.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-180, 60, 60);
+    
+    [mCoupBtn setBackgroundImage:[UIImage imageNamed:@"market_coup"] forState:0];
+    [mCoupBtn addTarget:self action:@selector(mCoupAction:) forControlEvents:UIControlEventTouchUpInside];
+    mCoupBtn.backgroundColor = [UIColor clearColor];
+    mCoupBtn.hidden = YES;
+    [self.view addSubview:mCoupBtn];
+    
+    
+    mShopCarView = [UIView new];
+    mShopCarView.frame = CGRectMake(DEVICE_Width-80, DEVICE_Height-100, 60, 60);
+    mShopCarView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:mShopCarView];
+    
+    mShopCarBtn = [UIButton new];
+    mShopCarBtn.frame = CGRectMake(0, 0, 60, 60);
+    
+    [mShopCarBtn setBackgroundImage:[UIImage imageNamed:@"market_shopcar"] forState:0];
+    [mShopCarBtn addTarget:self action:@selector(mshopCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mShopCarView addSubview:mShopCarBtn];
+    
+    mShopCarBadge = [UILabel new];
+    mShopCarBadge.hidden = YES;
+    
+    mShopCarBadge.frame = CGRectMake(mShopCarView.mwidth-15, 0, 18, 18);
+    mShopCarBadge.layer.masksToBounds = YES;
+    mShopCarBadge.layer.cornerRadius = mShopCarBadge.mwidth/2;
+    mShopCarBadge.textColor = [UIColor whiteColor];
+    mShopCarBadge.backgroundColor = [UIColor redColor];
+    mShopCarBadge.textAlignment = NSTextAlignmentCenter;
+    mShopCarBadge.font = [UIFont systemFontOfSize:12];
+    [mShopCarView addSubview:mShopCarBadge];
+    [self loadData];
+
 }
 - (void)headerBeganRefresh{
     self.page = 1;
     
-    [[mUserInfo backNowUser] getMaeketDetail:self.page andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
-        
-        
+    if (mWIndex == 0) {
         [self headerEndRefresh];
-        [self removeEmptyView];
-        [self.tempArray removeAllObjects];
-        [mClass removeAllObjects];
-        if (resb.mSucess) {
-            [self dismiss];
-            mShopCarNum = [[[resb.mData objectForKey:@"shop"] objectForKey:@"cart"] intValue];
+        [self loadData];
+    }else{
+        [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:mWIndex andPage:self.page andKeyWord:nil block:^(mBaseData *resb, NSArray *mArr) {
+            [self.tempArray removeAllObjects];
+            [self headerEndRefresh];
             
-            [mClass addObjectsFromArray:mClassArr];
-            mIsCP = mIsCoup;
-            mIsFoucs = mIsCollect;
-            [self upDatePage];
-            if (mArr.count <= 0) {
-                [self addEmptyView:nil];
-
-            }else{
-                [self.tempArray addObjectsFromArray:mArr];
+            if (resb.mSucess) {
+                [self verifyBadge];
+                if (mArr.count<= 0) {
+                    [self addEmptyView:nil];
+                }else{
+                    [self.tempArray addObjectsFromArray:mArr];
+                    
+                }
                 [self.tableView reloadData];
+                
+                
+            }else{
+                [self showErrorStatus:resb.mMessage];
             }
-        }else{
-            [self addEmptyView:nil];
-            [self showErrorStatus:resb.mMessage];
-        }
-        
-    }];
+            
+        }];
+    }
+    
+    
+
+    
 }
 - (void)footetBeganRefresh{
     self.page ++;
     
-    [[mUserInfo backNowUser] getMaeketDetail:self.page andMarketId:mShopId block:^(mBaseData *resb, NSArray *mArr, int mIsCoup, int mIsCollect,NSArray *mClassArr) {
+    [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:mWIndex andPage:self.page andKeyWord:nil block:^(mBaseData *resb, NSArray *mArr) {
         [self footetEndRefresh];
-        [self removeEmptyView];
-        [mClass removeAllObjects];
 
         if (resb.mSucess) {
-           [self dismiss];
-            [mClass addObjectsFromArray:mClassArr];
-            [self loadSectionView];
-            [self upDatePage];
-            if (mArr.count <= 0) {
+            [self verifyBadge];
+            if (mArr.count<= 0) {
                 [self addEmptyView:nil];
-
             }else{
                 [self.tempArray addObjectsFromArray:mArr];
-                [self.tableView reloadData];
+                
             }
+            [self.tableView reloadData];
+            
+            
         }else{
-            [self addEmptyView:nil];
             [self showErrorStatus:resb.mMessage];
         }
         
     }];
+
     
 }
 #pragma mark----更多按钮
@@ -412,23 +447,8 @@
 
     mWIndex = Class.mId;
     
-    [[mUserInfo backNowUser] findGoodsWithShop:mShopId andCatigory:Class.mId andPage:1 andKeyWord:nil block:^(mBaseData *resb, NSArray *mArr) {
-        if (resb.mSucess) {
-            [self verifyBadge];
-            if (mArr.count<= 0) {
-                [self addEmptyView:nil];
-            }else{
-                [self.tempArray addObjectsFromArray:mArr];
-
-            }
-            [self.tableView reloadData];
-
-            
-        }else{
-            [self showErrorStatus:resb.mMessage];
-        }
-        
-    }];
+    [self headerBeganRefresh];
+   
 }
 
 - (void)initSearch{
@@ -477,6 +497,11 @@
 //    [self pushViewController:shopCar];
     
     QHLShoppingCarController *shopcar = [QHLShoppingCarController new];
+    shopcar.block = ^(BOOL isBack){
+        if (isBack) {
+            [self loadData];
+        }
+    };
     [self pushViewController:shopcar];
     
 }
@@ -500,20 +525,20 @@
 {
     return 1;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    
-    return typeView;
-    
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    
+//    
+//    return typeView;
+//    
+//}
 
 - (void)moreAction:(UIButton *)sender{
 
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 40;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    
+//    return 40;
+//}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     

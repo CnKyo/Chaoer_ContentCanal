@@ -438,6 +438,8 @@
         [self pushViewController:vvv];
         
     } else {
+        
+        
         mMarketDetailViewController *market = [[mMarketDetailViewController alloc] initWithNibName:@"mMarketDetailViewController" bundle:nil];
         market.mShopList = GMarketList.new;
         market.mShopList = mShopList;
