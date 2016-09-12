@@ -236,8 +236,7 @@
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [tableView endUpdates];
             
-            [self showSuccessStatus:resb.mMessage];
-            //[self headerBeganRefresh];
+
         }else{
             [self showErrorStatus:resb.mMessage];
         }

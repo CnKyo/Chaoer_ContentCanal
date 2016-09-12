@@ -503,6 +503,8 @@
 		04F5FFFA1D23A85C00EFBB3C /* mGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5FFF81D23A85C00EFBB3C /* mGoodsDetailViewController.m */; };
 		04F5FFFB1D23A85C00EFBB3C /* mGoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5FFF91D23A85C00EFBB3C /* mGoodsDetailViewController.xib */; };
 		04F5FFFE1D23A87C00EFBB3C /* GoodsDetailNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5FFFD1D23A87C00EFBB3C /* GoodsDetailNavView.m */; };
+		04F85D081D86AB4B008675A5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F85D071D86AB4B008675A5 /* AddressBook.framework */; };
+		04F85D0A1D86AB54008675A5 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F85D091D86AB54008675A5 /* AddressBookUI.framework */; };
 		04F89C001D1CD3A9006A3976 /* communityCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */; };
 		04F89C021D1CD922006A3976 /* mCommunitySubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89C011D1CD922006A3976 /* mCommunitySubView.xib */; };
 		04F89C041D1CE08B006A3976 /* communityCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F89C031D1CE08B006A3976 /* communityCell1.xib */; };
@@ -2034,6 +2036,8 @@
 		04F5FFFC1D23A87C00EFBB3C /* GoodsDetailNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailNavView.h; sourceTree = "<group>"; };
 		04F5FFFD1D23A87C00EFBB3C /* GoodsDetailNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailNavView.m; sourceTree = "<group>"; };
 		04F5FFFF1D23A88700EFBB3C /* GoodsDetailNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailNavView.xib; sourceTree = "<group>"; };
+		04F85D071D86AB4B008675A5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		04F85D091D86AB54008675A5 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		04F89BFF1D1CD3A9006A3976 /* communityCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = communityCell2.xib; sourceTree = "<group>"; };
 		04F89C011D1CD922006A3976 /* mCommunitySubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mCommunitySubView.xib; sourceTree = "<group>"; };
 		04F89C031D1CE08B006A3976 /* communityCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = communityCell1.xib; sourceTree = "<group>"; };
@@ -3231,6 +3235,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F85D0A1D86AB54008675A5 /* AddressBookUI.framework in Frameworks */,
+				04F85D081D86AB4B008675A5 /* AddressBook.framework in Frameworks */,
 				317E463D1CAD26CF00217C60 /* AssetsLibrary.framework in Frameworks */,
 				04B3BAFC1D13E965000C7B2E /* libssl.a in Frameworks */,
 				317E46451CAD273400217C60 /* libxml2.tbd in Frameworks */,
@@ -5917,6 +5923,8 @@
 		741B8D821B326EFA002104A0 = {
 			isa = PBXGroup;
 			children = (
+				04F85D091D86AB54008675A5 /* AddressBookUI.framework */,
+				04F85D071D86AB4B008675A5 /* AddressBook.framework */,
 				317E46441CAD273400217C60 /* libxml2.tbd */,
 				317E46421CAD271500217C60 /* libc++abi.tbd */,
 				317E46401CAD270600217C60 /* libc++.tbd */,

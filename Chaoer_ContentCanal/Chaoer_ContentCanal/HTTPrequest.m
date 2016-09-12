@@ -60,7 +60,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
     
@@ -122,7 +122,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
     
@@ -174,7 +174,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -271,7 +271,7 @@ HDSingletonM(HDNetworking) // 单例实现
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
     
@@ -476,7 +476,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -519,7 +519,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
     
@@ -560,7 +560,7 @@ HDSingletonM(HDNetworking) // 单例实现
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
     
@@ -631,7 +631,7 @@ HDSingletonM(HDNetworking) // 单例实现
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
     
@@ -704,7 +704,7 @@ HDSingletonM(HDNetworking) // 单例实现
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 请求不使用AFN默认转换,保持原有数据
     manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // 响应不使用AFN默认转换,保持原有数据
     
@@ -827,7 +827,7 @@ HDSingletonM(HDNetworking) // 单例实现
         NSString *URLString = [NSString stringWithFormat:@"%@%@",kAFAppDotNetAPIBaseURLString,path];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
         request.HTTPMethod = method;
-        request.timeoutInterval = 20;
+        request.timeoutInterval = 10;
         [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         request.HTTPBody = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         
@@ -869,7 +869,7 @@ HDSingletonM(HDNetworking) // 单例实现
     [contentTypes addObject:@"text/plain"];
     
     manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 20);
+    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; // 开启状态栏动画
     

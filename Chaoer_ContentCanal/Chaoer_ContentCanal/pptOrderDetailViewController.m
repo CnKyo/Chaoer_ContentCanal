@@ -662,7 +662,7 @@
         [self showErrorStatus:@"暂无联系电话！"];
         return;
     }
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.mOrder.mServiceTel];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",mPhone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
