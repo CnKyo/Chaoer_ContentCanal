@@ -120,7 +120,6 @@
     
     [mUserInfo getArearId:mmProvinceId andArear:mmArearId andCity:mmCityId block:^(mBaseData *resb, NSArray *mArr) {
         
-        [SVProgressHUD dismiss];
         [self.tempArray removeAllObjects];
         if (resb.mSucess) {
             
