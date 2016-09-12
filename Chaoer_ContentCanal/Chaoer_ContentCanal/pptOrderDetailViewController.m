@@ -713,7 +713,7 @@
     
     [self showWithStatus:@"正在操作..."];
     
-    [[GPPTer backPPTUser] mServicefinishPPTOrder:[mUserInfo backNowUser].mLegworkUserId andMoney:[mPopView.mTx.text intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
+    [[mUserInfo backNowUser] mServicefinishPPTOrder:[mUserInfo backNowUser].mLegworkUserId andMoney:[mPopView.mTx.text intValue] andOrderCode:self.mOrder.mOrderCode andOrderType:self.mType andLat:self.mLat andLng:self.mLng block:^(mBaseData *resb) {
         
         
         if (resb.mSucess) {

@@ -3525,6 +3525,54 @@ static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
 
     
 }
+#pragma mark----跑腿者确认订单
+/**
+ *  确认完成订单
+ *
+ *  @param mOrderCode 订单编号
+ *  @param mOrderType 订单类型
+ *  @param mLat       纬度
+ *  @param mLng       经度
+ *  @param block      返回值
+ */
+- (void)mServicefinishPPTOrder:(int)mUserId andMoney:(int)mMoney andOrderCode:(NSString *)mOrderCode andOrderType:(int)mOrderType andLat:(NSString *)mLat andLng:(NSString *)mLng block:(void(^)(mBaseData *resb))block{
+    
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    
+#pragma mark----发布者传userid  跑腿者传legid
+    
+    [para setObject:NumberWithInt(mUserId) forKey:@"legworkUserId"];
+    [para setObject:NumberWithInt(mOrderType) forKey:@"orderType"];
+    [para setObject:mOrderCode forKey:@"orderCode"];
+    
+    [para setObject:mLat forKey:@"lat"];
+    [para setObject:mLng forKey:@"lon"];
+    
+    
+    if (mOrderType == 1) {
+        [para setObject:NumberWithInt(mMoney) forKey:@"money"];
+    }
+    
+    [[HTTPrequest sharedHDNetworking] postUrl:@"app/legwork/service/order/confirmOrder" parameters:para call:^(mBaseData *info) {
+        
+        
+        if (info.mSucess) {
+            
+            block (info);
+            
+        }else{
+            
+            block (info);
+        }
+    }];
+    
+    
+    
+    
+}
+
 
 
 #pragma mark----获取物管费历史纪录
