@@ -4159,6 +4159,10 @@
  */
 @property (assign,nonatomic) float mCommodityPrice;
 /**
+ *  商品总价格
+ */
+@property (assign,nonatomic) float mTotlePrice;
+/**
  *  商品集合
  */
 @property (strong,nonatomic) NSMutableArray *mGoodsArr;
@@ -4180,8 +4184,19 @@
  *  创建时间
  */
 @property (strong,nonatomic) NSString *mAddTime;
-
+/**
+ *  是否评价
+ */
 @property (assign,nonatomic) int mIsComment;
+/**
+ *  积分抵扣金额
+ */
+@property (assign,nonatomic) float mCreditPrice;
+/**
+ *  优惠卷抵扣金额
+ */
+@property (assign,nonatomic) float mCouponMoney;
+
 
 -(id)initWithObj:(NSDictionary *)obj;
 

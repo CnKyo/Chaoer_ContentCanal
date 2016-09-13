@@ -39,6 +39,19 @@
  *  收货地址
  */
 @property (weak, nonatomic) IBOutlet UILabel *mOrderAddress;
+/**
+ *  积分抵扣
+ */
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mCreditMoney;
+/**
+ *  优惠卷抵扣
+ */
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mCoupMoney;
+/**
+ *  配送费
+ */
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mSendPrice;
+
 
 #pragma mark----第二种cell类型
 /**
