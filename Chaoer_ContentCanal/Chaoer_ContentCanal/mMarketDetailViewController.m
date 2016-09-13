@@ -227,10 +227,9 @@
     [[mUserInfo backNowUser] collectShop:mShopId andType:mShopCollect block:^(mBaseData *resb) {
         
         if (resb.mSucess) {
-            [self dismiss];
             mIsFoucs = mShopCollect;
             [self upDatePage];
-            
+            [self showSuccessStatus:resb.mMessage];
         }else{
         
             [self showErrorStatus:resb.mMessage];
@@ -691,7 +690,6 @@
     [[mUserInfo backNowUser] collectGoods:mShopId andGoodsId:[[NSString stringWithFormat:@"%ld",(long)mTag] intValue] andType:mLeftType block:^(mBaseData *resb, NSArray *mArr) {
         
         if (resb.mSucess) {
-            [self dismiss];
             for (MGoods *goods in self.tempArray) {
                 if ([[NSString stringWithFormat:@"%ld",(long)mTag] intValue] == goods.mGoodsId) {
 
@@ -704,7 +702,7 @@
             }
             
             [self.tableView reloadData];
-            
+            [self showSuccessStatus:resb.mMessage];
         }else{
             [self showErrorStatus:resb.mMessage];
         }
@@ -742,7 +740,7 @@
             }
             
             [self.tableView reloadData];
-            [self dismiss];
+            [self showSuccessStatus:resb.mMessage];
         }else{
             [self showErrorStatus:resb.mMessage];
         }

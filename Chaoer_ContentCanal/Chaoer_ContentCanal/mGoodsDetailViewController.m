@@ -254,7 +254,7 @@
     if (mType == 2) {
         [self showWithStatus:@"正在购买..."];
         [[mUserInfo backNowUser] goBuyNow:mGoodsDetail.mShopId andGoodsId:_mSGoods.mGoodsId andNum:mNum block:^(mBaseData *resb, GPayShopCar *mShopCarList) {
-            [self dismiss];
+            
             if (resb.mSucess) {
                 comFirmOrderViewController *comfir = [[comFirmOrderViewController alloc] initWithNibName:@"comFirmOrderViewController" bundle:nil];
                 comfir.mShopCarList = nil;
@@ -263,6 +263,7 @@
                 comfir.mShopCarList = mShopCarList;
                 [self pushViewController:comfir];
                 [self hiddenBuyView];
+                [self dismiss];
             }else{
                 [self showErrorStatus:resb.mMessage];
             }
@@ -273,7 +274,6 @@
         [self showWithStatus:@""];
         
         [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andNum:mNum block:^(mBaseData *resb) {
-            
             
             if (resb.mSucess) {
                 [self dismiss];
@@ -494,11 +494,10 @@
     [[mUserInfo backNowUser] collectGoods:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mId andType:mSelected block:^(mBaseData *resb, NSArray *mArr) {
         
         if (resb.mSucess) {
-            [self dismiss];
             mGoodsDetail.mIsFocus = mSelected;
             
             [self upDatePage];
-            
+            [self showSuccessStatus:resb.mMessage];
         }else{
             [self showErrorStatus:resb.mMessage];
         }

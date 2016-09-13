@@ -113,10 +113,10 @@
     
     [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
         [self footetEndRefresh];
-        [self dismiss];
+        
         [self removeEmptyView];
         if (resb.mSucess) {
-            
+            [self dismiss];
             
             if (mArr.count <= 0) {
                 [self addEmptyView:nil];
@@ -321,8 +321,9 @@
             
             [self showWithStatus:@"正在操作中..."];
             [[mUserInfo backNowUser] useCoup:self.mShopId block:^(mBaseData *resb) {
-                [self dismiss];
+                
                 if (resb.mSucess) {
+                    [self dismiss];
                     self.block(mCoup.mCoupName,[NSString stringWithFormat:@"%d",mCoup.mCoupId],mCoup.mFacePrice);
                     
                     [self leftBtnTouched:nil];
