@@ -429,7 +429,7 @@ static ViewController *handle = nil;
         return;
     }
     
-    if (![Util isHaveIllegalChar:mLoginV.codeTx.text]) {
+    if ([Util isHaveIllegalChar:mLoginV.codeTx.text]) {
         [LCProgressHUD showInfoMsg:@"密码不能包含非法字符"];
         [mLoginV.codeTx becomeFirstResponder];
         
