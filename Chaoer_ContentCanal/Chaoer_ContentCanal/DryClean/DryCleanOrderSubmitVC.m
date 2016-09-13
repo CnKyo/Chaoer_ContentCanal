@@ -263,8 +263,10 @@ typedef enum {
             break;
         case kChooseYouHuiType_score:
         {
-            str1 = [NSString stringWithFormat:@"共%i积分,可抵用￥%.2f", _showInfoItem.userScore, _showInfoItem.userScore/_showInfoItem.userRate];
-            money = (int)(_showInfoItem.userScore/_showInfoItem.userRate);
+            int mo = _showInfoItem.userScore/_showInfoItem.userRate;
+            str1 = [NSString stringWithFormat:@"共%i积分,可抵用￥%i", _showInfoItem.userScore, mo];
+            money = mo;
+            //money = (int)(_showInfoItem.userScore/_showInfoItem.userRate);
         }
             break;
         case kChooseYouHuiType_none:

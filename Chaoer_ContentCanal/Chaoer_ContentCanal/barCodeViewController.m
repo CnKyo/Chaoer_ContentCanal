@@ -99,7 +99,48 @@
 - (void)mWechat:(UIButton *)sender{
     MLLog(@"微信");
     
+    NSMutableDictionary *params = [self shareParams];
+    [ShareSDK share:SSDKPlatformTypeWechat
+         parameters:params
+     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+         switch (state) {
+                 
+             case SSDKResponseStateBegin:
+             {
+                 //[theController showLoadingView:YES];
+                 break;
+             }
+             case SSDKResponseStateSuccess:
+             {
+                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                     message:nil
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"确定"
+                                                           otherButtonTitles:nil];
+                 [alertView show];
+                 break;
+             }
+             case SSDKResponseStateCancel:
+             {
+                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+                                                                     message:nil
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"确定"
+                                                           otherButtonTitles:nil];
+                 [alertView show];
+                 break;
+             }
+             default:
+                 break;
+         }
+         
+         if (state != SSDKResponseStateBegin)
+         {
+             //[theController showLoadingView:NO];
+             //[theController.tableView reloadData];
+         }
 
+     }];
 }
 
 - (void)mTencent:(UIButton *)sender{
@@ -108,12 +149,7 @@
 - (void)mWebo:(UIButton *)sender{
     MLLog(@"微博");
     
-    NSMutableDictionary *params = [self shareParams];
-    [ShareSDK share:SSDKPlatformTypeSinaWeibo
-         parameters:params
-     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-         
-     }];
+
 }
 
 
@@ -140,7 +176,7 @@
     NSMutableDictionary *params = [self shareParams];
     
     [ShareSDK showShareActionSheet:self.view
-                             items:nil
+                             items:@[@(SSDKPlatformTypeWechat)]
                        shareParams:params
                onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
                    
@@ -243,7 +279,7 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-    [self shareMethod];
+    [self mWebo:nil];
     
 //    UIButton *btn = sender;
 //    btn.selected = !btn.selected;

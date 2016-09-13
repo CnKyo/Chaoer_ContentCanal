@@ -146,6 +146,7 @@
             [self dismiss];
             mOrderInfo = [GMyMarketOrderInfo new];
             mOrderInfo = mOrder;
+            mOrderInfo.mShopId = _mShop.mShopId;
             [self upDatePage];
             [self.tableView reloadData];
         }else{
