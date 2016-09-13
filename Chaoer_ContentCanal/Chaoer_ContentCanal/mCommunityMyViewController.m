@@ -212,6 +212,7 @@
 - (void)mCoup:(UIButton *)sender{
  
     mCoupViewController *coup = [mCoupViewController new];
+    coup.mSType = 1;
     [self pushViewController:coup];
     
 }

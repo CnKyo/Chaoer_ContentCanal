@@ -160,16 +160,16 @@
     
     if (self.mOrderType == 1) {
         if (self.mType == 1) {
-            return 700;
+            return 650;
         }else{
-            return 770;
+            return 720;
         }
     }else{
         if (self.mType == 1) {
-            return 770;
+            return 720;
         }
         else{
-            return 820;
+            return 770;
 
         }
     }
@@ -277,7 +277,6 @@
         }
         
         cell.mOrderType.text = [NSString stringWithFormat:@"订单类型：%@",ordertype];
-        cell.mPayType.text = [NSString stringWithFormat:@"支付方式：%@",@"余额支付"];
         cell.mNote.text = [NSString stringWithFormat:@"备注：%@",self.mOrder.mComments];
         if (self.mType == 1) {
             /**
@@ -484,7 +483,6 @@
         cell.mOrderName.text = mmname;
 
         cell.mOrderType.text = [NSString stringWithFormat:@"订单类型：%@",ordertype];
-        cell.mPayType.text = [NSString stringWithFormat:@"支付方式：%@",@"余额支付"];
         cell.mNote.text = [NSString stringWithFormat:@"备注：%@",self.mOrder.mComments];
         if (self.mType == 1) {
             /**

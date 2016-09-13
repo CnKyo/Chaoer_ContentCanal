@@ -51,7 +51,6 @@
     self.hiddenTabBar = YES;
     
     [super viewDidLoad];
-    
     self.hiddenRightBtn = YES;
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"我的优惠券";
@@ -68,9 +67,11 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
     
-    
-    self.haveHeader = YES;
-    self.haveFooter = YES;
+    if (mSType == 1) {
+        self.haveHeader = YES;
+        self.haveFooter = YES;
+    }
+
     
     
     UINib   *nib = [UINib nibWithNibName:@"coupTableViewCell" bundle:nil];
@@ -82,58 +83,70 @@
 - (void)headerBeganRefresh{
 
     self.page = 1;
-    
-    [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
-        [self headerEndRefresh];
-        
-        [self.tempArray removeAllObjects];
-        [self removeEmptyView];
-        if (resb.mSucess) {
-            [self dismiss];
+    if (mSType == 1) {
+        [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
+            [self headerEndRefresh];
             
-            if (mArr.count <= 0) {
-                [self addEmptyView:nil];
+            [self.tempArray removeAllObjects];
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                [self dismiss];
+                
+                if (mArr.count <= 0) {
+                    [self addEmptyView:nil];
+                }else{
+                    
+                    [self.tempArray addObjectsFromArray:mArr];
+                }
+                [self.tableView reloadData];
+                
             }else{
-            
-                [self.tempArray addObjectsFromArray:mArr];
+                
+                [self showErrorStatus:resb.mMessage];
+                [self addEmptyView:nil];
             }
-            [self.tableView reloadData];
+            
+        }];
+    }else{
+        [self headerEndRefresh];
+        [self.tableView reloadData];
 
-        }else{
-        
-            [self showErrorStatus:resb.mMessage];
-            [self addEmptyView:nil];
-        }
-        
-    }];
+    }
+   
 }
 - (void)footetBeganRefresh{
 
     self.page ++;
-    
-    [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
-        [self footetEndRefresh];
-        
-        [self removeEmptyView];
-        if (resb.mSucess) {
-            [self dismiss];
+    if (mSType == 1) {
+        [[mUserInfo backNowUser] getCoupList:self.page andStats:mType block:^(mBaseData *resb, NSArray *mArr) {
+            [self footetEndRefresh];
             
-            if (mArr.count <= 0) {
-                [self addEmptyView:nil];
+            [self removeEmptyView];
+            if (resb.mSucess) {
+                [self dismiss];
+                
+                if (mArr.count <= 0) {
+                    [self addEmptyView:nil];
+                }else{
+                    
+                    [self.tempArray addObjectsFromArray:mArr];
+                }
+                [self.tableView reloadData];
+                
             }else{
                 
-                [self.tempArray addObjectsFromArray:mArr];
+                [self showErrorStatus:resb.mMessage];
+                [self addEmptyView:nil];
             }
-            [self.tableView reloadData];
-
-        }else{
             
-            [self showErrorStatus:resb.mMessage];
-            [self addEmptyView:nil];
-        }
-        
-    }];
+        }];
 
+    }else{
+        [self footetEndRefresh];
+        [self.tableView reloadData];
+        
+    }
+    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -157,19 +170,29 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
+    if (mSType == 2) {
+        return nil;
+    }else{
+        return mSegmentView;
+    }
     
-    return mSegmentView;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 40;
+    if (mSType == 2) {
+        return 0;
+    }else{
+        return 40;
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return self.tempArray.count;
+    if (mSType == 2) {
+        return self.mDataSource.count;
+    }else{
+        return self.tempArray.count;
+    }
     
 }
 
@@ -185,12 +208,19 @@
 {
     
     NSString *cellId = @"cell";
-    
-    
-    GCoup *mCoup = self.tempArray[indexPath.row];
-    
     coupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    cell.mContent.text = [NSString stringWithFormat:@"%@%@",mCoup.mCoupName,mCoup.mCoupContent];
+
+    GCoup *mCoup = [GCoup new];
+    if (mSType == 2) {
+        mCoup  = self.mDataSource[indexPath.row];
+        cell.mContent.text = [NSString stringWithFormat:@"%@满%@可用",mCoup.mCoupName,mCoup.mEnoughMoney];
+
+    }else{
+        mCoup  = self.tempArray[indexPath.row];
+        cell.mContent.text = [NSString stringWithFormat:@"%@%@",mCoup.mCoupName,mCoup.mCoupContent];
+
+    }
+    
     cell.mMoney.text = [NSString stringWithFormat:@"¥%@",mCoup.mFacePrice];
    
     cell.mStore.text = mCoup.mShopName;
@@ -310,12 +340,15 @@
 
 - (void)cellWithBtnClicked:(NSIndexPath *)mIndexPath{
     
-    GCoup *mCoup = self.tempArray[mIndexPath.row];
     
     if (mSType != 2 ) {
         MLLog(@"你点他有啥用啊？");
         
     }else{
+        GCoup *mCoup = [GCoup new];
+
+        mCoup  = self.mDataSource[mIndexPath.row];
+
         if (mType == 0) {
             MLLog(@"点击了啥？");
             
@@ -324,10 +357,9 @@
                 
                 if (resb.mSucess) {
                     [self dismiss];
-                    self.block(mCoup.mCoupName,[NSString stringWithFormat:@"%d",mCoup.mCoupId],mCoup.mFacePrice);
+                    self.block([NSString stringWithFormat:@"%@(优惠%@元)",mCoup.mCoupContent,mCoup.mFacePrice],[NSString stringWithFormat:@"%d",mCoup.mCoupId],mCoup.mFacePrice,YES);
                     
-                    [self leftBtnTouched:nil];
-                    
+                    [self popViewController];
                 }else{
                     [self showErrorStatus:resb.mMessage];
                     [self.tableView reloadData];
@@ -340,5 +372,14 @@
     }
 
     
+}
+
+- (void)leftBtnTouched:(id)sender{
+    if (mSType == 2) {
+        self.block(nil,nil,nil,NO);
+    }
+    
+    [self popViewController];
+
 }
 @end

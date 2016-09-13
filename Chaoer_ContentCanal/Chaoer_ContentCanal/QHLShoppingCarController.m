@@ -1119,8 +1119,6 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     if (mGood.mGoodsId == goods.mGoodsId) {
         
-   
-
         if (shop.mGoodsArr.count<1) {
             if (mGood.mQuantity==1) {
                 [self showWithStatus:@"正在操作..."];

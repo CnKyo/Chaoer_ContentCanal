@@ -62,10 +62,7 @@
  *  订单类型
  */
 @property (weak, nonatomic) IBOutlet UILabel *mOrderType;
-/**
- *  支付类型
- */
-@property (weak, nonatomic) IBOutlet UILabel *mPayType;
+
 /**
  *  备注
  */

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol mFooterSwitchDelegate <NSObject>
 
 @optional
@@ -16,7 +17,7 @@
  *
  *  @param mChange 状态改变
  */
-- (void)mFooterSwitchChanged:(BOOL)mChange;
+- (void)mFooterSwitchChanged:(BOOL)mChange andSwitch:(UISwitch *)mSender;
 
 @end
 
@@ -40,7 +41,7 @@
 /**
  *  积分
  */
-@property (weak, nonatomic) IBOutlet UILabel *mScore;
+@property (weak, nonatomic) IBOutlet WPHotspotLabel *mScore;
 /**
  *  积分按钮
  */

@@ -127,7 +127,7 @@
                         <constraint firstAttribute="height" constant="1" id="64t-aJ-xnL"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-Nb-d8e">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="g0b-Nb-d8e">
                     <rect key="frame" x="8" y="129" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="wgS-fB-3PN"/>

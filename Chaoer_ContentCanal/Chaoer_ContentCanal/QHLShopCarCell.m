@@ -99,11 +99,11 @@
     //设置cell中的子控件数据
     self.mSelectedBtn.selected = mGoods.mSelected;
     
-    if (mGoods.mSelected) {
-        self.mAddBtn.enabled = self.mJianBtn.enabled = NO;
-    }else{
-        self.mAddBtn.enabled = self.mJianBtn.enabled = YES;
-    }
+//    if (mGoods.mSelected) {
+//        self.mAddBtn.enabled = self.mJianBtn.enabled = NO;
+//    }else{
+//        self.mAddBtn.enabled = self.mJianBtn.enabled = YES;
+//    }
     
     
     self.mSelectedBtn.tag = [[NSString stringWithFormat:@"%d",mGoods.mGoodsId] intValue];

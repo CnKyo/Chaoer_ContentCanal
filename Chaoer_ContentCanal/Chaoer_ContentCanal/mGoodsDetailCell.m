@@ -124,7 +124,7 @@
     
     self.mActTitle.text = @"活动:";
 
-    if (mGoodsDetail.mCampainArr.count <= 1) {
+    if (mGoodsDetail.mCampainArr.count >= 1) {
         
         if (mGoodsDetail.mCampainArr.count == 0 || mGoodsDetail.mCampainArr.count == 1) {
             self.mActTitle.hidden = NO;

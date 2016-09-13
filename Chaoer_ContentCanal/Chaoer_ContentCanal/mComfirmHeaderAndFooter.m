@@ -32,15 +32,16 @@
 - (IBAction)mUserScore:(UISwitch *)sender {
     
     if (sender.on) {
-        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:)]) {
-            
-            [self.delegate mFooterSwitchChanged:YES];
+        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:andSwitch:)]) {
+            [self.delegate mFooterSwitchChanged:YES andSwitch:sender];
         }
     }else{
         
-        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:)]) {
-            [self.delegate mFooterSwitchChanged:NO];
+        if ([self.delegate respondsToSelector:@selector(mFooterSwitchChanged:andSwitch:)]) {
+            [self.delegate mFooterSwitchChanged:NO andSwitch:sender];
         }
+    
+        
         
     
     }

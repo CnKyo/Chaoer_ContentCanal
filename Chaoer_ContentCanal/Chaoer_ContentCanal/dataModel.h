@@ -3897,6 +3897,17 @@
  */
 @property (assign,nonatomic) int mScore;
 /**
+ *  积分使用率
+ */
+@property (assign,nonatomic) int mRate;
+
+@property (assign,nonatomic) int mScorePrice;
+
+@property (assign,nonatomic) int mHaveScore;
+@property (assign,nonatomic) int mHaveCoup;
+
+
+/**
  *  总共支付金额
  */
 @property (assign,nonatomic) float mTotlePay;
@@ -3904,8 +3915,10 @@
  *  配送费
  */
 @property (assign,nonatomic) float mSendPrice;
+@property (assign,nonatomic) float mTSendPrice;
 
 @property (assign,nonatomic) BOOL mHaveSendPrice;
+
 
  /**
  *  减掉多少钱
@@ -3958,6 +3971,8 @@
  */
 @property (assign,nonatomic) float mSendPrice;
 @property (assign,nonatomic) BOOL mHaveSendPrice;
+@property (assign,nonatomic) BOOL mHaveDevelFee;
+
 /**
  *  店铺名称
  */

@@ -6814,14 +6814,14 @@ bool pptbined = NO;
     self.mCoupId = [[obj objectForKeyMy:@"id"] intValue];
     
     self.mCoupType = [obj objectForKeyMy:@"type"];
-    self.mEnoughMoney = [obj objectForKeyMy:@"enough_money"];
+    self.mEnoughMoney = [obj objectForKeyMy:@"enoughMoney"];
     self.mCoupName = [obj objectForKeyMy:@"name"];
-    self.mFacePrice = [obj objectForKeyMy:@"face_price"];
-    self.mEndTime = [obj objectForKeyMy:@"end_time"];
+    self.mFacePrice = [obj objectForKeyMy:@"facePrice"];
+    self.mEndTime = [obj objectForKeyMy:@"endTime"];
     
-    self.mShopName = [obj objectForKeyMy:@"shop_name"];
+    self.mShopName = [obj objectForKeyMy:@"shopName"];
     self.mCode = [obj objectForKeyMy:@"code"];
-    self.mEnoughMoney = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shop_logo"]];
+    self.mShopLogo = [NSString stringWithFormat:@"%@%@",[HTTPrequest currentResourceUrl],[obj objectForKeyMy:@"shopLogo"]];
     self.mPwd = [obj objectForKeyMy:@"pass"];
     self.mCoupContent = [obj objectForKeyMy:@"description"];
     self.mCoupModel = [obj objectForKeyMy:@"mould"];
@@ -7288,7 +7288,8 @@ bool pptbined = NO;
     
     
     self.mScore = [[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"score"] intValue];
-    
+    self.mRate = [[[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"rate"] intValue];
+
     self.mName = [[obj objectForKeyMy:@"userInfo"]objectForKeyMy:@"nickName"];
     self.mPhone = [[obj objectForKeyMy:@"userInfo"] objectForKeyMy:@"moblie"];
 #warning 这里不能这样子返回地址数据
@@ -7303,8 +7304,13 @@ bool pptbined = NO;
 
     NSMutableArray *mCoupA = [NSMutableArray new];
     [mCoupA removeAllObjects];
-    for (NSDictionary *dic in [obj objectForKeyMy:@"sMCouponList"]) {
-        [mCoupA addObject:[[GCoup alloc] initWithObj:dic]];
+    for (NSDictionary *dic in [obj objectForKeyMy:@"userShoppingCartList"]) {
+        for (NSDictionary *mTempDic in [dic objectForKeyMy:@"coupons"]) {
+            GCoup *mCoup = [[GCoup alloc]initWithObj:mTempDic];
+            [mCoupA addObject:mCoup];
+
+        }
+        
     }
     
     self.mCoupArr  = mCoupA;
@@ -7384,7 +7390,7 @@ bool pptbined = NO;
     float mPP = 0.0;
     
     for (NSDictionary *dic in [obj objectForKeyMy:@"goodList"]) {
-        mPP += [[dic objectForKeyMy:@"goodsPrice"] floatValue];
+        mPP += [[dic objectForKeyMy:@"goodsPrice"] floatValue]*[[dic objectForKeyMy:@"quantity"] intValue];
     }
  
     self.mTotlePrice = mPP;
@@ -7404,6 +7410,14 @@ bool pptbined = NO;
 
     }
     
+    float mD = [[obj objectForKeyMy:@"freePrice"] floatValue];
+    
+    if (self.mTotlePrice > mD) {
+        self.mHaveDevelFee = YES;
+    }else{
+        self.mHaveDevelFee = NO;
+
+    }
    
 }
 @end

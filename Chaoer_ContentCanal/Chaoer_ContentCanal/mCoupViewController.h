@@ -19,6 +19,8 @@
  */
 @property (assign,nonatomic) int mShopId;
 
-@property (nonatomic,strong) void(^block)(NSString *mName,NSString *mId,NSString *price);
+@property (nonatomic,strong) void(^block)(NSString *mName,NSString *mId,NSString *price,BOOL mHaveC);
+
+@property (strong,nonatomic) NSMutableArray *mDataSource;
 
 @end

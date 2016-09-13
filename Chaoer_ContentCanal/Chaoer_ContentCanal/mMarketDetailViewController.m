@@ -240,10 +240,9 @@
 - (void)loadSectionView{
     
     mHeaderView = [mMarketHeaderView shareView];
-    CGRect mRR = mHeaderView.frame;
-    
+    CGFloat mHH;
     if (_mShopList.mActivityArr.count <= 0) {
-        mRR.size.height = 80;
+        mHH = 80;
         
     }else {
         
@@ -282,7 +281,7 @@
             mYY += 32;
             
         }
-        mRR.size.height = 90 + mYY;
+        mHH = 90 + mYY;
         
         
     }
@@ -294,9 +293,9 @@
     [mHeaderView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(@64);
         make.left.right.equalTo(self.view).offset(@0);
-        make.height.offset(mRR.size.height);
+        make.height.offset(mHH);
     }];
-    
+    [mHeaderView layoutIfNeeded];
 
     
     GClassN *all = [GClassN new];

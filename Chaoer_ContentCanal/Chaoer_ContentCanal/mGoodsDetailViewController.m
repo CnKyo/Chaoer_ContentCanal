@@ -171,7 +171,7 @@
         GCampain *mCampain = mGoodsDetail.mCampainArr[i];
         mActView = [mActivitySubView shareView];
         mActView.backgroundColor = [UIColor clearColor];
-        mActView.frame = CGRectMake(0, 30*i, mActivityView.mCampainView.mwidth, 30);
+//        mActView.frame = CGRectMake(0, 30*i, mActivityView.mCampainView.mwidth, 30);
         mActView.mContent.textColor = [UIColor whiteColor];
         mActView.mName.text = mCampain.mName;
         mActView.mContent.text = mCampain.mContent;
@@ -194,6 +194,13 @@
 
         
         [mActivityView.mCampainView addSubview:mActView];
+        [mActView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(mActivityView.mCampainView).offset(@0);
+            make.top.equalTo(mActivityView.mCampainView).offset(30*i);
+            make.width.offset(mActivityView.mCampainView.mwidth);
+            make.height.offset(@30);
+        }];
+        [mActView layoutIfNeeded];
         
     }
 
