@@ -108,7 +108,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
     
     [super viewDidLoad];
     
-    self.hiddenRightBtn = YES;
+    self.hiddenRightBtn = NO;
     self.hiddenlll = YES;
     self.Title = self.mPageName = @"购物车";
     self.rightBtnTitle = @"删除";
@@ -306,7 +306,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
 }
 - (void)upDateBottom{
     self.settleMentView.btnSelected = NO;
-    self.hiddenRightBtn = YES;
+    self.hiddenRightBtn = NO;
     self.count = 0;
     self.money = 0;
     self.settleMentView.count = self.count;
@@ -411,23 +411,21 @@ typedef NS_ENUM(NSInteger, QHLViewState){
                 GShopCarGoods *good = shop.mGoodsArr[i];
                 if (good.mSelected) {
                     
-                        if (i == shop.mGoodsArr.count-1) {
-                            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%d",good.mId]];
-                        }else{
-                            mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%d,",good.mId]];
-                        }
+                    
+                    mTagIds = [mTagIds stringByAppendingString:[NSString stringWithFormat:@"%d,",good.mId]];
+                       
     
                 }
             }
         }
-       
+
     }
     if (mTagIds.length != 0) {
         [self showWithStatus:@"正在操作..."];
         [[mUserInfo backNowUser] deleteShopCarGoods:mTagIds block:^(mBaseData *resb) {
             if (resb.mSucess) {
                 [self dismiss];
-                self.hiddenRightBtn = YES;
+                self.hiddenRightBtn = NO;
                 [self.shoppingCar removeAllObjects];
                 [self.tableView reloadData];
                 [self headerBeganRefresh];
