@@ -68,7 +68,7 @@
     mSend = nil;
     mPro = nil;
     
-    mOne = mTwo = mThree = 1;
+    mOne = mTwo = mThree = 0;
     
     mContent = nil;
     
@@ -102,6 +102,20 @@
 #pragma mark ---- 提交评价
 - (void)mBtnAction:(UIButton *)sender{
     MLLog(@"提交");
+    if (mOne == 0) {
+        [self showErrorStatus:@"请对整体评价打分"];
+        return;
+    }
+    
+    if (mTwo == 0) {
+        [self showErrorStatus:@"请对配送评价打分"];
+        return;
+    }
+    
+    if (mThree == 0) {
+        [self showErrorStatus:@"请对商品评价打分"];
+        return;
+    }
     
     [self showWithStatus:@"正在提交..."];
     [[mUserInfo backNowUser] mRateMyMarketOrder:_mShopId andOrderCode:_mOrderCode andContent:mContent andSatisfaction:[[NSString stringWithFormat:@"%ld",(long)mOne] intValue] andSenderRate:[[NSString stringWithFormat:@"%ld",(long)mTwo] intValue] andGoods:[[NSString stringWithFormat:@"%ld",(long)mThree] intValue] block:^(mBaseData *resb) {

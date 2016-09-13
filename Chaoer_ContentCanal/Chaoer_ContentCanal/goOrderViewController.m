@@ -21,7 +21,7 @@
 
 #import "QBImagePicker.h"
 
-@interface goOrderViewController ()<HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource,QBImagePickerControllerDelegate>
+@interface goOrderViewController ()<HZQDatePickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,THHHTTPDelegate,AVCaptureFileOutputRecordingDelegate,UITableViewDelegate,UITableViewDataSource,QBImagePickerControllerDelegate, UIActionSheetDelegate>
 {
 
     HZQDatePickerView *_pikerView;
@@ -292,6 +292,7 @@
 - (void)mServiceTimeAction:(UIButton *)sender{
     
     MHDatePicker *selectTimePicker = [[MHDatePicker alloc] init];
+    selectTimePicker.minSelectDate = [NSDate date];
     __weak typeof(self) weakSelf = self;
     [selectTimePicker didFinishSelectedDate:^(NSDate *selectedDate) {
         
@@ -337,18 +338,124 @@
     
     
 }
+
+#pragma mark---－选择图片
+- (void)editPortrait {
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"照相", @"从相册选取", nil];
+    [choiceSheet showInView:self.view];
+}
+
+#pragma mark UIActionSheetDelegate
+- (BOOL) isCameraAvailable{
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+- (BOOL) isRearCameraAvailable{
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (BOOL) isFrontCameraAvailable {
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
+}
+- (BOOL) doesCameraSupportTakingPhotos {
+    return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
+}
+- (BOOL) isPhotoLibraryAvailable{
+    return [UIImagePickerController isSourceTypeAvailable:
+            UIImagePickerControllerSourceTypePhotoLibrary];
+}
+- (BOOL) canUserPickVideosFromPhotoLibrary{
+    return [self
+            cameraSupportsMedia:(__bridge NSString *)kUTTypeMovie sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+- (BOOL) canUserPickPhotosFromPhotoLibrary{
+    return [self
+            cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType{
+    __block BOOL result = NO;
+    if ([paramMediaType length] == 0) {
+        return NO;
+    }
+    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:paramSourceType];
+    [availableMediaTypes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *mediaType = (NSString *)obj;
+        if ([mediaType isEqualToString:paramMediaType]){
+            result = YES;
+            *stop= YES;
+        }
+    }];
+    return result;
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // 拍照
+        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if ([self isFrontCameraAvailable]) {
+                controller.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            }
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                                 NSLog(@"Picker View Controller is presented");
+                             }];
+        }
+        
+    } else if (buttonIndex == 1) {
+        if ([self isPhotoLibraryAvailable]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                                 NSLog(@"Picker View Controller is presented");
+                             }];
+        }
+    }
+}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    [picker dismissViewControllerAnimated:YES completion:^() {
+//        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//        
+//        tempImage = [Util scaleImg:portraitImg maxsize:550];
+//        [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
+//        
+//        [self loadImage];
+//    }];
+//}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^(){
+    }];
+}
+
 #pragma mark---－上传图片
 - (void)mUploadImgAction:(UIButton *)sender{
     mSelecte = 1;
 
-    QBImagePickerController *imagePickerController = [QBImagePickerController new];
-    imagePickerController.delegate = self;
-    imagePickerController.mediaType = QBImagePickerMediaTypeImage;
-    imagePickerController.allowsMultipleSelection = NO;
-    imagePickerController.showsNumberOfSelectedAssets = YES;
-    imagePickerController.minimumNumberOfSelection = 1;
-
-    [self presentViewController:imagePickerController animated:YES completion:NULL];
+    [self editPortrait];
+//    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+//    imagePickerController.delegate = self;
+//    imagePickerController.mediaType = QBImagePickerMediaTypeImage;
+//    imagePickerController.allowsMultipleSelection = NO;
+//    imagePickerController.showsNumberOfSelectedAssets = YES;
+//    imagePickerController.minimumNumberOfSelection = 1;
+//
+//    [self presentViewController:imagePickerController animated:YES completion:NULL];
 
 
     
@@ -546,20 +653,27 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     if ([mediaType isEqualToString:@"public.image"]){
+        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-        ;
-        MLLog(@"%@",image);
-        NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp.jpg"];
-        ;
+        tempImage = [Util scaleImg:portraitImg maxsize:550];
+        [mView.mUploadImgBtn setBackgroundImage:tempImage forState:0];
         
-        success = [fileManager fileExistsAtPath:imageFile];
-        if(success) {
-            success = [fileManager removeItemAtPath:imageFile error:&error];
-        }
+        [self loadImage];
         
-        tempImage = image;
-        [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
+        
+//        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+//        ;
+//        MLLog(@"%@",image);
+//        NSString *imageFile = [documentsDirectory stringByAppendingPathComponent:@"temp.jpg"];
+//        ;
+//        
+//        success = [fileManager fileExistsAtPath:imageFile];
+//        if(success) {
+//            success = [fileManager removeItemAtPath:imageFile error:&error];
+//        }
+//        
+//        tempImage = image;
+//        [UIImageJPEGRepresentation(image, 1.0f) writeToFile:imageFile atomically:YES];
         
         //SETIMAGE(image);
         //CFShow([[NSFileManager defaultManager] directoryContentsAtPath:[NSHomeDirectory() stringByAppendingString:@"/Documents"]]);

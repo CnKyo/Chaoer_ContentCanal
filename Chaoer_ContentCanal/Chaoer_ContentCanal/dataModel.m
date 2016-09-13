@@ -7556,7 +7556,6 @@ bool pptbined = NO;
     self.mCouponMoney = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"couponMoney"] floatValue];
     self.mCreditPrice = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"creditPrice"] floatValue];
 
-
 }
 
 @end

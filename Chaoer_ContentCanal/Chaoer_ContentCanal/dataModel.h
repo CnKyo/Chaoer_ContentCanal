@@ -4216,6 +4216,10 @@
  */
 @property (assign,nonatomic) float mCouponMoney;
 
+/**
+ *  订单类型
+ */
+@property (assign,nonatomic) int mType;
 
 -(id)initWithObj:(NSDictionary *)obj;
 
