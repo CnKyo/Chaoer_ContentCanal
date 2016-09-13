@@ -434,7 +434,11 @@ typedef NS_ENUM(NSInteger, QHLViewState){
             }
         }];
 
+    }else{
+        [self showErrorStatus:@"没有选择任何商品！"];
     }
+    
+    
    
    
 

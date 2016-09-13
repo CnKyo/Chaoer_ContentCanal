@@ -229,8 +229,26 @@
 
 - (void)upDatePage{
  
+    NSString *mmName = @"";
+    NSString *mmPhone = @"";
+    NSString *mmAddress = @"";
+    if (mShopCarList.mName.length != 0) {
+        mmName = mShopCarList.mName;
+    }else{
+        mmName = @"暂无";
+    }  if (mShopCarList.mPhone.length != 0) {
+        mmPhone = mShopCarList.mPhone;
+    }else{
+        mmPhone = @"暂无";
+    }  if (mShopCarList.mAddress.length != 0) {
+        mmAddress = mShopCarList.mAddress;
+    }else{
+        mmAddress = @"暂无";
+    }
+    
+    
     mFooterView.mPayMoney.text = [NSString stringWithFormat:@"还需支付(含配送费)：¥%.2f",mShopCarList.mTotlePay];
-    mTableHeaderView.mAddress.text = [NSString stringWithFormat:@"%@-%@\n%@",mShopCarList.mName,mShopCarList.mPhone,mShopCarList.mAddress];
+    mTableHeaderView.mAddress.text = [NSString stringWithFormat:@"%@-%@\n%@",mmName,mmPhone,mmAddress];
     mTableFooterView.mTotalMoney.text = [NSString stringWithFormat:@"商品总金额(含配送费)：¥%.2f",mShopCarList.mTotlePay];
     
     
@@ -279,7 +297,13 @@
         mShop.mDescript = @"暂无优惠";
     }
     
-    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color> ",mShop.mDescript,mPP-mShopCarList.mJianPrice] attributedStringWithStyleBook:mStyle1];
+    NSString *mSPrice = @"";
+    
+    if (mShop.mHaveSendPrice) {
+        mSPrice = [NSString stringWithFormat:@" 含配送费%.2f元",mShop.mSendPrice];
+    }
+    
+    mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color>  %@",mShop.mDescript,mPP-mShopCarList.mJianPrice,mSPrice] attributedStringWithStyleBook:mStyle1];
 
     [mFooterSection.mSenderType setTitle:mShop.mSendName forState:0];
     
