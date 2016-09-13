@@ -16,6 +16,7 @@
 
 #import "mOrderDetailBottomView.h"
 #import "goPayViewController.h"
+#import "DryCleanOrderCommentSubmitVC.h"
 
 @interface communityOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,orderBottomViewBtnclick>
 
@@ -40,6 +41,15 @@
     self.Title = self.mPageName = @"订单详情";
     
     [self initView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(self.tableView.mj_header.state == MJRefreshStateIdle) {
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 - (void)initView{
 
@@ -124,14 +134,22 @@
         
     }else{
         MLLog(@"去评价");
-        mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
-        mmm.mName = mOrderInfo.mShopName;
-        mmm.mShopImg = mOrderInfo.mShopLogo;
-        mmm.mTotlaPrice = mOrderInfo.mCommodityPrice;
-        mmm.mShopId = mOrderInfo.mShopId;
-        mmm.mOrderCode = mOrderInfo.mOrderCode;
         
-        [self pushViewController:mmm];
+        if (mOrderInfo.mType == 3) {
+            DryCleanOrderCommentSubmitVC *vc = [[DryCleanOrderCommentSubmitVC alloc] init];
+            vc.orderItem = _mShop;
+            [self pushViewController:vc];
+        } else {
+            mMarketRateViewController *mmm = [[mMarketRateViewController alloc] initWithNibName:@"mMarketRateViewController" bundle:nil];
+            mmm.mName = mOrderInfo.mShopName;
+            mmm.mShopImg = mOrderInfo.mShopLogo;
+            mmm.mTotlaPrice = mOrderInfo.mCommodityPrice;
+            mmm.mShopId = mOrderInfo.mShopId;
+            mmm.mOrderCode = mOrderInfo.mOrderCode;
+            
+            [self pushViewController:mmm];
+        }
+
     }
 }
 - (void)headerBeganRefresh{
@@ -147,6 +165,7 @@
             mOrderInfo = [GMyMarketOrderInfo new];
             mOrderInfo = mOrder;
             mOrderInfo.mShopId = _mShop.mShopId;
+            mOrderInfo.mType = _mShop.mType;
             [self upDatePage];
             [self.tableView reloadData];
         }else{
