@@ -23,7 +23,7 @@
     
     [super viewWillAppear:animated];
     
-    [self loadData];
+    //[self loadData];
     
 }
 

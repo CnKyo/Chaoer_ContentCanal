@@ -310,12 +310,27 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     GPPTMsgInfo *mMsg = self.dataSourceArray[indexPath.row];
 
-    if (!_isAll) {
-        [self.selectArray addObject:_dataSourceArray[indexPath.row]];
-         [mDeleteArr addObject:[NSString stringWithFormat:@"%d",mMsg.mId]];
+    if (tableView.isEditing == NO) {
+        
+        NSMutableString *str = [NSMutableString new];
+        
+        [str appendFormat:@"消息标题:%@\n", mMsg.mTitle];
+        [str appendFormat:@"时间:%@\n", mMsg.mGenTime];
+        [str appendFormat:@"消息内容:%@\n", mMsg.mContent];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"详情" message:str delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        if (!_isAll) {
+            [self.selectArray addObject:_dataSourceArray[indexPath.row]];
+            [mDeleteArr addObject:[NSString stringWithFormat:@"%d",mMsg.mId]];
+        }
     }
+
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
