@@ -4159,6 +4159,10 @@
  */
 @property (assign,nonatomic) float mCommodityPrice;
 /**
+ *  活动金额
+ */
+@property (assign,nonatomic) float mCampaignMoeny;
+/**
  *  商品总价格
  */
 @property (assign,nonatomic) float mTotlePrice;

@@ -82,7 +82,7 @@
     self.mCreditMoney.attributedText = [[NSString stringWithFormat:@"积分抵扣金额：  <color>%.2f元</color>",mOrderInfo.mCreditPrice] attributedStringWithStyleBook:mStyle1];
     self.mCoupMoney.attributedText = [[NSString stringWithFormat:@"优惠券抵扣金额：  <color>%.2f元</color>",mOrderInfo.mCouponMoney] attributedStringWithStyleBook:mStyle1];
 
-    self.mSendPrice.attributedText = [[NSString stringWithFormat:@"配送费：  <color>%.2f元</color>",mOrderInfo.mDeliveFee] attributedStringWithStyleBook:mStyle1];
+    self.mSendPrice.attributedText = [[NSString stringWithFormat:@"配送费：  <color>%.2f元</color>  活动优惠：<color>%.2f元</color>",mOrderInfo.mDeliveFee,mOrderInfo.mCampaignMoeny] attributedStringWithStyleBook:mStyle1];
 
 
     

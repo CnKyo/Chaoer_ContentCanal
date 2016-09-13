@@ -7528,7 +7528,9 @@ bool pptbined = NO;
     self.mId = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"id"] intValue];
     
     self.mCommodityPrice = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"commodityPrice"] floatValue];
-    self.mTotlePrice = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"payableAmount"] floatValue];
+    self.mTotlePrice = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"totalPrice"] floatValue];
+    
+    self.mCampaignMoeny = [[[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"mCampaignMoeny"] floatValue];
 
     
     self.mAddress = [[obj objectForKeyMy:@"orderInfo"] objectForKeyMy:@"address"];

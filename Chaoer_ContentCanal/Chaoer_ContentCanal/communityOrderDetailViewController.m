@@ -72,7 +72,7 @@
 - (void)upDatePage{
     mBottomView.mOrderInfo = [GMyMarketOrderInfo new];
     mBottomView.mOrderInfo = mOrderInfo;
-    mBottomView.mTotal.text = [NSString stringWithFormat:@"合计：¥%.2f元  (含配送费：¥%.2f元)",mOrderInfo.mTotlePrice,mOrderInfo.mDeliveFee];
+    mBottomView.mTotal.text = [NSString stringWithFormat:@"合计：¥%.2f元  (含配送费：¥%.2f元)",mOrderInfo.mCommodityPrice,mOrderInfo.mDeliveFee];
     
     NSString *mTT = nil;
     
