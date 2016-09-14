@@ -187,6 +187,10 @@
         if ([mUserInfo backNowUser].isNeedLogin || [mUserInfo isNeedLogin]) {
             [self gotoLoginVC];
             return;
+        }else{
+        
+            [self callBack];
+
         }
     }
     

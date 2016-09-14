@@ -363,6 +363,15 @@
     [mFooterSection.mCoup setTitle:mCoupp forState:0];
     
     
+    NSString *mSendT = nil;
+    if (mShop.mHaveDevelFee ) {
+    
+        mSendT = @"配送方式（免配送费）";
+    }else{
+        mSendT = @"配送方式";
+
+    }
+    mFooterSection.mSendTypeLB.text =mSendT;
     mFooterSection.delegate = self;
     return mFooterSection;
     
@@ -413,75 +422,84 @@
     }else{
         GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath];
         
-        NSMutableArray *mRRR = [NSMutableArray new];
-        [mRRR addObjectsFromArray:mShopCarList.mCoupArr];
-        mCoupViewController *coup = [mCoupViewController new];
-        coup.mShopId = mShop.mShopId;
-        coup.mDataSource = [NSMutableArray new];
-        coup.mDataSource = mRRR;
-        coup.mSType = 2;
-        coup.block = ^(NSString *content,NSString *mid,NSString *mPrice,BOOL mHaveC){
-
-            if (mHaveC == YES) {
+        if (mShopCarList.mCoupArr.count <= 0) {
+            [self showErrorStatus:@"暂无优惠卷！"];
+            return;
+        }else{
+        
+            NSMutableArray *mRRR = [NSMutableArray new];
+            [mRRR addObjectsFromArray:mShopCarList.mCoupArr];
+            mCoupViewController *coup = [mCoupViewController new];
+            coup.mShopId = mShop.mShopId;
+            coup.mDataSource = [NSMutableArray new];
+            coup.mDataSource = mRRR;
+            coup.mSType = 2;
+            coup.block = ^(NSString *content,NSString *mid,NSString *mPrice,BOOL mHaveC){
                 
-                if (mShopCarList.mHaveCoup == NO) {
-                    if (mShop.mCoupId != [mid intValue]) {
-                        mShopCarList.mHaveCoup = mHaveC;
-                        mShop.mCoupName = content;
-                        mShop.mCoupId = [mid intValue];
-                        mShop.mCoupPrice = [mPrice floatValue];
-                        if (mid.length == 0) {
-                            isCoup = 0;
-                        }else{
-                            isCoup = 1;
+                if (mHaveC == YES) {
+                    
+                    if (mShopCarList.mHaveCoup == NO) {
+                        if (mShop.mCoupId != [mid intValue]) {
+                            mShopCarList.mHaveCoup = mHaveC;
+                            mShop.mCoupName = content;
+                            mShop.mCoupId = [mid intValue];
+                            mShop.mCoupPrice = [mPrice floatValue];
+                            if (mid.length == 0) {
+                                isCoup = 0;
+                            }else{
+                                isCoup = 1;
+                            }
+                            float mp = 0.0;
+                            
+                            mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
+                            
+                            if (mp <= 0) {
+                                mp = 0;
+                            }
+                            
+                            mShopCarList.mTotlePay = mp;
+                            [self upDatePage];
+                            [self.tableView reloadData];
                         }
-                        float mp = 0.0;
                         
-                        mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
                         
-                        if (mp <= 0) {
-                            mp = 0;
+                        
+                    }else{
+                        mShopCarList.mTotlePay += mShop.mCoupPrice;
+                        if (mShop.mCoupId != [mid intValue]) {
+                            mShopCarList.mHaveCoup = mHaveC;
+                            mShop.mCoupName = content;
+                            mShop.mCoupId = [mid intValue];
+                            mShop.mCoupPrice = [mPrice floatValue];
+                            if (mid.length == 0) {
+                                isCoup = 0;
+                            }else{
+                                isCoup = 1;
+                            }
+                            float mp = 0.0;
+                            
+                            mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
+                            
+                            if (mp <= 0) {
+                                mp = 0;
+                            }
+                            
+                            mShopCarList.mTotlePay = mp;
+                            [self upDatePage];
+                            [self.tableView reloadData];
                         }
-                        
-                        mShopCarList.mTotlePay = mp;
-                        [self upDatePage];
-                        [self.tableView reloadData];
                     }
                     
-                  
-
-                }else{
-                    mShopCarList.mTotlePay += mShop.mCoupPrice;
-                    if (mShop.mCoupId != [mid intValue]) {
-                        mShopCarList.mHaveCoup = mHaveC;
-                        mShop.mCoupName = content;
-                        mShop.mCoupId = [mid intValue];
-                        mShop.mCoupPrice = [mPrice floatValue];
-                        if (mid.length == 0) {
-                            isCoup = 0;
-                        }else{
-                            isCoup = 1;
-                        }
-                        float mp = 0.0;
-                        
-                        mp = mShopCarList.mTotlePay - mShop.mCoupPrice;
-                        
-                        if (mp <= 0) {
-                            mp = 0;
-                        }
-                        
-                        mShopCarList.mTotlePay = mp;
-                        [self upDatePage];
-                        [self.tableView reloadData];
-                    }
                 }
-             
-            }
-            
-            
-        };
-        [self pushViewController:coup];
+                
+                
+            };
+            [self pushViewController:coup];
 
+        }
+        
+        
+       
     }
     
     
@@ -489,42 +507,47 @@
 #pragma mark ---- 配送方式
 - (void)sectionWithSendType:(NSInteger)mIndexPath{
     GGShopArr *mShop = mShopCarList.mShopArr[mIndexPath];
-    if (mShop.mHaveDevelFee ) {
-        [self showErrorStatus:@"已经给您免了配送费啦！"];
-    }else{
+
         mSelectSenTypeViewController *mmm = [[mSelectSenTypeViewController alloc] initWithNibName:@"mSelectSenTypeViewController" bundle:nil];
         
         mmm.block = ^(NSString *content,NSString *mid,BOOL mHaveDevelFee){
             mShop.mSendName = content;
             mShop.mSendId = mid;
-            /**
-             *  如果不加判断会造成配送费不断累加的bug
-             */
-            if (mHaveDevelFee) {
-                
-                if (mShop.mHaveSendPrice == NO) {
-                    mShopCarList.mTotlePay += mShop.mSendPrice;
-                    mShop.mHaveSendPrice = YES;
-                    mIsDeliver = YES;
-                    mShopCarList.mTSendPrice+=mShop.mSendPrice;
-                }
-                
+            
+            if (mShop.mHaveDevelFee ) {
+                [self showErrorStatus:@"已经给您免了配送费啦！"];
             }else{
-                if (mShop.mHaveSendPrice == YES) {
-                    mShopCarList.mTotlePay -= mShop.mSendPrice;
-                    mShop.mHaveSendPrice = NO;
-                    mIsDeliver = NO;
-                    mShopCarList.mTSendPrice-=mShop.mSendPrice;
+                
+                /**
+                 *  如果不加判断会造成配送费不断累加的bug
+                 */
+                if (mHaveDevelFee) {
+                    
+                    if (mShop.mHaveSendPrice == NO) {
+                        mShopCarList.mTotlePay += mShop.mSendPrice;
+                        mShop.mHaveSendPrice = YES;
+                        mIsDeliver = YES;
+                        mShopCarList.mTSendPrice+=mShop.mSendPrice;
+                    }
+                    
+                }else{
+                    if (mShop.mHaveSendPrice == YES) {
+                        mShopCarList.mTotlePay -= mShop.mSendPrice;
+                        mShop.mHaveSendPrice = NO;
+                        mIsDeliver = NO;
+                        mShopCarList.mTSendPrice-=mShop.mSendPrice;
+                    }
+                    
+                    
+                    
                 }
-                
-                
                 
             }
             [self upDatePage];
             [self.tableView reloadData];
         };
         [self pushViewController:mmm];
-    }
+    
     
 }
 
