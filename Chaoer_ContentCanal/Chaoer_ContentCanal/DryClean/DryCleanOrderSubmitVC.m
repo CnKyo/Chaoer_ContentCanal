@@ -252,7 +252,7 @@ typedef enum {
             } else if ([_chooseCoupon.typeCode isEqualToString:@"B"]) { //折扣
                 money = _showInfoItem.money - _showInfoItem.money * (_chooseCoupon.facePrice / 10);
             }
-            str1 = _chooseCoupon.desc.length>0 ? _chooseCoupon.desc : @"暂无";
+            str1 = _chooseCoupon.desc.length>0 ? _chooseCoupon.desc : @"暂无优惠券";
             
         }
             break;
@@ -520,8 +520,8 @@ typedef enum {
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        self.chooseYouHuiType = kChooseYouHuiType_coupon;
         if (_showInfoItem.coupons.count > 0) {
-            self.chooseYouHuiType = kChooseYouHuiType_coupon;
             
             DryCleanOrderChooseCouponTVC *vc = [[DryCleanOrderChooseCouponTVC alloc] init];
             vc.tableArr = _showInfoItem.coupons;
@@ -531,9 +531,10 @@ typedef enum {
                 [self reloadUIWithData];
             };
             [self.navigationController pushViewController:vc animated:YES];
-        } else
+        } else {
+            [self reloadUIWithData];
             [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
-        
+        }
     }
 //    else if (buttonIndex == 2) {
 //        if (_showInfoItem.shop.campaignList.count > 0) {
@@ -543,11 +544,12 @@ typedef enum {
 //            [SVProgressHUD showErrorWithStatus:@"暂无活动优惠"];
 //    }
     else if (buttonIndex == 1) {
-        if (_showInfoItem.userScore > 0) {
-            self.chooseYouHuiType = kChooseYouHuiType_score;
-            [self reloadUIWithData];
-        } else
+        self.chooseYouHuiType = kChooseYouHuiType_score;
+        [self reloadUIWithData];
+        
+        if (_showInfoItem.userScore <= 0)
             [SVProgressHUD showErrorWithStatus:@"用户积分为0"];
+            
     }
     
     
