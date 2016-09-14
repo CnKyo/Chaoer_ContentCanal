@@ -318,7 +318,6 @@
     return @{@"coupons" : @"CouponsObject"};
 }
 
-
 @end
 
 
