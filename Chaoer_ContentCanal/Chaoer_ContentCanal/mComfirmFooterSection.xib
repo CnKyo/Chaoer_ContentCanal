@@ -19,10 +19,10 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="配送方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibq-bM-9yb">
-                    <rect key="frame" x="8" y="9" width="89" height="21"/>
+                    <rect key="frame" x="8" y="9" width="200" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="G28-SI-7ro"/>
-                        <constraint firstAttribute="width" constant="89" id="hJ8-X2-8z9"/>
+                        <constraint firstAttribute="width" constant="200" id="hJ8-X2-8z9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -192,6 +192,7 @@
                 <outlet property="mMoney" destination="g0b-Nb-d8e" id="OJ8-PX-iSo"/>
                 <outlet property="mMsg" destination="b5N-zu-dIs" id="GSo-Zn-ODc"/>
                 <outlet property="mMsgBtn" destination="Xof-gU-3kT" id="tIc-04-0gN"/>
+                <outlet property="mSendTypeLB" destination="ibq-bM-9yb" id="yRk-tW-Bl3"/>
                 <outlet property="mSenderType" destination="sNt-mF-Veh" id="Xhy-qv-i7P"/>
             </connections>
             <point key="canvasLocation" x="204" y="374"/>

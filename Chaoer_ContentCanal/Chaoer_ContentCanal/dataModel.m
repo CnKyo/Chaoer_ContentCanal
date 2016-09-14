@@ -187,6 +187,12 @@ bool g_bined = NO;
     }
     return nil;
 }
++(void)cleanUserInfo
+{
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    [def setObject:nil forKey:@"userInfo"];
+    [def synchronize];
+}
 - (id)initWithObj:(NSDictionary *)obj{
     self = [super init];
     if( self && obj != nil )
@@ -267,6 +273,8 @@ bool g_bined = NO;
 }
 
 + (BOOL)isNeedLogin{
+//    return self.muuid.length == 0;
+
     return [mUserInfo backNowUser] == nil;
 }
 //退出登陆
@@ -274,6 +282,10 @@ bool g_bined = NO;
 {
     [UserDefaults() loadUserZro];
     [mUserInfo closePush];
+    /**
+     *  清除用户信息
+     */
+    [mUserInfo cleanUserInfo];
     g_user = nil;
 
     
@@ -282,7 +294,7 @@ bool g_bined = NO;
     return self.muuid != 0;
 }
 - (BOOL)isNeedLogin{
-    return self.muuid.length == 0;
+    return [mUserInfo backNowUser]  == nil;
 }
 
 - (BOOL)mTemporary{

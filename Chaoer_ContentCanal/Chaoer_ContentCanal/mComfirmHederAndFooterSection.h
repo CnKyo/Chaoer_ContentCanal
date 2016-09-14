@@ -53,6 +53,8 @@
 + (mComfirmHederAndFooterSection *)shareHeader;
 
 #pragma mark ---- footerSection
+@property (weak, nonatomic) IBOutlet UILabel *mSendTypeLB;
+
 /**
  *  配送方式
  */
