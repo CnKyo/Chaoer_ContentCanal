@@ -279,7 +279,7 @@
 
 - (void)rightBtnTouched:(id)sender{
     
-    [self mWebo:nil];
+    [self mWechat:nil];
     
 //    UIButton *btn = sender;
 //    btn.selected = !btn.selected;
