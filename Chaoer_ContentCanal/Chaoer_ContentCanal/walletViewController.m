@@ -44,6 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:YES];
+    [self headerBeganRefresh];
 
 }
 - (void)viewDidLoad {
@@ -59,12 +60,12 @@
     [self initView];
     [self initBarCodeView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
 }
 
 -(void)handleUserInfoChange:(NSNotification *)note
 {
-    [self.tableView reloadData];
+    [self headerBeganRefresh];
 }
 
 

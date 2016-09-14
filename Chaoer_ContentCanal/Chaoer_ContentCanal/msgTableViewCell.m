@@ -58,7 +58,7 @@
     }
     
     
-    self.mPoint.hidden = mmsg.state?YES:NO;
+    self.mPoint.hidden = YES;
     
     
     self.mDetail.text = mmsg.complain_reason;
