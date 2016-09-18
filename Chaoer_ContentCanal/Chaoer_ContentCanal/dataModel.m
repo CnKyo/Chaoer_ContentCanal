@@ -7345,7 +7345,7 @@ bool pptbined = NO;
             ppp += [[temp objectForKeyMy:@"goodsPrice"] floatValue] * [[temp objectForKeyMy:@"quantity"] intValue];
             
         }
-        mContent = [[[dic objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"content"] floatValue];
+        mContent += [[[dic objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"content"] floatValue];
 
         mSS = [[dic objectForKeyMy:@"deliverPrice"] floatValue];
     }
