@@ -68,12 +68,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "495527836.017387"
+                  timestampString = "495883550.071901"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "6306"
                   endingLineNumber = "6306"
-                  offsetFromSymbolStart = "740">
+                  offsetFromSymbolStart = "713">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -83,12 +83,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "495527836.017656"
+                  timestampString = "495883550.072092"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "6309"
                   endingLineNumber = "6309"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -132,12 +132,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/pptOrderDetailViewController.m"
-                  timestampString = "495527836.019305"
+                  timestampString = "495883550.073978"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "714"
                   endingLineNumber = "714"
-                  offsetFromSymbolStart = "1320">
+                  offsetFromSymbolStart = "1255">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -147,12 +147,12 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/pptOrderDetailViewController.m"
-                  timestampString = "495527836.019455"
+                  timestampString = "495883550.074146"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "717"
                   endingLineNumber = "717"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>

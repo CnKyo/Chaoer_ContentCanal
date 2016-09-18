@@ -358,7 +358,7 @@ typedef NS_ENUM(NSInteger, QHLViewState){
         }else {  //全选按钮不选中
             [self.mShopCarIdsArr removeAllObjects];
             [self.mShopCarNumArr removeAllObjects];
-            self.hiddenRightBtn = YES;
+            self.hiddenRightBtn = NO;
             for (GShopCarList *shop in self.shoppingCar) {
                 
                 if (shop.mIsCanOrder) {

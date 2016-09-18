@@ -162,7 +162,7 @@
                 mShopCarList.mScorePrice = mShopCarList.mScore/mShopCarList.mRate;
                 
                 mTableFooterView.mScore.text = [NSString stringWithFormat:@"积分  抵扣:%d元",mShopCarList.mScorePrice];
-                mShopCarList.mTotlePay+=mShopCarList.mScorePrice;
+                mShopCarList.mTotlePay-=mShopCarList.mScorePrice;
             }else{
                 MLLog(@"关");
                 mShopCarList.mIsUseScore = 0;
@@ -172,13 +172,14 @@
                     mShopCarList.mScorePrice = 0;
                 }else{
                     
-                    mShopCarList.mTotlePay-=mShopCarList.mScorePrice;
+                    mShopCarList.mTotlePay+=mShopCarList.mScorePrice;
                     mShopCarList.mScorePrice = 0;
                 }
 
             }
         
             [self upDatePage];
+            
             
         }
         
