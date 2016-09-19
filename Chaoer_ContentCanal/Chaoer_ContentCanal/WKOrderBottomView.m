@@ -25,7 +25,7 @@
  *  构造界面
  */
 - (void)initView{
-    QHLButton *allSelBtn = [[QHLButton alloc] init];
+    UIButton *allSelBtn = [[UIButton alloc] init];
     
     //背景图
     [allSelBtn setBackgroundImage:[UIImage imageNamed:@"ppt_add_address_normal"] forState:UIControlStateNormal];
@@ -60,7 +60,7 @@
     [self addSubview:totalLbl];
     self.mTotalLbl = totalLbl;
     
-    QHLButton *checkOutBtn = [[QHLButton alloc] init];
+    UIButton *checkOutBtn = [[UIButton alloc] init];
     //背景色
     [checkOutBtn setBackgroundColor:[UIColor redColor]];
     //设置字体
@@ -103,7 +103,7 @@
 
 }
 #pragma mark - 全选按钮的点击事件
-- (void)allSelBtnDidClick:(QHLButton *)allSelBtn {
+- (void)allSelBtnDidClick:(UIButton *)allSelBtn {
 
     if ([self.bottomDelegate respondsToSelector:@selector(allSelectedWithView:didSelected:)]) {
         [self.bottomDelegate allSelectedWithView:self didSelected:allSelBtn.selected];
@@ -111,7 +111,7 @@
     
 }
 #pragma mark - 计算点击事件
-- (void)checkOutBtnDidClick:(QHLButton *)checkOutBtn {
+- (void)checkOutBtnDidClick:(UIButton *)checkOutBtn {
     NSLog(@"%s",__func__);
     [self.bottomDelegate mGoPayAction];
     

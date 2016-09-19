@@ -12,7 +12,6 @@
 #import "mGoodsDetailCell.h"
 
 #import "UIView+Extension.h"
-#import "QHLShoppingCarController.h"
 #import "ShoppingCarViewController.h"
 #import "comFirmOrderViewController.h"
 

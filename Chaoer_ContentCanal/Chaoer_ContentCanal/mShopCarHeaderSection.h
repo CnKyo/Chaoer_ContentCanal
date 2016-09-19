@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLButton.h"
-@class QHLButton;
 @class mShopCarHeaderSection;
 
 
@@ -20,7 +18,7 @@
 @end
 
 @interface mShopCarHeaderSection : UIView
-@property (weak, nonatomic) IBOutlet QHLButton *mSelBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mSelBtn;
 
 /**
  *  图片

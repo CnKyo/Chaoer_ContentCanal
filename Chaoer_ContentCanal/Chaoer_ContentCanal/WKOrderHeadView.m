@@ -55,7 +55,7 @@
     mLine1.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:mLine1];
     
-    QHLButton *mBtn = [[QHLButton alloc] init];
+    UIButton *mBtn = [[UIButton alloc] init];
     self.mSelectBtn = mBtn;
     
     //背景图
@@ -129,7 +129,7 @@
     
 }
 #pragma mark - 选择按钮的点击事件
-- (void)mSelectAction:(QHLButton *)sender{
+- (void)mSelectAction:(UIButton *)sender{
     
     if ([self.WKHeaderViewDelegate respondsToSelector:@selector(headerWithView:andBtnSelected:andSection:)]) {
         [self.WKHeaderViewDelegate headerWithView:self

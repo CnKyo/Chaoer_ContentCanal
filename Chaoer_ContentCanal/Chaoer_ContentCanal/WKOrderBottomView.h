@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLButton.h"
 
-@class WKOrderBottomView,QHLButton;
+@class WKOrderBottomView;
 
 @protocol WKOrderBottomDelegate <NSObject>
 
@@ -40,7 +39,7 @@
 /**
  *  全选按钮
  */
-@property (nonatomic, weak) QHLButton *mAllSelBtn;
+@property (nonatomic, weak) UIButton *mAllSelBtn;
 /**
  *  总价
  */
@@ -48,7 +47,7 @@
 /**
  *  去支付
  */
-@property (nonatomic, weak) QHLButton *mGoPayBtn;
+@property (nonatomic, weak) UIButton *mGoPayBtn;
 /**
  *  全选label
  */

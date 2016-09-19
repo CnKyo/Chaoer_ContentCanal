@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLButton.h"
 @class WKOrderCell;
-@class QHLButton;
 
 @protocol WKOrderCellDelegate <NSObject>
 
@@ -29,7 +27,7 @@
 /**
  *  选择按钮
  */
-@property (nonatomic, weak) QHLButton *mBtn;
+@property (nonatomic, weak) UIButton *mBtn;
 /**
  *  图片
  */

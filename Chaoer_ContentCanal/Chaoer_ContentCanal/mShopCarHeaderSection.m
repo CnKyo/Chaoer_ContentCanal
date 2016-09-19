@@ -32,7 +32,7 @@
     
     return view;
 }
-- (IBAction)mSelAction:(QHLButton *)sender {
+- (IBAction)mSelAction:(UIButton *)sender {
     
     if ([self.headerViewDelegate respondsToSelector:@selector(headerView:selBtnDidClickToChangeAllSelBtn:andSection:)]) {
         [self.headerViewDelegate headerView:self selBtnDidClickToChangeAllSelBtn:sender.selected andSection:self.section];

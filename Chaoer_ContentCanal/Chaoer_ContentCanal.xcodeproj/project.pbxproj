@@ -96,8 +96,6 @@
 		04102E2F1CE465CF006F82E2 /* releaseCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E2E1CE465CF006F82E2 /* releaseCell2.xib */; };
 		04102E311CE4683F006F82E2 /* releaseCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E301CE4683F006F82E2 /* releaseCell3.xib */; };
 		04102E331CE46893006F82E2 /* releaseCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04102E321CE46893006F82E2 /* releaseCell4.xib */; };
-		0411A9011D3CA87300402511 /* QHLShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */; };
-		0411A9021D3CA87300402511 /* QHLShopCarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9001D3CA87300402511 /* QHLShopCarCell.xib */; };
 		0411A9041D3CB37C00402511 /* homeTableCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9031D3CB37C00402511 /* homeTableCell2.xib */; };
 		0411A9061D3CB83E00402511 /* homeTableCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411A9051D3CB83E00402511 /* homeTableCell3.xib */; };
 		041C76961CC7A19B000C2746 /* mTopUpPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */; };
@@ -201,17 +199,6 @@
 		04A150FF1D36173800AFCE98 /* mShopCarHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */; };
 		04A151011D36174300AFCE98 /* mShopCarHeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */; };
 		04A151031D36260100AFCE98 /* mShopCarFooterSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */; };
-		04A151061D36376A00AFCE98 /* shoppingCar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A151051D36376A00AFCE98 /* shoppingCar.plist */; };
-		04A151091D36379F00AFCE98 /* QHLShoppingCarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151081D36379F00AFCE98 /* QHLShoppingCarController.m */; };
-		04A151101D3637AC00AFCE98 /* QHLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A1510B1D3637AC00AFCE98 /* QHLButton.m */; };
-		04A151111D3637AC00AFCE98 /* QHLGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A1510D1D3637AC00AFCE98 /* QHLGoods.m */; };
-		04A151121D3637AC00AFCE98 /* QHLShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A1510F1D3637AC00AFCE98 /* QHLShop.m */; };
-		04A1511B1D3637B700AFCE98 /* QHLHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151141D3637B700AFCE98 /* QHLHeaderView.m */; };
-		04A1511C1D3637B700AFCE98 /* QHLHiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151161D3637B700AFCE98 /* QHLHiddenView.m */; };
-		04A1511D1D3637B700AFCE98 /* QHLSettleMentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151181D3637B700AFCE98 /* QHLSettleMentView.m */; };
-		04A1511E1D3637B700AFCE98 /* QHLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A1511A1D3637B700AFCE98 /* QHLTableViewCell.m */; };
-		04A151211D3637C100AFCE98 /* UILabel+QHLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151201D3637C100AFCE98 /* UILabel+QHLExtension.m */; };
-		04A151241D3637CD00AFCE98 /* UIView+QHLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A151231D3637CD00AFCE98 /* UIView+QHLExtension.m */; };
 		04AB1D691CD04DAE00870617 /* otherLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D671CD04DAE00870617 /* otherLoginViewController.m */; };
 		04AB1D6A1CD04DAE00870617 /* otherLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */; };
 		04AB1D6D1CD04DD700870617 /* mBundleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1D6C1CD04DD700870617 /* mBundleView.m */; };
@@ -1333,9 +1320,6 @@
 		04102E2E1CE465CF006F82E2 /* releaseCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell2.xib; sourceTree = "<group>"; };
 		04102E301CE4683F006F82E2 /* releaseCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell3.xib; sourceTree = "<group>"; };
 		04102E321CE46893006F82E2 /* releaseCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = releaseCell4.xib; sourceTree = "<group>"; };
-		0411A8FE1D3CA87300402511 /* QHLShopCarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLShopCarCell.h; sourceTree = "<group>"; };
-		0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLShopCarCell.m; sourceTree = "<group>"; };
-		0411A9001D3CA87300402511 /* QHLShopCarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QHLShopCarCell.xib; sourceTree = "<group>"; };
 		0411A9031D3CB37C00402511 /* homeTableCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeTableCell2.xib; sourceTree = "<group>"; };
 		0411A9051D3CB83E00402511 /* homeTableCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = homeTableCell3.xib; sourceTree = "<group>"; };
 		041C76951CC7A19B000C2746 /* mTopUpPhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mTopUpPhoneCell.xib; sourceTree = "<group>"; };
@@ -1497,27 +1481,6 @@
 		04A150FE1D36173800AFCE98 /* mShopCarHeaderSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mShopCarHeaderSection.m; sourceTree = "<group>"; };
 		04A151001D36174300AFCE98 /* mShopCarHeaderSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mShopCarHeaderSection.xib; sourceTree = "<group>"; };
 		04A151021D36260100AFCE98 /* mShopCarFooterSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mShopCarFooterSection.xib; sourceTree = "<group>"; };
-		04A151051D36376A00AFCE98 /* shoppingCar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shoppingCar.plist; sourceTree = "<group>"; };
-		04A151071D36379F00AFCE98 /* QHLShoppingCarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLShoppingCarController.h; sourceTree = "<group>"; };
-		04A151081D36379F00AFCE98 /* QHLShoppingCarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLShoppingCarController.m; sourceTree = "<group>"; };
-		04A1510A1D3637AC00AFCE98 /* QHLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLButton.h; sourceTree = "<group>"; };
-		04A1510B1D3637AC00AFCE98 /* QHLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLButton.m; sourceTree = "<group>"; };
-		04A1510C1D3637AC00AFCE98 /* QHLGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLGoods.h; sourceTree = "<group>"; };
-		04A1510D1D3637AC00AFCE98 /* QHLGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLGoods.m; sourceTree = "<group>"; };
-		04A1510E1D3637AC00AFCE98 /* QHLShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLShop.h; sourceTree = "<group>"; };
-		04A1510F1D3637AC00AFCE98 /* QHLShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLShop.m; sourceTree = "<group>"; };
-		04A151131D3637B700AFCE98 /* QHLHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLHeaderView.h; sourceTree = "<group>"; };
-		04A151141D3637B700AFCE98 /* QHLHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLHeaderView.m; sourceTree = "<group>"; };
-		04A151151D3637B700AFCE98 /* QHLHiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLHiddenView.h; sourceTree = "<group>"; };
-		04A151161D3637B700AFCE98 /* QHLHiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLHiddenView.m; sourceTree = "<group>"; };
-		04A151171D3637B700AFCE98 /* QHLSettleMentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLSettleMentView.h; sourceTree = "<group>"; };
-		04A151181D3637B700AFCE98 /* QHLSettleMentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLSettleMentView.m; sourceTree = "<group>"; };
-		04A151191D3637B700AFCE98 /* QHLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHLTableViewCell.h; sourceTree = "<group>"; };
-		04A1511A1D3637B700AFCE98 /* QHLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHLTableViewCell.m; sourceTree = "<group>"; };
-		04A1511F1D3637C100AFCE98 /* UILabel+QHLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+QHLExtension.h"; sourceTree = "<group>"; };
-		04A151201D3637C100AFCE98 /* UILabel+QHLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+QHLExtension.m"; sourceTree = "<group>"; };
-		04A151221D3637CD00AFCE98 /* UIView+QHLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+QHLExtension.h"; sourceTree = "<group>"; };
-		04A151231D3637CD00AFCE98 /* UIView+QHLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+QHLExtension.m"; sourceTree = "<group>"; };
 		04AB1D661CD04DAE00870617 /* otherLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otherLoginViewController.h; sourceTree = "<group>"; };
 		04AB1D671CD04DAE00870617 /* otherLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = otherLoginViewController.m; sourceTree = "<group>"; };
 		04AB1D681CD04DAE00870617 /* otherLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = otherLoginViewController.xib; sourceTree = "<group>"; };
@@ -3708,30 +3671,8 @@
 			children = (
 				04A151281D36386000AFCE98 /* View */,
 				04A151271D36384F00AFCE98 /* Models */,
-				04A151261D36383D00AFCE98 /* Controller */,
-				04A151251D36382700AFCE98 /* View+Frame */,
 			);
 			name = ShopCar;
-			sourceTree = "<group>";
-		};
-		04A151251D36382700AFCE98 /* View+Frame */ = {
-			isa = PBXGroup;
-			children = (
-				04A151221D3637CD00AFCE98 /* UIView+QHLExtension.h */,
-				04A151231D3637CD00AFCE98 /* UIView+QHLExtension.m */,
-				04A1511F1D3637C100AFCE98 /* UILabel+QHLExtension.h */,
-				04A151201D3637C100AFCE98 /* UILabel+QHLExtension.m */,
-			);
-			name = "View+Frame";
-			sourceTree = "<group>";
-		};
-		04A151261D36383D00AFCE98 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				04A151071D36379F00AFCE98 /* QHLShoppingCarController.h */,
-				04A151081D36379F00AFCE98 /* QHLShoppingCarController.m */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		04A151271D36384F00AFCE98 /* Models */ = {
@@ -3743,13 +3684,6 @@
 				04E50ED21D8F7A340023C049 /* ShopCarModel.m */,
 				04E50ED31D8F7A340023C049 /* ShopModel.h */,
 				04E50ED41D8F7A340023C049 /* ShopModel.m */,
-				04A151051D36376A00AFCE98 /* shoppingCar.plist */,
-				04A1510A1D3637AC00AFCE98 /* QHLButton.h */,
-				04A1510B1D3637AC00AFCE98 /* QHLButton.m */,
-				04A1510C1D3637AC00AFCE98 /* QHLGoods.h */,
-				04A1510D1D3637AC00AFCE98 /* QHLGoods.m */,
-				04A1510E1D3637AC00AFCE98 /* QHLShop.h */,
-				04A1510F1D3637AC00AFCE98 /* QHLShop.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3766,17 +3700,6 @@
 				04E50EDE1D8F7A470023C049 /* ShopCarTableViewCell.h */,
 				04E50EDF1D8F7A470023C049 /* ShopCarTableViewCell.m */,
 				04E50EE01D8F7A470023C049 /* ShopCarTableViewCell.xib */,
-				04A151131D3637B700AFCE98 /* QHLHeaderView.h */,
-				04A151141D3637B700AFCE98 /* QHLHeaderView.m */,
-				04A151151D3637B700AFCE98 /* QHLHiddenView.h */,
-				04A151161D3637B700AFCE98 /* QHLHiddenView.m */,
-				04A151171D3637B700AFCE98 /* QHLSettleMentView.h */,
-				04A151181D3637B700AFCE98 /* QHLSettleMentView.m */,
-				04A151191D3637B700AFCE98 /* QHLTableViewCell.h */,
-				04A1511A1D3637B700AFCE98 /* QHLTableViewCell.m */,
-				0411A8FE1D3CA87300402511 /* QHLShopCarCell.h */,
-				0411A8FF1D3CA87300402511 /* QHLShopCarCell.m */,
-				0411A9001D3CA87300402511 /* QHLShopCarCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4162,6 +4085,15 @@
 				04E093061CEA3EB700D3090E /* myTagViewController.xib */,
 			);
 			name = "我的标签";
+			sourceTree = "<group>";
+		};
+		04E50EF01D8FF8570023C049 /* Conteoller */ = {
+			isa = PBXGroup;
+			children = (
+				04E50EE81D8FBFE60023C049 /* ShoppingCarViewController.h */,
+				04E50EE91D8FBFE60023C049 /* ShoppingCarViewController.m */,
+			);
+			name = Conteoller;
 			sourceTree = "<group>";
 		};
 		04E5A7C51CE56A2000A2D111 /* 跑单纪录 */ = {
@@ -4752,8 +4684,7 @@
 			isa = PBXGroup;
 			children = (
 				04A151041D36375200AFCE98 /* ShopCar */,
-				04E50EE81D8FBFE60023C049 /* ShoppingCarViewController.h */,
-				04E50EE91D8FBFE60023C049 /* ShoppingCarViewController.m */,
+				04E50EF01D8FF8570023C049 /* Conteoller */,
 				04E50EEB1D8FC2CD0023C049 /* ZLShopCarNav.h */,
 				04E50EEC1D8FC2CD0023C049 /* ZLShopCarNav.m */,
 				04E50EEE1D8FC2D70023C049 /* ZLShopCarNav.xib */,
@@ -7202,7 +7133,6 @@
 				74F1058D1BF044DB00035DFB /* myEditView.xib in Resources */,
 				04D9F5081D275C3000518F6F /* mMessageOrNoteView.xib in Resources */,
 				04AB1D6F1CD04DE200870617 /* mBundleView.xib in Resources */,
-				0411A9021D3CA87300402511 /* QHLShopCarCell.xib in Resources */,
 				749BE9AA1B32758100BABCA6 /* LICENSE.txt in Resources */,
 				043F38D71CEAA3CE000041EC /* releaseCell5.xib in Resources */,
 				749BE9A21B32756800BABCA6 /* IQKeyboardManager.bundle in Resources */,
@@ -7297,7 +7227,6 @@
 				311DA4F21C91BEBE003D50A4 /* mPersonRightView.xib in Resources */,
 				047290441D17E4D000AA999B /* RCConfig.plist in Resources */,
 				047695FE1CE094D200D282C5 /* mCommunityDetailView.xib in Resources */,
-				04A151061D36376A00AFCE98 /* shoppingCar.plist in Resources */,
 				04F1E3AF1CD217EF00222946 /* mConversationViewController.xib in Resources */,
 				04E5A7EE1CE5823300A2D111 /* pptMyViewController.xib in Resources */,
 				04E5A7FE1CE5AB3A00A2D111 /* choulaoCell.xib in Resources */,
@@ -7719,7 +7648,6 @@
 				04D9F5061D275C2900518F6F /* mMessageOrNoteView.m in Sources */,
 				04F5FFE21D23576400EFBB3C /* communityOrderDetailViewController.m in Sources */,
 				04D5D15A1D474E4D000E8087 /* mMarketMyOrderBtn.m in Sources */,
-				04A1511B1D3637B700AFCE98 /* QHLHeaderView.m in Sources */,
 				04FAD0C41D6A98FC0038CF7B /* ZXTelResultParser.m in Sources */,
 				04E5A81C1CE5C50400A2D111 /* pptMyAddressViewController.m in Sources */,
 				0400EDB11D46260F009CD641 /* mGoodsDetailBottomView.m in Sources */,
@@ -7759,7 +7687,6 @@
 				04F9E5D41CED4D8B00FCA8B7 /* MJPropertyType.m in Sources */,
 				DF10D8401D640FBA00220FB0 /* DTTimePeriod.m in Sources */,
 				04F1E3AE1CD217EF00222946 /* mConversationViewController.m in Sources */,
-				04A151121D3637AC00AFCE98 /* QHLShop.m in Sources */,
 				04102E0A1CE41A17006F82E2 /* pptChartsViewController.m in Sources */,
 				749BEA3B1B3277AA00BABCA6 /* MKAnnotationView+WebCache.m in Sources */,
 				04FACF251D6A98910038CF7B /* ZXDataMatrixEncoderContext.m in Sources */,
@@ -7779,7 +7706,6 @@
 				3135F8231C97E29800EF9569 /* editMessageViewController.m in Sources */,
 				04102CC61D2A507D003A0C56 /* MJRefreshFooter.m in Sources */,
 				04FACFEE1D6A98C60038CF7B /* ZXPlanarYUVLuminanceSource.m in Sources */,
-				04A151111D3637AC00AFCE98 /* QHLGoods.m in Sources */,
 				04FAD0501D6A98F20038CF7B /* ZXAI01AndOtherAIs.m in Sources */,
 				04FAD0CE1D6A98FC0038CF7B /* ZXWifiResultParser.m in Sources */,
 				04FACFBD1D6A98BD0038CF7B /* ZXDefaultGridSampler.m in Sources */,
@@ -7894,7 +7820,6 @@
 				3135F8121C97BD2600EF9569 /* mFeedBackViewController.m in Sources */,
 				749BEA4C1B3277AA00BABCA6 /* UIImageView+WebCache.m in Sources */,
 				DF535F011D62AC27006E1598 /* UITableView+FDTemplateLayoutCell.m in Sources */,
-				04A1511D1D3637B700AFCE98 /* QHLSettleMentView.m in Sources */,
 				04FACF721D6A989D0038CF7B /* ZXOneDReader.m in Sources */,
 				749BEA461B3277AA00BABCA6 /* UIButton+WebCache.m in Sources */,
 				04FAD0BF1D6A98FC0038CF7B /* ZXSMSMMSResultParser.m in Sources */,
@@ -7906,7 +7831,6 @@
 				749BEA0E1B32779800BABCA6 /* MJPhotoBrowser.m in Sources */,
 				7487DC191B4E17F000C40220 /* MASViewAttribute.m in Sources */,
 				04EEADE81D0FAFAE00FA97C6 /* AFURLResponseSerialization.m in Sources */,
-				04A1511E1D3637B700AFCE98 /* QHLTableViewCell.m in Sources */,
 				741B8D971B326EFA002104A0 /* ViewController.m in Sources */,
 				04FAD0C81D6A98FC0038CF7B /* ZXURLTOResultParser.m in Sources */,
 				749BE9AB1B32758100BABCA6 /* README.md in Sources */,
@@ -7914,7 +7838,6 @@
 				04FACEA01D6A98240038CF7B /* ZXPDF417ErrorCorrection.m in Sources */,
 				749BE99F1B32756800BABCA6 /* IQTitleBarButtonItem.m in Sources */,
 				04FACEED1D6A986B0038CF7B /* ZXReedSolomonEncoder.m in Sources */,
-				04A151101D3637AC00AFCE98 /* QHLButton.m in Sources */,
 				31BBE29B1C9142C9006C553D /* homeTableViewCell.m in Sources */,
 				3182A1761CA681300084E890 /* verifyBankViewController.m in Sources */,
 				04FACF791D6A989D0038CF7B /* ZXUPCEANWriter.m in Sources */,
@@ -7935,7 +7858,6 @@
 				749BEA451B3277AA00BABCA6 /* SDWebImagePrefetcher.m in Sources */,
 				04FAD0521D6A98F20038CF7B /* ZXAI01weightDecoder.m in Sources */,
 				DF535F231D6308BC006E1598 /* ShopCommentTableViewCell.m in Sources */,
-				04A1511C1D3637B700AFCE98 /* QHLHiddenView.m in Sources */,
 				04102CC51D2A507D003A0C56 /* MJRefreshComponent.m in Sources */,
 				04F85D271D86AFD7008675A5 /* AddressBookController1.m in Sources */,
 				04FACE8F1D6A981A0038CF7B /* ZXPDF417ScanningDecoder.m in Sources */,
@@ -8055,7 +7977,6 @@
 				749BEA091B32779800BABCA6 /* MBProgressHUD+Add.m in Sources */,
 				04FACFC01D6A98BD0038CF7B /* ZXGridSampler.m in Sources */,
 				04E50EE11D8F7A470023C049 /* BottomView.m in Sources */,
-				04A151091D36379F00AFCE98 /* QHLShoppingCarController.m in Sources */,
 				04E6CE6C1D630B77000EB6B8 /* ThirdViewCollectionViewController.m in Sources */,
 				741B8D941B326EFA002104A0 /* AppDelegate.m in Sources */,
 				04EEADC81D0FAED900FA97C6 /* NSString+HDExtension.m in Sources */,
@@ -8080,7 +8001,6 @@
 				313D76C81C9930A8004D5679 /* InputText.m in Sources */,
 				04F2283D1CEEE4EB004E8702 /* ActionSheetMultipleStringPicker.m in Sources */,
 				04E5A8111CE5B47A00A2D111 /* pptMyInfoCell.m in Sources */,
-				04A151241D3637CD00AFCE98 /* UIView+QHLExtension.m in Sources */,
 				DF8344341D51DE67002C4FD6 /* SKTag.m in Sources */,
 				040BEF311D6D4FCF00BDD60F /* UIView+TYAlertView.m in Sources */,
 				3135F8481C9807DD00EF9569 /* mRedBagHeader.m in Sources */,
@@ -8239,7 +8159,6 @@
 				04FAD0B31D6A98FC0038CF7B /* ZXEmailAddressResultParser.m in Sources */,
 				04FAD0271D6A98E80038CF7B /* ZXRSSPair.m in Sources */,
 				04F89C2B1D1D3A19006A3976 /* exchangeCoupView.m in Sources */,
-				04A151211D3637C100AFCE98 /* UILabel+QHLExtension.m in Sources */,
 				DF0591C41D658BAC00445128 /* RateView.m in Sources */,
 				04F89C0A1D1D0FCC006A3976 /* mCommunityMyViewController.m in Sources */,
 				3135F80C1C97BB4500EF9569 /* mUserTopupViewController.m in Sources */,
@@ -8295,7 +8214,6 @@
 				7445C0921B33A39000F330EA /* UIView+Additions.m in Sources */,
 				7487DC151B4E17F000C40220 /* MASCompositeConstraint.m in Sources */,
 				04102CB51D2A506D003A0C56 /* NSBundle+MJRefresh.m in Sources */,
-				0411A9011D3CA87300402511 /* QHLShopCarCell.m in Sources */,
 				7487DC241B4E1A1B00C40220 /* TTTAttributedLabel.m in Sources */,
 				04FACEAF1D6A98340038CF7B /* ZXModulusPoly.m in Sources */,
 				04FAD0AF1D6A98FC0038CF7B /* ZXBizcardResultParser.m in Sources */,

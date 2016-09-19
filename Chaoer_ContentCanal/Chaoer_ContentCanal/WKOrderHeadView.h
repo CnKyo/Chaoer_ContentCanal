@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QHLButton.h"
 
-@class QHLButton;
 @class WKOrderHeadView;
 /**
  *  设置代理
@@ -44,7 +42,7 @@
 /**
  *  选中按钮
  */
-@property (strong, nonatomic)  QHLButton *mSelectBtn;
+@property (strong, nonatomic)  UIButton *mSelectBtn;
 /**
  *  店铺图片
  */

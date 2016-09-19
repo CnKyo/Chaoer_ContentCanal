@@ -338,7 +338,7 @@
     NSString *mSPrice = @"";
     
     if (mShop.mHaveSendPrice) {
-        mSPrice = [NSString stringWithFormat:@" 含配送费%.2f元",mShop.mSendPrice];
+        mSPrice = [NSString stringWithFormat:@" 不含配送费%.2f元",mShop.mSendPrice];
     }
     
     mFooterSection.mMoney.attributedText = [[NSString stringWithFormat:@"优惠金额:<color>%@</color>   总金额:<color>¥%.2f</color>  %@",mShop.mDescript,mPP-mShopCarList.mJianPrice,mSPrice] attributedStringWithStyleBook:mStyle1];

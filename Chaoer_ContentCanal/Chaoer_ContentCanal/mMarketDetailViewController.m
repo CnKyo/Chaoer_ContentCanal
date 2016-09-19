@@ -17,7 +17,6 @@
 #import "YT_ShopTypeView.h"
 
 #import "mClassMoreViewController.h"
-#import "QHLShoppingCarController.h"
 #import "ShoppingCarViewController.h"
 #import "mActivitySubView.h"
 

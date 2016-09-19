@@ -49,7 +49,7 @@
     /**
      *  按钮
      */
-    QHLButton *mSelBtn = [QHLButton new];
+    UIButton *mSelBtn = [UIButton new];
     self.mBtn = mSelBtn;
     
     //背景图
@@ -141,7 +141,7 @@
     }];
     
 }
-- (void)mSelectAction:(QHLButton *)sender{
+- (void)mSelectAction:(UIButton *)sender{
 
     if ([self.WKCellDelegate respondsToSelector:@selector(cell:cellDidSelected:andIndexPath:)]) {
         [self.WKCellDelegate cell:self cellDidSelected:sender.selected andIndexPath:self.indexPath];
