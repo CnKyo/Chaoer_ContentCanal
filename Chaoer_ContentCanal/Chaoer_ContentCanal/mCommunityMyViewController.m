@@ -16,6 +16,7 @@
 #import "mCoupViewController.h"
 #import "mMarketDetailViewController.h"
 #import "QHLShoppingCarController.h"
+#import "ShoppingCarViewController.h"
 
 #import "mGoodsDetailViewController.h"
 #import "DryCleanVC.h"
@@ -194,13 +195,10 @@
 }
 #pragma mark----购物车
 - (void)mShopCar:(UIButton *)sender{
+
     
-//    shopCarViewController *shopCar = [[shopCarViewController alloc] initWithNibName:@"shopCarViewController" bundle:nil];
-//    [self pushViewController:shopCar];
-    
-    
-    
-    QHLShoppingCarController *shopCar = [QHLShoppingCarController new];
+    ShoppingCarViewController *shopCar = [ShoppingCarViewController new];
+    shopCar.mType = 2;
     [self pushViewController:shopCar];
 }
 #pragma mark----订单

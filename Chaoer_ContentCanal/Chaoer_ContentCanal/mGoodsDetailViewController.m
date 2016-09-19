@@ -13,6 +13,7 @@
 
 #import "UIView+Extension.h"
 #import "QHLShoppingCarController.h"
+#import "ShoppingCarViewController.h"
 #import "comFirmOrderViewController.h"
 
 #import "mCheckMoreActivityView.h"
@@ -515,8 +516,9 @@
 }
 #pragma mark----购物车按钮
 - (void)mShopCarAction:(UIButton *)sender{
-   
-    QHLShoppingCarController *shopcar = [QHLShoppingCarController new];
+     
+    ShoppingCarViewController *shopcar = [ShoppingCarViewController new];
+    shopcar.mType = 1;
     [self pushViewController:shopcar];
     
 }

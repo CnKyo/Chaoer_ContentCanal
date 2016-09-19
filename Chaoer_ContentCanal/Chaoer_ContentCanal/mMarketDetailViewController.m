@@ -18,6 +18,7 @@
 
 #import "mClassMoreViewController.h"
 #import "QHLShoppingCarController.h"
+#import "ShoppingCarViewController.h"
 #import "mActivitySubView.h"
 
 @interface mMarketDetailViewController ()<UITableViewDelegate,UITableViewDataSource,WKSegmentControlDelagate,TypeViewDelegate,WKGoodsCellDelegate>
@@ -491,10 +492,9 @@
 - (void)mshopCarAction:(UIButton *)sender{
 
     MLLog(@"购物车");
-//    shopCarViewController *shopCar = [[shopCarViewController alloc] initWithNibName:@"shopCarViewController" bundle:nil];
-//    [self pushViewController:shopCar];
     
-    QHLShoppingCarController *shopcar = [QHLShoppingCarController new];
+    ShoppingCarViewController *shopcar = [ShoppingCarViewController new];
+    shopcar.mType = 1;
     shopcar.block = ^(BOOL isBack){
         if (isBack) {
             [self loadData];

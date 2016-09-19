@@ -157,11 +157,11 @@
                 <outlet property="mProLogo" destination="jBB-RX-QO2" id="AdC-np-gYs"/>
                 <outlet property="mSelectedBtn" destination="5dx-WL-tpa" id="4qb-fb-R2S"/>
             </connections>
-            <point key="canvasLocation" x="268" y="306"/>
+            <point key="canvasLocation" x="228" y="300"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ppt_add_address_normal" width="32" height="32"/>
-        <image name="ppt_add_address_selected" width="32" height="32"/>
+        <image name="ppt_add_address_selected" width="34" height="34"/>
     </resources>
 </document>
