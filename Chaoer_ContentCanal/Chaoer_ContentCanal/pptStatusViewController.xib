@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="pptStatusViewController">
@@ -16,46 +17,42 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerat_status" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-Hd-fSm">
-                    <rect key="frame" x="110" y="99" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="BCe-aU-JUu"/>
                         <constraint firstAttribute="width" constant="100" id="J6L-4K-yrM"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交成功，等待审核" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLo-uD-6v3">
-                    <rect key="frame" x="8" y="216" width="304" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.74884159482758617" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.74884159482758617" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-Bt-wjJ">
-                    <rect key="frame" x="85" y="274" width="150" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="IsV-JV-JI1"/>
                         <constraint firstAttribute="height" constant="40" id="L7g-Y1-qFI"/>
                     </constraints>
                     <state key="normal" title="返回">
-                        <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="h1J-ix-WiT"/>
                     </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-vW-cGp">
-                    <rect key="frame" x="8" y="253" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="0xU-Q8-Ba3"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.91764705882352937" alpha="0.74886853448275859" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.91764705882352937" alpha="0.74886853448275859" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gVs-vW-cGp" firstAttribute="top" secondItem="jLo-uD-6v3" secondAttribute="bottom" constant="16" id="1y4-ph-k1q"/>
                 <constraint firstItem="gVs-vW-cGp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="5nO-9D-sgr"/>
@@ -68,11 +65,10 @@
                 <constraint firstItem="jLo-uD-6v3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="uu6-P8-0g4"/>
                 <constraint firstAttribute="trailing" secondItem="gVs-vW-cGp" secondAttribute="trailing" constant="8" id="yo7-VZ-HVc"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="221" y="368"/>
         </view>
     </objects>
     <resources>
-        <image name="gerat_status" width="176" height="176"/>
+        <image name="gerat_status" width="88" height="88"/>
     </resources>
 </document>
