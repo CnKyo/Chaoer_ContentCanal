@@ -86,14 +86,16 @@
     
     NSString *mTT = nil;
     
+    mBottomView.mCheckBtn.hidden = NO;
     if (mOrderInfo.mState == 10) {
         mTT = @"去支付";
     }else if(mOrderInfo.mState == 11){
         mTT = @"进行中";
-
+        mBottomView.mCheckBtn.enabled = NO;
     }else if(mOrderInfo.mState == 12){
         mTT = @"确认完成";
-
+        mBottomView.mCheckBtn.enabled = NO;
+        mBottomView.mCheckBtn.hidden = YES;
     }else{
         
         if (mOrderInfo.mIsComment == 1) {
