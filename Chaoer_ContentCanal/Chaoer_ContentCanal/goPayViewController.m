@@ -313,7 +313,7 @@
         } else {
             if (mType == 1) {
                 
-                [self popViewController_2];
+                [self popViewController_3];
             } else if (mType == 4) {
                 
                 [self popViewController_2];

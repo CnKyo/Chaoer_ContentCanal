@@ -47,7 +47,7 @@
 -(void)setModel:(GShopCarGoods *)model{
     _model = model;
     self.shopTitle.text = _model.mGoodsName;
-    self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", _model.mTotlePrice];
+    self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", _model.mGoodsPrice];
     self.mCountview.count =  [[NSString stringWithFormat:@"%d",_model.mQuantity] intValue];
     
     [self.mShopImg sd_setImageWithURL:[NSURL URLWithString:model.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
