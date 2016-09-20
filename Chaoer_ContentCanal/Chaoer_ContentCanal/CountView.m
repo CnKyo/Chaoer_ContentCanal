@@ -14,7 +14,7 @@
 @property (nonatomic, strong)UIButton * rightBtn;
 @property (nonatomic, strong)UIView * leftLineView;
 @property (nonatomic, strong)UIView * rightLineView;
-@property (nonatomic, strong)UITextField * countTF;
+@property (nonatomic, strong)UILabel * countTF;
 
 @end
 @implementation CountView
@@ -72,13 +72,13 @@
     return _leftLineView;
 }
 
-- (UITextField *)countTF{
+- (UILabel *)countTF{
     if (_countTF == nil) {
-        self.countTF = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_leftLineView.frame), 0, self.frame.size.width * 3/7 - 1, self.frame.size.height)];
+        self.countTF = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_leftLineView.frame), 0, self.frame.size.width * 3/7 - 1, self.frame.size.height)];
         _countTF.font = [UIFont systemFontOfSize:14];
         _countTF.textAlignment = NSTextAlignmentCenter;
-        _countTF.keyboardType = UIKeyboardTypeNumberPad;
-        _countTF.delegate = self;
+//        _countTF.keyboardType = UIKeyboardTypeNumberPad;
+//        _countTF.delegate = self;
         _countTF.enabled = NO;
     }
     return _countTF;
@@ -103,21 +103,21 @@
     return _rightBtn;
 }
 
-#pragma mark -- UITextFieldDelegate
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    if (self.CountBlock) {
-        self.CountBlock([textField.text floatValue]);
-    }
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.countTF resignFirstResponder];
-    return YES;
-}
+//#pragma mark -- UITextFieldDelegate
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    if (self.CountBlock) {
+//        self.CountBlock([textField.text floatValue]);
+//    }
+//}
+//
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    [self.countTF resignFirstResponder];
+//    return YES;
+//}
 
 #pragma mark -- 按钮响应事件
 - (void)cutBtnClicked{//减少
-    [self.countTF resignFirstResponder];
+//    [self.countTF resignFirstResponder];
     NSInteger count = [self.countTF.text integerValue] - 1;
     if (count <= 0) {
         return;
@@ -132,7 +132,7 @@
 }
 
 - (void)plusBtnClicked{//增加
-    [self.countTF resignFirstResponder];
+//    [self.countTF resignFirstResponder];
     NSInteger count = [self.countTF.text integerValue] + 1;
     self.countTF.text = [NSString stringWithFormat:@"%zd", count];
     [self.leftBtn setImage:[UIImage imageNamed:@"shopCar_cut"] forState:UIControlStateNormal];

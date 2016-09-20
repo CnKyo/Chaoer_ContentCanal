@@ -16,26 +16,39 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLable;
 @property (weak, nonatomic) IBOutlet UILabel *mContent;
 
-@property (weak, nonatomic) IBOutlet CountView *countview;
+@property (strong, nonatomic) IBOutlet UIView *countview;
 @property (weak, nonatomic) IBOutlet UIImageView *mShopImg;
+
+@property (strong, nonatomic) CountView *mCountview;
+
 
 @end
 @implementation ShopCarTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    for (UIView *vvv in self.countview.subviews) {
+        [vvv removeFromSuperview];
+    }
+    
+    self.mCountview = [[CountView alloc] initWithFrame:CGRectMake(0, 0, 80, 24)];
+    
     __weak typeof(self)MySelf = self;
-    self.countview.CountBlock = ^(NSInteger num){
+    self.mCountview.CountBlock = ^(NSInteger num){
         if (MySelf.delegate && [self.delegate respondsToSelector:@selector(changeTheShopCount:count:)]) {
             [MySelf.delegate changeTheShopCount:MySelf count:num];
         }
     };
+    
+    [self.countview addSubview:self.mCountview];
 }
 
 -(void)setModel:(GShopCarGoods *)model{
     _model = model;
     self.shopTitle.text = _model.mGoodsName;
     self.priceLable.text = [NSString stringWithFormat:@"￥%.2f", _model.mTotlePrice];
-    self.countview.count =  [[NSString stringWithFormat:@"%d",_model.mQuantity] intValue];
+    self.mCountview.count =  [[NSString stringWithFormat:@"%d",_model.mQuantity] intValue];
     
     [self.mShopImg sd_setImageWithURL:[NSURL URLWithString:model.mGoodsImg] placeholderImage:[UIImage imageNamed:@"img_default"]];
     self.mContent.text = [NSString stringWithFormat:@"数量：%d%@",model.mQuantity,model.mSpecifications];
