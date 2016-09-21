@@ -266,7 +266,7 @@
     NSString *mmPhone = @"";
     NSString *mmAddress = @"";
     if (mShopCarList.mName.length != 0) {
-        mmName = mShopCarList.mName;
+        mmName = mShopCarList.mArriveName;
     }else{
         mmName = @"暂无";
     }  if (mShopCarList.mPhone.length != 0) {

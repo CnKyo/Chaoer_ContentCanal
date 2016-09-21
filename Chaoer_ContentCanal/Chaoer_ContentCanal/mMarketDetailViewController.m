@@ -313,7 +313,7 @@
         [mclassArr addObject:Class.mName];
     }
 
-    typeView =[[YT_ShopTypeView alloc] initZhongXiaoTypeViewWithPoint:CGPointMake(0, mHeaderView.mbottom) AndArray:mclassArr];
+    typeView =[[YT_ShopTypeView alloc] initZhongXiaoTypeViewWithPoint:CGPointMake(0, mHH+64) AndArray:mclassArr];
     typeView.delegate=self;
     [self.view addSubview:typeView];
     

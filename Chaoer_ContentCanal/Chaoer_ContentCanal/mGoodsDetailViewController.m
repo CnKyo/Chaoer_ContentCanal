@@ -280,7 +280,7 @@
     }else{
         [self showWithStatus:@""];
         
-        [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:mGoodsDetail.mGoodsId andNum:mNum block:^(mBaseData *resb) {
+        [[mUserInfo backNowUser] addGoodsToShopCar:mGoodsDetail.mShopId andGoodsId:_mSGoods.mGoodsId andNum:mNum block:^(mBaseData *resb) {
             
             if (resb.mSucess) {
                 [self dismiss];

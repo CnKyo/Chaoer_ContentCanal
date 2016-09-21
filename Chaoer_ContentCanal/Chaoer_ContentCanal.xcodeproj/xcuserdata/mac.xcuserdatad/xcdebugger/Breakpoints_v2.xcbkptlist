@@ -42,7 +42,7 @@
             startingLineNumber = "6309"
             endingLineNumber = "6309"
             landmarkName = "-mServicefinishPPTOrder:andMoney:andOrderCode:andOrderType:andLat:andLng:block:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +58,7 @@
             startingLineNumber = "6306"
             endingLineNumber = "6306"
             landmarkName = "-mServicefinishPPTOrder:andMoney:andOrderCode:andOrderType:andLat:andLng:block:"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -68,7 +68,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "495974567.702386"
+                  timestampString = "496137315.235869"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "6306"
@@ -83,7 +83,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/dataModel.m"
-                  timestampString = "495974567.702589"
+                  timestampString = "496137315.239829"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "6309"
@@ -106,7 +106,7 @@
             startingLineNumber = "6290"
             endingLineNumber = "6290"
             landmarkName = "-mServicefinishPPTOrder:andMoney:andOrderCode:andOrderType:andLat:andLng:block:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -132,7 +132,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/pptOrderDetailViewController.m"
-                  timestampString = "495974567.704329"
+                  timestampString = "496137315.253051"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "714"
@@ -147,7 +147,7 @@
                   moduleName = "Chaoer_ContentCanal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Chaoer_ContentCanal/Chaoer_ContentCanal/Chaoer_ContentCanal/pptOrderDetailViewController.m"
-                  timestampString = "495974567.704492"
+                  timestampString = "496137315.25688"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "717"
