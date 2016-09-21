@@ -292,11 +292,21 @@ static NSString * indentifier = @"shopCarCell";
     self.bottomModel.isSelecteAll = !self.bottomModel.isSelecteAll;
     for (int i = 0; i < self.mDataArr.count; i++) {
         GShopCarList * model = self.mDataArr[i];
-        model.mSelected = self.bottomModel.isSelecteAll;
-        for (int j = 0; j < model.mGoodsArr.count; j++) {
-            GShopCarGoods *shopModel = model.mGoodsArr[j];
-            shopModel.mSelected = self.bottomModel.isSelecteAll;
+        
+        if (model.mIsCanOrder) {
+            model.mSelected = self.bottomModel.isSelecteAll;
+            for (int j = 0; j < model.mGoodsArr.count; j++) {
+                
+                GShopCarGoods *shopModel = model.mGoodsArr[j];
+                
+                shopModel.mSelected = self.bottomModel.isSelecteAll;
+            }
+
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"商家休息中，暂无法下单!"];
+            return;
         }
+        
     }
     self.mBottomView.model = self.bottomModel;
     [self GetTotalBill];//求和
@@ -400,6 +410,7 @@ static NSString * indentifier = @"shopCarCell";
 
         }else{
             [SVProgressHUD showErrorWithStatus:@"商家休息中，暂无法下单!"];
+            return;
 
         }
         

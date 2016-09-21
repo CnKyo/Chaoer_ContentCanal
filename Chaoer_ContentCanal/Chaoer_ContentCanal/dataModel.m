@@ -7216,7 +7216,7 @@ bool pptbined = NO;
     self.mShopSalesNum = [[obj objectForKeyMy:@"shop_salesNum"] intValue];
     self.mFreePrice = [[obj objectForKeyMy:@"free_price"] floatValue];
     self.mCloseTime = [obj objectForKeyMy:@"closing_time"];
-    
+    self.mGoodsId = [[obj objectForKeyMy:@"id"] intValue];;
     self.mId = [[obj objectForKeyMy:@"id"] intValue];
     self.mGoodsNum = [[obj objectForKeyMy:@"goodsNum"] intValue];
     self.mGoodsPrice = [[obj objectForKeyMy:@"goods_price"] floatValue];
