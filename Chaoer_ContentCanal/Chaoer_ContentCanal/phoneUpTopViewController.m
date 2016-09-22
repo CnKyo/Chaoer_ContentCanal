@@ -11,6 +11,8 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "AddressBookController1.h"
 
+#import "PPGetAddressBook.h"
+
 @interface phoneUpTopViewController ()<ABPeoplePickerNavigationControllerDelegate>
 
 @end
@@ -77,6 +79,9 @@
     
     mTT = [NSMutableArray new];
     [self initView];
+    
+    //请求用户获取通讯录权限
+    [PPGetAddressBook requestAddressBookAuthorization];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserInfoChange:) name:MyUserInfoChangedNotification object:nil];
     

@@ -117,7 +117,7 @@
     
     
     if (self.block) {
-        self.block(people.mobile.firstObject);
+        self.block(people.mobileArray.firstObject);
     }
     [self popViewController];
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:people.name
