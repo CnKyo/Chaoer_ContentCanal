@@ -9,6 +9,9 @@
 #import "mGoodsDetailCell.h"
 
 #import "mActivitySubView.h"
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.f]
+
 @implementation mGoodsDetailCell
 {
     
@@ -109,10 +112,16 @@
     self.mFocus.attributedText = [[NSString stringWithFormat:@"关注数:<color>%d</color>",mGoodsDetail.mFocus] attributedStringWithStyleBook:mStyle];
     
     
-    
+    NSString * oldPrice = [NSString stringWithFormat:@"原价:¥%.2f元",mGoodsDetail.mMarketPrice];
+    NSUInteger length = [oldPrice length];
+
     self.mGoodsName.text = mGoodsDetail.mGoodsName;
     
-    self.mOldPrice.text = [NSString stringWithFormat:@"原价:¥%.2f元",mGoodsDetail.mMarketPrice];
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:oldPrice];
+    [attri addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, length)];
+    [attri addAttribute:NSStrikethroughColorAttributeName value:UIColorFromRGB(0x999999) range:NSMakeRange(0, length)];
+    [self.mOldPrice setAttributedText:attri];
+
     
     self.mNoewPrice.text = [NSString stringWithFormat:@"现价:¥%.2f元",mGoodsDetail.mGoodsPrice];
     
