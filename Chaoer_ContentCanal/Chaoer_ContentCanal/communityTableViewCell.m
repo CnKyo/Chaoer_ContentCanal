@@ -161,11 +161,8 @@
             
             mActivitySubView *mActView = [mActivitySubView shareView];
             
-            mActView.frame = CGRectMake(0, mYY, self.contentView.size.width, 30);
-            
             mActView.mName.text = mAct.mName;
             mActView.mContent.text = mAct.mContent;
-            [self.mActivityView addSubview:mActView];
             if ([mAct.mCode isEqualToString:@"A"]) {
                 mActView.mName.backgroundColor = [UIColor colorWithRed:0.91 green:0.13 blue:0.14 alpha:0.75];
             }else if ([mAct.mCode isEqualToString:@"B"]){
@@ -181,6 +178,14 @@
                 mActView.mName.backgroundColor = M_CO;
                 
             }
+            [self.mActivityView addSubview:mActView];
+            
+            [mActView makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.mActivityView).offset(@0);
+                make.top.equalTo(self.mActivityView).offset(mYY);
+                make.height.offset(@30);
+            }];
+
             mYY += 32;
         }
         self.mCellH =100+ mYY;
