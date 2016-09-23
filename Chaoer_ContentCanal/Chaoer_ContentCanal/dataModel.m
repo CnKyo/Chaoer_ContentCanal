@@ -7405,7 +7405,6 @@ bool pptbined = NO;
         mPP += [[dic objectForKeyMy:@"goodsPrice"] floatValue]*[[dic objectForKeyMy:@"quantity"] intValue];
     }
  
-    self.mTotlePrice = mPP;
     
     self.mSendName = @"上门自取";
     self.mSendId = @"2";
@@ -7419,8 +7418,14 @@ bool pptbined = NO;
         self.mCampainName = [[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"name"];
         self.mDescript = [[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"description"];
         self.mApplyAll = [[[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"applyAll"] intValue];
+        
+        self.mPreferentialPrice = [[[obj objectForKeyMy:@"shopCampaign"] objectForKeyMy:@"content"] floatValue];
 
     }
+    
+    
+    self.mTotlePrice = mPP-self.mPreferentialPrice;
+
     
     float mD = [[obj objectForKeyMy:@"freePrice"] floatValue];
     

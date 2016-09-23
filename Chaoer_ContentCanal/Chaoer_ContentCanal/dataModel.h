@@ -4027,6 +4027,12 @@
  */
 @property (strong,nonatomic) NSString *mCampainContent;
 /**
+ *  优惠金额
+ */
+@property (assign,nonatomic) float mPreferentialPrice;
+
+
+/**
  *  活动匹配条件
  */
 @property (assign,nonatomic) int mCondition;
