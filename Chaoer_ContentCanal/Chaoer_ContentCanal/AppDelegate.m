@@ -567,7 +567,9 @@
     JPushReceiveObject *it = [JPushReceiveObject mj_objectWithKeyValues:userinof];
     if( !bopenwith ) {
         if (it.aps.alert.length>0) {
-            [[PushAudioPlayer sharedClient] play:it.aps.sound];
+            if (it.aps.sound.length>0 && ![it.aps.sound isEqualToString:@"default"]) {
+                [[PushAudioPlayer sharedClient] play:it.aps.sound];
+            }
             myalert *alertVC = [[myalert alloc] initWithTitle:@"提示" message:it.aps.alert delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"好的", nil];
             alertVC.obj = it;
             [alertVC show];
