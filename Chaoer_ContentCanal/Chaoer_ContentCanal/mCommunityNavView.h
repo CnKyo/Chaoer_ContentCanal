@@ -18,11 +18,11 @@
  *  我的按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *mMyBtn;
+
 /**
- *  地址按钮
+ 地址标签
  */
-@property (weak, nonatomic) IBOutlet UIButton *mAddressBtn;
-@property (weak, nonatomic) IBOutlet UILabel *mAddress;
+@property (weak, nonatomic) IBOutlet UIView *mTitleView;
 
 /**
  *  初始化方法

@@ -20,6 +20,7 @@
 #import "homeHotViewController.h"
 
 #import "DryCleanVC.h"
+#import "LocationTitleView.h"
 
 @interface communityViewController ()<UITableViewDelegate,UITableViewDataSource,AMapLocationManagerDelegate,WKBanerSelectedDelegate,MMApBlockCoordinate>
 @property (nonatomic,strong)    NSMutableArray  *mBanerArr;
@@ -27,6 +28,7 @@
 @property (nonatomic,strong)    NSMutableArray  *mSubArr;
 @property (nonatomic,strong)    NSMutableArray *mShopArr;
 @property (nonatomic,strong)    NSMutableArray *mShopHotArr;
+@property (strong, nonatomic) LocationTitleView* locationTitleView;
 
 
 @end
@@ -70,10 +72,17 @@
     mNavView = [mCommunityNavView shareView];
     mNavView.frame = CGRectMake(0, 0, DEVICE_Width, 64);
     [mNavView.mBackBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
-    [mNavView.mAddressBtn addTarget:self action:@selector(addressAction:) forControlEvents:UIControlEventTouchUpInside];
     [mNavView.mMyBtn addTarget:self action:@selector(myAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:mNavView];
+    
+      self.locationTitleView = [[LocationTitleView alloc] initWithFrame:CGRectMake(DEVICE_Width/2-125, 0, 250, 32)];
+    [mNavView.mTitleView addSubview:self.locationTitleView];
+    
+    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressAction:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.locationTitleView addGestureRecognizer:tapGestureRecognizer];
+
     
     
     [self loadTableView:CGRectMake(0, 0, DEVICE_Width, DEVICE_Height-64) delegate:self dataSource:self];
@@ -100,7 +109,7 @@
 
     [self popViewController];
 }
-- (void)addressAction:(UIButton *)sender{
+- (void)addressAction:(UITapGestureRecognizer *)sender{
     
     MLLog(@"选择地址");
     
@@ -109,7 +118,7 @@
     address.block = ^(NSString *Lat,NSString *Lng,NSString *mId){
         MLLog(@"纬度：%@经度：%@id：%@",Lat,Lng,mId);
         
-        mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置:%@",mId];
+        self.locationTitleView.locationLabel.text = [NSString stringWithFormat:@"%@",mId];
         self.mLat = Lat;
         self.mLng = Lng;
         [self headerBeganRefresh];
@@ -140,14 +149,14 @@
         if (error)
         {
             NSString *eee =@"定位失败！请点击这里重新选择地址！";
-            mNavView.mAddress.text = eee;
+            self.locationTitleView.locationLabel.text = eee;
             MLLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
 
         }
         if (regeocode)
         {
             MLLog(@"reGeocode:%@", regeocode);
-            mNavView.mAddress.text = [NSString stringWithFormat:@"当前位置：%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
+            self.locationTitleView.locationLabel.text = [NSString stringWithFormat:@"%@\n%@%@",regeocode.formattedAddress,regeocode.street,regeocode.number];
    
             MLLog(@"location:%@", location);
             _mLat = [NSString stringWithFormat:@"%f",location.coordinate.latitude];

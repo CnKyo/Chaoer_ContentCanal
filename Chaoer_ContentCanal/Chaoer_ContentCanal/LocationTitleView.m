@@ -42,7 +42,7 @@
 {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.text = @"附近餐厅";
+        _titleLabel.text = @"附近位置";
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.font = [UIFont systemFontOfSize:18];
     }
