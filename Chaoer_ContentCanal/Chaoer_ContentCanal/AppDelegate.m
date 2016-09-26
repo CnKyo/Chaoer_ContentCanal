@@ -164,7 +164,7 @@
     //如不需要使用IDFA，advertisingIdentifier 可为nil
     [JPUSHService setupWithOption:launchOptions appKey:@"5e3e27da01ec6cb61b8e2b4d"
                           channel:@"25b4503e82ad1f91cfc56061"
-                 apsForProduction:NO
+                 apsForProduction:YES
             advertisingIdentifier:nil];
     
 //    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
