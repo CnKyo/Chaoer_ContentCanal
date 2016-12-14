@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,45 +13,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopCar_empty" translatesAutoresizingMaskIntoConstraints="NO" id="aOt-9C-Gjs">
-                    <rect key="frame" x="125" y="8" width="70" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="frY-Ob-fzS"/>
                         <constraint firstAttribute="width" constant="70" id="khf-Rb-35F"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物车空空如也，赶快去挑选商品吧！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-KA-Fpr">
-                    <rect key="frame" x="8" y="85" width="304" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6M-GX-uvb">
-                    <rect key="frame" x="70" y="110" width="180" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBY-FX-NhM">
-                            <rect key="frame" x="0.0" y="0.0" width="65" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="EJT-F6-HHz"/>
                                 <constraint firstAttribute="height" constant="30" id="ewb-LB-DvV"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="去逛逛">
-                                <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jy1-Xg-AoN">
-                            <rect key="frame" x="115" y="0.0" width="65" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="uaY-97-Ggr"/>
                                 <constraint firstAttribute="height" constant="30" id="vXK-CK-w4j"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="我的收藏">
-                                <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="Jy1-Xg-AoN" firstAttribute="top" secondItem="x6M-GX-uvb" secondAttribute="top" id="2BE-nX-UyU"/>
                         <constraint firstItem="PBY-FX-NhM" firstAttribute="top" secondItem="x6M-GX-uvb" secondAttribute="top" id="BLb-ZC-jt3"/>
@@ -61,7 +57,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="x6M-GX-uvb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="06X-3u-TqX"/>
                 <constraint firstItem="aOt-9C-Gjs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="2yt-RA-lZi"/>
@@ -83,6 +79,6 @@
         </view>
     </objects>
     <resources>
-        <image name="shopCar_empty" width="103" height="112"/>
+        <image name="shopCar_empty" width="51" height="56"/>
     </resources>
 </document>

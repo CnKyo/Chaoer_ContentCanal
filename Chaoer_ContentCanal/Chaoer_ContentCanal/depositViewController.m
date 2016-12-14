@@ -51,7 +51,7 @@
 */
 - (IBAction)mOkAction:(id)sender {
     
-    [self AlertViewShow:@"确定提交" alertViewMsg:@"提交即会扣除“100元”押金！" alertViewCancelBtnTiele:@"取消" alertTag:10];
+    [self AlertViewShow:@"确定提交" alertViewMsg:@"提交即会扣除“500元”押金！" alertViewCancelBtnTiele:@"取消" alertTag:10];
 
     
 }
@@ -62,7 +62,7 @@
         if( buttonIndex == 1)
         {
             
-            if ([mUserInfo backNowUser].mMoney < 100) {
+            if ([mUserInfo backNowUser].mMoney < 500) {
                 
                 [self AlertViewShow:@"提交失败" alertViewMsg:@"您的余额不足！请充值！" alertViewCancelBtnTiele:@"取消" alertTag:11];
                 

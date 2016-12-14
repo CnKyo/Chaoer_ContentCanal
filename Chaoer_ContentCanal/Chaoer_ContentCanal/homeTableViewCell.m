@@ -87,9 +87,11 @@
     float x1 = 20;
     float y1 = 0;
     float btnWidth1 = DEVICE_Width/2-20;
+    UIImage *imag11 = [UIImage imageNamed:@"community_life"];
+    UIImage *imag21 = [UIImage imageNamed:@"movie_ticket"];
+
     
-    UIImage *imag11 = [UIImage imageNamed:@"qiuk_pay"];
-    UIImage *imag21 = [UIImage imageNamed:@"canal_fix"];
+
     NSArray *imgArr11 = @[imag11,imag21];
     
     for (int i = 0; i<2; i++) {
@@ -127,10 +129,11 @@
         [vvv removeFromSuperview];
     }
     
-    UIImage *imag1 = [UIImage imageNamed:@"community_life"];
-    UIImage *imag2 = [UIImage imageNamed:@"person_service"];
     
-    UIImage *imag3 = [UIImage imageNamed:@"movie_ticket"];
+    UIImage *imag1 = [UIImage imageNamed:@"qiuk_pay"];
+    UIImage *imag2 = [UIImage imageNamed:@"person_service"];
+    UIImage *imag3 = [UIImage imageNamed:@"canal_fix"];
+
     
     UIImage *imag4 = [UIImage imageNamed:@"community_status"];
     

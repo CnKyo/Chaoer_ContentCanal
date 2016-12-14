@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,36 +13,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_bgk" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-Qg-wLb">
-                    <rect key="frame" x="10" y="34" width="50" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="K33-Ae-dEI"/>
                         <constraint firstAttribute="height" constant="16" id="sml-Kl-uQD"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2V-FX-J0U">
-                    <rect key="frame" x="0.0" y="20" width="95" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="9QO-Xf-hX7"/>
                         <constraint firstAttribute="width" constant="95" id="9tq-IA-mff"/>
                     </constraints>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
-                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品详情" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="H03-Ig-fbv">
-                    <rect key="frame" x="103" y="31" width="114" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="114" id="ahY-M4-TLy"/>
                         <constraint firstAttribute="height" constant="21" id="gFf-3e-bNB"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhL-UR-QFS">
-                    <rect key="frame" x="254" y="29" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="7U9-nP-xsU"/>
                         <constraint firstAttribute="height" constant="25" id="Fhz-Gb-cJP"/>
@@ -49,7 +46,6 @@
                     <state key="normal" backgroundImage="collect_white"/>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-YD-nTd">
-                    <rect key="frame" x="287" y="29" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="KaQ-JH-I6X"/>
                         <constraint firstAttribute="width" constant="25" id="jsJ-vB-4B5"/>
@@ -57,7 +53,7 @@
                     <state key="normal" backgroundImage="share_white"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.52941176469999995" green="0.75686274509999996" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="H03-Ig-fbv" firstAttribute="centerX" secondItem="z7v-Q5-T4r" secondAttribute="centerX" id="4MT-zf-6MM"/>
                 <constraint firstItem="MaI-YD-nTd" firstAttribute="top" secondItem="z7v-Q5-T4r" secondAttribute="top" constant="29" id="CSz-uf-LIK"/>
@@ -88,8 +84,8 @@
         </view>
     </objects>
     <resources>
-        <image name="back_bgk" width="94" height="30"/>
-        <image name="collect_white" width="32" height="29"/>
-        <image name="share_white" width="32" height="29"/>
+        <image name="back_bgk" width="47" height="15"/>
+        <image name="collect_white" width="16" height="14"/>
+        <image name="share_white" width="16" height="14"/>
     </resources>
 </document>

@@ -177,8 +177,8 @@
     mLat = nil;
     mLng = nil;
     
-    mTwoBtnArr = @[@"快捷缴费",@"物业报修"];
-    mMainBtnArr = @[@"社区生活",@"便民服务",@"跑跑腿",@"社区动态",@"邻里圈",@"投诉建议",];
+    mTwoBtnArr = @[@"社区生活",@"跑跑腿"];
+    mMainBtnArr = @[@"快捷缴费",@"便民服务",@"物业报修",@"社区动态",@"邻里圈",@"投诉建议",];
     [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(callBack)name:@"back"object:nil];
     
     if (_withOutLogin == YES) {
@@ -665,23 +665,31 @@
     switch (Index) {
         case 0:
         {
+            communityViewController   *mSuperMarket = [communityViewController new];
+            mSuperMarket.mLng = mLng;
+            mSuperMarket.mLat = mLat;
+            [self pushViewController:mSuperMarket];
 
-            wpgViewController *www = [wpgViewController new];
-            [self pushViewController:www];
-//            mFoodViewController *view = [[mFoodViewController alloc] initWithNibName:@"mFoodViewController" bundle:nil];
-//            [self pushViewController:view];
+
         }
             break;
         case 1:
         {
+ 
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
+                
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
+            mSenderViewController *mPPT = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
             
-            mFixViewController   *ppp = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
-            ppp.sType = 1;
-            [self presentModalViewController:ppp];
+            mPPT.mLng = mLng;
+            mPPT.mLat = mLat;
+            [self pushViewController:mPPT];
+
+            
+
+
         }
             break;
         default:
@@ -698,50 +706,46 @@
     switch (Index) {
         case 0:
         {
-//                        [self showErrorStatus:@"商家还在赶来的路上～～"];
-//                        return;
-            communityViewController   *ppp = [communityViewController new];
-            ppp.mLng = mLng;
-            ppp.mLat = mLat;
-            [self pushViewController:ppp];
+
+            wpgViewController *mQuikPay = [wpgViewController new];
+            [self pushViewController:mQuikPay];
             
         }
             break;
         case 1:
         {
-            serviceViewController *sss = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
-            [self pushViewController:sss];
+            serviceViewController *mService = [[serviceViewController alloc] initWithNibName:@"serviceViewController" bundle:nil];
+            [self pushViewController:mService];
             
         }
             break;
         case 2:
         {
+            
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
-                
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
-            mSenderViewController *mmm = [[mSenderViewController alloc] initWithNibName:@"mSenderViewController" bundle:nil];
             
-            mmm.mLng = mLng;
-            mmm.mLat = mLat;
-            [self pushViewController:mmm];
+            mFixViewController   *mFix = [[mFixViewController alloc] initWithNibName:@"mFixViewController" bundle:nil];
+            mFix.sType = 1;
+            [self presentModalViewController:mFix];
             
         }
             break;
         case 3:
         {
             
+            
             if (![mUserInfo backNowUser].mIsHousingAuthentication) {
                 
                 [self AlertViewShow:@"未实名认证！" alertViewMsg:@"通过认证即可使用更多功能？" alertViewCancelBtnTiele:@"取消" alertTag:10];
                 return;
             }
             
-            communityStatusViewController *ccc = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
-        
-            [self pushViewController:ccc];
+            communityStatusViewController *mNews = [[communityStatusViewController alloc] initWithNibName:@"communityStatusViewController" bundle:nil];
             
+            [self pushViewController:mNews];
             
         }
             break;
@@ -760,22 +764,22 @@
                 return;
             }
             
-            mBaseConverSationViewController *ccc = [[mBaseConverSationViewController alloc] initWithNibName:@"mBaseConverSationViewController" bundle:nil];
+            mBaseConverSationViewController *mRCCloud = [[mBaseConverSationViewController alloc] initWithNibName:@"mBaseConverSationViewController" bundle:nil];
             
             
             if (mLat) {
-                ccc.mLat = mLat;
+                mRCCloud.mLat = mLat;
             }if (mLng) {
-                ccc.mLng = mLng;
+                mRCCloud.mLng = mLng;
             }
             
             if ([mLat isEqualToString:@"0.000000"]) {
-                ccc.mLat = nil;
+                mRCCloud.mLat = nil;
             }if ([mLng isEqualToString:@"0.000000"]) {
-                ccc.mLng = nil;
+                mRCCloud.mLng = nil;
             }
             
-            [self pushViewController:ccc];
+            [self pushViewController:mRCCloud];
             
             
         }
@@ -783,8 +787,8 @@
         case 5:
         {
             
-            mFeedBackViewController *sss = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
-            [self pushViewController:sss];
+            mFeedBackViewController *mFeedBack = [[mFeedBackViewController alloc] initWithNibName:@"mFeedBackViewController" bundle:nil];
+            [self pushViewController:mFeedBack];
             
             
             

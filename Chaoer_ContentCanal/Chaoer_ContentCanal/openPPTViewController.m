@@ -95,7 +95,7 @@
     mFrontImg = nil;
     mForwordImg = nil;
     mSex = nil;
-    mPayFee = 100;
+    mPayFee = 500;
     mServiceUrl = nil;
     [self initView];
     [self initData];
@@ -156,7 +156,7 @@
     [mUserInfo getLegUserInfo:^(mBaseData *resb, NSString *mUrl, float mMoney) {
         if (resb.mSucess) {
             [SVProgressHUD dismiss];
-            mPayFee = mMoney;
+            mPayFee = 500;
             mServiceUrl = mUrl;
             [self updatePage];
         }else{
